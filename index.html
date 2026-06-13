@@ -266,9 +266,97 @@
   .esadv li:last-child{border-bottom:none}
   .esadv li b{color:var(--jade);font-weight:600}
   @media(prefers-reduced-motion:reduce){.cuband::after{animation:none}.btn-pri:hover::after,.esend:hover::after,.fcta:hover::after,.navcta:hover::after{animation:none}}
+
+  /* ===== LANGUAGE SWITCHER ===== */
+  .langwrap{position:relative}
+  .langbtn{background:none;border:1px solid var(--line-cop);color:var(--ink-soft);font:600 .9rem var(--sans);letter-spacing:.03em;padding:.55rem .9rem;border-radius:2px;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem}
+  .langbtn:hover{border-color:var(--copper);color:var(--copper-deep)}
+  .langmenu{position:absolute;right:0;top:calc(100% + 10px);background:var(--paper2);border:1px solid var(--line-cop);border-top:3px solid;border-image:var(--metal) 1;min-width:200px;display:none;z-index:130;box-shadow:0 16px 40px -18px rgba(36,31,24,.45)}
+  .langmenu.open{display:block}
+  .langmenu button{display:block;width:100%;text-align:left;background:none;border:none;padding:.72rem 1.1rem;font:500 1.02rem var(--sans);color:var(--ink-soft);cursor:pointer;transition:.16s}
+  .langmenu button:hover{background:var(--silk);color:var(--copper-deep)}
+  @media(max-width:860px){
+    .langwrap{width:100%}
+    .langbtn{display:none}
+    .langmenu{position:static;display:block;border:none;border-top:1px solid var(--line);box-shadow:none;min-width:0;margin-top:.6rem;background:none}
+    .langmenu button{padding:.55rem 0;font-size:1.15rem}
+  }
+  /* hide Google Translate chrome */
+  .goog-te-banner-frame{display:none!important}
+  body{top:0!important}
+  #google_translate_element{display:none}
+  .goog-text-highlight{background:none!important;box-shadow:none!important}
+  .goog-tooltip,.goog-tooltip:hover{display:none!important}
+
+  /* ===== POLISHED ANTIQUE COPPER (no stripes, reflective like vintage car fittings) ===== */
+  :root{
+    --cu-plate:radial-gradient(135% 95% at 26% -25%,rgba(255,255,255,.6),rgba(255,255,255,0) 55%),linear-gradient(180deg,#F8DEBB,#D89A5A 30%,#A8632F 56%,#C98A52 74%,#ECCB95 100%);
+    --cu-art:radial-gradient(135% 90% at 24% -12%,rgba(255,255,255,.55),rgba(255,255,255,0) 56%),linear-gradient(180deg,#FCE8CC,#D7A368 13%,#A8632F 33%,#7C431E 49%,#B06E37 57%,#EDC896 72%,#9C5A2C 88%,#6E3C1C 100%);
+    --cu-text:linear-gradient(180deg,#F6DDB8,#C07E44 28%,#7A431F 50%,#C68A50 62%,#F2D2A2 80%,#8A5026 100%);
+    --cu-text-bright:linear-gradient(180deg,#FCEBCB,#E0A86C 30%,#B26A33 52%,#E7BE86 64%,#FBE6C8 82%,#C8854A 100%);
+  }
+  .btn-pri::after,.esend::after,.fcta::after,.navcta::after,.cuband::after{display:none!important}
+  .btn-pri,.esend,.navcta,.fcta{background:var(--cu-plate)!important;color:#2A150A!important;text-shadow:0 1px 0 rgba(255,255,255,.5)!important;border:none!important;border-top:1px solid rgba(255,255,255,.6)!important;box-shadow:inset 0 -3px 7px rgba(110,60,28,.4),0 2px 8px -3px rgba(110,60,28,.5)}
+  .btn-pri:hover,.esend:hover,.fcta:hover{filter:brightness(1.05);transform:translateY(-2px)}
+  /* metallic typography */
+  .metal-d{background:var(--cu-text)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important}
+  .metal-l{background:var(--cu-text-bright)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important}
+  #eqEdge,.heritage .gen .gt,.cyc-name,.kdetail .ktitle,.esum .etitle{background:var(--cu-text);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .heritage .gen .gt,#eqEdge{background:var(--cu-text-bright);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  /* big band as polished plate */
+  .cuband{background:var(--cu-art)!important}
+  .cuband h2{color:#2A150A;text-shadow:0 1px 0 rgba(255,255,255,.45)}
+  .cuband p{color:rgba(42,21,10,.85)}
+  /* risk label backplates = polished copper */
+  .rlayer{background:var(--cu-art)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -3px 6px rgba(60,30,12,.45)}
+  .rlayer .rl{color:#FCF4E7;text-shadow:0 1px 2px rgba(40,18,6,.75),0 0 1px rgba(0,0,0,.4)}
+  /* chart fills = polished copper */
+  .cyc-meter .diff{background:var(--cu-art)!important}
+  .costbar i{background:var(--cu-art)!important}
+  .cbg{height:4px!important;top:29px!important}
+  .cfill{height:4px!important;top:29px!important;background:var(--cu-art)!important;box-shadow:0 1px 3px rgba(110,60,28,.4)}
+  .rbase{box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
+
+  /* ===== SATIN FRENCH-COPPER (low reflection) — overrides polished look ===== */
+  :root{
+    --cu-plate:radial-gradient(160% 140% at 50% -45%,rgba(255,236,208,.20),rgba(255,236,208,0) 62%),linear-gradient(180deg,#C58049,#A85F30 55%,#8E4F27);
+    --cu-art:radial-gradient(160% 130% at 50% -40%,rgba(255,236,208,.15),rgba(255,236,208,0) 60%),linear-gradient(180deg,#BE7740,#A35B2E 55%,#884B25);
+    --cu-text:linear-gradient(180deg,#B96E36,#8E4F27);
+    --cu-text-bright:linear-gradient(180deg,#DD9A5C,#B06A38);
+  }
+  .btn-pri,.esend,.navcta,.fcta{background:var(--cu-plate)!important;color:#FBEFDD!important;text-shadow:0 1px 2px rgba(70,35,15,.55)!important;border:1px solid rgba(120,66,32,.45)!important;border-top:1px solid rgba(255,228,196,.45)!important;box-shadow:inset 0 1px 1px rgba(255,230,200,.22),inset 0 -3px 8px rgba(80,40,18,.3)!important}
+  .btn-pri:hover,.esend:hover,.fcta:hover{filter:brightness(1.04);transform:translateY(-2px)}
+  .metal-d{background:var(--cu-text)!important}
+  .metal-l{background:var(--cu-text-bright)!important}
+  #eqEdge,.heritage .gen .gt{background:var(--cu-text-bright)!important}
+  .cyc-name,.kdetail .ktitle,.esum .etitle{background:var(--cu-text)!important}
+  .cuband{background:var(--cu-art)!important}
+  .cuband h2{color:#FBEFDD;text-shadow:0 1px 3px rgba(70,35,15,.5)}
+  .cuband p{color:rgba(251,239,221,.9)}
+  .cuband .band-btn{background:var(--jade-deep)!important;color:var(--paper)!important;border-top:2px solid rgba(255,228,196,.35)!important}
+  .rlayer{background:var(--cu-art)!important;box-shadow:inset 0 1px 0 rgba(255,232,205,.35),inset 0 -2px 6px rgba(70,38,18,.35)!important}
+  .rlayer .rl{color:#FCF4E7;text-shadow:0 1px 2px rgba(50,24,8,.7)}
+  .cyc-meter .diff,.costbar i{background:var(--cu-art)!important}
+  .cfill{height:4px!important;top:29px!important;background:var(--cu-art)!important;box-shadow:none!important}
+  .cbg{height:4px!important;top:29px!important}
+  /* equilibrium control buttons = metal */
+  .eqtog{border:1px solid rgba(216,150,90,.5)!important;color:rgba(242,236,221,.78)!important;background:transparent!important}
+  .eqtog[aria-pressed=true]{background:var(--cu-plate)!important;color:#FBEFDD!important;border-color:rgba(255,228,196,.4)!important;text-shadow:0 1px 2px rgba(70,35,15,.5)!important;box-shadow:inset 0 1px 1px rgba(255,230,200,.22),inset 0 -3px 8px rgba(80,40,18,.3)!important}
+  .eqshock{background:var(--cu-plate)!important;color:#FBEFDD!important;border:1px solid rgba(255,228,196,.4)!important;text-shadow:0 1px 2px rgba(70,35,15,.5)!important;box-shadow:inset 0 1px 1px rgba(255,230,200,.22),inset 0 -3px 8px rgba(80,40,18,.3)!important}
+  .eqshock:hover{filter:brightness(1.05)}
+  /* garden-tool silhouettes */
+  .heritage,.risk,.enq{position:relative;overflow:hidden}
+  section .wrap{position:relative;z-index:2}
+  .gtool{position:absolute;z-index:0;pointer-events:none}
+  .gt-fork{top:9%;right:5%;width:118px;opacity:.18}
+  .gt-trowel{bottom:7%;left:2%;width:108px;opacity:.12}
+  .gt-can{top:12%;right:3%;width:230px;opacity:.1}
+  .hero .branch{opacity:.26}
+  @media(max-width:860px){.gt-can{width:150px;opacity:.07}.gt-fork{width:80px}.gt-trowel{width:74px}}
 </style>
 </head>
 <body>
+<div id="google_translate_element"></div>
 
 <header>
   <div class="wrap bar">
@@ -289,6 +377,20 @@
       <a href="#risk">Risk</a>
       <a href="#catalogue">Catalogue</a>
       <a class="navcta" href="#enquiry">Enquire</a>
+      <div class="langwrap">
+        <button class="langbtn" id="langBtn" aria-haspopup="true" aria-expanded="false">&#127760; Language</button>
+        <div class="langmenu" id="langMenu">
+          <button data-l="en">English</button>
+          <button data-l="nl">Nederlands</button>
+          <button data-l="de">Deutsch</button>
+          <button data-l="fr">Fran&ccedil;ais</button>
+          <button data-l="he">&#1506;&#1489;&#1512;&#1497;&#1514; (Hebrew)</button>
+          <button data-l="pl">Polski</button>
+          <button data-l="it">Italiano</button>
+          <button data-l="es">Espa&ntilde;ol</button>
+          <button data-l="pt">Portugu&ecirc;s</button>
+        </div>
+      </div>
     </nav>
   </div>
 </header>
@@ -318,6 +420,8 @@
 
   <!-- ===== HERITAGE ===== -->
   <section class="heritage" id="heritage">
+    <svg class="gtool gt-fork" viewBox="0 0 120 240" fill="none" aria-hidden="true"><defs><linearGradient id="gtF" gradientUnits="userSpaceOnUse" x1="60" y1="0" x2="60" y2="240"><stop offset="0" stop-color="#E6AC70"/><stop offset="1" stop-color="#8E4F27"/></linearGradient></defs><g stroke="url(#gtF)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="60" cy="22" rx="20" ry="14"/><path d="M50,34 L57,60 M70,34 L63,60"/><path d="M60,60 L60,150"/><path d="M38,150 L82,150"/><path d="M44,150 L43,212 M54,150 L54,214 M66,150 L66,214 M76,150 L77,212"/></g></svg>
+
     <div class="wrap">
       <span class="ey">Since 1981 · three generations</span>
       <h2>Three generations. One standard.</h2>
@@ -396,6 +500,8 @@
 
   <!-- ===== RISK ===== -->
   <section class="risk" id="risk">
+    <svg class="gtool gt-trowel" viewBox="0 0 120 240" fill="none" aria-hidden="true"><defs><linearGradient id="gtT" gradientUnits="userSpaceOnUse" x1="60" y1="0" x2="60" y2="240"><stop offset="0" stop-color="#C58049"/><stop offset="1" stop-color="#8E4F27"/></linearGradient></defs><g stroke="url(#gtT)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><rect x="44" y="10" width="32" height="42" rx="16"/><path d="M60,52 L60,122"/><path d="M60,122 C40,142 40,184 60,216 C80,184 80,142 60,122 Z"/></g></svg>
+
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="ey">Taken apart, layer by layer</span>
@@ -450,6 +556,8 @@
 
   <!-- ===== ENQUIRY BUILDER ===== -->
   <section class="enq" id="enquiry">
+    <svg class="gtool gt-can" viewBox="0 0 240 200" fill="none" aria-hidden="true"><defs><linearGradient id="gtC" gradientUnits="userSpaceOnUse" x1="120" y1="0" x2="120" y2="200"><stop offset="0" stop-color="#C58049"/><stop offset="1" stop-color="#8E4F27"/></linearGradient></defs><g stroke="url(#gtC)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M70,80 L176,80 L166,166 L80,166 Z"/><path d="M62,72 L184,72"/><path d="M92,72 C104,44 152,44 162,72"/><path d="M70,100 L20,80 L12,92 L70,120"/><ellipse cx="16" cy="86" rx="11" ry="8"/></g></svg>
+
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="ey">Build your enquiry</span>
@@ -646,15 +754,16 @@
     var ns='http://www.w3.org/2000/svg';
     function mk(n,a){var e=document.createElementNS(ns,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
     var svg=document.getElementById('eqSvg'); if(!svg) return;
+    var gd=mk('linearGradient',{id:'eqCu',x1:'0',y1:'0',x2:'0',y2:'1'});[['0','#E0A064'],['0.5','#A85F30'],['1','#8E4F27']].forEach(function(s){gd.appendChild(mk('stop',{offset:s[0],'stop-color':s[1]}));});var dfs=mk('defs',{});dfs.appendChild(gd);svg.appendChild(dfs);
     var N=18,W=720,H=360,padL=16,padR=16,padT=24,padB=30,pw=W-padL-padR,ph=H-padT-padB;
     function X(i){return padL+i*pw/(N-1);}
     function Y(v){return padT+(1-v/100)*ph;}
     [0,25,50,75,100].forEach(function(g){svg.appendChild(mk('line',{x1:padL,y1:Y(g),x2:W-padR,y2:Y(g),stroke:'rgba(242,236,221,.12)','stroke-width':1}));});
     svg.appendChild(mk('text',{x:padL,y:Y(100)-7,'font-family':'Manrope','font-size':12,fill:'rgba(242,236,221,.5)'})).textContent='Higher';
     svg.appendChild(mk('text',{x:padL,y:Y(0)+16,'font-family':'Manrope','font-size':12,fill:'rgba(242,236,221,.5)'})).textContent='Lower';
-    var area=mk('polygon',{fill:'rgba(134,160,145,.18)',stroke:'none'}); svg.appendChild(area);
+    var area=mk('polygon',{fill:'rgba(168,92,44,.20)',stroke:'none'}); svg.appendChild(area);
     var iLine=mk('polyline',{fill:'none',stroke:'#9b8f7e','stroke-width':3,'stroke-dasharray':'5 5','stroke-linejoin':'round'}); svg.appendChild(iLine);
-    var bLine=mk('polyline',{fill:'none',stroke:'#D89360','stroke-width':4,'stroke-linejoin':'round','stroke-linecap':'round'}); svg.appendChild(bLine);
+    var bLine=mk('polyline',{fill:'none',stroke:'url(#eqCu)','stroke-width':4,'stroke-linejoin':'round','stroke-linecap':'round'}); svg.appendChild(bLine);
     var P={nc:true,ad:true,mr:true}, shock=false;
     function clamp(v){return Math.max(3,Math.min(100,v));}
     function industry(){var a=[];for(var i=0;i<N;i++){var v=56+9*Math.sin(i*0.85)+4*Math.sin(i*2.1);if(shock&&i>=9)v-=Math.max(0,34-(i-9)*4);a.push(clamp(v));}return a;}
@@ -684,6 +793,22 @@
     sh.addEventListener('click',function(){shock=!shock;sh.textContent=shock?'Reset the market':'Simulate a market shock';refresh();});
     draw();note();
   })();
+
+  /* LANGUAGE SWITCHER */
+  (function(){
+    var btn=document.getElementById('langBtn'),menu=document.getElementById('langMenu');
+    if(btn){btn.addEventListener('click',function(e){e.stopPropagation();var o=menu.classList.toggle('open');btn.setAttribute('aria-expanded',o);});
+      document.addEventListener('click',function(){menu.classList.remove('open');btn.setAttribute('aria-expanded',false);});}
+    function applyLang(code){
+      if(code==='en'){try{document.cookie='googtrans=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT';document.cookie='googtrans=;path=/;domain=.'+location.hostname+';expires=Thu, 01 Jan 1970 00:00:00 GMT';}catch(e){}location.reload();return;}
+      var n=0;(function go(){var c=document.querySelector('.goog-te-combo');
+        if(c){c.value=code;c.dispatchEvent(new Event('change'));}
+        else if(n++<30){setTimeout(go,200);}})();
+    }
+    if(menu)menu.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){applyLang(b.dataset.l);if(window.innerWidth>860){menu.classList.remove('open');}});});
+  })();
 </script>
+<script>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'en,nl,de,fr,he,pl,it,es,pt',autoDisplay:false},'google_translate_element');}</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
