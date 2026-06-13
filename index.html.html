@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birdland Ind. — Garden & Field Manufacturer Since 1981</title>
+<meta name="description" content="Birdland Ind. — a dedicated garden and field manufacturer for the world's brands and distributors. Integrated production across Taiwan and China. We take apart your risk and cost, and keep you a season ahead. Since 1981.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F1EBDC;--paper2:#F7F1E5;--silk:#E9E1CF;
+    --ink:#23261F;--ink-soft:#3c4138;
+    --jade:#3B5E4C;--jade-deep:#22382C;--celadon:#86A091;
+    --gold:#A98828;--gold-bright:#D8BE78;--gold-line:rgba(169,136,40,.45);
+    --bronze:#9A6B41;--bronze-deep:#74492A;
+    --line:rgba(35,38,31,.14);--line-paper:rgba(241,235,220,.22);
+    --metal:linear-gradient(135deg,#EAD9A0,#C2A33E 42%,#8A6E1E 56%,#E3CC84);
+    --metal-bright:linear-gradient(135deg,#F2E5B0,#D8BE78 40%,#B9962E 60%,#EAD79A);
+    --serif:"Cormorant Garamond",Georgia,serif;--sans:"Manrope",system-ui,sans-serif;
+    --pad:clamp(1.25rem,5vw,7rem);--maxw:1140px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;font-size:18px}
+  body{font-family:var(--sans);background:var(--paper);color:var(--ink-soft);font-size:clamp(1.14rem,.95rem + .45vw,1.3rem);line-height:1.75;font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}svg{display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+  h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;color:var(--jade-deep);letter-spacing:.01em}
+  .ital{font-style:italic;color:var(--gold)}
+  .metal{background:var(--metal-bright);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .ey{font-family:var(--sans);font-weight:600;font-size:.84rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);display:inline-block}
+  .goldline{height:2px;width:74px;background:var(--metal);margin-top:.5rem;border-radius:2px}
+  .logo{width:40px;height:40px;flex:0 0 auto}
+  .wm{font-family:var(--serif);font-weight:600;letter-spacing:.05em;color:var(--jade-deep)}
+  .wm .ind{font-family:var(--sans);font-weight:600;font-size:.5em;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-left:.45em;vertical-align:.18em}
+
+  header{position:sticky;top:0;z-index:100;background:rgba(241,235,220,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--gold-line);box-shadow:0 2px 0 rgba(169,136,40,.12)}
+  .bar{display:flex;align-items:center;justify-content:space-between;padding:1rem 0}
+  .brand{display:flex;align-items:center;gap:.7rem;font-size:1.95rem}
+  nav{display:flex;gap:1.9rem;font-size:.95rem;font-weight:500;letter-spacing:.04em}
+  nav a{color:var(--ink-soft);padding:.2rem 0;position:relative}
+  nav a::after{content:"";position:absolute;left:0;bottom:-3px;height:1px;width:0;background:var(--metal);transition:width .35s}
+  nav a:hover::after,nav a:focus-visible::after{width:100%}
+  .menu{display:none;background:none;border:1px solid var(--line);padding:.55rem .85rem;font:600 .82rem var(--sans);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;color:var(--ink)}
+
+  .hero{position:relative;overflow:hidden;padding-top:clamp(4rem,9vw,8rem);padding-bottom:clamp(4.5rem,9vw,8rem)}
+  .hero .branch{position:absolute;top:-30px;right:-40px;width:min(46vw,520px);opacity:.5;z-index:0}
+  .hero .wrap{position:relative;z-index:2}
+  .hero h1{font-size:clamp(3rem,8vw,6.2rem);margin:1.3rem 0 1.3rem;max-width:13ch}
+  .hero p.sub{font-size:clamp(1.3rem,2vw,1.6rem);color:var(--ink-soft);max-width:42ch;font-weight:300}
+  .heroBtn{display:inline-flex;align-items:center;gap:.7rem;margin-top:2.4rem;font-family:var(--sans);font-weight:600;letter-spacing:.04em;font-size:1.05rem;padding:1.05rem 2rem;background:var(--jade-deep);color:var(--paper);border-radius:1px;border-top:2px solid var(--gold-bright);transition:transform .25s,background .25s}
+  .heroBtn:hover{background:var(--jade);transform:translateY(-2px)}
+
+  section{padding-top:clamp(5rem,9vw,8.5rem);padding-bottom:clamp(5rem,9vw,8.5rem)}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s ease}
+  .reveal.in{opacity:1;transform:none}
+  .sec-head{max-width:60ch}
+  .sec-head h2{font-size:clamp(2.3rem,4.6vw,3.5rem);margin:.8rem 0 .5rem}
+  .sec-head p{font-size:1.2rem;color:var(--ink-soft);font-weight:300}
+  .illus{font-size:.95rem;font-style:italic;color:#8c8164;margin-top:1.4rem}
+
+  /* ===== AUTO-CYCLING PAIN -> SOLUTION ===== */
+  .cycle{background:var(--paper2)}
+  .cyc-card{margin-top:2.4rem;border:1px solid var(--gold-line);background:var(--paper);padding:clamp(1.8rem,4vw,3.2rem);position:relative}
+  .cyc-card::before,.cyc-card::after{content:"";position:absolute;width:20px;height:20px;border:2px solid;border-image:var(--metal) 1}
+  .cyc-card::before{top:-1px;left:-1px;border-right:none;border-bottom:none}
+  .cyc-card::after{bottom:-1px;right:-1px;border-left:none;border-top:none}
+  .cyc-pain{font-family:var(--sans);font-weight:500;font-size:1.05rem;color:var(--bronze-deep)}
+  .cyc-pain .x{font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bronze);margin-right:.6rem}
+  .cyc-name{font-family:var(--serif);font-size:clamp(2rem,4.6vw,3.2rem);color:var(--jade-deep);line-height:1.1;margin:.5rem 0 .7rem}
+  .cyc-line{font-size:1.22rem;color:var(--ink-soft);font-weight:300;max-width:44ch}
+  .cyc-meter{position:relative;height:14px;background:rgba(35,38,31,.06);border-radius:7px;margin-top:1.9rem;overflow:hidden}
+  .cyc-meter .own{position:absolute;left:0;top:0;height:100%;width:0;background:var(--bronze);border-radius:7px 0 0 7px;transition:width 1s ease}
+  .cyc-meter .diff{position:absolute;top:0;height:100%;width:0;background:var(--metal-bright);transition:width 1.2s cubic-bezier(.2,.7,.2,1) .3s,left .3s}
+  .cyc-meterlab{display:flex;justify-content:space-between;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;color:#9b9070;margin-top:.6rem}
+  .cyc-delta{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:1.1rem;margin-top:.7rem}
+  .cyc-fade{opacity:0;transition:opacity .5s}.cyc-fade.show{opacity:1}
+  .cyc-dots{display:flex;gap:.5rem;margin-top:1.8rem;flex-wrap:wrap}
+  .cyc-dots button{width:30px;height:4px;border:none;background:rgba(35,38,31,.16);cursor:pointer;padding:0;transition:background .3s}
+  .cyc-dots button[aria-current=true]{background:var(--gold)}
+
+  /* ===== PRINCIPLES ===== */
+  .principles{background:var(--jade-deep);color:var(--paper);position:relative}
+  .principles::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--metal-bright)}
+  .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(2rem,5vw,4rem)}
+  .pcol{position:relative;padding-top:2rem;border-top:1px solid var(--gold-line)}
+  .pcol .pn{font-family:var(--serif);font-size:2.8rem;line-height:1}
+  .pcol h3{font-family:var(--serif);font-size:1.9rem;color:var(--paper);margin:.4rem 0 .6rem}
+  .pcol p{font-size:1.08rem;color:rgba(241,235,220,.76);font-weight:300}
+
+  /* ===== RISK REMOVER ===== */
+  .risk{background:var(--paper)}
+  .risk-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(2.2rem,5vw,4.5rem);margin-top:2.6rem;align-items:start}
+  .caps{display:flex;flex-direction:column;gap:.6rem}
+  .cap{display:flex;align-items:center;gap:.9rem;text-align:left;font-family:var(--sans);font-size:1.05rem;font-weight:500;color:var(--ink);background:var(--paper2);border:1px solid var(--line);border-radius:2px;padding:.9rem 1.1rem;cursor:pointer;transition:.25s}
+  .cap:hover{border-color:var(--gold)}
+  .cap[aria-pressed=true]{background:var(--jade-deep);color:var(--paper);border-color:var(--jade-deep)}
+  .cap .cx{flex:0 0 auto;width:24px;height:24px;border:1.5px solid var(--celadon);display:flex;align-items:center;justify-content:center;transition:.25s}
+  .cap[aria-pressed=true] .cx{background:var(--gold-bright);border-color:var(--gold-bright)}
+  .cap .cx svg{width:14px;height:14px;opacity:0;transition:opacity .2s}
+  .cap[aria-pressed=true] .cx svg{opacity:1}
+  .allbtn{margin-top:.5rem;font-family:var(--sans);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.86rem;padding:.9rem;background:none;color:var(--jade-deep);border:1px solid var(--jade-deep);border-radius:2px;cursor:pointer;transition:.25s}
+  .allbtn:hover{background:var(--jade-deep);color:var(--paper)}
+  .gauge{border:1px solid var(--gold-line);border-radius:3px;padding:1.5rem 1.6rem;margin-bottom:1.4rem;background:var(--paper2);position:relative}
+  .gauge::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:var(--metal)}
+  .grow{display:flex;gap:2rem;flex-wrap:wrap}
+  .gauge .gt{font-size:.82rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#9b9070}
+  .gauge .gnum{font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,5vw,3.4rem);line-height:1;margin:.1rem 0;color:var(--bronze)}
+  .gauge .gnum.lift{color:var(--jade)}
+  .costbar{height:8px;border-radius:4px;background:rgba(35,38,31,.08);overflow:hidden;margin-top:.5rem}
+  .costbar i{display:block;height:100%;width:100%;background:var(--metal);transition:width .8s cubic-bezier(.2,.7,.2,1)}
+  .tower-wrap{position:relative;padding-top:26px}
+  .tower-wrap::before{content:"Without us — full exposure";position:absolute;top:0;left:0;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#b0a486}
+  .tower-wrap::after{content:"";position:absolute;top:22px;left:0;right:0;border-top:1px dashed var(--gold-line)}
+  .tower{display:flex;flex-direction:column;gap:5px}
+  .rlayer{height:44px;border-radius:2px;background:linear-gradient(135deg,var(--bronze),var(--bronze-deep));display:flex;align-items:center;padding:0 1.1rem;overflow:hidden;transition:height .6s cubic-bezier(.4,0,.2,1),opacity .5s,margin .6s,padding .6s}
+  .rlayer .rl{font-family:var(--sans);font-weight:500;font-size:.98rem;color:var(--paper);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rlayer.gone{height:0 !important;opacity:0;margin:0;padding-top:0;padding-bottom:0}
+  .rbase{height:30px;border-radius:2px;background:var(--jade);display:flex;align-items:center;padding:0 1.1rem;margin-top:5px}
+  .rbase .rl{font-size:.86rem;color:var(--paper);font-weight:500}
+
+  /* ===== CHAIN ===== */
+  .chain{background:var(--silk)}
+  .ctrack{position:relative;margin-top:2.8rem;height:64px}
+  .cbg{position:absolute;top:30px;left:0;right:0;height:2px;background:rgba(35,38,31,.16)}
+  .cfill{position:absolute;top:30px;left:0;height:2px;background:var(--metal);width:0;transition:width .7s cubic-bezier(.2,.7,.2,1)}
+  .cnodes{position:absolute;inset:0;display:flex;justify-content:space-between}
+  .knode{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;padding:0;flex:0 0 auto}
+  .knode .dot{width:16px;height:16px;border-radius:50%;background:var(--paper);border:2px solid var(--jade);margin-top:22px;transition:.25s;z-index:2;position:relative}
+  .knode[aria-pressed=true] .dot{background:var(--gold);border-color:var(--gold);transform:scale(1.45)}
+  .knode .pct{font-family:var(--serif);font-size:1.05rem;color:var(--jade-deep);margin-top:.5rem;font-weight:600}
+  .clabels{display:flex;justify-content:space-between;margin-top:.2rem}
+  .clabels span{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:#8c8164}
+  .kdetail{margin-top:2.4rem;border-left:2px solid;border-image:var(--metal) 1;background:var(--paper);padding:clamp(1.5rem,3.5vw,2.4rem)}
+  .kdetail .ktag{font-size:.84rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+  .kdetail .ktitle{font-family:var(--serif);font-size:clamp(1.8rem,3.6vw,2.5rem);color:var(--jade-deep);margin:.2rem 0 .6rem}
+  .kdetail p{font-size:1.18rem;color:var(--ink-soft);font-weight:300}
+  .kfade{opacity:0;transform:translateY(8px);transition:.4s}.kfade.show{opacity:1;transform:none}
+
+  /* ===== CATALOGUE ===== */
+  .cat{background:var(--jade-deep);color:var(--paper);position:relative}
+  .cat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--metal-bright)}
+  .cat .ey{color:var(--gold-bright)}
+  .cat h2{color:var(--paper);font-size:clamp(2.1rem,4.4vw,3.2rem);margin:.7rem 0 .8rem;max-width:18ch}
+  .cat p{font-size:1.2rem;color:rgba(241,235,220,.82);font-weight:300;max-width:50ch}
+  .cat p .hl{color:var(--gold-bright);font-style:italic;font-family:var(--serif);font-size:1.15em}
+  .catBtn{display:inline-flex;align-items:center;gap:.7rem;margin-top:2rem;font-family:var(--sans);font-weight:600;letter-spacing:.03em;font-size:1.05rem;padding:1rem 1.9rem;background:transparent;color:var(--paper);border:1.5px solid;border-image:var(--metal-bright) 1;transition:.25s}
+  .catBtn:hover{background:var(--metal-bright);color:var(--jade-deep);border-color:transparent}
+
+  /* ===== FIT ===== */
+  .fit{background:var(--paper)}
+  .fit .lead{font-size:1.2rem;color:var(--ink-soft);max-width:48ch;margin-bottom:2.2rem;font-weight:300}
+  .q{margin-bottom:1.6rem}
+  .q .qq{font-family:var(--serif);font-size:1.6rem;color:var(--jade-deep);margin-bottom:.8rem}
+  .opts{display:flex;flex-wrap:wrap;gap:.6rem}
+  .opts button{font-family:var(--sans);font-size:1.04rem;font-weight:500;padding:.85rem 1.3rem;border:1px solid var(--line);background:var(--paper2);cursor:pointer;border-radius:2px;color:var(--ink);transition:.2s}
+  .opts button:hover{border-color:var(--gold)}
+  .opts button[aria-pressed=true]{background:var(--jade-deep);color:var(--gold-bright);border-color:var(--jade-deep)}
+  .fitres{margin-top:1.2rem;border:1px solid var(--gold);background:var(--paper2);padding:clamp(1.6rem,3.5vw,2.6rem);display:none;position:relative}
+  .fitres::before{content:"";position:absolute;top:-1px;left:-1px;width:20px;height:20px;border:2px solid;border-image:var(--metal) 1;border-right:none;border-bottom:none}
+  .fitres.show{display:block}
+  .fitres .fk{font-size:.86rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+  .fitres .fmodel{font-family:var(--serif);font-size:clamp(2rem,4vw,2.9rem);color:var(--jade-deep);margin:.2rem 0 .5rem}
+  .fitres .fwhy0{font-size:1.2rem;color:var(--ink-soft);margin-bottom:1.1rem;font-weight:300}
+  .fitres ul{list-style:none;margin:0 0 1.5rem}
+  .fitres li{padding:.7rem 0;border-top:1px solid var(--line);font-size:1.08rem;display:flex;gap:.8rem;color:var(--ink-soft)}
+  .fitres li::before{content:"";flex:0 0 auto;width:.5rem;height:.5rem;margin-top:.6rem;background:var(--gold);transform:rotate(45deg)}
+  .fcta{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--sans);font-weight:600;font-size:1.02rem;padding:.9rem 1.7rem;background:var(--jade-deep);color:var(--paper);border-radius:1px;border-top:2px solid var(--gold-bright)}
+
+  /* credentials */
+  .creds{background:var(--jade-deep);color:var(--paper)}
+  .creds h2{color:var(--paper);font-size:clamp(2.1rem,3.8vw,2.9rem);margin-bottom:2.2rem}
+  .countgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.6rem,4vw,3.2rem);border-top:1px solid var(--gold-line);padding-top:2.4rem}
+  .count .cnum{font-family:var(--serif);font-weight:600;font-size:clamp(3.2rem,7vw,5.2rem);line-height:1}
+  .count .cl{font-size:.86rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,235,220,.65);margin-top:.5rem}
+  .count p{font-size:1.04rem;color:rgba(241,235,220,.78);margin-top:.6rem;font-weight:300}
+
+  /* contact */
+  .contact{background:var(--paper2)}
+  .contact .grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(2rem,5vw,4.5rem);align-items:start}
+  .contact h2{font-size:clamp(2.3rem,4.4vw,3.3rem)}
+  .contact .lead{color:var(--ink-soft);margin-top:1rem;max-width:34ch;font-size:1.2rem;font-weight:300}
+  .ct{padding:1.15rem 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:baseline}
+  .ct:last-child{border-bottom:1px solid var(--line)}
+  .ct .k{font-size:.86rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);flex:0 0 auto}
+  .ct .v{font-size:1.12rem;color:var(--jade-deep);font-weight:500}
+  .ct a.v{transition:color .2s}.ct a.v:hover{color:var(--gold)}
+  .ph-holder{color:#8c8164;font-style:italic;font-family:var(--serif);font-size:1.25rem}
+
+  footer{background:var(--jade-deep);color:rgba(241,235,220,.72)}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2rem;padding:clamp(3rem,5vw,4rem) 0 1.2rem;border-top:1px solid var(--gold-line)}
+  .foot .fb{display:flex;align-items:center;gap:.7rem;font-size:1.95rem}
+  .foot .fb .wm{color:var(--paper)}
+  .foot .ml2{font-family:var(--serif);font-style:italic;font-size:1.22rem;line-height:1.95;color:rgba(241,235,220,.62);text-align:right}
+  .foot .ml2 b{font-style:normal;font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-bright);margin-right:.9em}
+  .foot-bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-bottom:2.4rem;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(241,235,220,.5)}
+
+  @media(max-width:860px){
+    nav{position:fixed;inset:0 0 auto 0;flex-direction:column;background:var(--paper);padding:5.5rem 2rem 2.5rem;gap:1.7rem;transform:translateY(-110%);transition:transform .35s;border-bottom:1px solid var(--gold-line);font-size:1.25rem}
+    nav.open{transform:none}.menu{display:block;z-index:110}
+    .pgrid{grid-template-columns:1fr;gap:2rem}
+    .risk-grid,.contact .grid{grid-template-columns:1fr}
+    .ctrack{height:auto}.cbg,.cfill,.clabels{display:none}.cnodes{position:static;flex-direction:column;gap:.8rem;align-items:flex-start}
+    .knode{flex-direction:row;gap:.8rem}.knode .dot{margin-top:0}.knode .pct{margin-top:0}
+    .foot .ml2{text-align:left}
+  }
+  @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.cyc-fade,.kfade{opacity:1;transform:none}}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+</style>
+</head>
+<body>
+<svg style="display:none" aria-hidden="true">
+  <linearGradient id="goldM" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#EAD9A0"/><stop offset=".42" stop-color="#C2A33E"/><stop offset=".58" stop-color="#8A6E1E"/><stop offset="1" stop-color="#E3CC84"/>
+  </linearGradient>
+  <symbol id="bird-seal" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="47" fill="#F1EBDC" stroke="url(#goldM)" stroke-width="2.6"/>
+    <circle cx="50" cy="50" r="41.5" fill="none" stroke="url(#goldM)" stroke-width="1"/>
+    <g fill="url(#goldM)">
+      <path d="M70 44 C70 35 63 30 54 31 C49 31.5 45 34 43 38 C40 36 35 36 32 39 C28 42 27 47 29 51 C24 53 21 58 23 63 C25 69 33 71 40 68 C46 73 56 74 64 70 C73 65 76 56 73 49 C72 47 71 45 70 44 Z"/>
+      <path d="M32 41 L20 43 L31 48 Z"/>
+      <path d="M70 47 L84 40 L78 60 Z"/>
+    </g>
+    <circle cx="37" cy="44" r="2.1" fill="#F1EBDC"/>
+  </symbol>
+  <symbol id="chk" viewBox="0 0 24 24" fill="none" stroke="#23261F" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></symbol>
+  <symbol id="branch" viewBox="0 0 200 200" fill="none" stroke="url(#goldM)" stroke-width="1">
+    <path d="M150 195 C150 120 150 70 60 30" stroke-linecap="round"/><path d="M120 120 C100 108 96 86 100 60" stroke-linecap="round"/>
+    <path d="M132 95 C150 86 162 64 166 40" stroke-linecap="round"/><path d="M104 78 C86 70 78 50 80 28" stroke-linecap="round"/>
+    <path d="M150 150 C168 142 178 122 182 100" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top"><svg class="logo"><use href="#bird-seal"/></svg><span class="wm">Birdland<span class="ind">Ind.</span></span></a>
+    <button class="menu" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav">
+      <a href="#cycle">Solutions</a>
+      <a href="#principles">Principles</a>
+      <a href="#risk">Risk</a>
+      <a href="#catalogue">Catalogue</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <svg class="branch"><use href="#branch"/></svg>
+    <div class="wrap">
+      <span class="ey">Birdland Ind. · Garden &amp; field, manufactured since 1981</span>
+      <h1>Yours to sell. <span class="ital">Ours to make.</span></h1>
+      <div class="goldline"></div>
+      <p class="sub" style="margin-top:1.5rem">For brands and distributors across Europe, the Commonwealth and the Americas — we take apart your risk and cost, and keep you a season ahead.</p>
+      <a class="heroBtn" href="#cycle">See how we solve it →</a>
+    </div>
+  </section>
+
+  <!-- ===== AUTO-CYCLING PAIN -> SOLUTION ===== -->
+  <section class="cycle" id="cycle">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="ey">Every worry, answered</span>
+        <h2>The gap between going it alone — and going with us.</h2>
+        <p>It cycles on its own. The gold band is the difference Birdland makes.</p>
+      </div>
+      <div class="cyc-card reveal" id="cycCard" tabindex="0" aria-label="Pain points and how Birdland solves them">
+        <div class="cyc-fade show" id="cycFade">
+          <div class="cyc-pain"><span class="x">The worry</span><span id="cycPain"></span></div>
+          <div class="cyc-name" id="cycName"></div>
+          <div class="cyc-line" id="cycLine"></div>
+        </div>
+        <div class="cyc-meter"><i class="own" id="cycOwn"></i><i class="diff" id="cycDiff"></i></div>
+        <div class="cyc-meterlab"><span>On your own</span><span>With Birdland</span></div>
+        <div class="cyc-delta" id="cycDelta"></div>
+        <div class="cyc-dots" id="cycDots" role="tablist" aria-label="Choose a worry"></div>
+      </div>
+      <p class="illus reveal">Indicative — it shows where each capability lifts you, not a precise measurement.</p>
+    </div>
+  </section>
+
+  <!-- ===== PRINCIPLES ===== -->
+  <section class="principles" id="principles">
+    <div class="wrap">
+      <div class="pgrid">
+        <div class="pcol reveal"><div class="pn metal">01</div><h3>Never competes</h3><p>Your designs and your markets remain entirely yours. We hold no rival line of our own.</p></div>
+        <div class="pcol reveal"><div class="pn metal">02</div><h3>Always delivers</h3><p>Stable production and on-time shipping, held steady through every cycle.</p></div>
+        <div class="pcol reveal"><div class="pn metal">03</div><h3>Minimise risk</h3><p>Two countries, upstream control, a season ahead — your exposure, taken apart piece by piece.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RISK REMOVER ===== -->
+  <section class="risk" id="risk">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="ey">Taken apart, layer by layer</span>
+        <h2>The risk and cost a distributor carries — and how we lift it away.</h2>
+        <p>Switch on each thing Birdland brings. The dashed line is where you started; watch how much we remove.</p>
+      </div>
+      <div class="risk-grid">
+        <div class="caps reveal" id="caps"></div>
+        <div class="reveal">
+          <div class="gauge">
+            <div class="grow">
+              <div><div class="gt">Risk exposure</div><div class="gnum" id="expNum">100</div></div>
+              <div><div class="gt">Lifted away</div><div class="gnum lift" id="liftNum">0</div></div>
+            </div>
+            <div class="gt" style="margin-top:1.1rem">Cost index — <span id="costPct">100</span></div>
+            <div class="costbar"><i id="costFill"></i></div>
+          </div>
+          <div class="tower-wrap" id="towerWrap">
+            <div class="tower" id="tower"></div>
+            <div class="rbase"><span class="rl">Baseline — some risk always remains. We make it small.</span></div>
+          </div>
+          <p class="illus">Indicative — which risks and costs each capability removes, not a precise figure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CHAIN ===== -->
+  <section class="chain" id="chain">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="ey">One chain · a season ahead</span>
+        <h2>Our advantage at every link of your runway.</h2>
+        <p>Choose a stage. The figure is how far along your pre-season runway it sits.</p>
+      </div>
+      <div class="reveal">
+        <div class="ctrack"><div class="cbg"></div><div class="cfill" id="cFill"></div><div class="cnodes" id="cNodes"></div></div>
+        <div class="clabels"><span>Earliest</span><span>On your shelf</span></div>
+        <div class="kdetail" id="kdetail"><div class="kfade show" id="kfade"></div></div>
+      </div>
+      <p class="illus reveal">Percentages indicate position along the pre-season runway — illustrative, confirmed per product.</p>
+    </div>
+  </section>
+
+  <!-- ===== CATALOGUE ===== -->
+  <section class="cat" id="catalogue">
+    <div class="wrap">
+      <span class="ey">The catalogue</span>
+      <h2>What you'll see — and what stays yours.</h2>
+      <p>Our garden catalogue is a window onto our vertical manufacturing and integration — proof of what we can make, end to end. <span class="hl">Your bespoke best-sellers never appear in it.</span> The custom products we make for you stay off the page, and your competitors will never know Birdland made them.</p>
+      <a class="catBtn" href="https://52804774-my.sharepoint.com/:b:/g/personal/executive_birdland_com_tw/IQDcPidQB3pcTbKyumzwmFpTAYno0hfFX2_b-6GSltgV2ig" target="_blank" rel="noopener noreferrer">View the garden catalogue (PDF) →</a>
+    </div>
+  </section>
+
+  <!-- ===== FIT ===== -->
+  <section class="fit" id="fit">
+    <div class="wrap">
+      <span class="ey reveal">Find your fit</span>
+      <h2 class="reveal" style="font-size:clamp(2.3rem,4.6vw,3.5rem);margin:.6rem 0 .5rem">In a shifting world, how we de-risk you.</h2>
+      <p class="lead reveal">Two questions. We'll show the model that spreads your risk and gives the most bespoke advantage as markets and rules keep moving.</p>
+      <div class="reveal" id="quiz"></div>
+      <div class="fitres" id="fitRes">
+        <div class="fk">Your model</div>
+        <div class="fmodel" id="fitModel"></div>
+        <div class="fwhy0" id="fitWhy0"></div>
+        <ul id="fitWhy"></ul>
+        <a class="fcta" href="#contact">Talk to us about this →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- credentials -->
+  <section class="creds">
+    <div class="wrap">
+      <h2 class="reveal">Built to be relied on.</h2>
+      <div class="countgrid reveal">
+        <div class="count"><div class="cnum metal" data-target="45">0</div><div class="cl">Years since 1981</div><p>Steady operation and sound finances — still shipping in five years' time.</p></div>
+        <div class="count"><div class="cnum metal" data-target="180" data-suffix="+">0</div><div class="cl">Companies served</div><p>Across Europe, the Commonwealth, the Americas and Asia.</p></div>
+        <div class="count"><div class="cnum metal" data-target="37">0</div><div class="cl">Markets reached</div><p>Materials and documentation kept current with each market's rules.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- contact -->
+  <section class="contact" id="contact">
+    <div class="wrap grid">
+      <div class="reveal">
+        <span class="ey">Get in touch</span>
+        <h2>Secure your next season.</h2>
+        <p class="lead">From garden to field — including hunting equipment. Reach the team for your region and we'll come back with a plan built around your calendar.</p>
+      </div>
+      <div class="reveal">
+        <div class="ct"><span class="k">Europe</span><a class="v" href="mailto:team.eur@birdland.com.tw">team.eur@birdland.com.tw</a></div>
+        <div class="ct"><span class="k">UK &amp; Commonwealth</span><a class="v" href="mailto:team.uk@birdland.com.tw">team.uk@birdland.com.tw</a></div>
+        <div class="ct"><span class="k">Americas</span><a class="v" href="mailto:team.usa@birdland.com.tw">team.usa@birdland.com.tw</a></div>
+        <div class="ct"><span class="k">Hunting equipment</span><a class="v" href="mailto:hunting@birdland.com.tw">hunting@birdland.com.tw</a></div>
+        <div class="ct"><span class="k">Office</span><span class="v ph-holder">Taiwan · to be added</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="fb"><svg class="logo"><use href="#bird-seal"/></svg><span class="wm">Birdland<span class="ind">Ind.</span></span></div>
+      <div class="ml2">
+        <div><b>EN</b>Yours to sell. Ours to make.</div>
+        <div><b>DE</b>Ihres zu verkaufen. Unseres zu fertigen.</div>
+        <div><b>FR</b>À vous de vendre. À nous de fabriquer.</div>
+        <div><b>NL</b>Aan u om te verkopen. Aan ons om te maken.</div>
+      </div>
+    </div>
+    <div class="foot-bot"><span>Garden &amp; field · manufactured since 1981</span><span>© <span id="yr"></span> Birdland Ind.</span></div>
+  </div>
+</footer>
+
+<script>
+  var menu=document.querySelector('.menu'),nav=document.getElementById('nav');
+  menu.addEventListener('click',function(){var o=nav.classList.toggle('open');menu.setAttribute('aria-expanded',o);});
+  nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');menu.setAttribute('aria-expanded',false);});});
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');
+    if(e.target.querySelectorAll)e.target.querySelectorAll('.cnum').forEach(runCount);io.unobserve(e.target);}});},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  function runCount(el){
+    if(!el||el.dataset.target===undefined)return;var t=parseInt(el.dataset.target,10);if(isNaN(t))return;
+    var sfx=el.dataset.suffix||'',d=1500,s=null;if(reduce){el.textContent=t+sfx;return;}
+    function step(ts){if(!s)s=ts;var p=Math.min((ts-s)/d,1);el.textContent=Math.floor(p*t)+sfx;if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);
+  }
+
+  /* ===== AUTO-CYCLING PAIN -> SOLUTION ===== */
+  (function(){
+    var items=[
+      {pain:'Stock-outs in peak season',el:'A season ahead',line:'We reserve capacity early, so you reach the shelf first.',lo:30,hi:94},
+      {pain:'Freight & material cost swings',el:'Upstream material control',line:'We lock key materials upstream, before the market moves.',lo:24,hi:92},
+      {pain:'One country, all your risk',el:'Taiwan + China bases',line:'Two production countries — if one slows, the other delivers.',lo:32,hi:93},
+      {pain:'Quality that drifts',el:'One maker, start to finish',line:'Design to dispatch under one roof, held to one standard.',lo:42,hi:95},
+      {pain:'Shifting EU / US / AU rules',el:'Compliance, kept current',line:'Materials and documents adapted as the rules change.',lo:36,hi:96},
+      {pain:'A supplier who competes with you',el:'We never compete',line:'No rival brand of our own. Your market stays yours.',lo:20,hi:97},
+      {pain:'Your range arrives out of step',el:'Whole range, one partner',line:'Many lines made together, shipped in sync.',lo:38,hi:90},
+      {pain:'No factory, no design team',el:'OEM / ODM',line:'Bring your spec, or let us design it — we make it either way.',lo:26,hi:92}
+    ];
+    var painEl=document.getElementById('cycPain'),nameEl=document.getElementById('cycName'),lineEl=document.getElementById('cycLine'),
+        own=document.getElementById('cycOwn'),diff=document.getElementById('cycDiff'),delta=document.getElementById('cycDelta'),
+        fade=document.getElementById('cycFade'),dotsWrap=document.getElementById('cycDots'),card=document.getElementById('cycCard');
+    var idx=0,timer=null,paused=false;
+    items.forEach(function(_,i){var b=document.createElement('button');b.setAttribute('role','tab');b.setAttribute('aria-current',i===0);
+      b.addEventListener('click',function(){go(i,true);});dotsWrap.appendChild(b);});
+    function paint(){
+      var it=items[idx];
+      fade.classList.remove('show');
+      own.style.width='0%';diff.style.width='0%';diff.style.left=it.lo+'%';
+      setTimeout(function(){
+        painEl.textContent=it.pain;nameEl.textContent=it.el;lineEl.textContent=it.line;fade.classList.add('show');
+        delta.textContent='The Birdland difference — about +'+(it.hi-it.lo)+' on '+it.el.toLowerCase()+'.';
+        requestAnimationFrame(function(){requestAnimationFrame(function(){
+          own.style.width=it.lo+'%';diff.style.left=it.lo+'%';diff.style.width=(it.hi-it.lo)+'%';});});
+      },reduce?0:260);
+      dotsWrap.querySelectorAll('button').forEach(function(b,i){b.setAttribute('aria-current',i===idx);});
+    }
+    function go(i,manual){idx=(i+items.length)%items.length;paint();if(manual)restart();}
+    function next(){go(idx+1);}
+    function restart(){if(timer)clearInterval(timer);if(!reduce)timer=setInterval(function(){if(!paused)next();},5000);}
+    card.addEventListener('mouseenter',function(){paused=true;});card.addEventListener('mouseleave',function(){paused=false;});
+    card.addEventListener('focusin',function(){paused=true;});card.addEventListener('focusout',function(){paused=false;});
+    paint();restart();
+  })();
+
+  /* ===== RISK REMOVER ===== */
+  (function(){
+    var layers=[
+      {id:'stock',l:'Stock-outs in peak season',w:18},{id:'cost',l:'Freight & material cost swings',w:16},
+      {id:'comp',l:'EU / US / AU compliance',w:14},{id:'geo',l:'Single-country dependence',w:14},
+      {id:'qual',l:'Quality inconsistency',w:12},{id:'chan',l:'Channel & IP conflict',w:10},
+      {id:'cap',l:'No design / factory of your own',w:8}
+    ];
+    var caps=[
+      {id:'season',l:'Ready a season ahead',layer:'stock',cost:4},
+      {id:'upstream',l:'We lock materials upstream',layer:'cost',cost:10},
+      {id:'reg',l:'Compliance, handled',layer:'comp',cost:2},
+      {id:'bases',l:'Taiwan + China — two bases',layer:'geo',cost:5},
+      {id:'vertical',l:'One maker, start to finish',layer:'qual',cost:9},
+      {id:'nocomp',l:'We never compete with you',layer:'chan',cost:1},
+      {id:'oemodm',l:'OEM / ODM — your design or ours',layer:'cap',cost:5},
+      {id:'horiz',l:'Whole range, one partner',layer:null,cost:6}
+    ];
+    var on={},capsEl=document.getElementById('caps'),towerEl=document.getElementById('tower'),towerWrap=document.getElementById('towerWrap');
+    var fullH=0;
+    layers.forEach(function(L){var h=L.w*3.2+14;fullH+=h+5;var d=document.createElement('div');d.className='rlayer';d.id='L-'+L.id;d.style.height=h+'px';
+      d.innerHTML='<span class="rl">'+L.l+'</span>';towerEl.appendChild(d);});
+    towerWrap.style.minHeight=(fullH+60)+'px';
+    caps.forEach(function(c){var b=document.createElement('button');b.className='cap';b.setAttribute('aria-pressed','false');
+      b.innerHTML='<span class="cx"><svg><use href="#chk"/></svg></span><span>'+c.l+'</span>';
+      b.addEventListener('click',function(){on[c.id]=!on[c.id];b.setAttribute('aria-pressed',!!on[c.id]);
+        if(c.layer){var s=document.getElementById('L-'+c.layer);if(s)s.classList.toggle('gone',!!on[c.id]);}recalc();});
+      capsEl.appendChild(b);});
+    var allb=document.createElement('button');allb.className='allbtn';allb.textContent='Lift it all away — the Birdland standard';
+    allb.addEventListener('click',function(){var allOn=caps.every(function(c){return on[c.id];});
+      caps.forEach(function(c){on[c.id]=!allOn;});capsEl.querySelectorAll('.cap').forEach(function(b){b.setAttribute('aria-pressed',!allOn);});
+      layers.forEach(function(L){var s=document.getElementById('L-'+L.id);var rm=caps.some(function(c){return c.layer===L.id&&on[c.id];});if(s)s.classList.toggle('gone',rm);});
+      allb.textContent=allOn?'Lift it all away — the Birdland standard':'Reset';recalc();});
+    capsEl.appendChild(allb);
+    var expNum=document.getElementById('expNum'),liftNum=document.getElementById('liftNum'),costPct=document.getElementById('costPct'),costFill=document.getElementById('costFill');
+    function recalc(){
+      var exp=100;layers.forEach(function(L){if(caps.some(function(c){return c.layer===L.id&&on[c.id];}))exp-=L.w;});exp=Math.max(8,exp);
+      var cost=100;caps.forEach(function(c){if(on[c.id])cost-=c.cost;});cost=Math.max(58,cost);
+      expNum.textContent=exp;expNum.style.color=exp>70?'#9A6B41':exp>40?'#A98828':'#3B5E4C';
+      liftNum.textContent=(100-exp);
+      costPct.textContent=cost;costFill.style.width=cost+'%';
+    }
+    recalc();
+  })();
+
+  /* ===== CHAIN ===== */
+  (function(){
+    var stages=[
+      {t:'Materials',pct:0,adv:'We lock key raw materials upstream — your cost and supply fixed before the market moves.'},
+      {t:'Design',pct:18,adv:'Your specification, or our design (OEM / ODM). One brief, one partner, no middlemen.'},
+      {t:'Tooling',pct:32,adv:'Moulds and setup owned and run in-house — no third-party tooling delays.'},
+      {t:'Production',pct:54,adv:'Made across our Taiwan and China bases, in parallel, scaled to your volume.'},
+      {t:'Quality',pct:74,adv:'Inspected and documented to EU / US / Australian rules before anything ships.'},
+      {t:'Shipping',pct:88,adv:'Freight booked ahead of the crunch, paperwork ready — no scramble.'},
+      {t:'On shelf',pct:100,adv:'You arrive first, in the early and advantaged slot — season after season.'}
+    ];
+    var nodes=document.getElementById('cNodes'),fill=document.getElementById('cFill'),fade=document.getElementById('kfade'),cur=0;
+    stages.forEach(function(s,i){var b=document.createElement('button');b.className='knode';b.setAttribute('aria-pressed',i===0);
+      b.innerHTML='<span class="dot"></span><span class="pct">'+s.pct+'%</span>';
+      b.addEventListener('click',function(){cur=i;nodes.querySelectorAll('.knode').forEach(function(x,j){x.setAttribute('aria-pressed',j===i);});show();});
+      nodes.appendChild(b);});
+    function show(){var s=stages[cur];fill.style.width=s.pct+'%';fade.classList.remove('show');
+      setTimeout(function(){fade.innerHTML='<div class="ktag">'+s.pct+'% along your runway</div><div class="ktitle">'+s.t+'</div><p>'+s.adv+'</p>';fade.classList.add('show');},reduce?0:150);}
+    show();
+  })();
+
+  /* ===== FIT ===== */
+  (function(){
+    var questions=[
+      {q:'How developed is your product design?',opts:[{t:'We have full specs',v:'oem'},{t:'Ideas, need development',v:'odm'},{t:'Design it for us',v:'odm'}]},
+      {q:'What worries you most as markets shift?',opts:[{t:'Cost & tariffs',v:'oem'},{t:'Standing out',v:'odm'},{t:'Keeping supply steady',v:'supply'}]}
+    ];
+    var models={
+      oem:{name:'Pure OEM manufacturing',w0:'You own the design; we de-risk the making.',why:['Two production bases spread your exposure to any single country, tariff or shock.','Tooling, production and checks under one accountable partner — costs stay tight.','Flex volume up or down as demand and duties move.']},
+      odm:{name:'ODM — we design & make',w0:'A distinctive product, adapted as fast as the rules change.',why:['We redesign to meet shifting EU / US / AU rules without you rebuilding anything.','A bespoke product without your own factory or design team to carry.','Made across two countries, so disruption in one never stops you.']},
+      supply:{name:'Long-term supply partnership',w0:'Steadiness, engineered, while the world stays unsteady.',why:['Capacity reserved ahead of your season, across two bases, year after year.','Upstream material control absorbs price and freight swings for you.','A partner who never competes with you — only keeps you supplied.']}
+    };
+    var answers=[null,null],quiz=document.getElementById('quiz');
+    questions.forEach(function(qu,qi){var w=document.createElement('div');w.className='q';
+      var h='<div class="qq">'+(qi+1)+'. '+qu.q+'</div><div class="opts">';
+      qu.opts.forEach(function(o){h+='<button data-q="'+qi+'" data-v="'+o.v+'">'+o.t+'</button>';});h+='</div>';w.innerHTML=h;quiz.appendChild(w);});
+    quiz.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var qi=+b.dataset.q;
+      b.parentNode.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});answers[qi]=b.dataset.v;if(answers[0]&&answers[1])show();});
+    function show(){var tally={oem:0,odm:0,supply:0};answers.forEach(function(a){tally[a]++;});
+      var order=['supply','odm','oem'],best=order[0],bn=-1;order.forEach(function(k){if(tally[k]>bn){bn=tally[k];best=k;}});
+      var m=models[best];document.getElementById('fitModel').textContent=m.name;document.getElementById('fitWhy0').textContent=m.w0;
+      var ul=document.getElementById('fitWhy');ul.innerHTML='';m.why.forEach(function(w){var li=document.createElement('li');li.textContent=w;ul.appendChild(li);});
+      var fr=document.getElementById('fitRes');fr.classList.add('show');fr.scrollIntoView({behavior:'smooth',block:'nearest'});}
+  })();
+</script>
+</body>
+</html>
