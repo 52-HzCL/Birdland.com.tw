@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birdland Ind. — Garden & Field Manufacturer Since 1981</title>
+<meta name="description" content="Birdland Ind. — a dedicated garden and field manufacturer for the world's brands and distributors since 1981. Three generations of quality and trust. Integrated production across Taiwan and China. We take apart your risk and cost, and keep you a season ahead.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2ECDD;--paper2:#F8F2E6;--silk:#EAE1CE;
+    --ink:#241F18;--ink-soft:#3f3930;
+    --jade:#3B5E4C;--jade-deep:#21372B;--celadon:#86A091;
+    --copper:#A85C2C;--copper-deep:#7A3F1E;--copper-bright:#D89360;--copper-soft:#C8814B;
+    --burden:#5A4F45;--burden-deep:#382f27;
+    --line:rgba(36,31,24,.14);--line-cop:rgba(168,92,44,.4);--line-paper:rgba(242,236,221,.2);
+    --metal:linear-gradient(135deg,#C8814B,#A85C2C 44%,#7A3F1E 60%,#C8814B);
+    --metal-bright:linear-gradient(135deg,#F0C79A,#D89360 42%,#A85C2C 60%,#E8C098);
+    --serif:"Cormorant Garamond",Georgia,serif;--sans:"Manrope",system-ui,sans-serif;
+    --pad:clamp(1.25rem,5vw,7rem);--maxw:1140px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;font-size:18px}
+  body{font-family:var(--sans);background:var(--paper);color:var(--ink-soft);font-size:clamp(1.14rem,.95rem + .45vw,1.3rem);line-height:1.75;font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}svg{display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+  h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;color:var(--jade-deep);letter-spacing:.01em}
+  .metal-d{background:var(--metal);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .metal-l{background:var(--metal-bright);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .ey{font-family:var(--sans);font-weight:600;font-size:.84rem;letter-spacing:.28em;text-transform:uppercase;color:var(--copper);display:inline-block}
+  .metalbar{height:2px;width:74px;background:var(--metal);margin-top:.5rem;border-radius:2px}
+  .logo{width:44px;height:44px;flex:0 0 auto}
+  .wm{font-family:var(--serif);font-weight:600;letter-spacing:.05em;color:var(--jade-deep)}
+  .wm .ind{font-family:var(--sans);font-weight:600;font-size:.5em;letter-spacing:.16em;text-transform:uppercase;color:var(--copper);margin-left:.45em;vertical-align:.18em}
+
+  header{position:sticky;top:0;z-index:100;background:rgba(242,236,221,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-cop)}
+  .bar{display:flex;align-items:center;justify-content:space-between;padding:.9rem 0}
+  .brand{display:flex;align-items:center;gap:.7rem;font-size:1.95rem}
+  nav{display:flex;gap:1.7rem;font-size:.94rem;font-weight:500;letter-spacing:.04em;align-items:center}
+  nav a{color:var(--ink-soft);padding:.2rem 0;position:relative}
+  nav a::after{content:"";position:absolute;left:0;bottom:-3px;height:1px;width:0;background:var(--metal);transition:width .35s}
+  nav a:hover::after,nav a:focus-visible::after{width:100%}
+  nav a.navcta{background:var(--jade-deep);color:var(--paper);padding:.55rem 1rem;border-top:2px solid var(--copper-bright);border-radius:1px}
+  nav a.navcta::after{display:none}
+  .menu{display:none;background:none;border:1px solid var(--line);padding:.55rem .85rem;font:600 .82rem var(--sans);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;color:var(--ink)}
+
+  .hero{position:relative;overflow:hidden;padding-top:clamp(4rem,9vw,8rem);padding-bottom:clamp(4.5rem,9vw,8rem)}
+  .hero .branch{position:absolute;top:-30px;right:-40px;width:min(46vw,520px);opacity:.5;z-index:0}
+  .hero .wrap{position:relative;z-index:2}
+  .hero h1{font-size:clamp(3rem,8vw,6.2rem);margin:1.3rem 0 1.3rem;max-width:13ch}
+  .hero .ital{font-style:italic}
+  .hero p.sub{font-size:clamp(1.3rem,2vw,1.6rem);color:var(--ink-soft);max-width:42ch;font-weight:300}
+  .hero .trust{font-size:.92rem;letter-spacing:.1em;text-transform:uppercase;color:var(--copper);margin-top:1.6rem;font-weight:600}
+  .cta-row{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;margin-top:1.6rem}
+  .btn{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--sans);font-weight:600;letter-spacing:.03em;font-size:1.05rem;padding:1.05rem 2rem;border-radius:1px;transition:transform .25s,background .25s}
+  .btn-pri{background:var(--jade-deep);color:var(--paper);border-top:2px solid var(--copper-bright)}
+  .btn-pri:hover{background:var(--jade);transform:translateY(-2px)}
+  .btn-sec{color:var(--jade-deep);border:1px solid var(--line-cop)}
+  .btn-sec:hover{border-color:var(--copper);transform:translateY(-2px)}
+
+  section{padding-top:clamp(5rem,9vw,8.5rem);padding-bottom:clamp(5rem,9vw,8.5rem)}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s ease}
+  .reveal.in{opacity:1;transform:none}
+  .sec-head{max-width:60ch}
+  .sec-head h2{font-size:clamp(2.3rem,4.6vw,3.5rem);margin:.8rem 0 .5rem}
+  .sec-head p{font-size:1.2rem;color:var(--ink-soft);font-weight:300}
+  .illus{font-size:.95rem;font-style:italic;color:#8c8164;margin-top:1.4rem}
+
+  /* ===== HERITAGE ===== */
+  .heritage{background:var(--jade-deep);color:var(--paper);position:relative}
+  .heritage::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--metal-bright)}
+  .heritage .ey{color:var(--copper-bright)}
+  .heritage h2{color:var(--paper);font-size:clamp(2.3rem,4.6vw,3.6rem);margin:.7rem 0 .8rem}
+  .heritage .lead{font-size:1.24rem;color:rgba(242,236,221,.82);font-weight:300;max-width:54ch}
+  .gens{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.5rem,4vw,3rem);margin:2.8rem 0;border-top:1px solid var(--line-paper);padding-top:2.2rem}
+  .gen .gk{font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--copper-bright)}
+  .gen .gt{font-family:var(--serif);font-size:1.7rem;color:var(--paper);margin:.2rem 0 .3rem}
+  .gen p{font-size:1.02rem;color:rgba(242,236,221,.74);font-weight:300}
+  .hstats{display:flex;gap:clamp(1.6rem,5vw,4rem);flex-wrap:wrap;border-top:1px solid var(--line-paper);padding-top:2.2rem}
+  .hstat .cnum{font-family:var(--serif);font-weight:600;font-size:clamp(2.6rem,6vw,4.2rem);line-height:1}
+  .hstat .cl{font-size:.84rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,236,221,.62);margin-top:.4rem}
+
+  /* ===== CYCLE ===== */
+  .cycle{background:var(--paper2)}
+  .cyc-card{margin-top:2.4rem;border:1px solid var(--line-cop);background:var(--paper);padding:clamp(1.8rem,4vw,3.2rem);position:relative}
+  .cyc-card::before,.cyc-card::after{content:"";position:absolute;width:20px;height:20px;border:2px solid var(--copper)}
+  .cyc-card::before{top:-1px;left:-1px;border-right:none;border-bottom:none}
+  .cyc-card::after{bottom:-1px;right:-1px;border-left:none;border-top:none}
+  .cyc-pain{font-family:var(--sans);font-weight:500;font-size:1.05rem;color:var(--copper-deep)}
+  .cyc-pain .x{font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--copper-soft);margin-right:.6rem}
+  .cyc-name{font-family:var(--serif);font-size:clamp(2rem,4.6vw,3.2rem);color:var(--jade-deep);line-height:1.1;margin:.5rem 0 .7rem}
+  .cyc-line{font-size:1.22rem;color:var(--ink-soft);font-weight:300;max-width:44ch}
+  .cyc-meter{position:relative;height:14px;background:rgba(36,31,24,.06);border-radius:7px;margin-top:1.9rem;overflow:hidden}
+  .cyc-meter .own{position:absolute;left:0;top:0;height:100%;width:0;background:var(--burden);border-radius:7px 0 0 7px;transition:width 1s ease}
+  .cyc-meter .diff{position:absolute;top:0;height:100%;width:0;background:linear-gradient(90deg,var(--jade),var(--celadon));transition:width 1.2s cubic-bezier(.2,.7,.2,1) .3s,left .3s}
+  .cyc-meterlab{display:flex;justify-content:space-between;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;color:#9b8f70;margin-top:.6rem}
+  .cyc-delta{font-family:var(--serif);font-style:italic;color:var(--jade);font-size:1.1rem;margin-top:.7rem}
+  .cyc-fade{opacity:0;transition:opacity .5s}.cyc-fade.show{opacity:1}
+  .cyc-dots{display:flex;gap:.5rem;margin-top:1.8rem;flex-wrap:wrap}
+  .cyc-dots button{width:30px;height:4px;border:none;background:rgba(36,31,24,.16);cursor:pointer;padding:0;transition:background .3s}
+  .cyc-dots button[aria-current=true]{background:var(--copper)}
+
+  /* ===== PRINCIPLES ===== */
+  .principles{background:var(--paper)}
+  .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(2rem,5vw,4rem)}
+  .pcol{position:relative;padding-top:2rem;border-top:2px solid;border-image:var(--metal) 1}
+  .pcol .pn{font-family:var(--serif);font-size:2.8rem;line-height:1}
+  .pcol h3{font-family:var(--serif);font-size:1.9rem;color:var(--jade-deep);margin:.4rem 0 .6rem}
+  .pcol p{font-size:1.08rem;color:var(--ink-soft);font-weight:300}
+
+  /* ===== RISK ===== */
+  .risk{background:var(--silk)}
+  .risk-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(2.2rem,5vw,4.5rem);margin-top:2.6rem;align-items:start}
+  .caps{display:flex;flex-direction:column;gap:.6rem}
+  .cap{display:flex;align-items:center;gap:.9rem;text-align:left;font-family:var(--sans);font-size:1.05rem;font-weight:500;color:var(--ink);background:var(--paper2);border:1px solid var(--line);border-radius:2px;padding:.9rem 1.1rem;cursor:pointer;transition:.25s}
+  .cap:hover{border-color:var(--copper)}
+  .cap[aria-pressed=true]{background:var(--jade-deep);color:var(--paper);border-color:var(--jade-deep)}
+  .cap .cx{flex:0 0 auto;width:24px;height:24px;border:1.5px solid var(--celadon);display:flex;align-items:center;justify-content:center;transition:.25s}
+  .cap[aria-pressed=true] .cx{background:var(--copper-bright);border-color:var(--copper-bright)}
+  .cap .cx svg{width:14px;height:14px;opacity:0;transition:opacity .2s}
+  .cap[aria-pressed=true] .cx svg{opacity:1}
+  .allbtn{margin-top:.5rem;font-family:var(--sans);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.86rem;padding:.9rem;background:none;color:var(--jade-deep);border:1px solid var(--jade-deep);border-radius:2px;cursor:pointer;transition:.25s}
+  .allbtn:hover{background:var(--jade-deep);color:var(--paper)}
+  .gauge{border:1px solid var(--line-cop);border-radius:3px;padding:1.5rem 1.6rem;margin-bottom:1.4rem;background:var(--paper2);position:relative}
+  .gauge::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:var(--metal)}
+  .grow{display:flex;gap:2rem;flex-wrap:wrap}
+  .gauge .gt{font-size:.82rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#9b8f70}
+  .gauge .gnum{font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,5vw,3.4rem);line-height:1;margin:.1rem 0;color:var(--burden)}
+  .gauge .gnum.lift{color:var(--jade)}
+  .costbar{height:8px;border-radius:4px;background:rgba(36,31,24,.08);overflow:hidden;margin-top:.5rem}
+  .costbar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--jade),var(--celadon));transition:width .8s cubic-bezier(.2,.7,.2,1)}
+  .tower-wrap{position:relative;padding-top:26px}
+  .tower-wrap::before{content:"Without us — full exposure";position:absolute;top:0;left:0;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#a89a82}
+  .tower-wrap::after{content:"";position:absolute;top:22px;left:0;right:0;border-top:1px dashed var(--line-cop)}
+  .tower{display:flex;flex-direction:column;gap:5px}
+  .rlayer{height:44px;border-radius:2px;background:linear-gradient(135deg,var(--burden),var(--burden-deep));display:flex;align-items:center;padding:0 1.1rem;overflow:hidden;transition:height .6s cubic-bezier(.4,0,.2,1),opacity .5s,margin .6s,padding .6s}
+  .rlayer .rl{font-family:var(--sans);font-weight:500;font-size:.98rem;color:#F2ECDD;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rlayer.gone{height:0 !important;opacity:0;margin:0;padding-top:0;padding-bottom:0}
+  .rbase{height:30px;border-radius:2px;background:var(--jade);display:flex;align-items:center;padding:0 1.1rem;margin-top:5px}
+  .rbase .rl{font-size:.86rem;color:var(--paper);font-weight:500}
+
+  /* ===== CHAIN ===== */
+  .chain{background:var(--paper)}
+  .ctrack{position:relative;margin-top:2.8rem;height:64px}
+  .cbg{position:absolute;top:30px;left:0;right:0;height:2px;background:rgba(36,31,24,.16)}
+  .cfill{position:absolute;top:30px;left:0;height:2px;background:var(--metal);width:0;transition:width .7s cubic-bezier(.2,.7,.2,1)}
+  .cnodes{position:absolute;inset:0;display:flex;justify-content:space-between}
+  .knode{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;padding:0;flex:0 0 auto}
+  .knode .dot{width:16px;height:16px;border-radius:50%;background:var(--paper);border:2px solid var(--jade);margin-top:22px;transition:.25s;z-index:2;position:relative}
+  .knode[aria-pressed=true] .dot{background:var(--copper);border-color:var(--copper);transform:scale(1.45)}
+  .knode .pct{font-family:var(--serif);font-size:1.05rem;color:var(--jade-deep);margin-top:.5rem;font-weight:600}
+  .clabels{display:flex;justify-content:space-between;margin-top:.2rem}
+  .clabels span{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:#8c8164}
+  .kdetail{margin-top:2.4rem;border-left:2px solid var(--copper);background:var(--paper2);padding:clamp(1.5rem,3.5vw,2.4rem)}
+  .kdetail .ktag{font-size:.84rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--copper)}
+  .kdetail .ktitle{font-family:var(--serif);font-size:clamp(1.8rem,3.6vw,2.5rem);color:var(--jade-deep);margin:.2rem 0 .6rem}
+  .kdetail p{font-size:1.18rem;color:var(--ink-soft);font-weight:300}
+  .kfade{opacity:0;transform:translateY(8px);transition:.4s}.kfade.show{opacity:1;transform:none}
+
+  /* ===== CATALOGUE ===== */
+  .cat{background:var(--jade-deep);color:var(--paper);position:relative}
+  .cat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--metal-bright)}
+  .cat .ey{color:var(--copper-bright)}
+  .cat h2{color:var(--paper);font-size:clamp(2.1rem,4.4vw,3.2rem);margin:.7rem 0 .8rem;max-width:18ch}
+  .cat p{font-size:1.2rem;color:rgba(242,236,221,.82);font-weight:300;max-width:50ch}
+  .cat p .hl{color:var(--copper-bright);font-style:italic;font-family:var(--serif);font-size:1.15em}
+  .catBtn{display:inline-flex;align-items:center;gap:.7rem;margin-top:2rem;font-family:var(--sans);font-weight:600;letter-spacing:.03em;font-size:1.05rem;padding:1rem 1.9rem;background:transparent;color:var(--paper);border:1.5px solid var(--copper-bright);transition:.25s}
+  .catBtn:hover{background:var(--metal-bright);color:var(--jade-deep);border-color:transparent}
+
+  /* ===== HOW WE WORK ===== */
+  .how{background:var(--silk)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.5rem,4vw,3rem);margin-top:2.6rem}
+  .step{position:relative;padding-top:1.6rem;border-top:2px solid;border-image:var(--metal) 1}
+  .step .sn{font-family:var(--serif);font-size:1.2rem;color:var(--copper);font-weight:600;letter-spacing:.04em}
+  .step h3{font-family:var(--serif);font-size:1.8rem;color:var(--jade-deep);margin:.3rem 0 .5rem}
+  .step p{font-size:1.06rem;color:var(--ink-soft);font-weight:300}
+
+  /* ===== ENQUIRY BUILDER ===== */
+  .enq{background:var(--paper)}
+  .enq-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);margin-top:2.6rem;align-items:start}
+  .erow{margin-bottom:1.5rem}
+  .erow .el{font-family:var(--serif);font-size:1.4rem;color:var(--jade-deep);margin-bottom:.7rem}
+  .opts{display:flex;flex-wrap:wrap;gap:.6rem}
+  .opts button{font-family:var(--sans);font-size:1.04rem;font-weight:500;padding:.8rem 1.25rem;border:1px solid var(--line);background:var(--paper2);cursor:pointer;border-radius:2px;color:var(--ink);transition:.2s}
+  .opts button:hover{border-color:var(--copper)}
+  .opts button[aria-pressed=true]{background:var(--jade-deep);color:var(--copper-bright);border-color:var(--jade-deep)}
+  .esum{position:sticky;top:90px;border:1px solid var(--copper);background:var(--paper2);padding:clamp(1.6rem,3.5vw,2.4rem);position:relative}
+  .esum::before{content:"";position:absolute;top:-1px;left:-1px;width:20px;height:20px;border:2px solid var(--copper);border-right:none;border-bottom:none}
+  .esum .ek{font-family:var(--sans);font-weight:600;font-size:.86rem;letter-spacing:.16em;text-transform:uppercase;color:var(--copper)}
+  .esum .etitle{font-family:var(--serif);font-size:clamp(1.8rem,3.6vw,2.4rem);color:var(--jade-deep);margin:.2rem 0 1rem}
+  .esum .esline{font-size:1.12rem;color:var(--ink-soft);min-height:5.5em}
+  .esum .esline b{color:var(--jade);font-weight:600}
+  .esend{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.2rem;font-family:var(--sans);font-weight:700;font-size:1.08rem;padding:1rem 1.8rem;background:var(--jade-deep);color:var(--paper);border-radius:1px;border-top:2px solid var(--copper-bright);transition:.25s}
+  .esend.dim{opacity:.4;pointer-events:none}
+  .esend:hover{background:var(--jade)}
+  .esum .enote{font-size:.92rem;color:#8c8164;font-style:italic;margin-top:.9rem}
+
+  footer{background:var(--jade-deep);color:rgba(242,236,221,.72)}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2rem;padding:clamp(3rem,5vw,4rem) 0 1.2rem;border-top:1px solid var(--line-paper)}
+  .foot .fb{display:flex;align-items:center;gap:.7rem;font-size:1.95rem}
+  .foot .fb .wm{color:var(--paper)}
+  .foot .ml2{font-family:var(--serif);font-style:italic;font-size:1.22rem;line-height:1.95;color:rgba(242,236,221,.62);text-align:right}
+  .foot .ml2 b{font-style:normal;font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--copper-bright);margin-right:.9em}
+  .foot-bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-bottom:2.4rem;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,236,221,.5)}
+
+  @media(max-width:860px){
+    nav{position:fixed;inset:0 0 auto 0;flex-direction:column;background:var(--paper);padding:5.5rem 2rem 2.5rem;gap:1.5rem;transform:translateY(-110%);transition:transform .35s;border-bottom:1px solid var(--line-cop);font-size:1.25rem}
+    nav.open{transform:none}.menu{display:block;z-index:110}
+    .pgrid,.steps,.gens,.enq-grid{grid-template-columns:1fr;gap:1.8rem}
+    .risk-grid{grid-template-columns:1fr}.esum{position:static}
+    .ctrack{height:auto}.cbg,.cfill,.clabels{display:none}.cnodes{position:static;flex-direction:column;gap:.8rem;align-items:flex-start}
+    .knode{flex-direction:row;gap:.8rem}.knode .dot{margin-top:0}.knode .pct{margin-top:0}
+    .foot .ml2{text-align:left}
+  }
+  @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.cyc-fade,.kfade{opacity:1;transform:none}}
+  :focus-visible{outline:2px solid var(--copper);outline-offset:3px}
+
+  /* ===== EQUILIBRIUM SIMULATOR ===== */
+  .equil{background:var(--jade-deep);color:var(--paper);position:relative}
+  .equil::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--metal-bright)}
+  .equil .ey{color:var(--copper-bright)}
+  .equil h2{color:var(--paper);font-size:clamp(2.3rem,4.6vw,3.5rem)}
+  .equil .sec-head p{color:rgba(242,236,221,.82)}
+  .eq-controls{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2rem}
+  .eqtog{font-family:var(--sans);font-weight:600;font-size:.98rem;padding:.8rem 1.3rem;border:1.5px solid var(--line-paper);background:transparent;color:rgba(242,236,221,.72);border-radius:2px;cursor:pointer;transition:.25s}
+  .eqtog[aria-pressed=true]{background:var(--copper);color:var(--paper);border-color:var(--copper)}
+  .eqshock{font-family:var(--sans);font-weight:700;font-size:.98rem;padding:.8rem 1.3rem;border:1.5px solid var(--copper-bright);background:transparent;color:var(--copper-bright);border-radius:2px;cursor:pointer;transition:.25s}
+  .eqshock:hover{background:var(--copper-bright);color:var(--jade-deep)}
+  .eq-chart{display:grid;grid-template-columns:1fr 250px;gap:clamp(1.5rem,4vw,3rem);margin-top:2.4rem;align-items:center}
+  #eqSvg{width:100%;height:auto}
+  .eq-legend{font-size:.9rem;color:rgba(242,236,221,.8);display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+  .lg{width:16px;height:3px;display:inline-block}.lg-b{background:var(--copper-bright)}.lg-i{background:#9b8f7e;margin-left:.9rem}
+  .eq-elab{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,236,221,.6);margin-top:1.4rem}
+  .eq-enum{font-family:var(--serif);font-weight:600;font-size:clamp(3rem,6vw,4.6rem);line-height:1;color:var(--copper-bright)}
+  .eq-note{font-size:1.04rem;color:rgba(242,236,221,.78);font-weight:300;margin-top:1rem}
+  @media(max-width:860px){.eq-chart{grid-template-columns:1fr}}
+
+  /* ===== MORE COPPER METAL ===== */
+  :root{--cu-plate:linear-gradient(115deg,rgba(255,255,255,.20),rgba(255,255,255,0) 26%),repeating-linear-gradient(132deg,rgba(122,63,30,.16) 0 2px,rgba(232,192,154,.10) 2px 4px),linear-gradient(135deg,#E0A06A,#A85C2C 48%,#7A3F1E 76%,#BC682F);}
+  .heritage::before,.cat::before,.equil::before{height:6px}
+  .btn-pri,.esend,.navcta,.fcta{position:relative;overflow:hidden;background:var(--cu-plate)!important;color:#2A1A0E!important;border:none!important;border-top:1px solid rgba(255,255,255,.4)!important;text-shadow:0 1px 0 rgba(255,255,255,.18)}
+  .btn-pri::after,.esend::after,.fcta::after,.navcta::after{content:"";position:absolute;top:0;bottom:0;left:0;width:45%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:translateX(-160%) skewX(-18deg);pointer-events:none}
+  .btn-pri:hover::after,.esend:hover::after,.fcta:hover::after,.navcta:hover::after{animation:cusheen .85s ease}
+  .btn-pri:hover,.esend:hover,.fcta:hover{filter:brightness(1.05);transform:translateY(-2px)}
+  @keyframes cusheen{to{transform:translateX(240%) skewX(-18deg)}}
+  .esend.dim{background:var(--silk)!important;color:#a89a82!important;border-top:1px solid var(--line)!important}
+  .esend.dim::after{display:none}
+
+  /* big brushed-copper band */
+  .cuband{background:var(--cu-plate);color:#241405;position:relative;overflow:hidden}
+  .cuband::after{content:"";position:absolute;top:-60%;left:-30%;width:50%;height:220%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-18deg);animation:bandsheen 7s ease-in-out infinite}
+  @keyframes bandsheen{0%,100%{left:-40%}50%{left:120%}}
+  .cuband .wrap{position:relative;z-index:2;text-align:center}
+  .cuband h2{color:#241405;font-size:clamp(2.4rem,5vw,3.8rem)}
+  .cuband p{color:rgba(36,20,5,.82);font-size:1.24rem;font-weight:400;max-width:46ch;margin:1rem auto 0}
+  .cuband .band-btn{display:inline-flex;align-items:center;gap:.6rem;margin-top:2rem;font-family:var(--sans);font-weight:700;font-size:1.1rem;padding:1.1rem 2.2rem;background:var(--jade-deep);color:var(--paper);border-radius:1px;border-top:2px solid rgba(255,255,255,.35);transition:.25s}
+  .cuband .band-btn:hover{background:#16271d;transform:translateY(-2px)}
+
+  /* copper plate behind heritage stats numbers */
+  .esadv{margin-top:1.3rem;border-top:1px solid var(--line);padding-top:1.1rem}
+  .esadv .eah{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--copper);font-weight:600;margin-bottom:.7rem}
+  .esadv ul{list-style:none;margin:0}
+  .esadv li{font-size:1.02rem;color:var(--ink-soft);padding:.45rem 0;line-height:1.5;border-bottom:1px solid rgba(36,31,24,.07)}
+  .esadv li:last-child{border-bottom:none}
+  .esadv li b{color:var(--jade);font-weight:600}
+  @media(prefers-reduced-motion:reduce){.cuband::after{animation:none}.btn-pri:hover::after,.esend:hover::after,.fcta:hover::after,.navcta:hover::after{animation:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top">
+      <svg class="logo" viewBox="0 0 97 94" aria-label="Birdland Ind. logo">
+        <defs><linearGradient id="cuH" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E6B084"/><stop offset=".4" stop-color="#A85C2C"/><stop offset=".6" stop-color="#7A3F1E"/><stop offset="1" stop-color="#D89360"/></linearGradient></defs>
+        <circle cx="48.5" cy="47" r="45.3" fill="#F8F2E6" stroke="url(#cuH)" stroke-width="3.4"/>
+        <circle cx="48.5" cy="47" r="40.3" fill="none" stroke="url(#cuH)" stroke-width="0.9"/>
+        <path fill="url(#cuH)" d="M52.23,80.22C52.88,80.07 53.49,79.88 53.58,79.80C53.67,79.72 53.53,79.48 53.22,79.19L52.70,78.72L52.58,75.69C52.46,72.68 52.45,72.65 52.02,72.31C51.68,72.05 51.43,71.99 50.92,72.06C49.82,72.20 49.79,72.32 49.88,76.08C49.96,79.50 50.09,80.25 50.62,80.38C50.78,80.43 50.94,80.47 50.98,80.48C51.01,80.49 51.57,80.38 52.23,80.22Z M42.31,79.71C42.60,79.46 42.63,79.31 42.52,78.75C42.44,78.32 42.50,77.46 42.69,76.33C42.86,75.37 42.99,74.27 42.99,73.90C43.00,72.63 43.98,72.47 44.63,73.64C44.91,74.13 45.00,74.61 45.04,75.70C45.08,77.11 45.08,77.11 44.46,77.87C44.12,78.29 43.76,78.83 43.67,79.06C43.49,79.56 43.69,79.73 44.69,79.92C45.26,80.02 45.34,79.98 46.23,79.06C47.33,77.92 47.86,76.93 47.96,75.81C48.06,74.86 47.93,74.64 46.47,73.10C45.34,71.90 45.18,71.84 42.42,71.54C40.64,71.34 40.56,71.37 40.44,72.31C40.38,72.73 40.26,73.50 40.17,74.00C40.08,74.50 39.96,75.59 39.91,76.42C39.86,77.24 39.73,78.25 39.63,78.65C39.46,79.33 39.47,79.41 39.82,79.69C40.34,80.11 41.83,80.12 42.31,79.71Z M36.24,78.61C36.53,78.40 36.53,78.34 36.27,77.31C35.84,75.57 35.88,75.38 36.91,74.40C37.41,73.93 37.86,73.37 37.91,73.15C38.06,72.52 37.63,71.28 37.18,71.06C36.96,70.95 36.73,70.77 36.66,70.65C36.53,70.44 34.81,69.78 33.61,69.48C32.32,69.16 31.21,70.23 30.92,72.08C30.86,72.45 30.64,73.24 30.42,73.83C29.75,75.73 29.55,76.58 29.68,76.96C29.94,77.65 31.55,78.12 31.96,77.62C32.06,77.51 32.19,77.04 32.26,76.58C32.40,75.58 32.60,75.17 32.92,75.17C33.29,75.17 33.83,76.16 33.83,76.83C33.84,78.23 35.29,79.31 36.24,78.61Z M66.60,78.15C67.04,77.78 66.83,77.31 65.70,76.20C65.08,75.59 64.35,74.71 64.09,74.25C63.28,72.85 62.49,72.01 61.87,71.90C60.48,71.64 60.16,72.44 60.29,75.88C60.34,77.14 60.41,78.17 60.45,78.17C60.49,78.17 60.81,77.94 61.16,77.65C61.89,77.07 63.01,76.83 63.42,77.17C63.57,77.29 63.79,77.65 63.93,77.97L64.17,78.55L65.27,78.45C65.88,78.39 66.48,78.26 66.60,78.15Z M60.93,75.74C60.59,75.40 60.60,75.38 61.01,75.16C61.27,75.02 61.42,75.03 61.59,75.18C61.92,75.44 61.90,75.62 61.51,75.83C61.27,75.96 61.13,75.94 60.93,75.74Z M26.13,75.46C26.36,75.18 27.00,73.48 27.00,73.15C27.00,73.00 27.22,72.60 27.50,72.25C27.82,71.84 28.00,71.43 28.00,71.08C28.00,70.74 28.18,70.32 28.50,69.92C29.12,69.14 29.13,68.81 28.54,67.99C28.05,67.31 27.55,67.00 26.94,67.00C26.39,67.00 26.17,67.31 26.17,68.10C26.17,68.83 25.18,71.82 24.75,72.41C24.02,73.38 23.50,74.26 23.50,74.50C23.50,74.79 25.04,75.64 25.60,75.66C25.80,75.66 26.04,75.57 26.13,75.46Z M75.63,73.40C75.67,73.17 75.44,72.76 75.02,72.27C74.63,71.82 74.23,71.11 74.06,70.57C73.72,69.51 73.02,68.83 72.68,69.23C72.58,69.36 72.54,69.58 72.60,69.73C72.76,70.16 71.32,69.88 69.85,69.20C68.47,68.56 67.82,68.55 66.71,69.12C65.94,69.52 65.79,70.09 66.34,70.51C66.55,70.66 66.91,71.19 67.15,71.67C67.90,73.19 69.12,73.70 68.97,72.44L68.91,71.88L70.24,72.26C72.11,72.79 73.44,73.27 73.88,73.58C74.11,73.74 74.51,73.83 74.92,73.80C75.45,73.76 75.59,73.68 75.63,73.40Z M33.75,73.44C33.12,72.97 33.97,71.00 34.81,71.00C35.42,71.00 35.53,72.20 34.99,72.90C34.49,73.53 34.11,73.70 33.75,73.44Z M21.03,72.33C21.43,72.22 21.83,71.92 22.19,71.48C22.69,70.84 22.71,70.76 22.51,70.27C22.14,69.36 22.20,69.12 22.89,68.76C23.24,68.57 23.63,68.23 23.76,68.00C24.27,67.06 23.84,65.29 23.05,65.09C22.52,64.96 22.40,65.05 22.02,65.91C21.67,66.69 20.99,67.26 20.58,67.11C20.33,67.01 20.22,65.84 20.45,65.61C20.51,65.55 20.65,65.24 20.76,64.92C20.94,64.39 20.92,64.33 20.44,63.87C19.68,63.16 19.43,63.13 18.95,63.64C18.51,64.10 17.54,65.66 17.08,66.64C16.94,66.94 16.60,67.49 16.33,67.86C15.78,68.62 15.52,69.87 15.83,70.25C16.13,70.61 18.15,71.70 18.32,71.59C18.41,71.54 18.36,71.27 18.22,70.99C17.92,70.38 18.03,69.82 18.62,68.96C19.03,68.35 19.54,68.15 19.75,68.51C19.96,68.84 19.64,70.33 19.23,70.93C18.78,71.59 18.81,71.72 19.56,72.18C20.17,72.55 20.21,72.55 21.03,72.33Z M79.35,70.87C80.15,70.33 82.48,67.52 82.66,66.87C83.08,65.34 82.84,64.71 81.20,63.05C80.33,62.18 80.06,62.00 79.41,61.91C77.93,61.68 76.45,62.06 75.75,62.84C75.57,63.04 75.09,63.43 74.69,63.71C74.21,64.04 73.85,64.47 73.62,64.97C73.29,65.72 73.29,65.74 73.60,65.91C73.77,66.01 74.25,66.43 74.67,66.86C77.29,69.56 78.16,70.50 78.32,70.81C78.55,71.24 78.78,71.26 79.35,70.87Z M78.15,66.67C77.06,65.57 76.17,64.57 76.17,64.45C76.17,64.07 76.55,63.83 77.18,63.83C78.42,63.83 79.44,64.41 79.96,65.42C80.10,65.69 80.39,66.13 80.61,66.39C81.02,66.88 81.12,67.64 80.84,68.16C80.45,68.88 80.17,68.72 78.15,66.67Z M56.05,62.43C56.25,62.22 56.56,61.63 56.73,61.14C56.90,60.65 57.27,59.73 57.55,59.08C57.98,58.07 58.06,57.66 58.13,56.00C58.20,54.27 58.17,53.99 57.83,53.21C57.59,52.64 57.27,52.22 56.93,52.01C56.63,51.83 56.26,51.53 56.09,51.34C55.64,50.84 54.05,50.14 53.02,49.99C51.27,49.73 51.53,49.03 53.45,48.84C54.07,48.78 54.82,48.61 55.12,48.45C55.41,48.29 55.97,48.16 56.37,48.16C56.79,48.16 57.57,47.95 58.25,47.65C59.10,47.29 59.99,47.07 61.53,46.87C63.53,46.61 63.72,46.62 65.26,46.91C66.16,47.07 67.32,47.39 67.86,47.61C69.53,48.28 71.05,48.06 71.75,47.04C72.11,46.50 74.33,44.83 74.67,44.83C74.86,44.83 75.67,42.72 75.67,42.22C75.67,41.60 74.40,40.44 73.43,40.17C72.60,39.94 71.23,40.15 70.51,40.62C70.28,40.77 69.68,40.98 69.17,41.10C68.66,41.21 67.95,41.42 67.58,41.56C67.22,41.70 66.73,41.82 66.50,41.83C66.27,41.83 65.69,41.98 65.21,42.17C64.72,42.35 64.18,42.50 64.00,42.50C63.64,42.50 63.54,42.10 63.85,41.91C63.95,41.84 64.14,41.54 64.26,41.24C64.39,40.94 64.72,40.55 65.00,40.39C65.27,40.23 65.50,40.04 65.50,39.98C65.50,39.92 65.78,39.47 66.12,38.98C66.69,38.16 66.74,37.99 66.75,36.92L66.76,35.75L67.65,35.27C68.14,35.01 69.23,34.11 70.08,33.27C71.36,32.01 71.74,31.50 72.33,30.30L73.04,28.86L72.83,27.72C72.59,26.42 72.10,25.33 71.76,25.33C71.63,25.33 71.40,25.67 71.24,26.09C71.08,26.50 70.71,27.06 70.41,27.32C69.74,27.91 68.47,28.41 67.96,28.28C66.59,27.94 65.79,27.63 64.83,27.09C63.14,26.13 62.99,26.05 61.80,25.69C61.19,25.50 60.48,25.39 60.23,25.44C59.39,25.59 58.21,26.34 57.90,26.93C57.48,27.71 57.73,27.92 59.09,27.92C60.47,27.92 60.70,28.14 60.77,29.49C60.82,30.40 60.79,30.52 60.42,30.76C59.90,31.10 59.46,30.96 58.93,30.28C58.19,29.33 57.59,28.63 57.33,28.39C56.75,27.84 55.48,27.00 55.09,26.90C54.60,26.78 53.50,25.49 53.50,25.03C53.50,24.86 53.61,24.40 53.74,24.02C54.32,22.38 54.19,19.02 53.52,18.13C53.36,17.92 53.03,17.34 52.78,16.83C52.53,16.33 52.20,15.76 52.04,15.58C51.49,14.94 50.15,14.02 49.62,13.92C49.32,13.87 48.70,13.70 48.23,13.55C47.42,13.29 47.31,13.30 45.77,13.65C44.39,13.97 43.99,14.15 43.12,14.81C42.24,15.47 41.98,15.79 41.38,16.99C40.58,18.59 40.06,19.20 39.08,19.67C38.70,19.85 38.13,20.32 37.82,20.71C37.16,21.52 36.17,23.42 36.17,23.86C36.17,24.40 36.84,24.62 38.82,24.73C41.07,24.85 41.89,25.15 41.97,25.88C42.01,26.26 41.88,26.48 41.30,27.01C40.91,27.37 40.34,27.74 40.04,27.82C39.74,27.90 39.19,28.24 38.80,28.57C38.42,28.90 38.05,29.17 37.99,29.17C37.92,29.17 37.60,29.56 37.28,30.04C36.96,30.52 36.55,31.06 36.36,31.23C36.17,31.40 35.97,31.77 35.91,32.06C35.85,32.35 35.68,32.77 35.53,33.00C35.14,33.62 34.98,35.10 35.19,36.25C35.43,37.60 36.14,39.49 36.57,39.91C36.77,40.10 37.13,40.52 37.37,40.86C37.82,41.46 39.82,43.00 40.15,43.00C40.25,43.00 40.62,43.26 40.98,43.58C41.33,43.90 41.75,44.17 41.90,44.17C42.27,44.17 43.38,44.74 43.65,45.07C43.84,45.29 43.80,45.35 43.43,45.49C42.78,45.74 39.39,46.03 38.57,45.91C38.10,45.84 37.71,45.64 37.40,45.32C37.00,44.90 36.94,44.70 36.91,43.63C36.89,42.96 36.79,42.19 36.70,41.92C36.23,40.48 35.96,40.04 35.36,39.70C35.02,39.51 34.50,39.06 34.21,38.70C33.78,38.16 33.56,38.03 32.90,37.94C32.47,37.88 32.00,37.74 31.87,37.62C31.43,37.26 28.45,37.37 27.08,37.80C25.56,38.28 24.78,38.83 22.71,40.89C21.28,42.30 20.95,42.73 20.72,43.45C20.50,44.15 20.48,44.41 20.63,44.75C20.87,45.27 21.09,45.27 22.62,44.74C24.11,44.23 24.45,44.34 25.27,45.58C25.57,46.04 26.17,46.81 26.62,47.30L27.42,48.18L28.86,48.13C30.13,48.09 30.28,48.11 30.16,48.35C29.93,48.78 29.62,48.96 28.92,49.09C28.55,49.16 27.99,49.35 27.67,49.52C27.35,49.69 26.97,49.83 26.82,49.83C26.67,49.83 26.18,50.03 25.73,50.27C25.28,50.51 24.63,50.81 24.28,50.93C23.93,51.06 23.44,51.31 23.18,51.49C22.92,51.67 22.39,51.87 22.00,51.94C21.61,52.00 20.80,52.30 20.21,52.61C19.62,52.92 18.94,53.17 18.70,53.17C17.78,53.17 17.80,53.40 18.75,54.23C19.87,55.20 19.93,55.59 19.05,56.32C18.27,56.96 17.08,57.05 16.58,56.50C16.13,56.00 15.71,56.08 15.58,56.67C15.44,57.32 15.63,57.54 16.71,58.00C17.51,58.35 17.66,58.36 18.91,58.19C19.65,58.08 20.53,58.00 20.88,58.00C21.27,58.00 21.84,57.81 22.39,57.50C22.88,57.23 23.37,57.00 23.48,57.00C23.59,57.00 23.96,56.81 24.30,56.58C24.63,56.35 25.05,56.17 25.22,56.17C25.39,56.17 25.84,55.96 26.22,55.70C28.09,54.44 28.52,54.17 28.65,54.17C28.72,54.17 29.08,53.95 29.44,53.69C29.81,53.42 30.29,53.15 30.51,53.09C30.73,53.02 31.17,52.81 31.48,52.62C32.08,52.26 34.32,51.42 35.42,51.14C36.31,50.92 37.17,51.09 37.17,51.49C37.17,51.65 37.01,51.98 36.82,52.22C36.45,52.70 36.23,53.66 36.40,54.10C36.50,54.35 36.56,54.34 36.94,53.98C37.17,53.76 37.50,53.32 37.67,53.00C37.84,52.68 38.27,52.12 38.64,51.77C39.25,51.18 39.40,51.12 40.28,51.08C40.81,51.06 41.72,50.99 42.29,50.92C43.44,50.78 43.64,50.92 43.43,51.75C43.30,52.28 41.58,53.98 40.89,54.27C40.34,54.50 39.83,55.07 39.83,55.45C39.83,55.81 40.50,55.69 41.03,55.25C41.30,55.02 41.65,54.83 41.80,54.83C42.25,54.82 43.32,54.09 44.35,53.09C45.76,51.73 45.91,51.84 45.23,53.73C44.96,54.51 44.96,54.58 45.25,55.31C45.72,56.48 45.66,57.13 45.03,57.69C44.73,57.95 44.35,58.17 44.18,58.17C43.76,58.17 43.33,58.34 43.33,58.50C43.33,58.57 43.56,58.72 43.83,58.83C44.41,59.07 45.63,58.94 46.46,58.55C46.95,58.32 47.08,58.32 47.71,58.55C48.10,58.69 48.80,58.89 49.27,58.98C49.74,59.08 50.39,59.31 50.70,59.50C51.02,59.68 51.66,59.95 52.12,60.08C52.80,60.29 53.16,60.56 54.11,61.58C54.75,62.27 55.37,62.83 55.48,62.83C55.59,62.83 55.85,62.65 56.05,62.43Z M37.14,59.35C37.38,59.18 37.85,58.92 38.17,58.76C39.59,58.10 39.91,57.79 39.66,57.31C39.57,57.15 39.50,56.81 39.50,56.54C39.50,55.69 38.89,55.41 38.26,55.98C37.60,56.58 37.24,56.57 36.86,55.92C36.41,55.17 35.94,55.15 35.50,55.88C34.99,56.71 35.10,58.68 35.71,59.46C35.95,59.76 36.63,59.71 37.14,59.35Z M69.59,57.89C69.85,57.62 69.84,57.59 69.44,57.29C68.78,56.81 68.82,55.81 69.50,55.31C69.77,55.10 70.00,54.84 70.00,54.72C70.00,54.13 67.74,53.67 66.49,54.00C65.11,54.37 64.76,55.14 65.66,55.80L66.16,56.17L65.83,56.71C65.65,57.01 65.50,57.34 65.50,57.45C65.50,57.84 66.10,58.00 66.94,57.85C67.55,57.73 67.82,57.75 68.07,57.93C68.53,58.25 69.25,58.23 69.59,57.89Z M52.86,55.15C52.72,54.92 52.70,54.74 52.80,54.63C53.04,54.39 53.67,54.78 53.67,55.17C53.67,55.61 53.14,55.60 52.86,55.15Z M50.62,53.20C50.17,52.73 50.00,52.00 50.35,52.00C50.64,52.00 51.70,53.14 51.63,53.37C51.50,53.75 51.08,53.68 50.62,53.20Z M30.75,47.65C30.93,47.43 31.10,47.22 31.12,47.18C31.14,47.14 31.48,47.06 31.87,46.98C32.26,46.91 32.79,46.80 33.04,46.74C33.79,46.56 33.58,46.95 32.68,47.41C32.23,47.64 31.54,47.88 31.14,47.94L30.42,48.05L30.75,47.65Z M52.33,43.86C51.46,43.78 50.91,43.64 50.50,43.38C50.18,43.17 49.62,42.86 49.25,42.68C48.41,42.28 47.28,40.95 46.72,39.71C46.18,38.50 45.99,35.85 46.40,35.17C46.53,34.94 46.79,34.45 46.96,34.08C47.32,33.34 48.87,31.69 49.51,31.38C51.91,30.21 52.54,30.13 54.00,30.81C54.82,31.19 55.51,31.72 56.81,32.99C57.76,33.92 58.77,34.80 59.06,34.94C59.35,35.09 59.81,35.37 60.08,35.58C60.50,35.89 60.88,35.96 62.38,36.05C63.81,36.13 64.30,36.22 64.76,36.50C65.77,37.13 65.65,38.17 64.57,38.17C64.07,38.17 63.80,38.55 63.93,39.07C64.08,39.67 63.75,40.00 62.99,40.00C62.00,40.00 61.83,40.12 61.83,40.84C61.83,41.33 61.73,41.56 61.39,41.82C61.15,42.01 60.86,42.17 60.75,42.17C60.64,42.17 60.42,42.31 60.26,42.49C60.10,42.67 59.73,42.87 59.44,42.93C59.15,42.99 58.58,43.21 58.16,43.42C57.54,43.73 57.04,43.82 55.49,43.88C54.44,43.93 53.02,43.92 52.33,43.86Z M32.56,43.59C32.31,42.92 33.04,42.56 33.58,43.10C33.96,43.48 33.81,43.74 33.19,43.80C32.83,43.84 32.63,43.77 32.56,43.59Z M28.56,41.27C28.20,40.95 28.13,40.81 28.28,40.66C28.43,40.51 28.64,40.55 29.19,40.86C29.58,41.07 29.89,41.32 29.87,41.42C29.81,41.77 29.03,41.68 28.56,41.27Z M44.83,24.28C44.33,24.03 43.99,23.13 44.11,22.33C44.18,21.88 44.09,21.60 43.74,21.08C43.48,20.72 43.22,20.04 43.14,19.59C43.01,18.76 43.01,18.75 43.76,17.99L44.52,17.22L45.89,17.20L47.27,17.18L48.15,17.95C48.97,18.66 49.03,18.77 48.94,19.30C48.89,19.62 48.74,20.00 48.61,20.15C48.19,20.63 47.97,21.62 48.08,22.54C48.18,23.32 48.15,23.46 47.81,23.78C47.05,24.49 45.69,24.72 44.83,24.28Z M47.73,20.26C47.93,19.48 47.22,18.50 46.46,18.50C46.08,18.50 46.06,19.20 46.43,19.51C46.57,19.63 46.65,19.86 46.61,20.03C46.56,20.20 46.65,20.40 46.81,20.50C47.28,20.77 47.63,20.68 47.73,20.26Z"/>
+      </svg>
+      <span class="wm">Birdland<span class="ind">Ind.</span></span>
+    </a>
+    <button class="menu" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav">
+      <a href="#heritage">Heritage</a>
+      <a href="#cycle">Solutions</a>
+      <a href="#equilibrium">Edge</a>
+      <a href="#risk">Risk</a>
+      <a href="#catalogue">Catalogue</a>
+      <a class="navcta" href="#enquiry">Enquire</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <svg class="branch" viewBox="0 0 200 200" fill="none" stroke-width="1" aria-hidden="true">
+      <defs><linearGradient id="brG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D89360"/><stop offset=".5" stop-color="#A85C2C"/><stop offset="1" stop-color="#7A3F1E"/></linearGradient></defs>
+      <g stroke="url(#brG)">
+        <path d="M150 195 C150 120 150 70 60 30" stroke-linecap="round"/><path d="M120 120 C100 108 96 86 100 60" stroke-linecap="round"/>
+        <path d="M132 95 C150 86 162 64 166 40" stroke-linecap="round"/><path d="M104 78 C86 70 78 50 80 28" stroke-linecap="round"/>
+        <path d="M150 150 C168 142 178 122 182 100" stroke-linecap="round"/>
+      </g>
+    </svg>
+    <div class="wrap">
+      <span class="ey">Birdland Ind. · Garden &amp; field, since 1981</span>
+      <h1>Yours to sell. <span class="ital metal-d">Ours to make.</span></h1>
+      <div class="metalbar"></div>
+      <p class="sub" style="margin-top:1.5rem">For brands and distributors across Europe, the Commonwealth and the Americas — we take apart your risk and cost, and keep you a season ahead.</p>
+      <div class="trust">Three generations · 180+ brands · 37 markets · confidential by default</div>
+      <div class="cta-row">
+        <a class="btn btn-pri" href="#enquiry">Start an enquiry →</a>
+        <a class="btn btn-sec" href="#cycle">See how we solve it</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HERITAGE ===== -->
+  <section class="heritage" id="heritage">
+    <div class="wrap">
+      <span class="ey">Since 1981 · three generations</span>
+      <h2>Three generations. One standard.</h2>
+      <p class="lead">Birdland Ind. has made for the world's brands since 1981. Across forty-five years and three generations of the same family, the standard has never moved — and we have manufactured for a great many of the leading garden and field brands and distributors in our markets. Here, quality and trust are inherited, not advertised.</p>
+      <div class="gens">
+        <div class="gen reveal"><div class="gk">First generation</div><div class="gt">Founded, 1981</div><p>Built on doing the making properly, and standing behind every order.</p></div>
+        <div class="gen reveal"><div class="gk">Second generation</div><div class="gt">Across new markets</div><p>Trusted into Europe, the Commonwealth and the Americas, brand after brand.</p></div>
+        <div class="gen reveal"><div class="gk">Third generation</div><div class="gt">Today, worldwide</div><p>The same name, the same word kept — now serving partners across 37 markets.</p></div>
+      </div>
+      <div class="hstats reveal">
+        <div class="hstat"><div class="cnum metal-l" data-target="45">0</div><div class="cl">Years since 1981</div></div>
+        <div class="hstat"><div class="cnum metal-l" data-target="180" data-suffix="+">0</div><div class="cl">Brands &amp; distributors served</div></div>
+        <div class="hstat"><div class="cnum metal-l" data-target="37">0</div><div class="cl">Markets reached</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CYCLE ===== -->
+  <section class="cycle" id="cycle">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="ey">Every worry, answered</span>
+        <h2>The gap between going it alone — and going with us.</h2>
+        <p>It cycles on its own. The jade band is the difference Birdland makes.</p>
+      </div>
+      <div class="cyc-card reveal" id="cycCard" tabindex="0" aria-label="Pain points and how Birdland solves them">
+        <div class="cyc-fade show" id="cycFade">
+          <div class="cyc-pain"><span class="x">The worry</span><span id="cycPain"></span></div>
+          <div class="cyc-name" id="cycName"></div>
+          <div class="cyc-line" id="cycLine"></div>
+        </div>
+        <div class="cyc-meter"><i class="own" id="cycOwn"></i><i class="diff" id="cycDiff"></i></div>
+        <div class="cyc-meterlab"><span>On your own</span><span>With Birdland</span></div>
+        <div class="cyc-delta" id="cycDelta"></div>
+        <div class="cyc-dots" id="cycDots" role="tablist" aria-label="Choose a worry"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRINCIPLES ===== -->
+  <section class="principles" id="principles">
+    <div class="wrap">
+      <div class="pgrid">
+        <div class="pcol reveal"><div class="pn metal-d">01</div><h3>Never competes</h3><p>Your designs and your markets remain entirely yours. We hold no rival line of our own.</p></div>
+        <div class="pcol reveal"><div class="pn metal-d">02</div><h3>Always delivers</h3><p>Stable production and on-time shipping, held steady through every cycle.</p></div>
+        <div class="pcol reveal"><div class="pn metal-d">03</div><h3>Minimise risk</h3><p>Two countries, upstream control, a season ahead — your exposure, taken apart piece by piece.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EQUILIBRIUM SIMULATOR ===== -->
+  <section class="equil" id="equilibrium">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="ey">The Equilibrium Simulator</span>
+        <h2>Hold the line while the field swings.</h2>
+        <p>Turn each promise on, and watch Birdland settle into a higher, steadier equilibrium than the industry average. Then hit the market with a shock.</p>
+      </div>
+      <div class="eq-controls reveal">
+        <button class="eqtog" data-p="nc" aria-pressed="true">01 · Never competes</button>
+        <button class="eqtog" data-p="ad" aria-pressed="true">02 · Always delivers</button>
+        <button class="eqtog" data-p="mr" aria-pressed="true">03 · Minimise risk</button>
+        <button class="eqshock" id="eqShock">Simulate a market shock</button>
+      </div>
+      <div class="eq-chart reveal">
+        <svg id="eqSvg" viewBox="0 0 720 360" role="img" aria-label="Birdland versus industry execution over market cycles"></svg>
+        <div class="eq-read">
+          <div class="eq-legend"><span class="lg lg-b"></span>Birdland <span class="lg lg-i"></span>Industry average</div>
+          <div class="eq-elab">Your edge over the field</div>
+          <div class="eq-enum" id="eqEdge">+0</div>
+          <div class="eq-note" id="eqNote"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RISK ===== -->
+  <section class="risk" id="risk">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="ey">Taken apart, layer by layer</span>
+        <h2>The risk and cost a distributor carries — and how we lift it away.</h2>
+        <p>Switch on each thing Birdland brings. The dashed line is where you started; watch how much we remove.</p>
+      </div>
+      <div class="risk-grid">
+        <div class="caps reveal" id="caps"></div>
+        <div class="reveal">
+          <div class="gauge">
+            <div class="grow">
+              <div><div class="gt">Risk exposure</div><div class="gnum" id="expNum">100</div></div>
+              <div><div class="gt">Lifted away</div><div class="gnum lift" id="liftNum">0</div></div>
+            </div>
+            <div class="gt" style="margin-top:1.1rem">Cost index — <span id="costPct">100</span></div>
+            <div class="costbar"><i id="costFill"></i></div>
+          </div>
+          <div class="tower-wrap" id="towerWrap">
+            <div class="tower" id="tower"></div>
+            <div class="rbase"><span class="rl">Baseline — some risk always remains. We make it small.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CHAIN ===== -->
+  <section class="chain" id="chain">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="ey">One chain · a season ahead</span>
+        <h2>Our advantage at every link of your runway.</h2>
+        <p>Choose a stage. The figure is how far along your pre-season runway it sits.</p>
+      </div>
+      <div class="reveal">
+        <div class="ctrack"><div class="cbg"></div><div class="cfill" id="cFill"></div><div class="cnodes" id="cNodes"></div></div>
+        <div class="clabels"><span>Earliest</span><span>On your shelf</span></div>
+        <div class="kdetail" id="kdetail"><div class="kfade show" id="kfade"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CATALOGUE ===== -->
+  <section class="cat" id="catalogue">
+    <div class="wrap">
+      <span class="ey">The catalogue</span>
+      <h2>What you'll see — and what stays yours.</h2>
+      <p>Our garden catalogue is a window onto our vertical manufacturing and integration — proof of what we can make, end to end. <span class="hl">Your bespoke best-sellers never appear in it.</span> The custom products we make for you stay off the page, and your competitors will never know Birdland made them.</p>
+      <a class="catBtn" href="https://52804774-my.sharepoint.com/:b:/g/personal/executive_birdland_com_tw/IQDcPidQB3pcTbKyumzwmFpTAYno0hfFX2_b-6GSltgV2ig" target="_blank" rel="noopener noreferrer">View the garden catalogue (PDF) →</a>
+    </div>
+  </section>
+
+  <!-- ===== ENQUIRY BUILDER ===== -->
+  <section class="enq" id="enquiry">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="ey">Build your enquiry</span>
+        <h2>Three taps to the right team — enquiry ready to send.</h2>
+        <p>Tell us a little, and we'll prepare an email to the team for your region, in confidence.</p>
+      </div>
+      <div class="enq-grid">
+        <div class="reveal">
+          <div class="erow"><div class="el">1 · Your region</div><div class="opts" data-grp="region">
+            <button data-v="Global">Global</button><button data-v="Europe">Europe</button><button data-v="UK &amp; Commonwealth">UK &amp; Commonwealth</button><button data-v="Americas">Americas</button></div></div>
+          <div class="erow"><div class="el">2 · What you make</div><div class="opts" data-grp="product">
+            <button data-v="Garden products">Garden products</button><button data-v="Hunting equipment">Hunting equipment</button></div></div>
+          <div class="erow"><div class="el">3 · How you'd like to work</div><div class="opts" data-grp="model">
+            <button data-v="OEM (my design)">OEM — my design</button><button data-v="ODM (design for me)">ODM — design for me</button><button data-v="Long-term supply">Long-term supply</button><button data-v="Not sure yet">Not sure yet</button></div></div>
+          <div class="erow"><div class="el">4 · Volume (optional)</div><div class="opts" data-grp="volume">
+            <button data-v="a trial run">Trial run</button><button data-v="regular orders">Regular</button><button data-v="large volume">Large volume</button></div></div>
+        </div>
+        <div class="esum reveal">
+          <div class="ek">Your enquiry</div>
+          <div class="etitle">Ready when you are.</div>
+          <div class="esline" id="esLine">Make your choices and we'll line up the right team and a ready-to-send email.</div>
+          <div class="esadv" id="esAdv"></div>
+          <a class="esend dim" id="esSend" href="#">Send my enquiry →</a>
+          <div class="enote">Opens your email app with everything filled in. Handled in confidence.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+  <!-- ===== COPPER CTA BAND ===== -->
+  <section class="cuband">
+    <div class="wrap">
+      <h2>Make it yours. We'll make the rest.</h2>
+      <p>Three generations of quality, two production bases, and one partner who never competes with you.</p>
+      <a class="band-btn" href="#enquiry">Start an enquiry →</a>
+    </div>
+  </section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="fb">
+        <svg class="logo" viewBox="0 0 97 94" aria-label="Birdland Ind. logo">
+          <defs><linearGradient id="cuF" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E6B084"/><stop offset=".4" stop-color="#C8814B"/><stop offset=".6" stop-color="#A85C2C"/><stop offset="1" stop-color="#E6B084"/></linearGradient></defs>
+          <circle cx="48.5" cy="47" r="45.3" fill="#F8F2E6" stroke="url(#cuF)" stroke-width="3.4"/>
+          <circle cx="48.5" cy="47" r="40.3" fill="none" stroke="url(#cuF)" stroke-width="0.9"/>
+          <path fill="url(#cuF)" d="M52.23,80.22C52.88,80.07 53.49,79.88 53.58,79.80C53.67,79.72 53.53,79.48 53.22,79.19L52.70,78.72L52.58,75.69C52.46,72.68 52.45,72.65 52.02,72.31C51.68,72.05 51.43,71.99 50.92,72.06C49.82,72.20 49.79,72.32 49.88,76.08C49.96,79.50 50.09,80.25 50.62,80.38C50.78,80.43 50.94,80.47 50.98,80.48C51.01,80.49 51.57,80.38 52.23,80.22Z M42.31,79.71C42.60,79.46 42.63,79.31 42.52,78.75C42.44,78.32 42.50,77.46 42.69,76.33C42.86,75.37 42.99,74.27 42.99,73.90C43.00,72.63 43.98,72.47 44.63,73.64C44.91,74.13 45.00,74.61 45.04,75.70C45.08,77.11 45.08,77.11 44.46,77.87C44.12,78.29 43.76,78.83 43.67,79.06C43.49,79.56 43.69,79.73 44.69,79.92C45.26,80.02 45.34,79.98 46.23,79.06C47.33,77.92 47.86,76.93 47.96,75.81C48.06,74.86 47.93,74.64 46.47,73.10C45.34,71.90 45.18,71.84 42.42,71.54C40.64,71.34 40.56,71.37 40.44,72.31C40.38,72.73 40.26,73.50 40.17,74.00C40.08,74.50 39.96,75.59 39.91,76.42C39.86,77.24 39.73,78.25 39.63,78.65C39.46,79.33 39.47,79.41 39.82,79.69C40.34,80.11 41.83,80.12 42.31,79.71Z M36.24,78.61C36.53,78.40 36.53,78.34 36.27,77.31C35.84,75.57 35.88,75.38 36.91,74.40C37.41,73.93 37.86,73.37 37.91,73.15C38.06,72.52 37.63,71.28 37.18,71.06C36.96,70.95 36.73,70.77 36.66,70.65C36.53,70.44 34.81,69.78 33.61,69.48C32.32,69.16 31.21,70.23 30.92,72.08C30.86,72.45 30.64,73.24 30.42,73.83C29.75,75.73 29.55,76.58 29.68,76.96C29.94,77.65 31.55,78.12 31.96,77.62C32.06,77.51 32.19,77.04 32.26,76.58C32.40,75.58 32.60,75.17 32.92,75.17C33.29,75.17 33.83,76.16 33.83,76.83C33.84,78.23 35.29,79.31 36.24,78.61Z M66.60,78.15C67.04,77.78 66.83,77.31 65.70,76.20C65.08,75.59 64.35,74.71 64.09,74.25C63.28,72.85 62.49,72.01 61.87,71.90C60.48,71.64 60.16,72.44 60.29,75.88C60.34,77.14 60.41,78.17 60.45,78.17C60.49,78.17 60.81,77.94 61.16,77.65C61.89,77.07 63.01,76.83 63.42,77.17C63.57,77.29 63.79,77.65 63.93,77.97L64.17,78.55L65.27,78.45C65.88,78.39 66.48,78.26 66.60,78.15Z M60.93,75.74C60.59,75.40 60.60,75.38 61.01,75.16C61.27,75.02 61.42,75.03 61.59,75.18C61.92,75.44 61.90,75.62 61.51,75.83C61.27,75.96 61.13,75.94 60.93,75.74Z M26.13,75.46C26.36,75.18 27.00,73.48 27.00,73.15C27.00,73.00 27.22,72.60 27.50,72.25C27.82,71.84 28.00,71.43 28.00,71.08C28.00,70.74 28.18,70.32 28.50,69.92C29.12,69.14 29.13,68.81 28.54,67.99C28.05,67.31 27.55,67.00 26.94,67.00C26.39,67.00 26.17,67.31 26.17,68.10C26.17,68.83 25.18,71.82 24.75,72.41C24.02,73.38 23.50,74.26 23.50,74.50C23.50,74.79 25.04,75.64 25.60,75.66C25.80,75.66 26.04,75.57 26.13,75.46Z M75.63,73.40C75.67,73.17 75.44,72.76 75.02,72.27C74.63,71.82 74.23,71.11 74.06,70.57C73.72,69.51 73.02,68.83 72.68,69.23C72.58,69.36 72.54,69.58 72.60,69.73C72.76,70.16 71.32,69.88 69.85,69.20C68.47,68.56 67.82,68.55 66.71,69.12C65.94,69.52 65.79,70.09 66.34,70.51C66.55,70.66 66.91,71.19 67.15,71.67C67.90,73.19 69.12,73.70 68.97,72.44L68.91,71.88L70.24,72.26C72.11,72.79 73.44,73.27 73.88,73.58C74.11,73.74 74.51,73.83 74.92,73.80C75.45,73.76 75.59,73.68 75.63,73.40Z M33.75,73.44C33.12,72.97 33.97,71.00 34.81,71.00C35.42,71.00 35.53,72.20 34.99,72.90C34.49,73.53 34.11,73.70 33.75,73.44Z M21.03,72.33C21.43,72.22 21.83,71.92 22.19,71.48C22.69,70.84 22.71,70.76 22.51,70.27C22.14,69.36 22.20,69.12 22.89,68.76C23.24,68.57 23.63,68.23 23.76,68.00C24.27,67.06 23.84,65.29 23.05,65.09C22.52,64.96 22.40,65.05 22.02,65.91C21.67,66.69 20.99,67.26 20.58,67.11C20.33,67.01 20.22,65.84 20.45,65.61C20.51,65.55 20.65,65.24 20.76,64.92C20.94,64.39 20.92,64.33 20.44,63.87C19.68,63.16 19.43,63.13 18.95,63.64C18.51,64.10 17.54,65.66 17.08,66.64C16.94,66.94 16.60,67.49 16.33,67.86C15.78,68.62 15.52,69.87 15.83,70.25C16.13,70.61 18.15,71.70 18.32,71.59C18.41,71.54 18.36,71.27 18.22,70.99C17.92,70.38 18.03,69.82 18.62,68.96C19.03,68.35 19.54,68.15 19.75,68.51C19.96,68.84 19.64,70.33 19.23,70.93C18.78,71.59 18.81,71.72 19.56,72.18C20.17,72.55 20.21,72.55 21.03,72.33Z M79.35,70.87C80.15,70.33 82.48,67.52 82.66,66.87C83.08,65.34 82.84,64.71 81.20,63.05C80.33,62.18 80.06,62.00 79.41,61.91C77.93,61.68 76.45,62.06 75.75,62.84C75.57,63.04 75.09,63.43 74.69,63.71C74.21,64.04 73.85,64.47 73.62,64.97C73.29,65.72 73.29,65.74 73.60,65.91C73.77,66.01 74.25,66.43 74.67,66.86C77.29,69.56 78.16,70.50 78.32,70.81C78.55,71.24 78.78,71.26 79.35,70.87Z M78.15,66.67C77.06,65.57 76.17,64.57 76.17,64.45C76.17,64.07 76.55,63.83 77.18,63.83C78.42,63.83 79.44,64.41 79.96,65.42C80.10,65.69 80.39,66.13 80.61,66.39C81.02,66.88 81.12,67.64 80.84,68.16C80.45,68.88 80.17,68.72 78.15,66.67Z M56.05,62.43C56.25,62.22 56.56,61.63 56.73,61.14C56.90,60.65 57.27,59.73 57.55,59.08C57.98,58.07 58.06,57.66 58.13,56.00C58.20,54.27 58.17,53.99 57.83,53.21C57.59,52.64 57.27,52.22 56.93,52.01C56.63,51.83 56.26,51.53 56.09,51.34C55.64,50.84 54.05,50.14 53.02,49.99C51.27,49.73 51.53,49.03 53.45,48.84C54.07,48.78 54.82,48.61 55.12,48.45C55.41,48.29 55.97,48.16 56.37,48.16C56.79,48.16 57.57,47.95 58.25,47.65C59.10,47.29 59.99,47.07 61.53,46.87C63.53,46.61 63.72,46.62 65.26,46.91C66.16,47.07 67.32,47.39 67.86,47.61C69.53,48.28 71.05,48.06 71.75,47.04C72.11,46.50 74.33,44.83 74.67,44.83C74.86,44.83 75.67,42.72 75.67,42.22C75.67,41.60 74.40,40.44 73.43,40.17C72.60,39.94 71.23,40.15 70.51,40.62C70.28,40.77 69.68,40.98 69.17,41.10C68.66,41.21 67.95,41.42 67.58,41.56C67.22,41.70 66.73,41.82 66.50,41.83C66.27,41.83 65.69,41.98 65.21,42.17C64.72,42.35 64.18,42.50 64.00,42.50C63.64,42.50 63.54,42.10 63.85,41.91C63.95,41.84 64.14,41.54 64.26,41.24C64.39,40.94 64.72,40.55 65.00,40.39C65.27,40.23 65.50,40.04 65.50,39.98C65.50,39.92 65.78,39.47 66.12,38.98C66.69,38.16 66.74,37.99 66.75,36.92L66.76,35.75L67.65,35.27C68.14,35.01 69.23,34.11 70.08,33.27C71.36,32.01 71.74,31.50 72.33,30.30L73.04,28.86L72.83,27.72C72.59,26.42 72.10,25.33 71.76,25.33C71.63,25.33 71.40,25.67 71.24,26.09C71.08,26.50 70.71,27.06 70.41,27.32C69.74,27.91 68.47,28.41 67.96,28.28C66.59,27.94 65.79,27.63 64.83,27.09C63.14,26.13 62.99,26.05 61.80,25.69C61.19,25.50 60.48,25.39 60.23,25.44C59.39,25.59 58.21,26.34 57.90,26.93C57.48,27.71 57.73,27.92 59.09,27.92C60.47,27.92 60.70,28.14 60.77,29.49C60.82,30.40 60.79,30.52 60.42,30.76C59.90,31.10 59.46,30.96 58.93,30.28C58.19,29.33 57.59,28.63 57.33,28.39C56.75,27.84 55.48,27.00 55.09,26.90C54.60,26.78 53.50,25.49 53.50,25.03C53.50,24.86 53.61,24.40 53.74,24.02C54.32,22.38 54.19,19.02 53.52,18.13C53.36,17.92 53.03,17.34 52.78,16.83C52.53,16.33 52.20,15.76 52.04,15.58C51.49,14.94 50.15,14.02 49.62,13.92C49.32,13.87 48.70,13.70 48.23,13.55C47.42,13.29 47.31,13.30 45.77,13.65C44.39,13.97 43.99,14.15 43.12,14.81C42.24,15.47 41.98,15.79 41.38,16.99C40.58,18.59 40.06,19.20 39.08,19.67C38.70,19.85 38.13,20.32 37.82,20.71C37.16,21.52 36.17,23.42 36.17,23.86C36.17,24.40 36.84,24.62 38.82,24.73C41.07,24.85 41.89,25.15 41.97,25.88C42.01,26.26 41.88,26.48 41.30,27.01C40.91,27.37 40.34,27.74 40.04,27.82C39.74,27.90 39.19,28.24 38.80,28.57C38.42,28.90 38.05,29.17 37.99,29.17C37.92,29.17 37.60,29.56 37.28,30.04C36.96,30.52 36.55,31.06 36.36,31.23C36.17,31.40 35.97,31.77 35.91,32.06C35.85,32.35 35.68,32.77 35.53,33.00C35.14,33.62 34.98,35.10 35.19,36.25C35.43,37.60 36.14,39.49 36.57,39.91C36.77,40.10 37.13,40.52 37.37,40.86C37.82,41.46 39.82,43.00 40.15,43.00C40.25,43.00 40.62,43.26 40.98,43.58C41.33,43.90 41.75,44.17 41.90,44.17C42.27,44.17 43.38,44.74 43.65,45.07C43.84,45.29 43.80,45.35 43.43,45.49C42.78,45.74 39.39,46.03 38.57,45.91C38.10,45.84 37.71,45.64 37.40,45.32C37.00,44.90 36.94,44.70 36.91,43.63C36.89,42.96 36.79,42.19 36.70,41.92C36.23,40.48 35.96,40.04 35.36,39.70C35.02,39.51 34.50,39.06 34.21,38.70C33.78,38.16 33.56,38.03 32.90,37.94C32.47,37.88 32.00,37.74 31.87,37.62C31.43,37.26 28.45,37.37 27.08,37.80C25.56,38.28 24.78,38.83 22.71,40.89C21.28,42.30 20.95,42.73 20.72,43.45C20.50,44.15 20.48,44.41 20.63,44.75C20.87,45.27 21.09,45.27 22.62,44.74C24.11,44.23 24.45,44.34 25.27,45.58C25.57,46.04 26.17,46.81 26.62,47.30L27.42,48.18L28.86,48.13C30.13,48.09 30.28,48.11 30.16,48.35C29.93,48.78 29.62,48.96 28.92,49.09C28.55,49.16 27.99,49.35 27.67,49.52C27.35,49.69 26.97,49.83 26.82,49.83C26.67,49.83 26.18,50.03 25.73,50.27C25.28,50.51 24.63,50.81 24.28,50.93C23.93,51.06 23.44,51.31 23.18,51.49C22.92,51.67 22.39,51.87 22.00,51.94C21.61,52.00 20.80,52.30 20.21,52.61C19.62,52.92 18.94,53.17 18.70,53.17C17.78,53.17 17.80,53.40 18.75,54.23C19.87,55.20 19.93,55.59 19.05,56.32C18.27,56.96 17.08,57.05 16.58,56.50C16.13,56.00 15.71,56.08 15.58,56.67C15.44,57.32 15.63,57.54 16.71,58.00C17.51,58.35 17.66,58.36 18.91,58.19C19.65,58.08 20.53,58.00 20.88,58.00C21.27,58.00 21.84,57.81 22.39,57.50C22.88,57.23 23.37,57.00 23.48,57.00C23.59,57.00 23.96,56.81 24.30,56.58C24.63,56.35 25.05,56.17 25.22,56.17C25.39,56.17 25.84,55.96 26.22,55.70C28.09,54.44 28.52,54.17 28.65,54.17C28.72,54.17 29.08,53.95 29.44,53.69C29.81,53.42 30.29,53.15 30.51,53.09C30.73,53.02 31.17,52.81 31.48,52.62C32.08,52.26 34.32,51.42 35.42,51.14C36.31,50.92 37.17,51.09 37.17,51.49C37.17,51.65 37.01,51.98 36.82,52.22C36.45,52.70 36.23,53.66 36.40,54.10C36.50,54.35 36.56,54.34 36.94,53.98C37.17,53.76 37.50,53.32 37.67,53.00C37.84,52.68 38.27,52.12 38.64,51.77C39.25,51.18 39.40,51.12 40.28,51.08C40.81,51.06 41.72,50.99 42.29,50.92C43.44,50.78 43.64,50.92 43.43,51.75C43.30,52.28 41.58,53.98 40.89,54.27C40.34,54.50 39.83,55.07 39.83,55.45C39.83,55.81 40.50,55.69 41.03,55.25C41.30,55.02 41.65,54.83 41.80,54.83C42.25,54.82 43.32,54.09 44.35,53.09C45.76,51.73 45.91,51.84 45.23,53.73C44.96,54.51 44.96,54.58 45.25,55.31C45.72,56.48 45.66,57.13 45.03,57.69C44.73,57.95 44.35,58.17 44.18,58.17C43.76,58.17 43.33,58.34 43.33,58.50C43.33,58.57 43.56,58.72 43.83,58.83C44.41,59.07 45.63,58.94 46.46,58.55C46.95,58.32 47.08,58.32 47.71,58.55C48.10,58.69 48.80,58.89 49.27,58.98C49.74,59.08 50.39,59.31 50.70,59.50C51.02,59.68 51.66,59.95 52.12,60.08C52.80,60.29 53.16,60.56 54.11,61.58C54.75,62.27 55.37,62.83 55.48,62.83C55.59,62.83 55.85,62.65 56.05,62.43Z M37.14,59.35C37.38,59.18 37.85,58.92 38.17,58.76C39.59,58.10 39.91,57.79 39.66,57.31C39.57,57.15 39.50,56.81 39.50,56.54C39.50,55.69 38.89,55.41 38.26,55.98C37.60,56.58 37.24,56.57 36.86,55.92C36.41,55.17 35.94,55.15 35.50,55.88C34.99,56.71 35.10,58.68 35.71,59.46C35.95,59.76 36.63,59.71 37.14,59.35Z M69.59,57.89C69.85,57.62 69.84,57.59 69.44,57.29C68.78,56.81 68.82,55.81 69.50,55.31C69.77,55.10 70.00,54.84 70.00,54.72C70.00,54.13 67.74,53.67 66.49,54.00C65.11,54.37 64.76,55.14 65.66,55.80L66.16,56.17L65.83,56.71C65.65,57.01 65.50,57.34 65.50,57.45C65.50,57.84 66.10,58.00 66.94,57.85C67.55,57.73 67.82,57.75 68.07,57.93C68.53,58.25 69.25,58.23 69.59,57.89Z M52.86,55.15C52.72,54.92 52.70,54.74 52.80,54.63C53.04,54.39 53.67,54.78 53.67,55.17C53.67,55.61 53.14,55.60 52.86,55.15Z M50.62,53.20C50.17,52.73 50.00,52.00 50.35,52.00C50.64,52.00 51.70,53.14 51.63,53.37C51.50,53.75 51.08,53.68 50.62,53.20Z M30.75,47.65C30.93,47.43 31.10,47.22 31.12,47.18C31.14,47.14 31.48,47.06 31.87,46.98C32.26,46.91 32.79,46.80 33.04,46.74C33.79,46.56 33.58,46.95 32.68,47.41C32.23,47.64 31.54,47.88 31.14,47.94L30.42,48.05L30.75,47.65Z M52.33,43.86C51.46,43.78 50.91,43.64 50.50,43.38C50.18,43.17 49.62,42.86 49.25,42.68C48.41,42.28 47.28,40.95 46.72,39.71C46.18,38.50 45.99,35.85 46.40,35.17C46.53,34.94 46.79,34.45 46.96,34.08C47.32,33.34 48.87,31.69 49.51,31.38C51.91,30.21 52.54,30.13 54.00,30.81C54.82,31.19 55.51,31.72 56.81,32.99C57.76,33.92 58.77,34.80 59.06,34.94C59.35,35.09 59.81,35.37 60.08,35.58C60.50,35.89 60.88,35.96 62.38,36.05C63.81,36.13 64.30,36.22 64.76,36.50C65.77,37.13 65.65,38.17 64.57,38.17C64.07,38.17 63.80,38.55 63.93,39.07C64.08,39.67 63.75,40.00 62.99,40.00C62.00,40.00 61.83,40.12 61.83,40.84C61.83,41.33 61.73,41.56 61.39,41.82C61.15,42.01 60.86,42.17 60.75,42.17C60.64,42.17 60.42,42.31 60.26,42.49C60.10,42.67 59.73,42.87 59.44,42.93C59.15,42.99 58.58,43.21 58.16,43.42C57.54,43.73 57.04,43.82 55.49,43.88C54.44,43.93 53.02,43.92 52.33,43.86Z M32.56,43.59C32.31,42.92 33.04,42.56 33.58,43.10C33.96,43.48 33.81,43.74 33.19,43.80C32.83,43.84 32.63,43.77 32.56,43.59Z M28.56,41.27C28.20,40.95 28.13,40.81 28.28,40.66C28.43,40.51 28.64,40.55 29.19,40.86C29.58,41.07 29.89,41.32 29.87,41.42C29.81,41.77 29.03,41.68 28.56,41.27Z M44.83,24.28C44.33,24.03 43.99,23.13 44.11,22.33C44.18,21.88 44.09,21.60 43.74,21.08C43.48,20.72 43.22,20.04 43.14,19.59C43.01,18.76 43.01,18.75 43.76,17.99L44.52,17.22L45.89,17.20L47.27,17.18L48.15,17.95C48.97,18.66 49.03,18.77 48.94,19.30C48.89,19.62 48.74,20.00 48.61,20.15C48.19,20.63 47.97,21.62 48.08,22.54C48.18,23.32 48.15,23.46 47.81,23.78C47.05,24.49 45.69,24.72 44.83,24.28Z M47.73,20.26C47.93,19.48 47.22,18.50 46.46,18.50C46.08,18.50 46.06,19.20 46.43,19.51C46.57,19.63 46.65,19.86 46.61,20.03C46.56,20.20 46.65,20.40 46.81,20.50C47.28,20.77 47.63,20.68 47.73,20.26Z"/>
+        </svg>
+        <span class="wm">Birdland<span class="ind">Ind.</span></span>
+      </div>
+      <div class="ml2">
+        <div><b>EN</b>Yours to sell. Ours to make.</div>
+        <div><b>DE</b>Ihres zu verkaufen. Unseres zu fertigen.</div>
+        <div><b>FR</b>À vous de vendre. À nous de fabriquer.</div>
+        <div><b>NL</b>Aan u om te verkopen. Aan ons om te maken.</div>
+      </div>
+    </div>
+    <div class="foot-bot"><span>Garden &amp; field · manufactured since 1981</span><span>© <span id="yr"></span> Birdland Ind.</span></div>
+  </div>
+</footer>
+
+<script>
+  var menu=document.querySelector('.menu'),nav=document.getElementById('nav');
+  menu.addEventListener('click',function(){var o=nav.classList.toggle('open');menu.setAttribute('aria-expanded',o);});
+  nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');menu.setAttribute('aria-expanded',false);});});
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');
+    if(e.target.querySelectorAll)e.target.querySelectorAll('.cnum').forEach(runCount);io.unobserve(e.target);}});},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  document.querySelectorAll('.heritage .cnum').forEach(function(){});
+  var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll('.cnum').forEach(runCount);io2.unobserve(e.target);}});},{threshold:.2});
+  var hst=document.querySelector('.hstats');if(hst)io2.observe(hst);
+  function runCount(el){
+    if(!el||el.dataset.target===undefined)return;var t=parseInt(el.dataset.target,10);if(isNaN(t))return;
+    var sfx=el.dataset.suffix||'',d=1500,s=null;if(reduce){el.textContent=t+sfx;return;}
+    function step(ts){if(!s)s=ts;var p=Math.min((ts-s)/d,1);el.textContent=Math.floor(p*t)+sfx;if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);
+  }
+
+  /* CYCLE */
+  (function(){
+    var items=[
+      {pain:'Stock-outs in peak season',el:'A season ahead',line:'We reserve capacity early, so you reach the shelf first.',lo:30,hi:94},
+      {pain:'Freight & material cost swings',el:'Upstream material control',line:'We lock key materials upstream, before the market moves.',lo:24,hi:92},
+      {pain:'One country, all your risk',el:'Taiwan + China bases',line:'Two production countries — if one slows, the other delivers.',lo:32,hi:93},
+      {pain:'Quality that drifts',el:'One maker, start to finish',line:'Design to dispatch under one roof, held to one standard.',lo:42,hi:95},
+      {pain:'Shifting EU / US / AU rules',el:'Compliance, kept current',line:'Materials and documents adapted as the rules change.',lo:36,hi:96},
+      {pain:'A supplier who competes with you',el:'We never compete',line:'No rival brand of our own. Your market stays yours.',lo:20,hi:97},
+      {pain:'Your range arrives out of step',el:'Whole range, one partner',line:'Many lines made together, shipped in sync.',lo:38,hi:90},
+      {pain:'No factory, no design team',el:'OEM / ODM',line:'Bring your spec, or let us design it — we make it either way.',lo:26,hi:92}
+    ];
+    var painEl=document.getElementById('cycPain'),nameEl=document.getElementById('cycName'),lineEl=document.getElementById('cycLine'),
+        own=document.getElementById('cycOwn'),diff=document.getElementById('cycDiff'),delta=document.getElementById('cycDelta'),
+        fade=document.getElementById('cycFade'),dotsWrap=document.getElementById('cycDots'),card=document.getElementById('cycCard');
+    var idx=0,timer=null,paused=false;
+    items.forEach(function(_,i){var b=document.createElement('button');b.setAttribute('role','tab');b.setAttribute('aria-current',i===0);
+      b.addEventListener('click',function(){go(i,true);});dotsWrap.appendChild(b);});
+    function paint(){var it=items[idx];fade.classList.remove('show');own.style.width='0%';diff.style.width='0%';diff.style.left=it.lo+'%';
+      setTimeout(function(){painEl.textContent=it.pain;nameEl.textContent=it.el;lineEl.textContent=it.line;fade.classList.add('show');
+        delta.textContent='The Birdland difference — about +'+(it.hi-it.lo)+' on '+it.el.toLowerCase()+'.';
+        requestAnimationFrame(function(){requestAnimationFrame(function(){own.style.width=it.lo+'%';diff.style.left=it.lo+'%';diff.style.width=(it.hi-it.lo)+'%';});});
+      },reduce?0:260);
+      dotsWrap.querySelectorAll('button').forEach(function(b,i){b.setAttribute('aria-current',i===idx);});}
+    function go(i,m){idx=(i+items.length)%items.length;paint();if(m)restart();}
+    function restart(){if(timer)clearInterval(timer);if(!reduce)timer=setInterval(function(){if(!paused)go(idx+1);},5000);}
+    card.addEventListener('mouseenter',function(){paused=true;});card.addEventListener('mouseleave',function(){paused=false;});
+    card.addEventListener('focusin',function(){paused=true;});card.addEventListener('focusout',function(){paused=false;});
+    paint();restart();
+  })();
+
+  /* RISK */
+  (function(){
+    var layers=[{id:'stock',l:'Stock-outs in peak season',w:18},{id:'cost',l:'Freight & material cost swings',w:16},{id:'comp',l:'EU / US / AU compliance',w:14},{id:'geo',l:'Single-country dependence',w:14},{id:'qual',l:'Quality inconsistency',w:12},{id:'chan',l:'Channel & IP conflict',w:10},{id:'cap',l:'No design / factory of your own',w:8}];
+    var caps=[{id:'season',l:'Ready a season ahead',layer:'stock',cost:4},{id:'upstream',l:'We lock materials upstream',layer:'cost',cost:10},{id:'reg',l:'Compliance, handled',layer:'comp',cost:2},{id:'bases',l:'Taiwan + China — two bases',layer:'geo',cost:5},{id:'vertical',l:'One maker, start to finish',layer:'qual',cost:9},{id:'nocomp',l:'We never compete with you',layer:'chan',cost:1},{id:'oemodm',l:'OEM / ODM — your design or ours',layer:'cap',cost:5},{id:'horiz',l:'Whole range, one partner',layer:null,cost:6}];
+    var on={},capsEl=document.getElementById('caps'),towerEl=document.getElementById('tower'),towerWrap=document.getElementById('towerWrap'),fullH=0;
+    layers.forEach(function(L){var h=L.w*3.2+14;fullH+=h+5;var d=document.createElement('div');d.className='rlayer';d.id='L-'+L.id;d.style.height=h+'px';d.innerHTML='<span class="rl">'+L.l+'</span>';towerEl.appendChild(d);});
+    towerWrap.style.minHeight=(fullH+60)+'px';
+    caps.forEach(function(c){var b=document.createElement('button');b.className='cap';b.setAttribute('aria-pressed','false');
+      b.innerHTML='<span class="cx"><svg viewBox="0 0 24 24" fill="none" stroke="#241F18" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span>'+c.l+'</span>';
+      b.addEventListener('click',function(){on[c.id]=!on[c.id];b.setAttribute('aria-pressed',!!on[c.id]);if(c.layer){var s=document.getElementById('L-'+c.layer);if(s)s.classList.toggle('gone',!!on[c.id]);}recalc();});capsEl.appendChild(b);});
+    var allb=document.createElement('button');allb.className='allbtn';allb.textContent='Lift it all away — the Birdland standard';
+    allb.addEventListener('click',function(){var allOn=caps.every(function(c){return on[c.id];});caps.forEach(function(c){on[c.id]=!allOn;});capsEl.querySelectorAll('.cap').forEach(function(b){b.setAttribute('aria-pressed',!allOn);});layers.forEach(function(L){var s=document.getElementById('L-'+L.id);var rm=caps.some(function(c){return c.layer===L.id&&on[c.id];});if(s)s.classList.toggle('gone',rm);});allb.textContent=allOn?'Lift it all away — the Birdland standard':'Reset';recalc();});capsEl.appendChild(allb);
+    var expNum=document.getElementById('expNum'),liftNum=document.getElementById('liftNum'),costPct=document.getElementById('costPct'),costFill=document.getElementById('costFill');
+    function recalc(){var exp=100;layers.forEach(function(L){if(caps.some(function(c){return c.layer===L.id&&on[c.id];}))exp-=L.w;});exp=Math.max(8,exp);var cost=100;caps.forEach(function(c){if(on[c.id])cost-=c.cost;});cost=Math.max(58,cost);expNum.textContent=exp;expNum.style.color=exp>70?'#5A4F45':exp>40?'#A85C2C':'#3B5E4C';liftNum.textContent=(100-exp);costPct.textContent=cost;costFill.style.width=cost+'%';}
+    recalc();
+  })();
+
+  /* CHAIN */
+  (function(){
+    var stages=[{t:'Materials',pct:0,adv:'We lock key raw materials upstream — your cost and supply fixed before the market moves.'},{t:'Design',pct:18,adv:'Your specification, or our design (OEM / ODM). One brief, one partner, no middlemen.'},{t:'Tooling',pct:32,adv:'Moulds and setup owned and run in-house — no third-party tooling delays.'},{t:'Production',pct:54,adv:'Made across our Taiwan and China bases, in parallel, scaled to your volume.'},{t:'Quality',pct:74,adv:'Inspected and documented to EU / US / Australian rules before anything ships.'},{t:'Shipping',pct:88,adv:'Freight booked ahead of the crunch, paperwork ready — no scramble.'},{t:'On shelf',pct:100,adv:'You arrive first, in the early and advantaged slot — season after season.'}];
+    var nodes=document.getElementById('cNodes'),fill=document.getElementById('cFill'),fade=document.getElementById('kfade'),cur=0;
+    stages.forEach(function(s,i){var b=document.createElement('button');b.className='knode';b.setAttribute('aria-pressed',i===0);b.innerHTML='<span class="dot"></span><span class="pct">'+s.pct+'%</span>';b.addEventListener('click',function(){cur=i;nodes.querySelectorAll('.knode').forEach(function(x,j){x.setAttribute('aria-pressed',j===i);});show();});nodes.appendChild(b);});
+    function show(){var s=stages[cur];fill.style.width=s.pct+'%';fade.classList.remove('show');setTimeout(function(){fade.innerHTML='<div class="ktag">'+s.pct+'% along your runway</div><div class="ktitle">'+s.t+'</div><p>'+s.adv+'</p>';fade.classList.add('show');},reduce?0:150);}show();
+  })();
+
+  /* ENQUIRY BUILDER */
+  (function(){
+    var sel={region:null,product:null,model:null,volume:null};
+    var emails={'Global':'executive@birdland.com.tw','Europe':'team.eur@birdland.com.tw','UK &amp; Commonwealth':'team.uk@birdland.com.tw','Americas':'team.usa@birdland.com.tw'};
+    var ADV={
+      nc:{t:'Never competes',b:'your designs and customers stay yours — safe to grow.'},
+      ad:{t:'Always delivers',b:'steady fill rates keep shelves stocked and revenue flowing.'},
+      mr:{t:'Minimise risk',b:'fewer shocks reach your P&L, so your margins stay predictable.'},
+      season:{t:'A season ahead',b:'you reach the market first and win the early, higher-margin sales.'},
+      upstream:{t:'Upstream material control',b:'stable input costs protect your pricing and margin.'},
+      bases:{t:'Taiwan + China bases',b:'tariff and country risk is spread, so supply never stops.'},
+      oemodm:{t:'OEM / ODM',b:'no in-house factory or design team to carry — lower overheads.'},
+      vertical:{t:'One maker, start to finish',b:'one accountable partner means tighter quality and cost.'}
+    };
+    var ORDER={oem:['vertical','bases','season','nc','ad'],odm:['oemodm','mr','nc','bases','ad'],
+               supply:['upstream','bases','ad','season','mr'],notsure:['nc','ad','mr','season','bases']};
+    var line=document.getElementById('esLine'),send=document.getElementById('esSend'),adv=document.getElementById('esAdv');
+    document.querySelectorAll('.enq .opts').forEach(function(grp){
+      grp.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+        grp.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});
+        sel[grp.dataset.grp]=b.dataset.v;update();});
+    });
+    function dec(s){var t=document.createElement('textarea');t.innerHTML=s;return t.value;}
+    function modelKey(){var m=sel.model||'';if(m.indexOf('OEM')===0)return 'oem';if(m.indexOf('ODM')===0)return 'odm';if(m.indexOf('Long-term')===0)return 'supply';if(m)return 'notsure';return null;}
+    function renderAdv(){
+      if(!(sel.region&&sel.product)){adv.innerHTML='';return;}
+      var keys=ORDER[modelKey()||'notsure'];
+      var html='<div class="eah">How this helps your business</div><ul>';
+      keys.forEach(function(k){html+='<li><b>'+ADV[k].t+'</b> — '+ADV[k].b+'</li>';});
+      html+='</ul>';adv.innerHTML=html;
+    }
+    function update(){
+      var parts=[];
+      if(sel.product)parts.push('a <b>'+sel.product+'</b> buyer');
+      if(sel.region)parts.push('in <b>'+dec(sel.region)+'</b>');
+      var s='We are '+(parts.length?parts.join(' '):'a buyer')+'.';
+      if(sel.model)s+=' We\u2019d like to explore <b>'+sel.model+'</b>';
+      if(sel.volume)s+=', '+sel.volume;
+      if(sel.model||sel.volume)s+='.';
+      line.innerHTML=s;
+      renderAdv();
+      if(sel.region&&sel.product){
+        var to=(sel.product==='Hunting equipment')?'hunting@birdland.com.tw':emails[sel.region];
+        var subj='Enquiry \u2014 '+dec(sel.region)+' \u2014 '+sel.product+' (Birdland Ind.)';
+        var body='Hello Birdland Ind. team,\n\nWe are a '+dec(sel.region)+' buyer interested in '+sel.product+'.\n'+
+          (sel.model?('Preferred way of working: '+sel.model+'.\n'):'')+
+          (sel.volume?('Indicative volume: '+sel.volume+'.\n'):'')+
+          '\nCompany: \nContact name: \nProducts / range of interest: \nTarget timing: \n\nPlease get in touch — we understand everything is handled in confidence.\n\nThank you,';
+        send.href='mailto:'+to+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+        send.classList.remove('dim');
+      } else { send.classList.add('dim'); send.href='#'; }
+    }
+  })();
+
+  /* EQUILIBRIUM SIMULATOR */
+  (function(){
+    var ns='http://www.w3.org/2000/svg';
+    function mk(n,a){var e=document.createElementNS(ns,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
+    var svg=document.getElementById('eqSvg'); if(!svg) return;
+    var N=18,W=720,H=360,padL=16,padR=16,padT=24,padB=30,pw=W-padL-padR,ph=H-padT-padB;
+    function X(i){return padL+i*pw/(N-1);}
+    function Y(v){return padT+(1-v/100)*ph;}
+    [0,25,50,75,100].forEach(function(g){svg.appendChild(mk('line',{x1:padL,y1:Y(g),x2:W-padR,y2:Y(g),stroke:'rgba(242,236,221,.12)','stroke-width':1}));});
+    svg.appendChild(mk('text',{x:padL,y:Y(100)-7,'font-family':'Manrope','font-size':12,fill:'rgba(242,236,221,.5)'})).textContent='Higher';
+    svg.appendChild(mk('text',{x:padL,y:Y(0)+16,'font-family':'Manrope','font-size':12,fill:'rgba(242,236,221,.5)'})).textContent='Lower';
+    var area=mk('polygon',{fill:'rgba(134,160,145,.18)',stroke:'none'}); svg.appendChild(area);
+    var iLine=mk('polyline',{fill:'none',stroke:'#9b8f7e','stroke-width':3,'stroke-dasharray':'5 5','stroke-linejoin':'round'}); svg.appendChild(iLine);
+    var bLine=mk('polyline',{fill:'none',stroke:'#D89360','stroke-width':4,'stroke-linejoin':'round','stroke-linecap':'round'}); svg.appendChild(bLine);
+    var P={nc:true,ad:true,mr:true}, shock=false;
+    function clamp(v){return Math.max(3,Math.min(100,v));}
+    function industry(){var a=[];for(var i=0;i<N;i++){var v=56+9*Math.sin(i*0.85)+4*Math.sin(i*2.1);if(shock&&i>=9)v-=Math.max(0,34-(i-9)*4);a.push(clamp(v));}return a;}
+    function birdland(){var on=(P.nc?1:0)+(P.ad?1:0)+(P.mr?1:0);var E=64+(P.nc?8:0)+(P.ad?10:0)+(P.mr?9:0);var ripple=3-on*0.8;var dip=8-(P.mr?5:0)-(P.ad?1.5:0);var a=[];for(var i=0;i<N;i++){var v=E+ripple*Math.cos(i*0.7);if(shock&&i>=9)v-=Math.max(0,dip-(i-9)*dip/1.5);a.push(clamp(v));}return a;}
+    var curI=industry(),curB=birdland();
+    function ptsStr(a){return a.map(function(v,i){return X(i)+','+Y(v);}).join(' ');}
+    var edgeEl=document.getElementById('eqEdge'),noteEl=document.getElementById('eqNote');
+    function draw(){
+      iLine.setAttribute('points',ptsStr(curI));bLine.setAttribute('points',ptsStr(curB));
+      var poly=[];for(var i=0;i<N;i++)poly.push(X(i)+','+Y(curB[i]));for(var j=N-1;j>=0;j--)poly.push(X(j)+','+Y(curI[j]));
+      area.setAttribute('points',poly.join(' '));
+      edgeEl.textContent='+'+Math.max(0,Math.round(curB[N-1]-curI[N-1]));
+    }
+    function tween(tI,tB){
+      if(reduce){curI=tI.slice();curB=tB.slice();draw();return;}
+      var sI=curI.slice(),sB=curB.slice(),t0=null,d=750;
+      function step(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/d,1),e=1-Math.pow(1-p,3);
+        for(var i=0;i<N;i++){curI[i]=sI[i]+(tI[i]-sI[i])*e;curB[i]=sB[i]+(tB[i]-sB[i])*e;}draw();if(p<1)requestAnimationFrame(step);}
+      requestAnimationFrame(step);
+    }
+    function note(){var on=(P.nc?1:0)+(P.ad?1:0)+(P.mr?1:0);
+      if(shock){noteEl.textContent='Market shock applied — the field fell hard; Birdland barely moved and returned to its equilibrium.';return;}
+      noteEl.textContent=on===3?'All three promises engaged. Birdland sits well above the field — and far steadier.':on===0?'Promises off: Birdland drifts toward the field. Switch them on to see the gap open.':'Each promise lifts Birdland higher and steadier than the industry average.';}
+    function refresh(){tween(industry(),birdland());note();}
+    document.querySelectorAll('.eqtog').forEach(function(b){b.addEventListener('click',function(){var k=b.dataset.p;P[k]=!P[k];b.setAttribute('aria-pressed',!!P[k]);refresh();});});
+    var sh=document.getElementById('eqShock');
+    sh.addEventListener('click',function(){shock=!shock;sh.textContent=shock?'Reset the market':'Simulate a market shock';refresh();});
+    draw();note();
+  })();
+</script>
+</body>
+</html>
