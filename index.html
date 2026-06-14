@@ -467,6 +467,18 @@
   .hero-h1 a::after{content:"";position:absolute;left:0;right:0;bottom:.02em;height:2px;background:var(--metal);opacity:.32;transition:opacity .25s}
   .hero-h1 a:hover,.hero-h1 a:focus-visible{color:var(--copper-deep)}
   .hero-h1 a:hover::after,.hero-h1 a:focus-visible::after{opacity:1}
+
+  /* ===== WHY BIRDLAND ===== */
+  .why{background:var(--paper)}
+  .whygrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.4rem,3vw,2rem);margin-top:2.6rem}
+  .wbcard{background:var(--paper2);border:1px solid var(--line);border-left:3px solid var(--copper);border-radius:2px;padding:clamp(1.5rem,3vw,2.1rem);display:flex;flex-direction:column}
+  .wb-tag{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--copper);font-weight:700;margin-bottom:.7rem}
+  .wb-worry{font-family:var(--serif);font-size:clamp(1.3rem,2.2vw,1.6rem);color:var(--jade-deep);line-height:1.25;margin-bottom:.7rem}
+  .wb-ctx{font-size:1rem;color:var(--ink-soft);font-weight:300;line-height:1.6;margin-bottom:.8rem}
+  .wb-ans{font-size:1.04rem;color:var(--ink);line-height:1.62;margin-bottom:.9rem}
+  .wb-ans b{color:var(--jade);font-weight:600}
+  .wb-src{display:block;font-size:.8rem;color:#9b8f70;font-style:italic;border-top:1px solid var(--line);padding-top:.7rem;margin-top:auto}
+  @media(max-width:860px){.whygrid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -487,6 +499,7 @@
     <nav id="nav">
       <a href="#heritage">About us</a>
       <a href="#make">What we make</a>
+      <a href="#why">Why Birdland</a>
       <a href="#proof">Proof</a>
       <a href="#catalogue">Catalogue</a>
       <a class="navcta" href="#enquiry">Get a quotation</a>
@@ -633,25 +646,50 @@
     <div class="wrap">
       <div class="sec-head reveal"><span class="ey">What we manufacture</span><h2>The things we make for your shelves.</h2><p>Representative categories &mdash; your specific products are developed with you and kept confidential.</p></div>
       <div class="makegrid">
-        <div class="makecol reveal"><h3>Garden products</h3><ul><li>Sprayers &amp; pressure sprayers</li><li>Hose &amp; watering systems</li><li>Irrigation &amp; watering tools</li><li>Hand tools &amp; accessories</li></ul></div>
-        <div class="makecol reveal"><h3>Field &amp; hunting</h3><ul><li>Feeders</li><li>Decoys</li><li>Blinds &amp; outdoor equipment</li><li>Field accessories</li></ul></div>
+        <div class="makecol reveal"><h3>Garden products</h3><ul><li>Garden shears, scissors &amp; pruners &mdash; all sizes (metal)</li><li>Hand tools with handles &mdash; full series</li><li>Sprayers &amp; watering products</li><li>Gloves &amp; garden accessories</li></ul></div>
+        <div class="makecol reveal"><h3>Field &amp; hunting</h3><ul><li>Feeders &amp; decoys</li><li>Blinds &amp; outdoor equipment</li><li>Gun-dog gear &mdash; magnetic-buckle leashes &amp; vests</li><li>Field accessories</li></ul></div>
       </div>
       <div class="cta-row" style="margin-top:2rem"><a class="btn btn-pri" href="#enquiry">Discuss your product &rarr;</a></div>
     </div>
   </section>
 
-  <!-- ===== SOURCING CHECK ===== -->
-  <section class="check" id="check">
+  <!-- ===== WHY BIRDLAND ===== -->
+  <section class="why" id="why">
     <div class="wrap">
-      <div class="sec-head reveal"><span class="ey">Choosing a maker</span><h2>What to check when you source &mdash; and where we stand.</h2><p>The questions worth asking any manufacturer.</p></div>
-      <div class="checklist">
-        <div class="checkrow reveal"><div class="q">Could your maker compete with you?</div><div class="a">We hold no brand of our own &mdash; your market stays yours.</div></div>
-        <div class="checkrow reveal"><div class="q">What if one country is disrupted?</div><div class="a">Production runs across Taiwan and China, so supply continues.</div></div>
-        <div class="checkrow reveal"><div class="q">Are input costs stable?</div><div class="a">We control key materials upstream to steady cost and supply.</div></div>
-        <div class="checkrow reveal"><div class="q">Will your products stay confidential?</div><div class="a">Client identities and bespoke products are never disclosed.</div></div>
-        <div class="checkrow reveal"><div class="q">Can they meet your market&rsquo;s rules?</div><div class="a">Documentation prepared to EU / US / Australian requirements.</div></div>
+      <div class="sec-head reveal"><span class="ey">Why Birdland</span><h2>The risks you&rsquo;re facing &mdash; and how we answer them.</h2><p>The disruptions of the last three years are real. Here is where Birdland leaves you covered.</p></div>
+      <div class="whygrid">
+        <div class="wbcard reveal">
+          <div class="wb-worry">Could your maker compete with you?</div>
+          <p class="wb-ctx">Suppliers have been known to sell a buyer&rsquo;s product into that buyer&rsquo;s own market &mdash; or to a competitor. The EU has moved to curb low-price dumping that undercuts European buyers.</p>
+          <p class="wb-ans"><b>Birdland:</b> in 45 years we have never done this. We hold no brand of our own and guard your information, so competitors can never trace your market back to you.</p>
+          <cite class="wb-src">EU anti-dumping action, 2024&ndash;25 &mdash; widely reported by global media.</cite>
+        </div>
+        <div class="wbcard reveal">
+          <div class="wb-worry">What if one country is disrupted?</div>
+          <p class="wb-ctx">Through 2024&ndash;25, new U.S.&ndash;China tariffs and attacks on Red Sea shipping repriced goods and rerouted freight with little warning.</p>
+          <p class="wb-ans"><b>Birdland:</b> we produce across Taiwan and China and book freight early &mdash; so if one route is hit, your supply keeps moving.</p>
+          <cite class="wb-src">U.S.&ndash;China tariffs &amp; Red Sea disruption, 2024&ndash;25 &mdash; widely reported by global media.</cite>
+        </div>
+        <div class="wbcard reveal">
+          <div class="wb-worry">Are your input costs stable?</div>
+          <p class="wb-ctx">Raw-material and energy swings through 2024&ndash;25 left many suppliers passing sudden increases straight on to their buyers.</p>
+          <p class="wb-ans"><b>Birdland:</b> we lock key materials upstream &mdash; with your agreement &mdash; before the market moves, steadying your cost.</p>
+          <cite class="wb-src">Commodity &amp; energy volatility, 2024&ndash;25 &mdash; widely reported by global media.</cite>
+        </div>
+        <div class="wbcard reveal">
+          <div class="wb-worry">Will your products stay confidential?</div>
+          <p class="wb-ctx">As sourcing data circulates more freely, leaks and copycats have become a standing risk for brands and distributors.</p>
+          <p class="wb-ans"><b>Birdland:</b> client identities and bespoke products are never disclosed &mdash; we reveal the matching production base only after you order, matched to your confidentiality level.</p>
+          <cite class="wb-src">A standing concern across global trade.</cite>
+        </div>
+        <div class="wbcard reveal">
+          <div class="wb-worry">Can they meet your market&rsquo;s rules?</div>
+          <p class="wb-ctx">The EU&rsquo;s General Product Safety Regulation (in force Dec 2024), CBAM and the deforestation regulation have tightened what importers must document.</p>
+          <p class="wb-ans"><b>Birdland:</b> we prepare materials and documentation to EU / US / Australian requirements and adapt specs as the rules change &mdash; so you are never left rebuilding.</p>
+          <cite class="wb-src">EU GPSR / CBAM / EUDR, 2024&ndash;25 &mdash; widely reported by global media.</cite>
+        </div>
       </div>
-      <div class="cta-row" style="margin-top:2rem"><a class="btn btn-pri" href="#enquiry">Get a quotation &rarr;</a></div>
+      <div class="cta-row" style="margin-top:2.6rem"><a class="btn btn-pri" href="#enquiry">Get a quotation &rarr;</a></div>
     </div>
   </section>
 
