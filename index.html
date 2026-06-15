@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Birdland Ind. — Garden & Field Manufacturer Since 1981</title>
-<meta name="description" content="Birdland Ind. — a dedicated garden and field manufacturer for the world's brands and distributors since 1981. Three generations of quality and trust. Integrated production across Taiwan and China. We take apart your risk and cost, and keep you a season ahead.">
+<title>Birdland Ind. — Garden & Field Manufacturer Since 1974</title>
+<meta name="description" content="Birdland Ind. — a dedicated garden and field manufacturer for the world's brands and distributors since 1974. Three generations of quality and trust. Integrated production across Taiwan and China. We take apart your risk and cost, and keep you a season ahead.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -495,6 +495,167 @@
   .footaddr a{color:rgba(242,236,221,.88);text-decoration:none;letter-spacing:.02em}
   .footaddr a:hover{color:var(--copper-bright)}
   @media(max-width:860px){.footaddr{grid-template-columns:1fr;gap:1.4rem}}
+
+  /* ===== line icons ===== */
+  .ic{width:24px;height:24px;display:inline-block;vertical-align:middle;flex:0 0 auto;color:var(--copper)}
+  .wb-ic{color:var(--copper);line-height:0;margin-bottom:.5rem}
+  .wb-ic .ic{width:27px;height:27px}
+  .pcol h3,.makecol h3{display:flex;align-items:center;gap:.55rem}
+  .pcol h3 .ic,.makecol h3 .ic{width:24px;height:24px;color:var(--copper)}
+  .fa-h{display:flex;align-items:center;gap:.45rem}
+  .fa-h .ic{width:16px;height:16px;color:var(--copper-bright)}
+  .footaddr a{display:inline-flex;align-items:center;gap:.42rem}
+  .footaddr a .ic{width:14px;height:14px;color:inherit}
+
+  /* ===== hero signature + simplified heritage ===== */
+  .hero-sig{display:block;margin-top:.55rem;font-family:var(--serif);font-style:italic;font-weight:600;font-size:clamp(1.1rem,2.4vw,1.7rem);color:var(--copper-deep);letter-spacing:.01em}
+  .genline{display:flex;flex-wrap:wrap;gap:.7rem 0;margin:1.8rem 0 .4rem;font-size:1.02rem;color:var(--ink-soft);font-weight:300}
+  .genline b{font-family:var(--serif);font-style:italic;font-weight:600;color:var(--copper-deep);margin-right:.5rem;font-size:1.12rem}
+  @media(min-width:861px){.genline span+span{margin-left:1.5rem;padding-left:1.5rem;border-left:1px solid var(--line)}}
+
+  /* ===== elegant expanders ===== */
+  .exp-btn{display:inline-flex;align-items:center;gap:.45rem;margin-top:1rem;background:none;border:none;padding:0;cursor:pointer;font:600 .76rem var(--sans);letter-spacing:.13em;text-transform:uppercase;color:var(--copper-deep);transition:color .25s}
+  .exp-btn:hover{color:var(--copper)}
+  .exp-btn .chev{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round;transition:transform .45s cubic-bezier(.22,.8,.28,1)}
+  .exp-btn[aria-expanded="true"] .chev{transform:rotate(180deg)}
+  .exp{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.22,.8,.28,1)}
+  .exp>.exp-in{overflow:hidden;opacity:0;transform:translateY(-5px);transition:opacity .45s ease,transform .45s ease}
+  .exp.open{grid-template-rows:1fr}
+  .exp.open>.exp-in{opacity:1;transform:none}
+  .exp-in>:first-child{padding-top:.85rem}
+  .wbcard .exp-in .wb-ctx{margin-bottom:.7rem}
+
+  /* ===== premium touches ===== */
+  html{scroll-behavior:smooth}
+  section[id]{scroll-margin-top:92px}
+  html{scrollbar-color:var(--copper) var(--paper2);scrollbar-width:thin}
+  ::-webkit-scrollbar{width:11px}
+  ::-webkit-scrollbar-track{background:var(--paper2)}
+  ::-webkit-scrollbar-thumb{background:linear-gradient(var(--copper),var(--copper-deep));border-radius:6px;border:2px solid var(--paper2)}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.035;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wbcard,.pcol,.makecol{transition:transform .45s cubic-bezier(.2,.8,.3,1),box-shadow .45s,border-color .45s}
+  .wbcard:hover,.pcol:hover,.makecol:hover{transform:translateY(-4px);box-shadow:0 20px 44px -26px rgba(60,40,20,.5)}
+  @keyframes heroUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .hero-h1{animation:heroUp 1s cubic-bezier(.2,.8,.3,1) both}
+  .hero-sig{animation:heroUp 1s cubic-bezier(.2,.8,.3,1) .25s both}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .hero-h1,.hero-sig{animation:none}
+    .wbcard:hover,.pcol:hover,.makecol:hover{transform:none;box-shadow:none}
+    .exp,.exp>.exp-in,.exp-btn .chev{transition:none}
+  }
+
+  /* ===== heritage visual identity ===== */
+  .her-intro{font-size:clamp(1.15rem,2.1vw,1.5rem);color:var(--ink);font-weight:300;line-height:1.5;max-width:56ch;margin:.5rem 0 2.4rem}
+  .timeline{display:flex;gap:1rem;position:relative;margin:.4rem 0 2.8rem}
+  .timeline::before{content:"";position:absolute;top:6px;left:7px;right:7px;height:2px;background:linear-gradient(90deg,var(--copper),var(--copper-deep))}
+  .timeline .tl{flex:1;position:relative;padding-top:1.7rem}
+  .timeline .tl-d{position:absolute;top:0;left:0;width:14px;height:14px;border-radius:50%;background:var(--cu-plate);border:2px solid var(--paper);box-shadow:0 0 0 1px var(--line)}
+  .timeline .tl b{display:block;font-family:var(--serif);font-style:italic;font-size:1.4rem;color:var(--jade-deep);line-height:1.1}
+  .timeline .tl-c{display:block;font-size:.92rem;color:var(--ink-soft);font-weight:300;margin-top:.25rem}
+  .her-princ{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;margin:2.4rem 0 1.9rem}
+  .hpr{display:flex;align-items:flex-start;gap:.75rem;padding:1.1rem 1.2rem;background:var(--paper2);border:1px solid var(--line);border-left:3px solid var(--copper);border-radius:2px;transition:transform .4s cubic-bezier(.2,.8,.3,1),box-shadow .4s}
+  .hpr:hover{transform:translateY(-3px);box-shadow:0 16px 36px -24px rgba(60,40,20,.5)}
+  .hpr .ic{width:26px;height:26px;color:var(--copper);flex:0 0 auto;margin-top:.15rem}
+  .hpr b{display:block;font-family:var(--serif);font-size:1.18rem;color:var(--jade-deep);line-height:1.2}
+  .hpr span{display:block;font-size:.9rem;color:var(--ink-soft);font-weight:300;margin-top:.25rem}
+  @media(max-width:760px){
+    .timeline{flex-direction:column;gap:1.3rem}
+    .timeline::before{top:7px;bottom:7px;left:6px;right:auto;width:2px;height:auto}
+    .timeline .tl{padding-top:0;padding-left:1.5rem}
+    .timeline .tl-d{top:.35rem;left:0}
+    .her-princ{grid-template-columns:1fr}
+  }
+
+  /* ===== more elegant effects ===== */
+  ::selection{background:var(--copper-deep);color:#FBEFDD}
+  :focus-visible{outline:2px solid var(--copper);outline-offset:3px}
+  .ey::before{content:"";display:inline-block;width:26px;height:1.5px;background:linear-gradient(90deg,var(--copper),transparent);vertical-align:middle;margin-right:.7rem;margin-bottom:.2em}
+  .brand .logo{transition:transform .6s cubic-bezier(.2,.8,.3,1)}
+  .brand:hover .logo{transform:scale(1.06)}
+  .sec-head h2,.heritage h2,.cat h2{transition:none}
+  @media(prefers-reduced-motion:reduce){
+    .brand:hover .logo{transform:none}
+    .hpr:hover{transform:none;box-shadow:none}
+  }
+
+  /* ===== heritage colours on dark bg ===== */
+  .heritage .her-intro{color:rgba(242,236,221,.86)}
+  .heritage .timeline .tl b{color:#E0976A}
+  .heritage .timeline .tl-c{color:rgba(242,236,221,.72)}
+  .heritage .timeline .tl-d{border-color:var(--jade-deep);box-shadow:0 0 0 1px rgba(242,236,221,.25)}
+
+  /* ===== testimonial reveal highlight ===== */
+  .hlr{transition:color .5s ease,background .6s ease;background:linear-gradient(transparent 60%, rgba(168,72,42,0) 0);padding:0 .04em}
+  .exp.open .hlr{color:var(--copper-deep);font-weight:600;background:linear-gradient(transparent 60%, rgba(168,72,42,.24) 0)}
+  .pcard .exp.open .pm-n{color:var(--copper-deep)}
+
+  /* ===== cycle shovel/shears nav ===== */
+  .cyc-wrap{display:flex;align-items:center;justify-content:center;gap:1.1rem}
+  .cyc-wrap .cyc-card{flex:1 1 auto}
+  .cyc-nav{flex:0 0 auto;width:54px;height:54px;border-radius:50%;background:var(--paper2);border:1px solid var(--line);color:var(--copper);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .3s cubic-bezier(.2,.8,.3,1),background .3s,box-shadow .3s}
+  .cyc-nav:hover{background:#fff;box-shadow:0 12px 26px -16px rgba(60,40,20,.55)}
+  .cyc-prev:hover{transform:translateX(-3px)}
+  .cyc-next:hover{transform:translateX(3px)}
+  .cyc-nav .ic{width:27px;height:27px}
+  @media(max-width:760px){.cyc-wrap{gap:.5rem}.cyc-nav{width:44px;height:44px}.cyc-nav .ic{width:22px;height:22px}}
+  @media(prefers-reduced-motion:reduce){.cyc-prev:hover,.cyc-next:hover{transform:none}}
+
+  /* ===== elegant catalogue buttons ===== */
+  .cat .cta-row .btn-pri{border-radius:2px;letter-spacing:.04em}
+  .cat .cta-row .catBtn{position:relative;overflow:hidden;z-index:0;margin-top:0;border-radius:2px;border:1.5px solid var(--copper-bright);background:transparent;color:var(--paper);letter-spacing:.04em;transition:color .45s ease,border-color .45s ease}
+  .cat .cta-row .catBtn::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--cu-plate);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.22,.8,.28,1)}
+  .cat .cta-row .catBtn:hover{color:#2A150A;border-color:transparent}
+  .cat .cta-row .catBtn:hover::before{transform:scaleX(1)}
+  .cat .cta-row .catBtn .ic{width:18px;height:18px}
+
+  /* ===== principles merged into heritage (dark bg) ===== */
+  .her-prinhd{font:600 .76rem var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--copper-bright);margin:2.9rem 0 .2rem}
+  .heritage .pgrid{margin-top:1.4rem}
+  .heritage .pcol h3{color:var(--paper)}
+  .heritage .pcol h3 .ic{color:var(--copper-bright)}
+  .heritage .pcol p{color:rgba(242,236,221,.8)}
+  .heritage .pbul li{color:rgba(242,236,221,.74)}
+  .heritage .exp-btn{color:var(--copper-bright)}
+  .heritage .exp-btn:hover{color:#F4CBA1}
+  .heritage .pcol:hover{box-shadow:0 22px 46px -28px rgba(0,0,0,.6)}
+
+  /* ===== side scroll progress ===== */
+  .scrollprog{position:fixed;top:50%;right:20px;transform:translateY(-50%);z-index:95;display:flex;flex-direction:column;align-items:center;gap:15px}
+  .scrollprog::before{content:"";position:absolute;top:-5px;bottom:-5px;left:50%;width:2px;transform:translateX(-50%);background:rgba(110,60,28,.16);z-index:-1}
+  .sp-fill{position:absolute;top:-5px;left:50%;width:2px;transform:translateX(-50%);background:linear-gradient(var(--copper),var(--copper-deep));z-index:-1;height:0;transition:height .15s linear}
+  .sp-dot{width:9px;height:9px;border-radius:50%;background:rgba(110,60,28,.32);border:none;padding:0;cursor:pointer;transition:transform .3s,background .3s,box-shadow .3s}
+  .sp-dot:hover{transform:scale(1.35);background:var(--copper)}
+  .sp-dot.on{background:var(--copper);transform:scale(1.55);box-shadow:0 0 0 3px rgba(168,72,42,.16)}
+  @media(max-width:1100px){.scrollprog{display:none}}
+
+  /* ===== persistent key-point highlight + data chip ===== */
+  .mk{color:var(--copper-deep);font-weight:600;background:linear-gradient(transparent 60%, rgba(168,72,42,.22) 0);padding:0 .05em;border-radius:1px}
+  .wb-data{display:inline-flex;align-items:center;margin-top:.7rem;padding:.32rem .75rem;background:rgba(168,72,42,.08);border:1px solid rgba(168,72,42,.28);border-radius:2px;font:600 .8rem var(--sans);letter-spacing:.04em;color:var(--copper-deep)}
+
+  /* ===== "Your data protected" attractor ===== */
+  .hero-data{position:relative}
+  .hero-data::after{content:"";position:absolute;left:0;bottom:.02em;height:3px;width:38%;background:linear-gradient(90deg,transparent,var(--copper),transparent);animation:hdscan 2.8s ease-in-out infinite;pointer-events:none}
+  @keyframes hdscan{0%{left:-12%;opacity:0}18%{opacity:1}82%{opacity:1}100%{left:100%;opacity:0}}
+  .hero-cue{display:inline-flex;align-items:center;gap:.45rem;margin-top:1.1rem;font-family:var(--sans);font-size:.94rem;font-weight:500;letter-spacing:.03em;color:var(--copper-deep);text-decoration:none;opacity:0;animation:cueIn .9s ease 1.2s forwards}
+  .hero-cue i{font-style:italic}
+  .hero-cue:hover{color:var(--copper)}
+  .hc-arr{display:inline-block;font-size:1.05rem;animation:bob 1.9s ease-in-out infinite}
+  @keyframes cueIn{to{opacity:1}}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+  /* hover preview card */
+  .hd-prev{position:absolute;left:0;top:calc(100% + 16px);width:300px;max-width:80vw;background:var(--jade-deep);border:1px solid rgba(232,172,128,.4);border-top:2px solid var(--copper-bright);border-radius:4px;padding:1rem 1.1rem 1.05rem;box-shadow:0 26px 54px -22px rgba(0,0,0,.55);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(10px);transition:opacity .35s ease,transform .35s ease;z-index:60;text-align:left}
+  .hero-data:hover .hd-prev,.hero-data:focus-visible .hd-prev{opacity:1;visibility:visible;transform:translateY(0)}
+  .hd-prev-t{display:block;font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--copper-bright);line-height:1.2;margin-bottom:.55rem}
+  .hd-spark{display:block;width:100%;height:46px}
+  .hd-prev-c{display:block;font-family:var(--sans);font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(242,236,221,.72);margin-top:.6rem}
+  @media(max-width:760px){.hd-prev{display:none}}
+  /* landing flash on the confidentiality block */
+  .cf-block{border-radius:4px;transition:box-shadow .3s}
+  @keyframes cfflash{0%{box-shadow:0 0 0 0 rgba(168,72,42,0)}14%{box-shadow:0 0 0 3px rgba(232,172,128,.6),0 0 34px rgba(168,72,42,.32)}100%{box-shadow:0 0 0 0 rgba(168,72,42,0)}}
+  .cf-block.flash{animation:cfflash 1.9s ease}
+  #protect{scroll-margin-top:96px}
+  @media(prefers-reduced-motion:reduce){.hero-data::after{animation:none;opacity:.55}.hero-cue{opacity:1;animation:none}.hc-arr{animation:none}.cf-block.flash{animation:none;box-shadow:0 0 0 3px rgba(232,172,128,.55)}}
 </style>
 </head>
 <body>
@@ -514,10 +675,10 @@
     <button class="menu" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav id="nav">
       <a href="#heritage">About us</a>
-      <a href="#make">What we make</a>
-      <a href="#why">Why Birdland</a>
       <a href="#proof">Proof</a>
+      <a href="#make">What we make</a>
       <a href="#catalogue">Catalogue</a>
+      <a href="#why">Why Birdland</a>
       <a class="navcta" href="#enquiry">Get a quotation</a>
       <div class="langwrap">
         <button class="langbtn" id="langBtn" aria-haspopup="true" aria-expanded="false">&#127760; Language</button>
@@ -549,8 +710,9 @@
       </g>
     </svg>
     <div class="wrap">
-      <span class="ey">OEM / ODM &middot; Garden &amp; field &middot; Since 1981</span>
-      <h1 class="hero-h1"><a href="#chain">Your shelves full.</a> <a href="#risk">Your margins steady.</a> <a href="#catalogue">Your designs guarded.</a></h1>
+      <span class="ey">OEM / ODM &middot; Garden &amp; field &middot; Since 1974</span>
+      <h1 class="hero-h1"><a href="#chain">Your storage ready.</a> <a href="#risk">Your profits steady.</a> <a href="#protect" class="hero-data">Your data protected.<span class="hd-prev" aria-hidden="true"><span class="hd-prev-t">Your plans &mdash; unreadable to competitors</span><svg class="hd-spark" viewBox="0 0 120 46" preserveAspectRatio="none"><polyline points="0,38 20,30 40,34 60,21 80,25 100,11 120,5" fill="none" stroke="#b59f8e" stroke-width="2" stroke-dasharray="4 4"/><polyline points="0,40 20,41 40,39 60,41 80,40 100,41 120,40" fill="none" stroke="#E8AC80" stroke-width="2.6" stroke-linecap="round"/></svg><span class="hd-prev-c">See how the protection gap widens &rarr;</span></span></a><span class="hero-sig">Birdland. Always ready.</span></h1>
+      <a class="hero-cue" href="#protect">see who <i>can&rsquo;t</i> see your products <span class="hc-arr">&darr;</span></a>
       <div class="metalbar"></div>
       <p class="sub" style="margin-top:1.5rem">Dual-country production across Taiwan and China, stable delivery and full confidentiality &mdash; for garden and field brands and distributors in Europe, the Commonwealth and the Americas.</p>
       <div class="trust">180+ brands &middot; 37 markets &middot; three generations</div>
@@ -561,22 +723,30 @@
     </div>
   </section>
 
+  <div class="scrollprog"><span class="sp-fill" id="spFill"></span></div>
+
   <!-- ===== HERITAGE ===== -->
   <section class="heritage" id="heritage">
 
     <div class="wrap">
-      <span class="ey">Since 1981 · three generations</span>
+      <span class="ey">Since 1974 · three generations</span>
       <h2>Three generations. One standard.</h2>
-      <p class="lead">Birdland Ind. has made for the world's brands since 1981. Across forty-five years and three generations of the same family, the standard has never moved — and we have manufactured for a great many of the leading garden and field brands and distributors in our markets. Here, quality and trust are inherited, not advertised.</p>
-      <div class="gens">
-        <div class="gen reveal"><div class="gk">First generation</div><div class="gt">Founded, 1981</div><p>Built on doing the making properly, and standing behind every order.</p></div>
-        <div class="gen reveal"><div class="gk">Second generation</div><div class="gt">Across new markets</div><p>Trusted into Europe, the Commonwealth and the Americas, brand after brand.</p></div>
-        <div class="gen reveal"><div class="gk">Third generation</div><div class="gt">Today, worldwide</div><p>The same name, the same word kept — now serving partners across 37 markets.</p></div>
+      <p class="her-intro">Family-owned since 1974 &mdash; when our founder turned a Taichung workshop into a proper factory. We make garden &amp; field products for the world&rsquo;s brands, and never sell our own.</p>
+      <div class="timeline reveal">
+        <div class="tl"><span class="tl-d"></span><b>1974</b><span class="tl-c">Founded in Taichung</span></div>
+        <div class="tl"><span class="tl-d"></span><b>2nd gen</b><span class="tl-c">Into EU &middot; Commonwealth &middot; Americas</span></div>
+        <div class="tl"><span class="tl-d"></span><b>Today</b><span class="tl-c">3rd generation &middot; 37 markets</span></div>
       </div>
-      <div class="hstats reveal">
-        <div class="hstat"><div class="cnum metal-l" data-target="45">0</div><div class="cl">Years since 1981</div></div>
+            <div class="hstats reveal">
+        <div class="hstat"><div class="cnum metal-l" data-target="52">0</div><div class="cl">Years since 1974</div></div>
         <div class="hstat"><div class="cnum metal-l" data-target="180" data-suffix="+">0</div><div class="cl">Brands &amp; distributors served</div></div>
         <div class="hstat"><div class="cnum metal-l" data-target="37">0</div><div class="cl">Markets reached</div></div>
+      </div>
+      <div class="her-prinhd reveal">The standard, in practice</div>
+      <div class="pgrid reveal">
+        <div class="pcol"><div class="pn metal-d">01</div><h3><svg class="ic"><use href="#ic-shield"/></svg>Never competes</h3><p>Your designs and your markets remain entirely yours.</p><button class="exp-btn" aria-expanded="false">What this looks like<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="exp"><div class="exp-in"><ul class="pbul"><li>No brand of our own to compete with you</li><li>Your designs and tooling stay yours</li><li>Confidential by default</li></ul></div></div></div>
+        <div class="pcol"><div class="pn metal-d">02</div><h3><svg class="ic"><use href="#ic-deliver"/></svg>Always delivers</h3><p>Stable production, held steady through every cycle.</p><button class="exp-btn" aria-expanded="false">What this looks like<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="exp"><div class="exp-in"><ul class="pbul"><li>Backup production across two countries</li><li>Capacity reserved ahead of your season</li><li>Freight booked early, paperwork ready</li></ul></div></div></div>
+        <div class="pcol"><div class="pn metal-d">03</div><h3><svg class="ic"><use href="#ic-layers"/></svg>Minimise risk</h3><p>Your exposure, taken apart piece by piece.</p><button class="exp-btn" aria-expanded="false">What this looks like<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="exp"><div class="exp-in"><ul class="pbul"><li>Taiwan + China production bases</li><li>Upstream control on key materials</li><li>Documentation to EU / US / AU requirements</li></ul></div></div></div>
       </div>
       <div class="trustcats reveal">Trusted across <b>EU distributors</b> &middot; <b>US brands</b> &middot; <b>UK retailers</b> &middot; <b>AU importers</b> &mdash; client identities kept confidential.</div>
     </div>
@@ -586,7 +756,7 @@
   <section class="proof" id="proof">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="ey">In real market conditions</span>
+        <span class="ey">Client feedback</span>
         <h2>Proven when the market moved.</h2>
         <p>Two partners, two disruptions &mdash; in their own words.</p>
       </div>
@@ -595,32 +765,30 @@
           <blockquote>
             <p class="pq-head">&ldquo;Production just kept moving.&rdquo;</p>
             <p class="ctx">US brand &middot; retail distribution &middot; long-term partner &middot; tariff disruption</p>
-            <p class="pq-body">&ldquo;When the tariff changes hit, most of our suppliers paused or repriced &mdash; sometimes more than once in the same quarter. Birdland didn&rsquo;t react at the same time as everyone else. They contacted us straight away to plan moving part of our orders between Taiwan and China, and had already secured key materials upstream.&rdquo;</p>
           </blockquote>
-          <div class="pmetrics">
-            <div class="pm"><div class="pm-n">95&ndash;96%</div><div class="pm-l">On-time delivery during disruption</div></div>
-            <div class="pm"><div class="pm-n">~12&ndash;14%</div><div class="pm-l">Cost increase avoided</div></div>
-            <div class="pm"><div class="pm-n">~1 mo</div><div class="pm-l">Delay avoided vs other lines</div></div>
-          </div>
-          <p class="pq-close">&ldquo;That gap became very real by the end of the season.&rdquo;</p>
+          <button class="exp-btn" aria-expanded="false">See the full story<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="exp"><div class="exp-in">
+            <p class="pq-body">&ldquo;When the tariff changes hit, most of our suppliers paused or repriced &mdash; sometimes more than once in the same quarter. Birdland didn&rsquo;t react at the same time as everyone else. They contacted us straight away to plan <span class="hlr">moving part of our orders between Taiwan and China</span>, and had already <span class="hlr">secured key materials upstream</span>.&rdquo;</p>
+            <div class="pmetrics"><div class="pm"><div class="pm-n">95&ndash;96%</div><div class="pm-l">On-time delivery during disruption</div></div><div class="pm"><div class="pm-n">~12&ndash;14%</div><div class="pm-l">Cost increase avoided</div></div><div class="pm"><div class="pm-n">~1 mo</div><div class="pm-l">Delay avoided vs other lines</div></div></div>
+            <p class="pq-close">&ldquo;That gap became very real by the end of the season.&rdquo;</p>
+          </div></div>
           <figcaption>&mdash; US brand &middot; retail distribution</figcaption>
         </figure>
         <figure class="pcard reveal">
           <blockquote>
             <p class="pq-head">&ldquo;The main difference was timing.&rdquo;</p>
             <p class="ctx">EU distributor &middot; multi-country &middot; switched supplier &middot; raw-material volatility</p>
-            <p class="pq-body">&ldquo;We didn&rsquo;t switch immediately &mdash; but it became clear our supplier couldn&rsquo;t keep up. Prices kept changing, lead times kept shifting, and we were adjusting plans almost every month. With Birdland, they were already locking materials and offering forward pricing before the market moved.&rdquo;</p>
           </blockquote>
-          <div class="pmetrics">
-            <div class="pm"><div class="pm-n">~11&ndash;15%</div><div class="pm-l">Procurement cost reduction</div></div>
-            <div class="pm"><div class="pm-n">&plusmn;1 wk</div><div class="pm-l">Lead-time stability</div></div>
-            <div class="pm"><div class="pm-n">~6&ndash;7%</div><div class="pm-l">Sea-freight cost saved</div></div>
-          </div>
-          <p class="pq-close">&ldquo;We stopped guessing. We could plan again.&rdquo;</p>
+          <button class="exp-btn" aria-expanded="false">See the full story<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="exp"><div class="exp-in">
+            <p class="pq-body">&ldquo;We didn&rsquo;t switch immediately &mdash; but it became clear our supplier couldn&rsquo;t keep up. Prices kept changing, lead times kept shifting, and we were adjusting plans almost every month. With Birdland, they were already <span class="hlr">locking materials and offering forward pricing before the market moved</span>.&rdquo;</p>
+            <div class="pmetrics"><div class="pm"><div class="pm-n">~11&ndash;15%</div><div class="pm-l">Procurement cost reduction</div></div><div class="pm"><div class="pm-n">&plusmn;1 wk</div><div class="pm-l">Lead-time stability</div></div><div class="pm"><div class="pm-n">~6&ndash;7%</div><div class="pm-l">Sea-freight cost saved</div></div></div>
+            <p class="pq-close">&ldquo;We stopped guessing. We could plan again.&rdquo;</p>
+          </div></div>
           <figcaption>&mdash; EU distributor &middot; multi-country operations</figcaption>
         </figure>
       </div>
-      <div class="cta-row" style="margin-top:2.6rem"><a class="btn btn-pri" href="#enquiry">Contact the maker team &rarr;</a></div>
+            <div class="cta-row" style="margin-top:2.6rem"><a class="btn btn-pri" href="#enquiry">Contact the maker team &rarr;</a></div>
     </div>
   </section>
 
@@ -632,7 +800,9 @@
         <h2>The gap between going it alone — and going with us.</h2>
         <p>It cycles on its own. The jade band is the difference Birdland makes.</p>
       </div>
-      <div class="cyc-card reveal" id="cycCard" tabindex="0" aria-label="Pain points and how Birdland solves them">
+      <div class="cyc-wrap">
+        <button class="cyc-nav cyc-prev" id="cycPrev" aria-label="Previous"><svg class="ic"><use href="#ic-shovel"/></svg></button>
+        <div class="cyc-card reveal" id="cycCard" tabindex="0" aria-label="Pain points and how Birdland solves them">
         <div class="cyc-fade show" id="cycFade">
           <div class="cyc-pain"><span class="x">The worry</span><span id="cycPain"></span></div>
           <div class="cyc-name" id="cycName"></div>
@@ -642,30 +812,64 @@
         <div class="cyc-meterlab"><span>On your own</span><span>With Birdland</span></div>
         <div class="cyc-delta" id="cycDelta"></div>
         <div class="cyc-dots" id="cycDots" role="tablist" aria-label="Choose a worry"></div>
+        </div>
+        <button class="cyc-nav cyc-next" id="cycNext" aria-label="Next"><svg class="ic"><use href="#ic-shears"/></svg></button>
       </div>
     </div>
   </section>
 
-  <!-- ===== PRINCIPLES ===== -->
-  <section class="principles" id="principles">
-    <div class="wrap">
-      <div class="pgrid">
-        <div class="pcol reveal"><div class="pn metal-d">01</div><h3>Never competes</h3><p>Your designs and your markets remain entirely yours.</p><ul class="pbul"><li>No brand of our own to compete with you</li><li>Your designs and tooling stay yours</li><li>Confidential by default</li></ul></div>
-        <div class="pcol reveal"><div class="pn metal-d">02</div><h3>Always delivers</h3><p>Stable production, held steady through every cycle.</p><ul class="pbul"><li>Backup production across two countries</li><li>Capacity reserved ahead of your season</li><li>Freight booked early, paperwork ready</li></ul></div>
-        <div class="pcol reveal"><div class="pn metal-d">03</div><h3>Minimise risk</h3><p>Your exposure, taken apart piece by piece.</p><ul class="pbul"><li>Taiwan + China production bases</li><li>Upstream control on key materials</li><li>Documentation to EU / US / AU requirements</li></ul></div>
-      </div>
-    </div>
-  </section>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+    <symbol id="ic-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 2.5v5.4c0 4.3-3 6.8-7 8.6-4-1.8-7-4.3-7-8.6V5.5L12 3z"/><path d="M9 11.6l2 2 4-4.2"/></g></symbol>
+    <symbol id="ic-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.6 2.5 2.6 14.5 0 17c-2.6-2.5-2.6-14.5 0-17z"/></g></symbol>
+    <symbol id="ic-cost" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12.6 3H20v7.4L10.4 20 3 12.6 12.6 3z"/><circle cx="16.4" cy="7.6" r="1.3"/></g></symbol>
+    <symbol id="ic-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="9.5" rx="1.6"/><path d="M8 10.5V7.6a4 4 0 0 1 8 0v2.9"/></g></symbol>
+    <symbol id="ic-doc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4.5" width="14" height="16" rx="1.6"/><path d="M9 4.5V3.4h6v1.1M8.6 10h7M8.6 13.5h7M8.6 17h4"/></g></symbol>
+    <symbol id="ic-deliver" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5h11v9.5H3zM14 9.5h4l3 3v3.5h-7z"/><circle cx="7" cy="18" r="1.8"/><circle cx="17.5" cy="18" r="1.8"/></g></symbol>
+    <symbol id="ic-layers" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l8.5 4.4L12 12.4 3.5 8 12 3.5z"/><path d="M3.7 12.2L12 16.5l8.3-4.3M3.7 16.2L12 20.5l8.3-4.3"/></g></symbol>
+    <symbol id="ic-leaf" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c-1-8 5.5-14.5 14-14 .5 8.5-6 15-14 14z"/><path d="M5.5 18.5C9 15 12.5 11.5 16 8"/></g></symbol>
+    <symbol id="ic-target" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.4"/><circle cx="12" cy="12" r="3.4"/><path d="M12 1.6v3.4M12 19v3.4M1.6 12h3.4M19 12h3.4"/></g></symbol>
+    <symbol id="ic-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6.8-6 6.8-10.8A6.8 6.8 0 1 0 5.2 10.2C5.2 15 12 21 12 21z"/><circle cx="12" cy="10" r="2.5"/></g></symbol>
+    <symbol id="ic-factory" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20.5V9.5l6 3.8V9.5l6 3.8V4.5h5.5v16z"/><path d="M3 20.5h18.5"/></g></symbol>
+    <symbol id="ic-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M6 3.5h3.5l1.5 4.6-2.3 1.6a11.5 11.5 0 0 0 4.9 4.9l1.6-2.3 4.6 1.5V18a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4 5.7 2 2 0 0 1 6 3.5z"/></symbol>
+    <symbol id="ic-shovel" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3h5"/><path d="M12 3v10"/><path d="M8 13h8l-1.4 5.4a2.2 2.2 0 0 1-5.2 0L8 13z"/></g></symbol>
+    <symbol id="ic-shears" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.3"/><circle cx="6" cy="18" r="2.3"/><path d="M8 7.2L20 18"/><path d="M8 16.8L20 6"/><circle cx="12.4" cy="12" r=".7"/></g></symbol>
+  </defs></svg>
 
   <!-- ===== WHAT WE MAKE ===== -->
   <section class="make" id="make">
     <div class="wrap">
       <div class="sec-head reveal"><span class="ey">What we manufacture</span><h2>The things we make for your shelves.</h2><p>Representative categories &mdash; your specific products are developed with you and kept confidential.</p></div>
       <div class="makegrid">
-        <div class="makecol reveal"><h3>Garden products</h3><ul><li>Garden shears, scissors &amp; pruners &mdash; all sizes (metal)</li><li>Hand tools with handles &mdash; full series</li><li>Sprayers &amp; watering products</li><li>Gloves &amp; garden accessories</li></ul></div>
-        <div class="makecol reveal"><h3>Field &amp; hunting</h3><ul><li>Feeders &amp; decoys</li><li>Blinds &amp; outdoor equipment</li><li>Gun-dog gear &mdash; magnetic-buckle leashes &amp; vests</li><li>Field accessories</li></ul></div>
+        <div class="makecol reveal"><h3><svg class="ic"><use href="#ic-leaf"/></svg>Garden products</h3><ul><li>Garden shears, scissors &amp; pruners &mdash; all sizes (metal)</li><li>Hand tools with handles &mdash; full series</li><li>Sprayers &amp; watering products</li><li>Gloves &amp; garden accessories</li></ul></div>
+        <div class="makecol reveal"><h3><svg class="ic"><use href="#ic-target"/></svg>Field &amp; hunting</h3><ul><li>Feeders &amp; decoys</li><li>Blinds &amp; outdoor equipment</li><li>Gun-dog gear &mdash; magnetic-buckle leashes &amp; vests</li><li>Field accessories</li></ul></div>
       </div>
       <div class="cta-row" style="margin-top:2rem"><a class="btn btn-pri" href="#enquiry">Discuss your product &rarr;</a></div>
+    </div>
+  </section>
+
+  <!-- ===== CATALOGUE ===== -->
+  <section class="cat" id="catalogue">
+    <div class="wrap">
+      <span class="ey">The catalogue</span>
+      <h2>What you'll see — and what stays yours.</h2>
+      <p>Our open garden catalogue shows what we can make. <span class="hl">Your custom best-sellers never appear in it</span> &mdash; so competitors never learn that Birdland made them.</p>
+      <ul class="catpoints"><li>Built around the products you tell us you need</li><li>Compiled and shared only after your enquiry</li><li>Your custom products are never shown to anyone else</li></ul>
+      <div class="cta-row"><a class="btn btn-pri" href="#enquiry">Request your custom catalogue &rarr;</a><a class="catBtn" href="https://52804774-my.sharepoint.com/:b:/g/personal/executive_birdland_com_tw/IQDcPidQB3pcTbKyumzwmFpTAYno0hfFX2_b-6GSltgV2ig" target="_blank" rel="noopener noreferrer"><svg class="ic"><use href="#ic-doc"/></svg>View the open garden catalogue (PDF)</a></div>
+      <div class="cf-block" id="protect">
+        <span class="ey">Always protecting &amp; filtering</span>
+        <p class="cf-lead">We keep our factories and your product details private &mdash; that is how we protect you. After you order, we arrange a video or on-site visit to the matching production base, at your level of confidentiality. Your plans are never leaked to competitors. As supply chains grow more transparent, AI makes sourcing easier to trace, and low-price dumping spreads, the risk of competitors reading your plans climbs every year &mdash; so our confidentiality protects you <b>more, not less</b>.</p>
+        <h3>Why confidentiality protects you more every year.</h3>
+        <div class="cf-chart">
+          <svg id="cfSvg" viewBox="0 0 720 340" role="img" aria-label="Protection gap widening year by year"></svg>
+          <div class="cf-read">
+            <div class="cf-legend"><span class="lg lg-cu"></span>With Birdland<span class="lg lg-ex"></span>Without a confidential maker</div>
+            <div class="cf-elab" id="cfElab">Protection gap</div>
+            <div class="cf-enum" id="cfEnum">+0</div>
+            <div class="cf-note" id="cfNote"></div>
+          </div>
+        </div>
+        <div class="cf-years" id="cfYears"></div>
+      </div>
     </div>
   </section>
 
@@ -675,37 +879,57 @@
       <div class="sec-head reveal"><span class="ey">Why Birdland</span><h2>The risks you&rsquo;re facing &mdash; and how we answer them.</h2><p>The disruptions of the last three years are real. Here is where Birdland leaves you covered.</p></div>
       <div class="whygrid">
         <div class="wbcard reveal">
+          <div class="wb-ic"><svg class="ic"><use href="#ic-shield"/></svg></div>
           <div class="wb-worry">Could your maker compete with you?</div>
-          <p class="wb-ctx">Suppliers have been known to sell a buyer&rsquo;s product into that buyer&rsquo;s own market &mdash; or to a competitor. The EU has moved to curb low-price dumping that undercuts European buyers.</p>
-          <p class="wb-ans"><b>Birdland:</b> in 45 years we have never done this. We hold no brand of our own and guard your information, so competitors can never trace your market back to you.</p>
-          <cite class="wb-src">EU anti-dumping action, 2024&ndash;25 &mdash; widely reported by global media.</cite>
+          <p class="wb-ans"><b>Birdland:</b> we hold no brand of our own and guard your information &mdash; in over 50 years, <span class="mk">never once a competitor to our clients</span>.</p><div class="wb-data">50+ yrs &middot; 0 client conflicts</div>
+          <button class="exp-btn" aria-expanded="false">Why this matters<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="exp"><div class="exp-in">
+            <p class="wb-ctx">Some suppliers quietly sell a buyer&rsquo;s product into that buyer&rsquo;s own market &mdash; and the EU is now curbing low-price dumping.</p>
+            <cite class="wb-src">EU anti-dumping action, 2024&ndash;25 &mdash; widely reported by global media.</cite>
+          </div></div>
         </div>
         <div class="wbcard reveal">
+          <div class="wb-ic"><svg class="ic"><use href="#ic-globe"/></svg></div>
           <div class="wb-worry">What if one country is disrupted?</div>
-          <p class="wb-ctx">Through 2024&ndash;25, new U.S.&ndash;China tariffs and attacks on Red Sea shipping repriced goods and rerouted freight with little warning.</p>
-          <p class="wb-ans"><b>Birdland:</b> we produce across Taiwan and China and book freight early &mdash; so if one route is hit, your supply keeps moving.</p>
-          <cite class="wb-src">U.S.&ndash;China tariffs &amp; Red Sea disruption, 2024&ndash;25 &mdash; widely reported by global media.</cite>
+          <p class="wb-ans"><b>Birdland:</b> we produce across Taiwan and China and book freight early &mdash; if one route is hit, <span class="mk">your supply keeps moving</span>.</p><div class="wb-data">2 production countries</div>
+          <button class="exp-btn" aria-expanded="false">Why this matters<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="exp"><div class="exp-in">
+            <p class="wb-ctx">In 2024&ndash;25, new tariffs and Red Sea attacks repriced goods and rerouted freight almost overnight.</p>
+            <cite class="wb-src">U.S.&ndash;China tariffs &amp; Red Sea disruption, 2024&ndash;25 &mdash; widely reported by global media.</cite>
+          </div></div>
         </div>
         <div class="wbcard reveal">
+          <div class="wb-ic"><svg class="ic"><use href="#ic-cost"/></svg></div>
           <div class="wb-worry">Are your input costs stable?</div>
-          <p class="wb-ctx">Raw-material and energy swings through 2024&ndash;25 left many suppliers passing sudden increases straight on to their buyers.</p>
-          <p class="wb-ans"><b>Birdland:</b> we lock key materials upstream &mdash; with your agreement &mdash; before the market moves, steadying your cost.</p>
-          <cite class="wb-src">Commodity &amp; energy volatility, 2024&ndash;25 &mdash; widely reported by global media.</cite>
+          <p class="wb-ans"><b>Birdland:</b> we lock key materials upstream &mdash; with your agreement &mdash; <span class="mk">before the market moves</span>.</p><div class="wb-data">Key inputs locked upstream</div>
+          <button class="exp-btn" aria-expanded="false">Why this matters<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="exp"><div class="exp-in">
+            <p class="wb-ctx">Material and energy swings in 2024&ndash;25 saw many suppliers pass sudden hikes straight to their buyers.</p>
+            <cite class="wb-src">Commodity &amp; energy volatility, 2024&ndash;25 &mdash; widely reported by global media.</cite>
+          </div></div>
         </div>
         <div class="wbcard reveal">
+          <div class="wb-ic"><svg class="ic"><use href="#ic-lock"/></svg></div>
           <div class="wb-worry">Will your products stay confidential?</div>
-          <p class="wb-ctx">As sourcing data circulates more freely, leaks and copycats have become a standing risk for brands and distributors.</p>
-          <p class="wb-ans"><b>Birdland:</b> client identities and bespoke products are never disclosed &mdash; we reveal the matching production base only after you order, matched to your confidentiality level.</p>
-          <cite class="wb-src">A standing concern across global trade.</cite>
+          <p class="wb-ans"><b>Birdland:</b> client identities and bespoke products are <span class="mk">never disclosed</span> &mdash; the matching base is shown only after you order.</p><div class="wb-data">0 client identities disclosed</div>
+          <button class="exp-btn" aria-expanded="false">Why this matters<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="exp"><div class="exp-in">
+            <p class="wb-ctx">As sourcing data spreads, leaks and copycats are a growing risk for brands and distributors.</p>
+            <cite class="wb-src">A standing concern across global trade.</cite>
+          </div></div>
         </div>
         <div class="wbcard reveal">
+          <div class="wb-ic"><svg class="ic"><use href="#ic-doc"/></svg></div>
           <div class="wb-worry">Can they meet your market&rsquo;s rules?</div>
-          <p class="wb-ctx">The EU&rsquo;s General Product Safety Regulation (in force Dec 2024), CBAM and the deforestation regulation have tightened what importers must document.</p>
-          <p class="wb-ans"><b>Birdland:</b> we prepare materials and documentation to EU / US / Australian requirements and adapt specs as the rules change &mdash; so you are never left rebuilding.</p>
-          <cite class="wb-src">EU GPSR / CBAM / EUDR, 2024&ndash;25 &mdash; widely reported by global media.</cite>
+          <p class="wb-ans"><b>Birdland:</b> documentation prepared to <span class="mk">EU / US / Australian requirements</span>, adapted as the rules change.</p><div class="wb-data">3 standards &middot; EU / US / AU</div>
+          <button class="exp-btn" aria-expanded="false">Why this matters<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="exp"><div class="exp-in">
+            <p class="wb-ctx">The EU&rsquo;s GPSR (in force Dec 2024), CBAM and the deforestation regulation have tightened what importers must document.</p>
+            <cite class="wb-src">EU GPSR / CBAM / EUDR, 2024&ndash;25 &mdash; widely reported by global media.</cite>
+          </div></div>
         </div>
       </div>
-      <div class="cta-row" style="margin-top:2.6rem"><a class="btn btn-pri" href="#enquiry">Get a quotation &rarr;</a></div>
+            <div class="cta-row" style="margin-top:2.6rem"><a class="btn btn-pri" href="#enquiry">Get a quotation &rarr;</a></div>
     </div>
   </section>
 
@@ -758,32 +982,6 @@
         <div class="ctrack"><div class="cbg"></div><div class="cfill" id="cFill"></div><div class="cnodes" id="cNodes"></div><input type="range" class="cslider" id="cSlider" min="0" max="100" value="0" step="1" aria-label="Drag from order placed to arrival"></div>
         <div class="clabels"><span>Order placed</span><span>Arrived at port</span></div>
         <div class="kdetail" id="kdetail"><div class="kfade show" id="kfade"></div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CATALOGUE ===== -->
-  <section class="cat" id="catalogue">
-    <div class="wrap">
-      <span class="ey">The catalogue</span>
-      <h2>What you'll see — and what stays yours.</h2>
-      <p>Our open garden catalogue is a window onto what we can make, end to end. <span class="hl">Your bespoke best-sellers never appear in it</span> &mdash; custom products stay off the page, and competitors won&rsquo;t know Birdland made them.</p>
-      <ul class="catpoints"><li>Built around the products you tell us you need</li><li>Compiled and shared only after your enquiry</li><li>Your custom products are never shown to anyone else</li></ul>
-      <div class="cta-row"><a class="btn btn-pri" href="#enquiry">Request your custom catalogue &rarr;</a><a class="catBtn" href="https://52804774-my.sharepoint.com/:b:/g/personal/executive_birdland_com_tw/IQDcPidQB3pcTbKyumzwmFpTAYno0hfFX2_b-6GSltgV2ig" target="_blank" rel="noopener noreferrer">View the open garden catalogue (PDF)</a></div>
-      <div class="cf-block">
-        <span class="ey">Always protecting &amp; filtering</span>
-        <p class="cf-lead">Our facilities and our clients' product details are kept private &mdash; that is how we protect you. After an order is confirmed, we arrange a video or on-site visit to the corresponding production base, matched to your level of confidentiality. Your production will never be predicted or leaked to your competitors.</p>
-        <h3>Why confidentiality protects you more every year.</h3>
-        <div class="cf-chart">
-          <svg id="cfSvg" viewBox="0 0 720 340" role="img" aria-label="Protection gap widening year by year"></svg>
-          <div class="cf-read">
-            <div class="cf-legend"><span class="lg lg-cu"></span>With Birdland<span class="lg lg-ex"></span>Without a confidential maker</div>
-            <div class="cf-elab" id="cfElab">Protection gap</div>
-            <div class="cf-enum" id="cfEnum">+0</div>
-            <div class="cf-note" id="cfNote"></div>
-          </div>
-        </div>
-        <div class="cf-years" id="cfYears"></div>
       </div>
     </div>
   </section>
@@ -877,21 +1075,21 @@
     </div>
       <div class="footaddr">
         <div class="fa">
-          <div class="fa-h">Headquarters &middot; Taipei</div>
+          <div class="fa-h"><svg class="ic"><use href="#ic-pin"/></svg>Headquarters &middot; Taipei</div>
           <p>9F, No. 65, Section 1, Da&rsquo;an Road,<br>Da&rsquo;an District, Taipei, Taiwan</p>
-          <p><a href="tel:+886226320150">+886 2 2632 0150</a></p>
+          <p><a href="tel:+886226320150"><svg class="ic"><use href="#ic-phone"/></svg>+886 2 2632 0150</a></p>
         </div>
         <div class="fa">
-          <div class="fa-h">Factory &amp; warehouse &middot; Taichung</div>
+          <div class="fa-h"><svg class="ic"><use href="#ic-factory"/></svg>Factory &amp; warehouse &middot; Taichung</div>
           <p>No. 21-1, Tongzhi Lane,<br>Xitun District, Taichung, Taiwan</p>
         </div>
         <div class="fa">
-          <div class="fa-h">Operations centre &middot; China</div>
+          <div class="fa-h"><svg class="ic"><use href="#ic-globe"/></svg>Operations centre &middot; China</div>
           <p>Hangzhou Commercial Plaza,<br>Tianhe District, Guangzhou, China</p>
         </div>
       </div>
     <div class="footcta"><a class="btn btn-pri" href="#enquiry">Get a quotation &rarr;</a></div>
-    <div class="foot-bot"><span>Garden &amp; field · manufactured since 1981</span><span>© <span id="yr"></span> Birdland Ind.</span></div>
+    <div class="foot-bot"><span>Garden &amp; field · manufactured since 1974</span><span>© <span id="yr"></span> Birdland Ind.</span></div>
   </div>
 </footer>
 
@@ -969,13 +1167,13 @@
   /* CHAIN */
   (function(){
     var stages=[
-      {t:'Order placed',pct:0,adv:'Most suppliers start the clock when it suits them. We start the moment you confirm \u2014 your timeline, not ours.'},
-      {t:'Materials locked',pct:18,adv:'While others wait and pass spikes on to you, we lock key materials upstream \u2014 with your agreement \u2014 before the market moves.'},
-      {t:'In production',pct:32,adv:'Single-country suppliers stall when one site is hit. We run Taiwan and China in parallel, so production keeps moving.'},
-      {t:'Quality checked',pct:54,adv:'Where others ship first and fix later, we inspect and document to EU / US / AU rules before anything leaves.'},
-      {t:'Shipped',pct:74,adv:'Others scramble for freight at the peak. We book ahead with paperwork ready \u2014 no last-minute surcharges.'},
-      {t:'At port / in transit',pct:88,adv:'No more chasing \u201cwhere is it?\u201d \u2014 cleared and tracked to your destination port.'},
-      {t:'Arrived',pct:100,adv:'While slower suppliers miss the window, you land early \u2014 in the advantaged, higher-margin slot.'}
+      {t:'Order placed',pct:0,adv:'Most suppliers start the clock when it suits them. We start the moment you confirm \u2014 <span class="mk">your timeline, not ours</span>.'},
+      {t:'Materials locked',pct:18,adv:'While others wait and pass spikes on to you, we lock key materials upstream \u2014 with your agreement \u2014 <span class="mk">before the market moves</span>.'},
+      {t:'In production',pct:32,adv:'Single-country suppliers stall when one site is hit. We run Taiwan and China in parallel, so <span class="mk">production keeps moving</span>.'},
+      {t:'Quality checked',pct:54,adv:'Where others ship first and fix later, we inspect and document to EU / US / AU rules <span class="mk">before anything leaves</span>.'},
+      {t:'Shipped',pct:74,adv:'Others scramble for freight at the peak. We book ahead with paperwork ready \u2014 <span class="mk">no last-minute surcharges</span>.'},
+      {t:'At port / in transit',pct:88,adv:'No more chasing \u201cwhere is it?\u201d \u2014 <span class="mk">cleared and tracked</span> to your destination port.'},
+      {t:'Arrived',pct:100,adv:'While slower suppliers miss the window, <span class="mk">you land early</span> \u2014 in the advantaged, higher-margin slot.'}
     ];
     var nodes=document.getElementById('cNodes'),fill=document.getElementById('cFill'),fade=document.getElementById('kfade'),slider=document.getElementById('cSlider'),cur=0;
     stages.forEach(function(s,i){var el=document.createElement('div');el.className='knode';el.setAttribute('aria-pressed',i===0);el.innerHTML='<span class="dot"></span><span class="pct">'+s.pct+'%</span>';nodes.appendChild(el);});
@@ -1105,8 +1303,9 @@
     function mk(n,a){var el=document.createElementNS(ns,n);for(var k in a)el.setAttribute(k,a[k]);return el;}
     var svg=document.getElementById('cfSvg'); if(!svg) return;
     var years=[2019,2020,2021,2022,2023,2024,2025,2026];
-    var without=[33,47,41,56,63,55,72,86];
-    var withb=[16,15,18,13,16,12,14,11];
+    var without=[27,46,35,58,49,68,60,88];
+    var withb=[16,14,18,13,15,12,14,12];
+    var events=['<b>2019 &middot; Trade war.</b> U.S.&ndash;China tariffs force brands to rethink where &mdash; and through whom &mdash; they source.','<b>2020 &middot; Pandemic.</b> COVID-19 breaks supply chains; buyers scramble for visibility into who really makes their products.','<b>2021 &middot; Shipping crisis.</b> The container crunch exposes how fragile single-source supply really is.','<b>2022 &middot; Forced-labour bans.</b> New import rules push brands to map and disclose their supply chains in detail.','<b>2023 &middot; ESG &amp; due diligence.</b> Supplier lists are shared and scrutinised like never before.','<b>2024 &middot; EU rules + Red Sea.</b> Due-diligence and deforestation rules, plus shipping disruption, put sourcing under the microscope.','<b>2025 &middot; AI tracing.</b> AI tools make it far easier to trace suppliers and read a competitor&rsquo;s sourcing from public data.','<b>2026 &middot; Overcapacity &amp; dumping.</b> As low-price dumping spreads, knowing a rival&rsquo;s maker becomes a competitive weapon.'];
     var N=years.length,W=720,H=340,padL=48,padR=18,padT=26,padB=26,pw=W-padL-padR,ph=H-padT-padB;
     function X(i){return padL+i*pw/(N-1);} function Y(v){return padT+(1-v/100)*ph;}
     [0,25,50,75,100].forEach(function(g){svg.appendChild(mk('line',{x1:padL,y1:Y(g),x2:W-padR,y2:Y(g),stroke:'rgba(242,236,221,.12)','stroke-width':1}));});
@@ -1114,11 +1313,13 @@
     var t=mk('text',{x:16,y:cy,'font-family':'Manrope','font-size':13,'font-weight':600,fill:'rgba(242,236,221,.72)','text-anchor':'middle',transform:'rotate(-90 16 '+cy+')'});t.textContent='Risk of competitors knowing your plans';svg.appendChild(t);
     svg.appendChild(mk('text',{x:padL+4,y:Y(100)-7,'font-family':'Manrope','font-size':11,fill:'rgba(242,236,221,.5)'})).textContent='High';
     svg.appendChild(mk('text',{x:padL+4,y:Y(0)+15,'font-family':'Manrope','font-size':11,fill:'rgba(242,236,221,.5)'})).textContent='Low';
-    var poly=[];for(var i=0;i<N;i++)poly.push(X(i)+','+Y(without[i]));for(var j=N-1;j>=0;j--)poly.push(X(j)+','+Y(withb[j]));
-    svg.appendChild(mk('polygon',{points:poly.join(' '),fill:'rgba(200,90,60,.20)'}));
-    function pl(a){return a.map(function(v,i){return X(i)+','+Y(v);}).join(' ');}
-    svg.appendChild(mk('polyline',{points:pl(without),fill:'none',stroke:'#b59f8e','stroke-width':3,'stroke-dasharray':'5 5','stroke-linejoin':'round'}));
-    svg.appendChild(mk('polyline',{points:pl(withb),fill:'none',stroke:'#E8AC80','stroke-width':4,'stroke-linejoin':'round','stroke-linecap':'round'}));
+    function pts(a){return a.map(function(v,i){return [X(i),Y(v)];});}
+    function sp(p,cont){var d=cont?'':'M'+p[0][0].toFixed(1)+','+p[0][1].toFixed(1);for(var i=0;i<p.length-1;i++){var p0=p[i-1]||p[i],p1=p[i],p2=p[i+1],p3=p[i+2]||p2;var c1x=p1[0]+(p2[0]-p0[0])/6,c1y=p1[1]+(p2[1]-p0[1])/6,c2x=p2[0]-(p3[0]-p1[0])/6,c2y=p2[1]-(p3[1]-p1[1])/6;d+=' C'+c1x.toFixed(1)+','+c1y.toFixed(1)+' '+c2x.toFixed(1)+','+c2y.toFixed(1)+' '+p2[0].toFixed(1)+','+p2[1].toFixed(1);}return d;}
+    var pwo=pts(without),pwb=pts(withb),pbRev=pwb.slice().reverse();
+    var band=sp(pwo,false)+' L'+pbRev[0][0].toFixed(1)+','+pbRev[0][1].toFixed(1)+sp(pbRev,true)+' Z';
+    svg.appendChild(mk('path',{d:band,fill:'rgba(200,90,60,.17)'}));
+    svg.appendChild(mk('path',{d:sp(pwo,false),fill:'none',stroke:'#b59f8e','stroke-width':3,'stroke-dasharray':'5 5','stroke-linejoin':'round','stroke-linecap':'round'}));
+    svg.appendChild(mk('path',{d:sp(pwb,false),fill:'none',stroke:'#E8AC80','stroke-width':4,'stroke-linejoin':'round','stroke-linecap':'round'}));
     var marker=mk('line',{y1:padT,y2:padT+ph,stroke:'rgba(232,172,128,.6)','stroke-width':1.5,'stroke-dasharray':'3 3'});svg.appendChild(marker);
     var dotW=mk('circle',{r:4.5,fill:'#b59f8e'});svg.appendChild(dotW);
     var dot=mk('circle',{r:5,fill:'#E8AC80'});svg.appendChild(dot);
@@ -1127,12 +1328,34 @@
     function show(){var g=without[cur]-withb[cur];marker.setAttribute('x1',X(cur));marker.setAttribute('x2',X(cur));
       dot.setAttribute('cx',X(cur));dot.setAttribute('cy',Y(withb[cur]));dotW.setAttribute('cx',X(cur));dotW.setAttribute('cy',Y(without[cur]));
       enumEl.textContent='+'+g;labEl.textContent='Protection gap in '+years[cur];
-      noteEl.textContent='Markets swing year to year, but the risk of competitors reading your plans keeps trending up. With Birdland it stays low \u2014 so the gap we protect only widens.';
+      noteEl.innerHTML=events[cur];
       yc.querySelectorAll('button').forEach(function(b,i){b.setAttribute('aria-pressed',i===cur);});}
     years.forEach(function(y,i){var b=document.createElement('button');b.textContent=y;b.setAttribute('aria-pressed',i===cur);b.addEventListener('click',function(){cur=i;show();});yc.appendChild(b);});
     show();
   })();
 
+  /* EXPANDERS + count-up */
+  function countUp(el){var full=el.textContent;var m=full.match(/(\D*)(\d+)([\s\S]*)/);if(!m)return;var pre=m[1],end=parseInt(m[2],10),rest=m[3],dur=850,t0=null;
+    function step(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/dur);el.textContent=pre+Math.round(end*(1-Math.pow(1-p,3)))+rest;if(p<1)requestAnimationFrame(step);else el.textContent=full;}requestAnimationFrame(step);}
+  document.addEventListener('click',function(e){var b=e.target.closest('.exp-btn');if(!b)return;
+    var open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!open));
+    var p=b.nextElementSibling;if(p&&p.classList.contains('exp')){p.classList.toggle('open',!open);
+      if(!open&&!matchMedia('(prefers-reduced-motion:reduce)').matches){p.querySelectorAll('.pm-n').forEach(countUp);}}});
+  /* CYCLE shovel/shears nav */
+  (function(){var cd=document.getElementById('cycDots'),pv=document.getElementById('cycPrev'),nx=document.getElementById('cycNext');if(!cd||!pv||!nx)return;
+    function step(d){var b=[].slice.call(cd.querySelectorAll('button'));if(!b.length)return;var c=b.findIndex(function(x){return x.getAttribute('aria-current')==='true';});if(c<0)c=0;b[(c+d+b.length)%b.length].click();}
+    pv.addEventListener('click',function(){step(-1);});nx.addEventListener('click',function(){step(1);});})();  /* SIDE SCROLL PROGRESS */
+  (function(){var wrap=document.querySelector('.scrollprog'),fill=document.getElementById('spFill');if(!wrap||!fill)return;
+    var secs=['heritage','proof','make','catalogue','why','risk','chain','enquiry'],ids=[];
+    secs.forEach(function(id){var el=document.getElementById(id);if(!el)return;ids.push(id);var b=document.createElement('button');b.className='sp-dot';b.setAttribute('aria-label','Go to '+id);b.addEventListener('click',function(){el.scrollIntoView({behavior:'smooth'});});wrap.appendChild(b);});
+    var dots=[].slice.call(wrap.querySelectorAll('.sp-dot'));
+    function upd(){var st=window.scrollY||document.documentElement.scrollTop,docH=document.documentElement.scrollHeight-innerHeight,pct=docH>0?Math.min(1,Math.max(0,st/docH)):0;fill.style.height=(pct*wrap.offsetHeight)+'px';
+      var mid=st+innerHeight*0.35,act=0;ids.forEach(function(id,i){var el=document.getElementById(id);if(el&&el.offsetTop<=mid)act=i;});dots.forEach(function(d,i){d.classList.toggle('on',i===act);});}
+    addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();})();  /* PROTECT landing flash */
+  (function(){function flash(){var el=document.getElementById('protect');if(!el)return;el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash');setTimeout(function(){el.classList.remove('flash');},1900);}
+    document.addEventListener('click',function(e){if(e.target.closest('a[href="#protect"]'))setTimeout(flash,520);});
+    window.addEventListener('hashchange',function(){if(location.hash==='#protect')flash();});
+    if(location.hash==='#protect')window.addEventListener('load',function(){setTimeout(flash,450);});})();
   </script>
 <script>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'en,nl,de,fr,he,pl,it,es,pt,ja',autoDisplay:false},'google_translate_element');}</script>
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
