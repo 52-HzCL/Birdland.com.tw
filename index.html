@@ -8,6 +8,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://birdland.com.tw/">
+<meta name="theme-color" content="#F2ECDD">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Birdland Ind.">
+<meta property="og:title" content="Birdland Ind. — Garden & Field Manufacturer Since 1974">
+<meta property="og:description" content="A confidential OEM/ODM manufacturer of garden tools and field equipment for the world's brands and distributors since 1974. We never compete with our customers.">
+<meta property="og:url" content="https://birdland.com.tw/">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Birdland Ind. — Garden & Field Manufacturer Since 1974">
+<meta name="twitter:description" content="A confidential OEM/ODM manufacturer of garden tools and field equipment, serving the world's brands since 1974. We never compete with our customers.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2321372B'/><path d='M16 6C9 10 8 20 16 26C24 20 23 10 16 6Z' fill='%23A85C2C'/><path d='M16 9L16 23' stroke='%23F2ECDD' stroke-width='1.4'/></svg>">
 <style>
   :root{
     --paper:#F2ECDD;--paper2:#F8F2E6;--silk:#EAE1CE;
@@ -1039,7 +1052,7 @@
   /* ===== scroll progress: long-handled spade digging a hole ===== */
   .scrollprog{position:fixed;right:16px;top:50%;transform:translateY(-50%);display:block;width:20px;height:300px;z-index:95}
   .scrollprog::before{display:none}
-  .dig-track{position:absolute;inset:0;border-radius:7px;overflow:hidden;background:linear-gradient(#2a2018,#16100a);box-shadow:inset 0 0 0 1px rgba(232,201,168,.18),0 0 0 1.5px rgba(168,72,42,.6),0 8px 20px -8px rgba(0,0,0,.55),inset 0 7px 9px -5px rgba(0,0,0,.7)}
+  .dig-track{position:absolute;inset:0;border-radius:7px;overflow:hidden;background:transparent;box-shadow:inset 0 0 0 1px rgba(232,201,168,.16),0 0 0 1.5px rgba(168,72,42,.6),0 8px 20px -8px rgba(0,0,0,.5),inset 0 6px 7px -5px rgba(0,0,0,.35)}
   .dig-earth{position:absolute;left:0;right:0;bottom:0;height:100%;background:linear-gradient(#7d5a37,#553c24);transition:height .14s linear}
   .dig-earth::after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 3px 3px, rgba(38,22,10,.55) 1.4px, transparent 2.3px);background-size:6px 6px;opacity:.6}
   .dig-earth::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(rgba(122,92,56,.95),transparent)}
@@ -1050,9 +1063,12 @@
   .digdirt{position:fixed;border-radius:50% 50% 45% 55%;pointer-events:none;z-index:96}
   @media(max-width:1100px){.scrollprog{display:none}}
   @media(prefers-reduced-motion:reduce){.dig-spade.jab{animation:none}.dig-earth,.dig-spade{transition:none}}
+  .skip{position:fixed;left:12px;top:-64px;z-index:200;background:var(--jade-deep);color:var(--paper);padding:.6rem 1rem;border-radius:9px;font-family:var(--sans);font-weight:600;font-size:.9rem;transition:top .2s ease}
+  .skip:focus{top:12px;outline:2px solid var(--copper-bright);outline-offset:2px}
 </style>
 </head>
 <body>
+<a class="skip" href="#top">Skip to content</a>
 <div id="google_translate_element"></div>
 
 <header>
@@ -1872,9 +1888,9 @@
     if(!earth||!spade||!wrap)return;
     var reduceM=matchMedia('(prefers-reduced-motion:reduce)').matches,tick=false,lastP=0,lastD=0;
     var COL=['#6e4a2f','#5c3d27','#7a5436','#664326'];
-    function dirt(cx,cy){var n=2+(Math.random()*2|0);for(var i=0;i<n;i++){(function(){var d=document.createElement('div');var s=3+Math.random()*3;d.className='digdirt';d.style.width=d.style.height=s+'px';d.style.left=cx+'px';d.style.top=cy+'px';d.style.background=COL[Math.random()*COL.length|0];document.body.appendChild(d);
-      var dx=(Math.random()*2-1)*20,up=6+Math.random()*14,dur=420+Math.random()*260;function g(){if(d.parentNode)d.parentNode.removeChild(d);}
-      try{var a=d.animate([{transform:'translate(-50%,-50%)',opacity:1},{transform:'translate(-50%,-50%) translate('+(dx|0)+'px,'+(-up|0)+'px)',opacity:1,offset:.4},{transform:'translate(-50%,-50%) translate('+((dx*1.4)|0)+'px,'+((up+14)|0)+'px)',opacity:0}],{duration:dur,easing:'cubic-bezier(.3,.5,.5,1)',fill:'forwards'});a.onfinish=g;}catch(e){g();}setTimeout(g,dur+260);})();}}
+    function dirt(cx,cy){var n=3+(Math.random()*3|0);for(var i=0;i<n;i++){(function(){var d=document.createElement('div');var s=3+Math.random()*3;d.className='digdirt';d.style.width=d.style.height=s+'px';d.style.left=cx+'px';d.style.top=cy+'px';d.style.background=COL[Math.random()*COL.length|0];document.body.appendChild(d);
+      var dx=(Math.random()*2-1)*44,up=10+Math.random()*30,dur=480+Math.random()*300;function g(){if(d.parentNode)d.parentNode.removeChild(d);}
+      try{var a=d.animate([{transform:'translate(-50%,-50%)',opacity:1},{transform:'translate(-50%,-50%) translate('+(dx|0)+'px,'+(-up|0)+'px)',opacity:1,offset:.4},{transform:'translate(-50%,-50%) translate('+((dx*1.7)|0)+'px,'+((up+26)|0)+'px)',opacity:0}],{duration:dur,easing:'cubic-bezier(.3,.5,.5,1)',fill:'forwards'});a.onfinish=g;}catch(e){g();}setTimeout(g,dur+260);})();}}
     function jab(){spade.classList.remove('jab');void spade.offsetWidth;spade.classList.add('jab');}
     function calc(){tick=false;var h=document.documentElement,st=h.scrollTop||window.scrollY||0,max=h.scrollHeight-h.clientHeight,p=max>0?Math.min(st/max,1):0;
       earth.style.height=((1-p)*100).toFixed(2)+'%';spade.style.top=(p*100).toFixed(2)+'%';
