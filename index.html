@@ -719,6 +719,45 @@
   .shear.snip{animation:snip .32s ease}
   .clip{position:absolute;left:50%;width:6px;height:6px;background:#6fa583;border-radius:60% 0 60% 0;transform:translate(-50%,0);pointer-events:none;z-index:2;animation:clipfall .9s ease forwards}
   @keyframes clipfall{0%{opacity:.9;transform:translate(-50%,0) rotate(0)}100%{opacity:0;transform:translate(-200%,42px) rotate(130deg)}}
+
+  /* ===== hero customs-stamp emblem (1974, aged & faded) ===== */
+  .hero .emblem{position:absolute;top:-1%;right:-1%;width:min(33vw,350px);height:auto;color:#9a5436;opacity:.5;z-index:0;pointer-events:none;transform:rotate(-7deg)}
+  @media(max-width:760px){.hero .emblem{width:58vw;opacity:.4;right:-8%;top:0}}
+
+  /* ===== hero stamp -> faded vermilion ===== */
+  .hero .emblem{color:#b23a2e;opacity:.52;width:min(31vw,330px)}
+
+  /* ===== gallery ===== */
+  .gal-wrap{margin-top:3.4rem;padding-top:2.6rem;border-top:1px solid var(--line)}
+  .gal-head h3{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2rem);color:var(--jade-deep);margin:.25rem 0 .4rem;line-height:1.15}
+  .gal-head p{color:var(--ink-soft);font-weight:300;margin:0}
+  .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.9rem}
+  .gal-card{position:relative;aspect-ratio:4/3;border:1px solid var(--line);border-radius:3px;overflow:hidden;cursor:pointer;background:linear-gradient(150deg,#ece1cc,#dccfb6);display:flex;align-items:center;justify-content:center;padding:0;transition:transform .4s cubic-bezier(.2,.8,.3,1),box-shadow .4s}
+  .gal-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -24px rgba(60,40,20,.5)}
+  .gal-card.has-img{background-size:cover;background-position:center}
+  .gal-ic{width:34px;height:34px;color:var(--copper);opacity:.5;fill:none;stroke:currentColor}
+  .gal-card.has-img .gal-ic{display:none}
+  .gal-cap{position:absolute;left:0;right:0;bottom:0;padding:.7rem .8rem;font:600 .82rem var(--sans);letter-spacing:.02em;color:var(--jade-deep);background:linear-gradient(transparent,rgba(242,236,221,.9));text-align:left}
+  .gal-card.has-img .gal-cap{color:#fff;background:linear-gradient(transparent,rgba(18,28,22,.72))}
+  .gal-soon{position:absolute;top:.6rem;left:.6rem;font:700 .6rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--copper-deep);background:rgba(168,72,42,.13);padding:.2rem .5rem;border-radius:2px}
+  .gal-card.has-img .gal-soon{display:none}
+  .gal-more{display:inline-block;margin-top:1.4rem;font:600 .82rem var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--copper-deep);text-decoration:none}
+  .gal-more:hover{color:var(--copper)}
+  @media(max-width:900px){.gal-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.gal-grid{grid-template-columns:1fr}}
+
+  /* ===== lightbox ===== */
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(14,21,17,.93);display:flex;align-items:center;justify-content:center;padding:5vh 2vw;opacity:0;visibility:hidden;transition:opacity .3s}
+  .lightbox.open{opacity:1;visibility:visible}
+  .lb-fig{margin:0;max-width:900px;width:100%;display:flex;flex-direction:column;align-items:center}
+  .lb-img{width:100%;aspect-ratio:4/3;max-height:72vh;border-radius:4px;background:#26342c center/cover no-repeat;display:flex;align-items:center;justify-content:center;color:rgba(242,236,221,.45);font:500 .9rem var(--sans);letter-spacing:.08em}
+  .lb-cap{margin-top:1rem;color:var(--paper);font-family:var(--serif);font-style:italic;font-size:1.3rem;text-align:center}
+  .lb-close{position:absolute;top:16px;right:22px;background:none;border:none;color:rgba(242,236,221,.85);font-size:2.4rem;line-height:1;cursor:pointer}
+  .lb-close:hover{color:#fff}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(242,236,221,.7);font-size:3rem;line-height:1;cursor:pointer;padding:0 1.1rem}
+  .lb-nav:hover{color:#fff}
+  .lb-prev{left:1vw}.lb-next{right:1vw}
+  @media(max-width:600px){.lb-cap{font-size:1.05rem}.lb-nav{font-size:2.2rem;padding:0 .5rem}}
 </style>
 </head>
 <body>
@@ -764,10 +803,32 @@
 
 <main id="top">
   <section class="hero">
-    <svg class="emblem" viewBox="0 0 97 94" aria-hidden="true">
-      <circle cx="48.5" cy="47" r="45.3" fill="none" stroke="currentColor" stroke-width="1"/>
-      <circle cx="48.5" cy="47" r="40.3" fill="none" stroke="currentColor" stroke-width="0.5"/>
-      <path fill="currentColor" d="M52.23,80.22C52.88,80.07 53.49,79.88 53.58,79.80C53.67,79.72 53.53,79.48 53.22,79.19L52.70,78.72L52.58,75.69C52.46,72.68 52.45,72.65 52.02,72.31C51.68,72.05 51.43,71.99 50.92,72.06C49.82,72.20 49.79,72.32 49.88,76.08C49.96,79.50 50.09,80.25 50.62,80.38C50.78,80.43 50.94,80.47 50.98,80.48C51.01,80.49 51.57,80.38 52.23,80.22Z M42.31,79.71C42.60,79.46 42.63,79.31 42.52,78.75C42.44,78.32 42.50,77.46 42.69,76.33C42.86,75.37 42.99,74.27 42.99,73.90C43.00,72.63 43.98,72.47 44.63,73.64C44.91,74.13 45.00,74.61 45.04,75.70C45.08,77.11 45.08,77.11 44.46,77.87C44.12,78.29 43.76,78.83 43.67,79.06C43.49,79.56 43.69,79.73 44.69,79.92C45.26,80.02 45.34,79.98 46.23,79.06C47.33,77.92 47.86,76.93 47.96,75.81C48.06,74.86 47.93,74.64 46.47,73.10C45.34,71.90 45.18,71.84 42.42,71.54C40.64,71.34 40.56,71.37 40.44,72.31C40.38,72.73 40.26,73.50 40.17,74.00C40.08,74.50 39.96,75.59 39.91,76.42C39.86,77.24 39.73,78.25 39.63,78.65C39.46,79.33 39.47,79.41 39.82,79.69C40.34,80.11 41.83,80.12 42.31,79.71Z M36.24,78.61C36.53,78.40 36.53,78.34 36.27,77.31C35.84,75.57 35.88,75.38 36.91,74.40C37.41,73.93 37.86,73.37 37.91,73.15C38.06,72.52 37.63,71.28 37.18,71.06C36.96,70.95 36.73,70.77 36.66,70.65C36.53,70.44 34.81,69.78 33.61,69.48C32.32,69.16 31.21,70.23 30.92,72.08C30.86,72.45 30.64,73.24 30.42,73.83C29.75,75.73 29.55,76.58 29.68,76.96C29.94,77.65 31.55,78.12 31.96,77.62C32.06,77.51 32.19,77.04 32.26,76.58C32.40,75.58 32.60,75.17 32.92,75.17C33.29,75.17 33.83,76.16 33.83,76.83C33.84,78.23 35.29,79.31 36.24,78.61Z M66.60,78.15C67.04,77.78 66.83,77.31 65.70,76.20C65.08,75.59 64.35,74.71 64.09,74.25C63.28,72.85 62.49,72.01 61.87,71.90C60.48,71.64 60.16,72.44 60.29,75.88C60.34,77.14 60.41,78.17 60.45,78.17C60.49,78.17 60.81,77.94 61.16,77.65C61.89,77.07 63.01,76.83 63.42,77.17C63.57,77.29 63.79,77.65 63.93,77.97L64.17,78.55L65.27,78.45C65.88,78.39 66.48,78.26 66.60,78.15Z M60.93,75.74C60.59,75.40 60.60,75.38 61.01,75.16C61.27,75.02 61.42,75.03 61.59,75.18C61.92,75.44 61.90,75.62 61.51,75.83C61.27,75.96 61.13,75.94 60.93,75.74Z M26.13,75.46C26.36,75.18 27.00,73.48 27.00,73.15C27.00,73.00 27.22,72.60 27.50,72.25C27.82,71.84 28.00,71.43 28.00,71.08C28.00,70.74 28.18,70.32 28.50,69.92C29.12,69.14 29.13,68.81 28.54,67.99C28.05,67.31 27.55,67.00 26.94,67.00C26.39,67.00 26.17,67.31 26.17,68.10C26.17,68.83 25.18,71.82 24.75,72.41C24.02,73.38 23.50,74.26 23.50,74.50C23.50,74.79 25.04,75.64 25.60,75.66C25.80,75.66 26.04,75.57 26.13,75.46Z M75.63,73.40C75.67,73.17 75.44,72.76 75.02,72.27C74.63,71.82 74.23,71.11 74.06,70.57C73.72,69.51 73.02,68.83 72.68,69.23C72.58,69.36 72.54,69.58 72.60,69.73C72.76,70.16 71.32,69.88 69.85,69.20C68.47,68.56 67.82,68.55 66.71,69.12C65.94,69.52 65.79,70.09 66.34,70.51C66.55,70.66 66.91,71.19 67.15,71.67C67.90,73.19 69.12,73.70 68.97,72.44L68.91,71.88L70.24,72.26C72.11,72.79 73.44,73.27 73.88,73.58C74.11,73.74 74.51,73.83 74.92,73.80C75.45,73.76 75.59,73.68 75.63,73.40Z M33.75,73.44C33.12,72.97 33.97,71.00 34.81,71.00C35.42,71.00 35.53,72.20 34.99,72.90C34.49,73.53 34.11,73.70 33.75,73.44Z M21.03,72.33C21.43,72.22 21.83,71.92 22.19,71.48C22.69,70.84 22.71,70.76 22.51,70.27C22.14,69.36 22.20,69.12 22.89,68.76C23.24,68.57 23.63,68.23 23.76,68.00C24.27,67.06 23.84,65.29 23.05,65.09C22.52,64.96 22.40,65.05 22.02,65.91C21.67,66.69 20.99,67.26 20.58,67.11C20.33,67.01 20.22,65.84 20.45,65.61C20.51,65.55 20.65,65.24 20.76,64.92C20.94,64.39 20.92,64.33 20.44,63.87C19.68,63.16 19.43,63.13 18.95,63.64C18.51,64.10 17.54,65.66 17.08,66.64C16.94,66.94 16.60,67.49 16.33,67.86C15.78,68.62 15.52,69.87 15.83,70.25C16.13,70.61 18.15,71.70 18.32,71.59C18.41,71.54 18.36,71.27 18.22,70.99C17.92,70.38 18.03,69.82 18.62,68.96C19.03,68.35 19.54,68.15 19.75,68.51C19.96,68.84 19.64,70.33 19.23,70.93C18.78,71.59 18.81,71.72 19.56,72.18C20.17,72.55 20.21,72.55 21.03,72.33Z M79.35,70.87C80.15,70.33 82.48,67.52 82.66,66.87C83.08,65.34 82.84,64.71 81.20,63.05C80.33,62.18 80.06,62.00 79.41,61.91C77.93,61.68 76.45,62.06 75.75,62.84C75.57,63.04 75.09,63.43 74.69,63.71C74.21,64.04 73.85,64.47 73.62,64.97C73.29,65.72 73.29,65.74 73.60,65.91C73.77,66.01 74.25,66.43 74.67,66.86C77.29,69.56 78.16,70.50 78.32,70.81C78.55,71.24 78.78,71.26 79.35,70.87Z M78.15,66.67C77.06,65.57 76.17,64.57 76.17,64.45C76.17,64.07 76.55,63.83 77.18,63.83C78.42,63.83 79.44,64.41 79.96,65.42C80.10,65.69 80.39,66.13 80.61,66.39C81.02,66.88 81.12,67.64 80.84,68.16C80.45,68.88 80.17,68.72 78.15,66.67Z M56.05,62.43C56.25,62.22 56.56,61.63 56.73,61.14C56.90,60.65 57.27,59.73 57.55,59.08C57.98,58.07 58.06,57.66 58.13,56.00C58.20,54.27 58.17,53.99 57.83,53.21C57.59,52.64 57.27,52.22 56.93,52.01C56.63,51.83 56.26,51.53 56.09,51.34C55.64,50.84 54.05,50.14 53.02,49.99C51.27,49.73 51.53,49.03 53.45,48.84C54.07,48.78 54.82,48.61 55.12,48.45C55.41,48.29 55.97,48.16 56.37,48.16C56.79,48.16 57.57,47.95 58.25,47.65C59.10,47.29 59.99,47.07 61.53,46.87C63.53,46.61 63.72,46.62 65.26,46.91C66.16,47.07 67.32,47.39 67.86,47.61C69.53,48.28 71.05,48.06 71.75,47.04C72.11,46.50 74.33,44.83 74.67,44.83C74.86,44.83 75.67,42.72 75.67,42.22C75.67,41.60 74.40,40.44 73.43,40.17C72.60,39.94 71.23,40.15 70.51,40.62C70.28,40.77 69.68,40.98 69.17,41.10C68.66,41.21 67.95,41.42 67.58,41.56C67.22,41.70 66.73,41.82 66.50,41.83C66.27,41.83 65.69,41.98 65.21,42.17C64.72,42.35 64.18,42.50 64.00,42.50C63.64,42.50 63.54,42.10 63.85,41.91C63.95,41.84 64.14,41.54 64.26,41.24C64.39,40.94 64.72,40.55 65.00,40.39C65.27,40.23 65.50,40.04 65.50,39.98C65.50,39.92 65.78,39.47 66.12,38.98C66.69,38.16 66.74,37.99 66.75,36.92L66.76,35.75L67.65,35.27C68.14,35.01 69.23,34.11 70.08,33.27C71.36,32.01 71.74,31.50 72.33,30.30L73.04,28.86L72.83,27.72C72.59,26.42 72.10,25.33 71.76,25.33C71.63,25.33 71.40,25.67 71.24,26.09C71.08,26.50 70.71,27.06 70.41,27.32C69.74,27.91 68.47,28.41 67.96,28.28C66.59,27.94 65.79,27.63 64.83,27.09C63.14,26.13 62.99,26.05 61.80,25.69C61.19,25.50 60.48,25.39 60.23,25.44C59.39,25.59 58.21,26.34 57.90,26.93C57.48,27.71 57.73,27.92 59.09,27.92C60.47,27.92 60.70,28.14 60.77,29.49C60.82,30.40 60.79,30.52 60.42,30.76C59.90,31.10 59.46,30.96 58.93,30.28C58.19,29.33 57.59,28.63 57.33,28.39C56.75,27.84 55.48,27.00 55.09,26.90C54.60,26.78 53.50,25.49 53.50,25.03C53.50,24.86 53.61,24.40 53.74,24.02C54.32,22.38 54.19,19.02 53.52,18.13C53.36,17.92 53.03,17.34 52.78,16.83C52.53,16.33 52.20,15.76 52.04,15.58C51.49,14.94 50.15,14.02 49.62,13.92C49.32,13.87 48.70,13.70 48.23,13.55C47.42,13.29 47.31,13.30 45.77,13.65C44.39,13.97 43.99,14.15 43.12,14.81C42.24,15.47 41.98,15.79 41.38,16.99C40.58,18.59 40.06,19.20 39.08,19.67C38.70,19.85 38.13,20.32 37.82,20.71C37.16,21.52 36.17,23.42 36.17,23.86C36.17,24.40 36.84,24.62 38.82,24.73C41.07,24.85 41.89,25.15 41.97,25.88C42.01,26.26 41.88,26.48 41.30,27.01C40.91,27.37 40.34,27.74 40.04,27.82C39.74,27.90 39.19,28.24 38.80,28.57C38.42,28.90 38.05,29.17 37.99,29.17C37.92,29.17 37.60,29.56 37.28,30.04C36.96,30.52 36.55,31.06 36.36,31.23C36.17,31.40 35.97,31.77 35.91,32.06C35.85,32.35 35.68,32.77 35.53,33.00C35.14,33.62 34.98,35.10 35.19,36.25C35.43,37.60 36.14,39.49 36.57,39.91C36.77,40.10 37.13,40.52 37.37,40.86C37.82,41.46 39.82,43.00 40.15,43.00C40.25,43.00 40.62,43.26 40.98,43.58C41.33,43.90 41.75,44.17 41.90,44.17C42.27,44.17 43.38,44.74 43.65,45.07C43.84,45.29 43.80,45.35 43.43,45.49C42.78,45.74 39.39,46.03 38.57,45.91C38.10,45.84 37.71,45.64 37.40,45.32C37.00,44.90 36.94,44.70 36.91,43.63C36.89,42.96 36.79,42.19 36.70,41.92C36.23,40.48 35.96,40.04 35.36,39.70C35.02,39.51 34.50,39.06 34.21,38.70C33.78,38.16 33.56,38.03 32.90,37.94C32.47,37.88 32.00,37.74 31.87,37.62C31.43,37.26 28.45,37.37 27.08,37.80C25.56,38.28 24.78,38.83 22.71,40.89C21.28,42.30 20.95,42.73 20.72,43.45C20.50,44.15 20.48,44.41 20.63,44.75C20.87,45.27 21.09,45.27 22.62,44.74C24.11,44.23 24.45,44.34 25.27,45.58C25.57,46.04 26.17,46.81 26.62,47.30L27.42,48.18L28.86,48.13C30.13,48.09 30.28,48.11 30.16,48.35C29.93,48.78 29.62,48.96 28.92,49.09C28.55,49.16 27.99,49.35 27.67,49.52C27.35,49.69 26.97,49.83 26.82,49.83C26.67,49.83 26.18,50.03 25.73,50.27C25.28,50.51 24.63,50.81 24.28,50.93C23.93,51.06 23.44,51.31 23.18,51.49C22.92,51.67 22.39,51.87 22.00,51.94C21.61,52.00 20.80,52.30 20.21,52.61C19.62,52.92 18.94,53.17 18.70,53.17C17.78,53.17 17.80,53.40 18.75,54.23C19.87,55.20 19.93,55.59 19.05,56.32C18.27,56.96 17.08,57.05 16.58,56.50C16.13,56.00 15.71,56.08 15.58,56.67C15.44,57.32 15.63,57.54 16.71,58.00C17.51,58.35 17.66,58.36 18.91,58.19C19.65,58.08 20.53,58.00 20.88,58.00C21.27,58.00 21.84,57.81 22.39,57.50C22.88,57.23 23.37,57.00 23.48,57.00C23.59,57.00 23.96,56.81 24.30,56.58C24.63,56.35 25.05,56.17 25.22,56.17C25.39,56.17 25.84,55.96 26.22,55.70C28.09,54.44 28.52,54.17 28.65,54.17C28.72,54.17 29.08,53.95 29.44,53.69C29.81,53.42 30.29,53.15 30.51,53.09C30.73,53.02 31.17,52.81 31.48,52.62C32.08,52.26 34.32,51.42 35.42,51.14C36.31,50.92 37.17,51.09 37.17,51.49C37.17,51.65 37.01,51.98 36.82,52.22C36.45,52.70 36.23,53.66 36.40,54.10C36.50,54.35 36.56,54.34 36.94,53.98C37.17,53.76 37.50,53.32 37.67,53.00C37.84,52.68 38.27,52.12 38.64,51.77C39.25,51.18 39.40,51.12 40.28,51.08C40.81,51.06 41.72,50.99 42.29,50.92C43.44,50.78 43.64,50.92 43.43,51.75C43.30,52.28 41.58,53.98 40.89,54.27C40.34,54.50 39.83,55.07 39.83,55.45C39.83,55.81 40.50,55.69 41.03,55.25C41.30,55.02 41.65,54.83 41.80,54.83C42.25,54.82 43.32,54.09 44.35,53.09C45.76,51.73 45.91,51.84 45.23,53.73C44.96,54.51 44.96,54.58 45.25,55.31C45.72,56.48 45.66,57.13 45.03,57.69C44.73,57.95 44.35,58.17 44.18,58.17C43.76,58.17 43.33,58.34 43.33,58.50C43.33,58.57 43.56,58.72 43.83,58.83C44.41,59.07 45.63,58.94 46.46,58.55C46.95,58.32 47.08,58.32 47.71,58.55C48.10,58.69 48.80,58.89 49.27,58.98C49.74,59.08 50.39,59.31 50.70,59.50C51.02,59.68 51.66,59.95 52.12,60.08C52.80,60.29 53.16,60.56 54.11,61.58C54.75,62.27 55.37,62.83 55.48,62.83C55.59,62.83 55.85,62.65 56.05,62.43Z M37.14,59.35C37.38,59.18 37.85,58.92 38.17,58.76C39.59,58.10 39.91,57.79 39.66,57.31C39.57,57.15 39.50,56.81 39.50,56.54C39.50,55.69 38.89,55.41 38.26,55.98C37.60,56.58 37.24,56.57 36.86,55.92C36.41,55.17 35.94,55.15 35.50,55.88C34.99,56.71 35.10,58.68 35.71,59.46C35.95,59.76 36.63,59.71 37.14,59.35Z M69.59,57.89C69.85,57.62 69.84,57.59 69.44,57.29C68.78,56.81 68.82,55.81 69.50,55.31C69.77,55.10 70.00,54.84 70.00,54.72C70.00,54.13 67.74,53.67 66.49,54.00C65.11,54.37 64.76,55.14 65.66,55.80L66.16,56.17L65.83,56.71C65.65,57.01 65.50,57.34 65.50,57.45C65.50,57.84 66.10,58.00 66.94,57.85C67.55,57.73 67.82,57.75 68.07,57.93C68.53,58.25 69.25,58.23 69.59,57.89Z M52.86,55.15C52.72,54.92 52.70,54.74 52.80,54.63C53.04,54.39 53.67,54.78 53.67,55.17C53.67,55.61 53.14,55.60 52.86,55.15Z M50.62,53.20C50.17,52.73 50.00,52.00 50.35,52.00C50.64,52.00 51.70,53.14 51.63,53.37C51.50,53.75 51.08,53.68 50.62,53.20Z M30.75,47.65C30.93,47.43 31.10,47.22 31.12,47.18C31.14,47.14 31.48,47.06 31.87,46.98C32.26,46.91 32.79,46.80 33.04,46.74C33.79,46.56 33.58,46.95 32.68,47.41C32.23,47.64 31.54,47.88 31.14,47.94L30.42,48.05L30.75,47.65Z M52.33,43.86C51.46,43.78 50.91,43.64 50.50,43.38C50.18,43.17 49.62,42.86 49.25,42.68C48.41,42.28 47.28,40.95 46.72,39.71C46.18,38.50 45.99,35.85 46.40,35.17C46.53,34.94 46.79,34.45 46.96,34.08C47.32,33.34 48.87,31.69 49.51,31.38C51.91,30.21 52.54,30.13 54.00,30.81C54.82,31.19 55.51,31.72 56.81,32.99C57.76,33.92 58.77,34.80 59.06,34.94C59.35,35.09 59.81,35.37 60.08,35.58C60.50,35.89 60.88,35.96 62.38,36.05C63.81,36.13 64.30,36.22 64.76,36.50C65.77,37.13 65.65,38.17 64.57,38.17C64.07,38.17 63.80,38.55 63.93,39.07C64.08,39.67 63.75,40.00 62.99,40.00C62.00,40.00 61.83,40.12 61.83,40.84C61.83,41.33 61.73,41.56 61.39,41.82C61.15,42.01 60.86,42.17 60.75,42.17C60.64,42.17 60.42,42.31 60.26,42.49C60.10,42.67 59.73,42.87 59.44,42.93C59.15,42.99 58.58,43.21 58.16,43.42C57.54,43.73 57.04,43.82 55.49,43.88C54.44,43.93 53.02,43.92 52.33,43.86Z M32.56,43.59C32.31,42.92 33.04,42.56 33.58,43.10C33.96,43.48 33.81,43.74 33.19,43.80C32.83,43.84 32.63,43.77 32.56,43.59Z M28.56,41.27C28.20,40.95 28.13,40.81 28.28,40.66C28.43,40.51 28.64,40.55 29.19,40.86C29.58,41.07 29.89,41.32 29.87,41.42C29.81,41.77 29.03,41.68 28.56,41.27Z M44.83,24.28C44.33,24.03 43.99,23.13 44.11,22.33C44.18,21.88 44.09,21.60 43.74,21.08C43.48,20.72 43.22,20.04 43.14,19.59C43.01,18.76 43.01,18.75 43.76,17.99L44.52,17.22L45.89,17.20L47.27,17.18L48.15,17.95C48.97,18.66 49.03,18.77 48.94,19.30C48.89,19.62 48.74,20.00 48.61,20.15C48.19,20.63 47.97,21.62 48.08,22.54C48.18,23.32 48.15,23.46 47.81,23.78C47.05,24.49 45.69,24.72 44.83,24.28Z M47.73,20.26C47.93,19.48 47.22,18.50 46.46,18.50C46.08,18.50 46.06,19.20 46.43,19.51C46.57,19.63 46.65,19.86 46.61,20.03C46.56,20.20 46.65,20.40 46.81,20.50C47.28,20.77 47.63,20.68 47.73,20.26Z"/>
+    <svg class="emblem" viewBox="0 0 200 200" aria-hidden="true">
+      <defs>
+        <filter id="stampInk" x="-12%" y="-12%" width="124%" height="124%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.024" numOctaves="4" seed="7" result="n"/>
+          <feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.9 1.0" result="m"/>
+          <feComposite in="SourceGraphic" in2="m" operator="in" result="ink"/>
+          <feTurbulence type="turbulence" baseFrequency="0.9" numOctaves="1" seed="3" result="g"/>
+          <feDisplacementMap in="ink" in2="g" scale="1.5"/>
+        </filter>
+      </defs>
+      <g filter="url(#stampInk)" fill="none" stroke="currentColor">
+        <rect x="13" y="13" width="174" height="174" stroke-width="6"/>
+        <rect x="22" y="22" width="156" height="156" stroke-width="1.6"/>
+        <line x1="22" y1="54" x2="178" y2="54" stroke-width="1.2"/>
+        <line x1="22" y1="150" x2="178" y2="150" stroke-width="1.2"/>
+        <line x1="100" y1="56" x2="100" y2="148" stroke-width="1"/>
+        <line x1="24" y1="102" x2="176" y2="102" stroke-width="1"/>
+        <g fill="currentColor" stroke="none" font-family="'Noto Serif TC','Songti TC','SimSun',serif" text-anchor="middle">
+          <text x="100" y="44" font-size="13" letter-spacing="4">生產出口准許</text>
+          <text x="125" y="93" font-size="34" font-weight="700">准</text>
+          <text x="125" y="139" font-size="34" font-weight="700">予</text>
+          <text x="75" y="93" font-size="34" font-weight="700">出</text>
+          <text x="75" y="139" font-size="34" font-weight="700">口</text>
+          <text x="100" y="170" font-size="12" letter-spacing="3">臺灣製造 · 1974</text>
+        </g>
+      </g>
     </svg>
     <div class="wrap">
       <span class="ey">OEM / ODM &middot; Garden &amp; field &middot; Since 1974</span>
@@ -892,6 +953,7 @@
     <symbol id="ic-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M6 3.5h3.5l1.5 4.6-2.3 1.6a11.5 11.5 0 0 0 4.9 4.9l1.6-2.3 4.6 1.5V18a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4 5.7 2 2 0 0 1 6 3.5z"/></symbol>
     <symbol id="ic-shovel" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3h5"/><path d="M12 3v10"/><path d="M8 13h8l-1.4 5.4a2.2 2.2 0 0 1-5.2 0L8 13z"/></g></symbol>
     <symbol id="ic-shears" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.3"/><circle cx="6" cy="18" r="2.3"/><path d="M8 7.2L20 18"/><path d="M8 16.8L20 6"/><circle cx="12.4" cy="12" r=".7"/></g></symbol>
+    <symbol id="ic-camera" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l1.4-2.2h7.2L17 8h3v10H4z"/><circle cx="12" cy="13" r="3.3"/></g></symbol>
   </defs></svg>
 
   <!-- ===== WHAT WE MAKE ===== -->
@@ -1042,8 +1104,20 @@
         <div class="clabels"><span>Order placed</span><span>Arrived at port</span></div>
         <div class="kdetail" id="kdetail"><div class="kfade show" id="kfade"></div></div>
       </div>
+      <div class="gal-wrap reveal">
+        <div class="gal-head"><span class="ey">Inside Birdland</span><h3>See the runway for yourself.</h3><p>Our factory, lines, checks and people &mdash; real photos coming soon.</p></div>
+        <div class="gal-grid" id="galGrid"></div>
+        <a class="gal-more" id="galMore" href="#" hidden>View the full album &#8599;</a>
+      </div>
     </div>
   </section>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+    <figure class="lb-fig"><div class="lb-img" id="lbImg"></div><figcaption class="lb-cap" id="lbCap"></figcaption></figure>
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Next">&#8250;</button>
+  </div>
 
   <!-- ===== EQUILIBRIUM SIMULATOR ===== -->
   <section class="equil" id="equilibrium">
@@ -1426,7 +1500,34 @@
       shear.classList.remove('snip');void shear.offsetWidth;shear.classList.add('snip');
       if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
       var c=document.createElement('span');c.className='clip';c.style.top=(shear.style.top||'0px');wrap.appendChild(c);setTimeout(function(){c.remove();},900);
-    },{passive:true});})();
+    },{passive:true});})();  /* GALLERY + lightbox  (paste OneDrive/Cloudinary image URLs into src; album folder link into ALBUM_URL) */
+  (function(){
+    var GAL=[
+      {cap:'Our factory', src:''},
+      {cap:'Metal-tool production line', src:''},
+      {cap:'Quality inspection', src:''},
+      {cap:'Raw materials, locked early', src:''},
+      {cap:'Taiwan + China capacity', src:''},
+      {cap:'Shipping & logistics', src:''},
+      {cap:'Three generations, one team', src:''},
+      {cap:'Standards & certifications', src:''}
+    ];
+    var ALBUM_URL='';
+    var grid=document.getElementById('galGrid');if(!grid)return;
+    GAL.forEach(function(g,i){var c=document.createElement('button');c.className='gal-card'+(g.src?' has-img':'');c.setAttribute('aria-label',g.cap);if(g.src)c.style.backgroundImage='url("'+g.src+'")';
+      c.innerHTML=(g.src?'':'<span class="gal-soon">Coming soon</span>')+'<svg class="gal-ic"><use href="#ic-camera"/></svg><span class="gal-cap">'+g.cap+'</span>';
+      c.addEventListener('click',function(){open(i);});grid.appendChild(c);});
+    var more=document.getElementById('galMore');if(more){if(ALBUM_URL){more.href=ALBUM_URL;more.hidden=false;}}
+    var lb=document.getElementById('lightbox'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap'),cur=0;
+    function show(i){cur=(i+GAL.length)%GAL.length;var g=GAL[cur];if(g.src){img.style.backgroundImage='url("'+g.src+'")';img.textContent='';}else{img.style.backgroundImage='none';img.textContent='Photo coming soon';}cap.textContent=g.cap;}
+    function open(i){show(i);lb.classList.add('open');lb.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+    function close(){lb.classList.remove('open');lb.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+    document.getElementById('lbClose').addEventListener('click',close);
+    document.getElementById('lbPrev').addEventListener('click',function(){show(cur-1);});
+    document.getElementById('lbNext').addEventListener('click',function(){show(cur+1);});
+    lb.addEventListener('click',function(e){if(e.target===lb)close();});
+    document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft')show(cur-1);else if(e.key==='ArrowRight')show(cur+1);});
+  })();
   </script>
 <script>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'en,nl,de,fr,he,pl,it,es,pt,ja',autoDisplay:false},'google_translate_element');}</script>
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
