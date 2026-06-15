@@ -656,6 +656,24 @@
   .cf-block.flash{animation:cfflash 1.9s ease}
   #protect{scroll-margin-top:96px}
   @media(prefers-reduced-motion:reduce){.hero-data::after{animation:none;opacity:.55}.hero-cue{opacity:1;animation:none}.hc-arr{animation:none}.cf-block.flash{animation:none;box-shadow:0 0 0 3px rgba(232,172,128,.55)}}
+
+  /* ===== stacked hero + stronger data attractor ===== */
+  .hero-h1{display:flex;flex-direction:column;align-items:flex-start;gap:.04em}
+  .hero-data{position:relative;display:inline-flex;align-items:center;gap:.35rem;padding:.02em .28em;border-radius:5px;transition:color .25s ease,background .35s ease}
+  .hero-data:hover,.hero-data:focus-visible{background:rgba(168,72,42,.1)}
+  .hd-lock{width:.58em;height:.58em;flex:0 0 auto;color:var(--copper-deep);fill:none;stroke:currentColor;animation:lockpulse 2.2s ease-in-out infinite}
+  @keyframes lockpulse{0%,100%{transform:scale(1);opacity:.78}50%{transform:scale(1.16);opacity:1}}
+
+  /* ===== scroll progress: hedge trimmed by shears ===== */
+  .scrollprog{position:fixed;right:16px;top:50%;transform:translateY(-50%);display:block;width:16px;height:232px;z-index:95;cursor:pointer}
+  .scrollprog::before{display:none}
+  .hedge{position:absolute;inset:0;border-radius:8px;overflow:hidden;background:#1f342a;box-shadow:inset 0 0 0 1px rgba(0,0,0,.25),0 6px 18px -10px rgba(0,0,0,.5)}
+  .hedge::after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 3px 3px, rgba(96,152,116,.65) 1.5px, transparent 2.3px);background-size:6px 6px}
+  .hedge-trim{position:absolute;left:0;right:0;top:0;height:0;background:linear-gradient(#5e8a6e,#3b5e4c);border-bottom:2px solid var(--copper-bright);box-shadow:0 2px 5px -1px rgba(0,0,0,.35);transition:height .12s linear}
+  .shear{position:absolute;left:50%;top:0;width:30px;height:30px;transform:translate(-50%,-50%);color:var(--copper-bright);pointer-events:none;transition:top .12s linear;filter:drop-shadow(0 2px 3px rgba(0,0,0,.45))}
+  .shear svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  @media(max-width:1100px){.scrollprog{display:none}}
+  @media(prefers-reduced-motion:reduce){.hd-lock{animation:none}}
 </style>
 </head>
 <body>
@@ -711,8 +729,7 @@
     </svg>
     <div class="wrap">
       <span class="ey">OEM / ODM &middot; Garden &amp; field &middot; Since 1974</span>
-      <h1 class="hero-h1"><a href="#chain">Your storage ready.</a> <a href="#risk">Your profits steady.</a> <a href="#protect" class="hero-data">Your data protected.<span class="hd-prev" aria-hidden="true"><span class="hd-prev-t">Your plans &mdash; unreadable to competitors</span><svg class="hd-spark" viewBox="0 0 120 46" preserveAspectRatio="none"><polyline points="0,38 20,30 40,34 60,21 80,25 100,11 120,5" fill="none" stroke="#b59f8e" stroke-width="2" stroke-dasharray="4 4"/><polyline points="0,40 20,41 40,39 60,41 80,40 100,41 120,40" fill="none" stroke="#E8AC80" stroke-width="2.6" stroke-linecap="round"/></svg><span class="hd-prev-c">See how the protection gap widens &rarr;</span></span></a><span class="hero-sig">Birdland. Always ready.</span></h1>
-      <a class="hero-cue" href="#protect">see who <i>can&rsquo;t</i> see your products <span class="hc-arr">&darr;</span></a>
+      <h1 class="hero-h1"><a href="#chain">Your storage ready.</a><a href="#risk">Your profits steady.</a><a href="#protect" class="hero-data">Your supply data protected.<svg class="hd-lock" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-lock"/></svg><span class="hd-prev" aria-hidden="true"><span class="hd-prev-t">Your plans &mdash; unreadable to competitors</span><svg class="hd-spark" viewBox="0 0 120 46" preserveAspectRatio="none"><polyline points="0,38 20,30 40,34 60,21 80,25 100,11 120,5" fill="none" stroke="#b59f8e" stroke-width="2" stroke-dasharray="4 4"/><polyline points="0,40 20,41 40,39 60,41 80,40 100,41 120,40" fill="none" stroke="#E8AC80" stroke-width="2.6" stroke-linecap="round"/></svg><span class="hd-prev-c">See how the protection gap widens &rarr;</span></span></a><span class="hero-sig">Birdland. Always ready.</span></h1>
       <div class="metalbar"></div>
       <p class="sub" style="margin-top:1.5rem">Dual-country production across Taiwan and China, stable delivery and full confidentiality &mdash; for garden and field brands and distributors in Europe, the Commonwealth and the Americas.</p>
       <div class="trust">180+ brands &middot; 37 markets &middot; three generations</div>
@@ -723,7 +740,7 @@
     </div>
   </section>
 
-  <div class="scrollprog"><span class="sp-fill" id="spFill"></span></div>
+  <div class="scrollprog" aria-label="Page progress"><div class="hedge"><div class="hedge-trim" id="spTrim"></div></div><div class="shear" id="spShear"><svg viewBox="0 0 24 24"><use href="#ic-shears"/></svg></div></div>
 
   <!-- ===== HERITAGE ===== -->
   <section class="heritage" id="heritage">
@@ -1344,13 +1361,10 @@
   /* CYCLE shovel/shears nav */
   (function(){var cd=document.getElementById('cycDots'),pv=document.getElementById('cycPrev'),nx=document.getElementById('cycNext');if(!cd||!pv||!nx)return;
     function step(d){var b=[].slice.call(cd.querySelectorAll('button'));if(!b.length)return;var c=b.findIndex(function(x){return x.getAttribute('aria-current')==='true';});if(c<0)c=0;b[(c+d+b.length)%b.length].click();}
-    pv.addEventListener('click',function(){step(-1);});nx.addEventListener('click',function(){step(1);});})();  /* SIDE SCROLL PROGRESS */
-  (function(){var wrap=document.querySelector('.scrollprog'),fill=document.getElementById('spFill');if(!wrap||!fill)return;
-    var secs=['heritage','proof','make','catalogue','why','risk','chain','enquiry'],ids=[];
-    secs.forEach(function(id){var el=document.getElementById(id);if(!el)return;ids.push(id);var b=document.createElement('button');b.className='sp-dot';b.setAttribute('aria-label','Go to '+id);b.addEventListener('click',function(){el.scrollIntoView({behavior:'smooth'});});wrap.appendChild(b);});
-    var dots=[].slice.call(wrap.querySelectorAll('.sp-dot'));
-    function upd(){var st=window.scrollY||document.documentElement.scrollTop,docH=document.documentElement.scrollHeight-innerHeight,pct=docH>0?Math.min(1,Math.max(0,st/docH)):0;fill.style.height=(pct*wrap.offsetHeight)+'px';
-      var mid=st+innerHeight*0.35,act=0;ids.forEach(function(id,i){var el=document.getElementById(id);if(el&&el.offsetTop<=mid)act=i;});dots.forEach(function(d,i){d.classList.toggle('on',i===act);});}
+    pv.addEventListener('click',function(){step(-1);});nx.addEventListener('click',function(){step(1);});})();  /* SIDE SCROLL PROGRESS — hedge & shears */
+  (function(){var wrap=document.querySelector('.scrollprog'),trim=document.getElementById('spTrim'),shear=document.getElementById('spShear');if(!wrap||!trim||!shear)return;
+    function upd(){var st=scrollY||document.documentElement.scrollTop,docH=document.documentElement.scrollHeight-innerHeight,pct=docH>0?Math.min(1,Math.max(0,st/docH)):0,H=wrap.clientHeight;trim.style.height=(pct*H)+'px';shear.style.top=(pct*H)+'px';}
+    wrap.addEventListener('click',function(e){var r=wrap.getBoundingClientRect(),f=Math.min(1,Math.max(0,(e.clientY-r.top)/r.height)),docH=document.documentElement.scrollHeight-innerHeight;window.scrollTo({top:f*docH,behavior:'smooth'});});
     addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();})();  /* PROTECT landing flash */
   (function(){function flash(){var el=document.getElementById('protect');if(!el)return;el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash');setTimeout(function(){el.classList.remove('flash');},1900);}
     document.addEventListener('click',function(e){if(e.target.closest('a[href="#protect"]'))setTimeout(flash,520);});
