@@ -1035,6 +1035,21 @@
     .gal-grid{clip-path:none}
     .totop{transition:none}
   }
+
+  /* ===== scroll progress: long-handled spade digging a hole ===== */
+  .scrollprog{position:fixed;right:16px;top:50%;transform:translateY(-50%);display:block;width:20px;height:300px;z-index:95}
+  .scrollprog::before{display:none}
+  .dig-track{position:absolute;inset:0;border-radius:7px;overflow:hidden;background:linear-gradient(#2a2018,#16100a);box-shadow:inset 0 0 0 1px rgba(232,201,168,.18),0 0 0 1.5px rgba(168,72,42,.6),0 8px 20px -8px rgba(0,0,0,.55),inset 0 7px 9px -5px rgba(0,0,0,.7)}
+  .dig-earth{position:absolute;left:0;right:0;bottom:0;height:100%;background:linear-gradient(#7d5a37,#553c24);transition:height .14s linear}
+  .dig-earth::after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 3px 3px, rgba(38,22,10,.55) 1.4px, transparent 2.3px);background-size:6px 6px;opacity:.6}
+  .dig-earth::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(rgba(122,92,56,.95),transparent)}
+  .dig-spade{position:absolute;left:50%;top:0;width:30px;height:34px;transform:translate(-50%,-60%);z-index:3;pointer-events:none;transition:top .14s linear;filter:drop-shadow(0 2px 3px rgba(0,0,0,.5))}
+  .dig-spade svg{width:100%;height:100%;display:block}
+  .dig-spade.jab{animation:digjab .3s ease}
+  @keyframes digjab{0%{transform:translate(-50%,-60%) rotate(0)}40%{transform:translate(-50%,-44%) rotate(4deg)}100%{transform:translate(-50%,-60%) rotate(0)}}
+  .digdirt{position:fixed;border-radius:50% 50% 45% 55%;pointer-events:none;z-index:96}
+  @media(max-width:1100px){.scrollprog{display:none}}
+  @media(prefers-reduced-motion:reduce){.dig-spade.jab{animation:none}.dig-earth,.dig-spade{transition:none}}
 </style>
 </head>
 <body>
@@ -1120,7 +1135,7 @@
     </div>
   </section>
 
-  <div class="scrollprog" aria-label="Page progress"><div class="hedge" id="spHedge"></div><div class="sp-icons" id="spIcons"></div><div class="shear" id="spShear"><svg viewBox="0 0 24 24"><use href="#ic-shears"/></svg></div></div>
+  <div class="scrollprog" aria-label="Page progress"><div class="dig-track"><div class="dig-earth" id="digEarth"></div></div><div class="dig-spade" id="digSpade"><svg viewBox="0 0 24 32" aria-hidden="true"><defs><linearGradient id="digg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E8AC80"/><stop offset="1" stop-color="#A8482A"/></linearGradient></defs><path d="M8.5 3.4 Q12 -0.2 15.5 3.4" fill="none" stroke="#9a6a44" stroke-width="2.6" stroke-linecap="round"/><rect x="10.6" y="2.6" width="2.8" height="14.4" rx="1.4" fill="#9a6a44"/><rect x="9" y="15.6" width="6" height="2.1" rx="1" fill="#7a3a22"/><path d="M8 17.6 L16 17.6 L15.2 27 Q12 30.6 8.8 27 Z" fill="url(#digg)" stroke="#7a3a22" stroke-width=".5"/></svg></div></div>
 
   <!-- ===== HERITAGE ===== -->
   <section class="heritage" id="heritage">
@@ -1852,6 +1867,22 @@
   /* N3 hero scroll hint */
   (function(){var hero=document.querySelector('.hero');if(!hero)return;var h=document.createElement('div');h.className='scrollhint';h.innerHTML='<span>Scroll</span><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>';hero.appendChild(h);
     addEventListener('scroll',function(){h.classList.toggle('hide',(window.scrollY||0)>120);},{passive:true});})();
+  /* scroll progress: spade digs a hole + dirt scatter */
+  (function(){var earth=document.getElementById('digEarth'),spade=document.getElementById('digSpade'),wrap=document.querySelector('.scrollprog');
+    if(!earth||!spade||!wrap)return;
+    var reduceM=matchMedia('(prefers-reduced-motion:reduce)').matches,tick=false,lastP=0,lastD=0;
+    var COL=['#6e4a2f','#5c3d27','#7a5436','#664326'];
+    function dirt(cx,cy){var n=2+(Math.random()*2|0);for(var i=0;i<n;i++){(function(){var d=document.createElement('div');var s=3+Math.random()*3;d.className='digdirt';d.style.width=d.style.height=s+'px';d.style.left=cx+'px';d.style.top=cy+'px';d.style.background=COL[Math.random()*COL.length|0];document.body.appendChild(d);
+      var dx=(Math.random()*2-1)*20,up=6+Math.random()*14,dur=420+Math.random()*260;function g(){if(d.parentNode)d.parentNode.removeChild(d);}
+      try{var a=d.animate([{transform:'translate(-50%,-50%)',opacity:1},{transform:'translate(-50%,-50%) translate('+(dx|0)+'px,'+(-up|0)+'px)',opacity:1,offset:.4},{transform:'translate(-50%,-50%) translate('+((dx*1.4)|0)+'px,'+((up+14)|0)+'px)',opacity:0}],{duration:dur,easing:'cubic-bezier(.3,.5,.5,1)',fill:'forwards'});a.onfinish=g;}catch(e){g();}setTimeout(g,dur+260);})();}}
+    function jab(){spade.classList.remove('jab');void spade.offsetWidth;spade.classList.add('jab');}
+    function calc(){tick=false;var h=document.documentElement,st=h.scrollTop||window.scrollY||0,max=h.scrollHeight-h.clientHeight,p=max>0?Math.min(st/max,1):0;
+      earth.style.height=((1-p)*100).toFixed(2)+'%';spade.style.top=(p*100).toFixed(2)+'%';
+      var now=Date.now();
+      if(!reduceM&&Math.abs(p-lastP)>0.003&&now-lastD>70){jab();var r=wrap.getBoundingClientRect();dirt(r.left+r.width/2,r.top+p*r.height+5);lastD=now;}
+      lastP=p;}
+    function on(){if(!tick){tick=true;requestAnimationFrame(calc);}}
+    addEventListener('scroll',on,{passive:true});addEventListener('resize',on);calc();})();
   </script>
 <script>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'en,nl,de,fr,he,pl,it,es,pt,ja',autoDisplay:false},'google_translate_element');}</script>
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
