@@ -785,10 +785,10 @@
   @keyframes pmIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
   /* ===== heritage principles -> flip cards ===== */
-  .heritage .pcol.flip{border:none;padding:0;background:none;perspective:1300px;cursor:pointer;text-align:left;font:inherit;min-height:clamp(244px,40vw,270px)}
+  .heritage .pcol.flip{border:none;padding:0;background:none;perspective:1300px;cursor:pointer;text-align:left;font:inherit;min-height:clamp(272px,50vw,304px)}
   .pflip{position:relative;width:100%;height:100%;min-height:inherit;transform-style:preserve-3d;transition:transform .75s cubic-bezier(.22,.8,.28,1)}
   .pcol.flip.flipped .pflip{transform:rotateY(180deg)}
-  .pface{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;padding:1.7rem 1.6rem;border-radius:4px;border:1px solid rgba(224,151,106,.28);overflow:hidden}
+  .pface{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;padding:1.5rem 1.45rem;border-radius:4px;border:1px solid rgba(224,151,106,.28);overflow:visible}
   .pface.front{background:linear-gradient(160deg,rgba(242,236,221,.07),rgba(255,255,255,.02))}
   .pface.back{background:linear-gradient(155deg,rgba(224,151,106,.20),rgba(33,55,43,.58));transform:rotateY(180deg)}
   .pface .pn{margin-bottom:.15rem}
@@ -798,7 +798,7 @@
   .bface li{color:var(--paper);font-size:1rem;line-height:1.32;display:flex;gap:.55rem}
   .bface li::before{content:"";flex:0 0 auto;width:.42rem;height:.42rem;margin-top:.42rem;background:var(--copper-bright);transform:rotate(45deg)}
   .pcol.flip:hover .pface.front{border-color:rgba(224,151,106,.55)}
-  @media(max-width:760px){.pgrid{grid-template-columns:1fr}.heritage .pcol.flip{min-height:200px}}
+  @media(max-width:760px){.pgrid{grid-template-columns:1fr}.heritage .pcol.flip{min-height:236px}}
 
   /* ===== tabs: what we make ===== */
   .tabs{margin-top:1.8rem}
@@ -853,6 +853,84 @@
   .kfade.show .kpct{animation:kpop .55s cubic-bezier(.2,.8,.3,1)}
   @keyframes kpop{0%{transform:scale(.55);opacity:0}60%{transform:scale(1.14)}100%{transform:scale(1);opacity:1}}
   @media(prefers-reduced-motion:reduce){.knode.current .dot::after{animation:none}.kfade.show .kpct{animation:none}.cfill::after{transition:none}}
+
+  /* legend clarity */
+  .cf-legend{gap:1.5rem}
+  .cf-legend .lgi{display:inline-flex;align-items:center;gap:.5rem}
+  .cf-legend .lg-ex{margin-left:0}
+  /* why card wipe-reveal (3rd expand style) */
+  .wb-toggle{display:inline-flex;align-items:center;gap:.4rem;margin-top:1rem;background:none;border:none;padding:0;cursor:pointer;font:600 .74rem var(--sans);letter-spacing:.13em;text-transform:uppercase;color:var(--copper-deep);transition:color .25s}
+  .wb-toggle:hover{color:var(--copper)}
+  .wb-arrow{display:inline-block;transition:transform .45s cubic-bezier(.22,.8,.28,1)}
+  .wbcard.open .wb-arrow{transform:rotate(90deg)}
+  .wb-more{clip-path:inset(0 100% 0 0);max-height:0;opacity:0;overflow:hidden;transition:clip-path .6s cubic-bezier(.22,.8,.28,1),max-height .5s ease,opacity .4s ease,margin-top .4s ease}
+  .wb-more p{font-size:.98rem;color:var(--ink-soft);line-height:1.5;border-left:2px solid var(--copper);padding-left:.85rem}
+  .wbcard.open .wb-more{clip-path:inset(0 0 0 0);max-height:180px;opacity:1;margin-top:.7rem}
+  /* hero stacked-line: underline draw + float */
+  .hero-h1 a{position:relative;align-self:flex-start}
+  .hero-h1 a::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--cu-plate);transform:scaleX(0);transform-origin:left;transition:transform .55s cubic-bezier(.22,.8,.28,1)}
+  .hero-h1 a:hover::after,.hero-h1 a:focus-visible::after{transform:scaleX(1)}
+  .hero-h1 a:not(.hero-data):hover{transform:translateX(6px)}
+  @media(prefers-reduced-motion:reduce){
+    .wb-more{transition:none}
+    .hero-h1 a::after{transition:none}
+    .hero-h1 a:not(.hero-data):hover{transform:none}
+    #cfSvg circle,#cfSvg line,#cfSvg text{transition:none!important}
+  }
+
+  /* ===== risk: auto-cycling comparison ===== */
+  .riskcmp{margin-top:2.6rem;max-width:780px}
+  .rc-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.8rem}
+  .rc-chip{border:1px solid var(--line);background:var(--paper);color:var(--ink-soft);border-radius:30px;padding:.42rem .85rem;font:600 .78rem var(--sans);cursor:pointer;transition:background .3s,color .3s,border-color .3s}
+  .rc-chip:hover{border-color:var(--copper);color:var(--copper-deep)}
+  .rc-chip.on{background:var(--cu-plate);color:#2A150A;border-color:transparent}
+  .rc-stage{border:1px solid var(--line-cop);background:var(--paper2);padding:clamp(1.6rem,3.5vw,2.4rem);border-radius:4px}
+  .rc-name{font-family:var(--serif);font-size:clamp(1.6rem,3.4vw,2.3rem);color:var(--jade-deep);display:block;line-height:1.12}
+  .rc-note{margin-top:.5rem;color:var(--ink-soft);font-weight:300;font-size:1.05rem;max-width:54ch}
+  .rc-bars{margin-top:1.9rem;display:flex;flex-direction:column;gap:1rem}
+  .rc-row{display:grid;grid-template-columns:148px 1fr 42px;align-items:center;gap:1rem}
+  .rc-lab{font:600 .8rem var(--sans);letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase}
+  .rc-track{position:relative;height:16px;background:rgba(36,31,24,.07);border-radius:8px;overflow:hidden}
+  .rc-fill{position:absolute;left:0;top:0;height:100%;width:0;border-radius:8px;transition:width .75s cubic-bezier(.2,.7,.2,1)}
+  .rc-avg{background:linear-gradient(90deg,#cdbfa6,#a89a7e)}
+  .rc-bird{background:linear-gradient(90deg,var(--jade),var(--copper))}
+  .rc-val{font-family:var(--serif);font-size:1.2rem;font-weight:600;text-align:right}
+  .rc-val-a{color:#9b8f70}.rc-val-b{color:var(--jade-deep);font-size:1.35rem}
+  .rc-delta{margin-top:1.9rem;display:flex;align-items:baseline;gap:.65rem;border-top:1px solid var(--line);padding-top:1.4rem}
+  .rc-delta b{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3rem);color:var(--copper-deep);line-height:1}
+  .rc-delta span{color:var(--ink-soft);font-weight:300}
+  .rc-scale{margin-top:1.2rem;font-size:.8rem;letter-spacing:.04em;color:#9b8f70}
+  @media(max-width:620px){.rc-row{grid-template-columns:1fr 42px}.rc-lab{grid-column:1 / -1;margin-bottom:-.35rem}}
+  @media(prefers-reduced-motion:reduce){.rc-fill{transition:none}.rc-chip{transition:none}}
+
+  /* refined stat reveal */
+  .hstat .cl{opacity:0;transform:translateY(7px);transition:opacity .6s ease,transform .6s ease}
+  .hstat .cl.show{opacity:1;transform:none}
+  .cnum.done{animation:numPop .55s cubic-bezier(.2,.8,.3,1)}
+  @keyframes numPop{0%{transform:scale(1)}45%{transform:scale(1.09)}100%{transform:scale(1)}}
+  /* eyebrow dash draw-in */
+  .ey::before{transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.22,.8,.28,1)}
+  .ey.drawn::before{transform:scaleX(1)}
+  /* gallery card tilt */
+  .gal-card{transform-style:preserve-3d;will-change:transform}
+  @media(prefers-reduced-motion:reduce){
+    .hstat .cl{opacity:1;transform:none;transition:none}
+    .cnum.done{animation:none}
+    .ey::before{transform:none;transition:none}
+  }
+
+  /* section h2 copper underline draw */
+  .sec-head h2,.heritage h2,.cat h2{position:relative}
+  .sec-head h2::after,.heritage h2::after,.cat h2::after{content:"";position:absolute;left:0;bottom:-.4rem;height:2px;width:62px;background:var(--cu-plate);transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.22,.8,.28,1) .12s}
+  .sec-head h2.drawn2::after,.heritage h2.drawn2::after,.cat h2.drawn2::after{transform:scaleX(1)}
+  .rc-row-bird .rc-track{height:18px}
+  /* CTA band flowing glow */
+  .cuband::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(120% 150% at 18% 0%,rgba(255,243,224,.30),transparent 55%);animation:bandglow 9s ease-in-out infinite}
+  @keyframes bandglow{0%{transform:translateX(-10%)}50%{transform:translateX(10%)}100%{transform:translateX(-10%)}}
+  @media(prefers-reduced-motion:reduce){
+    .sec-head h2::after,.heritage h2::after,.cat h2::after{transform:none;transition:none}
+    .cuband::before{animation:none}
+  }
 </style>
 </head>
 <body>
@@ -961,19 +1039,19 @@
       <div class="pgrid reveal reveal-stagger">
         <button class="pcol flip" type="button" aria-label="Never competes — tap for detail">
           <div class="pflip">
-            <div class="pface front"><div class="pn metal-d">01</div><h3><svg class="ic"><use href="#ic-shield"/></svg>Never competes</h3><p>We hold no brand of our own &mdash; your designs and markets stay entirely yours.</p><span class="flip-hint">Tap to see how &#8594;</span></div>
+            <div class="pface front"><div class="pn metal-d">01</div><h3><svg class="ic"><use href="#ic-shield"/></svg>Never competes</h3><p>We hold no brand of our own &mdash; your designs and markets stay entirely yours.</p></div>
             <div class="pface back"><h4>In practice</h4><ul class="bface"><li>No own-brand range to rival you</li><li>Your tooling &amp; designs stay yours</li><li>Confidential by default</li></ul></div>
           </div>
         </button>
         <button class="pcol flip" type="button" aria-label="Always delivers — tap for detail">
           <div class="pflip">
-            <div class="pface front"><div class="pn metal-d">02</div><h3><svg class="ic"><use href="#ic-deliver"/></svg>Always delivers</h3><p>Two production countries and freight booked early keep your supply moving.</p><span class="flip-hint">Tap to see how &#8594;</span></div>
+            <div class="pface front"><div class="pn metal-d">02</div><h3><svg class="ic"><use href="#ic-deliver"/></svg>Always delivers</h3><p>Two production countries and freight booked early keep your supply moving.</p></div>
             <div class="pface back"><h4>In practice</h4><ul class="bface"><li>Backup production across two countries</li><li>Capacity reserved before your season</li><li>Freight booked early, papers ready</li></ul></div>
           </div>
         </button>
         <button class="pcol flip" type="button" aria-label="Minimise risk — tap for detail">
           <div class="pflip">
-            <div class="pface front"><div class="pn metal-d">03</div><h3><svg class="ic"><use href="#ic-layers"/></svg>Minimise risk</h3><p>Key materials locked upstream; documents kept to EU / US / AU rules.</p><span class="flip-hint">Tap to see how &#8594;</span></div>
+            <div class="pface front"><div class="pn metal-d">03</div><h3><svg class="ic"><use href="#ic-layers"/></svg>Minimise risk</h3><p>Key materials locked upstream; documents kept to EU / US / AU rules.</p></div>
             <div class="pface back"><h4>In practice</h4><ul class="bface"><li>Taiwan + China production bases</li><li>Upstream control on key materials</li><li>Docs to EU / US / AU rules</li></ul></div>
           </div>
         </button>
@@ -1018,7 +1096,6 @@
           <figcaption>&mdash; EU distributor &middot; multi-country operations</figcaption>
         </figure>
       </div>
-            <div class="cta-row" style="margin-top:2.6rem"><a class="btn btn-pri" href="#enquiry">Contact the maker team &rarr;</a></div>
     </div>
   </section>
 
@@ -1055,7 +1132,6 @@
           <div class="tab-panel" data-panel="field"><ul class="makelist"><li>Feeders &amp; decoys</li><li>Blinds &amp; outdoor equipment</li><li>Gun-dog gear &mdash; magnetic-buckle leashes &amp; vests</li><li>Field accessories</li></ul></div>
         </div>
       </div>
-      <div class="cta-row" style="margin-top:2rem"><a class="btn btn-pri" href="#enquiry">Discuss your product &rarr;</a></div>
     </div>
   </section>
 
@@ -1078,8 +1154,8 @@
         <div class="cf-chart">
           <svg id="cfSvg" viewBox="0 0 720 340" role="img" aria-label="Protection gap widening year by year"></svg>
           <div class="cf-read">
-            <div class="cf-legend"><span class="lg lg-cu"></span>With Birdland<span class="lg lg-ex"></span>Without a confidential maker</div>
-            <div class="cf-elab" id="cfElab">Protection gap</div>
+            <div class="cf-legend"><span class="lgi"><span class="lg lg-cu"></span>With Birdland &mdash; protected</span><span class="lgi"><span class="lg lg-ex"></span>Without a confidential maker &mdash; exposed</span></div>
+            <div class="cf-elab" id="cfElab">Competitive-exposure gap</div>
             <div class="cf-enum" id="cfEnum">+0</div>
             <div class="cf-note" id="cfNote"></div>
           </div>
@@ -1097,17 +1173,34 @@
         <div class="wbcard reveal">
           <div class="wb-ic"><svg class="ic"><use href="#ic-shield"/></svg></div>
           <div class="wb-worry">Could your maker compete with you?</div>
-          <p class="wb-ans"><b>Birdland:</b> we hold no brand of our own and guard your information &mdash; in over 50 years, <span class="mk">never once a competitor to our clients</span>.</p><div class="wb-data">50+ yrs &middot; 0 client conflicts</div>
+          <p class="wb-ans"><b>Birdland:</b> we hold no brand of our own and guard your information &mdash; in over 50 years, <span class="mk">never once a competitor to our clients</span>.</p>
+          <div class="wb-data">50+ yrs &middot; 0 client conflicts</div>
+          <button class="wb-toggle" type="button" aria-expanded="false">How we do it <span class="wb-arrow">&rarr;</span></button>
+          <div class="wb-more"><p>No own-brand range, ever. Your designs, tooling and customer list stay locked to your account.</p></div>
         </div>
         <div class="wbcard reveal">
           <div class="wb-ic"><svg class="ic"><use href="#ic-globe"/></svg></div>
           <div class="wb-worry">What if one country is disrupted?</div>
-          <p class="wb-ans"><b>Birdland:</b> we produce across Taiwan and China and book freight early &mdash; if one route is hit, <span class="mk">your supply keeps moving</span>.</p><div class="wb-data">2 production countries</div>
+          <p class="wb-ans"><b>Birdland:</b> we produce across Taiwan and China and book freight early &mdash; if one route is hit, <span class="mk">your supply keeps moving</span>.</p>
+          <div class="wb-data">2 production countries</div>
+          <button class="wb-toggle" type="button" aria-expanded="false">How we do it <span class="wb-arrow">&rarr;</span></button>
+          <div class="wb-more"><p>Two bases plus freight booked ahead; if one route stalls, your order ships from the other.</p></div>
+        </div>
+        <div class="wbcard reveal">
+          <div class="wb-ic"><svg class="ic"><use href="#ic-cost"/></svg></div>
+          <div class="wb-worry">Are your input costs stable?</div>
+          <p class="wb-ans"><b>Birdland:</b> we lock key materials upstream &mdash; with your agreement &mdash; <span class="mk">before the market moves</span>.</p>
+          <div class="wb-data">Key inputs locked upstream</div>
+          <button class="wb-toggle" type="button" aria-expanded="false">How we do it <span class="wb-arrow">&rarr;</span></button>
+          <div class="wb-more"><p>Key inputs secured ahead of demand, so sudden price spikes don&rsquo;t reach your costing.</p></div>
         </div>
         <div class="wbcard reveal">
           <div class="wb-ic"><svg class="ic"><use href="#ic-doc"/></svg></div>
           <div class="wb-worry">Can they meet your market&rsquo;s rules?</div>
-          <p class="wb-ans"><b>Birdland:</b> documentation prepared to <span class="mk">EU / US / Australian requirements</span>, and adapted as the rules change.</p><div class="wb-data">3 standards &middot; EU / US / AU</div>
+          <p class="wb-ans"><b>Birdland:</b> documentation prepared to <span class="mk">EU / US / Australian requirements</span>, and adapted as the rules change.</p>
+          <div class="wb-data">3 standards &middot; EU / US / AU</div>
+          <button class="wb-toggle" type="button" aria-expanded="false">How we do it <span class="wb-arrow">&rarr;</span></button>
+          <div class="wb-more"><p>We prepare and refresh documents to each market&rsquo;s current rules, so your customs clearance stays smooth.</p></div>
         </div>
       </div>
       <div class="cta-row" style="margin-top:2.6rem"><a class="btn btn-pri" href="#enquiry">Get a quotation &rarr;</a></div>
@@ -1119,34 +1212,21 @@
 
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="ey">Taken apart, layer by layer</span>
+        <span class="ey">Average supplier vs Birdland</span>
         <h2>The risk and cost a distributor carries — and how we lift it away.</h2>
-        <p>Switch on each thing Birdland brings. The dashed line is where you started; watch how much we remove.</p>
+        <p>How well your supply is covered, risk by risk &mdash; Birdland against the average supplier. The comparison cycles; tap one to hold it.</p>
       </div>
-      <div class="risk-grid">
-        <div class="caps reveal" id="caps"></div>
-        <div class="reveal">
-          <div class="gauge">
-            <div class="donutwrap">
-              <svg class="donut" viewBox="0 0 120 120" role="img" aria-label="Risk exposure versus risk lifted away">
-                <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(36,31,24,.12)" stroke-width="15"/>
-                <circle id="donutArc" cx="60" cy="60" r="50" fill="none" stroke="#BE7A52" stroke-width="15" stroke-linecap="round" transform="rotate(-90 60 60)" stroke-dasharray="314.2 314.2"/>
-                <text id="donutPct" x="60" y="58" text-anchor="middle" class="donut-pct">100</text>
-                <text x="60" y="76" text-anchor="middle" class="donut-sub">RISK LEFT</text>
-              </svg>
-              <div class="donutlegend">
-                <div><span class="dl dl-exp"></span>Risk remaining <b id="expNum">100</b></div>
-                <div><span class="dl dl-lift"></span>Risk lifted away <b id="liftNum">0</b></div>
-                <div class="costline">Cost index <b id="costPct">100</b></div>
-                <div class="costbar"><i id="costFill"></i></div>
-              </div>
-            </div>
+      <div class="riskcmp reveal" id="riskCmp">
+        <div class="rc-chips" id="rcChips"></div>
+        <div class="rc-stage">
+          <div class="rc-head"><span class="rc-name" id="rcName"></span><p class="rc-note" id="rcNote"></p></div>
+          <div class="rc-bars">
+            <div class="rc-row rc-row-bird"><span class="rc-lab">With Birdland</span><div class="rc-track"><i class="rc-fill rc-bird" id="rcBird"></i></div><span class="rc-val rc-val-b" id="rcBirdV">0</span></div>
+            <div class="rc-row"><span class="rc-lab">Average supplier</span><div class="rc-track"><i class="rc-fill rc-avg" id="rcAvg"></i></div><span class="rc-val rc-val-a" id="rcAvgV">0</span></div>
           </div>
-          <div class="tower-wrap" id="towerWrap">
-            <div class="tower" id="tower"></div>
-            <div class="rbase"><span class="rl">Baseline — some risk always remains. We make it small.</span></div>
-          </div>
+          <div class="rc-delta"><b id="rcDelta">0</b><span>points more cover than the average supplier</span></div>
         </div>
+        <div class="rc-scale">Supply-resilience score &middot; 0 = exposed, 100 = fully covered &middot; auto-cycling — tap a risk to hold</div>
       </div>
     </div>
   </section>
@@ -1157,11 +1237,11 @@
       <div class="sec-head reveal">
         <span class="ey">One chain · a season ahead</span>
         <h2>Our advantage at every link of your runway.</h2>
-        <p>Drag along the journey &mdash; from the day you order to arrival at your port.</p>
+        <p>Drag along the journey &mdash; from the day you order to the day it&rsquo;s loaded on board, FOB.</p>
       </div>
       <div class="reveal">
         <div class="ctrack"><div class="cbg"></div><div class="cfill" id="cFill"></div><div class="cnodes" id="cNodes"></div><input type="range" class="cslider" id="cSlider" min="0" max="100" value="0" step="1" aria-label="Drag from order placed to arrival"></div>
-        <div class="clabels"><span>Order placed</span><span>Arrived at port</span></div>
+        <div class="clabels"><span>Order placed</span><span>On board &middot; FOB</span></div>
         <div class="kdetail" id="kdetail"><div class="kfade show" id="kfade"></div></div>
       </div>
       <div class="gal-wrap reveal">
@@ -1274,9 +1354,12 @@
   var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll('.cnum').forEach(runCount);io2.unobserve(e.target);}});},{threshold:.2});
   var hst=document.querySelector('.hstats');if(hst)io2.observe(hst);
   function runCount(el){
-    if(!el||el.dataset.target===undefined)return;var t=parseInt(el.dataset.target,10);if(isNaN(t))return;
-    var sfx=el.dataset.suffix||'',d=1500,s=null;if(reduce){el.textContent=t+sfx;return;}
-    function step(ts){if(!s)s=ts;var p=Math.min((ts-s)/d,1);el.textContent=Math.floor(p*t)+sfx;if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);
+    if(!el||el.dataset.target===undefined||el.dataset.counted)return;el.dataset.counted='1';
+    var t=parseInt(el.dataset.target,10);if(isNaN(t))return;var sfx=el.dataset.suffix||'',lab=el.nextElementSibling,d=1600,s=null;
+    function done(){if(sfx)el.textContent=t+sfx;el.classList.add('done');if(lab)lab.classList.add('show');}
+    if(reduce){el.textContent=t+sfx;el.classList.add('done');if(lab)lab.classList.add('show');return;}
+    function step(ts){if(!s)s=ts;var p=Math.min((ts-s)/d,1),e=1-Math.pow(1-p,3);el.textContent=Math.floor(e*t);if(p<1)requestAnimationFrame(step);else done();}
+    requestAnimationFrame(step);
   }
 
   /* CYCLE (section removed — guarded) */
@@ -1310,43 +1393,46 @@
     paint();restart();
   })();
 
-  /* RISK */
+  /* RISK — auto-cycling Average-supplier-vs-Birdland resilience */
   (function(){
-    var layers=[{id:'stock',l:'Stock-outs in peak season',w:18},{id:'cost',l:'Freight & material cost swings',w:16},{id:'comp',l:'EU / US / AU compliance',w:14},{id:'geo',l:'Single-country dependence',w:14},{id:'qual',l:'Quality inconsistency',w:12},{id:'chan',l:'Channel & IP conflict',w:10},{id:'cap',l:'No design / factory of your own',w:8}];
-    var caps=[{id:'season',l:'Ready a season ahead',layer:'stock',cost:4},{id:'upstream',l:'We lock materials upstream',layer:'cost',cost:10},{id:'reg',l:'Compliance, handled',layer:'comp',cost:2},{id:'bases',l:'Taiwan + China — two bases',layer:'geo',cost:5},{id:'vertical',l:'One maker, start to finish',layer:'qual',cost:9},{id:'nocomp',l:'We never compete with you',layer:'chan',cost:1},{id:'oemodm',l:'OEM / ODM — your design or ours',layer:'cap',cost:5},{id:'horiz',l:'Whole range, one partner',layer:null,cost:6}];
-    var on={},capsEl=document.getElementById('caps'),towerEl=document.getElementById('tower'),towerWrap=document.getElementById('towerWrap'),fullH=0;
-    layers.forEach(function(L){var h=L.w*3.2+14;fullH+=h+5;var d=document.createElement('div');d.className='rlayer';d.id='L-'+L.id;d.style.height=h+'px';d.innerHTML='<span class="rl">'+L.l+'</span>';towerEl.appendChild(d);});
-    towerWrap.style.minHeight=(fullH+60)+'px';
-    caps.forEach(function(c){var b=document.createElement('button');b.className='cap';b.setAttribute('aria-pressed','false');
-      b.innerHTML='<span class="cx"><svg viewBox="0 0 24 24" fill="none" stroke="#241F18" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span>'+c.l+'</span>';
-      b.addEventListener('click',function(){on[c.id]=!on[c.id];b.setAttribute('aria-pressed',!!on[c.id]);if(c.layer){var s=document.getElementById('L-'+c.layer);if(s)s.classList.toggle('gone',!!on[c.id]);}recalc();});capsEl.appendChild(b);});
-    var allb=document.createElement('button');allb.className='allbtn';allb.textContent='Lift it all away — the Birdland standard';
-    allb.addEventListener('click',function(){var allOn=caps.every(function(c){return on[c.id];});caps.forEach(function(c){on[c.id]=!allOn;});capsEl.querySelectorAll('.cap').forEach(function(b){b.setAttribute('aria-pressed',!allOn);});layers.forEach(function(L){var s=document.getElementById('L-'+L.id);var rm=caps.some(function(c){return c.layer===L.id&&on[c.id];});if(s)s.classList.toggle('gone',rm);});allb.textContent=allOn?'Lift it all away — the Birdland standard':'Reset';recalc();});capsEl.appendChild(allb);
-    var expNum=document.getElementById('expNum'),liftNum=document.getElementById('liftNum'),costPct=document.getElementById('costPct'),costFill=document.getElementById('costFill');
-    var arc=document.getElementById('donutArc'),dpct=document.getElementById('donutPct'),circ=2*Math.PI*50;
-    function recalc(){var exp=100;layers.forEach(function(L){if(caps.some(function(c){return c.layer===L.id&&on[c.id];}))exp-=L.w;});exp=Math.max(8,exp);var cost=100;caps.forEach(function(c){if(on[c.id])cost-=c.cost;});cost=Math.max(58,cost);
-      expNum.textContent=exp;liftNum.textContent=(100-exp);costPct.textContent=cost;costFill.style.width=cost+'%';
-      if(arc)arc.setAttribute('stroke-dasharray',(exp/100*circ).toFixed(1)+' '+circ.toFixed(1));
-      if(dpct)dpct.textContent=exp;}
-    recalc();
+    var wrap=document.getElementById('riskCmp'); if(!wrap) return;
+    var DIM=[
+      {n:'Peak-season availability',bird:88,avg:22,note:'We reserve capacity and book your sailing ahead — shelves stay filled when demand peaks.'},
+      {n:'Input-cost stability',bird:84,avg:26,note:'Key materials locked upstream, with your agreement — your FOB price holds.'},
+      {n:'Supply continuity',bird:90,avg:18,note:'Taiwan and China run in parallel; if one route is hit, the other ships.'},
+      {n:'Compliance & documents',bird:92,avg:30,note:'Export papers and EU / US / AU compliance prepared for you, refreshed as the rules change.'},
+      {n:'Quality assurance',bird:86,avg:34,note:'One maker, inspected and documented before anything is loaded, FOB.'},
+      {n:'Channel & IP protection',bird:95,avg:38,note:'No own-brand range — your designs, customers and margins stay yours.'}
+    ];
+    var chips=document.getElementById('rcChips'),nameEl=document.getElementById('rcName'),noteEl=document.getElementById('rcNote'),
+        bird=document.getElementById('rcBird'),avg=document.getElementById('rcAvg'),birdV=document.getElementById('rcBirdV'),avgV=document.getElementById('rcAvgV'),deltaEl=document.getElementById('rcDelta');
+    var cur=0,auto=null,paused=false;
+    function cnt(el,to){var from=parseInt(el.textContent,10)||0;if(reduce){el.textContent=to;return;}var s=null,dd=550;function st(ts){if(!s)s=ts;var p=Math.min((ts-s)/dd,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(from+(to-from)*e);if(p<1)requestAnimationFrame(st);else el.textContent=to;}requestAnimationFrame(st);}
+    DIM.forEach(function(d,i){var b=document.createElement('button');b.className='rc-chip';b.type='button';b.textContent=d.n;b.addEventListener('click',function(){cur=i;show();paused=false;start();});chips.appendChild(b);});
+    function show(){var d=DIM[cur];nameEl.textContent=d.n;noteEl.textContent=d.note;
+      bird.style.width=d.bird+'%';avg.style.width=d.avg+'%';cnt(birdV,d.bird);cnt(avgV,d.avg);cnt(deltaEl,d.bird-d.avg);
+      chips.querySelectorAll('.rc-chip').forEach(function(x,i){x.classList.toggle('on',i===cur);});}
+    function step(){if(!paused){cur=(cur+1)%DIM.length;show();}}
+    function start(){if(reduce)return;if(auto)clearInterval(auto);auto=setInterval(step,2800);}
+    wrap.addEventListener('mouseenter',function(){paused=true;});wrap.addEventListener('mouseleave',function(){paused=false;});
+    show();start();
   })();
 
   /* CHAIN */
   (function(){
     var stages=[
-      {t:'Order placed',pct:0,adv:'Most suppliers start the clock when it suits them. We start the moment you confirm \u2014 <span class="mk">your timeline, not ours</span>.'},
-      {t:'Materials locked',pct:18,adv:'While others wait and pass spikes on to you, we lock key materials upstream \u2014 with your agreement \u2014 <span class="mk">before the market moves</span>.'},
-      {t:'In production',pct:32,adv:'Single-country suppliers stall when one site is hit. We run Taiwan and China in parallel, so <span class="mk">production keeps moving</span>.'},
-      {t:'Quality checked',pct:54,adv:'Where others ship first and fix later, we inspect and document to EU / US / AU rules <span class="mk">before anything leaves</span>.'},
-      {t:'Shipped',pct:74,adv:'Others scramble for freight at the peak. We book ahead with paperwork ready \u2014 <span class="mk">no last-minute surcharges</span>.'},
-      {t:'At port / in transit',pct:88,adv:'No more chasing \u201cwhere is it?\u201d \u2014 <span class="mk">cleared and tracked</span> to your destination port.'},
-      {t:'Arrived',pct:100,adv:'While slower suppliers miss the window, <span class="mk">you land early</span> \u2014 in the advantaged, higher-margin slot.'}
+      {t:'Order placed',pct:0,adv:'We start the clock the moment you confirm — <span class="mk">your booked sailing drives our plan</span>, not ours.'},
+      {t:'Materials locked',pct:18,adv:'While others wait and pass spikes to you, we lock key materials upstream — with your agreement — <span class="mk">so your FOB price holds</span>.'},
+      {t:'In production',pct:38,adv:'Single-country suppliers stall when one site is hit. We run Taiwan and China in parallel, so <span class="mk">your sailing stays on schedule</span>.'},
+      {t:'Quality checked',pct:58,adv:'Where others ship first and fix later, we inspect and document to EU / US / AU rules <span class="mk">before anything is loaded</span>.'},
+      {t:'Export docs ready',pct:78,adv:'Invoice, packing list, CO and compliance papers prepared early — <span class="mk">your forwarder and customs never wait</span>.'},
+      {t:'On board — FOB',pct:100,adv:'Cargo ready and loaded on your vessel on the booked date — <span class="mk">you take over a clean, on-time FOB shipment</span>.'}
     ];
     var nodes=document.getElementById('cNodes'),fill=document.getElementById('cFill'),fade=document.getElementById('kfade'),slider=document.getElementById('cSlider'),cur=0;
     stages.forEach(function(s,i){var el=document.createElement('div');el.className='knode';el.setAttribute('aria-pressed',i===0);el.innerHTML='<span class="dot"></span><span class="pct">'+s.pct+'%</span>';nodes.appendChild(el);});
     var _kn=null;
     function paintNodes(v,i){if(!_kn)_kn=nodes.querySelectorAll('.knode');_kn.forEach(function(x,j){x.setAttribute('aria-pressed',j===i);x.classList.toggle('current',j===i);x.classList.toggle('passed',stages[j].pct<=v && j!==i);});fill.classList.toggle('lead',v>0);}
-    function paint(i){var s=stages[i];fade.classList.remove('show');setTimeout(function(){fade.innerHTML='<div class="ktag"><span class="kpct">'+s.pct+'%</span> of the way to your shelf &middot; vs typical suppliers</div><div class="ktitle">'+s.t+'</div><p>'+s.adv+'</p>';fade.classList.add('show');var _mk=fade.querySelector('.mk');if(_mk){if(reduce){_mk.classList.add('lit');}else{requestAnimationFrame(function(){requestAnimationFrame(function(){_mk.classList.add('lit');});});}}},reduce?0:150);}
+    function paint(i){var s=stages[i];fade.classList.remove('show');setTimeout(function(){fade.innerHTML='<div class="ktag"><span class="kpct">'+s.pct+'%</span> to your FOB hand-off &middot; vs typical suppliers</div><div class="ktitle">'+s.t+'</div><p>'+s.adv+'</p>';fade.classList.add('show');var _mk=fade.querySelector('.mk');if(_mk){if(reduce){_mk.classList.add('lit');}else{requestAnimationFrame(function(){requestAnimationFrame(function(){_mk.classList.add('lit');});});}}},reduce?0:150);}
     function nearest(v){var b=0,bd=999;stages.forEach(function(s,i){var d=Math.abs(s.pct-v);if(d<bd){bd=d;b=i;}});return b;}
     if(slider)slider.addEventListener('input',function(){var v=+slider.value;fill.style.width=v+'%';var i=nearest(v);paintNodes(v,i);if(i!==cur){cur=i;paint(i);}});
     fill.style.width='0%';paintNodes(0,0);paint(0);
@@ -1478,28 +1564,41 @@
     function X(i){return padL+i*pw/(N-1);} function Y(v){return padT+(1-v/100)*ph;}
     [0,25,50,75,100].forEach(function(g){svg.appendChild(mk('line',{x1:padL,y1:Y(g),x2:W-padR,y2:Y(g),stroke:'rgba(242,236,221,.12)','stroke-width':1}));});
     var cy=padT+ph/2;
-    var t=mk('text',{x:16,y:cy,'font-family':'Manrope','font-size':13,'font-weight':600,fill:'rgba(242,236,221,.72)','text-anchor':'middle',transform:'rotate(-90 16 '+cy+')'});t.textContent='Risk of competitors knowing your plans';svg.appendChild(t);
+    var t=mk('text',{x:16,y:cy,'font-family':'Manrope','font-size':13,'font-weight':600,fill:'rgba(242,236,221,.72)','text-anchor':'middle',transform:'rotate(-90 16 '+cy+')'});t.textContent='Competitive exposure of your sourcing';svg.appendChild(t);
     svg.appendChild(mk('text',{x:padL+4,y:Y(100)-7,'font-family':'Manrope','font-size':11,fill:'rgba(242,236,221,.5)'})).textContent='High';
     svg.appendChild(mk('text',{x:padL+4,y:Y(0)+15,'font-family':'Manrope','font-size':11,fill:'rgba(242,236,221,.5)'})).textContent='Low';
     function pts(a){return a.map(function(v,i){return [X(i),Y(v)];});}
     function sp(p,cont){var d=cont?'':'M'+p[0][0].toFixed(1)+','+p[0][1].toFixed(1);for(var i=0;i<p.length-1;i++){var p0=p[i-1]||p[i],p1=p[i],p2=p[i+1],p3=p[i+2]||p2;var c1x=p1[0]+(p2[0]-p0[0])/6,c1y=p1[1]+(p2[1]-p0[1])/6,c2x=p2[0]-(p3[0]-p1[0])/6,c2y=p2[1]-(p3[1]-p1[1])/6;d+=' C'+c1x.toFixed(1)+','+c1y.toFixed(1)+' '+c2x.toFixed(1)+','+c2y.toFixed(1)+' '+p2[0].toFixed(1)+','+p2[1].toFixed(1);}return d;}
     var pwo=pts(without),pwb=pts(withb),pbRev=pwb.slice().reverse();
+    var cclip=mk('clipPath',{id:'cfClip'});var crect=mk('rect',{x:0,y:0,width:(reduce?W:0),height:H});cclip.appendChild(crect);var cdefs=mk('defs',{});cdefs.appendChild(cclip);svg.appendChild(cdefs);
+    var drawG=mk('g',{'clip-path':'url(#cfClip)'});svg.appendChild(drawG);
     var band=sp(pwo,false)+' L'+pbRev[0][0].toFixed(1)+','+pbRev[0][1].toFixed(1)+sp(pbRev,true)+' Z';
-    svg.appendChild(mk('path',{d:band,fill:'rgba(200,90,60,.17)'}));
-    svg.appendChild(mk('path',{d:sp(pwo,false),fill:'none',stroke:'#b59f8e','stroke-width':3,'stroke-dasharray':'5 5','stroke-linejoin':'round','stroke-linecap':'round'}));
-    svg.appendChild(mk('path',{d:sp(pwb,false),fill:'none',stroke:'#E8AC80','stroke-width':4,'stroke-linejoin':'round','stroke-linecap':'round'}));
+    drawG.appendChild(mk('path',{d:band,fill:'rgba(200,90,60,.17)'}));
+    drawG.appendChild(mk('path',{d:sp(pwo,false),fill:'none',stroke:'#b59f8e','stroke-width':3,'stroke-dasharray':'5 5','stroke-linejoin':'round','stroke-linecap':'round'}));
+    drawG.appendChild(mk('path',{d:sp(pwb,false),fill:'none',stroke:'#E8AC80','stroke-width':4,'stroke-linejoin':'round','stroke-linecap':'round'}));
+    if(!reduce){var cfDrawn=false;var cdio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!cfDrawn){cfDrawn=true;var t0=null;function dr(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/1050,1),ee=1-Math.pow(1-p,3);crect.setAttribute('width',(ee*W).toFixed(1));if(p<1)requestAnimationFrame(dr);}requestAnimationFrame(dr);cdio.disconnect();}});},{threshold:.3});cdio.observe(svg);}
     var marker=mk('line',{y1:padT,y2:padT+ph,stroke:'rgba(232,172,128,.6)','stroke-width':1.5,'stroke-dasharray':'3 3'});svg.appendChild(marker);
     var dotW=mk('circle',{r:4.5,fill:'#b59f8e'});svg.appendChild(dotW);
     var dot=mk('circle',{r:5,fill:'#E8AC80'});svg.appendChild(dot);
+    var tWo=mk('text',{'font-family':'Manrope','font-size':13,'font-weight':700,fill:'#d98a5e','text-anchor':'middle'});svg.appendChild(tWo);
+    var tWb=mk('text',{'font-family':'Manrope','font-size':12,'font-weight':600,fill:'#E8AC80','text-anchor':'middle'});svg.appendChild(tWb);
+    [marker,dot,dotW,tWo,tWb].forEach(function(e){if(!reduce)e.style.transition='all .55s cubic-bezier(.2,.8,.3,1)';});
     var enumEl=document.getElementById('cfEnum'),noteEl=document.getElementById('cfNote'),labEl=document.getElementById('cfElab'),yc=document.getElementById('cfYears');
     var cur=N-1;
+    function cntCf(el,to){var from=parseInt((el.textContent||'').replace(/[^0-9-]/g,''),10)||0;if(reduce){el.textContent='+'+to;return;}var s=null,dd=500;function st(ts){if(!s)s=ts;var p=Math.min((ts-s)/dd,1),e=1-Math.pow(1-p,3);el.textContent='+'+Math.round(from+(to-from)*e);if(p<1)requestAnimationFrame(st);else el.textContent='+'+to;}requestAnimationFrame(st);}
     function show(){var g=without[cur]-withb[cur];marker.setAttribute('x1',X(cur));marker.setAttribute('x2',X(cur));
       dot.setAttribute('cx',X(cur));dot.setAttribute('cy',Y(withb[cur]));dotW.setAttribute('cx',X(cur));dotW.setAttribute('cy',Y(without[cur]));
-      enumEl.textContent='+'+g;labEl.textContent='Protection gap in '+years[cur];
+      tWo.setAttribute('x',X(cur));tWo.setAttribute('y',Y(without[cur])-12);tWo.textContent=without[cur];
+      tWb.setAttribute('x',X(cur));tWb.setAttribute('y',Y(withb[cur])+22);tWb.textContent=withb[cur];
+      cntCf(enumEl,g);labEl.textContent='Competitive-exposure gap in '+years[cur];
       noteEl.innerHTML=events[cur];
       yc.querySelectorAll('button').forEach(function(b,i){b.setAttribute('aria-pressed',i===cur);});}
-    years.forEach(function(y,i){var b=document.createElement('button');b.textContent=y;b.setAttribute('aria-pressed',i===cur);b.addEventListener('click',function(){cur=i;show();});yc.appendChild(b);});
-    show();
+    var auto=null,paused=false;
+    function step(){if(!paused){cur=(cur+1)%N;show();}}
+    function start(){if(reduce)return;if(auto)clearInterval(auto);auto=setInterval(step,2300);}
+    years.forEach(function(y,i){var b=document.createElement('button');b.textContent=y;b.setAttribute('aria-pressed',i===cur);b.addEventListener('click',function(){cur=i;show();paused=false;start();});yc.appendChild(b);});
+    svg.addEventListener('mouseenter',function(){paused=true;});svg.addEventListener('mouseleave',function(){paused=false;});
+    show();start();
   })();
 
   /* EXPANDERS + count-up */
@@ -1577,6 +1676,29 @@
     if(matchMedia('(prefers-reduced-motion:reduce)').matches){mks.forEach(function(m){m.classList.add('lit');});return;}
     var mio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('lit');mio.unobserve(e.target);}});},{threshold:.55});
     mks.forEach(function(m){mio.observe(m);});})();
+  /* WHY card wipe-reveal */
+  (function(){document.querySelectorAll('.wb-toggle').forEach(function(b){b.addEventListener('click',function(){var c=b.closest('.wbcard');var o=c.classList.toggle('open');b.setAttribute('aria-expanded',o);});});})();
+  /* eyebrow dash draw-in */
+  (function(){var eys=document.querySelectorAll('.ey');if(!eys.length)return;
+    if(matchMedia('(prefers-reduced-motion:reduce)').matches){eys.forEach(function(x){x.classList.add('drawn');});return;}
+    var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('drawn');o.unobserve(e.target);}});},{threshold:.6});
+    eys.forEach(function(x){o.observe(x);});})();
+  /* gallery card cursor-tilt */
+  (function(){if(matchMedia('(prefers-reduced-motion:reduce)').matches||matchMedia('(hover:none)').matches)return;
+    document.querySelectorAll('.gal-card').forEach(function(c){
+      c.addEventListener('mouseenter',function(){c.style.transition='transform .12s ease-out,box-shadow .4s';});
+      c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;c.style.transform='perspective(700px) rotateX('+(-py*7).toFixed(2)+'deg) rotateY('+(px*7).toFixed(2)+'deg) translateY(-4px)';});
+      c.addEventListener('mouseleave',function(){c.style.transition='';c.style.transform='';});
+    });})();
+  /* hero emblem parallax */
+  (function(){var em=document.querySelector('.hero .emblem');if(!em||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+    function upd(){em.style.transform='rotate(-7deg) translateY('+((window.scrollY||0)*0.10).toFixed(1)+'px)';}
+    addEventListener('scroll',upd,{passive:true});upd();})();
+  /* section h2 underline draw-in */
+  (function(){var hs=document.querySelectorAll('.sec-head h2,.heritage h2,.cat h2');if(!hs.length)return;
+    if(matchMedia('(prefers-reduced-motion:reduce)').matches){hs.forEach(function(x){x.classList.add('drawn2');});return;}
+    var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('drawn2');o.unobserve(e.target);}});},{threshold:.5});
+    hs.forEach(function(x){o.observe(x);});})();
   </script>
 <script>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'en,nl,de,fr,he,pl,it,es,pt,ja',autoDisplay:false},'google_translate_element');}</script>
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
