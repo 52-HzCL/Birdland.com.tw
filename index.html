@@ -227,15 +227,6 @@
   .esend.dim{background:var(--silk)!important;color:#a89a82!important;border-top:1px solid var(--line)!important}
   .esend.dim::after{display:none}
 
-  /* big brushed-copper band */
-  .cuband{background:var(--cu-plate);color:#241405;position:relative;overflow:hidden}
-  .cuband::after{content:"";position:absolute;top:-60%;left:-30%;width:50%;height:220%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-18deg);animation:bandsheen 7s ease-in-out infinite}
-  @keyframes bandsheen{0%,100%{left:-40%}50%{left:120%}}
-  .cuband .wrap{position:relative;z-index:2;text-align:center}
-  .cuband h2{color:#241405;font-size:clamp(2.4rem,5vw,3.8rem)}
-  .cuband p{color:rgba(36,20,5,.82);font-size:1.24rem;font-weight:400;max-width:46ch;margin:1rem auto 0}
-  .cuband .band-btn{display:inline-flex;align-items:center;gap:.6rem;margin-top:2rem;font-family:var(--sans);font-weight:700;font-size:1.1rem;padding:1.1rem 2.2rem;background:var(--jade-deep);color:var(--paper);border-radius:1px;border-top:2px solid rgba(255,255,255,.35);transition:.25s}
-  .cuband .band-btn:hover{background:#16271d;transform:translateY(-2px)}
 
   /* copper plate behind heritage stats numbers */
   .esadv{margin-top:1.3rem;border-top:1px solid var(--line);padding-top:1.1rem}
@@ -244,7 +235,7 @@
   .esadv li{font-size:1.02rem;color:var(--ink-soft);padding:.45rem 0;line-height:1.5;border-bottom:1px solid rgba(36,31,24,.07)}
   .esadv li:last-child{border-bottom:none}
   .esadv li b{color:var(--jade);font-weight:600}
-  @media(prefers-reduced-motion:reduce){.cuband::after{animation:none}.btn-pri:hover::after,.esend:hover::after,.fcta:hover::after,.navcta:hover::after{animation:none}}
+  @media(prefers-reduced-motion:reduce){.btn-pri:hover::after,.esend:hover::after,.fcta:hover::after,.navcta:hover::after{animation:none}}
 
   /* ===== LANGUAGE SWITCHER ===== */
   .langwrap{position:relative}
@@ -274,23 +265,18 @@
     --cu-text:linear-gradient(180deg,#F6DDB8,#C07E44 28%,#7A431F 50%,#C68A50 62%,#F2D2A2 80%,#8A5026 100%);
     --cu-text-bright:linear-gradient(180deg,#FCEBCB,#E0A86C 30%,#B26A33 52%,#E7BE86 64%,#FBE6C8 82%,#C8854A 100%);
   }
-  .btn-pri::after,.esend::after,.fcta::after,.navcta::after,.cuband::after{display:none!important}
+  .btn-pri::after,.esend::after,.fcta::after,.navcta::after{display:none!important}
   .btn-pri,.esend,.navcta,.fcta{background:var(--cu-plate)!important;color:#2A150A!important;text-shadow:0 1px 0 rgba(255,255,255,.5)!important;border:none!important;border-top:1px solid rgba(255,255,255,.6)!important;box-shadow:inset 0 -3px 7px rgba(110,60,28,.4),0 2px 8px -3px rgba(110,60,28,.5)}
   .btn-pri:hover,.esend:hover,.fcta:hover{filter:brightness(1.05);transform:translateY(-2px)}
   /* metallic typography */
   .metal-d{background:var(--cu-text)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important}
   .metal-l{background:var(--cu-text-bright)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important}
-  #eqEdge,.heritage .gen .gt,.cyc-name,.kdetail .ktitle,.esum .etitle{background:var(--cu-text);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
-  .heritage .gen .gt,#eqEdge{background:var(--cu-text-bright);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
-  /* big band as polished plate */
-  .cuband{background:var(--cu-art)!important}
-  .cuband h2{color:#2A150A;text-shadow:0 1px 0 rgba(255,255,255,.45)}
-  .cuband p{color:rgba(42,21,10,.85)}
+  .heritage .gen .gt,.kdetail .ktitle,.esum .etitle{background:var(--cu-text);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .heritage .gen .gt{background:var(--cu-text-bright);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
   /* risk label backplates = polished copper */
   .rlayer{background:var(--cu-art)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -3px 6px rgba(60,30,12,.45)}
   .rlayer .rl{color:#FCF4E7;text-shadow:0 1px 2px rgba(40,18,6,.75),0 0 1px rgba(0,0,0,.4)}
   /* chart fills = polished copper */
-  .cyc-meter .diff{background:var(--cu-art)!important}
   .costbar i{background:var(--cu-art)!important}
   .cbg{height:4px!important;top:29px!important}
   .cfill{height:4px!important;top:29px!important;background:var(--cu-art)!important;box-shadow:0 1px 3px rgba(110,60,28,.4)}
@@ -307,15 +293,11 @@
   .btn-pri:hover,.esend:hover,.fcta:hover{filter:brightness(1.04);transform:translateY(-2px)}
   .metal-d{background:var(--cu-text)!important}
   .metal-l{background:var(--cu-text-bright)!important}
-  #eqEdge,.heritage .gen .gt{background:var(--cu-text-bright)!important}
-  .cyc-name,.kdetail .ktitle,.esum .etitle{background:var(--cu-text)!important}
-  .cuband{background:var(--cu-art)!important}
-  .cuband h2{color:#FBEFDD;text-shadow:0 1px 3px rgba(70,35,15,.5)}
-  .cuband p{color:rgba(251,239,221,.9)}
-  .cuband .band-btn{background:var(--jade-deep)!important;color:var(--paper)!important;border-top:2px solid rgba(255,228,196,.35)!important}
+  .heritage .gen .gt{background:var(--cu-text-bright)!important}
+  .kdetail .ktitle,.esum .etitle{background:var(--cu-text)!important}
   .rlayer{background:var(--cu-art)!important;box-shadow:inset 0 1px 0 rgba(255,232,205,.35),inset 0 -2px 6px rgba(70,38,18,.35)!important}
   .rlayer .rl{color:#FCF4E7;text-shadow:0 1px 2px rgba(50,24,8,.7)}
-  .cyc-meter .diff,.costbar i{background:var(--cu-art)!important}
+  .costbar i{background:var(--cu-art)!important}
   .cfill{height:4px!important;top:29px!important;background:var(--cu-art)!important;box-shadow:none!important}
   .cbg{height:4px!important;top:29px!important}
 
@@ -334,12 +316,12 @@
     --cu-text-bright:linear-gradient(180deg,#F2C09A 0%,#DD8A5E 24%,#B5472A 48%,#E0976A 62%,#FBD7B6 78%,#C25A38 100%);
   }
   /* SOLID fallback so text is NEVER invisible */
-  .metal-d,.cyc-name,.kdetail .ktitle,.esum .etitle{-webkit-text-fill-color:#A8482A!important;color:#A8482A!important;background:none!important;text-shadow:0 1px 1px rgba(255,255,255,.25)}
-  .metal-l,#eqEdge,.heritage .gen .gt{-webkit-text-fill-color:#E0976A!important;color:#E0976A!important;background:none!important;text-shadow:0 1px 2px rgba(40,18,8,.4)}
+  .metal-d,.kdetail .ktitle,.esum .etitle{-webkit-text-fill-color:#A8482A!important;color:#A8482A!important;background:none!important;text-shadow:0 1px 1px rgba(255,255,255,.25)}
+  .metal-l,.heritage .gen .gt{-webkit-text-fill-color:#E0976A!important;color:#E0976A!important;background:none!important;text-shadow:0 1px 2px rgba(40,18,8,.4)}
   /* reflective multi-layer gradient where the browser supports clipping */
   @supports ((-webkit-background-clip:text) or (background-clip:text)){
-    .metal-d,.cyc-name,.kdetail .ktitle,.esum .etitle{background:var(--cu-text)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;text-shadow:none}
-    .metal-l,#eqEdge,.heritage .gen .gt{background:var(--cu-text-bright)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;text-shadow:none}
+    .metal-d,.kdetail .ktitle,.esum .etitle{background:var(--cu-text)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;text-shadow:none}
+    .metal-l,.heritage .gen .gt{background:var(--cu-text-bright)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;text-shadow:none}
   }
 
   /* ===== CONFIDENTIALITY CHART ===== */
@@ -811,7 +793,7 @@
     #cfSvg circle,#cfSvg line,#cfSvg text{transition:none!important}
   }
 
-  /* ===== risk: auto-cycling comparison ===== */
+  /* ===== risk: supply-resilience comparison ===== */
   .riskcmp{margin-top:2.6rem;max-width:780px}
   .rc-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.8rem}
   .rc-chip{border:1px solid var(--line);background:var(--paper);color:var(--ink-soft);border-radius:30px;padding:.42rem .85rem;font:600 .78rem var(--sans);cursor:pointer;transition:background .3s,color .3s,border-color .3s}
@@ -857,21 +839,18 @@
   .sec-head h2::after,.heritage h2::after,.cat h2::after{content:"";position:absolute;left:0;bottom:-.4rem;height:2px;width:62px;background:var(--cu-plate);transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.22,.8,.28,1) .12s}
   .sec-head h2.drawn2::after,.heritage h2.drawn2::after,.cat h2.drawn2::after{transform:scaleX(1)}
   .rc-row-bird .rc-track{height:18px}
-  /* CTA band flowing glow */
-  .cuband::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(120% 150% at 18% 0%,rgba(255,243,224,.30),transparent 55%);animation:bandglow 9s ease-in-out infinite}
-  @keyframes bandglow{0%{transform:translateX(-10%)}50%{transform:translateX(10%)}100%{transform:translateX(-10%)}}
   @media(prefers-reduced-motion:reduce){
     .sec-head h2::after,.heritage h2::after,.cat h2::after{transform:none;transition:none}
-    .cuband::before{animation:none}
   }
 
-  /* keep auto-cycling frames a fixed height (no page jump) */
+  /* keep comparison frames a fixed height (no page jump) */
   @media(max-width:620px){.rc-note{min-height:5.2em}.rc-name{min-height:2.7rem}.cf-note{min-height:5.4em}.kdetail{min-height:236px}}
 
   /* ===== 12 reading-delight micro-effects ===== */
   /* 1 reading progress bar */
-  .dpro{position:fixed;top:0;left:0;right:0;height:34px;z-index:300;pointer-events:none;overflow:hidden}
-  .dpro-fill{position:absolute;left:0;top:27px;height:2.5px;width:0;background:linear-gradient(90deg,var(--copper-deep),var(--copper-bright));box-shadow:0 0 7px rgba(224,151,106,.4);border-radius:2px;opacity:.8}
+  .dpro{position:fixed;top:0;left:0;right:0;height:34px;z-index:300;pointer-events:none;overflow:hidden;opacity:.32;transition:opacity 1.5s ease}
+  .dpro.active{opacity:1;transition:opacity .45s ease}
+  .dpro-fill{display:none}
   .dpro-rip{position:absolute;inset:0}
   .dpro-ring{position:absolute;top:28px;border:1.5px solid rgba(34,78,128,.55);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 5px rgba(34,78,128,.3)}
   .dpro-splash{position:fixed;border-radius:50%;pointer-events:none;z-index:301;box-shadow:0 0 2px rgba(40,80,130,.55)}
@@ -882,18 +861,18 @@
   .dpro-fleet{position:absolute;top:0;left:0;width:0;height:34px;margin-left:-6px;z-index:3;transition:left .12s linear}
   .dpro-duck{position:absolute;bottom:6px;line-height:0;animation:dbob 1.7s ease-in-out infinite}
   .dpro-duck svg{display:block;filter:drop-shadow(0 1px 2px rgba(90,45,20,.5))}
-  .dpro-duck.d1{right:0;width:34px;bottom:6px}
-  .dpro-duck.dk{width:16px;bottom:6px}
+  .dpro-duck.d1{right:0;width:28px;bottom:6px}
+  .dpro-duck.dk{width:14px;bottom:6px}
   @keyframes dbob{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-1.8px) rotate(1.5deg)}}
-  @media(prefers-reduced-motion:reduce){.dpro-duck{animation:none}.dpro-nest.cozy{animation:none}}
+  @media(prefers-reduced-motion:reduce){.dpro-duck{animation:none}.dpro-nest.cozy{animation:none}.dpro{opacity:.7;transition:none}}
   /* 2 heading blur-in */
   .sec-head h2,.heritage h2,.cat h2{opacity:0}
   .sec-head h2.drawn2,.heritage h2.drawn2,.cat h2.drawn2{animation:blurin .75s cubic-bezier(.22,.8,.28,1) both}
   @keyframes blurin{from{opacity:0;filter:blur(8px);transform:translateY(12px)}to{opacity:1;filter:blur(0);transform:none}}
   /* 3 magnetic buttons base */
-  .btn-pri,.band-btn{will-change:transform}
+  .btn-pri{will-change:transform}
   /* 4 click ripple */
-  .btn,.band-btn{position:relative;overflow:hidden}
+  .btn{position:relative;overflow:hidden}
   .rp-rip{position:absolute;border-radius:50%;background:rgba(255,255,255,.45);transform:translate(-50%,-50%) scale(0);pointer-events:none;animation:ripple .6s ease-out forwards}
   @keyframes ripple{to{transform:translate(-50%,-50%) scale(1);opacity:0}}
   /* 6 why-card icon pop */
@@ -1210,8 +1189,6 @@
     <symbol id="ic-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6.8-6 6.8-10.8A6.8 6.8 0 1 0 5.2 10.2C5.2 15 12 21 12 21z"/><circle cx="12" cy="10" r="2.5"/></g></symbol>
     <symbol id="ic-factory" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20.5V9.5l6 3.8V9.5l6 3.8V4.5h5.5v16z"/><path d="M3 20.5h18.5"/></g></symbol>
     <symbol id="ic-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M6 3.5h3.5l1.5 4.6-2.3 1.6a11.5 11.5 0 0 0 4.9 4.9l1.6-2.3 4.6 1.5V18a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4 5.7 2 2 0 0 1 6 3.5z"/></symbol>
-    <symbol id="ic-shovel" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3h5"/><path d="M12 3v10"/><path d="M8 13h8l-1.4 5.4a2.2 2.2 0 0 1-5.2 0L8 13z"/></g></symbol>
-    <symbol id="ic-shears" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.3"/><circle cx="6" cy="18" r="2.3"/><path d="M8 7.2L20 18"/><path d="M8 16.8L20 6"/><circle cx="12.4" cy="12" r=".7"/></g></symbol>
     <symbol id="ic-camera" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l1.4-2.2h7.2L17 8h3v10H4z"/><circle cx="12" cy="13" r="3.3"/></g></symbol>
   </defs></svg>
 
@@ -1312,7 +1289,7 @@
       <div class="sec-head reveal">
         <span class="ey">Average supplier vs Birdland</span>
         <h2>The risk and cost a distributor carries — and how we lift it away.</h2>
-        <p>How well your supply is covered, risk by risk &mdash; Birdland against the average supplier. The comparison cycles; tap one to hold it.</p>
+        <p>How well your supply is covered, risk by risk &mdash; Birdland against the average supplier. Tap any risk to compare.</p>
       </div>
       <div class="riskcmp reveal" id="riskCmp">
         <div class="rc-chips" id="rcChips"></div>
@@ -1451,38 +1428,7 @@
     requestAnimationFrame(step);
   }
 
-  /* CYCLE (section removed — guarded) */
-  (function(){if(!document.getElementById('cycDots'))return;
-    var items=[
-      {pain:'Stock-outs in peak season',el:'A season ahead',line:'We reserve capacity early, so you reach the shelf first.',lo:30,hi:94},
-      {pain:'Freight & material cost swings',el:'Upstream material control',line:'We lock key materials upstream, before the market moves.',lo:24,hi:92},
-      {pain:'One country, all your risk',el:'Taiwan + China bases',line:'Two production countries — if one slows, the other delivers.',lo:32,hi:93},
-      {pain:'Quality that drifts',el:'One maker, start to finish',line:'Design to dispatch under one roof, held to one standard.',lo:42,hi:95},
-      {pain:'Shifting EU / US / AU rules',el:'Compliance, kept current',line:'Materials and documents adapted as the rules change.',lo:36,hi:96},
-      {pain:'A supplier who competes with you',el:'We never compete',line:'No rival brand of our own. Your market stays yours.',lo:20,hi:97},
-      {pain:'Your range arrives out of step',el:'Whole range, one partner',line:'Many lines made together, shipped in sync.',lo:38,hi:90},
-      {pain:'No factory, no design team',el:'OEM / ODM',line:'Bring your spec, or let us design it — we make it either way.',lo:26,hi:92}
-    ];
-    var painEl=document.getElementById('cycPain'),nameEl=document.getElementById('cycName'),lineEl=document.getElementById('cycLine'),
-        own=document.getElementById('cycOwn'),diff=document.getElementById('cycDiff'),delta=document.getElementById('cycDelta'),
-        fade=document.getElementById('cycFade'),dotsWrap=document.getElementById('cycDots'),card=document.getElementById('cycCard');
-    var idx=0,timer=null,paused=false;
-    items.forEach(function(_,i){var b=document.createElement('button');b.setAttribute('role','tab');b.setAttribute('aria-current',i===0);
-      b.addEventListener('click',function(){go(i,true);});dotsWrap.appendChild(b);});
-    function paint(){var it=items[idx];fade.classList.remove('show');own.style.width='0%';diff.style.width='0%';diff.style.left=it.lo+'%';
-      setTimeout(function(){painEl.textContent=it.pain;nameEl.textContent=it.el;lineEl.textContent=it.line;fade.classList.add('show');
-        delta.textContent='The Birdland difference — about +'+(it.hi-it.lo)+' on '+it.el.toLowerCase()+'.';
-        requestAnimationFrame(function(){requestAnimationFrame(function(){own.style.width=it.lo+'%';diff.style.left=it.lo+'%';diff.style.width=(it.hi-it.lo)+'%';});});
-      },reduce?0:260);
-      dotsWrap.querySelectorAll('button').forEach(function(b,i){b.setAttribute('aria-current',i===idx);});}
-    function go(i,m){idx=(i+items.length)%items.length;paint();if(m)restart();}
-    function restart(){if(timer)clearInterval(timer);if(!reduce)timer=setInterval(function(){if(!paused)go(idx+1);},5000);}
-    card.addEventListener('mouseenter',function(){paused=true;});card.addEventListener('mouseleave',function(){paused=false;});
-    card.addEventListener('focusin',function(){paused=true;});card.addEventListener('focusout',function(){paused=false;});
-    paint();restart();
-  })();
-
-  /* RISK — auto-cycling Average-supplier-vs-Birdland resilience */
+  /* RISK — Average-supplier-vs-Birdland resilience comparison */
   (function(){
     var wrap=document.getElementById('riskCmp'); if(!wrap) return;
     var DIM=[
@@ -1652,33 +1598,11 @@
     var open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!open));
     var p=b.nextElementSibling;if(p&&p.classList.contains('exp')){p.classList.toggle('open',!open);
       if(!open&&!matchMedia('(prefers-reduced-motion:reduce)').matches){p.querySelectorAll('.pm-n').forEach(countUp);}}});
-  /* CYCLE shovel/shears nav */
-  (function(){var cd=document.getElementById('cycDots'),pv=document.getElementById('cycPrev'),nx=document.getElementById('cycNext');if(!cd||!pv||!nx)return;
-    function step(d){var b=[].slice.call(cd.querySelectorAll('button'));if(!b.length)return;var c=b.findIndex(function(x){return x.getAttribute('aria-current')==='true';});if(c<0)c=0;b[(c+d+b.length)%b.length].click();}
-    pv.addEventListener('click',function(){step(-1);});nx.addEventListener('click',function(){step(1);});})();  /* SIDE SCROLL PROGRESS — hedge trimmed by shears, per-section icons */
-  (function(){var wrap=document.querySelector('.scrollprog'),hedge=document.getElementById('spHedge'),iw=document.getElementById('spIcons'),shear=document.getElementById('spShear');if(!wrap||!hedge||!shear)return;
-    var secs=[['heritage','ic-leaf'],['proof','ic-shield'],['make','ic-shovel'],['catalogue','ic-doc'],['why','ic-globe'],['risk','ic-layers'],['chain','ic-deliver'],['enquiry','ic-phone']];
-    var pad=15,items=[];
-    function place(){var H=wrap.clientHeight;items.forEach(function(it,i){it.top=pad+i*(H-2*pad)/(secs.length-1);it.el.style.top=it.top+'px';});}
-    secs.forEach(function(s,i){var b=document.createElement('button');b.className='sp-ic';b.setAttribute('aria-label','Go to '+s[0]);b.innerHTML='<svg viewBox="0 0 24 24"><use href="#'+s[1]+'"/></svg>';b.addEventListener('click',function(ev){ev.stopPropagation();var el=document.getElementById(s[0]);if(el)el.scrollIntoView({behavior:'smooth'});});iw.appendChild(b);items.push({el:b,top:0,sec:s[0]});});
-    place();
-    function upd(){var H=wrap.clientHeight,st=scrollY||document.documentElement.scrollTop,docH=document.documentElement.scrollHeight-innerHeight,pct=docH>0?Math.min(1,Math.max(0,st/docH)):0,cut=pct*H;
-      hedge.style.clipPath='inset('+cut+'px 0 0 0 round 9px)';hedge.style.webkitClipPath='inset('+cut+'px 0 0 0 round 9px)';
-      shear.style.top=cut+'px';
-      var mid=st+innerHeight*0.35,act=0;secs.forEach(function(s,i){var e=document.getElementById(s[0]);if(e&&e.offsetTop<=mid)act=i;});
-      items.forEach(function(it,i){it.el.classList.toggle('trimmed', it.top<cut-1);it.el.classList.toggle('on', i===act);});}
-    wrap.addEventListener('click',function(e){var r=wrap.getBoundingClientRect(),f=Math.min(1,Math.max(0,(e.clientY-r.top)/r.height)),docH=document.documentElement.scrollHeight-innerHeight;window.scrollTo({top:f*docH,behavior:'smooth'});});
-    addEventListener('scroll',upd,{passive:true});addEventListener('resize',function(){place();upd();});upd();})();  /* PROTECT landing flash */
+  /* PROTECT landing flash */
   (function(){function flash(){var el=document.getElementById('protect');if(!el)return;el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash');setTimeout(function(){el.classList.remove('flash');},1900);}
     document.addEventListener('click',function(e){if(e.target.closest('a[href="#protect"]'))setTimeout(flash,520);});
     window.addEventListener('hashchange',function(){if(location.hash==='#protect')flash();});
-    if(location.hash==='#protect')window.addEventListener('load',function(){setTimeout(flash,450);});})();  /* SHEAR snip + clippings on scroll */
-  (function(){var shear=document.getElementById('spShear'),wrap=document.querySelector('.scrollprog');if(!shear||!wrap)return;var last=0;
-    addEventListener('scroll',function(){var now=Date.now();if(now-last<270)return;last=now;
-      shear.classList.remove('snip');void shear.offsetWidth;shear.classList.add('snip');
-      if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-      var c=document.createElement('span');c.className='clip';c.style.top=(shear.style.top||'0px');wrap.appendChild(c);setTimeout(function(){c.remove();},900);
-    },{passive:true});})();  /* GALLERY + lightbox  (paste OneDrive/Cloudinary image URLs into src; album folder link into ALBUM_URL) */
+    if(location.hash==='#protect')window.addEventListener('load',function(){setTimeout(flash,450);});})();  /* GALLERY + lightbox  (paste OneDrive/Cloudinary image URLs into src; album folder link into ALBUM_URL) */
   (function(){
     var GAL=[
       {cap:'Our factory', src:''},
@@ -1765,16 +1689,16 @@
       if(!reduceM&&p<0.965&&Math.abs(p-lastP)>0.0016&&now-lastR>170){var W=window.innerWidth;ring(p*W-134);splash(p*W-2);lastR=now;}
       if(p>=0.965){if(!nested){nested=true;if(nest)nest.classList.add('cozy');settle();}}else if(p<0.9&&nested){nested=false;if(nest)nest.classList.remove('cozy');}
       lastP=p;}
-    function on(){if(!tick){tick=true;requestAnimationFrame(calc);}}
+    var idleT;function on(){if(!reduceM){band.classList.add('active');clearTimeout(idleT);idleT=setTimeout(function(){band.classList.remove('active');},950);}if(!tick){tick=true;requestAnimationFrame(calc);}}
     addEventListener('scroll',on,{passive:true});addEventListener('resize',on);calc();})();
   /* fx3 magnetic primary buttons */
   (function(){if(matchMedia('(hover:none)').matches||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-    document.querySelectorAll('.btn-pri,.band-btn').forEach(function(b){
+    document.querySelectorAll('.btn-pri').forEach(function(b){
       b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect(),x=(e.clientX-r.left-r.width/2)*0.25,y=(e.clientY-r.top-r.height/2)*0.35;b.style.transform='translate('+x.toFixed(1)+'px,'+(y-2).toFixed(1)+'px)';});
       b.addEventListener('mouseleave',function(){b.style.transform='';});});})();
   /* fx4 click ripple */
   (function(){if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-    document.querySelectorAll('.btn,.band-btn').forEach(function(b){b.addEventListener('click',function(e){var r=b.getBoundingClientRect(),dia=Math.max(r.width,r.height),sp=document.createElement('span');sp.className='rp-rip';sp.style.width=sp.style.height=dia+'px';sp.style.left=(e.clientX-r.left)+'px';sp.style.top=(e.clientY-r.top)+'px';b.appendChild(sp);setTimeout(function(){sp.remove();},640);});});})();
+    document.querySelectorAll('.btn').forEach(function(b){b.addEventListener('click',function(e){var r=b.getBoundingClientRect(),dia=Math.max(r.width,r.height),sp=document.createElement('span');sp.className='rp-rip';sp.style.width=sp.style.height=dia+'px';sp.style.left=(e.clientX-r.left)+'px';sp.style.top=(e.clientY-r.top)+'px';b.appendChild(sp);setTimeout(function(){sp.remove();},640);});});})();
   /* fx5 testimonial cursor-tilt */
   (function(){if(matchMedia('(hover:none)').matches||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
     document.querySelectorAll('.pcard').forEach(function(c){
