@@ -953,18 +953,17 @@
 
   /* ===== 12 reading-delight micro-effects ===== */
   /* 1 reading progress bar */
-  .dpro{position:fixed;top:0;left:0;right:0;height:18px;z-index:300;pointer-events:none;overflow:hidden}
-  .dpro-line{position:absolute;left:0;right:0;top:13px;height:2px;background:rgba(168,92,44,.2)}
-  .dpro-fill{position:absolute;left:0;top:0;height:100%;width:0;background:linear-gradient(90deg,var(--copper-deep),var(--copper-bright));box-shadow:0 0 8px rgba(224,151,106,.5)}
+  .dpro{position:fixed;top:0;left:0;right:0;height:28px;z-index:300;pointer-events:none;overflow:hidden}
+  .dpro-line{position:absolute;left:0;right:0;top:20px;height:2px;background:rgba(64,124,170,.2)}
+  .dpro-fill{position:absolute;left:0;top:19px;height:3px;width:0;background:linear-gradient(90deg,var(--copper-deep),var(--copper-bright));box-shadow:0 0 8px rgba(224,151,106,.5);border-radius:2px}
   .dpro-rip{position:absolute;inset:0}
-  .dpro-ring{position:absolute;top:14px;border:1.5px solid rgba(200,129,75,.55);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}
-  .dpro-fleet{position:absolute;top:0;left:0;width:0;height:18px;margin-left:-8px;transition:left .12s linear}
-  .dpro-duck{position:absolute;bottom:2px;color:var(--copper);line-height:0}
-  .dpro-duck svg{display:block;fill:currentColor;filter:drop-shadow(0 1px 1px rgba(122,63,30,.4))}
-  .dpro-duck.d1{right:0;width:22px;animation:dbob 1.6s ease-in-out infinite}
-  .dpro-duck.d2{right:17px;width:15px;animation:dbob 1.75s ease-in-out infinite .2s}
-  .dpro-duck.d3{right:30px;width:12px;animation:dbob 1.5s ease-in-out infinite .45s}
-  @keyframes dbob{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-1.6px) rotate(1.5deg)}}
+  .dpro-ring{position:absolute;top:21px;border:1.5px solid rgba(64,124,170,.55);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 5px rgba(64,124,170,.3)}
+  .dpro-fleet{position:absolute;top:0;left:0;width:0;height:28px;margin-left:-12px;transition:left .12s linear}
+  .dpro-duck{position:absolute;bottom:4px;color:var(--copper);line-height:0;animation:dbob 1.7s ease-in-out infinite}
+  .dpro-duck svg{display:block;fill:currentColor;stroke:#5e3115;stroke-width:1;paint-order:stroke;filter:drop-shadow(0 1px 1.5px rgba(122,63,30,.45))}
+  .dpro-duck.d1{right:0;width:30px;bottom:4px}
+  .dpro-duck.dk{bottom:3px}
+  @keyframes dbob{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-1.8px) rotate(1.5deg)}}
   @media(prefers-reduced-motion:reduce){.dpro-duck{animation:none}}
   /* 2 heading blur-in */
   .sec-head h2,.heritage h2,.cat h2{opacity:0}
@@ -1076,8 +1075,16 @@
   .dig-spade.jab{animation:digjab .3s ease}
   @keyframes digjab{0%{transform:translate(-50%,-60%) rotate(0)}40%{transform:translate(-50%,-44%) rotate(4deg)}100%{transform:translate(-50%,-60%) rotate(0)}}
   .digdirt{position:fixed;border-radius:50% 50% 45% 55%;pointer-events:none;z-index:96}
+  .dig-treasure{position:absolute;left:50%;bottom:3px;width:16px;transform:translateX(-50%) scale(0);transform-origin:50% 100%;opacity:0;z-index:2;pointer-events:none}
+  .dig-treasure svg{width:100%;height:auto;display:block}
+  .dig-treasure.found{animation:trpop .6s cubic-bezier(.2,1.3,.4,1) forwards,trglow 1.7s ease-in-out .6s infinite}
+  @keyframes trpop{0%{transform:translateX(-50%) translateY(8px) scale(0);opacity:0}60%{transform:translateX(-50%) translateY(0) scale(1.18);opacity:1}100%{transform:translateX(-50%) translateY(0) scale(1);opacity:1}}
+  @keyframes trglow{0%,100%{filter:drop-shadow(0 0 4px rgba(255,200,80,.6))}50%{filter:drop-shadow(0 0 10px rgba(255,215,95,1))}}
+  .goldbit{position:fixed;pointer-events:none;z-index:97;border-radius:50%}
+  .dig-spade.cheer{animation:digcheer .6s ease}
+  @keyframes digcheer{0%{transform:translate(-50%,-60%) rotate(0)}25%{transform:translate(-50%,-74%) rotate(-12deg)}55%{transform:translate(-50%,-66%) rotate(10deg)}100%{transform:translate(-50%,-60%) rotate(0)}}
   @media(max-width:1100px){.scrollprog{display:none}}
-  @media(prefers-reduced-motion:reduce){.dig-spade.jab{animation:none}.dig-earth,.dig-spade{transition:none}}
+  @media(prefers-reduced-motion:reduce){.dig-spade.jab,.dig-spade.cheer{animation:none}.dig-earth,.dig-spade{transition:none}.dig-treasure.found{animation:none;opacity:1;transform:translateX(-50%) scale(1)}}
   .skip{position:fixed;left:12px;top:-64px;z-index:200;background:var(--jade-deep);color:var(--paper);padding:.6rem 1rem;border-radius:9px;font-family:var(--sans);font-weight:600;font-size:.9rem;transition:top .2s ease}
   .skip:focus{top:12px;outline:2px solid var(--copper-bright);outline-offset:2px}
   .works{background:var(--paper2)}
@@ -1169,7 +1176,7 @@
     </div>
   </section>
 
-  <div class="scrollprog" aria-label="Page progress"><div class="dig-track"><div class="dig-earth" id="digEarth"></div></div><div class="dig-spade" id="digSpade"><svg viewBox="0 0 24 32" aria-hidden="true"><defs><linearGradient id="digg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E8AC80"/><stop offset="1" stop-color="#A8482A"/></linearGradient></defs><path d="M8.5 3.4 Q12 -0.2 15.5 3.4" fill="none" stroke="#9a6a44" stroke-width="2.6" stroke-linecap="round"/><rect x="10.6" y="2.6" width="2.8" height="14.4" rx="1.4" fill="#9a6a44"/><rect x="9" y="15.6" width="6" height="2.1" rx="1" fill="#7a3a22"/><path d="M8 17.6 L16 17.6 L15.2 27 Q12 30.6 8.8 27 Z" fill="url(#digg)" stroke="#7a3a22" stroke-width=".5"/></svg></div></div>
+  <div class="scrollprog" aria-label="Page progress"><div class="dig-track"><div class="dig-earth" id="digEarth"></div><div class="dig-treasure" id="digTreasure"><svg viewBox="0 0 24 20" aria-hidden="true"><defs><linearGradient id="trg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE08A"/><stop offset="1" stop-color="#D49A2E"/></linearGradient></defs><path d="M3 9 Q3 4 12 4 Q21 4 21 9 L21 10 L3 10 Z" fill="url(#trg)" stroke="#8a5a16" stroke-width="1"/><rect x="3" y="10" width="18" height="8" rx="1.4" fill="url(#trg)" stroke="#8a5a16" stroke-width="1"/><rect x="3" y="9" width="18" height="2" fill="#8a5a16"/><rect x="10.5" y="9.5" width="3" height="4" rx="0.6" fill="#8a5a16"/><circle cx="12" cy="11" r="0.8" fill="#FFE08A"/></svg></div></div><div class="dig-spade" id="digSpade"><svg viewBox="0 0 24 32" aria-hidden="true"><defs><linearGradient id="digg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E8AC80"/><stop offset="1" stop-color="#A8482A"/></linearGradient></defs><path d="M8.5 3.4 Q12 -0.2 15.5 3.4" fill="none" stroke="#9a6a44" stroke-width="2.6" stroke-linecap="round"/><rect x="10.6" y="2.6" width="2.8" height="14.4" rx="1.4" fill="#9a6a44"/><rect x="9" y="15.6" width="6" height="2.1" rx="1" fill="#7a3a22"/><path d="M8 17.6 L16 17.6 L15.2 27 Q12 30.6 8.8 27 Z" fill="url(#digg)" stroke="#7a3a22" stroke-width=".5"/></svg></div></div>
 
   <!-- ===== HERITAGE ===== -->
   <section class="heritage" id="heritage">
@@ -1857,16 +1864,18 @@
   /* fx1 reading progress bar */
   (function(){var reduceM=matchMedia('(prefers-reduced-motion:reduce)').matches;
     var duck='<svg viewBox="0 0 28 18" aria-hidden="true"><path d="M3 13 C2 9 5 8 8 8.2 C9 5 13 4 16 5.2 C17.6 3.2 20 2.4 22 3.4 C21 4.4 21 5.6 20 6.4 C24 7.4 25 10 24 12 C23 14 20 14 17 14 L7 14 C4.5 14 3.6 14 3 13 Z"/><path d="M22 3.4 L26.6 2.7 L22.6 5.4 Z"/><path d="M3 13 C0.4 12 0.7 9.6 2.6 8.6 C2.4 10.5 3 12 4.7 12.6 Z"/><circle cx="19.4" cy="5.6" r="0.95" fill="#3a1f12"/></svg>';
+    var bx=[28,41,53,64,74],bw=[14,13,12,11,10],babies='';for(var bi=0;bi<5;bi++){babies+='<span class="dpro-duck dk" style="right:'+bx[bi]+'px;width:'+bw[bi]+'px;animation-delay:'+(0.15+bi*0.13).toFixed(2)+'s">'+duck+'</span>';}
     var band=document.createElement('div');band.className='dpro';
-    band.innerHTML='<div class="dpro-line"><i class="dpro-fill" id="dproFill"></i></div><div class="dpro-rip" id="dproRip"></div><div class="dpro-fleet" id="dproFleet"><span class="dpro-duck d3">'+duck+'</span><span class="dpro-duck d2">'+duck+'</span><span class="dpro-duck d1">'+duck+'</span></div>';
+    band.innerHTML='<div class="dpro-line"><i class="dpro-fill" id="dproFill"></i></div><div class="dpro-rip" id="dproRip"></div><div class="dpro-fleet" id="dproFleet">'+babies+'<span class="dpro-duck d1">'+duck+'</span></div>';
     document.body.appendChild(band);
     var fill=band.querySelector('#dproFill'),fleet=band.querySelector('#dproFleet'),rip=band.querySelector('#dproRip');
     var tick=false,lastP=0,lastR=0;
-    function ring(x){var r=document.createElement('span');r.className='dpro-ring';r.style.left=x+'px';rip.appendChild(r);function g(){if(r.parentNode)r.parentNode.removeChild(r);}try{var a=r.animate([{width:'7px',height:'5px',opacity:.6},{width:'66px',height:'30px',opacity:0}],{duration:780,easing:'cubic-bezier(.2,.6,.4,1)',fill:'forwards'});a.onfinish=g;}catch(e){g();}setTimeout(g,1000);}
+    function mkring(x){var r=document.createElement('span');r.className='dpro-ring';r.style.left=x+'px';rip.appendChild(r);function g(){if(r.parentNode)r.parentNode.removeChild(r);}try{var a=r.animate([{width:'6px',height:'4px',opacity:.6},{width:'74px',height:'34px',opacity:0}],{duration:840,easing:'cubic-bezier(.2,.6,.4,1)',fill:'forwards'});a.onfinish=g;}catch(e){g();}setTimeout(g,1100);}
+    function ring(x){mkring(x);setTimeout(function(){mkring(x);},120);}
     function calc(){tick=false;var h=document.documentElement,st=h.scrollTop||window.scrollY||0,max=h.scrollHeight-h.clientHeight,p=max>0?Math.min(st/max,1):0;
       fill.style.width=(p*100).toFixed(2)+'%';fleet.style.left=(p*100).toFixed(2)+'%';
       var now=Date.now();
-      if(!reduceM&&Math.abs(p-lastP)>0.0018&&now-lastR>100){ring(p*window.innerWidth-16);lastR=now;}
+      if(!reduceM&&Math.abs(p-lastP)>0.0018&&now-lastR>100){ring(p*window.innerWidth-12);lastR=now;}
       lastP=p;}
     function on(){if(!tick){tick=true;requestAnimationFrame(calc);}}
     addEventListener('scroll',on,{passive:true});addEventListener('resize',on);calc();})();
@@ -1916,10 +1925,14 @@
   (function(){var hero=document.querySelector('.hero');if(!hero)return;var h=document.createElement('div');h.className='scrollhint';h.innerHTML='<span>Scroll</span><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>';hero.appendChild(h);
     addEventListener('scroll',function(){h.classList.toggle('hide',(window.scrollY||0)>120);},{passive:true});})();
   /* scroll progress: spade digs a hole + dirt scatter */
-  (function(){var earth=document.getElementById('digEarth'),spade=document.getElementById('digSpade'),wrap=document.querySelector('.scrollprog');
+  (function(){var earth=document.getElementById('digEarth'),spade=document.getElementById('digSpade'),wrap=document.querySelector('.scrollprog'),treasure=document.getElementById('digTreasure');
     if(!earth||!spade||!wrap)return;
+    var celebrated=false;
     var reduceM=matchMedia('(prefers-reduced-motion:reduce)').matches,tick=false,lastP=0,lastD=0;
     var COL=['#6e4a2f','#5c3d27','#7a5436','#664326'];
+    var GC=['#FFD54A','#E8B43A','#FFE9A8','#C9962E','#FFF1BE'];
+    function gold(cx,cy){for(var gi=0;gi<16;gi++){(function(){var d=document.createElement('div');var s=3+Math.random()*4;d.className='goldbit';d.style.width=d.style.height=s+'px';d.style.left=cx+'px';d.style.top=cy+'px';d.style.background=GC[Math.random()*GC.length|0];d.style.boxShadow='0 0 4px rgba(255,210,90,.8)';document.body.appendChild(d);var ang=Math.random()*Math.PI*2,dist=30+Math.random()*72,dx=Math.cos(ang)*dist,dy=Math.sin(ang)*dist-28,dur=720+Math.random()*520;function g(){if(d.parentNode)d.parentNode.removeChild(d);}try{var a=d.animate([{transform:'translate(-50%,-50%)',opacity:1},{transform:'translate(-50%,-50%) translate('+(dx*0.7|0)+'px,'+(dy|0)+'px)',opacity:1,offset:.45},{transform:'translate(-50%,-50%) translate('+(dx|0)+'px,'+((dy+95)|0)+'px) scale(.5)',opacity:0}],{duration:dur,easing:'cubic-bezier(.2,.6,.4,1)',fill:'forwards'});a.onfinish=g;}catch(e){g();}setTimeout(g,dur+320);})();}}
+    function celebrate(){if(treasure)treasure.classList.add('found');if(reduceM)return;spade.classList.remove('cheer');void spade.offsetWidth;spade.classList.add('cheer');var rr=wrap.getBoundingClientRect();gold(rr.left+rr.width/2,rr.top+rr.height-6);}
     function dirt(cx,cy){var n=3+(Math.random()*3|0);for(var i=0;i<n;i++){(function(){var d=document.createElement('div');var s=3+Math.random()*3;d.className='digdirt';d.style.width=d.style.height=s+'px';d.style.left=cx+'px';d.style.top=cy+'px';d.style.background=COL[Math.random()*COL.length|0];document.body.appendChild(d);
       var dx=(Math.random()*2-1)*44,up=10+Math.random()*30,dur=480+Math.random()*300;function g(){if(d.parentNode)d.parentNode.removeChild(d);}
       try{var a=d.animate([{transform:'translate(-50%,-50%)',opacity:1},{transform:'translate(-50%,-50%) translate('+(dx|0)+'px,'+(-up|0)+'px)',opacity:1,offset:.4},{transform:'translate(-50%,-50%) translate('+((dx*1.7)|0)+'px,'+((up+26)|0)+'px)',opacity:0}],{duration:dur,easing:'cubic-bezier(.3,.5,.5,1)',fill:'forwards'});a.onfinish=g;}catch(e){g();}setTimeout(g,dur+260);})();}}
@@ -1928,6 +1941,7 @@
       earth.style.height=((1-p)*100).toFixed(2)+'%';spade.style.top=(p*100).toFixed(2)+'%';
       var now=Date.now();
       if(!reduceM&&Math.abs(p-lastP)>0.003&&now-lastD>70){jab();var r=wrap.getBoundingClientRect();dirt(r.left+r.width/2,r.top+p*r.height+5);lastD=now;}
+      if(p>=0.985){if(!celebrated){celebrated=true;celebrate();}}else if(p<0.95&&celebrated){celebrated=false;if(treasure)treasure.classList.remove('found');}
       lastP=p;}
     function on(){if(!tick){tick=true;requestAnimationFrame(calc);}}
     addEventListener('scroll',on,{passive:true});addEventListener('resize',on);calc();})();
