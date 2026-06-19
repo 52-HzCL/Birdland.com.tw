@@ -1008,51 +1008,43 @@
 <!-- ===== Birdland opening intro (overlay) ===== -->
 <div id="bl-intro" role="dialog" aria-label="Birdland intro" hidden>
   <iframe id="bl-intro-frame" data-src="birdland-intro.html" title="Birdland Intro" frameborder="0" scrolling="no"></iframe>
-  <button id="bl-intro-enter" type="button">ENTER SUPPLY &nbsp;&rsaquo;</button>
-  <button id="bl-intro-skip" type="button" aria-label="Skip intro">Skip</button>
+  <button id="bl-intro-enter" type="button">ENTER SUPPLY</button>
 </div>
 <style>
   #bl-intro{position:fixed;inset:0;z-index:99999;background:#16241c;display:flex;align-items:center;justify-content:center;transition:opacity .9s ease}
   #bl-intro[hidden]{display:none}
   #bl-intro.bl-hide{opacity:0;pointer-events:none}
   #bl-intro-frame{position:absolute;inset:0;width:100%;height:100%;border:0}
-  #bl-intro-enter{position:absolute;bottom:6%;left:50%;transform:translateX(-50%);
-    font-family:"Manrope",system-ui,sans-serif;font-weight:600;font-size:clamp(15px,1.4vw,18px);
-    letter-spacing:.18em;text-transform:uppercase;color:#16241c;background:#E8AC80;
-    border:0;border-radius:999px;padding:16px 42px;cursor:pointer;
-    box-shadow:0 6px 24px rgba(0,0,0,.3);transition:transform .25s,background .25s}
-  #bl-intro-enter:hover{transform:translateX(-50%) translateY(-2px);background:#f0bd95}
-  #bl-intro-skip{position:absolute;top:22px;right:26px;
-    font-family:"Manrope",system-ui,sans-serif;font-weight:600;font-size:13px;
-    letter-spacing:.14em;text-transform:uppercase;color:#F2ECDD;opacity:.65;
-    background:transparent;border:0;cursor:pointer}
-  #bl-intro-skip:hover{opacity:1}
+  /* De Stijl button: sharp rectangle, semi-transparent -> solid red on hover */
+  #bl-intro-enter{position:absolute;bottom:7%;right:6%;
+    font-family:"Manrope",system-ui,sans-serif;font-weight:700;font-size:clamp(14px,1.3vw,17px);
+    letter-spacing:.22em;text-transform:uppercase;color:#F4F1E8;
+    background:rgba(244,241,232,.10);border:2px solid #F4F1E8;border-radius:0;
+    padding:16px 34px;cursor:pointer;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);
+    transition:background .25s ease,color .25s ease,border-color .25s ease,box-shadow .25s ease}
+  #bl-intro-enter:hover{background:#D1201F;border-color:#D1201F;color:#fff;box-shadow:0 0 0 4px rgba(209,32,31,.18)}
+  @media(max-width:640px){#bl-intro-enter{bottom:5%;right:50%;transform:translateX(50%)}}
   html.bl-lock,html.bl-lock body{overflow:hidden!important;height:100%}
 </style>
 <script>
 (function(){
-  var AUTO_MS=32000; // 播完一輪約 30 秒後自動進入(可調)
   var o=document.getElementById('bl-intro');
   var fr=document.getElementById('bl-intro-frame');
   if(!o||!fr)return;
-  var timer=null;
   function show(){
     fr.src=fr.getAttribute('data-src');           // (re)load -> restart animation
     o.hidden=false; o.classList.remove('bl-hide');
     document.documentElement.classList.add('bl-lock');
-    clearTimeout(timer); timer=setTimeout(enter,AUTO_MS);
   }
-  function enter(){
-    clearTimeout(timer);
+  function enter(){                                // only ENTER SUPPLY closes it; never auto-closes
     sessionStorage.setItem('bl_intro_seen','1');
     o.classList.add('bl-hide');
     document.documentElement.classList.remove('bl-lock');
-    setTimeout(function(){o.hidden=true; fr.src='about:blank';},1000); // stop animation
+    setTimeout(function(){o.hidden=true; fr.src='about:blank';},1000);
   }
   document.getElementById('bl-intro-enter').addEventListener('click',enter);
-  document.getElementById('bl-intro-skip').addEventListener('click',enter);
-  window.blPlayIntro=function(e){ if(e&&e.preventDefault)e.preventDefault(); show(); }; // 導覽列 Intro 按鈕用
-  if(!sessionStorage.getItem('bl_intro_seen')) show();   // 每次造訪自動播一次
+  window.blPlayIntro=function(e){ if(e&&e.preventDefault)e.preventDefault(); show(); };
+  if(!sessionStorage.getItem('bl_intro_seen')) show();
 })();
 </script>
 <!-- ===== /Birdland opening intro ===== -->
@@ -1261,11 +1253,12 @@
         <div class="tabbar" role="tablist">
           <button class="tab on" type="button" role="tab" aria-selected="true" data-tab="garden"><svg class="ic"><use href="#ic-leaf"/></svg>Garden tools</button>
           <button class="tab" type="button" role="tab" aria-selected="false" data-tab="field"><svg class="ic"><use href="#ic-target"/></svg>Field &amp; hunting</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" data-tab="fieldwork"><svg class="ic"><use href="#ic-layers"/></svg>Fieldwork</button>
           <span class="tab-ink" aria-hidden="true"></span>
         </div>
         <div class="tab-panels">
           <div class="tab-panel on" data-panel="garden"><ul class="makelist"><li>Garden shears, scissors &amp; pruners &mdash; all sizes (metal)</li><li>Hand tools with handles &mdash; full series</li><li>Sprayers &amp; watering products</li><li>Gloves &amp; garden accessories</li></ul></div>
-          <div class="tab-panel" data-panel="field"><ul class="makelist"><li>Feeders &amp; decoys</li><li>Blinds &amp; outdoor equipment</li><li>Gun-dog gear &mdash; magnetic-buckle leashes &amp; vests</li><li>Field accessories</li></ul></div>
+          <div class="tab-panel" data-panel="field"><ul class="makelist"><li>Feeders &amp; decoys</li><li>Blinds &amp; outdoor equipment</li><li>Gun-dog gear &mdash; magnetic-buckle leashes &amp; vests</li><li>Field accessories</li></ul></div><div class="tab-panel" data-panel="fieldwork"><ul class="makelist"><li>Fruit pickers &amp; harvesters</li><li>Grape &amp; pruning knives</li><li>Seeders &amp; seed sowers</li><li>Leaf rakes</li><li>Litter pickers &amp; grabbers</li><li>Long-reach &amp; high-branch pruners</li></ul></div>
         </div>
       </div>
     </div>
