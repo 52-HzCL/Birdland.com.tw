@@ -17,7 +17,11 @@
 <meta property="og:description" content="A confidential OEM/ODM manufacturer of garden tools and field equipment for the world's brands and distributors since 1974. We never compete with our customers.">
 <meta property="og:url" content="https://birdland.com.tw/">
 <meta property="og:locale" content="en">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://birdland.com.tw/images/assembly-calibration.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta name="twitter:image" content="https://birdland.com.tw/images/assembly-calibration.jpg">
 <meta name="twitter:title" content="Birdland Ind. — Garden & Field Manufacturer Since 1974">
 <meta name="twitter:description" content="A confidential OEM/ODM manufacturer of garden tools and field equipment, serving the world's brands since 1974. We never compete with our customers.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2321372B'/><text x='16' y='23' text-anchor='middle' font-family='Georgia,serif' font-size='21' font-weight='600' fill='%23E8AC80'>B</text></svg>">
@@ -1044,6 +1048,7 @@
   }
   document.getElementById('bl-intro-enter').addEventListener('click',enter);
   window.blPlayIntro=function(e){ if(e&&e.preventDefault)e.preventDefault(); show(); };
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !o.hidden) enter(); });
   if(!sessionStorage.getItem('bl_intro_seen')) show();
 })();
 </script>
@@ -1695,26 +1700,26 @@
     if(location.hash==='#protect')window.addEventListener('load',function(){setTimeout(flash,450);});})();  /* GALLERY + lightbox  (paste OneDrive/Cloudinary image URLs into src; album folder link into ALBUM_URL) */
   (function(){
     var GAL=[
-      {cap:'Taiwan base \u2014 origin, warehousing & shipping hub', src:'images/taiwan-factory.jpg'},
-      {cap:'The chairman on the floor', src:'images/chairman-inspection.jpg'},
-      {cap:'Blade forming & finishing', src:'images/blade-forming.jpg'},
-      {cap:'Heat treatment of steel parts', src:'images/heat-treatment.jpg'},
-      {cap:'Surface treatment & finishing', src:'images/surface-treatment.jpg'},
-      {cap:'Laser marking & quality control', src:'images/laser-marking-qc.jpg'},
-      {cap:'In-house tooling & die library', src:'images/tooling-die-library.jpg'},
-      {cap:'Wooden handle making', src:'images/wooden-handle.jpg'},
-      {cap:'Materials secured upstream', src:'images/raw-materials.jpg'},
-      {cap:'Frame welding', src:'images/frame-welding.jpg'},
-      {cap:'Assembly & calibration', src:'images/assembly-calibration.jpg'},
-      {cap:'Finished-goods warehouse', src:'images/finished-goods-warehouse.jpg'},
-      {cap:'Outbound shipping', src:'images/outbound-shipping.jpg'},
-      {cap:'Pre-shipment sampling', src:'images/pre-shipment-sampling.jpg'}
-    ]
+      {cap:'Taiwan base \u2014 origin, warehousing & shipping hub', src:'images/taiwan-factory.jpg', thumb:'images/thumbs/taiwan-factory.webp'},
+      {cap:'The chairman on the floor', src:'images/chairman-inspection.jpg', thumb:'images/thumbs/chairman-inspection.webp'},
+      {cap:'Blade forming & finishing', src:'images/blade-forming.jpg', thumb:'images/thumbs/blade-forming.webp'},
+      {cap:'Heat treatment of steel parts', src:'images/heat-treatment.jpg', thumb:'images/thumbs/heat-treatment.webp'},
+      {cap:'Surface treatment & finishing', src:'images/surface-treatment.jpg', thumb:'images/thumbs/surface-treatment.webp'},
+      {cap:'Laser marking & quality control', src:'images/laser-marking-qc.jpg', thumb:'images/thumbs/laser-marking-qc.webp'},
+      {cap:'In-house tooling & die library', src:'images/tooling-die-library.jpg', thumb:'images/thumbs/tooling-die-library.webp'},
+      {cap:'Wooden handle making', src:'images/wooden-handle.jpg', thumb:'images/thumbs/wooden-handle.webp'},
+      {cap:'Materials secured upstream', src:'images/raw-materials.jpg', thumb:'images/thumbs/raw-materials.webp'},
+      {cap:'Frame welding', src:'images/frame-welding.jpg', thumb:'images/thumbs/frame-welding.webp'},
+      {cap:'Assembly & calibration', src:'images/assembly-calibration.jpg', thumb:'images/thumbs/assembly-calibration.webp'},
+      {cap:'Finished-goods warehouse', src:'images/finished-goods-warehouse.jpg', thumb:'images/thumbs/finished-goods-warehouse.webp'},
+      {cap:'Outbound shipping', src:'images/outbound-shipping.jpg', thumb:'images/thumbs/outbound-shipping.webp'},
+      {cap:'Pre-shipment sampling', src:'images/pre-shipment-sampling.jpg', thumb:'images/thumbs/pre-shipment-sampling.webp'}
+    ];
     var ALBUM_URL='';
     var grid=document.getElementById('galGrid');if(!grid)return;
     GAL.forEach(function(g,i){var c=document.createElement('button');c.className='gal-card'+(g.src?' has-img':'');c.setAttribute('aria-label',g.cap);
       c.innerHTML=(g.src?'':'<span class="gal-soon">Coming soon</span>')+'<svg class="gal-ic"><use href="#ic-camera"/></svg><span class="gal-cap">'+g.cap+'</span>';
-      if(g.src){var im=document.createElement('img');im.className='gal-photo';im.loading='lazy';im.decoding='async';im.alt=g.cap;im.src=g.src;c.insertBefore(im,c.firstChild);}
+      if(g.src){var im=document.createElement('img');im.className='gal-photo';im.loading='lazy';im.decoding='async';im.alt=g.cap;im.src=g.thumb||g.src;if(g.thumb){im.onerror=function(){this.onerror=null;this.src=g.thumb.replace('.webp','.jpg');};}c.insertBefore(im,c.firstChild);}
       c.addEventListener('click',function(){open(i);});grid.appendChild(c);});
     var more=document.getElementById('galMore');if(more){if(ALBUM_URL){more.href=ALBUM_URL;more.hidden=false;}}
     var lb=document.getElementById('lightbox'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap'),cur=0;
@@ -1862,6 +1867,39 @@
     function on(){if(!tick){tick=true;requestAnimationFrame(calc);}}
     __onScroll(on);addEventListener('resize',on);calc();})();
   </script>
+<button id="bl-top" type="button" aria-label="Back to top" title="Back to top">&uarr;</button>
+<style>
+  #nav a.active{color:var(--copper-deep)}
+  #nav a.active::after{content:"";display:block;height:2px;background:var(--metal);border-radius:2px;margin-top:2px}
+  #bl-top{position:fixed;right:22px;bottom:22px;z-index:900;width:46px;height:46px;border:0;border-radius:50%;
+    background:var(--jade-deep);color:var(--paper2);font-size:20px;line-height:1;cursor:pointer;
+    opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s,transform .3s,background .2s;
+    box-shadow:0 6px 20px rgba(33,55,43,.3)}
+  #bl-top.show{opacity:1;transform:none;pointer-events:auto}
+  #bl-top:hover{background:var(--jade)}
+  @media(max-width:640px){#bl-top{right:14px;bottom:14px}}
+</style>
+<script>
+(function(){
+  // scrollspy: highlight current section in nav
+  var links=[].slice.call(document.querySelectorAll('#nav a[href^="#"]'));
+  var map={};
+  links.forEach(function(a){var id=a.getAttribute('href').slice(1);if(id)map[id]=a;});
+  var secs=Object.keys(map).map(function(id){return document.getElementById(id);}).filter(Boolean);
+  if('IntersectionObserver' in window && secs.length){
+    var spy=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){l.classList.remove('active');});
+        var id=e.target.id; if(map[id])map[id].classList.add('active'); } });
+    },{rootMargin:'-45% 0px -50% 0px',threshold:0});
+    secs.forEach(function(s){spy.observe(s);});
+  }
+  // back-to-top
+  var bt=document.getElementById('bl-top');
+  if(bt){ var onsc=function(){ if(window.pageYOffset>700)bt.classList.add('show'); else bt.classList.remove('show'); };
+    addEventListener('scroll',onsc,{passive:true}); onsc();
+    bt.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); }); }
+})();
+</script>
 <script>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'en,nl,de,fr,he,pl,it,es,pt,ja',autoDisplay:false},'google_translate_element');}</script>
 </body>
 </html>
