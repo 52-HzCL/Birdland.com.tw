@@ -1031,19 +1031,24 @@
 <!-- ===== Birdland opening intro (overlay) ===== -->
 <div id="bl-intro" role="dialog" aria-label="Birdland intro" hidden>
   <iframe id="bl-intro-frame" data-src="birdland-intro.html" title="Birdland Intro" frameborder="0" scrolling="no"></iframe>
+  <div id="bl-intro-catch"></div>
   <button id="bl-intro-enter" type="button">ENTER SUPPLY</button>
+  <span id="bl-intro-hint">Tap anywhere to enter &middot; Esc</span>
 </div>
 <style>
   #bl-intro{position:fixed;inset:0;z-index:99999;background:#16241c;display:flex;align-items:center;justify-content:center;transition:opacity .9s ease}
   #bl-intro[hidden]{display:none}
   #bl-intro.bl-hide{opacity:0;pointer-events:none}
-  #bl-intro-frame{position:absolute;inset:0;width:100%;height:100%;border:0}
+  #bl-intro-frame{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:0}
+  #bl-intro-catch{position:absolute;inset:0;z-index:1;cursor:pointer}
+  #bl-intro-hint{position:absolute;bottom:calc(7% - 26px);right:6%;z-index:2;font-family:"Manrope",system-ui,sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,241,232,.55);pointer-events:none}
+  @media(max-width:640px){#bl-intro-hint{right:50%;transform:translateX(50%);bottom:calc(5% - 24px);text-align:center}}
   /* De Stijl button: sharp rectangle, semi-transparent -> solid red on hover */
   #bl-intro-enter{position:absolute;bottom:7%;right:6%;
     font-family:"Manrope",system-ui,sans-serif;font-weight:700;font-size:clamp(14px,1.3vw,17px);
     letter-spacing:.22em;text-transform:uppercase;color:#F4F1E8;
     background:rgba(244,241,232,.10);border:2px solid #F4F1E8;border-radius:0;
-    padding:16px 34px;cursor:pointer;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);
+    padding:16px 34px;cursor:pointer;z-index:2;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);
     transition:background .25s ease,color .25s ease,border-color .25s ease,box-shadow .25s ease}
   #bl-intro-enter:hover{background:#D1201F;border-color:#D1201F;color:#fff;box-shadow:0 0 0 4px rgba(209,32,31,.18)}
   @media(max-width:640px){#bl-intro-enter{bottom:5%;right:50%;transform:translateX(50%)}}
@@ -1066,6 +1071,7 @@
     setTimeout(function(){o.hidden=true; fr.src='about:blank';},1000);
   }
   document.getElementById('bl-intro-enter').addEventListener('click',enter);
+  var _ct=document.getElementById('bl-intro-catch');if(_ct)_ct.addEventListener('click',enter);
   window.blPlayIntro=function(e){ if(e&&e.preventDefault)e.preventDefault(); show(); };
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !o.hidden) enter(); });
   if(!sessionStorage.getItem('bl_intro_seen')) show();
@@ -1090,9 +1096,9 @@
     <button class="menu" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav id="nav">
       <a href="#heritage">About us</a>
-      <a href="#works">Works</a>
+      
       <a href="#make">What we make</a>
-      <a href="#catalogue">Catalogue</a>
+      
       <a href="#why">Why Birdland</a>
       <a href="#enquiry">Contact</a>
       <a href="#" id="bl-replay" onclick="return window.blPlayIntro(event)">Intro</a>
@@ -1742,10 +1748,11 @@
       c.addEventListener('click',function(){open(i);});grid.appendChild(c);});
     var more=document.getElementById('galMore');if(more){if(ALBUM_URL){more.href=ALBUM_URL;more.hidden=false;}}
     var lb=document.getElementById('lightbox'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap'),cur=0;
-    function show(i){cur=(i+GAL.length)%GAL.length;var g=GAL[cur];if(g.src){img.style.backgroundImage='url("'+g.src+'")';img.textContent='';}else{img.style.backgroundImage='none';img.textContent='Photo coming soon';}cap.textContent=g.cap;}
+    function show(i){cur=(i+GAL.length)%GAL.length;var g=GAL[cur];if(g.src){img.style.backgroundImage='url("'+g.src+'")';img.textContent='';}else{img.style.backgroundImage='none';img.textContent='Photo coming soon';}cap.textContent=g.cap+'   \u00b7   '+(cur+1)+' / '+GAL.length;}
     function open(i){show(i);lb.classList.add('open');lb.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
     function close(){lb.classList.remove('open');lb.setAttribute('aria-hidden','true');document.body.style.overflow='';}
     document.getElementById('lbClose').addEventListener('click',close);
+    (function(){var sx=null;lb.addEventListener('touchstart',function(e){sx=e.changedTouches[0].clientX;},{passive:true});lb.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40)show(dx<0?cur+1:cur-1);sx=null;},{passive:true});})();
     document.getElementById('lbPrev').addEventListener('click',function(){show(cur-1);});
     document.getElementById('lbNext').addEventListener('click',function(){show(cur+1);});
     lb.addEventListener('click',function(e){if(e.target===lb)close();});
