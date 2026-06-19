@@ -1412,17 +1412,14 @@
           <a class="esend dim" id="esSend" href="#">Send my enquiry →</a>
           <div class="enote">Opens your email app with everything filled in. Handled in confidence.</div>
           <div class="bl-contact">
-            <a class="bl-mailbtn" href="mailto:executive@birdland.com.tw?subject=Enquiry%20%E2%80%94%20Birdland%20Ind.">Email us directly</a>
-            <button class="bl-copybtn" type="button" id="blCopyEmail" data-email="executive@birdland.com.tw"><span class="bl-copytxt">Copy email address</span></button>
+            <button class="bl-copybtn" type="button" id="blCopyEmail"><span class="bl-copytxt">Copy our team\u2019s email</span></button>
           </div>
-          <div class="bl-contact-note">Prefer to write your own? Copy our address and draft it in your own time.</div>
+          <div class="bl-contact-note">Prefer to write your own message? Pick your region above, then copy the right team\u2019s address and draft it in your own time.</div>
           <style>
             .bl-contact{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
-            .bl-mailbtn,.bl-copybtn{font-family:var(--sans);font-weight:600;font-size:.92rem;letter-spacing:.02em;
-              padding:13px 26px;border-radius:999px;cursor:pointer;border:1.5px solid var(--jade-deep);transition:all .22s ease}
-            .bl-mailbtn{background:var(--jade-deep);color:var(--paper2);border-color:var(--jade-deep)}
-            .bl-mailbtn:hover{background:var(--jade);box-shadow:0 6px 20px rgba(33,55,43,.22)}
-            .bl-copybtn{background:transparent;color:var(--jade-deep)}
+            .bl-copybtn{font-family:var(--sans);font-weight:600;font-size:.92rem;letter-spacing:.02em;
+              padding:13px 26px;border-radius:999px;cursor:pointer;border:1.5px solid var(--jade-deep);
+              background:transparent;color:var(--jade-deep);transition:all .22s ease}
             .bl-copybtn:hover{background:rgba(33,55,43,.07)}
             .bl-copybtn.ok{background:var(--copper);color:#fff;border-color:var(--copper)}
             .bl-contact-note{margin-top:8px;font-size:.82rem;color:var(--burden)}
@@ -1430,13 +1427,21 @@
           <script>
           (function(){
             var b=document.getElementById('blCopyEmail');if(!b)return;
+            var t=b.querySelector('.bl-copytxt');
             b.addEventListener('click',function(){
-              var em=b.getAttribute('data-email'),t=b.querySelector('.bl-copytxt');
-              function done(){b.classList.add('ok');t.textContent='Copied \u2713  '+em;setTimeout(function(){b.classList.remove('ok');t.textContent='Copy email address';},2200);}
-              if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(em).then(done,function(){fallback(em);done();});}
-              else{fallback(em);done();}
+              var send=document.getElementById('esSend');
+              var href=send?send.getAttribute('href'):'';
+              if(!href||href.indexOf('mailto:')!==0){
+                t.textContent='Pick your region above first';
+                var reg=document.querySelector('[data-grp="region"]');
+                if(reg&&reg.scrollIntoView)reg.scrollIntoView({behavior:'smooth',block:'center'});
+                setTimeout(function(){t.textContent='Copy our team\u2019s email';},2400);return;
+              }
+              var em=decodeURIComponent(href.slice(7).split('?')[0]);
+              function done(){b.classList.add('ok');t.textContent='Copied \u2713  '+em;setTimeout(function(){b.classList.remove('ok');t.textContent='Copy our team\u2019s email';},2800);}
+              if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(em).then(done,function(){fb(em);done();});}else{fb(em);done();}
             });
-            function fallback(em){var ta=document.createElement('textarea');ta.value=em;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}
+            function fb(em){var ta=document.createElement('textarea');ta.value=em;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}
           })();
           </script>
         </div>
@@ -1560,7 +1565,7 @@
   /* ENQUIRY BUILDER */
   (function(){
     var sel={region:null,product:null,model:null,volume:null};
-    var emails={'Global':'executive@birdland.com.tw','Europe':'team.eur@birdland.com.tw','UK &amp; Commonwealth':'team.uk@birdland.com.tw','Americas':'team.usa@birdland.com.tw'};
+    var emails={'Global':'team.eur@birdland.com.tw','Europe':'team.eur@birdland.com.tw','UK &amp; Commonwealth':'team.uk@birdland.com.tw','Americas':'team.usa@birdland.com.tw'};
     var ADV={
       nc:{t:'Never competes',b:'your designs and customers stay yours — safe to grow.'},
       ad:{t:'Always delivers',b:'steady fill rates keep shelves stocked and revenue flowing.'},
