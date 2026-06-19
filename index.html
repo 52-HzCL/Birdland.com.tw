@@ -1005,51 +1005,57 @@
 </style>
 </head>
 <body>
-<!-- ===== Birdland 開場 intro (overlay) ===== -->
-<div id="bl-intro" role="dialog" aria-label="Birdland intro">
-  <iframe id="bl-intro-frame" src="birdland-intro.html" title="Birdland Intro" frameborder="0" scrolling="no"></iframe>
-  <button id="bl-intro-enter" type="button">進入網站 &nbsp;&rsaquo;</button>
+<!-- ===== Birdland opening intro (overlay) ===== -->
+<div id="bl-intro" role="dialog" aria-label="Birdland intro" hidden>
+  <iframe id="bl-intro-frame" data-src="birdland-intro.html" title="Birdland Intro" frameborder="0" scrolling="no"></iframe>
+  <button id="bl-intro-enter" type="button">ENTER SUPPLY &nbsp;&rsaquo;</button>
   <button id="bl-intro-skip" type="button" aria-label="Skip intro">Skip</button>
 </div>
 <style>
-  #bl-intro{position:fixed;inset:0;z-index:99999;background:#F4F1E8;display:flex;align-items:center;justify-content:center;transition:opacity .9s ease}
+  #bl-intro{position:fixed;inset:0;z-index:99999;background:#16241c;display:flex;align-items:center;justify-content:center;transition:opacity .9s ease}
+  #bl-intro[hidden]{display:none}
   #bl-intro.bl-hide{opacity:0;pointer-events:none}
   #bl-intro-frame{position:absolute;inset:0;width:100%;height:100%;border:0}
   #bl-intro-enter{position:absolute;bottom:6%;left:50%;transform:translateX(-50%);
     font-family:"Manrope",system-ui,sans-serif;font-weight:600;font-size:clamp(15px,1.4vw,18px);
-    letter-spacing:.14em;text-transform:uppercase;color:#F4F1E8;background:#21372B;
-    border:0;border-radius:999px;padding:16px 40px;cursor:pointer;
-    box-shadow:0 6px 24px rgba(33,55,43,.28);transition:transform .25s,background .25s}
-  #bl-intro-enter:hover{transform:translateX(-50%) translateY(-2px);background:#2c4a3a}
+    letter-spacing:.18em;text-transform:uppercase;color:#16241c;background:#E8AC80;
+    border:0;border-radius:999px;padding:16px 42px;cursor:pointer;
+    box-shadow:0 6px 24px rgba(0,0,0,.3);transition:transform .25s,background .25s}
+  #bl-intro-enter:hover{transform:translateX(-50%) translateY(-2px);background:#f0bd95}
   #bl-intro-skip{position:absolute;top:22px;right:26px;
     font-family:"Manrope",system-ui,sans-serif;font-weight:600;font-size:13px;
-    letter-spacing:.12em;text-transform:uppercase;color:#21372B;opacity:.6;
+    letter-spacing:.14em;text-transform:uppercase;color:#F2ECDD;opacity:.65;
     background:transparent;border:0;cursor:pointer}
   #bl-intro-skip:hover{opacity:1}
   html.bl-lock,html.bl-lock body{overflow:hidden!important;height:100%}
 </style>
 <script>
 (function(){
-  // 一次性:同一個瀏覽器分頁工作階段只播一次。要每次都播,把下一行刪掉即可。
-  if(sessionStorage.getItem('bl_intro_seen')){var o0=document.getElementById('bl-intro');if(o0)o0.remove();return;}
   var AUTO_MS=32000; // 播完一輪約 30 秒後自動進入(可調)
   var o=document.getElementById('bl-intro');
-  if(!o)return;
-  document.documentElement.classList.add('bl-lock');
-  var done=false;
+  var fr=document.getElementById('bl-intro-frame');
+  if(!o||!fr)return;
+  var timer=null;
+  function show(){
+    fr.src=fr.getAttribute('data-src');           // (re)load -> restart animation
+    o.hidden=false; o.classList.remove('bl-hide');
+    document.documentElement.classList.add('bl-lock');
+    clearTimeout(timer); timer=setTimeout(enter,AUTO_MS);
+  }
   function enter(){
-    if(done)return;done=true;
+    clearTimeout(timer);
     sessionStorage.setItem('bl_intro_seen','1');
     o.classList.add('bl-hide');
     document.documentElement.classList.remove('bl-lock');
-    setTimeout(function(){if(o&&o.parentNode)o.remove();},1000);
+    setTimeout(function(){o.hidden=true; fr.src='about:blank';},1000); // stop animation
   }
   document.getElementById('bl-intro-enter').addEventListener('click',enter);
   document.getElementById('bl-intro-skip').addEventListener('click',enter);
-  var t=setTimeout(enter,AUTO_MS);
+  window.blPlayIntro=function(e){ if(e&&e.preventDefault)e.preventDefault(); show(); }; // 導覽列 Intro 按鈕用
+  if(!sessionStorage.getItem('bl_intro_seen')) show();   // 每次造訪自動播一次
 })();
 </script>
-<!-- ===== /Birdland 開場 intro ===== -->
+<!-- ===== /Birdland opening intro ===== -->
 
 <a class="skip" href="#top">Skip to content</a>
 <div id="google_translate_element"></div>
@@ -1072,6 +1078,7 @@
       <a href="#make">What we make</a>
       <a href="#catalogue">Catalogue</a>
       <a href="#why">Why Birdland</a>
+      <a href="#" id="bl-replay" onclick="return window.blPlayIntro(event)">Intro</a>
       <div class="langwrap">
         <button class="langbtn" id="langBtn" aria-haspopup="true" aria-expanded="false">&#127760; Language</button>
         <div class="langmenu" id="langMenu">
