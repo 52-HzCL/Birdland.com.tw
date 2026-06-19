@@ -1186,7 +1186,7 @@
   <section class="works" id="works">
     <div class="wrap">
       <div class="gal-wrap reveal">
-        <div class="gal-head"><span class="ey">Inside Birdland</span><h3>See the runway for yourself.</h3><p>Our factory, lines, checks and people &mdash; real photos coming soon.</p></div>
+        <div class="gal-head"><span class="ey">Inside Birdland</span><h3>See the runway for yourself.</h3><p>Our factory, lines, checks and people &mdash; from raw steel to the box on board.</p></div>
         <div class="gal-grid" id="galGrid"></div>
         <a class="gal-more" id="galMore" href="#" hidden>View the full album &#8599;</a>
       </div>
@@ -1661,15 +1661,21 @@
     if(location.hash==='#protect')window.addEventListener('load',function(){setTimeout(flash,450);});})();  /* GALLERY + lightbox  (paste OneDrive/Cloudinary image URLs into src; album folder link into ALBUM_URL) */
   (function(){
     var GAL=[
-      {cap:'Our factory', src:''},
-      {cap:'Metal-tool production line', src:''},
-      {cap:'Quality inspection', src:''},
-      {cap:'Raw materials, locked early', src:''},
-      {cap:'Taiwan + China capacity', src:''},
-      {cap:'Shipping & logistics', src:''},
-      {cap:'Three generations, one team', src:''},
-      {cap:'Standards & certifications', src:''}
-    ];
+      {cap:'Taiwan factory & warehouse', src:'images/taiwan-factory.jpg'},
+      {cap:'The chairman on the floor', src:'images/chairman-inspection.jpg'},
+      {cap:'Blade forming & finishing', src:'images/blade-forming.jpg'},
+      {cap:'Heat treatment of steel parts', src:'images/heat-treatment.jpg'},
+      {cap:'Surface treatment & finishing', src:'images/surface-treatment.jpg'},
+      {cap:'Laser marking & quality control', src:'images/laser-marking-qc.jpg'},
+      {cap:'In-house tooling & die library', src:'images/tooling-die-library.jpg'},
+      {cap:'Wooden handle making', src:'images/wooden-handle.jpg'},
+      {cap:'Materials secured upstream', src:'images/raw-materials.jpg'},
+      {cap:'Frame welding', src:'images/frame-welding.jpg'},
+      {cap:'Assembly & calibration', src:'images/assembly-calibration.jpg'},
+      {cap:'Finished-goods warehouse', src:'images/finished-goods-warehouse.jpg'},
+      {cap:'Outbound shipping', src:'images/outbound-shipping.jpg'},
+      {cap:'Pre-shipment sampling', src:'images/pre-shipment-sampling.jpg'}
+    ]
     var ALBUM_URL='';
     var grid=document.getElementById('galGrid');if(!grid)return;
     GAL.forEach(function(g,i){var c=document.createElement('button');c.className='gal-card'+(g.src?' has-img':'');c.setAttribute('aria-label',g.cap);
