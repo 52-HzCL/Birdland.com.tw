@@ -1006,6 +1006,25 @@
   .hero .wrap{animation:heroIn 1.7s cubic-bezier(.2,.7,.2,1) both}
   @keyframes heroIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
   @media(prefers-reduced-motion:reduce){.hero .wrap{animation:none}}
+
+  /* ===== Legibility pass — presbyopia-friendly (appended; wins by source order) ===== */
+  html{font-size:17px}                              /* +6% global base for all rem sizing */
+  :root{--ink-soft:#322c24}                          /* darker body text => higher contrast on cream */
+  body{font-size:clamp(1.2rem,1.05rem + .5vw,1.38rem);line-height:1.74;letter-spacing:.004em}
+  p{font-size:inherit;line-height:1.74}
+  .ey{font-size:1rem;letter-spacing:.15em}           /* eyebrow labels: bigger, less extreme tracking */
+  #nav a{font-size:1.05rem}
+  .langbtn{font-size:1rem}
+  .enote,.bl-contact-note{font-size:1.02rem;color:var(--burden-deep)}
+  .gal-cap{font-size:1.04rem;letter-spacing:.01em}
+  .makelist li{font-size:1.1rem;line-height:1.6}
+  .tab{font-size:1.04rem}
+  .esline,.esadv,.esum .etitle{line-height:1.55}
+  .esline,.esadv{font-size:1.1rem}
+  .opts button,.erow .el{font-size:1.04rem}
+  footer{font-size:1.04rem}
+  .bl-copybtn,.esend{font-size:1rem}
+  blockquote p{font-size:1.12rem;line-height:1.66}   /* testimonials easier to read */
 </style>
 </head>
 <body>
