@@ -1070,6 +1070,7 @@
       <a href="#make">What we make</a>
       <a href="#catalogue">Catalogue</a>
       <a href="#why">Why Birdland</a>
+      <a href="#enquiry">Contact</a>
       <a href="#" id="bl-replay" onclick="return window.blPlayIntro(event)">Intro</a>
       <div class="langwrap">
         <button class="langbtn" id="langBtn" aria-haspopup="true" aria-expanded="false">&#127760; Language</button>
@@ -1410,6 +1411,34 @@
           <div class="esadv" id="esAdv"></div>
           <a class="esend dim" id="esSend" href="#">Send my enquiry →</a>
           <div class="enote">Opens your email app with everything filled in. Handled in confidence.</div>
+          <div class="bl-contact">
+            <a class="bl-mailbtn" href="mailto:executive@birdland.com.tw?subject=Enquiry%20%E2%80%94%20Birdland%20Ind.">Email us directly</a>
+            <button class="bl-copybtn" type="button" id="blCopyEmail" data-email="executive@birdland.com.tw"><span class="bl-copytxt">Copy email address</span></button>
+          </div>
+          <div class="bl-contact-note">Prefer to write your own? Copy our address and draft it in your own time.</div>
+          <style>
+            .bl-contact{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+            .bl-mailbtn,.bl-copybtn{font-family:var(--sans);font-weight:600;font-size:.92rem;letter-spacing:.02em;
+              padding:13px 26px;border-radius:999px;cursor:pointer;border:1.5px solid var(--jade-deep);transition:all .22s ease}
+            .bl-mailbtn{background:var(--jade-deep);color:var(--paper2);border-color:var(--jade-deep)}
+            .bl-mailbtn:hover{background:var(--jade);box-shadow:0 6px 20px rgba(33,55,43,.22)}
+            .bl-copybtn{background:transparent;color:var(--jade-deep)}
+            .bl-copybtn:hover{background:rgba(33,55,43,.07)}
+            .bl-copybtn.ok{background:var(--copper);color:#fff;border-color:var(--copper)}
+            .bl-contact-note{margin-top:8px;font-size:.82rem;color:var(--burden)}
+          </style>
+          <script>
+          (function(){
+            var b=document.getElementById('blCopyEmail');if(!b)return;
+            b.addEventListener('click',function(){
+              var em=b.getAttribute('data-email'),t=b.querySelector('.bl-copytxt');
+              function done(){b.classList.add('ok');t.textContent='Copied \u2713  '+em;setTimeout(function(){b.classList.remove('ok');t.textContent='Copy email address';},2200);}
+              if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(em).then(done,function(){fallback(em);done();});}
+              else{fallback(em);done();}
+            });
+            function fallback(em){var ta=document.createElement('textarea');ta.value=em;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}
+          })();
+          </script>
         </div>
       </div>
     </div>
