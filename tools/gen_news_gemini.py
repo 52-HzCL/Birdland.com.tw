@@ -74,7 +74,20 @@ try:
         merged["pheat"]=ov.get("heat", ov.get("pheat", merged.get("heat")))  # tail for heatmap deltas
         cand["regions"][code]["viz"]=merged
     cand["news"]=data.get("news",[])                      # never let AI touch company news
-    if not cand.get("indices"): cand["indices"]=data.get("indices",[])
+    # indices: roll change% + sparkline from previous values; keep labels/units/spark history
+    oldidx={ (x.get("short") or x.get("label")):x for x in data.get("indices",[]) }
+    ci=cand.get("indices") or data.get("indices",[])
+    for x in ci:
+        o=oldidx.get(x.get("short") or x.get("label"))
+        if o:
+            ov=o.get("value"); nv=x.get("value",ov)
+            try: x["chg"]=round((float(nv)-float(ov))/float(ov)*100,1) if ov else o.get("chg",0)
+            except: x["chg"]=o.get("chg",0)
+            sp=list(o.get("spark",[]))+[nv]; x["spark"]=sp[-16:]
+            x.setdefault("unit",o.get("unit","")); x.setdefault("label",o.get("label",""))
+        else:
+            x.setdefault("chg",0); x.setdefault("spark",[x.get("value",0)])
+    cand["indices"]=ci
     if not cand.get("teamAnalysis"): cand["teamAnalysis"]=data.get("teamAnalysis","")
     print("Gemini update parsed & validated; viz tails rolled.")
     save_and_build(cand)
