@@ -19,11 +19,15 @@ jobs:
       - name: Refresh outlook (Gemini) + rebuild News page
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY || secrets.GEMINI_MAY_API_KEY }}
+          TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY || secrets.TWELVEDATA_MAY_API_KEY }}
         run: |
           set +e
           echo "::group::gen_news_gemini"
           python3 tools/gen_news_gemini.py 2>&1 | tee /tmp/gen.log
           echo "gen exit: ${PIPESTATUS[0]}"
+          echo "::endgroup::"
+          echo "::group::fetch_market"
+          python3 tools/fetch_market.py 2>&1 | tee -a /tmp/gen.log
           echo "::endgroup::"
           python3 tools/build_news.py 2>&1 | tee -a /tmp/gen.log
           echo "build exit: ${PIPESTATUS[0]}"
