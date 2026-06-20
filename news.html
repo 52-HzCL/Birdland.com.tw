@@ -20,8 +20,12 @@
  .gdesk{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:#06090d;background:var(--cyan);padding:3px 9px;border-radius:3px}
  .gsub{font-size:.76rem;color:var(--mut);letter-spacing:.08em;margin:12px 0 22px}
  .glabel{font-size:.74rem;color:var(--mut);letter-spacing:.14em;margin-bottom:8px;text-transform:uppercase}
- .pinrow{display:flex;gap:10px}#pin{flex:1;font-family:var(--mono);font-size:1.5rem;letter-spacing:.5em;text-align:center;color:var(--amber);background:#0a0d12;border:1px solid var(--line);padding:13px;outline:none}#pin:focus{border-color:var(--cyan);box-shadow:0 0 0 1px var(--cyan)}
- .gbtn{font-family:var(--mono);font-weight:700;letter-spacing:.1em;color:#06090d;background:var(--amber);border:0;padding:0 22px;cursor:pointer;font-size:.95rem}.gbtn:hover{background:#ffb255}
+ .pinrow{display:flex;gap:10px}#pin{flex:1;font-family:"IBM Plex Mono",monospace;font-size:1.4rem;letter-spacing:.4em;text-align:center;color:#000;background:#fff;border:1px solid #000;box-shadow:inset 1px 1px 0 #808080;border-radius:0;padding:12px;outline:none}
+ #pin:focus{box-shadow:inset 1px 1px 0 #808080,0 0 0 2px #19e36a}#pin:focus{border-color:var(--cyan);box-shadow:0 0 0 1px var(--cyan)}
+ .gbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 14px "MS Sans Serif",Tahoma,Geneva,sans-serif;color:#000;background:#c0c0c0;border:1px solid #000;box-shadow:inset 1px 1px 0 #fff,inset -1px -1px 0 #808080;border-radius:0;padding:0 18px;cursor:pointer}
+ .gbtn:active{box-shadow:inset 1px 1px 0 #808080,inset -1px -1px 0 #fff}
+ .gbtn .led{width:8px;height:8px;border-radius:50%;background:#19e36a;box-shadow:0 0 6px #19e36a;display:inline-block;flex:0 0 auto;animation:bdblink 1.1s steps(1) infinite}
+ @keyframes bdblink{50%{opacity:.2}}.gbtn:hover{background:#ffb255}
  .gerr{color:var(--red);font-size:.78rem;margin-top:12px;min-height:1em}.gcursor::after{content:"_";animation:bl 1s steps(1) infinite;color:var(--green)}@keyframes bl{50%{opacity:.25}}
  .topbar{background:#070a0e;border-bottom:1px solid var(--line)}.tb{display:flex;align-items:center;justify-content:space-between;padding:11px 0;gap:16px}
  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.06rem}.brand .b-mk{display:inline-flex;gap:2px;align-items:flex-end;height:18px}.brand .b-mk i{width:4px}
@@ -81,7 +85,7 @@
   <div><span class="gdesk">Client Desk</span></div>
   <div class="gsub">Market &amp; supply intelligence · authorized clients only</div>
   <div class="glabel gcursor">Enter access PIN</div>
-  <div class="pinrow"><input id="pin" type="password" inputmode="numeric" maxlength="6" autocomplete="off" aria-label="Access PIN"><button class="gbtn" id="gago">ENTER</button></div>
+  <div class="pinrow"><input id="pin" type="password" inputmode="numeric" maxlength="6" autocomplete="off" aria-label="Access PIN"><button class="gbtn" id="gago"><span class="led" aria-hidden="true"></span>ENTER</button></div>
   <div class="gerr" id="gerr"></div>
 </div></div>
 <div class="topbar"><div class="wrap tb">
