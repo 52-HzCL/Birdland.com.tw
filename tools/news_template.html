@@ -92,6 +92,7 @@
   <div class="latest" id="latest" onclick="location.hash='#news'"></div>
 
   <section class="blk" data-open="1"><button class="blk-h"><span class="k">WATCH</span><h2>Watchlist — inputs &amp; freight</h2><span class="ihelp" title="Your key cost inputs: latest level, change since last refresh, and recent trend. Hover any row for what it means for your landed cost.">i</span><span class="meta" id="wl-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="svgwrap"><table class="wl" id="watchlist"></table></div></div></section>
+  <section class="blk" data-open="1"><button class="blk-h"><span class="k c">FREIGHT</span><h2>Freight indices — bulk &amp; container</h2><span class="ihelp" title="BDI tracks bulk/dry shipping demand; container lanes are spot US$ per 40ft (FEU). Both shape your delivered cost — you ship both ways. Hover a row for detail.">i</span><span class="meta" id="fr-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="fr-note"></div><div class="svgwrap"><table class="wl" id="freight"></table></div></div></section>
 
   <section class="blk" data-open="1"><button class="blk-h"><span class="k y">CURVE</span><h2>Forward curves — lock now or wait?</h2><span class="ihelp" title="A rising curve (contango) means forward prices are higher — locking now can pay off. A falling curve (backwardation) means the market expects easing — less urgency. Hover any point for its value.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="fwd-note"></div><div class="grid2" id="forward"></div></div></section>
 
@@ -140,6 +141,11 @@
     wl.innerHTML=h+'</tbody>';document.getElementById('wl-meta').textContent=(D.indices||[]).length+' instruments';})();
 
   // macro ticker
+  (function(){var fr=D.freight;if(!fr)return;var nt=document.getElementById('fr-note');if(nt)nt.textContent=fr.note||'';
+    var rows=(fr.items||[]).map(function(x){var dir=x.dir||'flat',cls=dir==='up'?'up':(dir==='down'?'down':'flat'),ar=dir==='up'?'▲':(dir==='down'?'▼':'■');var chg=(x.chg!=null?(x.chg>0?'+':'')+x.chg.toFixed(1)+'%':'');
+      return '<tr title="'+(x.tip||'')+'"><td class="l"><span class="nm">'+(x.live?'<span style=\'color:#16c47e\'>●</span> ':'')+x.label+'</span></td><td>'+Number(x.value).toLocaleString()+(x.unit?(' '+x.unit):'')+'</td><td class="'+cls+'">'+ar+chg+'</td><td>'+spark(x.spark,dir)+'</td><td class="l" style="color:var(--mut);font-size:.7rem">'+(x.kind==='bulk'?'BULK':'FEU')+(x.live?' · LIVE':' · indic.')+'</td></tr>';}).join('');
+    var t=document.getElementById('freight');if(t)t.innerHTML='<thead><tr><th class="l">Freight index</th><th>Last</th><th>Chg</th><th>Trend</th><th class="l">Type</th></tr></thead><tbody>'+rows+'</tbody>';
+    var fm=document.getElementById('fr-meta');if(fm)fm.textContent=(fr.items||[]).length+' indices';})();
   var tk=(D.macro||[]).map(function(m){var dir=m.dir||'flat',cls=dir==='up'?'up':(dir==='down'?'down':'flat'),ar=dir==='up'?'▲':(dir==='down'?'▼':'■');var chg=(m.chg!=null?(m.chg>0?'+':'')+m.chg.toFixed(1)+'%':'');return '<span class="ti">'+(m.live?'<span style="color:#16c47e">●</span>':'')+'<span class="s">'+m.short+'</span><span class="v">'+Number(m.value).toFixed(1)+(m.unit?(' '+m.unit):'')+'</span><span class="'+cls+'">'+ar+chg+'</span></span>';}).join('');
   document.getElementById('ticker').innerHTML=tk+tk;
   function fxItem(sym,val,chg){var cls=chg>0?'up':(chg<0?'down':'flat'),ar=chg>0?'▲':(chg<0?'▼':'■');return '<span class="ti"><span style="color:#16c47e">●</span><span class="s">'+sym+'</span><span class="v">'+val+'</span><span class="'+cls+'">'+ar+(chg>0?'+':'')+chg.toFixed(1)+'%</span></span>';}
