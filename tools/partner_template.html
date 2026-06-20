@@ -4,10 +4,11 @@
 <title>Birdland Partner Desk — Data Terminal</title><meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230b0e13'/><rect x='5' y='17' width='4' height='10' fill='%2315c47e'/><rect x='12' y='11' width='4' height='16' fill='%23ff9e2c'/><rect x='19' y='6' width='4' height='21' fill='%23e8c07a'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230b0e13'/><rect x='6' y='6' width='20' height='20' fill='none' stroke='%23e8c07a' stroke-width='2'/></svg>">
 <style>
- :root{--bg:#0b0e13;--panel:#11161d;--panel2:#161c24;--line:#262e39;--txt:#e2e8f0;--mut:#9aa4b2;--amber:#ff9e2c;--cyan:#36c2d6;--green:#16c47e;--red:#ff5470;--yellow:#f5c542;--gold:#e8c07a;--mono:"IBM Plex Mono",ui-monospace,monospace;--sans:"Inter",system-ui,sans-serif}
- *{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--sans);background:var(--bg);color:var(--txt);font-size:16.5px;line-height:1.65}
+ :root{--bg:#0b0e13;--panel:#11161d;--panel2:#161c24;--line:#262e39;--txt:#e2e8f0;--mut:#9aa4b2;--gold:#e8c07a;--amber:#ff9e2c;--cyan:#36c2d6;--green:#16c47e;--red:#ff5470;--purple:#a78bfa;--mono:"IBM Plex Mono",ui-monospace,monospace;--sans:"Inter",system-ui,sans-serif}
+ *{box-sizing:border-box;margin:0;padding:0}
+ body{font-family:var(--sans);background:var(--bg);color:var(--txt);font-size:16.5px;line-height:1.65}
  a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(1rem,3vw,2.2rem)}
  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9;background:repeating-linear-gradient(180deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);mix-blend-mode:overlay}
  #gate{position:fixed;inset:0;z-index:1000;background:radial-gradient(120% 90% at 50% 0%,#16120a,#06080c 70%);display:flex;align-items:center;justify-content:center;font-family:var(--mono)}
@@ -22,15 +23,14 @@
  .pinrow{display:flex;gap:10px}#pin{flex:1;font-family:var(--mono);font-size:1.3rem;letter-spacing:.35em;text-align:center;color:var(--gold);background:#0a0d12;border:1px solid var(--line);padding:13px;outline:none}#pin:focus{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
  .gbtn{font-family:var(--mono);font-weight:700;letter-spacing:.1em;color:#1a1407;background:var(--gold);border:0;padding:0 22px;cursor:pointer}.gbtn:hover{filter:brightness(1.08)}
  .gerr{color:var(--red);font-size:.78rem;margin-top:12px;min-height:1em}.gcursor::after{content:"_";animation:bl 1s steps(1) infinite;color:var(--gold)}@keyframes bl{50%{opacity:.25}}
- .topbar{background:#070a0e;border-bottom:1px solid var(--line)}.tb{display:flex;align-items:center;justify-content:space-between;padding:11px 0;gap:16px}
+ .topbar{background:#070a0e;border-bottom:1px solid var(--line)}.tb{display:flex;align-items:center;justify-content:space-between;padding:11px 0}
  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.06rem}.brand .b-mk{display:inline-flex;gap:2px;align-items:flex-end;height:18px}.brand .b-mk i{width:4px}
  .brand .tag{font-family:var(--mono);font-size:.68rem;color:var(--gold);border:1px solid var(--gold);padding:1px 6px;letter-spacing:.12em;text-transform:uppercase;border-radius:3px}
  .tb-right{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:.76rem;color:var(--mut)}
- .live{display:inline-flex;align-items:center;gap:6px;color:var(--gold)}.live .d{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);animation:bl 1.8s infinite}
- .refresh b{color:var(--gold);font-weight:600}.back{color:var(--cyan)}@media(max-width:760px){.tb-right .refresh{display:none}}
- .hero{padding:26px 0 6px}.eyk{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
- h1{font-weight:800;font-size:clamp(1.5rem,3vw,2.1rem);color:#fff;line-height:1.1;margin:.3rem 0 .4rem}.lede{max-width:820px;color:var(--mut);font-size:.95rem}
- .blk{margin-top:20px;border:1px solid var(--line);background:var(--panel)}
+ .live{display:inline-flex;align-items:center;gap:6px;color:var(--gold)}.live .d{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);animation:bl 1.8s infinite}.back{color:var(--cyan)}
+ .hero{padding:34px 0 6px}.eyk{font-family:var(--mono);font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+ h1{font-weight:800;font-size:clamp(1.7rem,3.4vw,2.4rem);color:#fff;line-height:1.08;margin:.4rem 0 .4rem}.lede{max-width:820px;color:var(--mut);font-size:.95rem}
+ .blk{margin-top:22px;border:1px solid var(--line);background:var(--panel)}
  .blk-h{width:100%;display:flex;align-items:center;gap:10px;background:#0c1117;border:0;border-bottom:1px solid var(--line);padding:14px 16px;cursor:pointer;text-align:left}
  .blk-h .k{font-family:var(--mono);font-size:.68rem;color:#1a1407;background:var(--gold);padding:2px 8px;letter-spacing:.1em;font-weight:700;border-radius:2px}
  .blk-h h2{font-size:1.04rem;font-weight:700;color:#fff}
@@ -38,31 +38,30 @@
  .blk-h .meta{margin-left:auto;font-family:var(--mono);font-size:.74rem;color:var(--mut)}
  .tog{margin-left:10px;width:28px;height:28px;border:1.5px solid var(--mut);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;color:var(--gold);font-family:var(--mono);font-weight:700;font-size:1.2rem;flex:0 0 auto}
  .blk-h:hover .tog{border-color:var(--gold)}.tog::before{content:"\2212"}.blk[data-open="0"] .tog::before{content:"+"}.blk[data-open="0"] .blk-b{display:none}
- .blk-b{padding:18px}.sub{color:var(--mut);font-size:.9rem;margin:-2px 0 14px;max-width:900px}
+ .blk-b{padding:18px}.sub{color:var(--mut);font-size:.9rem;margin:-2px 0 16px;max-width:900px}
  .svgwrap{width:100%;overflow-x:auto}.chart{display:block}
- .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:760px){.grid2{grid-template-columns:1fr}}
- .fwd-card{border:1px solid var(--line);border-radius:7px;background:var(--panel2);padding:12px}.fwd-card h4{font-size:.82rem;color:#fff;font-weight:700;display:flex;justify-content:space-between}.fwd-card .tip{font-size:.78rem;color:var(--mut);margin-top:6px}
- .pb-row{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:6px;background:var(--panel2);padding:12px 14px;margin-bottom:8px;cursor:help}
- .pb-row .u{font-family:var(--mono);font-size:.64rem;font-weight:700;letter-spacing:.08em;padding:3px 8px;border-radius:3px;flex:0 0 auto}
- .u-high{background:var(--red);color:#fff}.u-med{background:var(--amber);color:#1a1407}.u-low{background:var(--green);color:#06241a}
- .pb-row .in{font-weight:700;color:#fff;min-width:160px}.pb-row .ac{color:var(--gold);font-family:var(--mono);font-size:.86rem;min-width:150px}.pb-row .wh{color:var(--mut);font-size:.86rem}
- table.tbl{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:.9rem}
- table.tbl th{text-align:right;font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);padding:7px 10px;border-bottom:1px solid var(--line)}
- table.tbl th.l,table.tbl td.l{text-align:left}table.tbl td{padding:11px 10px;border-bottom:1px solid #1a212b;text-align:right;color:#fff}
- table.tbl tr{cursor:help}table.tbl tr:hover td{background:#0e141b}
- .up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--amber)}
- .save{color:var(--green);font-weight:700}
- .calc{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}@media(max-width:680px){.calc{grid-template-columns:1fr}}
- .calc label{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-bottom:5px}
- .calc select,.calc input{width:100%;font-family:var(--mono);font-size:.95rem;color:var(--gold);background:var(--panel2);border:1px solid var(--line);border-radius:5px;padding:10px 12px}
- .legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;font-family:var(--mono);font-size:.76rem;color:var(--mut)}.legend i{width:13px;height:13px;border-radius:2px;display:inline-block;margin-right:6px;vertical-align:middle;cursor:help}
- .war-row{margin-bottom:12px;cursor:help}.war-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px}
- .war-z{font-weight:700;color:#fff}.war-st{font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.08em;padding:2px 8px;border-radius:3px}
- .st-high{background:var(--red);color:#fff}.st-elevated{background:var(--amber);color:#1a1407}.st-watch{background:#3a4654;color:#e2e8f0}
- .war-bar{height:12px;background:#0a0f15;border:1px solid var(--line);border-radius:6px;overflow:hidden}.war-bar i{display:block;height:100%}
- .war-aff{margin-top:6px;font-family:var(--mono);font-size:.74rem;color:var(--mut)}.war-aff span{display:inline-block;border:1px solid var(--line);border-radius:4px;padding:1px 7px;margin:3px 5px 0 0;color:var(--gold)}
- .disc{margin:26px 0 12px;font-family:var(--mono);font-size:.76rem;color:var(--mut);border-top:1px solid var(--line);padding-top:14px;line-height:1.6}
- footer{margin-top:8px;padding:24px 0;border-top:1px solid var(--line);font-size:.9rem;color:var(--mut)}footer a{color:var(--cyan)}
+ .pb-sum{font-size:1.04rem;line-height:1.7;color:#eef3f8;margin-bottom:16px}
+ .act{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:7px;background:var(--panel2);padding:12px 14px;margin-bottom:9px}
+ .act .lv{font-family:var(--mono);font-size:.64rem;font-weight:700;letter-spacing:.08em;padding:3px 8px;border-radius:3px;flex:0 0 auto}
+ .act .lv.high{background:var(--red);color:#fff}.act .lv.med{background:var(--amber);color:#1a1407}.act .lv.low{background:var(--green);color:#06241a}
+ .act .at{font-weight:700;color:#fff}.act .an{color:var(--mut);font-size:.86rem;margin-left:auto;text-align:right;max-width:55%}
+ .legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;font-family:var(--mono);font-size:.78rem;color:var(--mut)}.legend i{width:14px;height:3px;display:inline-block;margin-right:6px;vertical-align:middle}
+ table.tm{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:.9rem}
+ table.tm th{text-align:left;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);padding:7px 10px;border-bottom:1px solid var(--line)}
+ table.tm td{padding:11px 10px;border-bottom:1px solid #1a212b;cursor:help}table.tm tr:hover td{background:#0e141b}
+ .war{display:grid;gap:12px}.war .row{display:grid;grid-template-columns:200px 1fr 70px;gap:12px;align-items:center}
+ @media(max-width:640px){.war .row{grid-template-columns:1fr}}
+ .war .ev{font-weight:700;color:#fff;font-size:.95rem}.war .ev small{display:block;color:var(--mut);font-weight:500;font-size:.78rem;margin-top:2px}
+ .war .bar{height:14px;background:#0a0f15;border:1px solid var(--line);border-radius:7px;overflow:hidden}.war .bar i{display:block;height:100%}
+ .war .sc{font-family:var(--mono);font-weight:700;text-align:right}
+ .calc{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}@media(max-width:720px){.calc{grid-template-columns:1fr 1fr}}
+ .calc label{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin-bottom:6px}
+ .calc input{width:100%;font-family:var(--mono);font-size:.95rem;color:var(--gold);background:var(--panel2);border:1px solid var(--line);border-radius:5px;padding:9px 11px}
+ .calc .rng{color:var(--cyan)}
+ .cot{font-family:var(--mono);font-size:1.4rem;font-weight:700;color:#fff;margin-top:6px}.cot small{font-size:.8rem;color:var(--mut);font-weight:500}
+ .feat{border:1px solid var(--line);background:var(--panel2);border-radius:8px;padding:16px}
+ footer{margin-top:24px;padding:24px 0;border-top:1px solid var(--line);font-size:.9rem;color:var(--mut)}footer a{color:var(--cyan)}
+ .disc{margin:26px 0 4px;font-family:var(--mono);font-size:.74rem;color:var(--mut);border-top:1px solid var(--line);padding-top:14px;line-height:1.6}
 </style></head><body>
 <div id="gate"><div class="gbox">
   <div class="gbar"><span class="gd"></span>PRIVILEGED ACCESS · PARTNERS ONLY</div>
@@ -71,117 +70,109 @@
   <div><span class="gdesk">Partner Desk</span></div>
   <div class="gsub">Deeper analysis · your dedicated desk · by invitation</div>
   <div class="glabel gcursor">Enter Partner PIN</div>
-  <div class="pinrow"><input id="pin" type="password" inputmode="text" maxlength="10" autocomplete="off" aria-label="Partner PIN"><button class="gbtn" id="gago">ENTER</button></div>
-  <div class="gerr" id="gerr"></div>
+  <div class="pinrow"><input id="pin" type="password" inputmode="text" maxlength="10" autocomplete="off" aria-label="Partner PIN"><button class="gbtn" id="go">ENTER</button></div>
+  <div class="gerr" id="err"></div>
 </div></div>
 <div class="topbar"><div class="wrap tb">
   <a class="brand" href="index.html"><span class="b-mk"><i style="height:8px;background:var(--green)"></i><i style="height:13px;background:var(--amber)"></i><i style="height:18px;background:var(--gold)"></i></span>BIRDLAND<span class="tag">Partner&nbsp;Desk</span></a>
-  <div class="tb-right"><span class="live"><span class="d"></span>PARTNER</span><span class="refresh" id="refresh"></span><a class="back" href="news.html">Client Desk →</a></div>
+  <div class="tb-right"><span class="live"><span class="d"></span>PARTNER</span><span id="refresh"></span><a class="back" href="news.html">Client Desk →</a></div>
 </div></div>
 
 <main class="wrap">
-  <section class="hero"><div class="eyk">Partner Desk</div><h1>Your procurement command desk.</h1><p class="lede">Deeper, decision-ready intelligence for partners — what to lock, where freight and materials are heading, your landed cost, live tariff exposure, and geopolitical risk to your lanes.</p></section>
+  <section class="hero"><div class="eyk">Partner Desk · privileged briefing</div><h1>Your dedicated desk.</h1><p class="lede">Deeper, forward-looking intelligence for our closest partners — procurement actions, lane &amp; material forecasts, a live landed-cost model, and tariff &amp; geopolitical monitors. Hover any chart element for detail.</p></section>
 
-  <section class="blk" data-open="1"><button class="blk-h"><span class="k">BRIEF</span><h2>Procurement Brief</h2><span class="ihelp" title="What our desk would lock now vs wait, by input — with urgency and the reasoning. Hover a row for the rationale.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="pb-note"></div><div id="procurement"></div></div></section>
+  <section class="blk" data-open="1"><button class="blk-h"><span class="k">BRIEF</span><h2>Procurement Brief</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
 
-  <section class="blk" data-open="1"><button class="blk-h"><span class="k">SHIP</span><h2>Shipping Forecast</h2><span class="ihelp" title="Ocean-freight outlook: forward curve plus lane-by-lane rate, trend, transit time and schedule reliability. Hover for detail.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="ship-note"></div><div class="svgwrap" style="max-width:420px;margin-bottom:14px"><svg id="shipCurve" class="chart" viewBox="0 0 360 130"></svg></div><div class="svgwrap"><table class="tbl" id="lanes"></table></div></div></section>
+  <section class="blk" data-open="1"><button class="blk-h"><span class="k">SHIP</span><h2>Shipping Forecast — by lane</h2><span class="ihelp" title="Indicative ocean-freight forecast per lane (US$/FEU). Use it to time bookings. Hover a point for its value.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="ship-note"></div><div class="svgwrap"><svg id="ship" class="chart" viewBox="0 0 720 280" role="img" aria-label="Shipping forecast"></svg></div><div class="legend" id="ship-legend"></div></div></section>
 
-  <section class="blk" data-open="1"><button class="blk-h"><span class="k">MATL</span><h2>Material Forecast</h2><span class="ihelp" title="Forward curves for the metals and polymers in your bill of materials. Rising = lock; falling = wait. Hover a point for its value.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="matl-note"></div><div class="grid2" id="material"></div></div></section>
+  <section class="blk" data-open="1"><button class="blk-h"><span class="k">MATL</span><h2>Material Forecast</h2><span class="ihelp" title="Key input materials, rebased to 100 = now, over the forecast horizon. Rising = cost pressure ahead. Hover a point for the index.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="matl-note"></div><div class="svgwrap"><svg id="matl" class="chart" viewBox="0 0 720 280" role="img" aria-label="Material forecast"></svg></div><div class="legend" id="matl-legend"></div></div></section>
 
-  <section class="blk" data-open="1"><button class="blk-h"><span class="k">CALC</span><h2>Landed Cost Calculator</h2><span class="ihelp" title="Estimate full landed cost per unit and per shipment by destination, origin and quantity — materials, conversion, freight and duty. Hover a segment.">i</span><span class="meta" id="lc-meta"></span><span class="tog"></span></button><div class="blk-b">
-    <div class="calc"><div><label for="lcDest">Destination</label><select id="lcDest"></select></div><div><label for="lcOrigin">Origin</label><select id="lcOrigin"><option value="TW">Taiwan</option><option value="CN">China</option></select></div><div><label for="lcQty">Quantity (units)</label><input id="lcQty" type="number" value="5000" min="1" step="100"></div></div>
-    <div class="svgwrap"><svg id="lcBar" class="chart" viewBox="0 0 720 70"></svg></div><div class="legend" id="lcLegend"></div><div id="lcOut" style="margin-top:12px"></div></div></section>
+  <section class="blk" data-open="1"><button class="blk-h"><span class="k">CALC</span><h2>Landed-Cost Calculator</h2><span class="ihelp" title="Live model of per-unit landed cost. Move the inputs to see how steel, freight and duty change your cost. Hover a bar segment for detail.">i</span><span class="meta" id="calc-meta"></span><span class="tog"></span></button><div class="blk-b">
+    <div class="calc">
+      <div><label>Steel price <span class="rng" id="lSteelV">0%</span></label><input id="lSteel" type="range" min="-30" max="30" value="0"></div>
+      <div><label>Freight <span class="rng" id="lFreightV">0%</span></label><input id="lFreight" type="range" min="-40" max="60" value="0"></div>
+      <div><label>Duty rate <span class="rng" id="lDutyV">8%</span></label><input id="lDuty" type="range" min="0" max="50" value="8"></div>
+      <div><label>Order units <span class="rng" id="lQtyV">5,000</span></label><input id="lQty" type="range" min="500" max="50000" step="500" value="5000"></div>
+    </div>
+    <div class="svgwrap"><svg id="lcbar" class="chart" viewBox="0 0 720 80" role="img" aria-label="Landed cost bar"></svg></div>
+    <div class="legend" id="lc-legend"></div>
+    <div class="cot" id="lc-out"></div>
+  </div></section>
 
-  <section class="blk" data-open="1"><button class="blk-h"><span class="k">TARIFF</span><h2>Tariff Monitor</h2><span class="ihelp" title="Effective duty by destination for Taiwan vs China origin, and what switching origin saves. Hover a row.">i</span><span class="tog"></span></button><div class="blk-b"><div class="svgwrap"><table class="tbl" id="tariffMon"></table></div></div></section>
+  <section class="blk" data-open="1"><button class="blk-h"><span class="k">TARIFF</span><h2>Tariff Monitor</h2><span class="ihelp" title="Recent and pending tariff/duty changes by market. Hover a row for context.">i</span><span class="tog"></span></button><div class="blk-b"><div class="svgwrap"><table class="tm" id="tariffmon"></table></div></div></section>
 
-  <section class="blk" data-open="1"><button class="blk-h"><span class="k r">RISK</span><h2>War Impact Monitor</h2><span class="ihelp" title="Geopolitical flashpoints scored by their logistics & cost impact on your supply chain. Bars show relative impact; tags show affected inputs. Hover for notes.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="war-note"></div><div id="war"></div></div></section>
+  <section class="blk" data-open="1"><button class="blk-h"><span class="k">WAR</span><h2>War &amp; Geopolitical Impact Monitor</h2><span class="ihelp" title="How active conflicts/tensions are pressuring your supply chain (0–100). Hover a bar for what it affects.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="war-note"></div><div class="war" id="war"></div></div></section>
 
   <p class="disc" id="disc"></p>
 </main>
-<footer><div class="wrap">BIRDLAND IND. — confidential OEM/ODM garden &amp; field manufacturer since 1974. <a href="news.html">Open the Client Desk</a> · <a href="index.html#enquiry">Contact your desk</a></div></footer>
+<footer><div class="wrap">BIRDLAND IND. — Partner Desk. <a href="index.html#enquiry">Reach Nancy &amp; Jason &rarr;</a> · <a href="news.html">Open Client Desk</a></div></footer>
 
 <script type="application/json" id="outlook-data">__DATA__</script>
 <script>
 (function(){
-  var gate=document.getElementById('gate'),pin=document.getElementById('pin'),gerr=document.getElementById('gerr');
+  var gate=document.getElementById('gate'),pin=document.getElementById('pin'),err=document.getElementById('err');
   function unlock(){gate.classList.add('hide');try{sessionStorage.setItem('bd_partner','1');}catch(e){}}
-  function go(){if(pin.value==='estd1974'){gerr.style.color='var(--gold)';gerr.textContent='ACCESS GRANTED ·';setTimeout(unlock,260);}else{gerr.style.color='var(--red)';gerr.textContent='ACCESS DENIED — invalid Partner PIN';pin.value='';pin.focus();}}
-  document.getElementById('gago').addEventListener('click',go);pin.addEventListener('keydown',function(e){if(e.key==='Enter')go();});
+  function go(){if(pin.value==='estd1974'){err.style.color='var(--gold)';err.textContent='ACCESS GRANTED ·';setTimeout(unlock,260);}else{err.style.color='var(--red)';err.textContent='ACCESS DENIED — invalid Partner PIN';pin.value='';pin.focus();}}
+  document.getElementById('go').addEventListener('click',go);pin.addEventListener('keydown',function(e){if(e.key==='Enter')go();});
   try{if(sessionStorage.getItem('bd_partner')==='1')gate.classList.add('hide');else setTimeout(function(){pin.focus();},200);}catch(e){}
   [].forEach.call(document.querySelectorAll('.blk-h'),function(h){h.addEventListener('click',function(ev){if(ev.target.classList.contains('ihelp'))return;var b=h.parentNode;b.setAttribute('data-open',b.getAttribute('data-open')==='1'?'0':'1');});});
 
   var D;try{D=JSON.parse(document.getElementById('outlook-data').textContent);}catch(e){return;}
-  var amber='#ff9e2c',cyan='#36c2d6',green='#16c47e',red='#ff5470',gold='#e8c07a',mut='#9aa4b2';
+  var P=D.partner||{};var mut='#9aa4b2';
   function el(t,a,x){var e=document.createElementNS('http://www.w3.org/2000/svg',t);for(var k in a)e.setAttribute(k,a[k]);if(x!=null)e.textContent=x;return e;}
-  function tt(n,t){n.appendChild(el('title',{},t));return n;}
-  function pad(n){return(n<10?'0':'')+n;}
-  function rl(){var d=new Date(),el2=document.getElementById('refresh');if(el2)el2.innerHTML='Last refresh <b>'+D.updated+'</b> · your local '+pad(d.getHours())+':'+pad(d.getMinutes());}rl();setInterval(rl,30000);
+  function tt(n,s){n.appendChild(el('title',{},s));return n;}
+  function pad(n){return (n<10?'0':'')+n;}
+  (function(){var d=new Date();var r=document.getElementById('refresh');if(r)r.innerHTML='As of <b style="color:var(--gold)">'+D.updated+'</b> · local '+pad(d.getHours())+':'+pad(d.getMinutes());})();
+  document.getElementById('disc').innerHTML='BIRDLAND PARTNER DESK · AI-ASSISTED. Forecasts, duty and impact figures are indicative planning guides — not legal, customs or trade advice. Confirm with your customs broker or counsel before acting.';
 
-  // forward-curve mini chart helper
-  function curveCard(c){var W=320,H=120,P=26,vals=c.points.map(function(p){return p.v;}),mn=Math.min.apply(null,vals),mx=Math.max.apply(null,vals),rg=(mx-mn)||1;
-    var rising=c.points[c.points.length-1].v>=c.points[0].v;var card=document.createElement('div');card.className='fwd-card';
-    card.innerHTML='<h4><span>'+c.name+'</span><span style="color:'+(rising?red:green)+'">'+(rising?'CONTANGO ▲':'BACKWARDATION ▼')+'</span></h4>';
-    var svg=el('svg',{viewBox:'0 0 '+W+' '+H,width:'100%',class:'chart'});
-    function X(i){return P+i/(c.points.length-1)*(W-P*2);}function Y(v){return H-22-((v-mn)/rg)*(H-40);}
-    var d='';c.points.forEach(function(p,i){d+=(i?'L':'M')+X(i)+','+Y(p.v)+' ';});svg.appendChild(el('path',{d:d,fill:'none',stroke:(rising?red:green),'stroke-width':2}));
-    c.points.forEach(function(p,i){var cc=el('circle',{cx:X(i),cy:Y(p.v),r:3.4,fill:(rising?red:green)});tt(cc,p.t+': '+p.v+' '+c.unit);svg.appendChild(cc);svg.appendChild(el('text',{x:X(i),y:H-6,'text-anchor':'middle','font-family':'IBM Plex Mono,monospace','font-size':9,fill:mut},p.t));});
-    card.appendChild(svg);var tip=document.createElement('div');tip.className='tip';tip.textContent=c.tip||'';card.appendChild(tip);return card;}
-  function findCurve(name){return (D.forward&&D.forward.commodities||[]).filter(function(c){return c.name.indexOf(name)>=0;})[0];}
+  // multi-line chart
+  function lineChart(svg,series,tenors,unit,rebased){var W=720,H=280,Pl=46,Pr=14,Pt=16,Pb=34;
+    var all=[];series.forEach(function(s){(s.points||s).forEach(function(p){all.push(typeof p==='object'?p.v:p);});});
+    var mn=Math.min.apply(null,all),mx=Math.max.apply(null,all),rg=(mx-mn)||1;mn-=rg*0.1;mx+=rg*0.1;rg=mx-mn;
+    var n=tenors.length;function X(i){return Pl+i/(n-1)*(W-Pl-Pr);}function Y(v){return Pt+(1-(v-mn)/rg)*(H-Pt-Pb);}
+    for(var g=0;g<=4;g++){var yy=Pt+g/4*(H-Pt-Pb);svg.appendChild(el('line',{x1:Pl,y1:yy,x2:W-Pr,y2:yy,stroke:'#1a212b'}));svg.appendChild(el('text',{x:Pl-6,y:yy+3,'text-anchor':'end','font-family':'IBM Plex Mono,monospace','font-size':9,fill:mut},(mx-g/4*rg).toFixed(rebased?0:0)));}
+    tenors.forEach(function(t,i){svg.appendChild(el('text',{x:X(i),y:H-12,'text-anchor':'middle','font-family':'IBM Plex Mono,monospace','font-size':10,fill:mut},t));});
+    series.forEach(function(s){var pts=(s.points||s),d='';pts.forEach(function(p,i){var v=typeof p==='object'?p.v:p;d+=(i?'L':'M')+X(i)+','+Y(v)+' ';});
+      svg.appendChild(el('path',{d:d,fill:'none',stroke:s.c,'stroke-width':2.2}));
+      pts.forEach(function(p,i){var v=typeof p==='object'?p.v:p;var c=el('circle',{cx:X(i),cy:Y(v),r:3.2,fill:s.c});tt(c,(s.lane||s.name)+' · '+tenors[i]+': '+v+' '+unit);svg.appendChild(c);});});}
 
-  // 1) PROCUREMENT BRIEF
-  (function(){var P=D.procurement;if(!P)return;document.getElementById('pb-note').textContent=P.note||'';document.getElementById('pb-meta').textContent=P.items.length+' actions';
-    var w=document.getElementById('procurement');P.items.forEach(function(it){var ar=it.dir==='up'?'▲':(it.dir==='down'?'▼':'■'),cls=it.dir==='up'?'up':(it.dir==='down'?'down':'flat');
-      var r=document.createElement('div');r.className='pb-row';r.title=it.why;
-      r.innerHTML='<span class="u u-'+it.urgency+'">'+it.urgency.toUpperCase()+'</span><span class="in">'+it.input+' <span class="'+cls+'">'+ar+'</span></span><span class="ac">'+it.action+'</span><span class="wh">'+it.why+'</span>';
-      w.appendChild(r);});})();
+  // 1) Procurement Brief
+  var pb=P.procurement||{};document.getElementById('pb-sum').textContent=pb.summary||'';document.getElementById('pb-meta').textContent=(pb.actions||[]).length+' actions';
+  var pa=document.getElementById('pb-actions');(pb.actions||[]).forEach(function(a){var lv=a.level||'med';var row=document.createElement('div');row.className='act';row.innerHTML='<span class="lv '+lv+'">'+lv.toUpperCase()+'</span><span class="at">'+a.label+'</span><span class="an">'+(a.note||'')+'</span>';pa.appendChild(row);});
 
-  // 2) SHIPPING FORECAST
-  (function(){var S=D.shipping;if(!S)return;document.getElementById('ship-note').textContent=S.note||'';
-    var fc=findCurve('Freight');if(fc){var card=curveCard(fc);document.getElementById('shipCurve').outerHTML=card.querySelector('svg').outerHTML;}
-    var t='<thead><tr><th class="l">Lane</th><th>Rate</th><th>Chg</th><th>Transit</th><th>Reliability</th></tr></thead><tbody>';
-    S.lanes.forEach(function(l){var cls=l.dir==='up'?'up':(l.dir==='down'?'down':'flat'),ar=l.dir==='up'?'▲':(l.dir==='down'?'▼':'■');
-      t+='<tr title="'+l.lane+' — '+l.rate+' '+l.unit+', transit '+l.transit+', reliability '+l.rel+'"><td class="l">'+l.lane+'</td><td>'+l.rate+' <span style="color:var(--mut);font-size:.7rem">'+l.unit+'</span></td><td class="'+cls+'">'+ar+(l.chg>0?'+':'')+l.chg.toFixed(1)+'%</td><td>'+l.transit+'</td><td>'+l.rel+'</td></tr>';});
-    document.getElementById('lanes').innerHTML=t+'</tbody>';})();
+  // 2) Shipping forecast
+  var sh=P.shipping||{};document.getElementById('ship-note').textContent=sh.note||'';
+  if(sh.lanes){lineChart(document.getElementById('ship'),sh.lanes,sh.lanes[0].points.map(function(p){return p.t;}),sh.unit||'');
+    document.getElementById('ship-legend').innerHTML=sh.lanes.map(function(l){return '<span><i style="background:'+l.c+'"></i>'+l.lane+'</span>';}).join('');}
 
-  // 3) MATERIAL FORECAST
-  (function(){document.getElementById('matl-note').textContent=(D.material&&D.material.note)||'';var w=document.getElementById('material');
-    ['Steel','PP Resin'].forEach(function(nm){var c=findCurve(nm);if(c)w.appendChild(curveCard(c));});})();
+  // 3) Material forecast
+  var mt=P.material||{};
+  if(mt.series){lineChart(document.getElementById('matl'),mt.series.map(function(s){return {c:s.c,name:s.name,points:s.points};}),mt.tenors||[],mt.unit||'',true);
+    document.getElementById('matl-note').textContent=mt.note||'';document.getElementById('matl-legend').innerHTML=mt.series.map(function(s){return '<span><i style="background:'+s.c+'"></i>'+s.name+'</span>';}).join('');}
 
-  // tariff helper (effective % for dest+origin)
-  function effRate(dn,o){var dd=(D.tariff_calc.destinations||{})[dn]||{};var p=dd.mfn||0;(dd.addons||[]).forEach(function(a){if(a.optional)return;if(a.origin==='ANY'||a.origin===o)p+=a.pct;});return p;}
+  // 4) Landed-cost calculator (interactive)
+  var base=(D.landed&&D.landed.components)||[];
+  function calcLanded(){var st=+document.getElementById('lSteel').value,fr=+document.getElementById('lFreight').value,du=+document.getElementById('lDuty').value,qt=+document.getElementById('lQty').value;
+    document.getElementById('lSteelV').textContent=(st>0?'+':'')+st+'%';document.getElementById('lFreightV').textContent=(fr>0?'+':'')+fr+'%';document.getElementById('lDutyV').textContent=du+'%';document.getElementById('lQtyV').textContent=qt.toLocaleString();
+    var goods=0,comps=base.map(function(c){var v=c.v;if(/steel|metal/i.test(c.name))v=c.v*(1+st/100);else if(/freight/i.test(c.name))v=c.v*(1+fr/100);else if(/duty|tariff/i.test(c.name))v=null;else v=c.v;if(v!=null)goods+=v;return {name:c.name,v:v,c:c.c,tip:c.tip};});
+    var duty=goods*du/100;comps.forEach(function(c){if(c.v==null){c.v=duty;c.tip='Duty at '+du+'% of goods value.';}});
+    var tot=comps.reduce(function(a,b){return a+b.v;},0);
+    var svg=document.getElementById('lcbar');while(svg.firstChild)svg.removeChild(svg.firstChild);var W=720,x=0,H=50,y=18;
+    comps.forEach(function(c){var w=c.v/tot*W;var r=el('rect',{x:x,y:y,width:Math.max(0,w-1),height:H,fill:c.c});tt(r,c.name+': US$'+c.v.toFixed(2)+' ('+(c.v/tot*100).toFixed(0)+'%) — '+(c.tip||''));svg.appendChild(r);if(w>42)svg.appendChild(el('text',{x:x+w/2,y:y+H/2+4,'text-anchor':'middle','font-family':'IBM Plex Mono,monospace','font-size':10,'font-weight':700,fill:'#06090d'},Math.round(c.v/tot*100)+'%'));x+=w;});
+    document.getElementById('lc-legend').innerHTML=comps.map(function(c){return '<span title="'+(c.tip||'')+'"><i style="height:13px;background:'+c.c+'"></i>'+c.name+' · US$'+c.v.toFixed(2)+'</span>';}).join('');
+    document.getElementById('lc-out').innerHTML='US$'+tot.toFixed(2)+' <small>/unit landed · order total ≈ US$'+(tot*qt).toLocaleString(undefined,{maximumFractionDigits:0})+'</small>';
+    document.getElementById('calc-meta').textContent='≈ US$'+tot.toFixed(2)+'/unit';}
+  ['lSteel','lFreight','lDuty','lQty'].forEach(function(id){document.getElementById(id).addEventListener('input',calcLanded);});calcLanded();
 
-  // 4) LANDED COST CALCULATOR
-  (function(){var L=D.landed,T=D.tariff_calc;if(!L||!T)return;var dst=document.getElementById('lcDest'),org=document.getElementById('lcOrigin'),qty=document.getElementById('lcQty');
-    Object.keys(T.destinations).forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=k;dst.appendChild(o);});
-    var base=L.components.reduce(function(a,b){return a+b.v;},0);
-    function draw(){var dn=dst.value,o=org.value,q=parseFloat(qty.value)||0;var duty=base*effRate(dn,o)/100;var unit=base+duty;
-      var svg=document.getElementById('lcBar');while(svg.firstChild)svg.removeChild(svg.firstChild);var W=720,x=0,H=46,y=12;
-      var comps=L.components.concat([{name:'Duty / tariff ('+o+'→'+dn+')',v:duty,c:gold,tip:'Computed at '+effRate(dn,o).toFixed(1)+'% on materials+conversion.'}]);
-      comps.forEach(function(c){var w=c.v/unit*W;var r=el('rect',{x:x,y:y,width:Math.max(0,w-1),height:H,fill:c.c});tt(r,c.name+': US$'+c.v.toFixed(2)+'/unit ('+(c.v/unit*100).toFixed(0)+'%)'+(c.tip?' — '+c.tip:''));svg.appendChild(r);if(w>38)svg.appendChild(el('text',{x:x+w/2,y:y+H/2+4,'text-anchor':'middle','font-family':'IBM Plex Mono,monospace','font-size':10,'font-weight':700,fill:'#06090d'},Math.round(c.v/unit*100)+'%'));x+=w;});
-      document.getElementById('lcLegend').innerHTML=comps.map(function(c){return '<span title="'+(c.tip||'')+'"><i style="background:'+c.c+'"></i>'+c.name+' · US$'+c.v.toFixed(2)+'</span>';}).join('');
-      document.getElementById('lc-meta').textContent='US$'+unit.toFixed(2)+'/unit';
-      document.getElementById('lcOut').innerHTML='<table class="tbl"><tbody>'+
-        '<tr title="Per-unit landed cost"><td class="l">Landed cost / unit</td><td>US$'+unit.toFixed(2)+'</td></tr>'+
-        '<tr title="Duty portion"><td class="l">of which duty ('+effRate(dn,o).toFixed(1)+'%)</td><td class="flat">US$'+duty.toFixed(2)+'</td></tr>'+
-        '<tr title="Total for the shipment"><td class="l">Shipment total ('+q+' units)</td><td style="color:var(--gold);font-weight:700">US$'+(unit*q).toFixed(0)+'</td></tr></tbody></table>';}
-    dst.addEventListener('change',draw);org.addEventListener('change',draw);qty.addEventListener('input',draw);draw();})();
+  // 5) Tariff monitor
+  var tmc=(P.tariffmon&&P.tariffmon.changes)||[];var tm=document.getElementById('tariffmon');
+  tm.innerHTML='<thead><tr><th>Date</th><th>Market</th><th>Change</th><th></th></tr></thead><tbody>'+tmc.map(function(c){var col=c.dir==='up'?'var(--red)':(c.dir==='down'?'var(--green)':'var(--amber)');var ar=c.dir==='up'?'▲':(c.dir==='down'?'▼':'■');return '<tr title="'+(c.note||'')+'"><td style="color:var(--gold)">'+c.date+'</td><td style="color:#fff;font-weight:700">'+c.market+'</td><td>'+c.change+'</td><td style="color:'+col+';text-align:right">'+ar+'</td></tr>';}).join('')+'</tbody>';
 
-  // 5) TARIFF MONITOR
-  (function(){var T=D.tariff_calc;if(!T)return;var t='<thead><tr><th class="l">Destination</th><th>Taiwan origin</th><th>China origin</th><th>Switch saves</th></tr></thead><tbody>';
-    Object.keys(T.destinations).forEach(function(dn){var tw=effRate(dn,'TW'),cn=effRate(dn,'CN'),sv=cn-tw;
-      t+='<tr title="'+dn+': Taiwan '+tw.toFixed(1)+'% vs China '+cn.toFixed(1)+'% — '+(sv>0?('Taiwan origin avoids '+sv.toFixed(1)+' pts'):'no origin difference')+'"><td class="l">'+dn+'</td><td>'+tw.toFixed(1)+'%</td><td>'+cn.toFixed(1)+'%</td><td class="'+(sv>0?'save':'')+'">'+(sv>0?('−'+sv.toFixed(1)+' pts'):'—')+'</td></tr>';});
-    document.getElementById('tariffMon').innerHTML=t+'</tbody>';})();
-
-  // 6) WAR IMPACT MONITOR
-  (function(){var Wd=D.war;if(!Wd)return;document.getElementById('war-note').textContent=Wd.note||'';var w=document.getElementById('war');
-    Wd.zones.forEach(function(z){var col=z.status==='high'?red:(z.status==='elevated'?amber:'#5a6b7d');
-      var r=document.createElement('div');r.className='war-row';r.title=z.zone+' — '+z.note;
-      r.innerHTML='<div class="war-top"><span class="war-z">'+z.zone+'</span><span class="war-st st-'+z.status+'">'+z.status.toUpperCase()+' · impact '+z.impact+'</span></div>'+
-        '<div class="war-bar"><i style="width:'+z.impact+'%;background:'+col+'"></i></div>'+
-        '<div class="war-aff">Affects: '+z.affects.map(function(a){return '<span>'+a+'</span>';}).join('')+'</div>';
-      w.appendChild(r);});})();
-
-  document.getElementById('disc').innerHTML='PARTNER DESK · AI-ASSISTED. Indicative guidance for planning only — not legal, customs, trade or investment advice. Forward curves, freight, duty and risk scores are estimates; confirm with your customs broker or counsel before acting.';
+  // 6) War impact monitor
+  var wr=P.war||{};document.getElementById('war-note').textContent=wr.note||'';var wc=document.getElementById('war');
+  (wr.items||[]).forEach(function(it){var col=it.impact>=70?'#ff5470':(it.impact>=45?'#ff9e2c':'#16c47e');var row=document.createElement('div');row.className='row';
+    row.innerHTML='<div class="ev">'+it.event+'<small>'+it.region+' · '+(it.affects||[]).join(', ')+'</small></div><div class="bar" title="'+(it.note||'')+'"><i style="width:'+it.impact+'%;background:'+col+'"></i></div><div class="sc" style="color:'+col+'">'+it.impact+'</div>';
+    wc.appendChild(row);});
 })();
 </script>
 </body></html>
