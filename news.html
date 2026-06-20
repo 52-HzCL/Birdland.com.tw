@@ -140,7 +140,21 @@
     wl.innerHTML=h+'</tbody>';document.getElementById('wl-meta').textContent=(D.indices||[]).length+' instruments';})();
 
   // macro ticker
-  document.getElementById('ticker').innerHTML=(function(){var t=(D.macro||[]).map(function(m){var dir=m.dir||'flat',cls=dir==='up'?'up':(dir==='down'?'down':'flat'),ar=dir==='up'?'▲':(dir==='down'?'▼':'■');var chg=(m.chg!=null?(m.chg>0?'+':'')+m.chg.toFixed(1)+'%':'');return '<span class="ti"><span class="s">'+m.short+'</span><span class="v">'+Number(m.value).toFixed(1)+(m.unit?(' '+m.unit):'')+'</span><span class="'+cls+'">'+ar+chg+'</span></span>';}).join('');return t+t;})();
+  var tk=(D.macro||[]).map(function(m){var dir=m.dir||'flat',cls=dir==='up'?'up':(dir==='down'?'down':'flat'),ar=dir==='up'?'▲':(dir==='down'?'▼':'■');var chg=(m.chg!=null?(m.chg>0?'+':'')+m.chg.toFixed(1)+'%':'');return '<span class="ti"><span class="s">'+m.short+'</span><span class="v">'+Number(m.value).toFixed(1)+(m.unit?(' '+m.unit):'')+'</span><span class="'+cls+'">'+ar+chg+'</span></span>';}).join('');
+  document.getElementById('ticker').innerHTML=tk+tk;
+  function fxItem(sym,val,chg){var cls=chg>0?'up':(chg<0?'down':'flat'),ar=chg>0?'▲':(chg<0?'▼':'■');return '<span class="ti"><span style="color:#16c47e">●</span><span class="s">'+sym+'</span><span class="v">'+val+'</span><span class="'+cls+'">'+ar+(chg>0?'+':'')+chg.toFixed(1)+'%</span></span>';}
+  function loadLiveFX(){ if(typeof fetch!=='function')return;
+    var b='https://api.frankfurter.dev/v1/',prior=new Date(Date.now()-7*864e5).toISOString().slice(0,10),sy='EUR,JPY,GBP,CNY,CAD,AUD';
+    Promise.all([fetch(b+'latest?base=USD&symbols='+sy).then(function(r){return r.json();}),fetch(b+prior+'?base=USD&symbols='+sy).then(function(r){return r.json();})])
+    .then(function(res){var L=res[0].rates,Pr=res[1].rates;if(!L||!Pr)return;
+      function pr(sym,inv){var lv=inv?1/L[sym]:L[sym],pv=inv?1/Pr[sym]:Pr[sym];return {v:lv,chg:(lv-pv)/pv*100};}
+      var fx=[['EUR/USD',pr('EUR',true),4],['GBP/USD',pr('GBP',true),4],['USD/JPY',pr('JPY',false),2],['USD/CNY',pr('CNY',false),4],['USD/CAD',pr('CAD',false),4],['AUD/USD',pr('AUD',true),4]];
+      var lbl='<span class="ti" style="color:#16c47e">● FX LIVE · ECB '+res[0].date+'</span>';
+      var fxh=lbl+fx.map(function(f){return fxItem(f[0],f[1].v.toFixed(f[2]),f[1].chg);}).join('');
+      var t=document.getElementById('ticker');if(t)t.innerHTML=fxh+tk+fxh+tk;
+    }).catch(function(){});
+  }
+  loadLiveFX();
 
   var nw=(D.news||[]);
   if(nw.length)document.getElementById('latest').innerHTML='<span class="newpill">NEW</span><span class="lt">'+nw[0].title+'</span><span class="dt">'+nw[0].date+'</span><span class="arr">READ →</span>';
