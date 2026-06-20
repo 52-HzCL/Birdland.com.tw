@@ -40,5 +40,37 @@ for m in data.get("macro",[]):
     if s and upd(m,s):n+=1
 for ix in data.get("indices",[]):
     if ix.get("short")=="BRENT" and upd(ix,"BRENT"):n+=1
+
+def fred_latest(series):
+    try:
+        raw=urllib.request.urlopen("https://fred.stlouisfed.org/graph/fredgraph.csv?id="+series,timeout=40).read().decode()
+    except Exception as e:
+        print("[fred] %s failed: %s"%(series,e));return None
+    rows=[r for r in raw.strip().splitlines() if r][1:];vals=[]
+    for r in rows:
+        parts=r.split(",")
+        if len(parts)>=2 and parts[1] not in (".",""):
+            try: vals.append((parts[0],float(parts[1])))
+            except: pass
+    return vals or None
+fr=data.get("freight")
+if fr:
+    n2=0; latest_date=None
+    for it in fr.get("items",[]):
+        sid=it.get("fred")
+        if not sid: continue
+        vals=fred_latest(sid)
+        if not vals: continue
+        last=vals[-1]; prev=vals[-2] if len(vals)>1 else last
+        it["value"]=round(last[1],1)
+        it["chg"]=round((last[1]-prev[1])/prev[1]*100,1) if prev[1] else 0.0
+        it["dir"]="up" if it["chg"]>0.02 else ("down" if it["chg"]<-0.02 else "flat")
+        it["spark"]=[round(v,1) for (_,v) in vals[-16:]]; it["live"]=True; n2+=1
+        if (latest_date is None) or (last[0]>latest_date): latest_date=last[0]
+    if n2:
+        fr["live"]=True
+        if latest_date: fr["updated"]=latest_date
+    print("[fred] freight live-updated %d series."%n2)
+
 json.dump(data,open(PATH,"w",encoding="utf-8"),ensure_ascii=False)
 print("[twelvedata] live-updated %d symbols of %d attempted."%(n,len(syms)))
