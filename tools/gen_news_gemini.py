@@ -29,6 +29,7 @@ RULES (strict):
 - Lead with regulation & supply-chain RISK; treat prices/freight/oil as secondary background. Frame around volatility, lead time and supply risk — never "prices fell so cut your price". Keep the idea that Birdland's quotes reflect secured materials, compliant documentation and reliable supply, not spot prices. Conclusions are "Birdland's view (AI-assisted)".
 - NEVER fabricate numbers, dates or rules. Only state what current sources support; otherwise stay qualitative. Keep each body 1-3 sentences. Use the HTML entity &amp; for ampersands inside strings.
 - Themes to verify: EU EUDR, EU CBAM, EU PFAS(REACH), US Section 301/import tariffs on China & Taiwan tools, Canada surtax on China-melted steel, Australia timber biosecurity/ISPM15, Asia-Europe & transpacific container freight trend, Brent crude level/volatility.
+- Each region also has a "viz" object with numeric 0-100 scores: heat{regulation,tariff,freight,energy}, x (regulatory pressure), y (cost/supply volatility), size (importer exposure), px, py (previous position). Update heat and x/y/size to reflect current conditions where they have clearly shifted; keep them plausible and bounded 0-100. Do NOT set px/py yourself.
 - Output ONLY the complete updated JSON object. No markdown, no commentary.
 
 CURRENT JSON:
@@ -48,7 +49,22 @@ try:
     assert [tuple(x) for x in cand.get("order",[])]==[tuple(x) for x in data["order"]], "order changed"
     for r in cand["regions"].values():
         assert all(k in r for k in ("headline","regulation","supply","view"))
-    print("Gemini update parsed & validated.")
+    # roll viz tails: new px,py = previous x,y; keep numbers bounded; fall back to old viz
+    for code,oldr in data["regions"].items():
+        ov=oldr.get("viz") or {}
+        nv=(cand["regions"].get(code) or {}).get("viz") or {}
+        merged=dict(ov); 
+        for k in ("heat","x","y","size"):
+            if k in nv: merged[k]=nv[k]
+        def cl(v):
+            try:return max(0,min(100,float(v)))
+            except:return v
+        if isinstance(merged.get("heat"),dict): merged["heat"]={k:cl(v) for k,v in merged["heat"].items()}
+        for k in ("x","y","size"): 
+            if k in merged: merged[k]=cl(merged[k])
+        merged["px"]=ov.get("x",merged.get("x")); merged["py"]=ov.get("y",merged.get("y"))
+        cand["regions"][code]["viz"]=merged
+    print("Gemini update parsed & validated; viz tails rolled.")
     save_and_build(cand)
 except Exception as ex:
     print("Gemini refresh failed (%s); timestamp-only fallback."%ex)

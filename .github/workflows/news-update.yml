@@ -18,7 +18,7 @@ jobs:
           python-version: '3.12'
       - name: Refresh outlook (Gemini free tier) and rebuild News page
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY || secrets.GEMINI_MAY_API_KEY }}
         run: python3 tools/gen_news_gemini.py
       - name: Commit & push if changed
         run: |
