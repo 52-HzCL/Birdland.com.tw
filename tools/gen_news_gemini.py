@@ -35,6 +35,7 @@ RULES (strict):
 - Lead with regulation & supply-chain RISK; treat prices/freight/oil as secondary background. Frame around volatility, lead time and supply risk — never "prices fell so cut your price". Keep the idea that Birdland's quotes reflect secured materials, compliant documentation and reliable supply, not spot prices. Conclusions are "Birdland's view (AI-assisted)".
 - NEVER fabricate numbers, dates or rules. Only state what current sources support; otherwise stay qualitative. Keep each body 1-3 sentences. Use the HTML entity &amp; for ampersands inside strings.
 - Themes to verify: EU EUDR, EU CBAM, EU PFAS(REACH), US Section 301/import tariffs on China & Taiwan tools, Canada surtax on China-melted steel, Australia timber biosecurity/ISPM15, Asia-Europe & transpacific container freight trend, Brent crude level/volatility.
+- Top-level "macro" is a 10-item global market ticker (USD index, EUR, Gold, Brent, S&P 500, STOXX, Nikkei, CSI 300, US 10Y, VIX): update each value and dir from current data; keep the same shorts/labels/units. Do NOT set chg/spark yourself.
 - Top-level "indices" is a strip of buyer commodity/trade gauges; update each value (one decimal), dir (up/down/flat) and short sub-status from current data (Brent, steel HRC, container freight, polypropylene/resin, tariff pressure, Asia-EU freight). Keep the same labels/units.
 - Top-level "teamAnalysis" is a 3-5 sentence desk synthesis — rewrite it to reflect the current picture (regulation/origin lead, prices secondary, Birdland keeps supply & documentation steady). Do NOT change top-level "news" (company posts) at all.
 - Each region also has a "viz" object with numeric 0-100 scores: heat{regulation,tariff,freight,energy}, x (regulatory pressure), y (cost/supply volatility), size (importer exposure), px, py (previous position). Update heat and x/y/size to reflect current conditions where they have clearly shifted; keep them plausible and bounded 0-100. Do NOT set px/py yourself.
@@ -88,6 +89,20 @@ try:
         else:
             x.setdefault("chg",0); x.setdefault("spark",[x.get("value",0)])
     cand["indices"]=ci
+    # macro (10 global indices for ticker): roll chg + sparkline like indices
+    oldm={ (x.get("short") or x.get("label")):x for x in data.get("macro",[]) }
+    cm=cand.get("macro") or data.get("macro",[])
+    for x in cm:
+        o=oldm.get(x.get("short") or x.get("label"))
+        if o:
+            ov=o.get("value"); nv=x.get("value",ov)
+            try: x["chg"]=round((float(nv)-float(ov))/float(ov)*100,1) if ov else o.get("chg",0)
+            except: x["chg"]=o.get("chg",0)
+            sp=list(o.get("spark",[]))+[nv]; x["spark"]=sp[-16:]
+            x.setdefault("unit",o.get("unit","")); x.setdefault("label",o.get("label",""))
+        else:
+            x.setdefault("chg",0); x.setdefault("spark",[x.get("value",0)])
+    cand["macro"]=cm
     if not cand.get("teamAnalysis"): cand["teamAnalysis"]=data.get("teamAnalysis","")
     print("Gemini update parsed & validated; viz tails rolled.")
     save_and_build(cand)

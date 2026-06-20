@@ -1026,6 +1026,20 @@
   .bl-copybtn,.esend{font-size:1rem}
   blockquote p{font-size:1.12rem;line-height:1.66}   /* testimonials easier to read */
 </style>
+<style>
+  .term-nav{position:relative;display:inline-block;margin:0 .2rem}
+  .term-nav>summary{list-style:none;cursor:pointer;font-family:"Manrope",system-ui,sans-serif;font-weight:700;font-size:.86rem;letter-spacing:.06em;text-transform:uppercase;color:#36c2d6;background:#0b0e13;border:1px solid #2a3340;border-radius:5px;padding:7px 14px;display:inline-flex;align-items:center;gap:6px}
+  .term-nav>summary::-webkit-details-marker{display:none}
+  .term-nav>summary:hover{border-color:#ff9e2c;color:#ff9e2c}
+  .term-nav[open]>summary{border-color:#ff9e2c;color:#ff9e2c}
+  .term-menu{position:absolute;right:0;top:calc(100% + 8px);background:#0b0e13;border:1px solid #2a3340;border-radius:7px;box-shadow:0 12px 30px rgba(0,0,0,.45);min-width:240px;z-index:60;overflow:hidden}
+  .term-menu a{display:block;padding:12px 16px;border-bottom:1px solid #1a212b;font-family:"IBM Plex Mono",monospace}
+  .term-menu a:last-child{border-bottom:0}
+  .term-menu a b{display:block;color:#fff;font-size:.92rem;font-weight:700;letter-spacing:.02em}
+  .term-menu a span{display:block;color:#9aa4b2;font-size:.72rem;margin-top:2px}
+  .term-menu a:hover{background:#11161d}
+  .term-menu a:hover b{color:#ff9e2c}
+</style>
 </head>
 <body>
 <!-- ===== Birdland opening intro (overlay) ===== -->
@@ -1100,9 +1114,15 @@
       <a href="#make">What we make</a>
       
       <a href="#why">Why Birdland</a>
-      <a href="news.html">Terminal</a>
       <a href="#enquiry">Contact</a>
       <a href="#" id="bl-replay" onclick="return window.blPlayIntro(event)">Intro</a>
+      <details class="term-nav">
+        <summary>&#9670; Terminal</summary>
+        <div class="term-menu">
+          <a href="news.html"><b>Client Desk</b><span>Market &amp; supply intelligence</span></a>
+          <a href="partner.html"><b>Partner Desk</b><span>By invitation &middot; coming soon</span></a>
+        </div>
+      </details>
       <div class="langwrap">
         <button class="langbtn" id="langBtn" aria-haspopup="true" aria-expanded="false">&#127760; Language</button>
         <div class="langmenu" id="langMenu">
