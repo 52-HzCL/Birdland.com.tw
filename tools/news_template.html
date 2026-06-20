@@ -86,6 +86,11 @@
  .blk[data-open="0"] .tog::before{content:"+"} .blk[data-open="0"] .tog{border-color:var(--amber)} .blk[data-open="0"] .blk-b{display:none}
  .blk-b{padding:18px}
  .sub{color:var(--mut);font-size:.9rem;margin:-2px 0 16px;max-width:880px}
+ /* WORLD MAP */
+ .wmap{width:100%;height:auto;display:block;background:#0a0f15;border:1px solid var(--line);border-radius:8px}
+ .geochips{margin-bottom:12px}
+ .geochip{font-family:var(--mono);font-size:.78rem;font-weight:700;letter-spacing:.06em;color:var(--cyan);background:var(--panel2);border:1px solid var(--line);border-radius:5px;padding:9px 15px;cursor:pointer}
+ .geochip:hover{border-color:var(--cyan);color:#fff}
  /* COST & CHANCE MAP */
  .hm{display:grid;grid-template-columns:130px repeat(4,1fr);gap:2px;font-family:var(--mono)}
  .hm .hh{font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;color:var(--cyan);text-align:center;align-self:end;padding-bottom:6px;cursor:help;border-bottom:1px dotted #3a4654}
@@ -150,6 +155,15 @@
   </section>
 
   <section class="blk" data-open="1">
+    <button class="blk-h"><span class="k c">GEO</span><h2>World risk map</h2><span class="meta">click a market</span><span class="tog"></span></button>
+    <div class="blk-b">
+      <div class="sub">Each market sits at its location · colour = combined cost/risk · dot size = importer exposure. Click a market (or Global) to open its detail and highlight its row in the board below.</div>
+      <div class="geochips"><button class="geochip" id="geoGlobal">◍ GLOBAL OVERVIEW</button></div>
+      <svg id="wmap" class="wmap" viewBox="0 0 720 360" role="img" aria-label="World risk map"></svg>
+    </div>
+  </section>
+
+  <section class="blk" data-open="1">
     <button class="blk-h"><span class="k r">MAP</span><h2>Cost &amp; Chance Map — all markets</h2><span class="meta" id="hm-meta"></span><span class="tog"></span></button>
     <div class="blk-b">
       <div class="sub">Score 0–100 per front (higher = more cost/risk pressure); small figure = change since last refresh. Hover a column header for what it covers.</div>
@@ -185,7 +199,8 @@
 
   var D;try{D=JSON.parse(document.getElementById('outlook-data').textContent);}catch(e){return;}
   var order=D.order,R=D.regions,sel=document.getElementById('region'),content=document.getElementById('content');
-  var amber='#ff9e2c',cyan='#36c2d6',green='#16c47e',red='#ff5470',mut='#9aa4b2';
+  var amber='#ff9e2c',cyan='#36c2d6',green='#16c47e',red='#ff5470',mut='#9aa4b2',SEL=null;
+  function el(t,a,x){var e=document.createElementNS('http://www.w3.org/2000/svg',t);for(var k in a)e.setAttribute(k,a[k]);if(x!=null)e.textContent=x;return e;}
 
   // clock + refresh + local time
   function pad(n){return (n<10?'0':'')+n;}
@@ -225,6 +240,26 @@
   var nl=document.getElementById('newslist');
   nw.forEach(function(n){var a=document.createElement('a');a.className='item';a.href=n.url||'#';a.innerHTML='<span class="dt">'+n.date+'</span><div class="ti">'+n.title+'</div><div class="bl">'+(n.blurb||'')+'</div>';nl.appendChild(a);});
 
+  // world risk map
+  var wmap=document.getElementById('wmap');
+  function proj(lat,lon){return [ (lon+180)/360*720, (90-lat)/180*360 ];}
+  function comp(v){return Math.round(((v.x||0)+(v.y||0))/2);}
+  function mapHi(code){if(!wmap)return;[].forEach.call(wmap.querySelectorAll('g[data-code]'),function(g){var on=g.getAttribute('data-code')===code;var l=g.querySelector('.mlbl');if(l)l.setAttribute('opacity',on?1:0);var dd=g.querySelector('.mdot');if(dd){dd.setAttribute('stroke',on?'#fff':'#0a0f15');dd.setAttribute('stroke-width',on?2:1);}});}
+  function buildMap(){if(!wmap)return;while(wmap.firstChild)wmap.removeChild(wmap.firstChild);
+    [[160,90,70,55],[240,210,38,70],[392,80,40,34],[400,176,52,75],[540,92,95,68],[628,232,46,34]].forEach(function(c){wmap.appendChild(el('ellipse',{cx:c[0],cy:c[1],rx:c[2],ry:c[3],fill:'#141c25'}));});
+    for(var lo=-150;lo<=150;lo+=30){wmap.appendChild(el('line',{x1:proj(0,lo)[0],y1:0,x2:proj(0,lo)[0],y2:360,stroke:'#10161d'}));}
+    for(var la=-60;la<=60;la+=30){wmap.appendChild(el('line',{x1:0,y1:proj(la,0)[1],x2:720,y2:proj(la,0)[1],stroke:'#10161d'}));}
+    var defs=el('defs',{});defs.innerHTML='<filter id="gl"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>';wmap.appendChild(defs);
+    order.forEach(function(o){var code=o[0],v=(R[code]||{}).viz;if(!v||!v.geo||code==='global')return;
+      var pp=proj(v.geo[0],v.geo[1]),r=4+(v.size/100)*9,c=heat(comp(v));
+      var g=el('g',{'data-code':code,style:'cursor:pointer'});
+      g.appendChild(el('circle',{cx:pp[0],cy:pp[1],r:r,fill:c,'fill-opacity':.92,stroke:'#0a0f15','stroke-width':1,filter:'url(#gl)','class':'mdot'}));
+      g.appendChild(el('text',{x:pp[0],y:pp[1]-r-4,'text-anchor':'middle','font-family':'IBM Plex Mono,monospace','font-size':10,'font-weight':700,fill:'#fff','class':'mlbl',opacity:0},o[1]));
+      g.addEventListener('mouseenter',function(){mapHi(code);hlRow(code);});
+      g.addEventListener('mouseleave',function(){mapHi(SEL);hlRow(SEL);});
+      g.addEventListener('click',function(){sel.value=code;render(code);});
+      wmap.appendChild(g);});
+    mapHi(SEL);}
   // cost & chance map
   function heat(v){var t=Math.max(0,Math.min(1,v/100));var s=[[22,196,126],[245,197,66],[255,84,112]];var sg=t*2,i=Math.min(1,Math.floor(sg)),f=sg-i;function L(a,b){return Math.round(a+(b-a)*f);}return 'rgb('+L(s[i][0],s[i+1][0])+','+L(s[i][1],s[i+1][1])+','+L(s[i][2],s[i+1][2])+')';}
   var TIPS={regulation:'Regulatory & compliance load — e.g. EU EUDR timber rules, CBAM carbon on steel, PFAS, product marking & documentation.',tariff:'Tariff & country-of-origin exposure — Section 301 stacks, steel surtaxes, duty/origin rules that change landed cost.',freight:'Ocean-freight cost & lead-time pressure on your trade lane (peak season, capacity, surcharges).',energy:'Energy & FX volatility feeding input (resin, fuel) and shipping costs.'};
@@ -248,7 +283,7 @@
     r.regulation.forEach(function(it){h+='<div class="card"><h4>'+it.t+'</h4><p>'+it.b+'</p></div>';});
     h+='<div class="dh c">▸ Supply &amp; cost backdrop</div><div class="supplyb"><p>'+r.supply+'</p></div>';
     h+='<div class="view"><div class="vh">◆ Birdland’s view</div><p>'+r.view+'</p></div>';
-    content.innerHTML=h;hlRow(code);setLang(code);try{history.replaceState(null,'','#'+code);}catch(e){}}
+    SEL=code;content.innerHTML=h;hlRow(code);mapHi(code);setLang(code);try{history.replaceState(null,'','#'+code);}catch(e){}}
 
   // 10-index macro ticker
   var tk=(D.macro||[]).map(function(m){var dir=m.dir||'flat',cls=dir==='up'?'up':(dir==='down'?'down':'flat'),ar=dir==='up'?'▲':(dir==='down'?'▼':'■');var chg=(m.chg!=null?(m.chg>0?'+':'')+m.chg.toFixed(1)+'%':'');
@@ -258,7 +293,8 @@
 
   order.forEach(function(o){var op=document.createElement('option');op.value=o[0];op.textContent=o[1];sel.appendChild(op);});
   sel.addEventListener('change',function(){render(sel.value);});
-  buildHeat();
+  buildHeat();buildMap();
+  var gg=document.getElementById('geoGlobal');if(gg)gg.addEventListener('click',function(){sel.value='global';render('global');});
   var start=(location.hash||'').replace('#','');if(!R[start])start=order[0][0];sel.value=start;render(start);
 })();
 function googleTranslateElementInit(){try{new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'en,nl,de,fr,it,pl,es',autoDisplay:false},'google_translate_element');}catch(e){}}
