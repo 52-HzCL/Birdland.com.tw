@@ -7,16 +7,17 @@ HERE=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PATH=os.path.join(HERE,"outlook-data.json")
 KEY=os.environ.get("TWELVEDATA_API_KEY") or os.environ.get("TWELVEDATA_MAY_API_KEY")
 data=json.load(open(PATH,encoding="utf-8"))
-if not KEY:
-    print("[twelvedata] no API key in env; leaving seeds.");sys.exit(0)
 MAP={"DXY":"DXY","EUR/USD":"EUR/USD","GOLD":"XAU/USD","BRENT":"BRENT","S&P 500":"SPX",
      "STOXX 50":"STOXX50E","NIKKEI":"N225","CSI 300":"CSI300","US 10Y":"US10Y","VIX":"VIX"}
 syms=sorted(set(MAP.values()))
-url="https://api.twelvedata.com/quote?symbol="+urllib.parse.quote(",".join(syms))+"&apikey="+KEY
-try:
-    resp=json.load(urllib.request.urlopen(url,timeout=40))
-except Exception as e:
-    print("[twelvedata] fetch failed:",e);sys.exit(0)
+resp={}
+if KEY:
+    try:
+        resp=json.load(urllib.request.urlopen("https://api.twelvedata.com/quote?symbol="+urllib.parse.quote(",".join(syms))+"&apikey="+KEY,timeout=40))
+    except Exception as e:
+        print("[twelvedata] fetch failed:",e)
+else:
+    print("[twelvedata] no key; FRED-only run.")
 def q(sym):
     if isinstance(resp,dict):
         if sym in resp and isinstance(resp[sym],dict):return resp[sym]
@@ -35,11 +36,12 @@ def upd(item,sym):
     item["live"]=True
     return True
 n=0
-for m in data.get("macro",[]):
-    s=MAP.get(m.get("short"))
-    if s and upd(m,s):n+=1
-for ix in data.get("indices",[]):
-    if ix.get("short")=="BRENT" and upd(ix,"BRENT"):n+=1
+if KEY:
+    for m in data.get("macro",[]):
+        sy=MAP.get(m.get("short"))
+        if sy and upd(m,sy):n+=1
+    for ix in data.get("indices",[]):
+        if ix.get("short")=="BRENT" and upd(ix,"BRENT"):n+=1
 
 def fred_latest(series):
     try:
