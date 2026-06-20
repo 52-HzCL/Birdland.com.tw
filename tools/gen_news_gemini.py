@@ -35,6 +35,7 @@ RULES (strict):
 - Lead with regulation & supply-chain RISK; treat prices/freight/oil as secondary background. Frame around volatility, lead time and supply risk — never "prices fell so cut your price". Keep the idea that Birdland's quotes reflect secured materials, compliant documentation and reliable supply, not spot prices. Conclusions are "Birdland's view (AI-assisted)".
 - NEVER fabricate numbers, dates or rules. Only state what current sources support; otherwise stay qualitative. Keep each body 1-3 sentences. Use the HTML entity &amp; for ampersands inside strings.
 - Themes to verify: EU EUDR, EU CBAM, EU PFAS(REACH), US Section 301/import tariffs on China & Taiwan tools, Canada surtax on China-melted steel, Australia timber biosecurity/ISPM15, Asia-Europe & transpacific container freight trend, Brent crude level/volatility.
+- Also refresh these market blocks from current data, KEEPING their exact structure and keys: "forward" (update each curve point value & the tip; Steel HRC, Brent, PP Resin, Container Freight), "shipping" (lane rate, chg, dir), "war" (zone impact 0-100, status = high|elevated|watch, note), "procurement" (urgency = high|med|low, dir, action, why). Keep "landed", "tariff_calc" and "timeline" EXACTLY as given — do not change them.
 - Top-level "macro" is a 10-item global market ticker (USD index, EUR, Gold, Brent, S&P 500, STOXX, Nikkei, CSI 300, US 10Y, VIX): update each value and dir from current data; keep the same shorts/labels/units. Do NOT set chg/spark yourself.
 - Top-level "indices" is a strip of buyer commodity/trade gauges; update each value (one decimal), dir (up/down/flat) and short sub-status from current data (Brent, steel HRC, container freight, polypropylene/resin, tariff pressure, Asia-EU freight). Keep the same labels/units.
 - Top-level "teamAnalysis" is a 3-5 sentence desk synthesis — rewrite it to reflect the current picture (regulation/origin lead, prices secondary, Birdland keeps supply & documentation steady). Do NOT change top-level "news" (company posts) at all.
@@ -103,9 +104,27 @@ try:
         else:
             x.setdefault("chg",0); x.setdefault("spark",[x.get("value",0)])
     cand["macro"]=cm
-    # preserve structural module data verbatim (auto-update must never corrupt these)
-    for kk in ("forward","landed","timeline","tariff_calc","procurement","shipping","material","war"):
+    # policy/structural blocks: keep exactly (high break-risk, slow-moving)
+    for kk in ("landed","timeline","tariff_calc"):
         if kk in data: cand[kk]=data[kk]
+    # market blocks: accept AI update only if structure validates, else keep old
+    def _ok_forward(x):
+        try: return isinstance(x["commodities"],list) and len(x["commodities"])>0 and all(c.get("name") and isinstance(c["points"],list) and all(isinstance(p.get("v"),(int,float)) for p in c["points"]) for c in x["commodities"])
+        except: return False
+    def _ok_shipping(x):
+        try: return isinstance(x["lanes"],list) and len(x["lanes"])>0 and all(l.get("lane") and isinstance(l.get("rate"),(int,float)) for l in x["lanes"])
+        except: return False
+    def _ok_war(x):
+        try: return isinstance(x["zones"],list) and len(x["zones"])>0 and all(z.get("zone") and isinstance(z.get("impact"),(int,float)) and z.get("status") in ("high","elevated","watch") for z in x["zones"])
+        except: return False
+    def _ok_proc(x):
+        try: return isinstance(x["items"],list) and len(x["items"])>0 and all(i.get("input") and i.get("action") and i.get("urgency") in ("high","med","low") for i in x["items"])
+        except: return False
+    def _ok_matl(x):
+        return isinstance(x,dict) and bool(x.get("note"))
+    for kk,val in (("forward",_ok_forward),("shipping",_ok_shipping),("war",_ok_war),("procurement",_ok_proc),("material",_ok_matl)):
+        if not (kk in cand and val(cand[kk])):
+            cand[kk]=data.get(kk, cand.get(kk))
     if not cand.get("teamAnalysis"): cand["teamAnalysis"]=data.get("teamAnalysis","")
     print("Gemini update parsed & validated; viz tails rolled.")
     save_and_build(cand)
