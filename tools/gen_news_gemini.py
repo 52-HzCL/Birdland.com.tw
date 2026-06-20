@@ -103,6 +103,9 @@ try:
         else:
             x.setdefault("chg",0); x.setdefault("spark",[x.get("value",0)])
     cand["macro"]=cm
+    # preserve structural module data verbatim (auto-update must never corrupt these)
+    for kk in ("forward","landed","timeline","tariff_calc","procurement","shipping","material","war"):
+        if kk in data: cand[kk]=data[kk]
     if not cand.get("teamAnalysis"): cand["teamAnalysis"]=data.get("teamAnalysis","")
     print("Gemini update parsed & validated; viz tails rolled.")
     save_and_build(cand)
