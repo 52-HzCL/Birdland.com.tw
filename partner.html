@@ -62,6 +62,9 @@
  .feat{border:1px solid var(--line);background:var(--panel2);border-radius:8px;padding:16px}
  footer{margin-top:24px;padding:24px 0;border-top:1px solid var(--line);font-size:.9rem;color:var(--mut)}footer a{color:var(--cyan)}
  .disc{margin:26px 0 4px;font-family:var(--mono);font-size:.74rem;color:var(--mut);border-top:1px solid var(--line);padding-top:14px;line-height:1.6}
+.brand .sep{color:var(--mut);margin:0 8px;font-weight:400;opacity:.6}
+ .blk-h .meta{margin-left:14px}
+ .secupd{margin-left:auto;font-family:var(--mono);font-size:.64rem;color:var(--mut);white-space:nowrap;flex:0 0 auto;padding-left:8px}
 </style></head><body>
 <div id="gate"><div class="gbox">
   <div class="gbar"><span class="gd"></span>PRIVILEGED ACCESS · PARTNERS ONLY</div>
@@ -74,8 +77,8 @@
   <div class="gerr" id="err"></div>
 </div></div>
 <div class="topbar"><div class="wrap tb">
-  <a class="brand" href="index.html"><span class="b-mk"><i style="height:8px;background:var(--green)"></i><i style="height:13px;background:var(--amber)"></i><i style="height:18px;background:var(--gold)"></i></span>BIRDLAND<span class="tag">Partner&nbsp;Desk</span></a>
-  <div class="tb-right"><span class="live"><span class="d"></span>PARTNER</span><span id="refresh"></span><a class="back" href="news.html">Client Desk →</a></div>
+  <a class="brand" href="index.html"><span class="b-mk"><i style="height:8px;background:var(--green)"></i><i style="height:13px;background:var(--amber)"></i><i style="height:18px;background:var(--gold)"></i></span>Partner<span class="sep">|</span>Data Terminal Pro</a>
+  <div class="tb-right"><span class="live"><span class="d"></span>PARTNER</span><span id="refresh"></span><a class="back" href="index.html">← birdland.com.tw</a></div>
 </div></div>
 
 <main class="wrap">
@@ -175,4 +178,6 @@
     wc.appendChild(row);});
 })();
 </script>
+<script>(function(){try{var D=JSON.parse(document.getElementById('outlook-data').textContent);var U=D.updated||'',frU=(D.freight&&D.freight.updated)||U,nwU=(D.news&&D.news[0]&&D.news[0].date)||U;
+[].forEach.call(document.querySelectorAll('.blk-h'),function(h){var sec=(h.querySelector('h2')||{}).textContent||'';var dt=/Freight/i.test(sec)?frU:(/News/i.test(sec)?nwU:U);var tog=h.querySelector('.tog');var b=document.createElement('span');b.className='secupd';b.textContent='\u27f3 '+dt;if(tog)h.insertBefore(b,tog);else h.appendChild(b);});}catch(e){}})();</script>
 </body></html>
