@@ -10,13 +10,19 @@ DATA_PATH=os.path.join(HERE,"outlook-data.json")
 MODEL=os.environ.get("GEMINI_MODEL","gemini-2.5-flash")
 KEY=os.environ.get("GEMINI_API_KEY","")
 now=datetime.datetime.utcnow().strftime("%d %b %Y, %H:%M UTC")
+import traceback
+def _eh(t,v,tb):
+    traceback.print_exception(t,v,tb); print("[gen_news] swallowed error -> exit 0")
+sys.excepthook=_eh
 
 data=json.load(open(DATA_PATH,encoding="utf-8"))
 
 def save_and_build(d):
     d["updated"]=now
     json.dump(d,open(DATA_PATH,"w",encoding="utf-8"),ensure_ascii=False)
-    subprocess.run([sys.executable,os.path.join(HERE,"tools","build_news.py")],check=True)
+    r=subprocess.run([sys.executable,os.path.join(HERE,"tools","build_news.py")],capture_output=True,text=True)
+    print("[build_news]",r.stdout.strip(),r.stderr.strip())
+    if r.returncode!=0: print("[build_news] FAILED rc",r.returncode)
 
 if not KEY:
     print("No GEMINI_API_KEY; timestamp-only refresh.");save_and_build(data);sys.exit(0)
