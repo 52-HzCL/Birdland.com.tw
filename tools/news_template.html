@@ -140,6 +140,26 @@
    .strip{grid-template-columns:repeat(2,1fr)}
  }
  @media(max-width:560px){ .wl td:nth-child(4),.wl th:nth-child(4){display:none} }
+
+ /* ===== RWD hardening (mobile) ===== */
+ html{overflow-x:hidden}
+ body{overflow-x:hidden;max-width:100%}
+ .tb{flex-wrap:wrap;row-gap:6px}
+ .chart,#ship,#matl,#lcbar,#landed{width:100%!important;height:auto}
+ .blk-b svg{max-width:100%;height:auto}
+ .blk-b{min-width:0}
+ .svgwrap{max-width:100%}
+ @media(max-width:760px){ .war .row{grid-template-columns:1fr} }
+ @media(max-width:640px){
+   .wrap{padding:0 13px}
+   body{font-size:15px}
+   .blk-b{padding:13px}
+   .bb-body,.card p,.supplyb p,.news .bl,.sub{font-size:.92rem}
+   .head2{font-size:1.18rem}
+   .tile .v{font-size:1.3rem}
+   .wl{font-size:.82rem}
+   table.tm{font-size:.82rem}
+ }
 </style></head><body>
 <div id="gate"><div class="gbox">
   <div class="gbar"><span class="gd"></span>SECURE SESSION · CLIENT ACCESS</div>
