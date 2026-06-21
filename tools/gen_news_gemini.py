@@ -40,6 +40,7 @@ RULES (strict):
 - Top-level "indices" is a strip of buyer commodity/trade gauges; update each value (one decimal), dir (up/down/flat) and short sub-status from current data (Brent, steel HRC, container freight, polypropylene/resin, tariff pressure, Asia-EU freight). Keep the same labels/units.
 - Top-level "teamAnalysis" is a 3-5 sentence desk synthesis — rewrite it to reflect the current picture (regulation/origin lead, prices secondary, Birdland keeps supply & documentation steady). Do NOT change top-level "news" (company posts) at all.
 - Each region also has a "viz" object with numeric 0-100 scores: heat{regulation,tariff,freight,energy}, x (regulatory pressure), y (cost/supply volatility), size (importer exposure), px, py (previous position). Update heat and x/y/size to reflect current conditions where they have clearly shifted; keep them plausible and bounded 0-100. Do NOT set px/py yourself.
+- "partner.birdbot" and top-level "birdbot_client" are Bird BOT explainers, one per section. Refresh each to the CURRENT picture, keeping EXACTLY this format: "simple" = ONE plain sentence with an everyday analogy a 10-year-old would instantly grasp; "expert" = an array of EXACTLY 3 concise expert sentences. Keep the same keys. For the market entries (keys "p-mkt" and "c-mkt") keep framing as Birdland’s interpretation of publicly reported BNP Paribas and Citi views; never fabricate bank quotes or numbers, stay grounded, keep the "src" disclaimer. Do NOT touch the other partner sub-objects (procurement, shipping, material, tariffmon, war).
 - Output ONLY the complete updated JSON object. No markdown, no commentary.
 
 CURRENT JSON:
@@ -126,6 +127,20 @@ try:
         if not (kk in cand and val(cand[kk])):
             cand[kk]=data.get(kk, cand.get(kk))
     if not cand.get("teamAnalysis"): cand["teamAnalysis"]=data.get("teamAnalysis","")
+    def _fmt_bb(oldbb,newbb):
+        out=dict(oldbb or {})
+        for k,oldv in (oldbb or {}).items():
+            nv=(newbb or {}).get(k)
+            if isinstance(nv,dict) and isinstance(nv.get("simple"),str) and isinstance(nv.get("expert"),list) and len([x for x in nv["expert"] if str(x).strip()])>=3:
+                m={"simple":nv["simple"].strip(),"expert":[str(x).strip() for x in nv["expert"] if str(x).strip()][:3]}
+                if (oldv or {}).get("src"): m["src"]=oldv["src"]
+                out[k]=m
+        return out
+    old_partner=data.get("partner",{}) or {}
+    new_pbb=((cand.get("partner") or {}).get("birdbot")) or {}
+    op=dict(old_partner); op["birdbot"]=_fmt_bb(old_partner.get("birdbot",{}),new_pbb)
+    cand["partner"]=op
+    cand["birdbot_client"]=_fmt_bb(data.get("birdbot_client",{}),cand.get("birdbot_client",{}))
     print("Gemini update parsed & validated; viz tails rolled.")
     save_and_build(cand)
 except Exception as ex:
