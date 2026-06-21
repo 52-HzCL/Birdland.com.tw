@@ -389,7 +389,7 @@
     a.addEventListener('click',function(){a.classList.add('on');b.classList.remove('on');renderMat('tw');});
     b.addEventListener('click',function(){b.classList.add('on');a.classList.remove('on');renderMat('cn');});})();
   // Bird BOT box
-  function renderBot(host,b){if(!host||!b)return;var x=document.createElement('div');x.className='botbox';x.innerHTML='<div class="botbar"><span class="d"></span>BIRD BOT · 結論(對台/中出口)</div><div class="botbody"><div class="botsimple">▸ '+(b.simple||'')+'</div><div class="botexp">'+((b.expert||[]).join(' '))+'</div></div>';host.appendChild(x);}
+  function renderBot(host,b){if(!host||!b)return;var x=document.createElement('div');x.className='botbox';x.innerHTML='<div class="botbar">BIRD BOT · 結論(對台/中出口)</div><div class="botbody"><div class="botsimple">▸ '+(b.simple||'')+'</div><div class="botexp">'+((b.expert||[]).join(' '))+'</div></div>';host.appendChild(x);}
   function matList(hostId,arr){var h=(arr||[]).map(function(m){var d=m.dir,ar=d==='up'?'↑':(d==='down'?'↓':'→'),cl=d==='up'?'up':(d==='down'?'down':'flat');return '<div class="mat"><div class="ar '+cl+'">'+ar+'</div><div><div class="nm">'+m.name+'</div><div class="nt">'+(m.note||'')+'</div></div></div>';}).join('');var el=document.getElementById(hostId);if(el)el.innerHTML=h;}
   matList('shipping',T.shipping);
   renderBot(document.getElementById('matBot'),T.materials_bot);
