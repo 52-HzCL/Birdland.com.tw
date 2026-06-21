@@ -76,3 +76,20 @@ if fr:
 
 json.dump(data,open(PATH,"w",encoding="utf-8"),ensure_ascii=False)
 print("[twelvedata] live-updated %d symbols of %d attempted."%(n,len(syms)))
+
+# ---- Team Desk FX: open.er-api.com (free, keyless) -> baseline(prev run) + USD/TWD sparkline ----
+td=data.get("teamdesk")
+if td is not None:
+    try:
+        fx=json.load(urllib.request.urlopen("https://open.er-api.com/v6/latest/USD",timeout=40))
+        r=fx.get("rates",{})
+        if r.get("TWD") and r.get("CNY") and r.get("JPY"):
+            now={"TWD":round(r["TWD"],4),"CNY":round(r["CNY"],4),"JPY":round(r["JPY"],4)}
+            td["fx_baseline"]=td.get("fx_today", now)   # change% = live vs previous run (day-over-day)
+            td["fx_today"]=now
+            sp=list(td.get("usdtwd_spark",[]))+[round(r["TWD"],3)]; td["usdtwd_spark"]=sp[-30:]
+            print("[teamfx] FX baseline+spark updated USD/TWD=%s"%r["TWD"])
+    except Exception as e:
+        print("[teamfx] failed:",e)
+
+json.dump(data,open(PATH,"w",encoding="utf-8"),ensure_ascii=False)

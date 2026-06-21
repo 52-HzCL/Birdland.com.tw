@@ -41,6 +41,7 @@ RULES (strict):
 - Top-level "teamAnalysis" is a 3-5 sentence desk synthesis — rewrite it to reflect the current picture (regulation/origin lead, prices secondary, Birdland keeps supply & documentation steady). Do NOT change top-level "news" (company posts) at all.
 - Each region also has a "viz" object with numeric 0-100 scores: heat{regulation,tariff,freight,energy}, x (regulatory pressure), y (cost/supply volatility), size (importer exposure), px, py (previous position). Update heat and x/y/size to reflect current conditions where they have clearly shifted; keep them plausible and bounded 0-100. Do NOT set px/py yourself.
 - "partner.birdbot" and top-level "birdbot_client" are Bird BOT explainers, one per section. Refresh each to the CURRENT picture, keeping EXACTLY this format: "simple" = ONE plain sentence with an everyday analogy a 10-year-old would instantly grasp; "expert" = an array of EXACTLY 3 concise expert sentences. Keep the same keys. For the market entries (keys "p-mkt" and "c-mkt") keep framing as Birdland’s interpretation of publicly reported BNP Paribas and Citi views; never fabricate bank quotes or numbers, stay grounded, keep the "src" disclaimer. Do NOT touch the other partner sub-objects (procurement, shipping, material, tariffmon, war).
+- "teamdesk" is an internal dashboard. Refresh ONLY these sub-fields (leave fx_baseline, fx_today and usdtwd_spark untouched): "usdtwd_view"={bias:"depreciation pressure"|"appreciation pressure"|"balanced", text: 2-3 sentences grounded in Fed stance, Taiwan central bank and US-China relations, 1-4 week horizon}; "materials"=array for Lumber, Pulp, Steel HRC, PE/PP, Cotton each {name,dir:"up"|"down"|"flat",note: one short current sentence}; "regnews"={china:[],taiwan:[],ports:[],env:[]} each an array of 1-2 {date,title,summary,url} grounded items on customs/origin, tariffs, EU & US ports, and FSC/EUDR/Lacey/CBAM; "advice"={zh: a ready-to-send Traditional-Chinese supply-chain+ocean-freight weekly brief with a recommendation, en: the English equivalent}. Keep keys; set teamdesk.updated to today (e.g. "DD Mon YYYY"). Stay grounded; cite source URLs where possible.
 - Output ONLY the complete updated JSON object. No markdown, no commentary.
 
 CURRENT JSON:
@@ -141,6 +142,14 @@ try:
     op=dict(old_partner); op["birdbot"]=_fmt_bb(old_partner.get("birdbot",{}),new_pbb)
     cand["partner"]=op
     cand["birdbot_client"]=_fmt_bb(data.get("birdbot_client",{}),cand.get("birdbot_client",{}))
+    old_td=data.get("teamdesk",{}) or {}
+    new_td=cand.get("teamdesk",{}) or {}
+    mtd=dict(old_td)
+    for k in ("usdtwd_view","materials","regnews","advice","updated"):
+        if k in new_td and new_td[k]: mtd[k]=new_td[k]
+    for k in ("fx_baseline","fx_today","usdtwd_spark"):
+        if k in old_td: mtd[k]=old_td[k]   # never let AI touch live FX numbers
+    cand["teamdesk"]=mtd
     print("Gemini update parsed & validated; viz tails rolled.")
     save_and_build(cand)
 except Exception as ex:

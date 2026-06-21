@@ -12,3 +12,4 @@ def build(tpl,out):
     print("built",out,len(s),"bytes")
 build("news_template.html","news.html")
 build("partner_template.html","partner.html")
+build("team_template.html","team.html")

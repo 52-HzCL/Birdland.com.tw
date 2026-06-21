@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="zh-Hant"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birdland Team Desk</title><meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23f7f5f0'/><text x='16' y='23' text-anchor='middle' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%239a2b1e'>B</text></svg>">
+<style>
+ :root{--bg:#f4f1ea;--panel:#fff;--panel2:#faf8f3;--ink:#17130c;--mut:#6c6357;--line:#ded7c8;--accent:#9a2b1e;--pos:#0a7c3f;--neg:#b3261e;--flat:#8a6d2a;--serif:Georgia,"Times New Roman",serif;--sans:"Inter",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+ body.dark{--bg:#13110c;--panel:#1c1810;--panel2:#221d14;--ink:#efe9dc;--mut:#9b917f;--line:#2f2a20;--accent:#e0a64b;--pos:#3ec27a;--neg:#ff6b6b;--flat:#e0a64b}
+ *{box-sizing:border-box;margin:0;padding:0}
+ body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%}
+ html,body{overflow-x:hidden;max-width:100%}
+ a{color:inherit}
+ .wrap{max-width:1000px;margin:0 auto;padding:0 16px}
+ /* gate */
+ #gate{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:20px}
+ #gate.hide{opacity:0;visibility:hidden;transition:opacity .5s,visibility .5s}
+ .gbox{width:100%;max-width:380px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:28px 24px;text-align:center}
+ .gk{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--accent);text-transform:uppercase}
+ .gt{font-family:var(--serif);font-size:1.7rem;font-weight:700;margin:6px 0 2px}
+ .gs{font-size:.84rem;color:var(--mut);margin-bottom:18px}
+ #tpin{width:100%;font-family:var(--mono);font-size:1.1rem;text-align:center;letter-spacing:.18em;padding:12px;border:1px solid var(--line);border-radius:8px;background:var(--panel2);color:var(--ink);outline:none}
+ #tpin:focus{border-color:var(--accent)}
+ .gbtn{width:100%;margin-top:10px;font-weight:700;font-size:.95rem;letter-spacing:.04em;color:#fff;background:var(--accent);border:0;border-radius:8px;padding:12px;cursor:pointer}
+ .gerr{color:var(--neg);font-size:.78rem;margin-top:10px;min-height:1em}
+ /* topbar */
+ header{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:2px solid var(--ink)}
+ .tb{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:11px 0}
+ .brand{font-family:var(--serif);font-weight:700;font-size:1.3rem;display:flex;align-items:center;gap:8px}
+ .brand .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--accent);padding:2px 7px;border-radius:3px;font-weight:600}
+ .tb-r{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.72rem;color:var(--mut)}
+ .thm{display:inline-flex;align-items:center;gap:6px;font-family:var(--sans);font-weight:700;font-size:.76rem;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:6px;padding:6px 10px;cursor:pointer}
+ .thm svg{width:14px;height:14px}
+ .back{color:var(--accent);font-weight:600}
+ /* sections */
+ h2.sh{font-family:var(--serif);font-size:1.25rem;font-weight:700;margin:26px 0 3px;padding-top:18px;border-top:1px solid var(--line)}
+ .sub{color:var(--mut);font-size:.82rem;margin-bottom:14px}
+ .updstamp{font-family:var(--mono);font-size:.7rem;color:var(--mut)}
+ /* FX */
+ .fxgrid{display:grid;grid-template-columns:1fr;gap:12px}
+ .fxbig{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+ .fxbig .lab{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;color:var(--mut);text-transform:uppercase}
+ .fxbig .val{font-family:var(--mono);font-weight:700;font-size:2.8rem;line-height:1;margin:8px 0 4px}
+ .fxrow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+ .fxcard{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px}
+ .fxcard .lab{font-family:var(--mono);font-size:.66rem;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
+ .fxcard .val{font-family:var(--mono);font-weight:700;font-size:1.35rem;margin-top:5px}
+ .chg{font-family:var(--mono);font-size:.82rem;font-weight:600}
+ .up{color:var(--pos)}.down{color:var(--neg)}.flat{color:var(--flat)}
+ .fxlive{font-family:var(--mono);font-size:.68rem;color:var(--mut);margin-top:8px}
+ .fxlive .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--pos);box-shadow:0 0 5px var(--pos);margin-right:5px;animation:bk 1.4s infinite}
+ @keyframes bk{50%{opacity:.3}}
+ /* forecast */
+ .fc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+ .fc-spark{width:100%;height:64px;display:block;margin:6px 0 12px}
+ .biasbadge{display:inline-block;font-family:var(--mono);font-size:.74rem;font-weight:700;letter-spacing:.04em;padding:5px 11px;border-radius:6px}
+ .bias-dep{background:rgba(179,38,30,.12);color:var(--neg);border:1px solid var(--neg)}
+ .bias-app{background:rgba(10,124,63,.12);color:var(--pos);border:1px solid var(--pos)}
+ .bias-bal{background:rgba(138,109,42,.12);color:var(--flat);border:1px solid var(--flat)}
+ .fc p{font-size:.92rem;margin-top:10px;color:var(--ink)}
+ /* materials */
+ .mat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px 15px;margin-bottom:9px;display:flex;align-items:flex-start;gap:12px}
+ .mat .ar{font-family:var(--mono);font-weight:700;font-size:1.2rem;flex:0 0 auto;width:22px;text-align:center}
+ .mat .nm{font-weight:700}.mat .nt{color:var(--mut);font-size:.86rem;margin-top:2px}
+ /* tabs */
+ .tabs{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;flex-wrap:nowrap;padding-bottom:2px}
+ .tabs button{flex:0 0 auto;white-space:nowrap;font-family:var(--sans);font-weight:700;font-size:.82rem;color:var(--mut);background:transparent;border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer}
+ .tabs button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
+ .regpanel{margin-top:12px}
+ .regitem{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:13px 15px;margin-bottom:9px}
+ .regitem .dt{font-family:var(--mono);font-size:.7rem;color:var(--accent)}
+ .regitem .ti{font-weight:700;margin:3px 0 4px}.regitem .sm{color:var(--mut);font-size:.88rem}
+ .regitem a{color:var(--accent);font-size:.8rem;font-weight:600}
+ /* advice */
+ .advhead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+ .langtog{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+ .langtog button{font-family:var(--mono);font-weight:700;font-size:.78rem;color:var(--mut);background:transparent;border:0;padding:7px 14px;cursor:pointer}
+ .langtog button.on{color:#fff;background:var(--ink)}
+ .advbox{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:15px 16px;font-size:.95rem;line-height:1.75;white-space:pre-wrap}
+ .copybtn{width:100%;margin-top:10px;font-weight:700;font-size:1rem;letter-spacing:.02em;color:#fff;background:var(--accent);border:0;border-radius:10px;padding:14px;cursor:pointer}
+ .copybtn.ok{background:var(--pos)}
+ footer{margin:28px 0 10px;padding-top:16px;border-top:1px solid var(--line);font-family:var(--mono);font-size:.72rem;color:var(--mut)}
+ @media(min-width:680px){ .fxgrid{grid-template-columns:1fr 1fr;align-items:start} .fxbig .val{font-size:3.2rem} }
+</style></head><body>
+<div id="gate"><div class="gbox">
+  <div class="gk">Internal · Birdland staff only</div>
+  <div class="gt">Team Desk</div>
+  <div class="gs">業務 · 財務 · 常務 內部儀表板</div>
+  <input id="tpin" type="password" inputmode="text" autocomplete="off" placeholder="ENTER PIN" aria-label="PIN">
+  <button class="gbtn" id="tgo">進入 ENTER</button>
+  <div class="gerr" id="terr"></div>
+</div></div>
+
+<header><div class="wrap tb">
+  <a class="brand" href="index.html">Birdland<span class="tag">Team Desk</span></a>
+  <div class="tb-r"><span class="updstamp" id="tstamp"></span>
+    <button class="thm" id="thmBtn" type="button"><svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.6A8 8 0 1 1 9.4 4 6.3 6.3 0 0 0 20 14.6z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.6M12 18.8v2.6M2.6 12h2.6M18.8 12h2.6M5.2 5.2l1.85 1.85M16.95 16.95l1.85 1.85M18.8 5.2L16.95 7.05M7.05 16.95L5.2 18.8"/></svg><span class="thm-l">Dark</span></button>
+    <a class="back" href="index.html">← 首頁</a>
+  </div>
+</div></header>
+
+<main class="wrap">
+  <h2 class="sh" style="border-top:0">匯率儀表板 · FX</h2>
+  <div class="sub">即時匯率(open.er-api.com,每 60 秒刷新);漲跌為自上次每日基準的變動。</div>
+  <div class="fxgrid">
+    <div class="fxbig"><div class="lab">USD / TWD · 美元兌台幣</div><div class="val" id="fx-usdtwd">—</div><div class="chg" id="chg-usdtwd"></div><div class="fxlive" id="fxlive"><span class="dot"></span>connecting…</div></div>
+    <div class="fxrow">
+      <div class="fxcard"><div class="lab">CNY/TWD</div><div class="val" id="fx-cnytwd">—</div><div class="chg" id="chg-cnytwd"></div></div>
+      <div class="fxcard"><div class="lab">TWD/JPY</div><div class="val" id="fx-twdjpy">—</div><div class="chg" id="chg-twdjpy"></div></div>
+      <div class="fxcard"><div class="lab">CNY/USD</div><div class="val" id="fx-cnyusd">—</div><div class="chg" id="chg-cnyusd"></div></div>
+    </div>
+  </div>
+
+  <h2 class="sh">USD/TWD 走勢預測 · 財務</h2>
+  <div class="fc">
+    <svg class="fc-spark" id="usdtwdSpark" viewBox="0 0 320 64" preserveAspectRatio="none" role="img" aria-label="USD/TWD trend"></svg>
+    <div id="biasBadge"></div>
+    <p id="biasText"></p>
+  </div>
+
+  <h2 class="sh">物料市場動向 · 業務</h2>
+  <div class="sub">Gemini 每日 AI 接地摘要(方向為趨勢,非即時報價)。</div>
+  <div id="materials"></div>
+
+  <h2 class="sh">法規即時更新 · 常務</h2>
+  <div class="sub">Gemini + 搜尋接地,每日分類。</div>
+  <div class="tabs" id="regTabs"></div>
+  <div class="regpanel" id="regPanel"></div>
+
+  <h2 class="sh">一鍵客戶供應鏈建議 · 業務</h2>
+  <div class="advhead"><div class="sub" style="margin:0">當週供應鏈 + 海運展望 + 建議,可直接複製貼給客戶。</div>
+    <div class="langtog"><button id="lz" class="on" type="button">繁中</button><button id="le" type="button">EN</button></div></div>
+  <div class="advbox" id="advBox"></div>
+  <button class="copybtn" id="copyBtn" type="button">📋 複製給客戶</button>
+
+  <footer id="disc"></footer>
+</main>
+
+<script type="application/json" id="outlook-data">__DATA__</script>
+<script>
+(function(){
+  // gate
+  var gate=document.getElementById('gate'),pin=document.getElementById('tpin'),err=document.getElementById('terr');
+  function unlock(){gate.classList.add('hide');try{sessionStorage.setItem('bd_team','1');}catch(e){}}
+  function go(){if(pin.value==='ecosteelland'){unlock();}else{err.textContent='PIN 錯誤 · access denied';pin.value='';pin.focus();}}
+  document.getElementById('tgo').addEventListener('click',go);
+  pin.addEventListener('keydown',function(e){if(e.key==='Enter')go();});
+  try{if(sessionStorage.getItem('bd_team')==='1')gate.classList.add('hide');else setTimeout(function(){pin.focus();},150);}catch(e){}
+  // theme
+  var tb=document.getElementById('thmBtn');function ap(t){if(t==='dark'){document.body.classList.add('dark');tb.querySelector('.thm-l').textContent='Light';}else{document.body.classList.remove('dark');tb.querySelector('.thm-l').textContent='Dark';}}
+  var sv='light';try{sv=localStorage.getItem('bd_team_theme')||'light';}catch(e){}ap(sv);
+  tb.addEventListener('click',function(){var n=document.body.classList.contains('dark')?'light':'dark';try{localStorage.setItem('bd_team_theme',n);}catch(e){}ap(n);});
+
+  var D;try{D=JSON.parse(document.getElementById('outlook-data').textContent);}catch(e){return;}
+  var T=D.teamdesk||{};
+  document.getElementById('tstamp').textContent='AI updated '+(T.updated||'—');
+  document.getElementById('disc').innerHTML='BIRDLAND TEAM DESK · 內部使用. FX live via open.er-api.com. Materials, FX view, regulation &amp; client advice are AI-assisted (Gemini), indicative — verify before acting. PIN is a front-end gate only.';
+
+  function chgEl(id,pct){var e=document.getElementById(id);if(!e)return;var up=pct>0.01,dn=pct<-0.01;e.className='chg '+(up?'up':(dn?'down':'flat'));e.textContent=(up?'▲ +':(dn?'▼ ':'■ '))+Math.abs(pct).toFixed(2)+'%';}
+  // live FX
+  function loadFX(){ if(typeof fetch!=='function')return;
+    fetch('https://open.er-api.com/v6/latest/USD').then(function(r){return r.json();}).then(function(d){
+      if(!d||!d.rates)return;var r=d.rates,b=(T.fx_baseline||{});
+      function set(id,v,bid,bv){document.getElementById(id).textContent=v.toFixed(id==='fx-twdjpy'||id==='fx-usdtwd'?(id==='fx-twdjpy'?3:3):4);if(bv)chgEl(bid,(v-bv)/bv*100);}
+      var usdtwd=r.TWD, cnytwd=r.TWD/r.CNY, twdjpy=r.JPY/r.TWD, cnyusd=1/r.CNY;
+      var bU=b.TWD, bC=b.TWD/b.CNY, bJ=b.JPY/b.TWD, bN=1/b.CNY;
+      document.getElementById('fx-usdtwd').textContent=usdtwd.toFixed(3); chgEl('chg-usdtwd',bU?(usdtwd-bU)/bU*100:0);
+      document.getElementById('fx-cnytwd').textContent=cnytwd.toFixed(3); chgEl('chg-cnytwd',bC?(cnytwd-bC)/bC*100:0);
+      document.getElementById('fx-twdjpy').textContent=twdjpy.toFixed(3); chgEl('chg-twdjpy',bJ?(twdjpy-bJ)/bJ*100:0);
+      document.getElementById('fx-cnyusd').textContent=cnyusd.toFixed(4); chgEl('chg-cnyusd',bN?(cnyusd-bN)/bN*100:0);
+      document.getElementById('fxlive').innerHTML='<span class="dot"></span>LIVE · '+((d.time_last_update_utc||'').slice(0,16)||'open.er-api.com');
+    }).catch(function(){var fl=document.getElementById('fxlive');if(fl)fl.innerHTML='source unavailable — retrying';});
+  }
+  loadFX(); setInterval(loadFX,60000);
+
+  // sparkline
+  (function(){var a=T.usdtwd_spark||[];if(!a.length)return;var w=320,h=64,mn=Math.min.apply(null,a),mx=Math.max.apply(null,a),rg=(mx-mn)||1;
+    var pts=a.map(function(v,i){return (i/(a.length-1)*w).toFixed(1)+','+(h-4-((v-mn)/rg)*(h-8)).toFixed(1);}).join(' ');
+    var last=a[a.length-1],first=a[0],col=last<first?'var(--neg)':(last>first?'var(--pos)':'var(--flat)');
+    document.getElementById('usdtwdSpark').innerHTML='<polyline points="'+pts+'" fill="none" stroke="'+col+'" stroke-width="2"/>';})();
+  var bv=(T.usdtwd_view||{});var cls=/deprec/i.test(bv.bias||'')?'bias-dep':(/apprec/i.test(bv.bias||'')?'bias-app':'bias-bal');
+  document.getElementById('biasBadge').innerHTML='<span class="biasbadge '+cls+'">'+(bv.bias||'').toUpperCase()+'</span>';
+  document.getElementById('biasText').textContent=bv.text||'';
+
+  // materials
+  var mh='';(T.materials||[]).forEach(function(m){var d=m.dir,ar=d==='up'?'↑':(d==='down'?'↓':'→'),cl=d==='up'?'up':(d==='down'?'down':'flat');
+    mh+='<div class="mat"><div class="ar '+cl+'">'+ar+'</div><div><div class="nm">'+m.name+'</div><div class="nt">'+(m.note||'')+'</div></div></div>';});
+  document.getElementById('materials').innerHTML=mh;
+
+  // regulation tabs
+  var R=T.regnews||{},tabsDef=[['china','中國海關'],['taiwan','台灣海關'],['ports','歐美港口'],['env','環保法規']];
+  var tabsEl=document.getElementById('regTabs'),panel=document.getElementById('regPanel');
+  function renderReg(k){var items=R[k]||[];panel.innerHTML=items.length?items.map(function(it){return '<div class="regitem"><span class="dt">'+(it.date||'')+'</span><div class="ti">'+it.title+'</div><div class="sm">'+(it.summary||'')+'</div>'+(it.url?'<a href="'+it.url+'" target="_blank" rel="noopener">來源 ↗</a>':'')+'</div>';}).join(''):'<div class="sm" style="color:var(--mut)">—</div>';}
+  tabsDef.forEach(function(t,i){var b=document.createElement('button');b.textContent=t[1];if(i===0)b.className='on';b.addEventListener('click',function(){[].forEach.call(tabsEl.children,function(x){x.classList.remove('on');});b.classList.add('on');renderReg(t[0]);});tabsEl.appendChild(b);});
+  renderReg('china');
+
+  // advice + copy
+  var adv=T.advice||{zh:'',en:''},lang='zh';
+  function showAdv(){document.getElementById('advBox').textContent=adv[lang]||'';}
+  document.getElementById('lz').addEventListener('click',function(){lang='zh';this.classList.add('on');document.getElementById('le').classList.remove('on');showAdv();});
+  document.getElementById('le').addEventListener('click',function(){lang='en';this.classList.add('on');document.getElementById('lz').classList.remove('on');showAdv();});
+  showAdv();
+  document.getElementById('copyBtn').addEventListener('click',function(){var b=this,t=adv[lang]||'';function ok(){b.classList.add('ok');b.textContent='✓ 已複製 Copied';setTimeout(function(){b.classList.remove('ok');b.textContent='📋 複製給客戶';},2000);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){fb(t);ok();});}else{fb(t);ok();}});
+  function fb(t){var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(a);}
+  // theme icon visibility
+  var st=document.createElement('style');st.textContent='.ic-sun{display:none}.ic-moon{display:inline}body.dark .ic-sun{display:inline}body.dark .ic-moon{display:none}';document.head.appendChild(st);
+})();
+</script>
+</body></html>
