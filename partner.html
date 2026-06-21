@@ -197,6 +197,24 @@
    .wl{font-size:.82rem}
    table.tm{font-size:.82rem}
  }
+
+ .calc select{width:100%;font-family:var(--mono);font-size:.9rem;color:var(--gold);background:var(--panel2);border:1px solid var(--line);border-radius:5px;padding:9px 11px}
+ .bcrow{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+ .bcrow b{font-family:var(--mono);color:var(--gold)} .bcrow.tot{border-bottom:0;margin-top:4px}.bcrow.tot b{color:var(--cyan);font-size:1.06rem}
+ .bcbar{display:flex;height:26px;border-radius:5px;overflow:hidden;margin:12px 0 6px;border:1px solid var(--line)}
+ .bcbar i{display:flex;align-items:center;justify-content:center;font:700 .6rem var(--mono);color:#0b0e13;overflow:hidden;white-space:nowrap}
+ .bclegend{display:flex;flex-wrap:wrap;gap:10px;font-size:.72rem;color:var(--mut)} .bclegend>span{display:inline-flex;align-items:center;gap:5px}.bclegend i{width:10px;height:10px;border-radius:2px;display:inline-block}
+ .sailcards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}@media(max-width:720px){.sailcards{grid-template-columns:1fr}}
+ .sailcard{border:1px solid var(--line);border-radius:8px;background:var(--panel2);padding:14px}
+ .sailcard h4{font-size:.96rem;font-weight:700;color:#fff;margin-bottom:4px}.sailcard .sd{font-family:var(--mono);font-size:.72rem;color:var(--mut);margin-bottom:10px}
+ .sailcard .big{font-family:var(--mono);font-size:1.06rem;color:var(--cyan);font-weight:700;margin-bottom:6px}
+ .sailcard .row{display:flex;justify-content:space-between;font-size:.84rem;padding:5px 0;border-top:1px solid var(--line)}.sailcard .row b{font-family:var(--mono);color:var(--gold)}
+ .full-badge{display:inline-block;font:700 .68rem var(--mono);padding:2px 7px;border-radius:3px}
+ .fb-tight{background:#ff5470;color:#fff}.fb-norm{background:#e8c07a;color:#1a1407}.fb-loose{background:#16c47e;color:#06281b}
+ .theme-light .calc select{background:#fff;color:#000;border:1px solid #000;box-shadow:inset 1px 1px 0 #808080}
+ .theme-light .bcrow{color:#111;border-bottom-color:#9a9a9a}.theme-light .bcrow b{color:#000}.theme-light .bcrow.tot b{color:#0a5a6e}
+ .theme-light .bcbar{border-color:#000}.theme-light .bclegend{color:#333}
+ .theme-light .sailcard{background:#d6d6cf;color:#000;border:1px solid #000}.theme-light .sailcard h4{color:#000}.theme-light .sailcard .sd{color:#333}.theme-light .sailcard .big{color:#0a5a6e}.theme-light .sailcard .row{border-top-color:#9a9a9a}.theme-light .sailcard .row b{color:#000}
 </style></head><body>
 <div id="gate"><div class="gbox">
   <div class="gbar"><span class="gd"></span>PRIVILEGED ACCESS · PARTNERS ONLY</div>
@@ -217,7 +235,7 @@
 <div id="google_translate_element"></div>
 <main class="wrap">
   <section class="hero"><div class="eyk">Partner Desk · privileged briefing</div><h1>Your dedicated desk.</h1><p class="lede">Deeper, forward-looking intelligence for our closest partners. Powered by advanced AI models, professional market-data APIs, and forecasting models we build with industry experts &mdash; procurement actions, lane &amp; material forecasts, a live landed-cost model, and tariff &amp; geopolitical monitors. Hover any chart for detail.</p></section>
-  <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-material">Materials</a><a href="#p-shipping">Shipping</a><a href="#p-freight">Freight</a><a href="#p-calc">Landed cost</a><a href="#p-tariff">Tariffs</a><a href="#p-war">Geopolitics</a><a href="#p-mkt">Markets</a><a href="#p-news">News</a></nav>
+  <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-material">Materials</a><a href="#p-shipping">Shipping</a><a href="#p-freight">Freight</a><a href="#p-calc">Landed cost</a><a href="#p-landed2">My cost</a><a href="#p-sail">Sailings</a><a href="#p-tariff">Tariffs</a><a href="#p-war">Geopolitics</a><a href="#p-mkt">Markets</a><a href="#p-news">News</a></nav>
 
   <section class="blk" data-open="1" id="p-brief"><button class="blk-h"><span class="k">BRIEF</span><h2>Procurement Brief</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
 
@@ -239,7 +257,38 @@
     <div class="cot" id="lc-out"></div>
   </div></section>
 
-  <section class="blk" data-open="1" id="p-tariff"><button class="blk-h"><span class="k">TARIFF</span><h2>Tariff Monitor</h2><span class="ihelp" title="Recent and pending tariff/duty changes by market. Hover a row for context.">i</span><span class="tog"></span></button><div class="blk-b"><div class="svgwrap"><table class="tm" id="tariffmon"></table></div></div></section>
+  <section class="blk" data-open="1" id="p-landed2"><button class="blk-h"><span class="k">LANDED</span><h2>到岸總成本試算（我們 FOB 之後，您的成本）</h2><span class="ihelp" title="We deliver FOB at origin port; everything after that is yours. Pick your country to prefill duty &amp; import tax, then see CIF, duty, VAT/GST, fees and total landed cost per unit.">i</span><span class="tog"></span></button><div class="blk-b">
+    <div class="sub">我們以 FOB 交貨於出口港，之後的運費、保險、關稅、進口稅、報關與內陸運送由您負擔。選國家自動帶入關稅/進口稅率（可自行修改）。</div>
+    <div class="calc">
+      <div><label>目的地國家</label><select id="bc_co"></select></div>
+      <div><label>FOB 總貨值 USD</label><input id="bc_fob" type="number" value="50000"></div>
+      <div><label>數量（個）</label><input id="bc_qty" type="number" value="5000"></div>
+      <div><label>海運運費 USD</label><input id="bc_frt" type="number" value="3200"></div>
+      <div><label>保險費率 %</label><input id="bc_ins" type="number" value="0.2" step="0.05"></div>
+      <div><label>關稅 %</label><input id="bc_duty" type="number" value="1.7" step="0.1"></div>
+      <div><label id="bc_taxL">進口稅 %</label><input id="bc_tax" type="number" value="19" step="0.5"></div>
+      <div><label>報關行費 USD</label><input id="bc_brk" type="number" value="150"></div>
+      <div><label>內陸運送 USD</label><input id="bc_inl" type="number" value="400"></div>
+      <div><label>其他/檢驗 USD</label><input id="bc_oth" type="number" value="0"></div>
+    </div>
+    <div class="bcbar" id="bc_bar"></div>
+    <div class="bclegend" id="bc_leg"></div>
+    <div id="bc_out" style="margin-top:12px"></div>
+    <div class="cot" id="bc_note" style="margin-top:10px"></div>
+  </div></section>
+
+  <section class="blk" data-open="1" id="p-sail"><button class="blk-h"><span class="k">SAIL</span><h2>海運試算 · 選航班（ETD/ETA・運費・滿倉度）</h2><span class="ihelp" title="Pick origin, destination, departure and container like choosing a flight. See ETD to ETA, transit days, likely delay, indicative freight and space availability across three service options. Freight is indicative.">i</span><span class="tog"></span></button><div class="blk-b">
+    <div class="sub">像選機票一樣：選起運港、目的港、出港日與櫃型，估算到港日、航程、可能延誤天數、運費與滿倉度（三種服務方案）。運費為指引值，實際以船公司報價為準。</div>
+    <div class="calc">
+      <div><label>起運港</label><select id="s_o"></select></div>
+      <div><label>目的港</label><select id="s_d"></select></div>
+      <div><label>出港日 ETD</label><input id="s_etd" type="date"></div>
+      <div><label>櫃型</label><select id="s_ct"><option value="20">20' GP</option><option value="40" selected>40' GP</option><option value="40h">40' HC</option></select></div>
+    </div>
+    <div class="sailcards" id="s_cards"></div>
+  </div></section>
+
+    <section class="blk" data-open="1" id="p-tariff"><button class="blk-h"><span class="k">TARIFF</span><h2>Tariff Monitor</h2><span class="ihelp" title="Recent and pending tariff/duty changes by market. Hover a row for context.">i</span><span class="tog"></span></button><div class="blk-b"><div class="svgwrap"><table class="tm" id="tariffmon"></table></div></div></section>
 
   <section class="blk" data-open="0" id="p-war"><button class="blk-h"><span class="k">WAR</span><h2>War &amp; Geopolitical Impact Monitor</h2><span class="ihelp" title="How active conflicts/tensions are pressuring your supply chain (0–100). Hover a bar for what it affects.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="war-note"></div><div class="war" id="war"></div></div></section>
 
@@ -345,4 +394,65 @@ box.innerHTML='<div class="bb-bar"><span class="bb-led"></span>BIRD BOT<span cla
 body.insertBefore(box,body.firstChild);});}catch(e){}})();</script>
 <script>(function(){var btn=document.getElementById('themeBtn');if(!btn)return;function ap(t){if(t==='light'){document.body.classList.add('theme-light');(btn.querySelector('.thm-l')||{}).textContent='Classic';}else{document.body.classList.remove('theme-light');(btn.querySelector('.thm-l')||{}).textContent='Light';}}var sv='classic';try{sv=localStorage.getItem('bd_ptheme')||'classic';}catch(e){}ap(sv);btn.addEventListener('click',function(){var nx=document.body.classList.contains('theme-light')?'classic':'light';try{localStorage.setItem('bd_ptheme',nx);}catch(e){}ap(nx);});})();</script>
 <script>(function(){var L=[].slice.call(document.querySelectorAll('.toc a'));if(!L.length||!('IntersectionObserver'in window))return;var m={};L.forEach(function(a){m[a.getAttribute('href').slice(1)]=a;});var secs=Object.keys(m).map(function(i){return document.getElementById(i);}).filter(Boolean);var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){L.forEach(function(x){x.classList.remove('on');});if(m[e.target.id])m[e.target.id].classList.add('on');}});},{rootMargin:'-25% 0px -65% 0px'});secs.forEach(function(s){ob.observe(s);});})();</script>
+<script>(function(){
+ var $=function(i){return document.getElementById(i);};
+ function n(i){return parseFloat(($(i)||{}).value)||0;}
+ function money(x){return 'US$'+Math.round(x).toLocaleString();}
+ // ===== Buyer landed cost (after our FOB) =====
+ var CO={us:['美國 USA',0,0,'','fob','美國以 FOB 為完稅價；無 VAT，改收 MPF 0.3464%（US$31–615）+ HMF 0.125%。HS/FTA 不同稅率會變，請以海關為準。'],
+  de:['德國 Germany',1.7,19,'VAT','cif','歐盟以 CIF 為完稅價；VAT 課於 CIF＋關稅。手工具關稅依 HS 約 0–2.7%，請以海關為準。'],
+  nl:['荷蘭 Netherlands',1.7,21,'VAT','cif','歐盟以 CIF 為完稅價；VAT 課於 CIF＋關稅。'],
+  it:['義大利 Italy',1.7,22,'VAT','cif','歐盟以 CIF 為完稅價；VAT 課於 CIF＋關稅。'],
+  uk:['英國 UK',0,20,'VAT','cif','英國以 CIF 為完稅價；VAT 課於 CIF＋關稅。'],
+  au:['澳洲 Australia',5,10,'GST','cif','GST 課於 CIF＋關稅；多數依 FTA 可降稅，請以海關為準。'],
+  nz:['紐西蘭 NZ',0,15,'GST','cif','GST 課於 CIF＋關稅。'],
+  jp:['日本 Japan',0,10,'消費稅','cif','消費稅 課於 CIF＋關稅。']};
+ var sel=$('bc_co');if(sel){Object.keys(CO).forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=CO[k][0];sel.appendChild(o);});sel.value='de';}
+ function applyCo(){var c=CO[sel.value];$('bc_duty').value=c[1];$('bc_tax').value=c[2];$('bc_taxL').textContent=(c[3]||'進口稅')+' %';$('bc_note').textContent=c[5];}
+ function landed(){if(!sel)return;var c=CO[sel.value],fob=n('bc_fob'),qty=n('bc_qty'),frt=n('bc_frt'),insR=n('bc_ins')/100,duty=n('bc_duty')/100,tax=n('bc_tax')/100;
+   var ins=(fob+frt)*insR,cif=fob+frt+ins,custVal=c[4]==='fob'?fob:cif,dutyAmt=custVal*duty,taxAmt;
+   if(sel.value==='us'){var mpf=Math.min(615,Math.max(31,fob*0.003464)),hmf=fob*0.00125;taxAmt=mpf+hmf;}else{taxAmt=(cif+dutyAmt)*tax;}
+   var fees=n('bc_brk')+n('bc_inl')+n('bc_oth');
+   var total=fob+frt+ins+dutyAmt+taxAmt+fees,per=qty>0?total/qty:0,up=fob>0?(total-fob)/fob*100:0;
+   var segs=[['FOB貨值',fob,'#36c2d6'],['運費',frt,'#e8c07a'],['保險',ins,'#a78bfa'],['關稅',dutyAmt,'#ff9e2c'],[(c[3]||'進口稅'),taxAmt,'#16c47e'],['費用',fees,'#9aa4b2']];
+   var bh='';segs.forEach(function(x){var w=total>0?x[1]/total*100:0;if(w>0)bh+='<i style="width:'+w+'%;background:'+x[2]+'">'+(w>9?x[0]:'')+'</i>';});$('bc_bar').innerHTML=bh;
+   $('bc_leg').innerHTML=segs.map(function(x){return '<span><i style="background:'+x[2]+'"></i>'+x[0]+' '+money(x[1])+'</span>';}).join('');
+   $('bc_out').innerHTML='<div class="bcrow"><span>CIF 貨值</span><b>'+money(cif)+'</b></div>'+
+     '<div class="bcrow"><span>海關完稅價（'+(c[4]==='fob'?'FOB':'CIF')+'基準）</span><b>'+money(custVal)+'</b></div>'+
+     '<div class="bcrow"><span>關稅 ('+(duty*100).toFixed(1)+'%)</span><b>'+money(dutyAmt)+'</b></div>'+
+     '<div class="bcrow"><span>'+(sel.value==='us'?'MPF + HMF':(c[3]||'進口稅')+' ('+(tax*100).toFixed(1)+'%)')+'</span><b>'+money(taxAmt)+'</b></div>'+
+     '<div class="bcrow"><span>報關＋內陸＋其他</span><b>'+money(fees)+'</b></div>'+
+     '<div class="bcrow tot"><span>到岸總成本</span><b>'+money(total)+'</b></div>'+
+     '<div class="bcrow"><span>每單位到岸成本</span><b>'+(qty>0?'US$'+per.toFixed(3):'—')+'</b></div>'+
+     '<div class="bcrow"><span>相對 FOB 增幅</span><b>+'+up.toFixed(1)+'%</b></div>';}
+ ['bc_fob','bc_qty','bc_frt','bc_ins','bc_duty','bc_tax','bc_brk','bc_inl','bc_oth'].forEach(function(i){var e=$(i);if(e)e.addEventListener('input',landed);});
+ if(sel){sel.addEventListener('change',function(){applyCo();landed();});applyCo();landed();}
+
+ // ===== Sailing simulator =====
+ var OPORT=[['高雄 Kaohsiung',0],['台中 Taichung',1],['基隆 Keelung',1],['上海 Shanghai',0],['寧波 Ningbo',0],['深圳 Shenzhen',0],['廈門 Xiamen',0]];
+ var DPORT={'Rotterdam':['NEU',32,3200],'Hamburg':['NEU',33,3200],'Bremerhaven':['NEU',33,3150],'Felixstowe':['NEU',31,3100],'Southampton':['NEU',32,3100],'Genoa':['MED',26,2900],'La Spezia':['MED',26,2900],'Los Angeles/Long Beach':['USWC',16,2600],'New York':['USEC',30,4200],'Sydney':['AU',18,2400],'Melbourne':['AU',19,2400],'Brisbane':['AU',18,2350],'Auckland':['NZ',22,2700],'Lyttelton':['NZ',24,2750],'Tokyo':['JP',4,700],'Osaka':['JP',5,720],'Sohar (Oman)':['ME',20,2200]};
+ var so=$('s_o'),sd=$('s_d'),etd=$('s_etd'),sct=$('s_ct');
+ if(so&&sd){OPORT.forEach(function(pp,i){var o=document.createElement('option');o.value=i;o.textContent=pp[0];so.appendChild(o);});
+  Object.keys(DPORT).forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=k;sd.appendChild(o);});sd.value='Rotterdam';
+  etd.value=new Date(Date.now()+10*864e5).toISOString().slice(0,10);}
+ function fmt(d){return d.getFullYear()+'/'+('0'+(d.getMonth()+1)).slice(-2)+'/'+('0'+d.getDate()).slice(-2);}
+ function hashN(x){var h=0;for(var i=0;i<x.length;i++)h=(h*31+x.charCodeAt(i))>>>0;return h;}
+ function sail(){if(!so||!sd)return;var op=OPORT[+so.value],d=DPORT[sd.value],ctv=sct.value;
+   var ctMult=ctv==='20'?0.65:(ctv==='40h'?1.02:1),ctName=ctv==='20'?"20'GP":(ctv==='40h'?"40'HC":"40'GP");
+   var etdD=etd.value?new Date(etd.value):new Date(),mo=etdD.getMonth()+1,peak=(mo>=8&&mo<=10),peakMult=peak?1.15:1,peakDays=peak?[3,8]:[1,4];
+   var base=hashN(op[0]+'>'+sd.value+mo);
+   var OPT=[['直航快線 Direct',0,1.2,18],['標準轉船 Standard',6,1.0,4],['慢船經濟 Eco',3,0.78,-8]];
+   var cards=OPT.map(function(O){var days=d[1]+op[1]+O[1],eta=new Date(etdD.getTime()+days*864e5),late=new Date(eta.getTime()+peakDays[1]*864e5);
+     var frt=Math.round(d[2]*ctMult*O[2]*peakMult/10)*10,util=Math.min(96,Math.max(40,60+(base%18)+O[3]+(peak?14:0)));
+     var fb=util>80?['fb-tight','🔴 緊張']:(util>=56?['fb-norm','🟡 正常']:['fb-loose','🟢 寬鬆']);
+     return '<div class="sailcard"><h4>'+O[0]+'</h4><div class="sd">'+ctName+' · '+op[0].split(' ')[0]+' → '+sd.value+'</div><div class="big">'+fmt(etdD)+' → '+fmt(eta)+'</div>'+
+       '<div class="row"><span>航程天數</span><b>'+days+' 天</b></div>'+
+       '<div class="row"><span>可能延誤</span><b>+'+peakDays[0]+'~'+peakDays[1]+' 天</b></div>'+
+       '<div class="row"><span>最晚到港</span><b>'+fmt(late)+'</b></div>'+
+       '<div class="row"><span>運費（指引）</span><b>US$'+frt.toLocaleString()+'/櫃</b></div>'+
+       '<div class="row"><span>滿倉度</span><b><span class="full-badge '+fb[0]+'">'+fb[1]+' '+util+'%</span></b></div></div>';}).join('');
+   $('s_cards').innerHTML=cards+(peak?'<div class="cot" style="grid-column:1/-1">⚠ '+mo+' 月為海運旺季，艙位偏緊、運價含旺季附加（PSS），建議提前 2–3 週訂艙。</div>':'');}
+ [so,sd,etd,sct].forEach(function(e){if(e)e.addEventListener('change',sail);});if(etd)etd.addEventListener('input',sail);
+ sail();
+})();</script>
 </body></html>
