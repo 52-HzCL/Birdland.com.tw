@@ -195,11 +195,11 @@
   </div>
 
   <h2 class="sh" data-r="ship assist">貨櫃裝載計算<span class="role">船務 · 助理</span></h2>
-  <div class="sub">選航區與櫃型,輸入外箱尺寸/箱重,算出可裝箱數、需櫃數與利用率(同時看材積與重量限制)。</div>
+  <div class="sub">依航線(美/歐)套用對應重量上限,同時以材積與重量計算單櫃可裝箱數、需櫃數、雙重利用率,並比較櫃型給出最佳方案。</div>
   <div class="tool">
-    <div class="modetog"><button id="cr_eu" class="on" type="button">歐洲線</button><button id="cr_us" type="button">美洲線</button></div>
+    <div class="modetog"><button id="cr_eu" class="on" type="button">歐洲線 EU</button><button id="cr_us" type="button">美洲線 US</button></div>
     <div class="frow">
-      <div><label>櫃型</label><select id="c_type"></select></div>
+      <div><label>貨櫃類型</label><select id="c_type"><option value="20">20GP</option><option value="40">40GP</option><option value="40h" selected>40HQ</option><option value="45">45HQ</option></select></div>
       <div><label>箱長 cm</label><input id="c_l" type="number" value="50"></div>
       <div><label>箱寬 cm</label><input id="c_w" type="number" value="40"></div>
       <div><label>箱高 cm</label><input id="c_h" type="number" value="30"></div>
@@ -208,10 +208,13 @@
     </div>
     <div class="kv"><span>每箱 CBM</span><b id="c_per">—</b></div>
     <div class="kv"><span>總 CBM</span><b id="c_total">—</b></div>
-    <div class="kv"><span>所選櫃型每櫃可裝</span><b id="c_fit">—</b></div>
+    <div class="kv"><span>貨物密度</span><b id="c_dens">—</b></div>
+    <div class="kv"><span>單櫃可裝(<span id="c_tname"></span>)</span><b id="c_fit">—</b></div>
     <div class="kv"><span>需要櫃數</span><b id="c_need">—</b></div>
     <div class="kv"><span>受限因素</span><b id="c_bound">—</b></div>
     <div class="ubar"><i id="c_bar"></i><span id="c_barlbl"></span></div>
+    <div class="ubar"><i id="c_bar2"></i><span id="c_barlbl2"></span></div>
+    <div id="c_best" style="margin-top:10px;font-size:.86rem;line-height:1.65"></div>
   </div>
 
   <h2 class="sh" data-r="assist">單位換算(雙向)<span class="role">業務助理</span></h2>
@@ -437,19 +440,31 @@
  ['q_depd','q_bald'].forEach(function(i){var el=$(i);if(el)el.addEventListener('change',function(){$(i==='q_depd'?'q_fxd':'q_fxb').value=qfcAt(val(i));quote();});});
  $('qm_fob').addEventListener('click',function(){qModeSet('fob');});$('qm_cif').addEventListener('click',function(){qModeSet('cif');});
  qInitDates();qModeSet('fob');setInterval(quote,8000);
- // 2) Container (EU/US 櫃型 + 重量限制)
- var CTYPES={eu:[["20'GP",28,21800],["40'GP",58,26700],["40'HC",68,26500],["45'HC",78,27800]],us:[["20'GP",28,17500],["40'GP",58,19500],["40'HC",68,19500]]};
+ // 2) Container loading (spec-compliant: vol+weight, util x2, best option)
+ var C_VOL={'20':28,'40':58,'40h':72,'45':82};
+ var C_WT={us:{'20':17500,'40':20000,'40h':20000,'45':20000},eu:{'20':22000,'40':25000,'40h':25000,'45':25000}};
+ var C_TN={'20':"20GP",'40':"40GP",'40h':"40HQ",'45':"45HQ"};
  var cReg='eu';
- function cFill(){var sel=$('c_type');sel.innerHTML='';CTYPES[cReg].forEach(function(t,i){var o=document.createElement('option');o.value=i;o.textContent=t[0]+' · '+t[1]+'CBM · 限重'+(t[2]/1000)+'t';sel.appendChild(o);});}
- function cont(){var per=n('c_l')*n('c_w')*n('c_h')/1e6,qty=n('c_qty'),kg=n('c_kg'),tot=per*qty;
-   var t=CTYPES[cReg][+($('c_type').value||0)],cap=t[1],maxkg=t[2];
-   var byCBM=per>0?Math.floor(cap/per):0,byWT=kg>0?Math.floor(maxkg/kg):byCBM;
-   var perCont=Math.max(0,Math.min(byCBM,byWT)),need=perCont>0?Math.ceil(qty/perCont):0;
+ function cCalc(t,per,qty,kg){var vc=C_VOL[t],wc=C_WT[cReg][t];
+   var byV=per>0?Math.floor(vc/per):0,byW=kg>0?Math.floor(wc/kg):byV;
+   var perCont=Math.max(0,Math.min(byV,byW)),need=perCont>0?Math.ceil(qty/perCont):0;
+   var volU=need>0?(per*qty)/(need*vc)*100:0,wtU=need>0?(qty*kg)/(need*wc)*100:0;
+   var bound=byV<byW?'材積受限':(byW<byV?'重量受限':'材積=重量');
+   return {vc:vc,wc:wc,byV:byV,byW:byW,perCont:perCont,need:need,volU:volU,wtU:wtU,bound:bound};}
+ function cont(){var per=n('c_l')*n('c_w')*n('c_h')/1e6,qty=n('c_qty'),kg=n('c_kg'),t=$('c_type').value,tot=per*qty,dens=per>0?kg/per:0;
+   var r=cCalc(t,per,qty,kg);
    $('c_per').textContent=per.toFixed(4)+' CBM';$('c_total').textContent=tot.toFixed(2)+' CBM';
-   $('c_fit').textContent=perCont.toLocaleString()+' 箱 ('+t[0]+')';$('c_need').textContent=need+' 個';
-   $('c_bound').textContent=(byWT<byCBM?'重量受限(材積仍有空間)':'材積受限');
-   var util=need>0?Math.min(100,tot/(need*cap)*100):0;$('c_bar').style.width=util.toFixed(0)+'%';$('c_barlbl').textContent='材積利用率 '+util.toFixed(0)+'%';}
- function cRegSet(r){cReg=r;$('cr_eu').classList.toggle('on',r==='eu');$('cr_us').classList.toggle('on',r==='us');cFill();cont();}
+   $('c_dens').textContent=dens.toFixed(0)+' kg/CBM · '+(dens>300?'重貨':(dens<200?'輕拋貨':'中等'));
+   $('c_tname').textContent=C_TN[t];
+   $('c_fit').textContent=r.perCont.toLocaleString()+' 箱 (材積'+r.byV+' / 重量'+r.byW+')';
+   $('c_need').textContent=r.need+' 個';$('c_bound').textContent=r.bound;
+   $('c_bar').style.width=Math.min(100,r.volU).toFixed(0)+'%';$('c_barlbl').textContent='材積利用率 '+r.volU.toFixed(0)+'%';
+   $('c_bar2').style.width=Math.min(100,r.wtU).toFixed(0)+'%';$('c_barlbl2').textContent='重量利用率 '+r.wtU.toFixed(0)+'%';
+   var cands=['20','40','40h','45'].map(function(tt){var rr=cCalc(tt,per,qty,kg);return {t:tt,need:rr.need,u:(rr.volU+rr.wtU)/2,perCont:rr.perCont};}).filter(function(x){return x.perCont>0;});
+   cands.sort(function(a,b){return a.need-b.need||b.u-a.u;});var best=cands[0];
+   var dt=dens>300?'密度 &gt;300,偏重貨 → 建議 20GP':(dens<200?'密度 &lt;200,偏輕拋 → 建議 40HQ / 45HQ':'密度 200–300 → 建議比較 20GP 與 40GP');
+   $('c_best').innerHTML='<b>密度建議:</b> '+dt+'<br><b>最佳方案(櫃數最少、利用率最高):</b> '+(best?C_TN[best.t]+' × '+best.need+' 櫃 · 平均利用率 '+best.u.toFixed(0)+'%':'—');}
+ function cRegSet(r){cReg=r;$('cr_eu').classList.toggle('on',r==='eu');$('cr_us').classList.toggle('on',r==='us');cont();}
  ['c_l','c_w','c_h','c_kg','c_qty'].forEach(function(i){var el=$(i);if(el)el.addEventListener('input',cont);});
  $('c_type').addEventListener('change',cont);
  $('cr_eu').addEventListener('click',function(){cRegSet('eu');});$('cr_us').addEventListener('click',function(){cRegSet('us');});
