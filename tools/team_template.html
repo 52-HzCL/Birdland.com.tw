@@ -118,6 +118,16 @@
  .rolebar button{flex:0 0 auto;white-space:nowrap;font-family:var(--sans);font-weight:700;font-size:.8rem;color:var(--mut);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:8px 15px;cursor:pointer}
  .rolebar button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
  .fcev .kv span:last-child{text-align:right;max-width:62%}
+
+ .modetog{display:inline-flex;gap:0;margin:0 0 12px;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+ .modetog button{font-family:var(--sans);font-weight:700;font-size:.82rem;color:var(--mut);background:var(--panel);border:0;padding:7px 16px;cursor:pointer}
+ .modetog button.on{color:#fff;background:var(--accent)}
+ .matcat{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--mut);margin:14px 0 6px;border-bottom:1px solid var(--line);padding-bottom:4px}
+ .matrow{display:grid;grid-template-columns:1fr 130px 96px;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+ .matn{font-weight:700;font-size:.9rem}.matnote{font-weight:400;font-size:.76rem;color:var(--mut);margin-top:2px}
+ .matspark{width:120px;height:34px;display:block}
+ .matpct{font-size:.72rem;text-align:right;line-height:1.5;color:var(--mut)}
+ @media(max-width:560px){.matrow{grid-template-columns:1fr 84px 76px}.matspark{width:84px}}
 </style></head><body>
 <div id="gate"><div class="gbox">
   <div class="gk">Internal · Birdland staff only</div>
@@ -149,61 +159,81 @@
     </div>
   </div>
 
-  <h2 class="sh" data-r="sales fin">報價・毛利試算<span class="role">業務 · 財務</span></h2>
-  <div class="sub">輸入成本與條件,即時算出建議售價與毛利(用上方即時匯率換算台幣)。</div>
+  <h2 class="sh" data-r="sales">報價・毛利試算 + 收款匯率預估<span class="role">業務</span></h2>
+  <div class="sub">FOB / CIF 切換。成本可填台幣/人民幣/美金,客人付美金或台幣;依各收款日的 USD/TWD 預測,估算實際入袋台幣與匯率影響。</div>
   <div class="tool">
+    <div class="modetog"><button id="qm_fob" class="on" type="button">FOB</button><button id="qm_cif" type="button">CIF</button></div>
     <div class="frow">
-      <div><label>採購成本 USD/個</label><input id="q_cost" type="number" value="3.5" step="0.1"></div>
-      <div><label>海運分攤 USD/個</label><input id="q_frt" type="number" value="0.5" step="0.1"></div>
-      <div><label>關稅 %</label><input id="q_duty" type="number" value="6" step="0.5"></div>
-      <div><label>目標毛利 %</label><input id="q_margin" type="number" value="25" step="1"></div>
-      <div class="full"><label>數量(個)</label><input id="q_qty" type="number" value="5000" step="100"></div>
+      <div><label>產品成本/個</label><input id="q_g" type="number" value="3.5" step="0.1"></div>
+      <div><label>幣別</label><select id="q_gc"><option>TWD</option><option>CNY</option><option selected>USD</option></select></div>
+      <div><label>國內+出口雜費/個</label><input id="q_e" type="number" value="0.3" step="0.05"></div>
+      <div><label>幣別</label><select id="q_ec"><option selected>TWD</option><option>CNY</option><option>USD</option></select></div>
+      <div id="q_fwrap"><label>海運+保險/個 (CIF)</label><input id="q_f" type="number" value="0.6" step="0.05"></div>
+      <div id="q_fcwrap"><label>幣別</label><select id="q_fc"><option>TWD</option><option>CNY</option><option selected>USD</option></select></div>
     </div>
-    <div class="kv"><span>到岸成本 / 個</span><b id="q_landed">—</b></div>
-    <div class="kv"><span>建議售價 / 個</span><b id="q_price">—</b></div>
-    <div class="kv"><span>建議售價 / 個(台幣)</span><b id="q_pricetwd">—</b></div>
-    <div class="kv"><span>訂單總額 (USD)</span><b id="q_total">—</b></div>
-    <div class="kv"><span>毛利總額 (USD)</span><b id="q_profit">—</b></div>
-    <div class="ubar"><i id="q_bar"></i><span id="q_barlbl"></span></div>
+    <div class="frow">
+      <div><label>報價幣別(客人付)</label><select id="q_pc"><option selected>USD</option><option>TWD</option></select></div>
+      <div><label>報價單價/個</label><input id="q_price" type="number" value="6" step="0.1"></div>
+      <div><label>數量(個)</label><input id="q_qty" type="number" value="5000" step="100"></div>
+    </div>
+    <div class="frow">
+      <div><label>訂金 %</label><input id="q_dep" type="number" value="30" step="5"></div>
+      <div><label>訂金預估收款日</label><input id="q_depd" type="date"></div>
+      <div><label>尾款預估收款日(出貨前/到港)</label><input id="q_bald" type="date"></div>
+    </div>
+    <div class="frow">
+      <div><label>訂金日 USD/TWD(預測可改)</label><input id="q_fxd" type="number" step="0.01"></div>
+      <div><label>尾款日 USD/TWD(預測可改)</label><input id="q_fxb" type="number" step="0.01"></div>
+    </div>
+    <div class="kv"><span>總成本(換算台幣)</span><b id="qo_cost">—</b></div>
+    <div class="kv"><span>訂金收款(台幣)</span><b id="qo_dep">—</b></div>
+    <div class="kv"><span>尾款收款(台幣)</span><b id="qo_bal">—</b></div>
+    <div class="kv"><span>預估總收款(台幣)</span><b id="qo_rev">—</b></div>
+    <div class="kv"><span>匯率影響(vs 即時匯率)</span><b id="qo_fx">—</b></div>
+    <div class="kv"><span>毛利(台幣)</span><b id="qo_profit">—</b></div>
+    <div class="ubar"><i id="qo_bar"></i><span id="qo_barlbl"></span></div>
   </div>
 
   <h2 class="sh" data-r="ship assist">貨櫃裝載計算<span class="role">船務 · 助理</span></h2>
-  <div class="sub">輸入外箱尺寸與箱數,算出 CBM 與 20\'/40\'/40HQ 可裝箱數與利用率。</div>
+  <div class="sub">選航區與櫃型,輸入外箱尺寸/箱重,算出可裝箱數、需櫃數與利用率(同時看材積與重量限制)。</div>
   <div class="tool">
+    <div class="modetog"><button id="cr_eu" class="on" type="button">歐洲線</button><button id="cr_us" type="button">美洲線</button></div>
     <div class="frow">
+      <div><label>櫃型</label><select id="c_type"></select></div>
       <div><label>箱長 cm</label><input id="c_l" type="number" value="50"></div>
       <div><label>箱寬 cm</label><input id="c_w" type="number" value="40"></div>
       <div><label>箱高 cm</label><input id="c_h" type="number" value="30"></div>
+      <div><label>每箱重 kg</label><input id="c_kg" type="number" value="12"></div>
       <div><label>總箱數</label><input id="c_qty" type="number" value="800"></div>
     </div>
     <div class="kv"><span>每箱 CBM</span><b id="c_per">—</b></div>
     <div class="kv"><span>總 CBM</span><b id="c_total">—</b></div>
-    <div class="kv"><span>20\' 可裝(≈28 CBM)</span><b id="c20">—</b></div>
-    <div class="kv"><span>40\' 可裝(≈58 CBM)</span><b id="c40">—</b></div>
-    <div class="kv"><span>40\' HQ 可裝(≈68 CBM)</span><b id="c40h">—</b></div>
-    <div style="font-family:var(--mono);font-size:.72rem;color:var(--mut);margin-top:6px">選一個 40HQ 的利用率:</div>
+    <div class="kv"><span>所選櫃型每櫃可裝</span><b id="c_fit">—</b></div>
+    <div class="kv"><span>需要櫃數</span><b id="c_need">—</b></div>
+    <div class="kv"><span>受限因素</span><b id="c_bound">—</b></div>
     <div class="ubar"><i id="c_bar"></i><span id="c_barlbl"></span></div>
   </div>
 
-  <h2 class="sh" data-r="assist">單位換算<span class="role">業務助理</span></h2>
+  <h2 class="sh" data-r="assist">單位換算(雙向)<span class="role">業務助理</span></h2>
   <div class="tool">
     <div class="frow">
-      <div><label>CBM → 才(才積)</label><input id="u_cbm" type="number" value="1"></div>
-      <div><label>= 才</label><input id="u_cft" type="number" readonly></div>
+      <div><label>CBM(材積)</label><input id="u_cbm" type="number" value="1"></div>
+      <div><label>才(cu ft)</label><input id="u_cft" type="number"></div>
       <div><label>公斤 kg</label><input id="u_kg" type="number" value="100"></div>
-      <div><label>= 磅 lb</label><input id="u_lb" type="number" readonly></div>
+      <div><label>磅 lb</label><input id="u_lb" type="number"></div>
     </div>
-    <div style="font-family:var(--mono);font-size:.72rem;color:var(--mut)">1 CBM ≈ 35.315 才(cu ft) · 1 kg ≈ 2.205 lb · 1 公噸 = 1000 kg</div>
+    <div style="font-family:var(--mono);font-size:.72rem;color:var(--mut)">兩邊都可輸入即時互換 · 1 CBM ≈ 35.315 才 · 1 kg ≈ 2.205 lb · 1 公噸 = 1000 kg</div>
   </div>
 
   <h2 class="sh" data-r="assist ship">出貨文件清單<span class="role">業務助理 · 船務</span></h2>
-  <div class="sub">選目的地,勾選備齊必要文件。</div>
+  <div class="sub">選目的地,勾選備齊必要文件,可一鍵複製成回報文字。</div>
   <div class="tool">
-    <div class="frow"><div class="full"><label>目的地</label><select id="d_sel"><option value="eu">歐盟(德/荷)</option><option value="us">美國</option><option value="gen">一般/其他</option></select></div></div>
+    <div class="frow"><div class="full"><label>目的地</label><select id="d_sel"><option value="eu">歐盟(德/荷/義)</option><option value="uk">英國</option><option value="us">美國</option><option value="au">澳洲/紐西蘭</option><option value="gen">一般/其他</option></select></div></div>
     <div id="d_list"></div>
+    <button class="copybtn" id="d_copy" type="button">📋 複製文件清單(回報用)</button>
   </div>
 
-<h2 class="sh" data-r="ship">海運前置期・預估到港<span class="role">船務</span></h2>
+  <h2 class="sh" data-r="ship">海運前置期・預估到港<span class="role">船務</span></h2>
   <div class="sub">選航線 + 備貨天數,估算可出貨與到港日(典型 transit,實際依船班)。</div>
   <div class="tool">
     <div class="frow">
@@ -213,9 +243,16 @@
     <div class="tl" id="e_tl"></div>
   </div>
 
-  <h2 class="sh" data-r="ship sales">世界港口時鐘<span class="role">船務 · 業務</span></h2>
-  <div class="sub">主要市場/港口當地時間,判斷可聯絡時段(綠=上班 9–18)。</div>
-  <div class="wc" id="worldclock"></div>
+  <h2 class="sh" data-r="sales">主要客人世界時鐘<span class="role">業務</span></h2>
+  <div class="sub">主要客戶所在地當地時間,判斷可聯絡時段(綠=當地 9–18 上班中)。</div>
+  <div class="wc" id="custclock"></div>
+
+  <h2 class="sh" data-r="ship">港口世界時鐘<span class="role">船務</span></h2>
+  <div class="sub">出貨端(台灣/中國)與收貨端(全球客戶常用港)當地時間。</div>
+  <div style="font-family:var(--mono);font-size:.72rem;color:var(--mut);margin:10px 0 4px">出貨端 ORIGIN</div>
+  <div class="wc" id="portclock_o"></div>
+  <div style="font-family:var(--mono);font-size:.72rem;color:var(--mut);margin:14px 0 4px">收貨端 DESTINATION</div>
+  <div class="wc" id="portclock_d"></div>
 
   <h2 class="sh" data-r="all">Incoterms 2020 責任速查<span class="role">全員</span></h2>
   <div class="sub">選貿易條件,看賣方/買方成本負擔與風險轉移點。</div>
@@ -234,12 +271,13 @@
     <div id="fcEvents" class="fcev" style="margin-top:12px"></div>
   </div>
 
-  <h2 class="sh" data-r="sales">物料市場動向 · 業務</h2>
-  <div class="sub">Gemini 每日 AI 接地摘要(方向為趨勢,非即時報價)。</div>
-  <div id="materials"></div>
+  <h2 class="sh" data-r="sales">物料市場動向<span class="role">業務</span></h2>
+  <div class="sub">生產製程 + FOB 到港各項成本;過去三週實績(實線)+ 未來三個月預估(虛線),指數基期 100。可切換台灣 / 中國。</div>
+  <div class="modetog"><button id="m_tw" class="on" type="button">台灣</button><button id="m_cn" type="button">中國</button></div>
+  <div id="materials2"></div>
   <div id="matBot"></div>
 
-    <h2 class="sh" data-r="ship">海運市場動向<span class="role">船務</span></h2>
+  <h2 class="sh" data-r="ship">海運市場動向<span class="role">船務</span></h2>
   <div class="sub">中國/台灣出口會用到的運費與成本指數(港口稅費、內陸運輸、海關倉儲等;Gemini 每日 AI 接地)。</div>
   <div id="shipping"></div>
   <div id="shipBot"></div>
@@ -277,6 +315,8 @@
 
   var D;try{D=JSON.parse(document.getElementById('outlook-data').textContent);}catch(e){return;}
   var T=D.teamdesk||{};
+  window.__fxbase=new Date();
+  (function(){var t=T.fx_today||{TWD:32.3,CNY:7.2,JPY:155};window.__fx={usdtwd:t.TWD,cnytwd:t.TWD/t.CNY,twdjpy:t.JPY/t.TWD};window.__usdtwd=t.TWD;var F=T.fx_forecast;window.__fxfc=(F&&F.weeks&&F.weeks.length)?F.weeks.map(function(w){return w.v;}):[t.TWD];})();
   document.getElementById('tstamp').textContent='AI updated '+(T.updated||'—');
   document.getElementById('disc').innerHTML='BIRDLAND TEAM DESK · 內部使用. FX live via open.er-api.com. Materials, FX view, regulation &amp; client advice are AI-assisted (Gemini), indicative — verify before acting. PIN is a front-end gate only.';
 
@@ -288,7 +328,7 @@
       function set(id,v,bid,bv){document.getElementById(id).textContent=v.toFixed(id==='fx-twdjpy'||id==='fx-usdtwd'?(id==='fx-twdjpy'?3:3):4);if(bv)chgEl(bid,(v-bv)/bv*100);}
       var usdtwd=r.TWD, cnytwd=r.TWD/r.CNY, twdjpy=r.JPY/r.TWD, cnyusd=1/r.CNY;
       var bU=b.TWD, bC=b.TWD/b.CNY, bJ=b.JPY/b.TWD, bN=1/b.CNY;
-      window.__usdtwd=usdtwd;document.getElementById('fx-usdtwd').textContent=usdtwd.toFixed(3); chgEl('chg-usdtwd',bU?(usdtwd-bU)/bU*100:0);
+      window.__usdtwd=usdtwd;window.__fx={usdtwd:usdtwd,cnytwd:cnytwd,twdjpy:twdjpy};document.getElementById('fx-usdtwd').textContent=usdtwd.toFixed(3); chgEl('chg-usdtwd',bU?(usdtwd-bU)/bU*100:0);
       document.getElementById('fx-cnytwd').textContent=cnytwd.toFixed(3); chgEl('chg-cnytwd',bC?(cnytwd-bC)/bC*100:0);
       document.getElementById('fx-twdjpy').textContent=twdjpy.toFixed(3); chgEl('chg-twdjpy',bJ?(twdjpy-bJ)/bJ*100:0);
       document.getElementById('fx-cnyusd').textContent=cnyusd.toFixed(4); chgEl('chg-cnyusd',bN?(cnyusd-bN)/bN*100:0);
@@ -309,10 +349,23 @@
   document.getElementById('biasBadge').innerHTML='<span class="biasbadge '+cls+'">'+(bv.bias||'').toUpperCase()+'</span>';
   document.getElementById('biasText').textContent=bv.text||'';
 
-  // materials
-  var mh='';(T.materials||[]).forEach(function(m){var d=m.dir,ar=d==='up'?'↑':(d==='down'?'↓':'→'),cl=d==='up'?'up':(d==='down'?'down':'flat');
-    mh+='<div class="mat"><div class="ar '+cl+'">'+ar+'</div><div><div class="nm">'+m.name+'</div><div class="nt">'+(m.note||'')+'</div></div></div>';});
-  document.getElementById('materials').innerHTML=mh;
+  // materials trend (TW/CN, 3wk hist + 3mo forecast)
+  function gid(i){return document.getElementById(i);}
+  function matSpark(h,f){var all=h.concat(f),mn=Math.min.apply(null,all),mx=Math.max.apply(null,all),rg=(mx-mn)||1,W=120,H=34;
+    function X(i){return i/5*W;}function Y(v){return H-3-((v-mn)/rg)*(H-6);}
+    var hp=h.map(function(v,i){return X(i).toFixed(1)+','+Y(v).toFixed(1);}).join(' ');
+    var fp=[h[2]].concat(f).map(function(v,i){return X(i+2).toFixed(1)+','+Y(v).toFixed(1);}).join(' ');
+    return '<svg viewBox="0 0 120 34" preserveAspectRatio="none" class="matspark"><polyline points="'+hp+'" fill="none" stroke="var(--accent)" stroke-width="2"/><polyline points="'+fp+'" fill="none" stroke="var(--mut)" stroke-width="1.5" stroke-dasharray="3 2"/></svg>';}
+  function matPct(p){var cl=p>0.05?'up':(p<-0.05?'down':'flat'),ar=p>0.05?'▲':(p<-0.05?'▼':'■');return '<span class="chg '+cl+'">'+ar+(p>0?'+':'')+p.toFixed(1)+'%</span>';}
+  function renderMat(side){var arr=(T.materials2&&T.materials2[side])||[],cats={prod:'生產製程',fob:'FOB 到港'},html='';
+    ['prod','fob'].forEach(function(cat){var items=arr.filter(function(x){return x.cat===cat;});if(!items.length)return;
+      html+='<div class="matcat">'+cats[cat]+'</div>';
+      items.forEach(function(m){html+='<div class="matrow"><div class="matn">'+m.name+'<div class="matnote">'+(m.note||'')+'</div></div><div class="matchart">'+matSpark(m.hist,m.fc)+'</div><div class="matpct">近3週 '+matPct(m.pct3w)+'<br>未3月 '+matPct(m.pct3m)+'</div></div>';});});
+    gid('materials2').innerHTML=html||'<div class="sm" style="color:var(--mut)">—</div>';}
+  renderMat('tw');
+  (function(){var a=gid('m_tw'),b=gid('m_cn');if(!a||!b)return;
+    a.addEventListener('click',function(){a.classList.add('on');b.classList.remove('on');renderMat('tw');});
+    b.addEventListener('click',function(){b.classList.add('on');a.classList.remove('on');renderMat('cn');});})();
   // Bird BOT box
   function renderBot(host,b){if(!host||!b)return;var x=document.createElement('div');x.className='botbox';x.innerHTML='<div class="botbar"><span class="d"></span>BIRD BOT · 結論(對台/中出口)</div><div class="botbody"><div class="botsimple">▸ '+(b.simple||'')+'</div><div class="botexp">'+((b.expert||[]).join(' '))+'</div></div>';host.appendChild(x);}
   function matList(hostId,arr){var h=(arr||[]).map(function(m){var d=m.dir,ar=d==='up'?'↑':(d==='down'?'↓':'→'),cl=d==='up'?'up':(d==='down'?'down':'flat');return '<div class="mat"><div class="ar '+cl+'">'+ar+'</div><div><div class="nm">'+m.name+'</div><div class="nt">'+(m.note||'')+'</div></div></div>';}).join('');var el=document.getElementById(hostId);if(el)el.innerHTML=h;}
@@ -352,32 +405,67 @@
 (function(){
  var $=function(id){return document.getElementById(id);};
  function n(id){return parseFloat(($(id)||{}).value)||0;}
- // 1) Quote / margin
- function quote(){var cost=n('q_cost'),frt=n('q_frt'),duty=n('q_duty'),mg=n('q_margin'),qty=n('q_qty');
-   var landed=cost*(1+duty/100)+frt; var price=mg<100?landed/(1-mg/100):landed; var rate=window.__usdtwd||(window.__base||32.3);
-   $('q_landed').textContent='US$'+landed.toFixed(3); $('q_price').textContent='US$'+price.toFixed(3);
-   $('q_pricetwd').textContent='NT$'+(price*rate).toFixed(1); $('q_total').textContent='US$'+(price*qty).toLocaleString(undefined,{maximumFractionDigits:0});
-   $('q_profit').textContent='US$'+((price-landed)*qty).toLocaleString(undefined,{maximumFractionDigits:0});
-   var pct=price>0?(price-landed)/price*100:0; $('q_bar').style.width=Math.max(0,Math.min(100,pct))+'%'; $('q_barlbl').textContent='毛利 '+pct.toFixed(1)+'%';}
- ['q_cost','q_frt','q_duty','q_margin','q_qty'].forEach(function(i){var el=$(i);if(el)el.addEventListener('input',quote);});quote();setInterval(quote,5000);
- // 2) Container
- function cont(){var per=n('c_l')*n('c_w')*n('c_h')/1e6,qty=n('c_qty');var tot=per*qty;
-   $('c_per').textContent=per.toFixed(4)+' CBM'; $('c_total').textContent=tot.toFixed(2)+' CBM';
-   $('c20').textContent=per>0?Math.floor(28/per).toLocaleString()+' 箱':'—';
-   $('c40').textContent=per>0?Math.floor(58/per).toLocaleString()+' 箱':'—';
-   $('c40h').textContent=per>0?Math.floor(68/per).toLocaleString()+' 箱':'—';
-   var need=Math.ceil(tot/68),util=tot>0?Math.min(100,(tot/(need*68))*100):0;
-   $('c_bar').style.width=util+'%'; $('c_barlbl').textContent='需 '+need+' 個40HQ · 平均裝載 '+util.toFixed(0)+'%';}
- ['c_l','c_w','c_h','c_qty'].forEach(function(i){var el=$(i);if(el)el.addEventListener('input',cont);});cont();
+ // 1) Quote / margin (FOB/CIF + 收款匯率)
+ function val(id){return ($(id)||{}).value;}
+ var qMode='fob';
+ function qrate(cur){var f=window.__fx||{usdtwd:32.3,cnytwd:4.5};if(cur==='USD')return f.usdtwd;if(cur==='CNY')return f.cnytwd;return 1;}
+ function qfcAt(ds){var v=window.__fxfc;if(!v||!v.length)return (window.__fx||{usdtwd:32.3}).usdtwd;var base=window.__fxbase||new Date();var dd=ds?new Date(ds):base;var wk=(dd-base)/(7*864e5);wk=Math.max(0,Math.min(v.length-1,wk));var lo=Math.floor(wk),hi=Math.ceil(wk);return +(v[lo]+(v[hi]-v[lo])*(wk-lo)).toFixed(3);}
+ function fmtNT(x){return 'NT$'+Math.round(x).toLocaleString();}
+ function quote(){
+   var g=n('q_g')*qrate(val('q_gc')),e=n('q_e')*qrate(val('q_ec'));
+   var f=qMode==='cif'?n('q_f')*qrate(val('q_fc')):0;
+   var qty=n('q_qty'),costTWD=(g+e+f)*qty;
+   var pc=val('q_pc'),price=n('q_price'),total=price*qty,depPct=n('q_dep')/100;
+   var dep=total*depPct,bal=total-dep;
+   var fxd=n('q_fxd')||qfcAt(val('q_depd')),fxb=n('q_fxb')||qfcAt(val('q_bald'));
+   var spot=(window.__fx||{usdtwd:32.3}).usdtwd,depTWD,balTWD,spotTWD;
+   if(pc==='TWD'){depTWD=dep;balTWD=bal;spotTWD=total;}else{depTWD=dep*fxd;balTWD=bal*fxb;spotTWD=total*spot;}
+   var revTWD=depTWD+balTWD,profit=revTWD-costTWD,mg=revTWD>0?profit/revTWD*100:0,fxImp=revTWD-spotTWD;
+   $('qo_cost').textContent=fmtNT(costTWD);
+   $('qo_dep').textContent=(pc==='USD'?'US$'+Math.round(dep).toLocaleString()+' @'+fxd+' = ':'')+fmtNT(depTWD);
+   $('qo_bal').textContent=(pc==='USD'?'US$'+Math.round(bal).toLocaleString()+' @'+fxb+' = ':'')+fmtNT(balTWD);
+   $('qo_rev').textContent=fmtNT(revTWD);
+   var fe=$('qo_fx');fe.textContent=(fxImp>=0?'+':'')+fmtNT(fxImp);fe.style.color=fxImp>0?'var(--pos)':(fxImp<0?'var(--neg)':'');
+   $('qo_profit').textContent=fmtNT(profit);
+   $('qo_bar').style.width=Math.max(0,Math.min(100,mg))+'%';$('qo_barlbl').textContent='毛利率 '+mg.toFixed(1)+'%';}
+ function qModeSet(m){qMode=m;$('qm_fob').classList.toggle('on',m==='fob');$('qm_cif').classList.toggle('on',m==='cif');var sh=m==='cif';$('q_fwrap').style.display=sh?'':'none';$('q_fcwrap').style.display=sh?'':'none';quote();}
+ function qInitDates(){var b=window.__fxbase||new Date();function add(dd){return new Date(b.getTime()+dd*864e5).toISOString().slice(0,10);}
+   if(!val('q_depd'))$('q_depd').value=add(14);if(!val('q_bald'))$('q_bald').value=add(60);
+   $('q_fxd').value=qfcAt(val('q_depd'));$('q_fxb').value=qfcAt(val('q_bald'));}
+ ['q_g','q_gc','q_e','q_ec','q_f','q_fc','q_pc','q_price','q_qty','q_dep','q_fxd','q_fxb'].forEach(function(i){var el=$(i);if(el){el.addEventListener('input',quote);el.addEventListener('change',quote);}});
+ ['q_depd','q_bald'].forEach(function(i){var el=$(i);if(el)el.addEventListener('change',function(){$(i==='q_depd'?'q_fxd':'q_fxb').value=qfcAt(val(i));quote();});});
+ $('qm_fob').addEventListener('click',function(){qModeSet('fob');});$('qm_cif').addEventListener('click',function(){qModeSet('cif');});
+ qInitDates();qModeSet('fob');setInterval(quote,8000);
+ // 2) Container (EU/US 櫃型 + 重量限制)
+ var CTYPES={eu:[["20'GP",28,21800],["40'GP",58,26700],["40'HC",68,26500],["45'HC",78,27800]],us:[["20'GP",28,17500],["40'GP",58,19500],["40'HC",68,19500]]};
+ var cReg='eu';
+ function cFill(){var sel=$('c_type');sel.innerHTML='';CTYPES[cReg].forEach(function(t,i){var o=document.createElement('option');o.value=i;o.textContent=t[0]+' · '+t[1]+'CBM · 限重'+(t[2]/1000)+'t';sel.appendChild(o);});}
+ function cont(){var per=n('c_l')*n('c_w')*n('c_h')/1e6,qty=n('c_qty'),kg=n('c_kg'),tot=per*qty;
+   var t=CTYPES[cReg][+($('c_type').value||0)],cap=t[1],maxkg=t[2];
+   var byCBM=per>0?Math.floor(cap/per):0,byWT=kg>0?Math.floor(maxkg/kg):byCBM;
+   var perCont=Math.max(0,Math.min(byCBM,byWT)),need=perCont>0?Math.ceil(qty/perCont):0;
+   $('c_per').textContent=per.toFixed(4)+' CBM';$('c_total').textContent=tot.toFixed(2)+' CBM';
+   $('c_fit').textContent=perCont.toLocaleString()+' 箱 ('+t[0]+')';$('c_need').textContent=need+' 個';
+   $('c_bound').textContent=(byWT<byCBM?'重量受限(材積仍有空間)':'材積受限');
+   var util=need>0?Math.min(100,tot/(need*cap)*100):0;$('c_bar').style.width=util.toFixed(0)+'%';$('c_barlbl').textContent='材積利用率 '+util.toFixed(0)+'%';}
+ function cRegSet(r){cReg=r;$('cr_eu').classList.toggle('on',r==='eu');$('cr_us').classList.toggle('on',r==='us');cFill();cont();}
+ ['c_l','c_w','c_h','c_kg','c_qty'].forEach(function(i){var el=$(i);if(el)el.addEventListener('input',cont);});
+ $('c_type').addEventListener('change',cont);
+ $('cr_eu').addEventListener('click',function(){cRegSet('eu');});$('cr_us').addEventListener('click',function(){cRegSet('us');});
+ cRegSet('eu');
  // 3) Lead time
  function fmt(d){return d.getFullYear()+'/'+('0'+(d.getMonth()+1)).slice(-2)+'/'+('0'+d.getDate()).slice(-2);}
  function lead(){var transit=parseInt($('e_lane').value,10),prep=n('e_prep');var now=new Date();
    var etd=new Date(now.getTime()+prep*864e5),eta=new Date(etd.getTime()+transit*864e5);
    $('e_tl').innerHTML='<div class="node">今天<b>'+fmt(now)+'</b></div><span class="arr">→ 備貨 '+prep+'天 →</span><div class="node">可出貨 ETD<b>'+fmt(etd)+'</b></div><span class="arr">→ 海運 '+transit+'天 →</span><div class="node">預估到港 ETA<b>'+fmt(eta)+'</b></div>';}
  $('e_lane').addEventListener('change',lead);$('e_prep').addEventListener('input',lead);lead();
- // 4) Converter
- function conv(){$('u_cft').value=(n('u_cbm')*35.315).toFixed(2);$('u_lb').value=(n('u_kg')*2.2046).toFixed(1);}
- ['u_cbm','u_kg'].forEach(function(i){$(i).addEventListener('input',conv);});conv();
+ // 4) Converter (bidirectional)
+ function bindConv(a,b,f,g){var lk=false,ea=$(a),eb=$(b);if(!ea||!eb)return;
+   ea.addEventListener('input',function(){if(lk)return;lk=true;eb.value=f(n(a));lk=false;});
+   eb.addEventListener('input',function(){if(lk)return;lk=true;ea.value=g(n(b));lk=false;});}
+ bindConv('u_cbm','u_cft',function(v){return (v*35.315).toFixed(2);},function(v){return (v/35.315).toFixed(3);});
+ bindConv('u_kg','u_lb',function(v){return (v*2.2046).toFixed(1);},function(v){return (v/2.2046).toFixed(1);});
+ if($('u_cbm'))$('u_cft').value=(n('u_cbm')*35.315).toFixed(2);if($('u_kg'))$('u_lb').value=(n('u_kg')*2.2046).toFixed(1);
  // 5) Incoterms
  var INCO=[['EXW',0,0,'買方負責全部,自賣方工廠提貨;賣方責任最小。'],['FCA',1,1,'賣方在出口地交貨給指定承運人,風險即轉移。'],['FAS',1,1,'賣方將貨置於指定裝運港船邊。'],['FOB',2,2,'賣方負責至裝船上船,貨上船後風險轉移(海運常用)。'],['CFR',4,2,'賣方付運費至目的港,但風險於裝船時即轉移。'],['CIF',4,2,'同 CFR,賣方另負最低海運保險。'],['CPT',4,1,'賣方付運費至目的地,風險於交首位承運人即轉移。'],['CIP',4,1,'同 CPT,賣方另負較高保額保險。'],['DAP',4,4,'賣方負責運抵指定地(未卸貨)。'],['DPU',4,4,'賣方負責運抵指定地並完成卸貨。'],['DDP',5,5,'賣方負責至送達買方,含進口關稅,責任最大。']];
  var isel=$('i_sel');INCO.forEach(function(x,i){var o=document.createElement('option');o.value=i;o.textContent=x[0];isel.appendChild(o);});
@@ -385,17 +473,29 @@
    $('i_bar').innerHTML='<div class="sg" style="width:'+sP+'%;background:var(--accent)">賣方</div><div class="sg" style="width:'+(100-sP)+'%;background:var(--mut)">買方</div>';
    $('i_note').innerHTML='<b>'+x[0]+'</b>:'+x[3]+' <span style="color:var(--mut)">(風險轉移點:'+['工廠出廠','出口港','裝船','海運途中','進口港','買方所在'][x[2]]+')</span>';}
  isel.addEventListener('change',inco);isel.value=3;inco();
- // 6) World clock
- var CITIES=[['台北','Asia/Taipei'],['上海','Asia/Shanghai'],['東京','Asia/Tokyo'],['漢堡','Europe/Berlin'],['鹿特丹','Europe/Amsterdam'],['洛杉磯','America/Los_Angeles'],['紐約','America/New_York']];
- var wc=$('worldclock');CITIES.forEach(function(c){var d=document.createElement('div');d.className='c';d.dataset.tz=c[1];d.innerHTML='<div class="city">'+c[0]+'</div><div class="time">--:--</div><div class="st"></div>';wc.appendChild(d);});
- function clocks(){[].forEach.call(wc.children,function(el){try{var tz=el.dataset.tz;var t=new Intl.DateTimeFormat('en-GB',{timeZone:tz,hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date());var hh=parseInt(t.slice(0,2),10);var work=hh>=9&&hh<18;el.querySelector('.time').textContent=t;el.querySelector('.st').innerHTML=work?'<span style="color:var(--pos)">● 上班中</span>':'<span style="color:var(--mut)">○ 休息</span>';}catch(e){}});}
+ // 6) World clocks (customer + ports)
+ var CUST=[['日本 Tokyo','Asia/Tokyo'],['加州 California','America/Los_Angeles'],['芝加哥 Chicago','America/Chicago'],['肯塔基 Kentucky','America/Kentucky/Louisville'],['夏威夷 Hawaii','Pacific/Honolulu'],['薩爾瓦多','America/El_Salvador'],['英國 UK','Europe/London'],['荷蘭 NL','Europe/Amsterdam'],['法國 FR','Europe/Paris'],['德國 DE','Europe/Berlin'],['義大利 IT','Europe/Rome'],['波蘭 PL','Europe/Warsaw'],['希臘 GR','Europe/Athens'],['以色列 IL','Asia/Jerusalem'],['澳洲 AU','Australia/Sydney']];
+ var PORT_O=[['桃園拼櫃','Asia/Taipei'],['台北','Asia/Taipei'],['台中','Asia/Taipei'],['高雄','Asia/Taipei'],['上海','Asia/Shanghai'],['寧波','Asia/Shanghai'],['深圳鹽田','Asia/Shanghai'],['廣州南沙','Asia/Shanghai'],['廈門','Asia/Shanghai'],['福州','Asia/Shanghai']];
+ var PORT_D=[['Auckland','Pacific/Auckland'],['Lyttelton','Pacific/Auckland'],['Genoa','Europe/Rome'],['La Spezia','Europe/Rome'],['Sohar 阿曼','Asia/Muscat'],['Felixstowe','Europe/London'],['Southampton','Europe/London'],['Rotterdam','Europe/Amsterdam'],['Hamburg','Europe/Berlin'],['Bremerhaven','Europe/Berlin'],['Sydney','Australia/Sydney'],['Melbourne','Australia/Melbourne'],['Brisbane','Australia/Brisbane'],['Tokyo','Asia/Tokyo'],['Osaka','Asia/Tokyo'],['Kobe','Asia/Tokyo']];
+ function buildClock(id,arr){var wc=$(id);if(!wc)return;arr.forEach(function(c){var el=document.createElement('div');el.className='c';el.dataset.tz=c[1];el.innerHTML='<div class="city">'+c[0]+'</div><div class="time">--:--</div><div class="st"></div>';wc.appendChild(el);});}
+ buildClock('custclock',CUST);buildClock('portclock_o',PORT_O);buildClock('portclock_d',PORT_D);
+ function clocks(){[].forEach.call(document.querySelectorAll('.wc .c'),function(el){try{var tz=el.dataset.tz;var t=new Intl.DateTimeFormat('en-GB',{timeZone:tz,hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date());var hh=parseInt(t.slice(0,2),10),work=hh>=9&&hh<18;el.querySelector('.time').textContent=t;el.querySelector('.st').innerHTML=work?'<span style="color:var(--pos)">● 上班中</span>':'<span style="color:var(--mut)">○ 休息</span>';}catch(e){}});}
  clocks();setInterval(clocks,30000);
- // 7) Docs checklist
- var DOCS={gen:['商業發票 Commercial Invoice','裝箱單 Packing List','提單 B/L','原產地證明 CO'],
-  eu:['商業發票 Commercial Invoice','裝箱單 Packing List','提單 B/L','原產地證明 CO','EUR.1 / GSP Form A(優惠關稅)','EUDR 盡職聲明 DDS(木製品)','CE / 符合性聲明','FSC 監管鏈證明(如適用)'],
-  us:['商業發票 Commercial Invoice','裝箱單 Packing List','提單 B/L','原產地證明 CO','ISF 10+2(進口前申報)','UFLPA 供應鏈聲明','Lacey Act 申報(木製品)','FDA 申報(如適用)']};
- function docs(){var list=DOCS[$('d_sel').value]||[];$('d_list').innerHTML=list.map(function(x,i){return '<label class="chk"><input type="checkbox"><span>'+x+'</span></label>';}).join('');}
+ // 7) Docs checklist + copy
+ var DOCS={
+  gen:['商業發票 Commercial Invoice','裝箱單 Packing List','提單 B/L','原產地證明 CO'],
+  eu:['商業發票 Commercial Invoice','裝箱單 Packing List','提單 B/L','原產地證明 CO','EUR.1 / GSP Form A(優惠關稅)','EUDR 盡職聲明 DDS(木製品)','CE / 符合性聲明','FSC 監管鏈(如適用)'],
+  uk:['商業發票 Commercial Invoice','裝箱單 Packing List','提單 B/L','原產地證明 CO','UKCA / 符合性聲明','EUDR 盡職聲明(木製品轉口)','ISPM-15 燻蒸證明(木棧板)'],
+  us:['商業發票 Commercial Invoice','裝箱單 Packing List','提單 B/L','原產地證明 CO','ISF 10+2(進口前申報)','UFLPA 供應鏈聲明','Lacey Act 申報(木製品)','FDA 申報(如適用)'],
+  au:['商業發票 Commercial Invoice','裝箱單 Packing List','提單 B/L','原產地證明 CO','燻蒸/熱處理證明(木材 AQIS)','包裝聲明 Packing Declaration','ISPM-15 棧板處理章']};
+ function docs(){var list=DOCS[$('d_sel').value]||[];$('d_list').innerHTML=list.map(function(x){return '<label class="chk"><input type="checkbox"><span>'+x+'</span></label>';}).join('');}
  $('d_sel').addEventListener('change',docs);docs();
+ function docText(){var sel=$('d_sel'),dest=sel.options[sel.selectedIndex].text;
+   var lines=[].map.call($('d_list').querySelectorAll('label'),function(l){return (l.querySelector('input').checked?'[x] ':'[ ] ')+l.querySelector('span').textContent;});
+   return '【出貨文件清單 — '+dest+'】\n'+lines.join('\n')+'\n— Birdland Team Desk';}
+ $('d_copy').addEventListener('click',function(){var b=this,t=docText();function ok(){b.classList.add('ok');b.textContent='✓ 已複製';setTimeout(function(){b.classList.remove('ok');b.textContent='📋 複製文件清單(回報用)';},2000);}
+   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){fbk(t);ok();});}else{fbk(t);ok();}});
+ function fbk(t){var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(a);}
 })();
 </script>
 </body></html>
