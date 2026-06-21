@@ -173,6 +173,9 @@
    .strip{grid-template-columns:repeat(2,1fr)}
  }
  @media(max-width:560px){ .wl td:nth-child(4),.wl th:nth-child(4){display:none} }
+
+ .thm-sun{display:none}.thm-moon{display:inline-block}
+ body.theme-light .thm-sun{display:inline-block}body.theme-light .thm-moon{display:none}
 </style></head><body>
 <div id="gate"><div class="gbox">
   <div class="gbar"><span class="gd"></span>PRIVILEGED ACCESS · PARTNERS ONLY</div>
@@ -185,7 +188,7 @@
   <div class="gerr" id="err"></div>
 </div></div>
 <div class="topbar"><div class="wrap tb">
-  <div class="tb-left"><a class="brand" href="index.html"><span class="b-mk"><i style="height:8px;background:var(--green)"></i><i style="height:13px;background:var(--amber)"></i><i style="height:18px;background:var(--gold)"></i></span>Partner<span class="sep">|</span>Data Terminal Pro</a><button id="themeBtn" class="thm" type="button"><svg class="thm-ic" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.6M12 18.8v2.6M2.6 12h2.6M18.8 12h2.6M5.2 5.2l1.85 1.85M16.95 16.95l1.85 1.85M18.8 5.2L16.95 7.05M7.05 16.95L5.2 18.8"/></svg><span class="thm-l">Light</span></button></div>
+  <div class="tb-left"><a class="brand" href="index.html"><span class="b-mk"><i style="height:8px;background:var(--green)"></i><i style="height:13px;background:var(--amber)"></i><i style="height:18px;background:var(--gold)"></i></span>Partner<span class="sep">|</span>Data Terminal Pro</a><button id="themeBtn" class="thm" type="button"><svg class="thm-ic thm-sun" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.6M12 18.8v2.6M2.6 12h2.6M18.8 12h2.6M5.2 5.2l1.85 1.85M16.95 16.95l1.85 1.85M18.8 5.2L16.95 7.05M7.05 16.95L5.2 18.8"/></svg><svg class="thm-ic thm-moon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.6A8 8 0 1 1 9.4 4 6.3 6.3 0 0 0 20 14.6z"/></svg><span class="thm-l">Light</span></button></div>
   <div class="tb-right"><span class="sysgrp"><span class="sysled led-amber"></span><span class="sysled led-green"></span><b>PARTNER&nbsp;TOKEN</b></span><span class="sysgrp"><span class="sysled led-green"></span>HIGH-LEVEL&nbsp;API</span><span id="refresh"></span><a class="back" href="index.html">← birdland.com.tw</a></div>
 </div></div>
 
