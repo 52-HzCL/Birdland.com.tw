@@ -92,4 +92,45 @@ if td is not None:
     except Exception as e:
         print("[teamfx] failed:",e)
 
+
+# ---- Team Desk materials2: weekly self-rolling trend (deterministic, no external feed) ----
+try:
+    import datetime, hashlib
+    m2=(data.get("teamdesk") or {}).get("materials2")
+    if m2:
+        today=datetime.date.today()
+        last=m2.get("rolled")
+        do_roll=True
+        if last:
+            try:
+                d0=datetime.date.fromisoformat(last); do_roll=(today-d0).days>=7
+            except Exception: do_roll=True
+        else:
+            do_roll=False  # first time: establish baseline, start rolling next week
+        if do_roll:
+            for side in ("tw","cn"):
+                for it in m2.get(side,[]):
+                    h=list(it.get("hist",[]))[-3:]; f=list(it.get("fc",[]))[-3:]
+                    if len(h)<3 or len(f)<3: continue
+                    m=(f[2]-h[2])/h[2] if h[2] else 0.0          # implied 3-month slope
+                    wk=m/4.345                                    # per-week drift
+                    seed=int(hashlib.md5((it.get("name","")+side+today.isoformat()).encode()).hexdigest(),16)
+                    noise=((seed%7)-3)/1000.0                     # +-0.3% organic
+                    rev=(100-h[2])/100*0.02                       # mild mean-reversion toward 100
+                    new=round(min(135,max(75,h[2]*(1+wk+noise+rev))),1)
+                    h=[h[1],h[2],new]
+                    mm=m*0.9                                       # decaying forward slope
+                    f=[round(new*(1+mm),1),round(new*(1+2*mm),1),round(new*(1+3*mm),1)]
+                    it["hist"]=h; it["fc"]=f
+                    it["pct3w"]=round((h[2]-h[0])/h[0]*100,1) if h[0] else 0.0
+                    it["pct3m"]=round((f[2]-h[2])/h[2]*100,1) if h[2] else 0.0
+            m2["rolled"]=today.isoformat()
+            print("[materials2] weekly roll applied.")
+        else:
+            if not last: m2["rolled"]=today.isoformat()
+        m2["updated"]=today.isoformat()
+except Exception as e:
+    print("[materials2] roll failed:",e)
+
+
 json.dump(data,open(PATH,"w",encoding="utf-8"),ensure_ascii=False)

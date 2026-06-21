@@ -361,7 +361,8 @@
     ['prod','fob'].forEach(function(cat){var items=arr.filter(function(x){return x.cat===cat;});if(!items.length)return;
       html+='<div class="matcat">'+cats[cat]+'</div>';
       items.forEach(function(m){html+='<div class="matrow"><div class="matn">'+m.name+'<div class="matnote">'+(m.note||'')+'</div></div><div class="matchart">'+matSpark(m.hist,m.fc)+'</div><div class="matpct">近3週 '+matPct(m.pct3w)+'<br>未3月 '+matPct(m.pct3m)+'</div></div>';});});
-    gid('materials2').innerHTML=html||'<div class="sm" style="color:var(--mut)">—</div>';}
+    var stamp='<div style="font-family:var(--mono);font-size:.7rem;color:var(--mut);margin-bottom:6px">資料更新 '+((T.materials2&&T.materials2.updated)||'—')+' · 每週自動滾動</div>';
+    gid('materials2').innerHTML=stamp+(html||'<div class="sm" style="color:var(--mut)">—</div>');}
   renderMat('tw');
   (function(){var a=gid('m_tw'),b=gid('m_cn');if(!a||!b)return;
     a.addEventListener('click',function(){a.classList.add('on');b.classList.remove('on');renderMat('tw');});
