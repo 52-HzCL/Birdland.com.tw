@@ -128,6 +128,15 @@
  .matspark{width:120px;height:34px;display:block}
  .matpct{font-size:.72rem;text-align:right;line-height:1.5;color:var(--mut)}
  @media(max-width:560px){.matrow{grid-template-columns:1fr 84px 76px}.matspark{width:84px}}
+
+ .grp{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--accent);font-weight:700;margin:18px 0 9px;border-bottom:1px solid var(--line);padding-bottom:5px}
+ .fxblk{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin:8px 0}
+ .fxlbl{font-family:var(--mono);font-size:.7rem;color:var(--mut);margin-bottom:7px}
+ .fxprev{display:flex;gap:7px;flex-wrap:wrap}
+ .fxprev .chip{font-family:var(--mono);font-size:.74rem;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:4px 9px;color:var(--mut)}
+ .fxprev .chip b{color:var(--accent)} .fxprev .chip.mid{border-color:var(--accent);background:var(--panel)}
+ .fxnote{font-family:var(--mono);font-size:.72rem;color:var(--pos);margin-top:7px}
+ .qresult{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px;margin-top:12px}
 </style></head><body>
 <div id="gate"><div class="gbox">
   <div class="gk">Internal · Birdland staff only</div>
@@ -160,9 +169,11 @@
   </div>
 
   <h2 class="sh" data-r="sales">報價・毛利試算 + 收款匯率預估<span class="role">業務</span></h2>
-  <div class="sub">FOB / CIF 切換。成本可填台幣/人民幣/美金,客人付美金或台幣;依各收款日的 USD/TWD 預測,估算實際入袋台幣與匯率影響。</div>
+  <div class="sub">FOB / CIF 切換。成本可填台幣/人民幣/美金,客人付美金或台幣。匯率採預測值(唯讀);計算毛利時凡美元換台幣,一律用「預估匯率 − 1 元」保守估算。</div>
   <div class="tool">
     <div class="modetog"><button id="qm_fob" class="on" type="button">FOB</button><button id="qm_cif" type="button">CIF</button></div>
+
+    <div class="grp">① 成本(我們付供應商)</div>
     <div class="frow">
       <div><label>產品成本/個</label><input id="q_g" type="number" value="3.5" step="0.1"></div>
       <div><label>幣別</label><select id="q_gc"><option>TWD</option><option>CNY</option><option selected>USD</option></select></div>
@@ -171,27 +182,33 @@
       <div id="q_fwrap"><label>海運+保險/個 (CIF)</label><input id="q_f" type="number" value="0.6" step="0.05"></div>
       <div id="q_fcwrap"><label>幣別</label><select id="q_fc"><option>TWD</option><option>CNY</option><option selected>USD</option></select></div>
     </div>
+
+    <div class="grp">② 報價(客人付我們)</div>
     <div class="frow">
-      <div><label>報價幣別(客人付)</label><select id="q_pc"><option selected>USD</option><option>TWD</option></select></div>
+      <div><label>報價幣別</label><select id="q_pc"><option selected>USD</option><option>TWD</option></select></div>
       <div><label>報價單價/個</label><input id="q_price" type="number" value="6" step="0.1"></div>
       <div><label>數量(個)</label><input id="q_qty" type="number" value="5000" step="100"></div>
     </div>
+
+    <div class="grp">③ 收款排程與匯率預估(唯讀)</div>
     <div class="frow">
       <div><label>訂金 %</label><input id="q_dep" type="number" value="30" step="5"></div>
       <div><label>訂金預估收款日</label><input id="q_depd" type="date"></div>
       <div><label>尾款預估收款日(出貨前/到港)</label><input id="q_bald" type="date"></div>
     </div>
-    <div class="frow">
-      <div><label>訂金日 USD/TWD(預測可改)</label><input id="q_fxd" type="number" step="0.01"></div>
-      <div><label>尾款日 USD/TWD(預測可改)</label><input id="q_fxb" type="number" step="0.01"></div>
+    <div class="fxblk"><div class="fxlbl">訂金日 USD/TWD 預測(含前後 5 天)</div><div class="fxprev" id="q_fxdPrev"></div><div class="fxnote" id="q_fxdNote"></div></div>
+    <div class="fxblk"><div class="fxlbl">尾款日 USD/TWD 預測(含前後 5 天)</div><div class="fxprev" id="q_fxbPrev"></div><div class="fxnote" id="q_fxbNote"></div></div>
+
+    <div class="grp">④ 試算結果</div>
+    <div class="qresult">
+      <div class="kv"><span>總成本(換算台幣)</span><b id="qo_cost">—</b></div>
+      <div class="kv"><span>訂金收款(台幣)</span><b id="qo_dep">—</b></div>
+      <div class="kv"><span>尾款收款(台幣)</span><b id="qo_bal">—</b></div>
+      <div class="kv"><span>預估總收款(台幣)</span><b id="qo_rev">—</b></div>
+      <div class="kv"><span>匯率影響(vs 即時匯率)</span><b id="qo_fx">—</b></div>
+      <div class="kv"><span>毛利(台幣)</span><b id="qo_profit">—</b></div>
+      <div class="ubar"><i id="qo_bar"></i><span id="qo_barlbl"></span></div>
     </div>
-    <div class="kv"><span>總成本(換算台幣)</span><b id="qo_cost">—</b></div>
-    <div class="kv"><span>訂金收款(台幣)</span><b id="qo_dep">—</b></div>
-    <div class="kv"><span>尾款收款(台幣)</span><b id="qo_bal">—</b></div>
-    <div class="kv"><span>預估總收款(台幣)</span><b id="qo_rev">—</b></div>
-    <div class="kv"><span>匯率影響(vs 即時匯率)</span><b id="qo_fx">—</b></div>
-    <div class="kv"><span>毛利(台幣)</span><b id="qo_profit">—</b></div>
-    <div class="ubar"><i id="qo_bar"></i><span id="qo_barlbl"></span></div>
   </div>
 
   <h2 class="sh" data-r="ship assist">貨櫃裝載計算<span class="role">船務 · 助理</span></h2>
@@ -409,37 +426,44 @@
 (function(){
  var $=function(id){return document.getElementById(id);};
  function n(id){return parseFloat(($(id)||{}).value)||0;}
- // 1) Quote / margin (FOB/CIF + 收款匯率)
+ // 1) Quote / margin (FOB/CIF; FX predicted read-only; USD->TWD uses (forecast - 1))
  function val(id){return ($(id)||{}).value;}
  var qMode='fob';
  function qrate(cur){var f=window.__fx||{usdtwd:32.3,cnytwd:4.5};if(cur==='USD')return f.usdtwd;if(cur==='CNY')return f.cnytwd;return 1;}
- function qfcAt(ds){var v=window.__fxfc;if(!v||!v.length)return (window.__fx||{usdtwd:32.3}).usdtwd;var base=window.__fxbase||new Date();var dd=ds?new Date(ds):base;var wk=(dd-base)/(7*864e5);wk=Math.max(0,Math.min(v.length-1,wk));var lo=Math.floor(wk),hi=Math.ceil(wk);return +(v[lo]+(v[hi]-v[lo])*(wk-lo)).toFixed(3);}
+ function qfcAtD(dd){var v=window.__fxfc;if(!v||!v.length)return (window.__fx||{usdtwd:32.3}).usdtwd;var base=window.__fxbase||new Date();var wk=(dd-base)/(7*864e5);wk=Math.max(0,Math.min(v.length-1,wk));var lo=Math.floor(wk),hi=Math.ceil(wk);return +(v[lo]+(v[hi]-v[lo])*(wk-lo)).toFixed(3);}
+ function qfcAt(ds){var base=window.__fxbase||new Date();return qfcAtD(ds?new Date(ds):base);}
  function fmtNT(x){return 'NT$'+Math.round(x).toLocaleString();}
+ function fxChips(ds,prevId,noteId){var base=window.__fxbase||new Date(),dd=ds?new Date(ds):base;
+   function at(off){var x=new Date(dd.getTime()+off*864e5);return {d:x,r:qfcAtD(x)};}
+   var pts=[at(-5),at(0),at(5)];
+   $(prevId).innerHTML=pts.map(function(pp,k){var md=('0'+(pp.d.getMonth()+1)).slice(-2)+'/'+('0'+pp.d.getDate()).slice(-2);
+     return '<span class="chip'+(k===1?' mid':'')+'">'+(k===1?'預估 ':(k===0?'−5天 ':'+5天 '))+md+' <b>'+pp.r.toFixed(2)+'</b></span>';}).join('');
+   $(noteId).textContent='⇒ 計算用匯率(預估 − 1 元):'+(pts[1].r-1).toFixed(2)+' NT/USD';}
  function quote(){
    var g=n('q_g')*qrate(val('q_gc')),e=n('q_e')*qrate(val('q_ec'));
    var f=qMode==='cif'?n('q_f')*qrate(val('q_fc')):0;
    var qty=n('q_qty'),costTWD=(g+e+f)*qty;
    var pc=val('q_pc'),price=n('q_price'),total=price*qty,depPct=n('q_dep')/100;
    var dep=total*depPct,bal=total-dep;
-   var fxd=n('q_fxd')||qfcAt(val('q_depd')),fxb=n('q_fxb')||qfcAt(val('q_bald'));
+   var fxd=qfcAt(val('q_depd'))-1,fxb=qfcAt(val('q_bald'))-1;          // conservative: forecast minus 1 NT
    var spot=(window.__fx||{usdtwd:32.3}).usdtwd,depTWD,balTWD,spotTWD;
-   if(pc==='TWD'){depTWD=dep;balTWD=bal;spotTWD=total;}else{depTWD=dep*fxd;balTWD=bal*fxb;spotTWD=total*spot;}
+   if(pc==='TWD'){depTWD=dep;balTWD=bal;spotTWD=total;}else{depTWD=dep*fxd;balTWD=bal*fxb;spotTWD=total*(spot-1);}
    var revTWD=depTWD+balTWD,profit=revTWD-costTWD,mg=revTWD>0?profit/revTWD*100:0,fxImp=revTWD-spotTWD;
    $('qo_cost').textContent=fmtNT(costTWD);
-   $('qo_dep').textContent=(pc==='USD'?'US$'+Math.round(dep).toLocaleString()+' @'+fxd+' = ':'')+fmtNT(depTWD);
-   $('qo_bal').textContent=(pc==='USD'?'US$'+Math.round(bal).toLocaleString()+' @'+fxb+' = ':'')+fmtNT(balTWD);
+   $('qo_dep').textContent=(pc==='USD'?'US$'+Math.round(dep).toLocaleString()+' @'+fxd.toFixed(2)+' = ':'')+fmtNT(depTWD);
+   $('qo_bal').textContent=(pc==='USD'?'US$'+Math.round(bal).toLocaleString()+' @'+fxb.toFixed(2)+' = ':'')+fmtNT(balTWD);
    $('qo_rev').textContent=fmtNT(revTWD);
    var fe=$('qo_fx');fe.textContent=(fxImp>=0?'+':'')+fmtNT(fxImp);fe.style.color=fxImp>0?'var(--pos)':(fxImp<0?'var(--neg)':'');
    $('qo_profit').textContent=fmtNT(profit);
    $('qo_bar').style.width=Math.max(0,Math.min(100,mg))+'%';$('qo_barlbl').textContent='毛利率 '+mg.toFixed(1)+'%';}
+ function refreshFx(){fxChips(val('q_depd'),'q_fxdPrev','q_fxdNote');fxChips(val('q_bald'),'q_fxbPrev','q_fxbNote');}
  function qModeSet(m){qMode=m;$('qm_fob').classList.toggle('on',m==='fob');$('qm_cif').classList.toggle('on',m==='cif');var sh=m==='cif';$('q_fwrap').style.display=sh?'':'none';$('q_fcwrap').style.display=sh?'':'none';quote();}
  function qInitDates(){var b=window.__fxbase||new Date();function add(dd){return new Date(b.getTime()+dd*864e5).toISOString().slice(0,10);}
-   if(!val('q_depd'))$('q_depd').value=add(14);if(!val('q_bald'))$('q_bald').value=add(60);
-   $('q_fxd').value=qfcAt(val('q_depd'));$('q_fxb').value=qfcAt(val('q_bald'));}
- ['q_g','q_gc','q_e','q_ec','q_f','q_fc','q_pc','q_price','q_qty','q_dep','q_fxd','q_fxb'].forEach(function(i){var el=$(i);if(el){el.addEventListener('input',quote);el.addEventListener('change',quote);}});
- ['q_depd','q_bald'].forEach(function(i){var el=$(i);if(el)el.addEventListener('change',function(){$(i==='q_depd'?'q_fxd':'q_fxb').value=qfcAt(val(i));quote();});});
+   if(!val('q_depd'))$('q_depd').value=add(14);if(!val('q_bald'))$('q_bald').value=add(60);}
+ ['q_g','q_gc','q_e','q_ec','q_f','q_fc','q_pc','q_price','q_qty','q_dep'].forEach(function(i){var el=$(i);if(el){el.addEventListener('input',quote);el.addEventListener('change',quote);}});
+ ['q_depd','q_bald'].forEach(function(i){var el=$(i);if(el)el.addEventListener('change',function(){refreshFx();quote();});});
  $('qm_fob').addEventListener('click',function(){qModeSet('fob');});$('qm_cif').addEventListener('click',function(){qModeSet('cif');});
- qInitDates();qModeSet('fob');setInterval(quote,8000);
+ qInitDates();refreshFx();qModeSet('fob');setInterval(quote,8000);
  // 2) Container loading (spec-compliant: vol+weight, util x2, best option)
  var C_VOL={'20':28,'40':58,'40h':72,'45':82};
  var C_WT={us:{'20':17500,'40':20000,'40h':20000,'45':20000},eu:{'20':22000,'40':25000,'40h':25000,'45':25000}};
