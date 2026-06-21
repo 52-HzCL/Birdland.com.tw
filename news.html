@@ -102,6 +102,8 @@
  .blk-b select{background:#fff;color:#000;border:1px solid #000;border-radius:0;box-shadow:inset 1px 1px 0 #808080;font-family:"IBM Plex Mono",monospace}
  #forward,#heatmap,#landed{background:#0b0e13;border:1px solid #000;padding:8px;border-radius:0}
  .legend,.hm-legend{color:#222}
+ .fr-src{margin-top:10px;font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:#333}
+ .fr-src a{color:#0a4f8a;font-weight:700}
  .blk-b .up{color:#b3261e}.blk-b .down{color:#0c6b2e}.blk-b .flat{color:#8a5a00}
  .blk-b .wl .usub{color:#444}
  .blk-b .news .item:hover{background:#cdcdc6}
@@ -129,7 +131,7 @@
   <div class="latest" id="latest" onclick="location.hash='#news'"></div>
 
   <section class="blk" data-open="1"><button class="blk-h"><span class="k">WATCH</span><h2>Watchlist — inputs &amp; freight</h2><span class="ihelp" title="Your key cost inputs: latest level, change since last refresh, and recent trend. Hover any row for what it means for your landed cost.">i</span><span class="meta" id="wl-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="svgwrap"><table class="wl" id="watchlist"></table></div></div></section>
-  <section class="blk" data-open="1"><button class="blk-h"><span class="k c">FREIGHT</span><h2>Freight indices — bulk &amp; container</h2><span class="ihelp" title="BDI tracks bulk/dry shipping demand; container lanes are spot US$ per 40ft (FEU). Both shape your delivered cost — you ship both ways. Hover a row for detail.">i</span><span class="meta" id="fr-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="fr-note"></div><div class="svgwrap"><table class="wl" id="freight"></table></div></div></section>
+  <section class="blk" data-open="1"><button class="blk-h"><span class="k c">FREIGHT</span><h2>Freight indices — bulk &amp; container</h2><span class="ihelp" title="BDI tracks bulk/dry shipping demand; container lanes are spot US$ per 40ft (FEU). Both shape your delivered cost — you ship both ways. Hover a row for detail.">i</span><span class="meta" id="fr-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="fr-note"></div><div class="svgwrap"><table class="wl" id="freight"></table></div><div class="fr-src">Official sources ↗ <a href="https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/world-container-index-assessed-by-drewry" target="_blank" rel="noopener">Drewry WCI</a> · <a href="https://fbx.freightos.com/" target="_blank" rel="noopener">Freightos FBX</a> · <a href="https://www.balticexchange.com/en/data-services/market-information0/dry-services.html" target="_blank" rel="noopener">Baltic Exchange (BDI)</a></div></div></section>
 
   <section class="blk" data-open="1"><button class="blk-h"><span class="k y">CURVE</span><h2>Forward curves — lock now or wait?</h2><span class="ihelp" title="A rising curve (contango) means forward prices are higher — locking now can pay off. A falling curve (backwardation) means the market expects easing — less urgency. Hover any point for its value.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="fwd-note"></div><div class="grid2" id="forward"></div></div></section>
 
