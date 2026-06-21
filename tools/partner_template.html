@@ -155,8 +155,9 @@
  .sysgrp{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:.72rem;color:var(--mut);letter-spacing:.05em}
  .sysgrp b{color:#d6dde6;font-weight:600;letter-spacing:.06em}
  .sysled{display:inline-block;width:8px;height:8px;border-radius:50%;flex:0 0 auto}
- .led-amber{background:#ff9e2c;box-shadow:0 0 6px #ff9e2c;animation:bdblink 1.1s steps(1) infinite}
- .led-green{background:#19e36a;box-shadow:0 0 6px #19e36a;animation:bdblink 1.5s steps(1) infinite}
+ .led-amber{background:#ff9e2c;box-shadow:0 0 6px #ff9e2c;animation:ledtick 4s ease-in-out infinite}
+ .led-green{background:#19e36a;box-shadow:0 0 6px #19e36a;animation:ledtick 8s ease-in-out infinite;animation-delay:-2s}
+ @keyframes ledtick{0%,90%,100%{opacity:1}95%{opacity:.18}}
  .apiok{color:#19e36a;font-weight:700;letter-spacing:.04em}
  @media(max-width:760px){.sysgrp:last-of-type{display:none}}
 
@@ -240,7 +241,7 @@
 </div></div>
 <div class="topbar"><div class="wrap tb">
   <div class="tb-left"><a class="brand" href="index.html"><span class="b-mk"><i style="height:8px;background:var(--green)"></i><i style="height:13px;background:var(--amber)"></i><i style="height:18px;background:var(--gold)"></i></span>Partner<span class="sep">|</span>Data Terminal Pro</a><button id="themeBtn" class="thm" type="button"><svg class="thm-ic thm-sun" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.6M12 18.8v2.6M2.6 12h2.6M18.8 12h2.6M5.2 5.2l1.85 1.85M16.95 16.95l1.85 1.85M18.8 5.2L16.95 7.05M7.05 16.95L5.2 18.8"/></svg><svg class="thm-ic thm-moon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.6A8 8 0 1 1 9.4 4 6.3 6.3 0 0 0 20 14.6z"/></svg><span class="thm-l">Light</span></button></div>
-  <div class="tb-right"><span class="sysgrp"><span class="sysled led-amber"></span><span class="sysled led-green"></span><b>PARTNER&nbsp;TOKEN</b></span><span class="sysgrp"><span class="sysled led-green"></span>HIGH-LEVEL&nbsp;API</span><span class="tpk" id="tpk" title="Taiwan office hours: Mon-Fri 09:00-17:30 (GMT+8)"><span class="tpk-led" id="tpkLed"></span><b id="tpkSt">—</b><span class="tpk-time"><span id="tpkTime">--:--</span> Taipei · GMT+8</span></span><span class="tpk-hol" id="tpkHol"></span><a class="back" href="index.html">← birdland.com.tw</a></div>
+  <div class="tb-right"><span class="sysgrp"><span class="sysled led-green"></span>HIGH-LEVEL&nbsp;API</span><span class="sysgrp"><span class="sysled led-amber"></span><b>AI&nbsp;Token</b></span><span class="tpk" id="tpk" title="Taiwan office hours: Mon-Fri 09:00-17:30 (GMT+8)"><span class="tpk-led" id="tpkLed"></span><b id="tpkSt">—</b><span class="tpk-time"><span id="tpkTime">--:--</span> Taipei · GMT+8</span></span><span class="tpk-hol" id="tpkHol"></span><a class="back" href="index.html">← birdland.com.tw</a></div>
 </div></div>
 
 <div class="tk-wrap"><div class="wrap" style="overflow:hidden"><div id="ticker" class="ticker"></div></div></div>
