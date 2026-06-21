@@ -157,6 +157,8 @@
  .led-green{background:#19e36a;box-shadow:0 0 6px #19e36a;animation:bdblink 1.5s steps(1) infinite}
  .apiok{color:#19e36a;font-weight:700;letter-spacing:.04em}
  @media(max-width:760px){.sysgrp:last-of-type{display:none}}
+
+ .tb-left{display:flex;align-items:center;gap:12px}
 </style></head><body>
 <div id="gate"><div class="gbox">
   <div class="gbar"><span class="gd"></span>PRIVILEGED ACCESS · PARTNERS ONLY</div>
@@ -169,14 +171,14 @@
   <div class="gerr" id="err"></div>
 </div></div>
 <div class="topbar"><div class="wrap tb">
-  <a class="brand" href="index.html"><span class="b-mk"><i style="height:8px;background:var(--green)"></i><i style="height:13px;background:var(--amber)"></i><i style="height:18px;background:var(--gold)"></i></span>Partner<span class="sep">|</span>Data Terminal Pro</a>
-  <div class="tb-right"><span class="sysgrp"><span class="sysled led-amber"></span><span class="sysled led-green"></span><b>PARTNER&nbsp;TOKEN</b></span><span class="sysgrp"><span class="sysled led-green"></span>HIGH-LEVEL&nbsp;API <span class="apiok">&#9679; CONNECTED &#10003;</span></span><span id="refresh"></span><button id="themeBtn" class="thm" type="button">◧ Light</button><a class="back" href="index.html">← birdland.com.tw</a></div>
+  <div class="tb-left"><a class="brand" href="index.html"><span class="b-mk"><i style="height:8px;background:var(--green)"></i><i style="height:13px;background:var(--amber)"></i><i style="height:18px;background:var(--gold)"></i></span>Partner<span class="sep">|</span>Data Terminal Pro</a><button id="themeBtn" class="thm" type="button">💡 Light</button></div>
+  <div class="tb-right"><span class="sysgrp"><span class="sysled led-amber"></span><span class="sysled led-green"></span><b>PARTNER&nbsp;TOKEN</b></span><span class="sysgrp"><span class="sysled led-green"></span>HIGH-LEVEL&nbsp;API</span><span id="refresh"></span><a class="back" href="index.html">← birdland.com.tw</a></div>
 </div></div>
 
 <div class="tk-wrap"><div class="wrap" style="overflow:hidden"><div id="ticker" class="ticker"></div></div></div>
 <div id="google_translate_element"></div>
 <main class="wrap">
-  <section class="hero"><div class="eyk">Partner Desk · privileged briefing</div><h1>Your dedicated desk.</h1><p class="lede">Deeper, forward-looking intelligence for our closest partners — procurement actions, lane &amp; material forecasts, a live landed-cost model, and tariff &amp; geopolitical monitors. Hover any chart element for detail.</p></section>
+  <section class="hero"><div class="eyk">Partner Desk · privileged briefing</div><h1>Your dedicated desk.</h1><p class="lede">Deeper, forward-looking intelligence for our closest partners. Powered by advanced AI models, professional market-data APIs, and forecasting models we build with industry experts &mdash; procurement actions, lane &amp; material forecasts, a live landed-cost model, and tariff &amp; geopolitical monitors. Hover any chart for detail.</p></section>
   <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-material">Materials</a><a href="#p-shipping">Shipping</a><a href="#p-freight">Freight</a><a href="#p-calc">Landed cost</a><a href="#p-tariff">Tariffs</a><a href="#p-war">Geopolitics</a><a href="#p-mkt">Markets</a><a href="#p-news">News</a></nav>
 
   <section class="blk" data-open="1" id="p-brief"><button class="blk-h"><span class="k">BRIEF</span><h2>Procurement Brief</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
@@ -303,6 +305,6 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
 var box=document.createElement('div');box.className='birdbot';
 box.innerHTML='<div class="bb-bar"><span class="bb-led"></span>BIRD BOT<span class="bb-x">_ \u25a1 \u00d7</span></div><div class="bb-body"><p class="bb-simple">\u25b8 '+b.simple+'</p><p class="bb-exp">'+(b.expert||[]).join(' ')+'</p>'+(b.src?'<p class="bb-src">'+b.src+'</p>':'')+'</div>';
 body.insertBefore(box,body.firstChild);});}catch(e){}})();</script>
-<script>(function(){var btn=document.getElementById('themeBtn');if(!btn)return;function ap(t){if(t==='light'){document.body.classList.add('theme-light');btn.textContent='\u25e7 Classic';}else{document.body.classList.remove('theme-light');btn.textContent='\u25e7 Light';}}var sv='classic';try{sv=localStorage.getItem('bd_ptheme')||'classic';}catch(e){}ap(sv);btn.addEventListener('click',function(){var nx=document.body.classList.contains('theme-light')?'classic':'light';try{localStorage.setItem('bd_ptheme',nx);}catch(e){}ap(nx);});})();</script>
+<script>(function(){var btn=document.getElementById('themeBtn');if(!btn)return;function ap(t){if(t==='light'){document.body.classList.add('theme-light');btn.textContent='💡 Classic';}else{document.body.classList.remove('theme-light');btn.textContent='💡 Light';}}var sv='classic';try{sv=localStorage.getItem('bd_ptheme')||'classic';}catch(e){}ap(sv);btn.addEventListener('click',function(){var nx=document.body.classList.contains('theme-light')?'classic':'light';try{localStorage.setItem('bd_ptheme',nx);}catch(e){}ap(nx);});})();</script>
 <script>(function(){var L=[].slice.call(document.querySelectorAll('.toc a'));if(!L.length||!('IntersectionObserver'in window))return;var m={};L.forEach(function(a){m[a.getAttribute('href').slice(1)]=a;});var secs=Object.keys(m).map(function(i){return document.getElementById(i);}).filter(Boolean);var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){L.forEach(function(x){x.classList.remove('on');});if(m[e.target.id])m[e.target.id].classList.add('on');}});},{rootMargin:'-25% 0px -65% 0px'});secs.forEach(function(s){ob.observe(s);});})();</script>
 </body></html>
