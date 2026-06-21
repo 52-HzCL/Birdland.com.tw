@@ -218,9 +218,9 @@
 
  .tpk{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.77rem;color:var(--mut)}
  .tpk b{font-weight:700;letter-spacing:.03em}
- .tpk-led{width:9px;height:9px;border-radius:50%;flex:0 0 auto;background:radial-gradient(circle at 35% 30%,#cdd3da 0%,#9aa4b2 60%,#6b7480 100%);box-shadow:inset 0 .5px 1px rgba(255,255,255,.5),inset 0 -1px 1px rgba(0,0,0,.35)}
- .tpk-led.on{background:radial-gradient(circle at 35% 30%,#c9ffdd 0%,#2bff7a 38%,#12c455 70%,#0a8a3c 100%);box-shadow:0 0 5px 1px rgba(25,227,106,.65),inset 0 .5px 1px rgba(255,255,255,.7),inset 0 -1px 1px rgba(0,40,15,.5);animation:tpkpulse 2.8s ease-in-out infinite}
- @keyframes tpkpulse{0%,100%{box-shadow:0 0 3px 0 rgba(25,227,106,.45),inset 0 .5px 1px rgba(255,255,255,.6),inset 0 -1px 1px rgba(0,40,15,.5)}50%{box-shadow:0 0 9px 2px rgba(25,227,106,.95),inset 0 .5px 1px rgba(255,255,255,.85),inset 0 -1px 1px rgba(0,40,15,.5)}}
+ .tpk-led{width:8px;height:8px;border-radius:50%;flex:0 0 auto;background:#9aa4b2}
+ .tpk-led.on{background:radial-gradient(circle at 40% 35%,#8affc0,#15d866 62%);animation:tpkpulse 2.4s ease-out infinite}
+ @keyframes tpkpulse{0%{box-shadow:0 0 0 0 rgba(21,216,102,.6)}70%{box-shadow:0 0 0 7px rgba(21,216,102,0)}100%{box-shadow:0 0 0 0 rgba(21,216,102,0)}}
  .theme-light .tpk{color:#333}
 </style></head><body>
 <div id="gate"><div class="gbox">
