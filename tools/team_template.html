@@ -107,6 +107,17 @@
  .tl .node b{display:block;font-size:.92rem}
  .tl .arr{color:var(--mut)}
  @media(min-width:680px){.wc{grid-template-columns:repeat(4,1fr)}}
+
+ .botbox{margin-top:12px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);overflow:hidden}
+ .botbar{background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.1em;padding:5px 10px;display:flex;align-items:center;gap:6px}
+ .botbar .d{width:7px;height:7px;border-radius:50%;background:var(--pos);box-shadow:0 0 5px var(--pos);animation:bk 1.4s infinite}
+ .botbody{padding:11px 13px}
+ .botsimple{color:var(--accent);font-weight:700;margin-bottom:7px;font-size:.92rem;line-height:1.5}
+ .botexp{font-size:.88rem;line-height:1.66}
+ .rolebar{position:sticky;top:50px;z-index:40;display:flex;gap:7px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:10px 0;background:var(--bg)}
+ .rolebar button{flex:0 0 auto;white-space:nowrap;font-family:var(--sans);font-weight:700;font-size:.8rem;color:var(--mut);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:8px 15px;cursor:pointer}
+ .rolebar button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
+ .fcev .kv span:last-child{text-align:right;max-width:62%}
 </style></head><body>
 <div id="gate"><div class="gbox">
   <div class="gk">Internal · Birdland staff only</div>
@@ -126,8 +137,9 @@
 </div></header>
 
 <main class="wrap">
-  <h2 class="sh" style="border-top:0">匯率儀表板 · FX</h2>
-  <div class="sub">即時匯率(open.er-api.com,每 60 秒刷新);漲跌為自上次每日基準的變動。</div>
+  <div class="rolebar" id="rolebar"></div>
+  <h2 class="sh" data-r="fin sales" style="border-top:0">匯率儀表板 · FX</h2>
+  <div class="sub">即時匯率(open.er-api.com);台灣平日(週一至五 9–18)每小時自動刷新;漲跌為自上次每日基準的變動。</div>
   <div class="fxgrid">
     <div class="fxbig"><div class="lab">USD / TWD · 美元兌台幣</div><div class="val" id="fx-usdtwd">—</div><div class="chg" id="chg-usdtwd"></div><div class="fxlive" id="fxlive"><span class="dot"></span>connecting…</div></div>
     <div class="fxrow">
@@ -137,30 +149,38 @@
     </div>
   </div>
 
-  <h2 class="sh">USD/TWD 走勢預測 · 財務</h2>
+  <h2 class="sh" data-r="fin">USD/TWD 走勢預測 · 財務</h2>
   <div class="fc">
-    <svg class="fc-spark" id="usdtwdSpark" viewBox="0 0 320 64" preserveAspectRatio="none" role="img" aria-label="USD/TWD trend"></svg>
+    <svg class="fc-spark" id="usdtwdSpark" viewBox="0 0 320 70" preserveAspectRatio="none" role="img" aria-label="USD/TWD trend"></svg>
     <div id="biasBadge"></div>
     <p id="biasText"></p>
+    <div id="fcEvents" class="fcev" style="margin-top:12px"></div>
   </div>
 
-  <h2 class="sh">物料市場動向 · 業務</h2>
+  <h2 class="sh" data-r="sales">物料市場動向 · 業務</h2>
   <div class="sub">Gemini 每日 AI 接地摘要(方向為趨勢,非即時報價)。</div>
   <div id="materials"></div>
+  <div id="matBot"></div>
 
-  <h2 class="sh">法規即時更新 · 常務</h2>
-  <div class="sub">Gemini + 搜尋接地,每日分類。</div>
+    <h2 class="sh" data-r="ship">海運市場動向<span class="role">船務</span></h2>
+  <div class="sub">中國/台灣出口會用到的運費與成本指數(港口稅費、內陸運輸、海關倉儲等;Gemini 每日 AI 接地)。</div>
+  <div id="shipping"></div>
+  <div id="shipBot"></div>
+
+  <h2 class="sh" data-r="ship sales">法規即時更新 · 船務 · 業務</h2>
+  <div class="sub">過去一年與未來兩年最重要的更新(Gemini + 搜尋接地)。</div>
   <div class="tabs" id="regTabs"></div>
   <div class="regpanel" id="regPanel"></div>
+  <div id="regBot"></div>
 
-  <h2 class="sh">一鍵客戶供應鏈建議 · 業務</h2>
+  <h2 class="sh" data-r="sales">一鍵客戶供應鏈建議 · 業務</h2>
   <div class="advhead"><div class="sub" style="margin:0">當週供應鏈 + 海運展望 + 建議,可直接複製貼給客戶。</div>
     <div class="langtog"><button id="lz" class="on" type="button">繁中</button><button id="le" type="button">EN</button></div></div>
   <div class="advbox" id="advBox"></div>
   <button class="copybtn" id="copyBtn" type="button">📋 複製給客戶</button>
 
   
-  <h2 class="sh">報價・毛利試算<span class="role">業務 · 財務</span></h2>
+  <h2 class="sh" data-r="sales fin">報價・毛利試算<span class="role">業務 · 財務</span></h2>
   <div class="sub">輸入成本與條件,即時算出建議售價與毛利(用上方即時匯率換算台幣)。</div>
   <div class="tool">
     <div class="frow">
@@ -178,7 +198,7 @@
     <div class="ubar"><i id="q_bar"></i><span id="q_barlbl"></span></div>
   </div>
 
-  <h2 class="sh">貨櫃裝載計算<span class="role">船務 · 助理</span></h2>
+  <h2 class="sh" data-r="ship assist">貨櫃裝載計算<span class="role">船務 · 助理</span></h2>
   <div class="sub">輸入外箱尺寸與箱數,算出 CBM 與 20\'/40\'/40HQ 可裝箱數與利用率。</div>
   <div class="tool">
     <div class="frow">
@@ -196,7 +216,7 @@
     <div class="ubar"><i id="c_bar"></i><span id="c_barlbl"></span></div>
   </div>
 
-  <h2 class="sh">海運前置期・預估到港<span class="role">船務</span></h2>
+  <h2 class="sh" data-r="ship">海運前置期・預估到港<span class="role">船務</span></h2>
   <div class="sub">選航線 + 備貨天數,估算可出貨與到港日(典型 transit,實際依船班)。</div>
   <div class="tool">
     <div class="frow">
@@ -206,7 +226,7 @@
     <div class="tl" id="e_tl"></div>
   </div>
 
-  <h2 class="sh">單位換算<span class="role">業務助理</span></h2>
+  <h2 class="sh" data-r="assist">單位換算<span class="role">業務助理</span></h2>
   <div class="tool">
     <div class="frow">
       <div><label>CBM → 才(才積)</label><input id="u_cbm" type="number" value="1"></div>
@@ -217,7 +237,7 @@
     <div style="font-family:var(--mono);font-size:.72rem;color:var(--mut)">1 CBM ≈ 35.315 才(cu ft) · 1 kg ≈ 2.205 lb · 1 公噸 = 1000 kg</div>
   </div>
 
-  <h2 class="sh">Incoterms 2020 責任速查<span class="role">全員</span></h2>
+  <h2 class="sh" data-r="all">Incoterms 2020 責任速查<span class="role">全員</span></h2>
   <div class="sub">選貿易條件,看賣方/買方成本負擔與風險轉移點。</div>
   <div class="tool">
     <div class="frow"><div class="full"><label>貿易條件</label><select id="i_sel"></select></div></div>
@@ -226,11 +246,11 @@
     <p id="i_note" style="font-size:.9rem;margin-top:10px"></p>
   </div>
 
-  <h2 class="sh">世界港口時鐘<span class="role">船務 · 業務</span></h2>
+  <h2 class="sh" data-r="ship sales">世界港口時鐘<span class="role">船務 · 業務</span></h2>
   <div class="sub">主要市場/港口當地時間,判斷可聯絡時段(綠=上班 9–18)。</div>
   <div class="wc" id="worldclock"></div>
 
-  <h2 class="sh">出貨文件清單<span class="role">業務助理 · 船務</span></h2>
+  <h2 class="sh" data-r="assist ship">出貨文件清單<span class="role">業務助理 · 船務</span></h2>
   <div class="sub">選目的地,勾選備齊必要文件。</div>
   <div class="tool">
     <div class="frow"><div class="full"><label>目的地</label><select id="d_sel"><option value="eu">歐盟(德/荷)</option><option value="us">美國</option><option value="gen">一般/其他</option></select></div></div>
@@ -275,13 +295,16 @@
       document.getElementById('fxlive').innerHTML='<span class="dot"></span>LIVE · '+((d.time_last_update_utc||'').slice(0,16)||'open.er-api.com');
     }).catch(function(){var fl=document.getElementById('fxlive');if(fl)fl.innerHTML='source unavailable — retrying';});
   }
-  loadFX(); setInterval(loadFX,60000);
+  loadFX();var __lh=-1;function __tick(){try{var ps=new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Taipei",weekday:"short",hour:"2-digit",hour12:false}).formatToParts(new Date());var wd,hh;ps.forEach(function(x){if(x.type==="weekday")wd=x.value;if(x.type==="hour")hh=parseInt(x.value,10);});var biz=["Mon","Tue","Wed","Thu","Fri"].indexOf(wd)>=0&&hh>=9&&hh<18;if(biz&&hh!==__lh){__lh=hh;loadFX();}}catch(e){}}setInterval(__tick,300000);
 
   // sparkline
-  (function(){var a=T.usdtwd_spark||[];if(!a.length)return;var w=320,h=64,mn=Math.min.apply(null,a),mx=Math.max.apply(null,a),rg=(mx-mn)||1;
-    var pts=a.map(function(v,i){return (i/(a.length-1)*w).toFixed(1)+','+(h-4-((v-mn)/rg)*(h-8)).toFixed(1);}).join(' ');
-    var last=a[a.length-1],first=a[0],col=last<first?'var(--neg)':(last>first?'var(--pos)':'var(--flat)');
-    document.getElementById('usdtwdSpark').innerHTML='<polyline points="'+pts+'" fill="none" stroke="'+col+'" stroke-width="2"/>';})();
+  (function(){var F=T.fx_forecast,a=(F&&F.weeks)||((T.usdtwd_spark||[]).map(function(v){return {v:v};}));if(!a.length)return;
+    var vals=a.map(function(x){return x.v;}),w=320,h=70,mn=Math.min.apply(null,vals),mx=Math.max.apply(null,vals),rg=(mx-mn)||1;
+    function X(i){return i/(a.length-1)*w;}function Y(v){return h-8-((v-mn)/rg)*(h-22);}
+    var svg='<polyline points="'+vals.map(function(v,i){return X(i).toFixed(1)+','+Y(v).toFixed(1);}).join(' ')+'" fill="none" stroke="var(--accent)" stroke-width="2"/>';
+    var evs=(F&&F.events)||[];evs.forEach(function(e,k){var x=X(e.at);svg+='<line x1="'+x.toFixed(1)+'" y1="12" x2="'+x.toFixed(1)+'" y2="'+h+'" stroke="var(--mut)" stroke-dasharray="2 2" stroke-width="1"/><circle cx="'+x.toFixed(1)+'" cy="'+Y(vals[e.at]).toFixed(1)+'" r="3" fill="var(--neg)"/><text x="'+x.toFixed(1)+'" y="9" font-size="8" text-anchor="middle" fill="var(--mut)" font-family="monospace">'+(k+1)+'</text>';});
+    document.getElementById('usdtwdSpark').innerHTML=svg;
+    var fe=document.getElementById('fcEvents');if(fe)fe.innerHTML='<div style="font-family:var(--mono);font-size:.7rem;color:var(--mut);margin-bottom:4px">事件標註(預定/估計):</div>'+evs.map(function(e,k){return '<div class="kv"><span><b>'+(k+1)+'.</b> '+e.label+'</span><span style="color:var(--mut)">'+(e.outcome||'')+' → '+(e.impact||'')+'</span></div>';}).join('');})();
   var bv=(T.usdtwd_view||{});var cls=/deprec/i.test(bv.bias||'')?'bias-dep':(/apprec/i.test(bv.bias||'')?'bias-app':'bias-bal');
   document.getElementById('biasBadge').innerHTML='<span class="biasbadge '+cls+'">'+(bv.bias||'').toUpperCase()+'</span>';
   document.getElementById('biasText').textContent=bv.text||'';
@@ -290,6 +313,20 @@
   var mh='';(T.materials||[]).forEach(function(m){var d=m.dir,ar=d==='up'?'↑':(d==='down'?'↓':'→'),cl=d==='up'?'up':(d==='down'?'down':'flat');
     mh+='<div class="mat"><div class="ar '+cl+'">'+ar+'</div><div><div class="nm">'+m.name+'</div><div class="nt">'+(m.note||'')+'</div></div></div>';});
   document.getElementById('materials').innerHTML=mh;
+  // Bird BOT box
+  function renderBot(host,b){if(!host||!b)return;var x=document.createElement('div');x.className='botbox';x.innerHTML='<div class="botbar"><span class="d"></span>BIRD BOT · 結論(對台/中出口)</div><div class="botbody"><div class="botsimple">▸ '+(b.simple||'')+'</div><div class="botexp">'+((b.expert||[]).join(' '))+'</div></div>';host.appendChild(x);}
+  function matList(hostId,arr){var h=(arr||[]).map(function(m){var d=m.dir,ar=d==='up'?'↑':(d==='down'?'↓':'→'),cl=d==='up'?'up':(d==='down'?'down':'flat');return '<div class="mat"><div class="ar '+cl+'">'+ar+'</div><div><div class="nm">'+m.name+'</div><div class="nt">'+(m.note||'')+'</div></div></div>';}).join('');var el=document.getElementById(hostId);if(el)el.innerHTML=h;}
+  matList('shipping',T.shipping);
+  renderBot(document.getElementById('matBot'),T.materials_bot);
+  renderBot(document.getElementById('shipBot'),T.shipping_bot);
+  renderBot(document.getElementById('regBot'),T.reg_bot);
+  // role filter
+  var ROLES=[['all','全部'],['sales','業務'],['assist','業助'],['ship','船務'],['fin','財務']];
+  var rb=document.getElementById('rolebar');
+  function groups(){var ch=[].slice.call(document.querySelector('main').children),out=[],g=null;ch.forEach(function(el){if(el.tagName==='H2'&&el.classList.contains('sh')){g={els:[el],r:el.getAttribute('data-r')||'all'};out.push(g);}else if(g&&el.id!=='disc'&&el.tagName!=='FOOTER'&&!el.classList.contains('rolebar')){g.els.push(el);}else if(el.tagName==='FOOTER'||el.id==='disc'){g=null;}});return out;}
+  function applyRole(r){groups().forEach(function(g){var show=(r==='all')||g.r==='all'||(' '+g.r+' ').indexOf(' '+r+' ')>=0;g.els.forEach(function(e){e.style.display=show?'':'none';});});}
+  ROLES.forEach(function(R,i){var b=document.createElement('button');b.textContent=R[1];if(i===0)b.className='on';b.addEventListener('click',function(){[].forEach.call(rb.children,function(x){x.classList.remove('on');});b.classList.add('on');applyRole(R[0]);});rb.appendChild(b);});
+
 
   // regulation tabs
   var R=T.regnews||{},tabsDef=[['china','中國海關'],['taiwan','台灣海關'],['ports','歐美港口'],['env','環保法規']];
