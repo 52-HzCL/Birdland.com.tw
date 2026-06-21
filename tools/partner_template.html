@@ -215,6 +215,11 @@
  .theme-light .bcrow{color:#111;border-bottom-color:#9a9a9a}.theme-light .bcrow b{color:#000}.theme-light .bcrow.tot b{color:#0a5a6e}
  .theme-light .bcbar{border-color:#000}.theme-light .bclegend{color:#333}
  .theme-light .sailcard{background:#d6d6cf;color:#000;border:1px solid #000}.theme-light .sailcard h4{color:#000}.theme-light .sailcard .sd{color:#333}.theme-light .sailcard .big{color:#0a5a6e}.theme-light .sailcard .row{border-top-color:#9a9a9a}.theme-light .sailcard .row b{color:#000}
+
+ .tpk{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.76rem;color:var(--mut)}
+ .tpk b{color:var(--gold);font-weight:600}
+ .tpk-led{width:8px;height:8px;border-radius:50%;background:#9aa4b2;display:inline-block;flex:0 0 auto}
+ .theme-light .tpk{color:#333}.theme-light .tpk b{color:#0a5a6e}
 </style></head><body>
 <div id="gate"><div class="gbox">
   <div class="gbar"><span class="gd"></span>PRIVILEGED ACCESS · PARTNERS ONLY</div>
@@ -228,7 +233,7 @@
 </div></div>
 <div class="topbar"><div class="wrap tb">
   <div class="tb-left"><a class="brand" href="index.html"><span class="b-mk"><i style="height:8px;background:var(--green)"></i><i style="height:13px;background:var(--amber)"></i><i style="height:18px;background:var(--gold)"></i></span>Partner<span class="sep">|</span>Data Terminal Pro</a><button id="themeBtn" class="thm" type="button"><svg class="thm-ic thm-sun" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.6M12 18.8v2.6M2.6 12h2.6M18.8 12h2.6M5.2 5.2l1.85 1.85M16.95 16.95l1.85 1.85M18.8 5.2L16.95 7.05M7.05 16.95L5.2 18.8"/></svg><svg class="thm-ic thm-moon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.6A8 8 0 1 1 9.4 4 6.3 6.3 0 0 0 20 14.6z"/></svg><span class="thm-l">Light</span></button></div>
-  <div class="tb-right"><span class="sysgrp"><span class="sysled led-amber"></span><span class="sysled led-green"></span><b>PARTNER&nbsp;TOKEN</b></span><span class="sysgrp"><span class="sysled led-green"></span>HIGH-LEVEL&nbsp;API</span><span id="refresh"></span><a class="back" href="index.html">← birdland.com.tw</a></div>
+  <div class="tb-right"><span class="sysgrp"><span class="sysled led-amber"></span><span class="sysled led-green"></span><b>PARTNER&nbsp;TOKEN</b></span><span class="sysgrp"><span class="sysled led-green"></span>HIGH-LEVEL&nbsp;API</span><span class="tpk" id="tpk"><span class="tpk-led" id="tpkLed"></span><b id="tpkTime">--:--</b> 台北 <span id="tpkSt"></span></span><a class="back" href="index.html">← birdland.com.tw</a></div>
 </div></div>
 
 <div class="tk-wrap"><div class="wrap" style="overflow:hidden"><div id="ticker" class="ticker"></div></div></div>
@@ -315,7 +320,7 @@
   function el(t,a,x){var e=document.createElementNS('http://www.w3.org/2000/svg',t);for(var k in a)e.setAttribute(k,a[k]);if(x!=null)e.textContent=x;return e;}
   function tt(n,s){n.appendChild(el('title',{},s));return n;}
   function pad(n){return (n<10?'0':'')+n;}
-  (function(){var d=new Date();var r=document.getElementById('refresh');if(r)r.innerHTML='As of <b style="color:var(--gold)">'+D.updated+'</b> · local '+pad(d.getHours())+':'+pad(d.getMinutes());})();
+  (function(){function tk(){try{var pp=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Taipei',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());var wd,hh,mm;pp.forEach(function(x){if(x.type=='weekday')wd=x.value;if(x.type=='hour')hh=x.value;if(x.type=='minute')mm=x.value;});var biz=['Mon','Tue','Wed','Thu','Fri'].indexOf(wd)>=0&&parseInt(hh,10)>=9&&parseInt(hh,10)<18;var t=document.getElementById('tpkTime');if(t)t.textContent=hh+':'+mm;var led=document.getElementById('tpkLed');if(led){led.style.background=biz?'#16c47e':'#9aa4b2';led.style.boxShadow=biz?'0 0 6px #16c47e':'none';}var st=document.getElementById('tpkSt');if(st)st.textContent=biz?'· 上班中':'· 休息';}catch(e){}}tk();setInterval(tk,30000);})();
   document.getElementById('disc').innerHTML='BIRDLAND PARTNER DESK · AI-ASSISTED. Forecasts, duty and impact figures are indicative planning guides — not legal, customs or trade advice. Confirm with your customs broker or counsel before acting.';
 
   // multi-line chart
