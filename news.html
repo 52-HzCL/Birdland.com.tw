@@ -125,6 +125,20 @@
  .bb-body{padding:11px 13px;font-family:"IBM Plex Mono",monospace;font-size:.86rem}
  .bb-simple{color:#7ddc9a;font-weight:600;margin-bottom:7px;line-height:1.5}
  .bb-exp{color:#cdd5dc;line-height:1.6}.bb-src{margin-top:8px;font-size:.7rem;color:#8a94a3}
+
+ /* ===== mobile UX pass ===== */
+ .chart,.fwd-card svg,#landed,#forward svg,#lcbar,#ship,#matl{width:100%;height:auto;display:block}
+ .blk-b svg{max-width:100%}
+ @media(max-width:760px){ .refresh{display:none} }
+ @media(max-width:640px){
+   .tb{flex-wrap:wrap;gap:6px;padding:8px 0}
+   .brand{font-size:.95rem}
+   .toc{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch}
+   .toc a{padding:8px 12px;white-space:nowrap}
+   .tog{width:30px;height:28px}
+   .strip{grid-template-columns:repeat(2,1fr)}
+ }
+ @media(max-width:560px){ .wl td:nth-child(4),.wl th:nth-child(4){display:none} }
 </style></head><body>
 <div id="gate"><div class="gbox">
   <div class="gbar"><span class="gd"></span>SECURE SESSION · CLIENT ACCESS</div>
