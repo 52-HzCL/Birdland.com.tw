@@ -172,16 +172,7 @@
  .tpk-hol .hol{color:var(--mut)} .tpk-hol .hol.on{color:#ff9e2c;font-weight:700}
 </style></head><body>
 <script>window.__TWHOL={"2026-01-01":"New Year\u2019s Day","2026-02-16":"Lunar New Year (Eve)","2026-02-17":"Lunar New Year","2026-02-18":"Lunar New Year","2026-02-19":"Lunar New Year","2026-02-27":"228 Peace Memorial (obs.)","2026-02-28":"228 Peace Memorial Day","2026-04-03":"Children\u2019s Day (obs.)","2026-04-04":"Children\u2019s Day","2026-04-05":"Tomb-Sweeping Day","2026-04-06":"Tomb-Sweeping (obs.)","2026-05-01":"Labour Day","2026-06-19":"Dragon Boat Festival","2026-09-25":"Mid-Autumn Festival","2026-09-28":"Teachers\u2019 Day","2026-10-09":"National Day (obs.)","2026-10-10":"National Day","2026-10-26":"Retrocession Day (obs.)","2026-12-25":"Constitution Day","2027-01-01":"New Year\u2019s Day"};window.__TWHOLnext=function(t){var k=Object.keys(window.__TWHOL).sort();for(var i=0;i<k.length;i++){if(k[i]>=t)return window.__TWHOL[k[i]]+" ("+k[i].slice(5).replace("-","/")+")";}return "";};</script>
-<div id="gate"><div class="gbox">
-  <div class="gbar"><span class="gd"></span>SECURE SESSION · CLIENT ACCESS</div>
-  <div class="glogo"><i style="height:11px;background:var(--green)"></i><i style="height:19px;background:var(--amber)"></i><i style="height:28px;background:var(--cyan)"></i></div>
-  <div class="gt">Birdland<span class="ind">Ind.</span> Data Terminal <span class="pro">Pro</span></div>
-  <div><span class="gdesk">Client Desk</span></div>
-  <div class="gsub">Market &amp; supply intelligence · authorized clients only</div>
-  <div class="glabel gcursor">Enter access PIN</div>
-  <div class="pinrow"><input id="pin" type="password" inputmode="numeric" maxlength="6" autocomplete="off" aria-label="Access PIN"><button class="gbtn" id="gago"><span class="led" aria-hidden="true"></span>ENTER</button></div>
-  <div class="gerr" id="gerr"></div>
-</div></div>
+
 <div class="topbar"><div class="wrap tb">
   <a class="brand" href="index.html"><span class="b-mk"><i style="height:8px;background:var(--green)"></i><i style="height:13px;background:var(--amber)"></i><i style="height:18px;background:var(--cyan)"></i></span>Client<span class="sep">|</span>Data Terminal</a>
   <div class="tb-right"><span class="live"><span class="d"></span>LIVE</span><span class="tpk" id="tpk" title="Taiwan office hours: Mon-Fri 09:00-17:30 (GMT+8)"><span class="tpk-led" id="tpkLed"></span><b id="tpkSt">—</b><span class="tpk-time"><span id="tpkTime">--:--</span> Taipei · GMT+8</span></span><span class="tpk-hol" id="tpkHol"></span><a class="back" href="index.html">&larr; birdland.com.tw</a></div>
@@ -219,11 +210,6 @@
 <script type="application/json" id="outlook-data">__DATA__</script>
 <script>
 (function(){
-  var gate=document.getElementById('gate'),pin=document.getElementById('pin'),gerr=document.getElementById('gerr');
-  function unlock(){gate.classList.add('hide');try{sessionStorage.setItem('bd_client','1');}catch(e){}}
-  function tryPin(){if(pin.value==='1974'){gerr.style.color='var(--green)';gerr.textContent='ACCESS GRANTED ·';setTimeout(unlock,260);}else{gerr.style.color='var(--red)';gerr.textContent='ACCESS DENIED — invalid Client Desk PIN';pin.value='';pin.focus();}}
-  document.getElementById('gago').addEventListener('click',tryPin);pin.addEventListener('keydown',function(e){if(e.key==='Enter')tryPin();});
-  try{if(sessionStorage.getItem('bd_client')==='1')gate.classList.add('hide');else setTimeout(function(){pin.focus();},200);}catch(e){}
   [].forEach.call(document.querySelectorAll('.blk-h'),function(h){h.addEventListener('click',function(ev){if(ev.target.classList.contains('ihelp'))return;var b=h.parentNode;b.setAttribute('data-open',b.getAttribute('data-open')==='1'?'0':'1');});});
 
   var D;try{D=JSON.parse(document.getElementById('outlook-data').textContent);}catch(e){return;}
