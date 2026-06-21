@@ -8,7 +8,8 @@
 <style>
  :root{--bg:#0b0e13;--panel:#11161d;--panel2:#161c24;--line:#262e39;--txt:#e2e8f0;--mut:#9aa4b2;--amber:#ff9e2c;--cyan:#36c2d6;--green:#16c47e;--red:#ff5470;--yellow:#f5c542;--mono:"IBM Plex Mono",ui-monospace,monospace;--sans:"Inter",system-ui,sans-serif}
  *{box-sizing:border-box;margin:0;padding:0}
- body{font-family:var(--sans);background:var(--bg);color:var(--txt);font-size:16.5px;line-height:1.65}
+ html{font-size:115%}
+ body{font-family:var(--sans);background:var(--bg);color:var(--txt);font-size:18px;line-height:1.7}
  a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(1rem,3vw,2.2rem)}
  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9;background:repeating-linear-gradient(180deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);mix-blend-mode:overlay}
  #gate{position:fixed;inset:0;z-index:1000;background:radial-gradient(120% 90% at 50% 0%,#0f1620,#06080c 70%);display:flex;align-items:center;justify-content:center;font-family:var(--mono)}
@@ -152,7 +153,7 @@
  @media(max-width:760px){ .war .row{grid-template-columns:1fr} }
  @media(max-width:640px){
    .wrap{padding:0 13px}
-   body{font-size:15px}
+   body{font-size:16.5px}
    .blk-b{padding:13px}
    .bb-body,.card p,.supplyb p,.news .bl,.sub{font-size:.92rem}
    .head2{font-size:1.18rem}
