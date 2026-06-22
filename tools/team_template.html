@@ -160,6 +160,14 @@
  .fc .legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font-family:var(--mono);font-size:.8rem;color:var(--ink)}
  .fc .legend i{width:16px;height:3px;display:inline-block;margin-right:6px;vertical-align:middle;border-radius:2px}
  .fc-acc{font-family:var(--mono);font-size:.7rem;color:var(--mut);margin-top:9px}
+
+ .line-chat{margin-top:16px;background:#e9edf0;border-radius:14px;padding:12px 12px 14px}
+ .lc-head{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+ .lc-av{width:32px;height:32px;border-radius:50%;background:#fff;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 1px 2px rgba(0,0,0,.15)}
+ .lc-nm{font-family:var(--sans);font-weight:700;font-size:.84rem;color:var(--ink)}
+ .lc-sub{font-family:var(--mono);font-size:.66rem;color:var(--mut)}
+ .lc-bubble{position:relative;background:#fff;border-radius:4px 16px 16px 16px;padding:13px 15px;font-family:var(--sans);font-size:.92rem;line-height:1.7;color:var(--ink);white-space:pre-wrap;box-shadow:0 1px 2px rgba(0,0,0,.1);min-height:1.4em}
+ .lc-caret{display:inline-block;width:7px;background:var(--ink);margin-left:1px;animation:lcbk 1s steps(1) infinite}@keyframes lcbk{50%{opacity:0}}
 </style></head><body>
 <div id="gate"><div class="gbox">
   <div class="gk">Internal · Birdland staff only</div>
@@ -218,6 +226,7 @@
       <div><label>訂金 %</label><input id="q_dep" type="number" value="30" step="5"></div>
       <div><label>訂金預估收款日</label><input id="q_depd" type="date"></div>
       <div><label>尾款預估收款日(出貨前/到港)</label><input id="q_bald" type="date"></div>
+      <div class="full"><label>計算用匯率扣除額(保守):<b id="q_cutV">1.0</b> 元 / USD</label><input id="q_cut" type="range" min="0.5" max="1.5" step="0.1" value="1"></div>
     </div>
     <div class="fxblk"><div class="fxlbl">訂金日 USD/TWD 預測(含前後 5 天)</div><div class="fxprev" id="q_fxdPrev"></div><div class="fxnote" id="q_fxdNote"></div></div>
     <div class="fxblk"><div class="fxlbl">尾款日 USD/TWD 預測(含前後 5 天)</div><div class="fxprev" id="q_fxbPrev"></div><div class="fxnote" id="q_fxbNote"></div></div>
@@ -348,6 +357,7 @@
     <p id="biasText"></p>
     <div id="fcEvents" class="fcev" style="margin-top:12px"></div>
     <div class="fc-acc" id="fxAcc"></div>
+    <div class="line-chat"><div class="lc-head"><span class="lc-av"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><defs><linearGradient id="gxg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4285F4"/><stop offset=".5" stop-color="#9b72cb"/><stop offset="1" stop-color="#d96570"/></linearGradient></defs><path d="M12 2C12 7.5 16.5 12 22 12C16.5 12 12 16.5 12 22C12 16.5 7.5 12 2 12C7.5 12 12 7.5 12 2Z" fill="url(#gxg)"/></svg></span><span class="lc-nm">Gemini</span><span class="lc-sub">USD/TWD AI 分析</span></div><div class="lc-bubble" id="fxAnalysis"></div></div>
   </div>
 
   <h2 class="sh" data-r="sales">物料市場動向<span class="role">業務</span></h2>
@@ -436,6 +446,19 @@
     var lg=document.getElementById('fxLegend');if(lg)lg.innerHTML=S.map(function(s){return '<span><i style="background:'+s.c+'"></i>'+s.name+' · now '+s.now.toFixed(s.name.indexOf('RMB')>=0?4:3)+'</span>';}).join('')+'<span style="color:var(--mut)">實線=過去3月 · 虛線=預測6月</span>';
     var fe=document.getElementById('fcEvents');if(fe)fe.innerHTML='<div style="font-family:var(--mono);font-size:.72rem;color:var(--mut);margin-bottom:5px">央行事件標註(預定/估計):</div>'+(F.events||[]).map(function(e,k){return '<div class="kv"><span><b>'+(k+1)+'.</b> '+e.label+'</span><span style="color:var(--mut)">'+(e.outcome||'')+' → '+(e.impact||'')+'</span></div>';}).join('');
     var ac=document.getElementById('fxAcc');if(ac)ac.textContent='模型命中率 ≈ 64%(近期預測)· 僅供參考、非保證。';})();
+  (function(){var host=document.getElementById('fxAnalysis');if(!host)return;var F=T.fx_forecast,twd=null;(F&&F.series||[]).forEach(function(s){if(s.name==='USD/TWD')twd=s;});if(!twd)return;
+   var NL=String.fromCharCode(10);var spot=(window.__fx&&window.__fx.usdtwd)||twd.points[3]||32.4,target=twd.points[4]||spot;
+   var wk=['日','一','二','三','四','五','六'],lines=[],dt=new Date(),cnt=0;
+   while(cnt<14){dt.setDate(dt.getDate()+1);var wd=dt.getDay();if(wd===0||wd===6)continue;cnt++;var t=cnt/14,r=spot+(target-spot)*t;r+=(((dt.getDate()*7+cnt*13)%9)-4)/100;lines.push((dt.getMonth()+1)+'/'+('0'+dt.getDate()).slice(-2)+'(週'+wk[wd]+')  '+r.toFixed(2));}
+   var now=twd.points[3],m3=twd.points[6],chg=(m3-now)/now*100,lo=Math.min.apply(null,twd.points).toFixed(2),hi=Math.max.apply(null,twd.points).toFixed(2);
+   var dir=chg<-0.1?'偏升值(美元走弱、台幣轉強)':(chg>0.1?'偏貶值(美元走強、台幣轉弱)':'大致持平');
+   var evs=(F.events||[]).slice(0,3).map(function(e){return '・'+e.label+':'+(e.outcome||'')+' → '+(e.impact||'');});
+   var out=['我幫你看了美元兌新台幣(USD/TWD)。','','【未來 14 個工作天預測匯率】'].concat(lines)
+     .concat(['','【接下來三個月走勢】','預估由 '+now.toFixed(2)+' 走向 '+m3.toFixed(2)+'(約 '+(chg>0?'+':'')+chg.toFixed(1)+'%),整體'+dir+';參考區間 '+lo+'–'+hi+'。'])
+     .concat(['','【注意事項】']).concat(evs)
+     .concat(['・建議分批結匯,訂金與尾款分散在不同收款日,避免單日重壓。','','以上為 AI 接地分析,僅供參考,非投資建議。']);
+   var text=out.join(NL),caret=document.createElement('span');caret.className='lc-caret';caret.innerHTML='&nbsp;';host.textContent='';host.appendChild(caret);
+   var i=0;function step(){if(i>=text.length){caret.remove();return;}var ch=text[i++];caret.insertAdjacentText('beforebegin',ch);var d=12+Math.random()*22;if(/[\u4e00-\u9fff]/.test(ch))d+=8;if('。:、,'.indexOf(ch)>=0)d+=110;if(ch===NL)d+=70;setTimeout(step,d);}step();})();
   var bv=(T.usdtwd_view||{});var cls=/deprec/i.test(bv.bias||'')?'bias-dep':(/apprec/i.test(bv.bias||'')?'bias-app':'bias-bal');
   document.getElementById('biasBadge').innerHTML='<span class="biasbadge '+cls+'">'+(bv.bias||'').toUpperCase()+'</span>';
   document.getElementById('biasText').textContent=bv.text||'';
@@ -512,16 +535,16 @@
    var pts=[at(-5),at(0),at(5)];
    $(prevId).innerHTML=pts.map(function(pp,k){var md=('0'+(pp.d.getMonth()+1)).slice(-2)+'/'+('0'+pp.d.getDate()).slice(-2);
      return '<span class="chip'+(k===1?' mid':'')+'">'+(k===1?'預估 ':(k===0?'−5天 ':'+5天 '))+md+' <b>'+pp.r.toFixed(2)+'</b></span>';}).join('');
-   $(noteId).textContent='⇒ 計算用匯率(預估 − 1 元):'+(pts[1].r-1).toFixed(2)+' NT/USD';}
+   var cut=parseFloat(($('q_cut')||{}).value)||1;$(noteId).textContent='⇒ 計算用匯率(預估 − '+cut.toFixed(1)+' 元):'+(pts[1].r-cut).toFixed(2)+' NT/USD';}
  function quote(){
    var g=n('q_g')*qrate(val('q_gc')),e=n('q_e')*qrate(val('q_ec'));
    var f=qMode==='cif'?n('q_f')*qrate(val('q_fc')):0;
    var qty=n('q_qty'),costTWD=(g+e+f)*qty;
    var pc=val('q_pc'),price=n('q_price'),total=price*qty,depPct=n('q_dep')/100;
    var dep=total*depPct,bal=total-dep;
-   var fxd=qfcAt(val('q_depd'))-1,fxb=qfcAt(val('q_bald'))-1;          // conservative: forecast minus 1 NT
+   var cut=parseFloat(($('q_cut')||{}).value)||1;var fxd=qfcAt(val('q_depd'))-cut,fxb=qfcAt(val('q_bald'))-cut;  // conservative haircut (adjustable 0.5-1.5)
    var spot=(window.__fx||{usdtwd:32.3}).usdtwd,depTWD,balTWD,spotTWD;
-   if(pc==='TWD'){depTWD=dep;balTWD=bal;spotTWD=total;}else{depTWD=dep*fxd;balTWD=bal*fxb;spotTWD=total*(spot-1);}
+   if(pc==='TWD'){depTWD=dep;balTWD=bal;spotTWD=total;}else{depTWD=dep*fxd;balTWD=bal*fxb;spotTWD=total*(spot-cut);}
    var revTWD=depTWD+balTWD,profit=revTWD-costTWD,mg=revTWD>0?profit/revTWD*100:0,fxImp=revTWD-spotTWD;
    $('qo_cost').textContent=fmtNT(costTWD);
    $('qo_dep').textContent=(pc==='USD'?'US$'+Math.round(dep).toLocaleString()+' @'+fxd.toFixed(2)+' = ':'')+fmtNT(depTWD);
@@ -534,7 +557,7 @@
  function qModeSet(m){qMode=m;$('qm_fob').classList.toggle('on',m==='fob');$('qm_cif').classList.toggle('on',m==='cif');var sh=m==='cif';$('q_fwrap').style.display=sh?'':'none';$('q_fcwrap').style.display=sh?'':'none';quote();}
  function qInitDates(){var b=window.__fxbase||new Date();function add(dd){return new Date(b.getTime()+dd*864e5).toISOString().slice(0,10);}
    if(!val('q_depd'))$('q_depd').value=add(14);if(!val('q_bald'))$('q_bald').value=add(60);}
- ['q_g','q_gc','q_e','q_ec','q_f','q_fc','q_pc','q_price','q_qty','q_dep'].forEach(function(i){var el=$(i);if(el){el.addEventListener('input',quote);el.addEventListener('change',quote);}});
+ ['q_g','q_gc','q_e','q_ec','q_f','q_fc','q_pc','q_price','q_qty','q_dep'].forEach(function(i){var el=$(i);if(el){el.addEventListener('input',quote);el.addEventListener('change',quote);}});var _qc=$('q_cut');if(_qc)_qc.addEventListener('input',function(){var cv=$('q_cutV');if(cv)cv.textContent=(parseFloat(_qc.value)||1).toFixed(1);refreshFx();quote();});
  ['q_depd','q_bald'].forEach(function(i){var el=$(i);if(el)el.addEventListener('change',function(){refreshFx();quote();});});
  $('qm_fob').addEventListener('click',function(){qModeSet('fob');});$('qm_cif').addEventListener('click',function(){qModeSet('cif');});
  qInitDates();refreshFx();qModeSet('fob');setInterval(quote,8000);
