@@ -366,7 +366,7 @@
 
  /* macOS-smooth window collapse/expand */
  .theme-light .blk-b{overflow:hidden;transition:max-height .42s cubic-bezier(.22,.61,.36,1),opacity .3s ease,padding-top .32s ease,padding-bottom .32s ease;max-height:6000px}
- .theme-light .blk[data-open="0"] .blk-b{display:block;max-height:6000px;opacity:1}
+ .theme-light .blk[data-open="1"] .blk-b{display:block;max-height:6000px;opacity:1}
  .theme-light .blk[data-open="0"] .blk-b{display:block;max-height:0;opacity:0;padding-top:0;padding-bottom:0}
  .theme-light .blk{transition:box-shadow .25s ease}
  .theme-light .blk-h .lights .lt{cursor:pointer}
@@ -396,6 +396,11 @@
  .imhead{position:relative}
  .im-x{position:absolute;right:9px;top:9px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(0,0,0,.07);color:#555;font-size:1rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
  .im-x:hover{background:rgba(0,0,0,.14)}
+ /* clean collapsed header + premium toggle + toc hover */
+ .theme-light .blk[data-open="0"] .blk-h .meta,.theme-light .blk[data-open="0"] .blk-h .secupd{display:none}
+ .theme-light .blk-h .tog{transition:transform .3s cubic-bezier(.22,.61,.36,1),color .2s;opacity:.85}
+ .theme-light .blk[data-open="1"] .blk-h .tog{color:#0a4f8a}
+ .theme-light .toc a:hover{background:rgba(0,0,0,.05);color:rgba(28,42,61,.5)}
 </style></head><body class="theme-light">
 <script>window.__TWHOL={"2026-01-01":"New Year\u2019s Day","2026-02-16":"Lunar New Year (Eve)","2026-02-17":"Lunar New Year","2026-02-18":"Lunar New Year","2026-02-19":"Lunar New Year","2026-02-27":"228 Peace Memorial (obs.)","2026-02-28":"228 Peace Memorial Day","2026-04-03":"Children\u2019s Day (obs.)","2026-04-04":"Children\u2019s Day","2026-04-05":"Tomb-Sweeping Day","2026-04-06":"Tomb-Sweeping (obs.)","2026-05-01":"Labour Day","2026-06-19":"Dragon Boat Festival","2026-09-25":"Mid-Autumn Festival","2026-09-28":"Teachers\u2019 Day","2026-10-09":"National Day (obs.)","2026-10-10":"National Day","2026-10-26":"Retrocession Day (obs.)","2026-12-25":"Constitution Day","2027-01-01":"New Year\u2019s Day"};window.__TWHOLnext=function(t){var k=Object.keys(window.__TWHOL).sort();for(var i=0;i<k.length;i++){if(k[i]>=t)return window.__TWHOL[k[i]]+" ("+k[i].slice(5).replace("-","/")+")";}return "";};</script>
 <div id="gate"><div class="gbox">
