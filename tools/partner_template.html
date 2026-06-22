@@ -258,6 +258,53 @@
  .calc-row .lab{color:var(--mut)}.calc-row .val{color:var(--gold);font-weight:600}
  .calc-row.tot{border-bottom:0;margin-top:4px}.calc-row.tot .lab{color:var(--txt);font-weight:700}.calc-row.tot .val{color:var(--cyan);font-size:1.05rem}
  .theme-light .calc-row{color:#1b1812;border-bottom-color:#d8d0bf}.theme-light .calc-row .lab{color:#5a5346}.theme-light .calc-row .val{color:#171410}.theme-light .calc-row.tot .lab{color:#171410}.theme-light .calc-row.tot .val{color:#0a4f8a}
+
+ /* ===== macOS Liquid Glass overlay skin (locked light) ===== */
+ :root{--sf:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif}
+ body.theme-light{background:#f5f5f7;font-family:var(--sf);color:#1d1d1f;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;letter-spacing:-.01em}
+ body.theme-light::after{display:none}
+ .theme-light .topbar{background:rgba(255,255,255,.55);backdrop-filter:blur(30px) saturate(180%);-webkit-backdrop-filter:blur(30px) saturate(180%);border-bottom:.5px solid rgba(0,0,0,.08)}
+ .theme-light .brand{color:#1d1d1f;font-weight:600}.theme-light .brand .sep{color:#86868b}
+ .theme-light .tb-right{color:#3c3c43}
+ .theme-light .sysgrp{color:#3c3c43}.theme-light .sysgrp b{color:#1d1d1f;font-weight:590}
+ .tokmeter{display:inline-flex;align-items:flex-end;gap:2px;height:12px}
+ .tokmeter i{width:3px;border-radius:1px;background:#ff9f0a;height:35%;transition:height .16s ease,opacity .16s ease}
+ .theme-light .ticker,.theme-light .tk-wrap{background:rgba(255,255,255,.42);backdrop-filter:blur(22px) saturate(170%);border-bottom:.5px solid rgba(0,0,0,.06);color:#1c2733}
+ .theme-light .ti .s{color:#5a5f66}.theme-light .ti .v{color:#11151b}
+ .theme-light .toc{background:rgba(255,255,255,.4);backdrop-filter:blur(20px) saturate(170%);border:.5px solid rgba(255,255,255,.6);border-radius:15px;padding:4px;box-shadow:0 1px 1px rgba(0,0,0,.04),0 8px 22px rgba(0,0,0,.1)}
+ .theme-light .toc a{font-family:var(--sf);font-weight:560;color:#2a3340;border:0;box-shadow:none;background:transparent;border-radius:11px;padding:6px 13px}
+ .theme-light .toc a:hover{background:rgba(255,255,255,.55)}
+ .theme-light .toc a.on{background:rgba(255,255,255,.95);color:#0a4f8a;box-shadow:0 .5px 2px rgba(0,0,0,.16),inset 0 1px 0 #fff}
+ .theme-light .blk{border-radius:14px;overflow:hidden;border:.5px solid rgba(255,255,255,.6);background:rgba(255,255,255,.55);backdrop-filter:blur(34px) saturate(190%);-webkit-backdrop-filter:blur(34px) saturate(190%);box-shadow:0 1px 1px rgba(0,0,0,.05),0 10px 24px rgba(0,0,0,.14),0 30px 64px rgba(0,0,0,.22),inset 0 .5px 0 rgba(255,255,255,.9)}
+ .theme-light .blk-h{background:linear-gradient(180deg,rgba(250,250,252,.85),rgba(240,242,246,.62));border-bottom:.5px solid rgba(0,0,0,.1);padding:0 16px;height:48px;gap:10px}
+ .theme-light .blk-h h2{color:#1d1d1f;font-family:var(--sf);font-weight:600;font-size:.92rem;letter-spacing:-.01em}
+ .theme-light .blk-h .k{display:none}
+ .theme-light .blk-h .meta,.theme-light .blk-h .secupd{color:#86868b;font-family:var(--sf);font-weight:500}
+ .theme-light .blk-h .ihelp{border-color:#b9bcc2;color:#86868b}
+ .theme-light .tog{background:transparent;border:0;box-shadow:none;color:#86868b;width:22px}
+ .lights{display:flex;gap:8px;align-items:center;flex:0 0 auto}
+ .lights .lt{width:12px;height:12px;border-radius:50%;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.2),inset 0 1px 1px rgba(255,255,255,.45)}
+ .lights .lt.r{background:radial-gradient(circle at 32% 26%,#ffb0a6,#fe5f57 70%,#e1443b)}
+ .lights .lt.y{background:radial-gradient(circle at 32% 26%,#ffe9a6,#febc2e 70%,#e0a015)}
+ .lights .lt.gn{background:radial-gradient(circle at 32% 26%,#a3f3b6,#28c840 70%,#16a02f)}
+ .theme-light .blk-b{background:#fcfbf6;border:0}
+ /* WSJ print serif for text content */
+ .theme-light .pb-sum,.theme-light .card,.theme-light .card p,.theme-light .card h4,.theme-light .supplyb,.theme-light .supplyb p,.theme-light .view p,.theme-light .news .ti,.theme-light .news .bl,.theme-light .head2,.theme-light .sub,.theme-light #p-fr-note,.theme-light #matl-note,.theme-light #ship-note{font-family:var(--serif),Georgia,serif;letter-spacing:-.003em}
+ .theme-light .head2{font-weight:700}
+ /* iMessage Bird BOT */
+ .imsg{margin-bottom:16px;border-radius:16px;overflow:hidden;border:.5px solid rgba(0,0,0,.1);box-shadow:0 1px 1px rgba(0,0,0,.04),0 8px 22px rgba(0,0,0,.12)}
+ .imhead{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 12px 10px;background:rgba(247,247,249,.92);backdrop-filter:blur(18px);border-bottom:.5px solid rgba(0,0,0,.08)}
+ .imhead .av{width:44px;height:44px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.18),inset 0 0 0 .5px rgba(0,0,0,.06)}
+ .imhead .nm{font-family:var(--sf);font-weight:600;font-size:.82rem;color:#1d1d1f}.imhead .st{font-family:var(--sf);font-weight:500;font-size:.66rem;color:rgba(60,60,67,.6)}
+ .thread{background:#fff;padding:15px 15px 18px;display:flex;flex-direction:column;gap:3px;min-height:90px}
+ .thread .row{display:flex;max-width:80%}.thread .row.in{align-self:flex-start}.thread .row.out{align-self:flex-end}
+ .thread .bubble{padding:9px 15px;border-radius:20px;font-family:var(--sf);font-size:1rem;line-height:1.4;letter-spacing:-.01em}
+ .thread .in .bubble{background:#e9e9eb;color:#000;border-bottom-left-radius:7px}
+ .thread .out .bubble{background:linear-gradient(180deg,#37a8ff,#0a84ff);color:#fff;border-bottom-right-radius:7px}
+ .thread .typing{display:inline-flex;gap:5px;padding:14px 16px;background:#e9e9eb;border-radius:20px;border-bottom-left-radius:7px}
+ .thread .typing i{width:8px;height:8px;border-radius:50%;background:#9a9a9e;animation:tdot 1.3s infinite}.thread .typing i:nth-child(2){animation-delay:.18s}.thread .typing i:nth-child(3){animation-delay:.36s}
+ @keyframes tdot{0%,60%,100%{opacity:.35;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+ .thread .pop{animation:ppop .26s cubic-bezier(.2,.9,.3,1.4)}@keyframes ppop{from{transform:scale(.82);opacity:0}to{transform:scale(1);opacity:1}}
 </style></head><body class="theme-light">
 <script>window.__TWHOL={"2026-01-01":"New Year\u2019s Day","2026-02-16":"Lunar New Year (Eve)","2026-02-17":"Lunar New Year","2026-02-18":"Lunar New Year","2026-02-19":"Lunar New Year","2026-02-27":"228 Peace Memorial (obs.)","2026-02-28":"228 Peace Memorial Day","2026-04-03":"Children\u2019s Day (obs.)","2026-04-04":"Children\u2019s Day","2026-04-05":"Tomb-Sweeping Day","2026-04-06":"Tomb-Sweeping (obs.)","2026-05-01":"Labour Day","2026-06-19":"Dragon Boat Festival","2026-09-25":"Mid-Autumn Festival","2026-09-28":"Teachers\u2019 Day","2026-10-09":"National Day (obs.)","2026-10-10":"National Day","2026-10-26":"Retrocession Day (obs.)","2026-12-25":"Constitution Day","2027-01-01":"New Year\u2019s Day"};window.__TWHOLnext=function(t){var k=Object.keys(window.__TWHOL).sort();for(var i=0;i<k.length;i++){if(k[i]>=t)return window.__TWHOL[k[i]]+" ("+k[i].slice(5).replace("-","/")+")";}return "";};</script>
 <div id="gate"><div class="gbox">
@@ -272,7 +319,7 @@
 </div></div>
 <div class="topbar"><div class="wrap tb">
   <div class="tb-left"><a class="brand" href="index.html"><span class="b-mk"><i style="height:8px;background:var(--green)"></i><i style="height:13px;background:var(--amber)"></i><i style="height:18px;background:var(--gold)"></i></span>Partner<span class="sep">|</span>Data Terminal Pro</a></div>
-  <div class="tb-right"><span class="sysgrp"><span class="sysled led-green"></span>HIGH-LEVEL&nbsp;API</span><span class="sysgrp"><span class="sysled led-amber"></span><b>AI&nbsp;Token</b></span><span class="tpk" id="tpk" title="Taiwan office hours: Mon-Fri 09:00-17:30 (GMT+8)"><span class="tpk-led" id="tpkLed"></span><b id="tpkSt">—</b><span class="tpk-time"><span id="tpkTime">--:--</span> Taipei Time</span></span><span class="tpk-hol" id="tpkHol"></span><a class="back" href="index.html">← birdland.com.tw</a></div>
+  <div class="tb-right"><span class="sysgrp"><span class="sysled led-green"></span>HIGH-LEVEL&nbsp;API</span><span class="sysgrp"><span class="tokmeter" title="AI token usage rate"><i></i><i></i><i></i><i></i></span><b>AI&nbsp;Token</b></span><span class="tpk" id="tpk" title="Taiwan office hours: Mon-Fri 09:00-17:30 (GMT+8)"><span class="tpk-led" id="tpkLed"></span><b id="tpkSt">—</b><span class="tpk-time"><span id="tpkTime">--:--</span> Taipei Time</span></span><span class="tpk-hol" id="tpkHol"></span><a class="back" href="index.html">← birdland.com.tw</a></div>
 </div></div>
 
 <div class="tk-wrap"><div class="wrap" style="overflow:hidden"><div id="ticker" class="ticker"></div></div></div>
@@ -365,7 +412,7 @@
   function el(t,a,x){var e=document.createElementNS('http://www.w3.org/2000/svg',t);for(var k in a)e.setAttribute(k,a[k]);if(x!=null)e.textContent=x;return e;}
   function tt(n,s){n.appendChild(el('title',{},s));return n;}
   function pad(n){return (n<10?'0':'')+n;}
-  (function(){function tk(){try{var pp=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Taipei',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());var wd,hh,mm;pp.forEach(function(x){if(x.type=='weekday')wd=x.value;if(x.type=='hour')hh=x.value;if(x.type=='minute')mm=x.value;});var dstr=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());var hol=window.__TWHOL&&window.__TWHOL[dstr];var mins=parseInt(hh,10)*60+parseInt(mm,10);var biz=['Mon','Tue','Wed','Thu','Fri'].indexOf(wd)>=0&&mins>=540&&mins<1050&&!hol;var t=document.getElementById('tpkTime');if(t)t.textContent=hh+':'+mm;var led=document.getElementById('tpkLed');if(led)led.classList.toggle('on',biz);var st=document.getElementById('tpkSt');if(st){st.textContent=biz?'OFFICE OPEN':'OFFICE CLOSED';st.style.color=biz?'#3ddc84':'#e6b980';}var he=document.getElementById('tpkHol');if(he){if(hol){he.innerHTML='<span class="hol on">\uD83C\uDDF9\uD83C\uDDFC PUBLIC HOLIDAY \u00b7 '+hol+'</span>';}else{var nx=window.__TWHOLnext&&window.__TWHOLnext(dstr);he.innerHTML=nx?'<span class="hol">Next TW holiday: '+nx+'</span>':'';}}}catch(e){}}tk();setInterval(tk,30000);})();
+  (function(){function tk(){try{var pp=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Taipei',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());var wd,hh,mm;pp.forEach(function(x){if(x.type=='weekday')wd=x.value;if(x.type=='hour')hh=x.value;if(x.type=='minute')mm=x.value;});var dstr=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());var hol=window.__TWHOL&&window.__TWHOL[dstr];var mins=parseInt(hh,10)*60+parseInt(mm,10);var biz=['Mon','Tue','Wed','Thu','Fri'].indexOf(wd)>=0&&mins>=540&&mins<1050&&!hol;var t=document.getElementById('tpkTime');if(t)t.textContent=hh+':'+mm;var led=document.getElementById('tpkLed');if(led)led.classList.toggle('on',biz);var st=document.getElementById('tpkSt');if(st){st.textContent=biz?'Birdland HQ Online':'Birdland HQ Offline';st.style.color=biz?'#1a9e4b':'#9a6a2c';}var he=document.getElementById('tpkHol');if(he){if(hol){he.innerHTML='<span class="hol on">\uD83C\uDDF9\uD83C\uDDFC PUBLIC HOLIDAY \u00b7 '+hol+'</span>';}else{var nx=window.__TWHOLnext&&window.__TWHOLnext(dstr);he.innerHTML=nx?'<span class="hol">Next TW holiday: '+nx+'</span>':'';}}}catch(e){}}tk();setInterval(tk,30000);})();
   document.getElementById('disc').innerHTML='BIRDLAND PARTNER DESK · AI-ASSISTED. Forecasts, duty and impact figures are indicative planning guides — not legal, customs or trade advice. Confirm with your customs broker or counsel before acting.';
 
   // multi-line chart
@@ -431,7 +478,7 @@ function fxItem(sym,val,chg){var cls=chg>0?'up':(chg<0?'down':'flat'),ar=chg>0?'
 var tk=(D.macro||[]).map(function(m){var d=m.dir||'flat',cls=d==='up'?'up':(d==='down'?'down':'flat'),ar=d==='up'?'▲':(d==='down'?'▼':'■');var ch=(m.chg!=null?(m.chg>0?'+':'')+m.chg.toFixed(1)+'%':'');return '<span class="ti">'+(m.live?'<span style="color:#16c47e">●</span>':'')+'<span class="s">'+m.short+'</span><span class="v">'+Number(m.value).toFixed(1)+(m.unit?(' '+m.unit):'')+'</span><span class="'+cls+'">'+ar+ch+'</span></span>';}).join('');
 var tkEl=document.getElementById('ticker');if(tkEl)tkEl.innerHTML=tk+tk;
 if(typeof fetch==='function'){var b='https://api.frankfurter.dev/v1/',prior=new Date(Date.now()-7*864e5).toISOString().slice(0,10),sy='EUR,JPY,GBP,CNY,CAD,AUD';
- Promise.all([fetch(b+'latest?base=USD&symbols='+sy).then(function(r){return r.json();}),fetch(b+prior+'?base=USD&symbols='+sy).then(function(r){return r.json();})]).then(function(res){var Lr=res[0].rates,Pr=res[1].rates;if(!Lr||!Pr)return;function pr(s2,inv){var lv=inv?1/Lr[s2]:Lr[s2],pv=inv?1/Pr[s2]:Pr[s2];return {v:lv,chg:(lv-pv)/pv*100};}var fx=[['EUR/USD',pr('EUR',true),4],['GBP/USD',pr('GBP',true),4],['USD/JPY',pr('JPY',false),2],['USD/CNY',pr('CNY',false),4],['USD/CAD',pr('CAD',false),4],['AUD/USD',pr('AUD',true),4]];var lbl='<span class="ti" style="color:#16c47e">● FX LIVE · ECB '+res[0].date+'</span>';var fxh=lbl+fx.map(function(f){return fxItem(f[0],f[1].v.toFixed(f[2]),f[1].chg);}).join('');if(tkEl)tkEl.innerHTML=fxh+tk+fxh+tk;}).catch(function(){});}
+ Promise.all([fetch(b+'latest?base=USD&symbols='+sy).then(function(r){return r.json();}),fetch(b+prior+'?base=USD&symbols='+sy).then(function(r){return r.json();})]).then(function(res){var Lr=res[0].rates,Pr=res[1].rates;if(!Lr||!Pr)return;function pr(s2,inv){var lv=inv?1/Lr[s2]:Lr[s2],pv=inv?1/Pr[s2]:Pr[s2];return {v:lv,chg:(lv-pv)/pv*100};}var fx=[['USD/EUR',pr('EUR',false),4],['USD/GBP',pr('GBP',false),4],['USD/JPY',pr('JPY',false),2],['USD/CNY',pr('CNY',false),4],['USD/CAD',pr('CAD',false),4],['USD/AUD',pr('AUD',false),4]];var lbl='<span class="ti" style="color:#16c47e">● FX LIVE · ECB '+res[0].date+'</span>';var fxh=lbl+fx.map(function(f){return fxItem(f[0],f[1].v.toFixed(f[2]),f[1].chg);}).join('');if(tkEl)tkEl.innerHTML=fxh+tk+fxh+tk;}).catch(function(){});}
 var nl=document.getElementById('newslist');if(nl)(D.news||[]).forEach(function(n){var a=document.createElement('a');a.className='item';a.href=n.url||'#';a.innerHTML='<span class="dt">'+n.date+'</span><div class="ti">'+n.title+'</div><div class="bl">'+(n.blurb||'')+'</div>';nl.appendChild(a);});
 var sel=document.getElementById('region'),content=document.getElementById('content');
 var LANG={us:'en',nl:'nl',ca:'en',de:'de',fr:'fr',it:'it',pl:'pl',uk:'en',au:'en',es:'es',eu:'en',me:'en',sa:'es',global:'en'};
@@ -442,10 +489,21 @@ if(sel&&content){order.forEach(function(o){var op=document.createElement('option
 <script>function googleTranslateElementInit(){try{new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'en,nl,de,fr,it,pl,es',autoDisplay:false},'google_translate_element');}catch(e){}}</script>
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 <script>(function(){try{var D=JSON.parse(document.getElementById('outlook-data').textContent);var BB=(D.partner&&D.partner.birdbot)||{};
+var GEM='<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><defs><linearGradient id="gemg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4285F4"/><stop offset=".5" stop-color="#9b72cb"/><stop offset="1" stop-color="#d96570"/></linearGradient></defs><path d="M12 2C12 7.5 16.5 12 22 12C16.5 12 12 16.5 12 22C12 16.5 7.5 12 2 12C7.5 12 12 7.5 12 2Z" fill="url(#gemg)"/></svg>';
+function wait(ms){return new Promise(function(r){setTimeout(r,ms);});}
 Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec)return;var body=sec.querySelector('.blk-b');if(!body)return;var b=BB[id];
-var box=document.createElement('div');box.className='birdbot';
-box.innerHTML='<div class="bb-bar">BIRD BOT<span class="bb-x">_ \u25a1 \u00d7</span></div><div class="bb-body"><p class="bb-simple">\u25b8 '+b.simple+'</p><p class="bb-exp">'+(b.expert||[]).join(' ')+'</p>'+(b.src?'<p class="bb-src">'+b.src+'</p>':'')+'</div>';
-body.insertBefore(box,body.firstChild);});}catch(e){}})();</script>
+ var simple=b.simple||'',exp=(b.expert||[]).join(' '),src=b.src||'';
+ var box=document.createElement('div');box.className='imsg';
+ box.innerHTML='<div class="imhead"><div class="av">'+GEM+'</div><div class="nm">Google AI</div><div class="st">AI desk analyst · active now</div></div><div class="thread"></div>';
+ body.insertBefore(box,body.firstChild);
+ var thread=box.querySelector('.thread'),played=false;
+ function bub(side,txt){var row=document.createElement('div');row.className='row '+side+' pop';var d=document.createElement('div');d.className='bubble';d.textContent=txt;row.appendChild(d);thread.appendChild(row);}
+ function typing(){var row=document.createElement('div');row.className='row in';row.innerHTML='<div class="typing"><i></i><i></i><i></i></div>';thread.appendChild(row);return row;}
+ function play(){thread.innerHTML='';bub('out','Explain this simply.');
+   wait(450).then(function(){var t=typing();return wait(1100).then(function(){t.remove();bub('in','▸ '+simple);});})
+   .then(function(){var t=typing();return wait(1300).then(function(){t.remove();bub('in',exp);if(src){bub('in',src);}});});}
+ if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!played){played=true;play();io.disconnect();}});},{threshold:.18});io.observe(box);}else{play();}
+});}catch(e){}})();</script>
 
 <script>(function(){var L=[].slice.call(document.querySelectorAll('.toc a'));if(!L.length||!('IntersectionObserver'in window))return;var m={};L.forEach(function(a){m[a.getAttribute('href').slice(1)]=a;});var secs=Object.keys(m).map(function(i){return document.getElementById(i);}).filter(Boolean);var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){L.forEach(function(x){x.classList.remove('on');});if(m[e.target.id])m[e.target.id].classList.add('on');}});},{rootMargin:'-25% 0px -65% 0px'});secs.forEach(function(s){ob.observe(s);});})();</script>
 <script>(function(){
@@ -527,4 +585,9 @@ body.insertBefore(box,body.firstChild);});}catch(e){}})();</script>
      out.innerHTML=h;}
    dst.addEventListener('change',calc);org.addEventListener('change',calc);val.addEventListener('input',calc);calc();})();
 })();</script>
-</body></html>
+<script>(function(){
+ [].forEach.call(document.querySelectorAll('.blk-h'),function(h){if(h.querySelector('.lights'))return;var l=document.createElement('span');l.className='lights';l.innerHTML='<span class="lt r"></span><span class="lt y"></span><span class="lt gn"></span>';h.insertBefore(l,h.firstChild);});
+ var bars=[].slice.call(document.querySelectorAll('.tokmeter i'));
+ function tick(){var m=Math.random();bars.forEach(function(b){var hh;if(m<0.13)hh=8+Math.random()*16;else if(m>0.85)hh=72+Math.random()*28;else hh=22+Math.random()*68;hh+=(Math.random()-0.5)*18;hh=Math.max(8,Math.min(100,hh));b.style.height=hh.toFixed(0)+'%';b.style.opacity=(0.55+hh/250).toFixed(2);});setTimeout(tick,70+Math.random()*430);}
+ if(bars.length)tick();
+})();</script></body></html>
