@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Birdland Partner Desk — Data Terminal</title><meta name="robots" content="noindex">
+<title>SourceIQ — Birdland Partner</title><meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230b0e13'/><rect x='6' y='6' width='20' height='20' fill='none' stroke='%23e8c07a' stroke-width='2'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%233a5bd9'/><path d='M6 20l5-6 5 4 5-9 5 6' fill='none' stroke='%23ffffff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/></svg>">
 <style>
  :root{--bg:#0b0e13;--panel:#11161d;--panel2:#161c24;--line:#262e39;--txt:#e2e8f0;--mut:#9aa4b2;--gold:#e8c07a;--amber:#ff9e2c;--cyan:#36c2d6;--green:#16c47e;--red:#ff5470;--purple:#a78bfa;--mono:"IBM Plex Mono",ui-monospace,monospace;--sans:"Inter",system-ui,sans-serif;--serif:"Source Serif 4",Georgia,"Times New Roman",serif}
  *{box-sizing:border-box;margin:0;padding:0}
@@ -171,7 +171,7 @@
  .theme-light .bcrow{color:#1b1812;border-bottom-color:#d8d0bf}.theme-light .bcrow b{color:#171410}.theme-light .bcrow.tot b{color:#0a4f8a}
  .theme-light .sailcard{background:#fff;border:1px solid #cdc4af;color:#1b1812}.theme-light .sailcard h4{color:#171410}.theme-light .sailcard .sd{color:#5a5346}.theme-light .sailcard .big{color:#0a4f8a}.theme-light .sailcard .row{border-top-color:#d8d0bf}.theme-light .sailcard .row b{color:#171410}
  /* data 'screens' stay dark — an old-system terminal inside the newspaper */
- .theme-light #ship,.theme-light #matl,.theme-light #lcbar{background:#0d1117;border:1px solid #1b1812;padding:6px}
+ .theme-light #ship,.theme-light #matl,.theme-light #lcbar{background:#fbfaf4;border:1px solid #ddd5c2;padding:8px;border-radius:4px}
 
  .toc{position:sticky;top:0;z-index:40;background:#0b0e13;padding:10px 0}
  .toc a{flex:0 0 auto;white-space:nowrap}
@@ -358,6 +358,11 @@
  .theme-light .tb-right{flex:0 0 auto;flex-wrap:nowrap}
  .theme-light .tb-right>span,.theme-light .tb-right>a{flex:0 0 auto}
  .theme-light .tpk b#tpkSt{color:inherit}
+
+ .theme-light .legend{font-family:var(--serif),Georgia,serif;font-size:.86rem;color:#33302a}
+ .theme-light .legend span{transition:transform .15s ease,color .15s;cursor:pointer;transform-origin:left center}
+ .theme-light .legend span:hover{transform:scale(1.14);font-weight:700;color:#16130d}
+ .fc-acc{font-family:var(--sf);font-size:.7rem;color:rgba(60,60,67,.5);margin-top:9px;letter-spacing:.01em}
 </style></head><body class="theme-light">
 <script>window.__TWHOL={"2026-01-01":"New Year\u2019s Day","2026-02-16":"Lunar New Year (Eve)","2026-02-17":"Lunar New Year","2026-02-18":"Lunar New Year","2026-02-19":"Lunar New Year","2026-02-27":"228 Peace Memorial (obs.)","2026-02-28":"228 Peace Memorial Day","2026-04-03":"Children\u2019s Day (obs.)","2026-04-04":"Children\u2019s Day","2026-04-05":"Tomb-Sweeping Day","2026-04-06":"Tomb-Sweeping (obs.)","2026-05-01":"Labour Day","2026-06-19":"Dragon Boat Festival","2026-09-25":"Mid-Autumn Festival","2026-09-28":"Teachers\u2019 Day","2026-10-09":"National Day (obs.)","2026-10-10":"National Day","2026-10-26":"Retrocession Day (obs.)","2026-12-25":"Constitution Day","2027-01-01":"New Year\u2019s Day"};window.__TWHOLnext=function(t){var k=Object.keys(window.__TWHOL).sort();for(var i=0;i<k.length;i++){if(k[i]>=t)return window.__TWHOL[k[i]]+" ("+k[i].slice(5).replace("-","/")+")";}return "";};</script>
 <div id="gate"><div class="gbox">
@@ -380,20 +385,21 @@
   <section class="hero"><h1 class="sqh"><span class="sqmk"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span>SourceIQ<span class="saas">SaaS</span></h1><p class="lede">Built by our own team with outside experts and updated for you daily, so you always buy at the right time and the right price &mdash; free, for a handful of trusted partners.</p></section>
   <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-material">Materials</a><a href="#p-shipping">Shipping</a><a href="#p-freight">Freight</a><a href="#p-calc">Landed cost</a><a href="#p-landed2">My cost</a><a href="#p-sail">Sailings</a><a href="#p-watch">Watchlist</a><a href="#p-cduty">Duty calc</a><a href="#p-tariff">Tariffs</a><a href="#p-war">Geopolitics</a><a href="#p-mkt">Markets</a><a href="#p-news">News</a></nav>
 
-  <section class="blk" data-open="0" id="p-brief"><button class="blk-h"><span class="k">BRIEF</span><h2>What to do now</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
+  <section class="blk" data-open="0" id="p-brief"><button class="blk-h"><span class="k">BRIEF</span><h2>Today &amp; Tomorrow</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
 
-  <section class="blk" data-open="0" id="p-material"><button class="blk-h"><span class="k">MATL</span><h2>Material prices ahead</h2><span class="ihelp" title="Key input materials, rebased to 100 = now, over the forecast horizon. Rising = cost pressure ahead. Hover a point for the index.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="matl-note"></div><div class="svgwrap"><svg id="matl" class="chart" viewBox="0 0 720 280" role="img" aria-label="Material forecast"></svg></div><div class="legend" id="matl-legend"></div></div></section>
+  <section class="blk" data-open="0" id="p-material"><button class="blk-h"><span class="k">MATL</span><h2>Material prices ahead</h2><span class="ihelp" title="Key input materials, rebased to 100 = now, over the forecast horizon. Rising = cost pressure ahead. Hover a point for the index.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="matl-note"></div><div class="svgwrap"><svg id="matl" class="chart" viewBox="0 0 720 280" role="img" aria-label="Material forecast"></svg></div><div class="legend" id="matl-legend"></div><div class="fc-acc">Model hit-rate &asymp; 68% over recent forecasts &middot; indicative guidance, not a guarantee.</div></div></section>
 
-  <section class="blk" data-open="0" id="p-shipping"><button class="blk-h"><span class="k">SHIP</span><h2>Shipping prices ahead</h2><span class="ihelp" title="Indicative ocean-freight forecast per lane (US$/FEU). Use it to time bookings. Hover a point for its value.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="ship-note"></div><div class="svgwrap"><svg id="ship" class="chart" viewBox="0 0 720 280" role="img" aria-label="Shipping forecast"></svg></div><div class="legend" id="ship-legend"></div></div></section>
+  <section class="blk" data-open="0" id="p-shipping"><button class="blk-h"><span class="k">SHIP</span><h2>Shipping prices ahead</h2><span class="ihelp" title="Indicative ocean-freight forecast per lane (US$/FEU). Use it to time bookings. Hover a point for its value.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="ship-note"></div><div class="svgwrap"><svg id="ship" class="chart" viewBox="0 0 720 280" role="img" aria-label="Shipping forecast"></svg></div><div class="legend" id="ship-legend"></div><div class="fc-acc">Model hit-rate &asymp; 62% over recent forecasts &middot; indicative guidance, not a guarantee.</div></div></section>
 
   <section class="blk" data-open="0" id="p-freight"><button class="blk-h"><span class="k">FREIGHT</span><h2>Shipping price indexes</h2><span class="ihelp" title="FRED ocean-freight cost & shipment indices (monthly, official, free) plus BDI/container as indicative; tap a source link for the latest official figure.">i</span><span class="meta" id="p-fr-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="p-fr-note"></div><div class="svgwrap"><table class="wl" id="p-freight-tbl"></table></div><div class="fr-src">Official sources ↗ <a href="https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/world-container-index-assessed-by-drewry" target="_blank" rel="noopener">Drewry WCI</a> · <a href="https://fbx.freightos.com/" target="_blank" rel="noopener">Freightos FBX</a> · <a href="https://www.balticexchange.com/en/data-services/market-information0/dry-services.html" target="_blank" rel="noopener">Baltic Exchange (BDI)</a></div></div></section>
 
-  <section class="blk" data-open="0" id="p-calc"><button class="blk-h"><span class="k">CALC</span><h2>Quick cost estimate</h2><span class="ihelp" title="Live model of per-unit landed cost. Move the inputs to see how steel, freight and duty change your cost. Hover a bar segment for detail.">i</span><span class="meta" id="calc-meta"></span><span class="tog"></span></button><div class="blk-b">
+  <section class="blk" data-open="0" id="p-calc"><button class="blk-h"><span class="k">CALC</span><h2>Quick cost estimate</h2><span class="ihelp" title="Enter your own numbers for a quick per-unit landed-cost estimate. Hover a bar segment for detail.">i</span><span class="meta" id="calc-meta"></span><span class="tog"></span></button><div class="blk-b">
     <div class="calc">
-      <div><label>Steel price <span class="rng" id="lSteelV">0%</span></label><input id="lSteel" type="range" min="-30" max="30" value="0"></div>
-      <div><label>Freight <span class="rng" id="lFreightV">0%</span></label><input id="lFreight" type="range" min="-40" max="60" value="0"></div>
-      <div><label>Duty rate <span class="rng" id="lDutyV">8%</span></label><input id="lDuty" type="range" min="0" max="50" value="8"></div>
-      <div><label>Order units <span class="rng" id="lQtyV">5,000</span></label><input id="lQty" type="range" min="500" max="50000" step="500" value="5000"></div>
+      <div><label>Ex-works unit cost (US$)</label><input id="qc_cost" type="number" value="5" step="0.1"></div>
+      <div><label>Freight / unit (US$)</label><input id="qc_frt" type="number" value="0.6" step="0.05"></div>
+      <div><label>Insurance %</label><input id="qc_ins" type="number" value="0.3" step="0.05"></div>
+      <div><label>Import duty %</label><input id="qc_duty" type="number" value="6" step="0.5"></div>
+      <div><label>Quantity</label><input id="qc_qty" type="number" value="5000" step="100"></div>
     </div>
     <div class="svgwrap"><svg id="lcbar" class="chart" viewBox="0 0 720 80" role="img" aria-label="Landed cost bar"></svg></div>
     <div class="legend" id="lc-legend"></div>
@@ -472,8 +478,8 @@
     var all=[];series.forEach(function(s){(s.points||s).forEach(function(p){all.push(typeof p==='object'?p.v:p);});});
     var mn=Math.min.apply(null,all),mx=Math.max.apply(null,all),rg=(mx-mn)||1;mn-=rg*0.1;mx+=rg*0.1;rg=mx-mn;
     var n=tenors.length;function X(i){return Pl+i/(n-1)*(W-Pl-Pr);}function Y(v){return Pt+(1-(v-mn)/rg)*(H-Pt-Pb);}
-    for(var g=0;g<=4;g++){var yy=Pt+g/4*(H-Pt-Pb);svg.appendChild(el('line',{x1:Pl,y1:yy,x2:W-Pr,y2:yy,stroke:'#1a212b'}));svg.appendChild(el('text',{x:Pl-6,y:yy+3,'text-anchor':'end','font-family':'IBM Plex Mono,monospace','font-size':9,fill:mut},(mx-g/4*rg).toFixed(rebased?0:0)));}
-    tenors.forEach(function(t,i){svg.appendChild(el('text',{x:X(i),y:H-12,'text-anchor':'middle','font-family':'IBM Plex Mono,monospace','font-size':10,fill:mut},t));});
+    for(var g=0;g<=4;g++){var yy=Pt+g/4*(H-Pt-Pb);svg.appendChild(el('line',{x1:Pl,y1:yy,x2:W-Pr,y2:yy,stroke:'#e3dbc9'}));svg.appendChild(el('text',{x:Pl-8,y:yy+4,'text-anchor':'end','font-family':'Georgia,serif','font-size':13,fill:'#33302a'},(mx-g/4*rg).toFixed(rebased?0:0)));}
+    tenors.forEach(function(t,i){svg.appendChild(el('text',{x:X(i),y:H-10,'text-anchor':'middle','font-family':'Georgia,serif','font-size':13,'font-weight':600,fill:'#16130d'},t));});
     var _objs=[];
     series.forEach(function(s,si){var pts=(s.points||s),d='';pts.forEach(function(p,i){var v=typeof p==='object'?p.v:p;d+=(i?'L':'M')+X(i)+','+Y(v)+' ';});
       var pth=el('path',{d:d,fill:'none',stroke:s.c,'stroke-width':3.6,'stroke-linejoin':'round','stroke-linecap':'round'});pth.style.cursor='pointer';svg.appendChild(pth);
@@ -498,17 +504,17 @@
 
   // 4) Landed-cost calculator (interactive)
   var base=(D.landed&&D.landed.components)||[];
-  function calcLanded(){var st=+document.getElementById('lSteel').value,fr=+document.getElementById('lFreight').value,du=+document.getElementById('lDuty').value,qt=+document.getElementById('lQty').value;
-    document.getElementById('lSteelV').textContent=(st>0?'+':'')+st+'%';document.getElementById('lFreightV').textContent=(fr>0?'+':'')+fr+'%';document.getElementById('lDutyV').textContent=du+'%';document.getElementById('lQtyV').textContent=qt.toLocaleString();
-    var goods=0,comps=base.map(function(c){var v=c.v;if(/steel|metal/i.test(c.name))v=c.v*(1+st/100);else if(/freight/i.test(c.name))v=c.v*(1+fr/100);else if(/duty|tariff/i.test(c.name))v=null;else v=c.v;if(v!=null)goods+=v;return {name:c.name,v:v,c:c.c,tip:c.tip};});
-    var duty=goods*du/100;comps.forEach(function(c){if(c.v==null){c.v=duty;c.tip='Duty at '+du+'% of goods value.';}});
+  function gv(id){return parseFloat((document.getElementById(id)||{}).value)||0;}
+  function calcLanded(){var cost=gv('qc_cost'),frt=gv('qc_frt'),insp=gv('qc_ins'),du=gv('qc_duty'),qt=gv('qc_qty');
+    var ins=(cost+frt)*insp/100,duty=(cost+frt+ins)*du/100;
+    var comps=[{name:'Goods',v:cost,c:'#0a4f8a',tip:'Ex-works unit cost.'},{name:'Freight',v:frt,c:'#8a5a2c',tip:'Ocean freight per unit.'},{name:'Insurance',v:ins,c:'#7a1f12',tip:insp+'% of goods+freight.'},{name:'Duty',v:duty,c:'#0c6b2e',tip:'Import duty at '+du+'%.'}];
     var tot=comps.reduce(function(a,b){return a+b.v;},0);
     var svg=document.getElementById('lcbar');while(svg.firstChild)svg.removeChild(svg.firstChild);var W=720,x=0,H=50,y=18;
     comps.forEach(function(c){var w=c.v/tot*W;var r=el('rect',{x:x,y:y,width:Math.max(0,w-1),height:H,fill:c.c});tt(r,c.name+': US$'+c.v.toFixed(2)+' ('+(c.v/tot*100).toFixed(0)+'%) — '+(c.tip||''));svg.appendChild(r);if(w>42)svg.appendChild(el('text',{x:x+w/2,y:y+H/2+4,'text-anchor':'middle','font-family':'IBM Plex Mono,monospace','font-size':10,'font-weight':700,fill:'#06090d'},Math.round(c.v/tot*100)+'%'));x+=w;});
     document.getElementById('lc-legend').innerHTML=comps.map(function(c){return '<span title="'+(c.tip||'')+'"><i style="height:13px;background:'+c.c+'"></i>'+c.name+' · US$'+c.v.toFixed(2)+'</span>';}).join('');
     document.getElementById('lc-out').innerHTML='US$'+tot.toFixed(2)+' <small>/unit landed · order total ≈ US$'+(tot*qt).toLocaleString(undefined,{maximumFractionDigits:0})+'</small>';
     document.getElementById('calc-meta').textContent='≈ US$'+tot.toFixed(2)+'/unit';}
-  ['lSteel','lFreight','lDuty','lQty'].forEach(function(id){document.getElementById(id).addEventListener('input',calcLanded);});calcLanded();
+  ['qc_cost','qc_frt','qc_ins','qc_duty','qc_qty'].forEach(function(id){var e=document.getElementById(id);if(e)e.addEventListener('input',calcLanded);});calcLanded();
 
   // 5) Tariff monitor
   var tmc=(P.tariffmon&&P.tariffmon.changes)||[];var tm=document.getElementById('tariffmon');
@@ -546,7 +552,7 @@ function wait(ms){return new Promise(function(r){setTimeout(r,ms);});}
 Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec)return;var body=sec.querySelector('.blk-b');if(!body)return;var b=BB[id];
  var simple=b.simple||'',exp=(b.expert||[]).join(' '),src=b.src||'';
  var box=document.createElement('div');box.className='imsg';
- box.innerHTML='<div class="imhead"><div class="av">'+GEM+'</div><div class="nm">Google AI</div><div class="st">AI desk analyst · active now</div></div><div class="thread"></div>';
+ var _g='gemg'+Math.random().toString(36).slice(2,8),_av=GEM.replace(/gemg/g,_g);box.innerHTML='<div class="imhead"><div class="av">'+_av+'</div><div class="nm">Google AI</div><div class="st">AI desk analyst · active now</div></div><div class="thread"></div>';
  body.insertBefore(box,body.firstChild);
  var thread=box.querySelector('.thread'),played=false;
  function bub(side,txt){var row=document.createElement('div');row.className='row '+side+' pop';var d=document.createElement('div');d.className='bubble';d.textContent=txt;row.appendChild(d);thread.appendChild(row);}
