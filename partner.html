@@ -401,6 +401,12 @@
  .theme-light .blk-h .tog{transition:transform .3s cubic-bezier(.22,.61,.36,1),color .2s;opacity:.85}
  .theme-light .blk[data-open="1"] .blk-h .tog{color:#0a4f8a}
  .theme-light .toc a:hover{background:rgba(0,0,0,.05);color:rgba(28,42,61,.5)}
+ /* tabbed sections: nothing shown until a tab is clicked */
+ body.theme-light main .blk{display:none}
+ .theme-light .blk.reveal{animation:blkIn .42s cubic-bezier(.22,.61,.36,1)}
+ @keyframes blkIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+ .tab-hint{font-family:var(--sf);color:#86868b;text-align:center;padding:46px 16px 30px;font-size:.98rem;line-height:1.6}
+ .tab-hint b{color:#1d1d1f;font-weight:600}
 </style></head><body class="theme-light">
 <script>window.__TWHOL={"2026-01-01":"New Year\u2019s Day","2026-02-16":"Lunar New Year (Eve)","2026-02-17":"Lunar New Year","2026-02-18":"Lunar New Year","2026-02-19":"Lunar New Year","2026-02-27":"228 Peace Memorial (obs.)","2026-02-28":"228 Peace Memorial Day","2026-04-03":"Children\u2019s Day (obs.)","2026-04-04":"Children\u2019s Day","2026-04-05":"Tomb-Sweeping Day","2026-04-06":"Tomb-Sweeping (obs.)","2026-05-01":"Labour Day","2026-06-19":"Dragon Boat Festival","2026-09-25":"Mid-Autumn Festival","2026-09-28":"Teachers\u2019 Day","2026-10-09":"National Day (obs.)","2026-10-10":"National Day","2026-10-26":"Retrocession Day (obs.)","2026-12-25":"Constitution Day","2027-01-01":"New Year\u2019s Day"};window.__TWHOLnext=function(t){var k=Object.keys(window.__TWHOL).sort();for(var i=0;i<k.length;i++){if(k[i]>=t)return window.__TWHOL[k[i]]+" ("+k[i].slice(5).replace("-","/")+")";}return "";};</script>
 <div id="gate"><div class="gbox">
@@ -422,6 +428,7 @@
 <main class="wrap">
   <section class="hero"><h1 class="sqh"><span class="sqmk"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span>SourceIQ<span class="saas">SaaS</span></h1><p class="lede">Built by our own team with outside experts and updated for you daily, so you always buy at the right time and the right price &mdash; free, for a handful of trusted partners.</p></section>
   <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-material">Materials</a><a href="#p-shipping">Shipping</a><a href="#p-freight">Freight</a><a href="#p-calc">Landed cost</a><a href="#p-landed2">My cost</a><a href="#p-sail">Sailings</a><a href="#p-watch">Watchlist</a><a href="#p-cduty">Duty calc</a><a href="#p-tariff">Tariffs</a><a href="#p-war">Geopolitics</a><a href="#p-mkt">Markets</a><a href="#p-news">News</a></nav>
+  <div id="tab-hint" class="tab-hint">&#9655; <b>Pick a section</b> from the tabs above to view it.</div>
 
   <section class="blk" data-open="1" id="p-brief"><button class="blk-h"><span class="k">BRIEF</span><h2>Today &amp; Tomorrow</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
 
@@ -3676,7 +3683,16 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
    l.querySelector('.lt.r').addEventListener('click',function(e){e.stopPropagation();sec.style.transition='opacity .3s ease, transform .3s ease';sec.style.opacity='0';sec.style.transform='scale(.98)';setTimeout(function(){sec.style.display='none';sec.style.opacity='';sec.style.transform='';},300);});
    l.querySelector('.lt.y').addEventListener('click',function(e){e.stopPropagation();sec.setAttribute('data-open','0');});
    l.querySelector('.lt.gn').addEventListener('click',function(e){e.stopPropagation();sec.setAttribute('data-open','1');});});
- [].forEach.call(document.querySelectorAll('.toc a'),function(a){a.addEventListener('click',function(){var id=(a.getAttribute('href')||'').slice(1),sec=document.getElementById(id);if(sec){sec.style.display='';sec.setAttribute('data-open','1');}});});
+ (function(){var links=[].slice.call(document.querySelectorAll('.toc a')),hint=document.getElementById('tab-hint');
+  function showSec(id){var target=document.getElementById(id);if(!target)return;
+   [].forEach.call(document.querySelectorAll('main .blk'),function(b){b.style.display=(b===target)?'block':'none';});
+   target.setAttribute('data-open','1');target.classList.remove('reveal');void target.offsetWidth;target.classList.add('reveal');
+   links.forEach(function(x){x.classList.toggle('on',x.getAttribute('href')==='#'+id);});
+   if(hint)hint.style.display='none';}
+  links.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var id=(a.getAttribute('href')||'').slice(1);showSec(id);var t=document.getElementById(id);if(t&&t.scrollIntoView)t.scrollIntoView({behavior:'smooth',block:'start'});});});
+  // also let red traffic-light return to the no-section (hint) state
+  [].forEach.call(document.querySelectorAll('.blk-h .lights .lt.r'),function(r){r.addEventListener('click',function(){setTimeout(function(){var anyOpen=[].some.call(document.querySelectorAll('main .blk'),function(b){return b.style.display!=='none';});if(!anyOpen){if(hint)hint.style.display='';links.forEach(function(x){x.classList.remove('on');});}},340);});});
+ })();
  var bars=[].slice.call(document.querySelectorAll('.tokmeter i'));
  function tick(){var m=Math.random();bars.forEach(function(b){var hh;if(m<0.13)hh=8+Math.random()*16;else if(m>0.85)hh=72+Math.random()*28;else hh=22+Math.random()*68;hh+=(Math.random()-0.5)*18;hh=Math.max(8,Math.min(100,hh));b.style.height=hh.toFixed(0)+'%';b.style.opacity=(0.55+hh/250).toFixed(2);});setTimeout(tick,70+Math.random()*430);}
  if(bars.length)tick();
