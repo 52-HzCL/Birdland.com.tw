@@ -366,7 +366,7 @@
 
  /* macOS-smooth window collapse/expand */
  .theme-light .blk-b{overflow:hidden;transition:max-height .42s cubic-bezier(.22,.61,.36,1),opacity .3s ease,padding-top .32s ease,padding-bottom .32s ease;max-height:6000px}
- .theme-light .blk[data-open="1"] .blk-b{display:block;max-height:6000px;opacity:1}
+ .theme-light .blk[data-open="0"] .blk-b{display:block;max-height:6000px;opacity:1}
  .theme-light .blk[data-open="0"] .blk-b{display:block;max-height:0;opacity:0;padding-top:0;padding-bottom:0}
  .theme-light .blk{transition:box-shadow .25s ease}
  .theme-light .blk-h .lights .lt{cursor:pointer}
@@ -383,6 +383,19 @@
   .theme-light .blk-h .meta,.theme-light .blk-h .secupd{order:5;flex:1 1 100%;width:100%;white-space:normal;font-size:.62rem;margin-left:0;padding-left:0;text-align:left;color:#86868b}
   .theme-light .tb{gap:10px}
  }
+ .ai-wrap{margin-bottom:14px}
+ .ios-search-bar{display:flex;align-items:center;gap:8px;padding:6px 0}
+ .ios-input{flex:1;display:flex;align-items:center;gap:6px;background:#E5E5EA;border-radius:20px;padding:9px 14px;font:500 15px var(--sf);color:#8E8E93;cursor:text}
+ .ios-input svg{flex:0 0 auto}
+ .ios-cursor{width:2px;height:18px;background:#007AFF;display:inline-block;animation:iosblink 1s step-end infinite}
+ @keyframes iosblink{50%{opacity:0}}
+ .ios-return-btn{width:40px;height:40px;background:#3A3A3C;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:0 0 auto}
+ .ios-return-btn:active{background:#2a2a2c}
+ .imsg.slideup{animation:slideInUp .36s cubic-bezier(.22,.61,.36,1)}
+ @keyframes slideInUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+ .imhead{position:relative}
+ .im-x{position:absolute;right:9px;top:9px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(0,0,0,.07);color:#555;font-size:1rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+ .im-x:hover{background:rgba(0,0,0,.14)}
 </style></head><body class="theme-light">
 <script>window.__TWHOL={"2026-01-01":"New Year\u2019s Day","2026-02-16":"Lunar New Year (Eve)","2026-02-17":"Lunar New Year","2026-02-18":"Lunar New Year","2026-02-19":"Lunar New Year","2026-02-27":"228 Peace Memorial (obs.)","2026-02-28":"228 Peace Memorial Day","2026-04-03":"Children\u2019s Day (obs.)","2026-04-04":"Children\u2019s Day","2026-04-05":"Tomb-Sweeping Day","2026-04-06":"Tomb-Sweeping (obs.)","2026-05-01":"Labour Day","2026-06-19":"Dragon Boat Festival","2026-09-25":"Mid-Autumn Festival","2026-09-28":"Teachers\u2019 Day","2026-10-09":"National Day (obs.)","2026-10-10":"National Day","2026-10-26":"Retrocession Day (obs.)","2026-12-25":"Constitution Day","2027-01-01":"New Year\u2019s Day"};window.__TWHOLnext=function(t){var k=Object.keys(window.__TWHOL).sort();for(var i=0;i<k.length;i++){if(k[i]>=t)return window.__TWHOL[k[i]]+" ("+k[i].slice(5).replace("-","/")+")";}return "";};</script>
 <div id="gate"><div class="gbox">
@@ -405,7 +418,7 @@
   <section class="hero"><h1 class="sqh"><span class="sqmk"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span>SourceIQ<span class="saas">SaaS</span></h1><p class="lede">Built by our own team with outside experts and updated for you daily, so you always buy at the right time and the right price &mdash; free, for a handful of trusted partners.</p></section>
   <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-material">Materials</a><a href="#p-shipping">Shipping</a><a href="#p-freight">Freight</a><a href="#p-calc">Landed cost</a><a href="#p-landed2">My cost</a><a href="#p-sail">Sailings</a><a href="#p-watch">Watchlist</a><a href="#p-cduty">Duty calc</a><a href="#p-tariff">Tariffs</a><a href="#p-war">Geopolitics</a><a href="#p-mkt">Markets</a><a href="#p-news">News</a></nav>
 
-  <section class="blk" data-open="0" id="p-brief"><button class="blk-h"><span class="k">BRIEF</span><h2>Today &amp; Tomorrow</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
+  <section class="blk" data-open="1" id="p-brief"><button class="blk-h"><span class="k">BRIEF</span><h2>Today &amp; Tomorrow</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
 
   <section class="blk" data-open="0" id="p-material"><button class="blk-h"><span class="k">MATL</span><h2>Material prices ahead</h2><span class="ihelp" title="Key input materials, rebased to 100 = now, over the forecast horizon. Rising = cost pressure ahead. Hover a point for the index.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="matl-note"></div><div class="svgwrap"><svg id="matl" class="chart" viewBox="0 0 720 280" role="img" aria-label="Material forecast"></svg></div><div class="legend" id="matl-legend"></div><div class="fc-acc">Model hit-rate &asymp; 68% over recent forecasts &middot; indicative guidance, not a guarantee.</div></div></section>
 
@@ -571,16 +584,21 @@ var GEM='<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><def
 function wait(ms){return new Promise(function(r){setTimeout(r,ms);});}
 Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec)return;var body=sec.querySelector('.blk-b');if(!body)return;var b=BB[id];
  var simple=b.simple||'',exp=(b.expert||[]).join(' '),src=b.src||'';
- var box=document.createElement('div');box.className='imsg';
- var _g='gemg'+Math.random().toString(36).slice(2,8),_av=GEM.replace(/gemg/g,_g);box.innerHTML='<div class="imhead"><div class="av">'+_av+'</div><div class="nm">Google AI</div><div class="st">AI desk analyst · active now</div></div><div class="thread"></div>';
- body.insertBefore(box,body.firstChild);
- var thread=box.querySelector('.thread'),played=false;
+ var _g='gemg'+Math.random().toString(36).slice(2,8),_av=GEM.replace(/gemg/g,_g);
+ var wrap=document.createElement('div');wrap.className='ai-wrap';
+ wrap.innerHTML='<div class="ios-search-bar"><div class="ios-input"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><span>ask Google AI</span><span class="ios-cursor"></span></div><div class="ios-return-btn" title="Ask Google AI"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2"><polyline points="9,10 4,15 9,20"/><path d="M20,4v7a4,4,0,0,1-4,4H4"/></svg></div></div><div class="imsg" style="display:none"><div class="imhead"><button class="im-x" type="button" aria-label="Close">&times;</button><div class="av">'+_av+'</div><div class="nm">Google AI</div><div class="st">AI desk analyst · active now</div></div><div class="thread"></div></div>';
+ body.insertBefore(wrap,body.firstChild);
+ var imsg=wrap.querySelector('.imsg'),thread=wrap.querySelector('.thread'),sb=wrap.querySelector('.ios-search-bar'),played=false;
  function bub(side,txt){var row=document.createElement('div');row.className='row '+side+' pop';var d=document.createElement('div');d.className='bubble';d.textContent=txt;row.appendChild(d);thread.appendChild(row);}
  function typing(){var row=document.createElement('div');row.className='row in';row.innerHTML='<div class="typing"><i></i><i></i><i></i></div>';thread.appendChild(row);return row;}
  function play(){thread.innerHTML='';bub('out','Explain this simply.');
    wait(450).then(function(){var t=typing();return wait(1100).then(function(){t.remove();bub('in','▸ '+simple);});})
    .then(function(){var t=typing();return wait(1300).then(function(){t.remove();bub('in',exp);if(src){bub('in',src);}});});}
- if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!played){played=true;play();io.disconnect();}});},{threshold:.18});io.observe(box);}else{play();}
+ function openChat(){sb.style.display='none';imsg.style.display='';imsg.classList.remove('slideup');void imsg.offsetWidth;imsg.classList.add('slideup');if(!played){played=true;play();}}
+ function closeChat(){imsg.style.display='none';sb.style.display='';}
+ sb.querySelector('.ios-input').addEventListener('click',openChat);
+ sb.querySelector('.ios-return-btn').addEventListener('click',openChat);
+ wrap.querySelector('.im-x').addEventListener('click',closeChat);
 });}catch(e){}})();</script>
 
 <script>(function(){var L=[].slice.call(document.querySelectorAll('.toc a'));if(!L.length||!('IntersectionObserver'in window))return;var m={};L.forEach(function(a){m[a.getAttribute('href').slice(1)]=a;});var secs=Object.keys(m).map(function(i){return document.getElementById(i);}).filter(Boolean);var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){L.forEach(function(x){x.classList.remove('on');});if(m[e.target.id])m[e.target.id].classList.add('on');}});},{rootMargin:'-25% 0px -65% 0px'});secs.forEach(function(s){ob.observe(s);});})();</script>
