@@ -407,6 +407,14 @@
  @keyframes blkIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
  .tab-hint{font-family:var(--sf);color:#86868b;text-align:center;padding:46px 16px 30px;font-size:.98rem;line-height:1.6}
  .tab-hint b{color:#1d1d1f;font-weight:600}
+ .theme-light .disc{font-family:var(--sf);font-size:.6rem;line-height:1.45;color:rgba(60,60,67,.4);border-top:0;text-align:right;max-width:520px;margin:18px 0 6px auto;padding:0}
+ /* macOS-style system notice for the empty/picker state */
+ .tab-hint{display:flex;justify-content:center;padding:48px 16px 34px}
+ .mac-note{display:flex;align-items:center;gap:13px;background:rgba(250,250,252,.82);backdrop-filter:blur(30px) saturate(180%);-webkit-backdrop-filter:blur(30px) saturate(180%);border:.5px solid rgba(0,0,0,.08);border-radius:16px;box-shadow:0 14px 38px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.85);padding:14px 18px;max-width:400px}
+ .mn-ic{width:40px;height:40px;border-radius:10px;background:linear-gradient(160deg,#5b8def,#3a5bd9 60%,#6e3ad9);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(58,91,217,.4);flex:0 0 auto}
+ .mn-txt{display:flex;flex-direction:column;gap:2px;font-family:var(--sf);min-width:0}
+ .mn-txt b{font-size:.92rem;font-weight:600;color:#1d1d1f;letter-spacing:-.01em}
+ .mn-txt span{font-size:.82rem;color:#3c3c43;line-height:1.4}
 </style></head><body class="theme-light">
 <script>window.__TWHOL={"2026-01-01":"New Year\u2019s Day","2026-02-16":"Lunar New Year (Eve)","2026-02-17":"Lunar New Year","2026-02-18":"Lunar New Year","2026-02-19":"Lunar New Year","2026-02-27":"228 Peace Memorial (obs.)","2026-02-28":"228 Peace Memorial Day","2026-04-03":"Children\u2019s Day (obs.)","2026-04-04":"Children\u2019s Day","2026-04-05":"Tomb-Sweeping Day","2026-04-06":"Tomb-Sweeping (obs.)","2026-05-01":"Labour Day","2026-06-19":"Dragon Boat Festival","2026-09-25":"Mid-Autumn Festival","2026-09-28":"Teachers\u2019 Day","2026-10-09":"National Day (obs.)","2026-10-10":"National Day","2026-10-26":"Retrocession Day (obs.)","2026-12-25":"Constitution Day","2027-01-01":"New Year\u2019s Day"};window.__TWHOLnext=function(t){var k=Object.keys(window.__TWHOL).sort();for(var i=0;i<k.length;i++){if(k[i]>=t)return window.__TWHOL[k[i]]+" ("+k[i].slice(5).replace("-","/")+")";}return "";};</script>
 <div id="gate"><div class="gbox">
@@ -428,7 +436,7 @@
 <main class="wrap">
   <section class="hero"><h1 class="sqh"><span class="sqmk"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span>SourceIQ<span class="saas">SaaS</span></h1><p class="lede">Built by our own team with outside experts and updated for you daily, so you always buy at the right time and the right price &mdash; free, for a handful of trusted partners.</p></section>
   <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-material">Materials</a><a href="#p-shipping">Shipping</a><a href="#p-freight">Freight</a><a href="#p-calc">Landed cost</a><a href="#p-landed2">My cost</a><a href="#p-sail">Sailings</a><a href="#p-watch">Watchlist</a><a href="#p-cduty">Duty calc</a><a href="#p-tariff">Tariffs</a><a href="#p-war">Geopolitics</a><a href="#p-mkt">Markets</a><a href="#p-news">News</a></nav>
-  <div id="tab-hint" class="tab-hint">&#9655; <b>Pick a section</b> from the tabs above to view it.</div>
+  <div id="tab-hint" class="tab-hint"><div class="mac-note"><span class="mn-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span><div class="mn-txt"><b>SourceIQ</b><span>Pick a section from the tabs above to view it.</span></div></div></div>
 
   <section class="blk" data-open="1" id="p-brief"><button class="blk-h"><span class="k">BRIEF</span><h2>Today &amp; Tomorrow</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
 
@@ -498,7 +506,7 @@
 
   <p class="disc" id="disc"></p>
 </main>
-<footer><div class="wrap">BIRDLAND IND. — Partner Desk. <a href="index.html#enquiry">Reach Nancy &amp; Jason &rarr;</a> · <a href="news.html">Open Client Desk</a></div></footer>
+
 
 <script type="application/json" id="outlook-data">__DATA__</script>
 <script>
