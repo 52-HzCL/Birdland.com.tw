@@ -363,6 +363,13 @@
  .theme-light .legend span{transition:transform .15s ease,color .15s;cursor:pointer;transform-origin:left center}
  .theme-light .legend span:hover{transform:scale(1.14);font-weight:700;color:#16130d}
  .fc-acc{font-family:var(--sf);font-size:.7rem;color:rgba(60,60,67,.5);margin-top:9px;letter-spacing:.01em}
+
+ /* macOS-smooth window collapse/expand */
+ .theme-light .blk-b{overflow:hidden;transition:max-height .42s cubic-bezier(.22,.61,.36,1),opacity .3s ease,padding-top .32s ease,padding-bottom .32s ease;max-height:6000px}
+ .theme-light .blk[data-open="1"] .blk-b{display:block;max-height:6000px;opacity:1}
+ .theme-light .blk[data-open="0"] .blk-b{display:block;max-height:0;opacity:0;padding-top:0;padding-bottom:0}
+ .theme-light .blk{transition:box-shadow .25s ease}
+ .theme-light .blk-h .lights .lt{cursor:pointer}
 </style></head><body class="theme-light">
 <script>window.__TWHOL={"2026-01-01":"New Year\u2019s Day","2026-02-16":"Lunar New Year (Eve)","2026-02-17":"Lunar New Year","2026-02-18":"Lunar New Year","2026-02-19":"Lunar New Year","2026-02-27":"228 Peace Memorial (obs.)","2026-02-28":"228 Peace Memorial Day","2026-04-03":"Children\u2019s Day (obs.)","2026-04-04":"Children\u2019s Day","2026-04-05":"Tomb-Sweeping Day","2026-04-06":"Tomb-Sweeping (obs.)","2026-05-01":"Labour Day","2026-06-19":"Dragon Boat Festival","2026-09-25":"Mid-Autumn Festival","2026-09-28":"Teachers\u2019 Day","2026-10-09":"National Day (obs.)","2026-10-10":"National Day","2026-10-26":"Retrocession Day (obs.)","2026-12-25":"Constitution Day","2027-01-01":"New Year\u2019s Day"};window.__TWHOLnext=function(t){var k=Object.keys(window.__TWHOL).sort();for(var i=0;i<k.length;i++){if(k[i]>=t)return window.__TWHOL[k[i]]+" ("+k[i].slice(5).replace("-","/")+")";}return "";};</script>
 <div id="gate"><div class="gbox">
@@ -644,7 +651,11 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
    dst.addEventListener('change',calc);org.addEventListener('change',calc);val.addEventListener('input',calc);calc();})();
 })();</script>
 <script>(function(){
- [].forEach.call(document.querySelectorAll('.blk-h'),function(h){if(h.querySelector('.lights'))return;var l=document.createElement('span');l.className='lights';l.innerHTML='<span class="lt r"></span><span class="lt y"></span><span class="lt gn"></span>';h.insertBefore(l,h.firstChild);});
+ [].forEach.call(document.querySelectorAll('.blk-h'),function(h){if(h.querySelector('.lights'))return;var l=document.createElement('span');l.className='lights';l.innerHTML='<span class="lt r" title="Close"></span><span class="lt y" title="Minimise"></span><span class="lt gn" title="Expand"></span>';h.insertBefore(l,h.firstChild);var sec=h.parentNode;
+   l.querySelector('.lt.r').addEventListener('click',function(e){e.stopPropagation();sec.style.transition='opacity .3s ease, transform .3s ease';sec.style.opacity='0';sec.style.transform='scale(.98)';setTimeout(function(){sec.style.display='none';sec.style.opacity='';sec.style.transform='';},300);});
+   l.querySelector('.lt.y').addEventListener('click',function(e){e.stopPropagation();sec.setAttribute('data-open','0');});
+   l.querySelector('.lt.gn').addEventListener('click',function(e){e.stopPropagation();sec.setAttribute('data-open','1');});});
+ [].forEach.call(document.querySelectorAll('.toc a'),function(a){a.addEventListener('click',function(){var id=(a.getAttribute('href')||'').slice(1),sec=document.getElementById(id);if(sec){sec.style.display='';sec.setAttribute('data-open','1');}});});
  var bars=[].slice.call(document.querySelectorAll('.tokmeter i'));
  function tick(){var m=Math.random();bars.forEach(function(b){var hh;if(m<0.13)hh=8+Math.random()*16;else if(m>0.85)hh=72+Math.random()*28;else hh=22+Math.random()*68;hh+=(Math.random()-0.5)*18;hh=Math.max(8,Math.min(100,hh));b.style.height=hh.toFixed(0)+'%';b.style.opacity=(0.55+hh/250).toFixed(2);});setTimeout(tick,70+Math.random()*430);}
  if(bars.length)tick();
