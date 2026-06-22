@@ -248,10 +248,16 @@
  .tpk-led{width:8px;height:8px;border-radius:50%;flex:0 0 auto;background:#9aa4b2}
  .tpk-led.on{background:radial-gradient(circle at 40% 35%,#8affc0,#15d866 62%);animation:tpkpulse 2.4s ease-out infinite}
  @keyframes tpkpulse{0%{box-shadow:0 0 0 0 rgba(21,216,102,.6)}70%{box-shadow:0 0 0 7px rgba(21,216,102,0)}100%{box-shadow:0 0 0 0 rgba(21,216,102,0)}}
- .theme-light .tpk{color:#333}
+ .theme-light .tpk{color:#e8e2d4}
 
  .tpk-hol{font-family:var(--mono);font-size:.72rem}
  .tpk-hol .hol{color:var(--mut)} .tpk-hol .hol.on{color:#ff9e2c;font-weight:700}
+ .calc select{width:100%;font-family:var(--mono);font-size:.95rem;color:var(--gold);background:var(--panel2);border:1px solid var(--line);border-radius:5px;padding:9px 11px}
+ .calc-out{margin-top:6px}
+ .calc-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.9rem}
+ .calc-row .lab{color:var(--mut)}.calc-row .val{color:var(--gold);font-weight:600}
+ .calc-row.tot{border-bottom:0;margin-top:4px}.calc-row.tot .lab{color:var(--txt);font-weight:700}.calc-row.tot .val{color:var(--cyan);font-size:1.05rem}
+ .theme-light .calc-row{color:#1b1812;border-bottom-color:#d8d0bf}.theme-light .calc-row .lab{color:#5a5346}.theme-light .calc-row .val{color:#171410}.theme-light .calc-row.tot .lab{color:#171410}.theme-light .calc-row.tot .val{color:#0a4f8a}
 </style></head><body class="theme-light">
 <script>window.__TWHOL={"2026-01-01":"New Year\u2019s Day","2026-02-16":"Lunar New Year (Eve)","2026-02-17":"Lunar New Year","2026-02-18":"Lunar New Year","2026-02-19":"Lunar New Year","2026-02-27":"228 Peace Memorial (obs.)","2026-02-28":"228 Peace Memorial Day","2026-04-03":"Children\u2019s Day (obs.)","2026-04-04":"Children\u2019s Day","2026-04-05":"Tomb-Sweeping Day","2026-04-06":"Tomb-Sweeping (obs.)","2026-05-01":"Labour Day","2026-06-19":"Dragon Boat Festival","2026-09-25":"Mid-Autumn Festival","2026-09-28":"Teachers\u2019 Day","2026-10-09":"National Day (obs.)","2026-10-10":"National Day","2026-10-26":"Retrocession Day (obs.)","2026-12-25":"Constitution Day","2027-01-01":"New Year\u2019s Day"};window.__TWHOLnext=function(t){var k=Object.keys(window.__TWHOL).sort();for(var i=0;i<k.length;i++){if(k[i]>=t)return window.__TWHOL[k[i]]+" ("+k[i].slice(5).replace("-","/")+")";}return "";};</script>
 <div id="gate"><div class="gbox">
@@ -266,14 +272,14 @@
 </div></div>
 <div class="topbar"><div class="wrap tb">
   <div class="tb-left"><a class="brand" href="index.html"><span class="b-mk"><i style="height:8px;background:var(--green)"></i><i style="height:13px;background:var(--amber)"></i><i style="height:18px;background:var(--gold)"></i></span>Partner<span class="sep">|</span>Data Terminal Pro</a></div>
-  <div class="tb-right"><span class="sysgrp"><span class="sysled led-green"></span>HIGH-LEVEL&nbsp;API</span><span class="sysgrp"><span class="sysled led-amber"></span><b>AI&nbsp;Token</b></span><span class="tpk" id="tpk" title="Taiwan office hours: Mon-Fri 09:00-17:30 (GMT+8)"><span class="tpk-led" id="tpkLed"></span><b id="tpkSt">—</b><span class="tpk-time"><span id="tpkTime">--:--</span> Taipei · GMT+8</span></span><span class="tpk-hol" id="tpkHol"></span><a class="back" href="index.html">← birdland.com.tw</a></div>
+  <div class="tb-right"><span class="sysgrp"><span class="sysled led-green"></span>HIGH-LEVEL&nbsp;API</span><span class="sysgrp"><span class="sysled led-amber"></span><b>AI&nbsp;Token</b></span><span class="tpk" id="tpk" title="Taiwan office hours: Mon-Fri 09:00-17:30 (GMT+8)"><span class="tpk-led" id="tpkLed"></span><b id="tpkSt">—</b><span class="tpk-time"><span id="tpkTime">--:--</span> Taipei Time</span></span><span class="tpk-hol" id="tpkHol"></span><a class="back" href="index.html">← birdland.com.tw</a></div>
 </div></div>
 
 <div class="tk-wrap"><div class="wrap" style="overflow:hidden"><div id="ticker" class="ticker"></div></div></div>
 <div id="google_translate_element"></div>
 <main class="wrap">
   <section class="hero"><div class="eyk">Partner Desk · privileged briefing</div><h1>Your dedicated desk.</h1><p class="lede">Deeper, forward-looking intelligence for our closest partners. Powered by advanced AI models, professional market-data APIs, and forecasting models we build with industry experts &mdash; procurement actions, lane &amp; material forecasts, a live landed-cost model, and tariff &amp; geopolitical monitors. Hover any chart for detail.</p></section>
-  <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-material">Materials</a><a href="#p-shipping">Shipping</a><a href="#p-freight">Freight</a><a href="#p-calc">Landed cost</a><a href="#p-landed2">My cost</a><a href="#p-sail">Sailings</a><a href="#p-tariff">Tariffs</a><a href="#p-war">Geopolitics</a><a href="#p-mkt">Markets</a><a href="#p-news">News</a></nav>
+  <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-material">Materials</a><a href="#p-shipping">Shipping</a><a href="#p-freight">Freight</a><a href="#p-calc">Landed cost</a><a href="#p-landed2">My cost</a><a href="#p-sail">Sailings</a><a href="#p-watch">Watchlist</a><a href="#p-cduty">Duty calc</a><a href="#p-tariff">Tariffs</a><a href="#p-war">Geopolitics</a><a href="#p-mkt">Markets</a><a href="#p-news">News</a></nav>
 
   <section class="blk" data-open="0" id="p-brief"><button class="blk-h"><span class="k">BRIEF</span><h2>Procurement Brief</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
 
@@ -326,6 +332,12 @@
     <div class="sailcards" id="s_cards"></div>
   </div></section>
 
+  <section class="blk" data-open="0" id="p-watch"><button class="blk-h"><span class="k">WATCH</span><h2>Watchlist — inputs &amp; freight</h2><span class="ihelp" title="Key cost inputs: latest level, change, and recent trend.">i</span><span class="meta" id="p-wl-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="svgwrap"><table class="wl" id="p-watchlist"></table></div></div></section>
+
+  <section class="blk" data-open="0" id="p-cduty"><button class="blk-h"><span class="k">DUTY</span><h2>Tariff &amp; duty calculator</h2><span class="ihelp" title="Estimate import duty by destination and origin. Switching origin (Taiwan vs China) shows the tariff stacking you avoid. Illustrative — confirm HS with your broker.">i</span><span class="tog"></span></button><div class="blk-b">
+    <div class="calc"><div><label for="pcDest">Destination</label><select id="pcDest"></select></div><div><label for="pcOrigin">Country of origin</label><select id="pcOrigin"><option value="TW">Taiwan</option><option value="CN">China</option></select></div><div><label for="pcVal">Shipment value (US$)</label><input id="pcVal" type="number" value="10000" min="0" step="100"></div></div>
+    <div class="calc-out" id="pcalcOut"></div><div class="sub" id="pcalc-note" style="margin-top:12px"></div></div></section>
+
     <section class="blk" data-open="0" id="p-tariff"><button class="blk-h"><span class="k">TARIFF</span><h2>Tariff Monitor</h2><span class="ihelp" title="Recent and pending tariff/duty changes by market. Hover a row for context.">i</span><span class="tog"></span></button><div class="blk-b"><div class="svgwrap"><table class="tm" id="tariffmon"></table></div></div></section>
 
   <section class="blk" data-open="0" id="p-war"><button class="blk-h"><span class="k">WAR</span><h2>War &amp; Geopolitical Impact Monitor</h2><span class="ihelp" title="How active conflicts/tensions are pressuring your supply chain (0–100). Hover a bar for what it affects.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="war-note"></div><div class="war" id="war"></div></div></section>
@@ -353,7 +365,7 @@
   function el(t,a,x){var e=document.createElementNS('http://www.w3.org/2000/svg',t);for(var k in a)e.setAttribute(k,a[k]);if(x!=null)e.textContent=x;return e;}
   function tt(n,s){n.appendChild(el('title',{},s));return n;}
   function pad(n){return (n<10?'0':'')+n;}
-  (function(){function tk(){try{var pp=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Taipei',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());var wd,hh,mm;pp.forEach(function(x){if(x.type=='weekday')wd=x.value;if(x.type=='hour')hh=x.value;if(x.type=='minute')mm=x.value;});var dstr=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());var hol=window.__TWHOL&&window.__TWHOL[dstr];var mins=parseInt(hh,10)*60+parseInt(mm,10);var biz=['Mon','Tue','Wed','Thu','Fri'].indexOf(wd)>=0&&mins>=540&&mins<1050&&!hol;var t=document.getElementById('tpkTime');if(t)t.textContent=hh+':'+mm;var led=document.getElementById('tpkLed');if(led)led.classList.toggle('on',biz);var st=document.getElementById('tpkSt');if(st){st.textContent=biz?'OFFICE OPEN':'OFFICE CLOSED';st.style.color=biz?'#16c47e':'var(--mut)';}var he=document.getElementById('tpkHol');if(he){if(hol){he.innerHTML='<span class="hol on">\uD83C\uDDF9\uD83C\uDDFC PUBLIC HOLIDAY \u00b7 '+hol+'</span>';}else{var nx=window.__TWHOLnext&&window.__TWHOLnext(dstr);he.innerHTML=nx?'<span class="hol">Next TW holiday: '+nx+'</span>':'';}}}catch(e){}}tk();setInterval(tk,30000);})();
+  (function(){function tk(){try{var pp=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Taipei',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());var wd,hh,mm;pp.forEach(function(x){if(x.type=='weekday')wd=x.value;if(x.type=='hour')hh=x.value;if(x.type=='minute')mm=x.value;});var dstr=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());var hol=window.__TWHOL&&window.__TWHOL[dstr];var mins=parseInt(hh,10)*60+parseInt(mm,10);var biz=['Mon','Tue','Wed','Thu','Fri'].indexOf(wd)>=0&&mins>=540&&mins<1050&&!hol;var t=document.getElementById('tpkTime');if(t)t.textContent=hh+':'+mm;var led=document.getElementById('tpkLed');if(led)led.classList.toggle('on',biz);var st=document.getElementById('tpkSt');if(st){st.textContent=biz?'OFFICE OPEN':'OFFICE CLOSED';st.style.color=biz?'#3ddc84':'#e6b980';}var he=document.getElementById('tpkHol');if(he){if(hol){he.innerHTML='<span class="hol on">\uD83C\uDDF9\uD83C\uDDFC PUBLIC HOLIDAY \u00b7 '+hol+'</span>';}else{var nx=window.__TWHOLnext&&window.__TWHOLnext(dstr);he.innerHTML=nx?'<span class="hol">Next TW holiday: '+nx+'</span>':'';}}}catch(e){}}tk();setInterval(tk,30000);})();
   document.getElementById('disc').innerHTML='BIRDLAND PARTNER DESK · AI-ASSISTED. Forecasts, duty and impact figures are indicative planning guides — not legal, customs or trade advice. Confirm with your customs broker or counsel before acting.';
 
   // multi-line chart
@@ -363,9 +375,13 @@
     var n=tenors.length;function X(i){return Pl+i/(n-1)*(W-Pl-Pr);}function Y(v){return Pt+(1-(v-mn)/rg)*(H-Pt-Pb);}
     for(var g=0;g<=4;g++){var yy=Pt+g/4*(H-Pt-Pb);svg.appendChild(el('line',{x1:Pl,y1:yy,x2:W-Pr,y2:yy,stroke:'#1a212b'}));svg.appendChild(el('text',{x:Pl-6,y:yy+3,'text-anchor':'end','font-family':'IBM Plex Mono,monospace','font-size':9,fill:mut},(mx-g/4*rg).toFixed(rebased?0:0)));}
     tenors.forEach(function(t,i){svg.appendChild(el('text',{x:X(i),y:H-12,'text-anchor':'middle','font-family':'IBM Plex Mono,monospace','font-size':10,fill:mut},t));});
-    series.forEach(function(s){var pts=(s.points||s),d='';pts.forEach(function(p,i){var v=typeof p==='object'?p.v:p;d+=(i?'L':'M')+X(i)+','+Y(v)+' ';});
-      svg.appendChild(el('path',{d:d,fill:'none',stroke:s.c,'stroke-width':2.2}));
-      pts.forEach(function(p,i){var v=typeof p==='object'?p.v:p;var c=el('circle',{cx:X(i),cy:Y(v),r:3.2,fill:s.c});tt(c,(s.lane||s.name)+' · '+tenors[i]+': '+v+' '+unit);svg.appendChild(c);});});}
+    var _objs=[];
+    series.forEach(function(s,si){var pts=(s.points||s),d='';pts.forEach(function(p,i){var v=typeof p==='object'?p.v:p;d+=(i?'L':'M')+X(i)+','+Y(v)+' ';});
+      var pth=el('path',{d:d,fill:'none',stroke:s.c,'stroke-width':3.6,'stroke-linejoin':'round','stroke-linecap':'round'});pth.style.cursor='pointer';svg.appendChild(pth);
+      var dots=[];pts.forEach(function(p,i){var v=typeof p==='object'?p.v:p;var c=el('circle',{cx:X(i),cy:Y(v),r:3.6,fill:s.c});tt(c,(s.lane||s.name)+' · '+tenors[i]+': '+v+' '+unit);svg.appendChild(c);dots.push(c);});
+      _objs.push({p:pth,d:dots});
+      pth.addEventListener('mouseenter',function(){svg._focus(si,true);});pth.addEventListener('mouseleave',function(){svg._focus(null,false);});});
+    svg._focus=function(si,on){_objs.forEach(function(o,j){var dim=on&&si!=null&&j!==si;o.p.setAttribute('opacity',dim?0.1:1);o.p.setAttribute('stroke-width',(on&&j===si)?4.8:3.6);o.d.forEach(function(dd){dd.setAttribute('opacity',dim?0.1:1);});});};}
 
   // 1) Procurement Brief
   var pb=P.procurement||{};document.getElementById('pb-sum').textContent=pb.summary||'';document.getElementById('pb-meta').textContent=(pb.actions||[]).length+' actions';
@@ -374,12 +390,12 @@
   // 2) Shipping forecast
   var sh=P.shipping||{};document.getElementById('ship-note').textContent=sh.note||'';
   if(sh.lanes){lineChart(document.getElementById('ship'),sh.lanes,sh.lanes[0].points.map(function(p){return p.t;}),sh.unit||'');
-    document.getElementById('ship-legend').innerHTML=sh.lanes.map(function(l){return '<span><i style="background:'+l.c+'"></i>'+l.lane+'</span>';}).join('');}
+    var _sl=document.getElementById('ship-legend');_sl.innerHTML=sh.lanes.map(function(l,i){return '<span data-i="'+i+'" style="cursor:pointer"><i style="background:'+l.c+'"></i>'+l.lane+'</span>';}).join('');var _sc=document.getElementById('ship');[].forEach.call(_sl.children,function(sp){sp.addEventListener('mouseenter',function(){_sc._focus&&_sc._focus(+sp.getAttribute('data-i'),true);});sp.addEventListener('mouseleave',function(){_sc._focus&&_sc._focus(null,false);});});}
 
   // 3) Material forecast
   var mt=P.material||{};
   if(mt.series){lineChart(document.getElementById('matl'),mt.series.map(function(s){return {c:s.c,name:s.name,points:s.points};}),mt.tenors||[],mt.unit||'',true);
-    document.getElementById('matl-note').textContent=mt.note||'';document.getElementById('matl-legend').innerHTML=mt.series.map(function(s){return '<span><i style="background:'+s.c+'"></i>'+s.name+'</span>';}).join('');}
+    document.getElementById('matl-note').textContent=mt.note||'';var _ml=document.getElementById('matl-legend');_ml.innerHTML=mt.series.map(function(s,i){return '<span data-i="'+i+'" style="cursor:pointer"><i style="background:'+s.c+'"></i>'+s.name+'</span>';}).join('');var _mc=document.getElementById('matl');[].forEach.call(_ml.children,function(sp){sp.addEventListener('mouseenter',function(){_mc._focus&&_mc._focus(+sp.getAttribute('data-i'),true);});sp.addEventListener('mouseleave',function(){_mc._focus&&_mc._focus(null,false);});});}
 
   // 4) Landed-cost calculator (interactive)
   var base=(D.landed&&D.landed.components)||[];
@@ -491,5 +507,24 @@ body.insertBefore(box,body.firstChild);});}catch(e){}})();</script>
    $('s_cards').innerHTML=cards+(peak?'<div class="cot" style="grid-column:1/-1">⚠ Month '+mo+' is peak season — tight space and a peak surcharge (PSS) apply; book 2–3 weeks ahead.</div>':'');}
  [so,sd,etd,sct].forEach(function(e){if(e)e.addEventListener('change',sail);});if(etd)etd.addEventListener('input',sail);
  sail();
+})();</script>
+<script>(function(){var D;try{D=JSON.parse(document.getElementById('outlook-data').textContent);}catch(e){return;}
+ var red="#b3261e",green="#0c6b2e",amber="#8a5a00";
+ function spark(arr,dir){if(!arr||!arr.length)return '';var w=110,h=26,mn=Math.min.apply(null,arr),mx=Math.max.apply(null,arr),rg=(mx-mn)||1;var pts=arr.map(function(v,i){return (i/(arr.length-1)*w).toFixed(1)+','+(h-2-((v-mn)/rg)*(h-4)).toFixed(1);}).join(' ');var c=dir==='up'?red:(dir==='down'?green:amber);return '<svg width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none"><polyline points="'+pts+'" fill="none" stroke="'+c+'" stroke-width="2"/></svg>';}
+ (function(){var wl=document.getElementById('p-watchlist');if(!wl)return;var h='<thead><tr><th class="l">Instrument</th><th>Last</th><th>Chg</th><th>Trend</th><th class="l">Read</th></tr></thead><tbody>';
+   (D.indices||[]).forEach(function(ix){var dir=ix.dir||'flat',cls=dir==='up'?'up':(dir==='down'?'down':'flat'),ar=dir==='up'?'▲':(dir==='down'?'▼':'■');var chg=(ix.chg!=null?(ix.chg>0?'+':'')+ix.chg.toFixed(1)+'%':'');
+     h+='<tr><td class="l">'+ix.label+'</td><td>'+Number(ix.value).toFixed(1)+' '+(ix.unit||'')+'</td><td class="'+cls+'">'+ar+chg+'</td><td>'+spark(ix.spark,dir)+'</td><td class="l '+cls+'">'+(ix.sub||'')+'</td></tr>';});
+   wl.innerHTML=h+'</tbody>';var m=document.getElementById('p-wl-meta');if(m)m.textContent=(D.indices||[]).length+' instruments';})();
+ (function(){var T=D.tariff_calc;if(!T)return;var dst=document.getElementById('pcDest'),org=document.getElementById('pcOrigin'),val=document.getElementById('pcVal'),out=document.getElementById('pcalcOut');
+   var note=document.getElementById('pcalc-note');if(note)note.textContent=T.note||'';
+   Object.keys(T.destinations).forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=k;dst.appendChild(o);});
+   function calc(){var dd=T.destinations[dst.value]||{},v=parseFloat(val.value)||0,o=org.value,lines=[],totPct=dd.mfn||0;
+     lines.push(['MFN base duty',(dd.mfn||0).toFixed(1)+'%',v*(dd.mfn||0)/100]);
+     (dd.addons||[]).forEach(function(a){var applies=(a.origin==='ANY')||(a.origin===o);if(a.optional)applies=false;
+       if(applies){totPct+=a.pct;lines.push([a.label,a.pct.toFixed(1)+'%',v*a.pct/100]);}else{lines.push([a.label+' (n/a for '+(o==='TW'?'Taiwan':'China')+')','0.0%',0]);}});
+     var h='';lines.forEach(function(l){h+='<div class="calc-row"><span class="lab">'+l[0]+'</span><span class="val">'+l[1]+' · US$'+l[2].toFixed(0)+'</span></div>';});
+     h+='<div class="calc-row tot"><span class="lab">Estimated duty ('+(o==='TW'?'Taiwan':'China')+' origin)</span><span class="val">'+totPct.toFixed(1)+'% · US$'+(v*totPct/100).toFixed(0)+'</span></div>';
+     out.innerHTML=h;}
+   dst.addEventListener('change',calc);org.addEventListener('change',calc);val.addEventListener('input',calc);calc();})();
 })();</script>
 </body></html>
