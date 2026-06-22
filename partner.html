@@ -245,7 +245,7 @@
 
  .tpk{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.77rem;color:var(--mut)}
  .tpk b{font-weight:700;letter-spacing:.03em}
- .tpk-led{width:8px;height:8px;border-radius:50%;flex:0 0 auto;background:#9aa4b2}
+ .tpk-led{width:8px;height:8px;border-radius:50%;flex:0 0 auto;background:rgba(0,0,0,.55)}
  .tpk-led.on{background:radial-gradient(circle at 40% 35%,#8affc0,#15d866 62%);animation:tpkpulse 2.4s ease-out infinite}
  @keyframes tpkpulse{0%{box-shadow:0 0 0 0 rgba(21,216,102,.6)}70%{box-shadow:0 0 0 7px rgba(21,216,102,0)}100%{box-shadow:0 0 0 0 rgba(21,216,102,0)}}
  .theme-light .tpk{color:#e8e2d4}
@@ -268,7 +268,7 @@
  .theme-light .tb-right{color:#3c3c43}
  .theme-light .sysgrp{color:#3c3c43}.theme-light .sysgrp b{color:#1d1d1f;font-weight:590}
  .tokmeter{display:inline-flex;align-items:flex-end;gap:2px;height:12px}
- .tokmeter i{width:3px;border-radius:1px;background:#ff9f0a;height:35%;transition:height .16s ease,opacity .16s ease}
+ .tokmeter i{width:3px;border-radius:1px;background:rgba(0,0,0,.6);height:35%;transition:height .16s ease,opacity .16s ease}
  .theme-light .ticker,.theme-light .tk-wrap{background:rgba(255,255,255,.42);backdrop-filter:blur(22px) saturate(170%);border-bottom:.5px solid rgba(0,0,0,.06);color:#1c2733}
  .theme-light .ti .s{color:#5a5f66}.theme-light .ti .v{color:#11151b}
  .theme-light .toc{background:rgba(255,255,255,.4);backdrop-filter:blur(20px) saturate(170%);border:.5px solid rgba(255,255,255,.6);border-radius:15px;padding:4px;box-shadow:0 1px 1px rgba(0,0,0,.04),0 8px 22px rgba(0,0,0,.1)}
@@ -326,27 +326,48 @@
  .theme-light .brand .b-mk{height:14px}.theme-light .brand .b-mk i{width:3px}
  .theme-light .tb-right{font-size:.73rem}
  .theme-light .tb-right>span,.theme-light .tb-right>a{padding:0 10px}
+
+ /* SourceIQ branding + SaaS login + macOS icons */
+ .theme-light .vip{font:800 .58rem var(--sf);letter-spacing:.08em;color:rgba(0,0,0,.62);background:rgba(0,0,0,.07);border:.5px solid rgba(0,0,0,.28);border-radius:4px;padding:1px 5px;margin-right:6px}
+ .theme-light .brand .iq{font-weight:700}
+ .theme-light .api-ic{color:rgba(0,0,0,.62);display:inline-flex}.theme-light .api-ic path{transition:opacity .35s ease}
+ .theme-light .hero{padding:34px 0 8px}
+ .theme-light .sqh{font-family:var(--sf);font-weight:800;letter-spacing:-.03em;color:#1d1d1f;font-size:clamp(2.4rem,5.2vw,3.4rem);line-height:1;display:inline-flex;align-items:flex-start}
+ .theme-light .sqh .saas{font:700 .62rem var(--sf);letter-spacing:.14em;color:rgba(60,60,67,.5);margin-left:8px;margin-top:6px;text-transform:uppercase}
+ #gate{background:radial-gradient(120% 80% at 50% -10%,#fff 0,#f4f5f8 45%,#eef0f4 100%)}
+ #gate .gbox{width:min(420px,92vw);background:rgba(255,255,255,.82);backdrop-filter:blur(30px) saturate(180%);-webkit-backdrop-filter:blur(30px) saturate(180%);border:.5px solid rgba(255,255,255,.85);border-radius:20px;box-shadow:0 18px 50px rgba(30,40,80,.18),inset 0 1px 0 rgba(255,255,255,.9);padding:38px 34px 26px;text-align:center}
+ .sq-mk{width:46px;height:46px;border-radius:12px;margin:0 auto 12px;background:linear-gradient(160deg,#5b8def,#3a5bd9 60%,#6e3ad9);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(58,91,217,.4)}
+ .sq-wm{font:800 2rem var(--sf);letter-spacing:-.03em;color:#1d1d1f;display:inline-flex;align-items:flex-start}
+ .sq-wm .saas{font:700 .58rem var(--sf);letter-spacing:.12em;color:rgba(60,60,67,.5);margin-left:5px;margin-top:2px;text-transform:uppercase}
+ .sq-tag{color:#3c3c43;font-size:.92rem;margin:8px 0 22px;font-family:var(--sf)}
+ #gate .glabel{text-align:left;color:rgba(60,60,67,.55);text-transform:uppercase;font-size:.7rem;letter-spacing:.04em;margin-bottom:7px;font-family:var(--sf)}
+ #gate .pinrow{gap:10px}
+ #gate #pin{flex:1;font-family:var(--sf);font-size:1rem;letter-spacing:.2em;color:#1d1d1f;background:rgba(255,255,255,.95);border:1px solid rgba(0,0,0,.16);border-radius:11px;box-shadow:none;padding:12px 14px;text-align:left}
+ #gate #pin:focus{border-color:#3a5bd9;box-shadow:0 0 0 3px rgba(58,91,217,.18)}
+ #gate .gbtn{font-family:var(--sf);font-weight:600;color:#fff;background:linear-gradient(180deg,#4f7bf0,#2f55d6);border:0;border-radius:11px;box-shadow:0 4px 12px rgba(47,85,214,.35);padding:0 18px}
+ #gate .gbtn .led{display:none}
+ .sq-foot{margin-top:18px;font-size:.72rem;color:rgba(60,60,67,.5);font-family:var(--sf)}
+ #gate .gerr{color:#c0362b;font-family:var(--sf)}
 </style></head><body class="theme-light">
 <script>window.__TWHOL={"2026-01-01":"New Year\u2019s Day","2026-02-16":"Lunar New Year (Eve)","2026-02-17":"Lunar New Year","2026-02-18":"Lunar New Year","2026-02-19":"Lunar New Year","2026-02-27":"228 Peace Memorial (obs.)","2026-02-28":"228 Peace Memorial Day","2026-04-03":"Children\u2019s Day (obs.)","2026-04-04":"Children\u2019s Day","2026-04-05":"Tomb-Sweeping Day","2026-04-06":"Tomb-Sweeping (obs.)","2026-05-01":"Labour Day","2026-06-19":"Dragon Boat Festival","2026-09-25":"Mid-Autumn Festival","2026-09-28":"Teachers\u2019 Day","2026-10-09":"National Day (obs.)","2026-10-10":"National Day","2026-10-26":"Retrocession Day (obs.)","2026-12-25":"Constitution Day","2027-01-01":"New Year\u2019s Day"};window.__TWHOLnext=function(t){var k=Object.keys(window.__TWHOL).sort();for(var i=0;i<k.length;i++){if(k[i]>=t)return window.__TWHOL[k[i]]+" ("+k[i].slice(5).replace("-","/")+")";}return "";};</script>
 <div id="gate"><div class="gbox">
-  <div class="gbar"><span class="gd"></span>PRIVILEGED ACCESS · PARTNERS ONLY</div>
-  <div class="glogo"><i style="height:11px;background:var(--green)"></i><i style="height:19px;background:var(--amber)"></i><i style="height:28px;background:var(--gold)"></i></div>
-  <div class="gt">Birdland<span class="ind">Ind.</span> Data Terminal</div>
-  <div><span class="gdesk">Partner Desk</span></div>
-  <div class="gsub">Deeper analysis · your dedicated desk · by invitation</div>
-  <div class="glabel gcursor">Enter Partner PIN</div>
-  <div class="pinrow"><input id="pin" type="password" inputmode="text" maxlength="10" autocomplete="off" aria-label="Partner PIN"><button class="gbtn" id="go"><span class="led" aria-hidden="true"></span>ENTER</button></div>
+  <div class="sq-mk"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></div>
+  <div class="sq-wm">SourceIQ<span class="saas">SaaS</span></div>
+  <div class="sq-tag">Source smarter — buy at the right time and price.</div>
+  <div class="glabel">Partner access token</div>
+  <div class="pinrow"><input id="pin" type="password" inputmode="text" maxlength="10" autocomplete="off" aria-label="Partner access token" placeholder="••••••••"><button class="gbtn" id="go"><span class="led" aria-hidden="true"></span>Sign in</button></div>
   <div class="gerr" id="err"></div>
+  <div class="sq-foot">Reserved for trusted partners · Birdland Ind. since 1974</div>
 </div></div>
 <div class="topbar"><div class="wrap tb">
-  <div class="tb-left"><a class="brand" href="index.html"><span class="b-mk"><i style="height:8px;background:var(--green)"></i><i style="height:13px;background:var(--amber)"></i><i style="height:18px;background:var(--gold)"></i></span>Partner<span class="sep">|</span>Data Terminal Pro</a></div>
-  <div class="tb-right"><span class="sysgrp"><span class="api-ic"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12a7 7 0 0 1 7-7"/><path d="M5 16.5a11 11 0 0 1 11-11"/><circle cx="5.5" cy="18.5" r="1.4" fill="currentColor" stroke="none"/></svg></span>High-Level&nbsp;API</span><span class="sysgrp"><span class="tokmeter" title="AI token usage rate"><i></i><i></i><i></i><i></i></span><b>AI&nbsp;Token</b></span><span class="tpk" id="tpk" title="Taiwan office hours: Mon-Fri 09:00-17:30 (GMT+8)"><span class="tpk-led" id="tpkLed"></span><b id="tpkSt">—</b><span class="tpk-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v4.7l3 1.8"/></svg><span id="tpkTime">--:--</span> Taipei Time</span></span><span class="tpk-hol" id="tpkHol"></span><a class="back" href="index.html"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>birdland.com.tw</a></div>
+  <div class="tb-left"><a class="brand" href="index.html"><span class="b-mk"><i style="height:8px;background:var(--green)"></i><i style="height:13px;background:var(--amber)"></i><i style="height:18px;background:var(--gold)"></i></span><span class="vip">VIP</span> Partner<span class="sep">|</span><span class="iq">SourceIQ</span> Pro</a></div>
+  <div class="tb-right"><span class="sysgrp"><span class="api-ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="w3" d="M3.7 10.2A11.5 11.5 0 0 1 20.3 10.2"/><path class="w2" d="M6.3 12.9A8 8 0 0 1 17.7 12.9"/><path class="w1" d="M8.9 15.6A4.3 4.3 0 0 1 15.1 15.6"/><circle cx="12" cy="18.6" r="1.5" fill="currentColor" stroke="none"/></svg></span>High-Level&nbsp;API</span><span class="sysgrp"><span class="tokmeter" title="AI token usage rate"><i></i><i></i><i></i><i></i></span><b>AI&nbsp;Token</b></span><span class="tpk" id="tpk" title="Taiwan office hours: Mon-Fri 09:00-17:30 (GMT+8)"><span class="tpk-led" id="tpkLed"></span><b id="tpkSt">—</b><span class="tpk-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v4.7l3 1.8"/></svg><span id="tpkTime">--:--</span> Taipei Time</span></span><span class="tpk-hol" id="tpkHol"></span><a class="back" href="index.html"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>birdland.com.tw</a></div>
 </div></div>
 
 <div class="tk-wrap"><div class="wrap" style="overflow:hidden"><div id="ticker" class="ticker"></div></div></div>
 <div id="google_translate_element"></div>
 <main class="wrap">
-  <section class="hero"><div class="eyk">By invitation only · for our elite partners</div><h1>Procurement Intelligence &mdash; Cloud Edition.</h1><p class="lede">Built by our own team with outside experts and updated for you daily, so you always buy at the right time and the right price &mdash; free, for a handful of trusted partners.</p></section>
+  <section class="hero"><h1 class="sqh">SourceIQ<span class="saas">SaaS · Cloud</span></h1><p class="lede">Built by our own team with outside experts and updated for you daily, so you always buy at the right time and the right price &mdash; free, for a handful of trusted partners.</p></section>
   <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-material">Materials</a><a href="#p-shipping">Shipping</a><a href="#p-freight">Freight</a><a href="#p-calc">Landed cost</a><a href="#p-landed2">My cost</a><a href="#p-sail">Sailings</a><a href="#p-watch">Watchlist</a><a href="#p-cduty">Duty calc</a><a href="#p-tariff">Tariffs</a><a href="#p-war">Geopolitics</a><a href="#p-mkt">Markets</a><a href="#p-news">News</a></nav>
 
   <section class="blk" data-open="0" id="p-brief"><button class="blk-h"><span class="k">BRIEF</span><h2>What to do now</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
@@ -611,6 +632,7 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
  var bars=[].slice.call(document.querySelectorAll('.tokmeter i'));
  function tick(){var m=Math.random();bars.forEach(function(b){var hh;if(m<0.13)hh=8+Math.random()*16;else if(m>0.85)hh=72+Math.random()*28;else hh=22+Math.random()*68;hh+=(Math.random()-0.5)*18;hh=Math.max(8,Math.min(100,hh));b.style.height=hh.toFixed(0)+'%';b.style.opacity=(0.55+hh/250).toFixed(2);});setTimeout(tick,70+Math.random()*430);}
  if(bars.length)tick();
+ (function(){var w1=document.querySelector('.api-ic .w1'),w2=document.querySelector('.api-ic .w2'),w3=document.querySelector('.api-ic .w3');if(!w1)return;function aTick(){var lvl=Math.random();w1.style.opacity=lvl>0.06?1:0.2;w2.style.opacity=lvl>0.42?1:0.2;w3.style.opacity=lvl>0.72?1:0.2;setTimeout(aTick,210+Math.random()*1290);}aTick();})();
  (function(){var t=document.querySelector('.toc');if(!t)return;var dir=0,raf;
   function loop(){if(dir){t.scrollLeft+=dir*9;raf=requestAnimationFrame(loop);}}
   t.addEventListener('mousemove',function(e){var r=t.getBoundingClientRect(),x=e.clientX-r.left,edge=72,nd=x<edge?-1:(x>r.width-edge?1:0);if(nd!==dir){dir=nd;cancelAnimationFrame(raf);if(dir)raf=requestAnimationFrame(loop);}});
