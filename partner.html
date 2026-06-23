@@ -415,6 +415,28 @@
  .mn-txt{display:flex;flex-direction:column;gap:2px;font-family:var(--sf);min-width:0}
  .mn-txt b{font-size:.92rem;font-weight:600;color:#1d1d1f;letter-spacing:-.01em}
  .mn-txt span{font-size:.82rem;color:#3c3c43;line-height:1.4}
+ /* ===== refinement pass ===== */
+ body.theme-light{letter-spacing:-.011em}
+ .theme-light .wrap{max-width:1120px}
+ .theme-light .hero{padding:40px 0 14px}
+ .theme-light .lede{color:#48505a;font-size:1.05rem;line-height:1.7;max-width:680px}
+ .theme-light .toc{gap:5px;padding:5px;background:rgba(255,255,255,.5);border:.5px solid rgba(255,255,255,.7);box-shadow:0 1px 1px rgba(0,0,0,.03),0 6px 18px rgba(20,30,60,.08)}
+ .theme-light .toc a{transition:background .18s ease,color .18s ease,transform .12s ease;padding:7px 14px}
+ .theme-light .toc a:active{transform:scale(.96)}
+ .theme-light .toc a.on{background:linear-gradient(180deg,#fff,#eef2f8);color:#0a4f8a;box-shadow:0 .5px 2px rgba(0,0,0,.14),inset 0 1px 0 #fff}
+ .theme-light .blk{border-radius:16px;border:.5px solid rgba(255,255,255,.7);box-shadow:0 1px 2px rgba(20,30,60,.05),0 14px 36px rgba(20,30,60,.12);transition:box-shadow .3s ease,transform .3s ease}
+ .theme-light .blk:hover{box-shadow:0 2px 6px rgba(20,30,60,.07),0 22px 52px rgba(20,30,60,.16)}
+ .theme-light .blk-h{padding:0 18px;height:52px;border-bottom:.5px solid rgba(0,0,0,.07)}
+ .theme-light .blk-h h2{font-weight:600;letter-spacing:-.015em;font-size:.96rem}
+ .theme-light .blk-h .lights .lt{transition:filter .15s ease}.theme-light .blk-h:hover .lights .lt{filter:saturate(1.15)}
+ .theme-light .blk-b{padding:22px 24px}
+ .theme-light .head2{letter-spacing:-.01em}
+ .theme-light .card,.theme-light .supplyb{border-radius:10px;transition:box-shadow .25s ease}
+ .theme-light .card:hover{box-shadow:0 4px 14px rgba(20,30,60,.08)}
+ .theme-light .news a.item{border-radius:10px;transition:border-color .2s,box-shadow .2s}
+ .theme-light .news a.item:hover{box-shadow:0 4px 14px rgba(20,30,60,.08)}
+ .mac-note{transition:transform .3s ease;animation:noteIn .5s cubic-bezier(.22,.61,.36,1)}
+ @keyframes noteIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
 </style></head><body class="theme-light">
 <script>window.__TWHOL={"2026-01-01":"New Year\u2019s Day","2026-02-16":"Lunar New Year (Eve)","2026-02-17":"Lunar New Year","2026-02-18":"Lunar New Year","2026-02-19":"Lunar New Year","2026-02-27":"228 Peace Memorial (obs.)","2026-02-28":"228 Peace Memorial Day","2026-04-03":"Children\u2019s Day (obs.)","2026-04-04":"Children\u2019s Day","2026-04-05":"Tomb-Sweeping Day","2026-04-06":"Tomb-Sweeping (obs.)","2026-05-01":"Labour Day","2026-06-19":"Dragon Boat Festival","2026-09-25":"Mid-Autumn Festival","2026-09-28":"Teachers\u2019 Day","2026-10-09":"National Day (obs.)","2026-10-10":"National Day","2026-10-26":"Retrocession Day (obs.)","2026-12-25":"Constitution Day","2027-01-01":"New Year\u2019s Day"};window.__TWHOLnext=function(t){var k=Object.keys(window.__TWHOL).sort();for(var i=0;i<k.length;i++){if(k[i]>=t)return window.__TWHOL[k[i]]+" ("+k[i].slice(5).replace("-","/")+")";}return "";};</script>
 <div id="gate"><div class="gbox">
@@ -710,14 +732,11 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
    l.querySelector('.lt.y').addEventListener('click',function(e){e.stopPropagation();window.__bo(sec,false);});
    l.querySelector('.lt.gn').addEventListener('click',function(e){e.stopPropagation();window.__bo(sec,true);});});
  (function(){var links=[].slice.call(document.querySelectorAll('.toc a')),hint=document.getElementById('tab-hint');
-  function showSec(id){var target=document.getElementById(id);if(!target)return;
-   [].forEach.call(document.querySelectorAll('main .blk'),function(b){b.style.display=(b===target)?'block':'none';});
-   target.setAttribute('data-open','0');var _tb=target.querySelector('.blk-b');if(_tb){_tb.style.transition='none';_tb.style.maxHeight='0px';_tb.style.opacity='0';}target.classList.remove('reveal');void target.offsetWidth;target.classList.add('reveal');
-   links.forEach(function(x){x.classList.toggle('on',x.getAttribute('href')==='#'+id);});
-   if(hint)hint.style.display='none';}
+  function refresh(){var any=false;links.forEach(function(a){var id=(a.getAttribute('href')||'').slice(1),sec=document.getElementById(id),vis=sec&&sec.style.display==='block';a.classList.toggle('on',!!vis);if(vis)any=true;});if(hint)hint.style.display=any?'none':'';}
+  function showSec(id){var t=document.getElementById(id);if(!t)return;var wasHidden=t.style.display!=='block';t.style.display='block';t.setAttribute('data-open','0');var b=t.querySelector('.blk-b');if(b){b.style.transition='none';b.style.maxHeight='0px';b.style.opacity='0';}if(wasHidden){t.classList.remove('reveal');void t.offsetWidth;t.classList.add('reveal');}refresh();}
   links.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var id=(a.getAttribute('href')||'').slice(1);showSec(id);var t=document.getElementById(id);if(t&&t.scrollIntoView)t.scrollIntoView({behavior:'smooth',block:'start'});});});
-  // also let red traffic-light return to the no-section (hint) state
-  [].forEach.call(document.querySelectorAll('.blk-h .lights .lt.r'),function(r){r.addEventListener('click',function(){setTimeout(function(){var anyOpen=[].some.call(document.querySelectorAll('main .blk'),function(b){return b.style.display!=='none';});if(!anyOpen){if(hint)hint.style.display='';links.forEach(function(x){x.classList.remove('on');});}},340);});});
+  // red traffic-light hides one card (accumulate model); refresh tab/hint state
+  [].forEach.call(document.querySelectorAll('.blk-h .lights .lt.r'),function(r){r.addEventListener('click',function(){setTimeout(refresh,360);});});
  })();
  var bars=[].slice.call(document.querySelectorAll('.tokmeter i'));
  function tick(){var m=Math.random();bars.forEach(function(b){var hh;if(m<0.13)hh=8+Math.random()*16;else if(m>0.85)hh=72+Math.random()*28;else hh=22+Math.random()*68;hh+=(Math.random()-0.5)*18;hh=Math.max(8,Math.min(100,hh));b.style.height=hh.toFixed(0)+'%';b.style.opacity=(0.55+hh/250).toFixed(2);});setTimeout(tick,70+Math.random()*430);}
