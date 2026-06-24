@@ -437,6 +437,22 @@
  .theme-light .news a.item:hover{box-shadow:0 4px 14px rgba(20,30,60,.08)}
  .mac-note{transition:transform .3s ease;animation:noteIn .5s cubic-bezier(.22,.61,.36,1)}
  @keyframes noteIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+ .dash{margin:14px 0 10px;border-radius:18px;padding:18px 20px;background:rgba(255,255,255,.62);backdrop-filter:blur(34px) saturate(190%);-webkit-backdrop-filter:blur(34px) saturate(190%);border:.5px solid rgba(255,255,255,.72);box-shadow:0 1px 2px rgba(20,30,60,.05),0 16px 40px rgba(20,30,60,.12)}
+ .dash-head{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+ .dash-k{font:700 .58rem var(--mono);letter-spacing:.14em;color:#1a1407;background:linear-gradient(180deg,#f0d18a,#e1b25a);padding:3px 8px;border-radius:4px}
+ .dash-head h2{font-family:var(--sf);font-weight:700;font-size:1.2rem;color:#1d1d1f;letter-spacing:-.02em}
+ .dash-upd{margin-left:auto;font:.66rem var(--mono);color:#86868b}
+ .dash-verdict{font-family:var(--serif),Georgia,serif;font-size:1.06rem;line-height:1.55;color:#1f2430;margin:6px 0 14px}
+ .dash-verdict b{color:#0a4f8a}
+ .dash-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}@media(max-width:720px){.dash-grid{grid-template-columns:1fr 1fr}}
+ .sig{border:.5px solid rgba(0,0,0,.09);border-radius:13px;padding:13px 14px;background:rgba(255,255,255,.72);transition:box-shadow .25s,transform .25s}
+ .sig:hover{box-shadow:0 6px 18px rgba(20,30,60,.1);transform:translateY(-1px)}
+ .sig .st{display:flex;align-items:center;gap:6px;font:600 .68rem var(--sf);color:#5a6270;text-transform:uppercase;letter-spacing:.05em}
+ .sig .dot{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
+ .sig .vv{font-family:var(--sf);font-weight:700;font-size:1.06rem;margin:5px 0 5px;letter-spacing:-.01em}
+ .sig .tk{font:.79rem var(--sf);color:#48505a;line-height:1.5}
+ .sig.up .vv{color:#b3261e}.sig.down .vv{color:#0c6b2e}.sig.warn .vv{color:#8a5a00}
+ .dash-foot{margin-top:13px;font:.74rem var(--sf);color:#86868b}
 </style></head><body class="theme-light">
 <script>window.__TWHOL={"2026-01-01":"New Year\u2019s Day","2026-02-16":"Lunar New Year (Eve)","2026-02-17":"Lunar New Year","2026-02-18":"Lunar New Year","2026-02-19":"Lunar New Year","2026-02-27":"228 Peace Memorial (obs.)","2026-02-28":"228 Peace Memorial Day","2026-04-03":"Children\u2019s Day (obs.)","2026-04-04":"Children\u2019s Day","2026-04-05":"Tomb-Sweeping Day","2026-04-06":"Tomb-Sweeping (obs.)","2026-05-01":"Labour Day","2026-06-19":"Dragon Boat Festival","2026-09-25":"Mid-Autumn Festival","2026-09-28":"Teachers\u2019 Day","2026-10-09":"National Day (obs.)","2026-10-10":"National Day","2026-10-26":"Retrocession Day (obs.)","2026-12-25":"Constitution Day","2027-01-01":"New Year\u2019s Day"};window.__TWHOLnext=function(t){var k=Object.keys(window.__TWHOL).sort();for(var i=0;i<k.length;i++){if(k[i]>=t)return window.__TWHOL[k[i]]+" ("+k[i].slice(5).replace("-","/")+")";}return "";};</script>
 <div id="gate"><div class="gbox">
@@ -457,6 +473,12 @@
 <div id="google_translate_element"></div>
 <main class="wrap">
   <section class="hero"><h1 class="sqh"><span class="sqmk"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span>SourceIQ<span class="saas">SaaS</span></h1><p class="lede">Built by our own team with outside experts and updated for you daily, so you always buy at the right time and the right price &mdash; free, for a handful of trusted partners.</p></section>
+  <section class="dash" id="dash">
+    <div class="dash-head"><span class="dash-k">DECISION</span><h2>Buy now or wait?</h2><span class="dash-upd" id="dash-upd"></span></div>
+    <div class="dash-verdict" id="dash-verdict"></div>
+    <div class="dash-grid" id="dash-grid"></div>
+    <div class="dash-foot">A live read of your FOB China/Taiwan inputs — material costs, ocean freight, compliance and supply risk. Tap a tab below for the detail.</div>
+  </section>
   <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-material">Materials</a><a href="#p-shipping">Shipping</a><a href="#p-freight">Freight</a><a href="#p-calc">Landed cost</a><a href="#p-landed2">My cost</a><a href="#p-sail">Sailings</a><a href="#p-watch">Watchlist</a><a href="#p-cduty">Duty calc</a><a href="#p-tariff">Tariffs</a><a href="#p-war">Geopolitics</a><a href="#p-mkt">Markets</a><a href="#p-news">News</a></nav>
   <div id="tab-hint" class="tab-hint"><div class="mac-note"><span class="mn-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span><div class="mn-txt"><b>SourceIQ</b><span>Pick a section from the tabs above to view it.</span></div></div></div>
 
@@ -657,7 +679,7 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
   au:['Australia',5,10,'GST','cif','GST on CIF + duty; often reduced under FTA — verify with customs.'],
   nz:['New Zealand',0,15,'GST','cif','GST on CIF + duty.'],
   jp:['Japan',0,10,'Consumption tax','cif','Consumption tax on CIF + duty.']};
- var sel=$('bc_co');if(sel){Object.keys(CO).forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=CO[k][0];sel.appendChild(o);});sel.value='de';}
+ var sel=$('bc_co');if(sel){Object.keys(CO).forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=CO[k][0];sel.appendChild(o);});var _sv=null;try{_sv=localStorage.getItem('bd_bc_co');}catch(e){}sel.value=(_sv&&CO[_sv])?_sv:'de';}
  function applyCo(){var c=CO[sel.value];$('bc_duty').value=c[1];$('bc_tax').value=c[2];$('bc_taxL').textContent=(c[3]||'Import tax')+' %';$('bc_note').textContent=c[5];}
  function landed(){if(!sel)return;var c=CO[sel.value],fob=n('bc_fob'),qty=n('bc_qty'),frt=n('bc_frt'),insR=n('bc_ins')/100,duty=n('bc_duty')/100,tax=n('bc_tax')/100;
    var ins=(fob+frt)*insR,cif=fob+frt+ins,custVal=c[4]==='fob'?fob:cif,dutyAmt=custVal*duty,taxAmt;
@@ -676,7 +698,7 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
      '<div class="bcrow"><span>Landed cost / unit</span><b>'+(qty>0?'US$'+per.toFixed(3):'—')+'</b></div>'+
      '<div class="bcrow"><span>Uplift vs FOB</span><b>+'+up.toFixed(1)+'%</b></div>';}
  ['bc_fob','bc_qty','bc_frt','bc_ins','bc_duty','bc_tax','bc_brk','bc_inl','bc_oth'].forEach(function(i){var e=$(i);if(e)e.addEventListener('input',landed);});
- if(sel){sel.addEventListener('change',function(){applyCo();landed();});applyCo();landed();}
+ if(sel){sel.addEventListener('change',function(){try{localStorage.setItem('bd_bc_co',sel.value);}catch(e){}applyCo();landed();});applyCo();landed();}
  // ===== Sailing simulator =====
  var OPORT=[['Kaohsiung',0],['Taichung',1],['Keelung',1],['Shanghai',0],['Ningbo',0],['Shenzhen',0],['Xiamen',0]];
  var DPORT={'Rotterdam':['NEU',32,3200],'Hamburg':['NEU',33,3200],'Bremerhaven':['NEU',33,3150],'Felixstowe':['NEU',31,3100],'Southampton':['NEU',32,3100],'Genoa':['MED',26,2900],'La Spezia':['MED',26,2900],'Los Angeles/Long Beach':['USWC',16,2600],'New York':['USEC',30,4200],'Sydney':['AU',18,2400],'Melbourne':['AU',19,2400],'Brisbane':['AU',18,2350],'Auckland':['NZ',22,2700],'Lyttelton':['NZ',24,2750],'Tokyo':['JP',4,700],'Osaka':['JP',5,720],'Sohar (Oman)':['ME',20,2200]};
@@ -746,4 +768,21 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
   function loop(){if(dir){t.scrollLeft+=dir*9;raf=requestAnimationFrame(loop);}}
   t.addEventListener('mousemove',function(e){var r=t.getBoundingClientRect(),x=e.clientX-r.left,edge=72,nd=x<edge?-1:(x>r.width-edge?1:0);if(nd!==dir){dir=nd;cancelAnimationFrame(raf);if(dir)raf=requestAnimationFrame(loop);}});
   t.addEventListener('mouseleave',function(){dir=0;cancelAnimationFrame(raf);});})();
-})();</script></body></html>
+})();</script><script>(function(){try{var D=JSON.parse(document.getElementById('outlook-data').textContent);var P=D.partner||{};
+ var grid=document.getElementById('dash-grid'),verdict=document.getElementById('dash-verdict'),upd=document.getElementById('dash-upd');if(!grid)return;
+ if(upd)upd.textContent='updated '+(D.updated||'');
+ var ms=(P.material&&P.material.series)||[],up=0,dn=0,maxRise=null;
+ ms.forEach(function(s){var d=s.points[6]-s.points[3];if(d>0.3){up++;if(!maxRise||d>maxRise.d)maxRise={n:s.name,d:d};}else if(d<-0.3){dn++;}});
+ var matRising=up>=dn;
+ var lanes=(P.shipping&&P.shipping.lanes)||[],fsum=0,fn=0;lanes.forEach(function(l){var pts=l.points;fsum+=(pts[pts.length-1].v-pts[3].v);fn++;});var favg=fn?fsum/fn:0,frEasing=favg<0;
+ var war=(P.war&&(P.war.items||(Array.isArray(P.war)?P.war:[])))||[],risk=war.length;
+ function card(cls,dot,title,val,tk){return '<div class="sig '+cls+'"><div class="st"><span class="dot" style="background:'+dot+'"></span>'+title+'</div><div class="vv">'+val+'</div><div class="tk">'+tk+'</div></div>';}
+ var h='';
+ h+=card(matRising?'up':'down',matRising?'#b3261e':'#0c6b2e','Material costs',matRising?'Rising &#9650;':'Easing &#9660;',matRising?('Lock prices &amp; order sooner'+(maxRise?' &mdash; '+maxRise.n.split(' ')[0]+' up most.':'.')):'Inputs softening &mdash; less need to pre-buy.');
+ h+=card(frEasing?'down':'up',frEasing?'#0c6b2e':'#b3261e','Ocean freight',frEasing?'Easing &#9660;':'Rising &#9650;',frEasing?'Good window to ship &mdash; FEU rates falling on your lanes.':'Book early &mdash; freight firming, lock space &amp; rate.');
+ h+=card('warn','#8a5a00','Compliance','Action','EUDR (wood) &middot; CBAM (steel) &middot; UFLPA &mdash; keep origin &amp; DDS docs ready.');
+ h+=card(risk>=3?'up':'warn',risk>=3?'#b3261e':'#8a5a00','Supply risk',risk?(risk+' active'):'Low','Red Sea reroute can add transit &mdash; book earlier on EU lanes.');
+ grid.innerHTML=h;
+ if(verdict)verdict.innerHTML='<b>Desk call:</b> '+(matRising?'Material costs are rising while ':'Costs are stable while ')+(frEasing?'ocean freight is easing':'freight is firming')+'. '+(matRising&&frEasing?'Place and lock orders soon to fix today&rsquo;s material price, and ship now while freight is cheap.':(matRising?'Lock material prices now; time your shipping with the freight tab.':'You have room to wait &mdash; keep watching the freight and material tabs.'));
+}catch(e){}})();</script>
+</body></html>
