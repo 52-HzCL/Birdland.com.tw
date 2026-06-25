@@ -1046,7 +1046,23 @@
   .term-menu a:hover b{color:#fff}
   .term-menu a:hover span{color:#cdd6ff}
 </style>
-<style>@media(max-width:860px){.term-nav{position:static;display:block;margin:.45rem 0}.term-nav>summary{width:100%;justify-content:center}.term-menu{position:static;box-shadow:none;min-width:0;margin-top:4px}.term-menu a{text-align:center}}</style></head>
+<style>@media(max-width:860px){.term-nav{position:static;display:block;margin:.45rem 0}.term-nav>summary{width:100%;justify-content:center}.term-menu{position:static;box-shadow:none;min-width:0;margin-top:4px}.term-menu a{text-align:center}}</style><style id="bd-refresh">
+ /* === Birdland refresh layer (additive; Mondrian accents + Apple motion/a11y) === */
+ :root{--mond-red:#D42029;--mond-blue:#0A5CB8;--mond-yellow:#F4C500;--mond-black:#14161A;--ease:cubic-bezier(.4,0,.2,1);--dur:200ms}
+ html{scroll-behavior:smooth}
+ /* Motion-led microinteractions (unified easing + restrained hover lift) */
+ .btn,.exp-btn{transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),opacity var(--dur) var(--ease)}
+ .btn:hover{transform:translateY(-2px)}
+ .btn:active,.langbtn:active{transform:translateY(0) scale(.985)}
+ .pcard,.wbcard{transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+ .pcard:hover,.wbcard:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(36,31,24,.12)}
+ .langbtn{transition:transform var(--dur) var(--ease),opacity var(--dur) var(--ease)}
+ /* Apple-style keyboard focus ring (SaaS Terminal dropdown deliberately excluded) */
+ .btn:focus-visible,.exp-btn:focus-visible,.langbtn:focus-visible,.cslider:focus-visible,#enquiry a:focus-visible,#enquiry button:focus-visible,#enquiry input:focus-visible,#enquiry select:focus-visible,#enquiry textarea:focus-visible{outline:2px solid var(--mond-blue);outline-offset:3px;border-radius:6px}
+ /* Reduced-motion: graceful degradation for every animation/transition */
+ @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
 <body>
 <!-- ===== Birdland opening intro (overlay) ===== -->
 <div id="bl-intro" role="dialog" aria-label="Birdland intro" hidden>
