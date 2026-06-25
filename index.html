@@ -1085,6 +1085,23 @@
  .pcard .exp-btn[aria-expanded="true"]::after{transform:rotate(135deg)}
  .pcard .exp-btn::after{transition:transform .5s cubic-bezier(.22,.8,.28,1)}
 </style>
+<style id="bd-narrative">
+ /* === Scroll-led reading narrative: content slides in, sits to be read, then fades out as it leaves === */
+ @media (prefers-reduced-motion: no-preference){
+  @supports (animation-timeline: view()){
+   .reveal{opacity:1;transform:none;animation:bdNarrative linear both;animation-timeline:view();animation-range:entry 2% exit 98%;will-change:opacity,transform}
+   @keyframes bdNarrative{
+     0%{opacity:0;transform:translateY(32px)}
+     17%{opacity:1;transform:none}
+     80%{opacity:1;transform:none}
+     100%{opacity:0;transform:translateY(-30px)}
+   }
+   /* secondary detail (captions / expanders) drift a touch more = gentle depth layering */
+   .reveal .ctx,.reveal figcaption,.reveal .cl,.reveal .wb-data,.reveal .rc-scale{animation:bdNarrSlow linear both;animation-timeline:view();animation-range:entry 4% exit 96%}
+   @keyframes bdNarrSlow{0%{opacity:0;transform:translateY(20px)}24%{opacity:1;transform:none}78%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-14px)}}
+  }
+ }
+</style>
 </head>
 <body>
 <!-- ===== Birdland opening intro (overlay) ===== -->
