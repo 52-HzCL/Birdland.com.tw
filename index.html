@@ -1062,6 +1062,29 @@
  /* Reduced-motion: graceful degradation for every animation/transition */
  @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
 </style>
+<style id="bd-motion">
+ /* === Motion-led layer: scroll-driven parallax + micro-interactions (additive, safe) === */
+ @media (prefers-reduced-motion: no-preference){
+  @supports (animation-timeline: scroll()){
+   /* hero decorative branch drifts as you scroll = depth/parallax */
+   .hero .branch{animation:bdBranchPar linear both;animation-timeline:scroll(root);animation-range:0 92vh;will-change:transform,opacity}
+   @keyframes bdBranchPar{to{transform:translateY(74px) rotate(4deg) scale(1.04);opacity:.28}}
+   /* hero content gently parallaxes upward as the hero leaves */
+   .hero .wrap{animation:bdHeroLift linear both;animation-timeline:view();animation-range:exit 0% exit 90%;will-change:transform,opacity}
+   @keyframes bdHeroLift{to{transform:translateY(-34px);opacity:.55}}
+   /* sticky nav lifts off the page (shadow grows) once you start scrolling */
+   header{animation:bdNavElev linear both;animation-timeline:scroll(root);animation-range:0 130px}
+   @keyframes bdNavElev{to{box-shadow:0 8px 26px rgba(36,31,24,.10)}}
+  }
+  /* view-driven scrub for figures that don't already use .reveal (cover image / branch) */
+  @supports (animation-timeline: view()){
+   .hero .branch{}
+  }
+ }
+ /* micro-interaction: the expand "+" rotates into an "×" when open */
+ .pcard .exp-btn[aria-expanded="true"]::after{transform:rotate(135deg)}
+ .pcard .exp-btn::after{transition:transform .5s cubic-bezier(.22,.8,.28,1)}
+</style>
 </head>
 <body>
 <!-- ===== Birdland opening intro (overlay) ===== -->
