@@ -31,6 +31,11 @@ jobs:
           echo "::endgroup::"
           python3 tools/build_news.py 2>&1 | tee -a /tmp/gen.log
           echo "build exit: ${PIPESTATUS[0]}"
+          echo "::group::validate outlook-data.json"
+          python3 -c "import json; d=json.load(open('outlook-data.json',encoding='utf-8')); r=d.get('regions',{}); assert len(r)==14, 'expected 14 regions, got %d'%len(r); assert {o[0] for o in d['order']}==set(r), 'order/regions key mismatch'; assert d.get('updated'), 'missing updated'; print('outlook-data.json OK:', len(r), 'regions,', d['updated'])"
+          rc=$?
+          echo "::endgroup::"
+          if [ $rc -ne 0 ]; then echo "JSON validation FAILED — aborting, will not push."; exit 1; fi
           exit 0
       - name: Commit & push if changed
         run: |

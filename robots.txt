@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /partner.html
+Disallow: /team.html
+Disallow: /news.html
+Disallow: /birdland-intro.html
