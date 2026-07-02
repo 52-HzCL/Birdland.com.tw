@@ -85,11 +85,16 @@ try:
     txt="".join(p.get("text","") for p in resp["candidates"][0]["content"]["parts"])
     cand=_extract_json(txt)
     if cand is None: raise ValueError("no JSON object with 'regions' found in reply")
-    # validate structure
-    assert set(cand.get("regions",{}).keys())==set(data["regions"].keys()), "region keys changed"
-    assert [tuple(x) for x in cand.get("order",[])]==[tuple(x) for x in data["order"]], "order changed"
-    for r in cand["regions"].values():
-        assert all(k in r for k in ("headline","regulation","supply","view"))
+    # Graceful per-region merge: never throw away a whole good reply over key drift.
+    # Keep OUR 14 regions + order; adopt the AI's version of a region only when it came
+    # back well-formed under the same key, else keep the existing region untouched.
+    _air=cand.get("regions",{}) or {}
+    _fixed={}
+    for code,oldr in data["regions"].items():
+        nr=_air.get(code)
+        _fixed[code]=nr if (isinstance(nr,dict) and all(k in nr for k in ("headline","regulation","supply","view"))) else dict(oldr)
+    cand["regions"]=_fixed
+    cand["order"]=data["order"]                            # order is ours, always
     # roll viz tails: new px,py = previous x,y; keep numbers bounded; fall back to old viz
     for code,oldr in data["regions"].items():
         ov=oldr.get("viz") or {}
