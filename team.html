@@ -181,6 +181,14 @@
  .ln-body{overflow-x:hidden}.ln-col{min-width:0}.ln-row{max-width:100%}
  .ln-bubble{word-break:break-word;overflow-wrap:anywhere}
  @media(max-width:560px){.ln-bubble{max-width:min(320px,82vw)}.ln-av{margin-top:20px}}
+ /* 今日開工帶 morning muster strip */
+ .t-open{display:flex;flex-wrap:wrap;gap:9px;margin:4px 0 12px}
+ .t-open .oc{display:inline-flex;align-items:baseline;gap:7px;padding:8px 13px;border-radius:11px;background:var(--panel,#fff);border:1px solid var(--line,#e2dcc9)}
+ .t-open .oc .k{font-size:.68rem;font-weight:700;letter-spacing:.06em;color:var(--mut,#8a857a);text-transform:uppercase}
+ .t-open .oc .v{font-family:"IBM Plex Mono",monospace;font-size:.92rem;font-weight:700;color:var(--ink,#1b1812)}
+ .t-open .oc .d{font-size:.76rem;font-weight:700}
+ .t-open .oc .d.up{color:#b3261e}.t-open .oc .d.down{color:#0c6b2e}.t-open .oc .d.flat{color:#8a5a00}
+ body.dark .t-open .oc{background:#1c1810;border-color:#3a3226}body.dark .t-open .oc .v{color:#f0e8d8}
  /* calm-motion (site-wide standard) */
  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto!important}}
 </style></head><body>
@@ -202,6 +210,7 @@
 </div></header>
 
 <main class="wrap">
+  <div class="t-open" id="t-open"></div>
   <div class="rolebar" id="rolebar"></div>
   <h2 class="sh" data-r="fin sales" style="border-top:0">匯率儀表板 · FX</h2>
   <div class="sub">即時匯率(open.er-api.com);台灣平日(週一至五 9–18)每小時自動刷新;漲跌為自上次每日基準的變動。</div>
@@ -687,5 +696,34 @@
     return '<div class="sailcard"><h4>'+O[0]+'</h4><div class="sd">'+ctName+' · '+op[0]+' → '+sd.value+'</div><div class="big">'+fmt(etdD)+' → '+fmt(eta)+'</div><div class="row"><span>航程天數</span><b>'+days+' 天</b></div><div class="row"><span>可能延誤</span><b>+'+peakDays[0]+'~'+peakDays[1]+' 天</b></div><div class="row"><span>最晚到港</span><b>'+fmt(late)+'</b></div><div class="row"><span>運費(指引)</span><b>US$'+frt.toLocaleString()+'/櫃</b></div><div class="row"><span>滿倉度</span><b><span class="full-badge '+fb[0]+'">'+fb[1]+' '+util+'%</span></b></div></div>';}).join('');
    $('ts_cards').innerHTML=cards+(peak?'<div style="grid-column:1/-1;font-size:.8rem;color:var(--mut)">⚠ '+mo+' 月為海運旺季,艙位偏緊、含旺季附加(PSS),建議提前 2–3 週訂艙。</div>':'');}
   [so,sd,etd,sct].forEach(function(e){if(e)e.addEventListener('change',sail);});etd.addEventListener('input',sail);sail();}
+})();</script>
+<script>(function(){ // boot: 今日開工帶 + 記住角色/區塊開合 (bd_t_*)
+var D;try{D=JSON.parse(document.getElementById('outlook-data').textContent);}catch(e){return;}
+var T=D.teamdesk||{};
+var LS={g:function(k){try{return localStorage.getItem('bd_t_'+k);}catch(e){return null;}},s:function(k,v){try{localStorage.setItem('bd_t_'+k,v);}catch(e){}}};
+// 1) 今日開工帶 — 一屏看完今天要知道的事
+(function(){var o=document.getElementById('t-open');if(!o)return;var h='';
+ var fx=(T.fx_today||{}).TWD,bias=(T.usdtwd_view||{}).bias||'';
+ var bd=/depreciation/i.test(bias)?['up','貶壓']:(/appreciation/i.test(bias)?['down','升壓']:['flat','中性']);
+ if(fx)h+='<span class="oc" title="USD/TWD 今日基準 · '+bias+'"><span class="k">USD/TWD</span><span class="v">'+Number(fx).toFixed(3)+'</span><span class="d '+bd[0]+'">'+bd[1]+'</span></span>';
+ var up=0,dn=0;(T.materials||[]).forEach(function(m){if(m.dir==='up')up++;else if(m.dir==='down')dn++;});
+ if(up+dn)h+='<span class="oc" title="物料趨勢(今日)"><span class="k">物料</span><span class="v">'+up+'↑ '+dn+'↓</span></span>';
+ var rn=T.regnews||{},rc=0;Object.keys(rn).forEach(function(k){rc+=(rn[k]||[]).length;});
+ if(rc)h+='<span class="oc" title="海關/港口/環保法規更新"><span class="k">法規更新</span><span class="v">'+rc+' 條</span></span>';
+ var p0=(D.procurement&&D.procurement.items&&D.procurement.items[0]);
+ if(p0)h+='<span class="oc" title="'+(p0.why||'')+'"><span class="k">採購優先</span><span class="v">'+p0.input+'</span><span class="d '+(p0.urgency==='high'?'up':'flat')+'">'+p0.action+'</span></span>';
+ if(D.updated)h+='<span class="oc"><span class="k">data</span><span class="v" style="font-weight:400;font-size:.78rem">'+D.updated+'</span></span>';
+ o.innerHTML=h;})();
+// 2) 記住角色
+(function(){var rb=document.getElementById('rolebar');if(!rb)return;
+ var idx=parseInt(LS.g('role'),10);
+ if(!isNaN(idx)&&rb.children[idx]&&idx>0)rb.children[idx].click();
+ rb.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;LS.s('role',[].indexOf.call(rb.children,b));});})();
+// 3) 記住區塊開合(依 h2 順序索引)
+(function(){var hs=[].slice.call(document.querySelectorAll('main h2.sh'));if(!hs.length)return;
+ var saved=null;try{saved=JSON.parse(LS.g('col')||'null');}catch(e){}
+ if(saved)hs.forEach(function(h,i){var want=saved[i];if(want!=null&&String(h.getAttribute('data-collapsed'))!==String(want))h.click();});
+ function snap(){var m={};hs.forEach(function(h,i){m[i]=h.getAttribute('data-collapsed');});LS.s('col',JSON.stringify(m));}
+ hs.forEach(function(h){h.addEventListener('click',function(){setTimeout(snap,0);});});})();
 })();</script>
 </body></html>
