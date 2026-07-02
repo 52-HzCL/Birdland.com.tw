@@ -181,6 +181,8 @@
  .ln-body{overflow-x:hidden}.ln-col{min-width:0}.ln-row{max-width:100%}
  .ln-bubble{word-break:break-word;overflow-wrap:anywhere}
  @media(max-width:560px){.ln-bubble{max-width:min(320px,82vw)}.ln-av{margin-top:20px}}
+ /* calm-motion (site-wide standard) */
+ @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto!important}}
 </style></head><body>
 <div id="gate"><div class="gbox">
   <div class="gk">Internal · Birdland staff only</div>

@@ -70,6 +70,14 @@
  .dh{font-family:var(--mono);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin:22px 0 10px}.dh.c{color:var(--cyan)}
  .card{background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:6px;padding:15px 18px;margin-bottom:10px}.card h4{font-size:1.04rem;font-weight:700;color:#fff;margin-bottom:5px}.card p{font-size:.98rem;color:var(--txt)}
  .supplyb{background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:6px;padding:15px 18px}.supplyb p{font-size:.98rem}
+ .r-asof{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin:-8px 0 12px}
+ .r-sum{background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--green);border-radius:6px;padding:13px 16px;margin-bottom:14px}
+ .rs-row{display:flex;gap:10px;align-items:baseline;font-size:.95rem;line-height:1.55}.rs-row+.rs-row{margin-top:6px}
+ .rs-row b{flex:0 0 auto;font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--green);white-space:nowrap}
+ .deskcta{margin:14px 0 4px;display:flex;align-items:center;gap:14px;border:1px solid var(--line);background:var(--panel);border-radius:7px;padding:11px 16px}
+ .deskcta .dc-t{font-size:.92rem;color:var(--mut)}
+ .deskcta a{margin-left:auto;font-family:var(--mono);font-size:.85rem;font-weight:700;letter-spacing:.04em;color:#0a0e13;background:var(--green);border-radius:5px;padding:8px 14px;text-decoration:none;white-space:nowrap;transition:.25s}
+ .deskcta a:hover{filter:brightness(1.12)}
  .view{background:linear-gradient(180deg,#11202b,#0e1922);border:1px solid #1c3a44;border-radius:8px;padding:20px 22px;margin-top:12px}.view .vh{font-family:var(--mono);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:8px}.view p{font-size:1.02rem;color:#eef3f8;line-height:1.7}
  .news a.item{display:block;border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin-bottom:11px;transition:.15s}.news a.item:hover{border-color:var(--cyan);background:#0e141b}.news .dt{font-family:var(--mono);font-size:.72rem;color:var(--amber)}.news .ti{font-size:1.1rem;font-weight:700;color:#fff;margin:4px 0 5px}.news .bl{font-size:.96rem;color:var(--mut);line-height:1.6}
  .disc{margin:28px 0 12px;font-family:var(--mono);font-size:.76rem;color:var(--mut);border-top:1px solid var(--line);padding-top:14px;line-height:1.6}
@@ -98,6 +106,12 @@
  .card h4{color:#000}.card p,.supplyb p{color:#222}
  .dh{color:#000080}.dh.c{color:#0a5a6e}
  .view{background:#000080;border:1px solid #000;border-radius:0;color:#fff}.view .vh{color:#7ddc9a}.view p{color:#fff}
+ .r-sum{background:#d6d6cf;border:1px solid #000;border-radius:0;box-shadow:inset 1px 1px 0 #fff,inset -1px -1px 0 #808080}
+ .rs-row{color:#000}.rs-row b{color:#006e2e}
+ .r-asof{color:#3a3a3a}
+ .deskcta{background:#c0c0c0;border:1px solid #000;border-radius:0;box-shadow:inset 1px 1px 0 #fff,inset -1px -1px 0 #808080}
+ .deskcta .dc-t{color:#222}
+ .deskcta a{background:#000080;color:#fff;border-radius:0}
  .news a.item{background:#d6d6cf;border:1px solid #000;border-radius:0;color:#000}
  .news .ti{color:#000}.news .bl{color:#333}.news .dt{color:#000080}
  .blk-b select{background:#fff;color:#000;border:1px solid #000;border-radius:0;box-shadow:inset 1px 1px 0 #808080;font-family:"IBM Plex Mono",monospace}
@@ -170,6 +184,10 @@
 
  .tpk-hol{font-family:var(--mono);font-size:.72rem}
  .tpk-hol .hol{color:var(--mut)} .tpk-hol .hol.on{color:#ff9e2c;font-weight:700}
+ /* smooth open + calm-motion (site-wide standard) */
+ @keyframes blkFade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+ .blk[data-open="1"] .blk-b{animation:blkFade .3s ease}
+ @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto!important}}
 </style></head><body>
 <script>window.__TWHOL={"2026-01-01":"New Year\u2019s Day","2026-02-16":"Lunar New Year (Eve)","2026-02-17":"Lunar New Year","2026-02-18":"Lunar New Year","2026-02-19":"Lunar New Year","2026-02-27":"228 Peace Memorial (obs.)","2026-02-28":"228 Peace Memorial Day","2026-04-03":"Children\u2019s Day (obs.)","2026-04-04":"Children\u2019s Day","2026-04-05":"Tomb-Sweeping Day","2026-04-06":"Tomb-Sweeping (obs.)","2026-05-01":"Labour Day","2026-06-19":"Dragon Boat Festival","2026-09-25":"Mid-Autumn Festival","2026-09-28":"Teachers\u2019 Day","2026-10-09":"National Day (obs.)","2026-10-10":"National Day","2026-10-26":"Retrocession Day (obs.)","2026-12-25":"Constitution Day","2027-01-01":"New Year\u2019s Day"};window.__TWHOLnext=function(t){var k=Object.keys(window.__TWHOL).sort();for(var i=0;i<k.length;i++){if(k[i]>=t)return window.__TWHOL[k[i]]+" ("+k[i].slice(5).replace("-","/")+")";}return "";};</script>
 
@@ -182,9 +200,10 @@
 
 <main class="wrap">
   <div class="latest" id="latest" onclick="location.hash='#news'"></div>
+  <div class="deskcta"><span class="dc-t">Planning next season?</span><a href="index.html#enquiry">Contact your regional desk &rarr;</a></div>
   <nav class="toc" aria-label="Sections"><a href="#c-desk">Analysis</a><a href="#c-watch">Watchlist</a><a href="#c-freight">Freight</a><a href="#c-curve">Curves</a><a href="#c-cost">Cost</a><a href="#c-duty">Duty</a><a href="#c-mkt">Markets</a><a href="#news">News</a></nav>
 
-  <section class="blk" data-open="0" id="c-desk"><button class="blk-h"><span class="k g">DESK</span><h2>Birdland Team Analysis</h2><span class="ihelp" title="Our desk's plain-English synthesis of the picture, AI-assisted and refreshed regularly.">i</span><span class="meta" id="ta-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="ta" id="teamAnalysis"></div></div></section>
+  <section class="blk" data-open="1" id="c-desk"><button class="blk-h"><span class="k g">DESK</span><h2>Birdland Team Analysis</h2><span class="ihelp" title="Our desk's plain-English synthesis of the picture, AI-assisted and refreshed regularly.">i</span><span class="meta" id="ta-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="ta" id="teamAnalysis"></div></div></section>
 
   <section class="blk" data-open="0" id="c-watch"><button class="blk-h"><span class="k">WATCH</span><h2>Watchlist — inputs &amp; freight</h2><span class="ihelp" title="Your key cost inputs: latest level, change since last refresh, and recent trend. Hover any row for what it means for your landed cost.">i</span><span class="meta" id="wl-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="svgwrap"><table class="wl" id="watchlist"></table></div></div></section>
   <section class="blk" data-open="0" id="c-freight"><button class="blk-h"><span class="k c">FREIGHT</span><h2>Freight indices — bulk &amp; container</h2><span class="ihelp" title="BDI tracks bulk/dry shipping demand; container lanes are spot US$ per 40ft (FEU). Both shape your delivered cost — you ship both ways. Hover a row for detail.">i</span><span class="meta" id="fr-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="fr-note"></div><div class="svgwrap"><table class="wl" id="freight"></table></div><div class="fr-src">Official sources ↗ <a href="https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/world-container-index-assessed-by-drewry" target="_blank" rel="noopener">Drewry WCI</a> · <a href="https://fbx.freightos.com/" target="_blank" rel="noopener">Freightos FBX</a> · <a href="https://www.balticexchange.com/en/data-services/market-information0/dry-services.html" target="_blank" rel="noopener">Baltic Exchange (BDI)</a></div></div></section>
@@ -253,7 +272,9 @@
   loadLiveFX();
 
   var nw=(D.news||[]);
-  if(nw.length)document.getElementById('latest').innerHTML='<span class="newpill">NEW</span><span class="lt">'+nw[0].title+'</span><span class="dt">'+nw[0].date+'</span><span class="arr">READ →</span>';
+  if(nw.length){var _lf=true;try{var _ld=Date.parse(nw[0].date);if(!isNaN(_ld)&&(Date.now()-_ld)>21*864e5)_lf=false;}catch(e){}
+    if(_lf)document.getElementById('latest').innerHTML='<span class="newpill">NEW</span><span class="lt">'+nw[0].title+'</span><span class="dt">'+nw[0].date+'</span><span class="arr">READ →</span>';
+    else document.getElementById('latest').style.display='none';}
   document.getElementById('teamAnalysis').innerHTML='<span class="lead">◆ Birdland desk · '+D.updated+'</span>'+(D.teamAnalysis||'');
   document.getElementById('ta-meta').textContent='updated '+D.updated;
   var nl=document.getElementById('newslist');nw.forEach(function(n){var a=document.createElement('a');a.className='item';a.href=n.url||'#';a.innerHTML='<span class="dt">'+n.date+'</span><div class="ti">'+n.title+'</div><div class="bl">'+(n.blurb||'')+'</div>';nl.appendChild(a);});
@@ -290,7 +311,10 @@
   // language + detail
   var LANG={us:'en',nl:'nl',ca:'en',de:'de',fr:'fr',it:'it',pl:'pl',uk:'en',au:'en',es:'es',eu:'en',me:'en',sa:'es',global:'en'};
   function setLang(code){try{var lg=LANG[code]||'en';var c=document.querySelector('#google_translate_element select, select.goog-te-combo');if(c){c.value=lg;c.dispatchEvent(new Event('change'));}}catch(e){}}
-  function render(code){var r=R[code];if(!r)return;var h='<div class="head2">'+r.headline+'</div><div class="dh">▸ Regulation &amp; policy</div>';
+  function render(code){var r=R[code];if(!r)return;var h='<div class="head2">'+r.headline+'</div>';
+    if(r.asof)h+='<div class="r-asof">Updated '+r.asof+'</div>';
+    if(r.summary&&r.summary.changed)h+='<div class="r-sum"><div class="rs-row"><b>What changed</b><span>'+r.summary.changed+'</span></div>'+(r.summary.action?'<div class="rs-row"><b>What to do</b><span>'+r.summary.action+'</span></div>':'')+'</div>';
+    h+='<div class="dh">▸ Regulation &amp; policy</div>';
     r.regulation.forEach(function(it){h+='<div class="card"><h4>'+it.t+'</h4><p>'+it.b+'</p></div>';});
     h+='<div class="dh c">▸ Supply &amp; cost backdrop</div><div class="supplyb"><p>'+r.supply+'</p></div>';
     h+='<div class="view"><div class="vh">◆ Birdland’s view</div><p>'+r.view+'</p></div>';content.innerHTML=h;setLang(code);try{history.replaceState(null,'','#'+code);}catch(e){}}

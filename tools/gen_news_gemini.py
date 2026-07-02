@@ -27,11 +27,16 @@ def save_and_build(d):
 if not KEY:
     print("No GEMINI_API_KEY; timestamp-only refresh.");save_and_build(data);sys.exit(0)
 
-prompt=f"""You maintain the "Market & Supply Outlook" for Birdland Ind., a confidential OEM/ODM garden & field hand-tool manufacturer (Taiwan + China production). Below is the current JSON. Using up-to-date information from Google Search, update it.
+# NOTE: plain string + concatenation (NOT an f-string) — the prompt text contains many
+# literal {braces}; as an f-string those raised NameError at import time and silently
+# killed the daily refresh (updated stayed frozen while fetch_market kept committing).
+prompt="""You maintain the "Market & Supply Outlook" for Birdland Ind., a confidential OEM/ODM garden & field hand-tool manufacturer (Taiwan + China production). Below is the current JSON. Using up-to-date information from Google Search, update it.
 
 RULES (strict):
 - Keep the JSON structure EXACTLY: same top-level keys ("updated","order","regions"), same region keys and the same "order" array (14 markets). Do not add/remove regions.
 - For each region update headline / regulation[].t / regulation[].b / supply / view ONLY where real-world facts have changed since this data; otherwise keep the existing wording.
+- For each region ALSO output "summary": {"changed":"...","action":"..."} — two plain-English sentences for a busy buyer, each 110 characters or less: "changed" = the single most important shift this period for that market; "action" = the one thing the buyer should do about it. Concrete, no jargon; refresh it whenever the region content changes.
+- Regional distinctiveness: for the EU countries (nl, de, fr, it, pl, es) each region's regulation/supply/view MUST contain at least one country-specific element (national retail/channel structure, domestic policy, local demand pattern) supported by current sources; NEVER reuse the same sentences across countries with only the country name swapped. Shared EU rules (EUDR/CBAM/PFAS) may be referenced but must not be the only substance.
 - Lead with regulation & supply-chain RISK; treat prices/freight/oil as secondary background. Frame around volatility, lead time and supply risk — never "prices fell so cut your price". Keep the idea that Birdland's quotes reflect secured materials, compliant documentation and reliable supply, not spot prices. Conclusions are "Birdland's view (AI-assisted)".
 - NEVER fabricate numbers, dates or rules. Only state what current sources support; otherwise stay qualitative. Keep each body 1-3 sentences. Use the HTML entity &amp; for ampersands inside strings.
 - Themes to verify: EU EUDR, EU CBAM, EU PFAS(REACH), US Section 301/import tariffs on China & Taiwan tools, Canada surtax on China-melted steel, Australia timber biosecurity/ISPM15, Asia-Europe & transpacific container freight trend, Brent crude level/volatility.
@@ -45,7 +50,7 @@ RULES (strict):
 - Output ONLY the complete updated JSON object. No markdown, no commentary.
 
 CURRENT JSON:
-{json.dumps(data,ensure_ascii=False)}"""
+"""+json.dumps(data,ensure_ascii=False)
 
 body={"contents":[{"parts":[{"text":prompt}]}],"tools":[{"google_search":{}}],
       "generationConfig":{"temperature":0.3}}
@@ -77,6 +82,20 @@ try:
         merged["px"]=ov.get("x",merged.get("x")); merged["py"]=ov.get("y",merged.get("y"))
         merged["pheat"]=ov.get("heat", ov.get("pheat", merged.get("heat")))  # tail for heatmap deltas
         cand["regions"][code]["viz"]=merged
+    # summary: accept AI value only if well-formed, else keep old; asof: computed here, never by AI
+    today=datetime.datetime.utcnow().strftime("%d %b %Y")
+    def _ok_sum(x):
+        try: return isinstance(x,dict) and all(isinstance(x.get(k),str) and 0<len(x[k].strip())<=200 for k in ("changed","action"))
+        except: return False
+    def _sig(r): return json.dumps([r.get("headline"),r.get("regulation"),r.get("supply"),r.get("view")],ensure_ascii=False,sort_keys=True)
+    for code,oldr in data["regions"].items():
+        nr=cand["regions"][code]
+        ns=nr.get("summary")
+        if _ok_sum(ns): nr["summary"]={"changed":ns["changed"].strip(),"action":ns["action"].strip()}
+        elif _ok_sum(oldr.get("summary")): nr["summary"]=oldr["summary"]
+        else: nr.pop("summary",None)
+        if _sig(nr)!=_sig(oldr): nr["asof"]=today
+        elif oldr.get("asof"): nr["asof"]=oldr["asof"]
     cand["news"]=data.get("news",[])                      # never let AI touch company news
     # indices: roll change% + sparkline from previous values; keep labels/units/spark history
     oldidx={ (x.get("short") or x.get("label")):x for x in data.get("indices",[]) }
