@@ -291,20 +291,9 @@
  /* WSJ print serif for text content */
  .theme-light .pb-sum,.theme-light .card,.theme-light .card p,.theme-light .card h4,.theme-light .supplyb,.theme-light .supplyb p,.theme-light .view p,.theme-light .news .ti,.theme-light .news .bl,.theme-light .head2,.theme-light .sub,.theme-light #p-fr-note,.theme-light #matl-note,.theme-light #ship-note{font-family:var(--serif),Georgia,serif;letter-spacing:-.003em}
  .theme-light .head2{font-weight:700}
- /* iMessage Bird BOT */
- .imsg{margin-bottom:16px;border-radius:16px;overflow:hidden;border:.5px solid rgba(0,0,0,.1);box-shadow:0 1px 1px rgba(0,0,0,.04),0 8px 22px rgba(0,0,0,.12)}
- .imhead{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 12px 10px;background:rgba(247,247,249,.92);backdrop-filter:blur(18px);border-bottom:.5px solid rgba(0,0,0,.08)}
- .imhead .av{width:44px;height:44px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.18),inset 0 0 0 .5px rgba(0,0,0,.06)}
- .imhead .nm{font-family:var(--sf);font-weight:600;font-size:.82rem;color:#1d1d1f}.imhead .st{font-family:var(--sf);font-weight:500;font-size:.66rem;color:rgba(60,60,67,.6)}
- .thread{background:#fff;padding:15px 15px 18px;display:flex;flex-direction:column;gap:3px;min-height:90px}
- .thread .row{display:flex;max-width:80%}.thread .row.in{align-self:flex-start}.thread .row.out{align-self:flex-end}
- .thread .bubble{padding:9px 15px;border-radius:20px;font-family:var(--sf);font-size:1rem;line-height:1.4;letter-spacing:-.01em}
- .thread .in .bubble{background:#e9e9eb;color:#000;border-bottom-left-radius:7px}
- .thread .out .bubble{background:linear-gradient(180deg,#37a8ff,#0a84ff);color:#fff;border-bottom-right-radius:7px}
- .thread .typing{display:inline-flex;gap:5px;padding:14px 16px;background:#e9e9eb;border-radius:20px;border-bottom-left-radius:7px}
- .thread .typing i{width:8px;height:8px;border-radius:50%;background:#9a9a9e;animation:tdot 1.3s infinite}.thread .typing i:nth-child(2){animation-delay:.18s}.thread .typing i:nth-child(3){animation-delay:.36s}
- @keyframes tdot{0%,60%,100%{opacity:.35;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
- .thread .pop{animation:ppop .26s cubic-bezier(.2,.9,.3,1.4)}@keyframes ppop{from{transform:scale(.82);opacity:0}to{transform:scale(1);opacity:1}}
+ /* In plain terms — one calm line replacing the old fake-chat widget */
+ .plain{margin-bottom:14px;padding:10px 14px;border-radius:12px;background:rgba(255,255,255,.6);border:.5px solid rgba(0,0,0,.08);font-family:var(--sf);font-size:.94rem;line-height:1.5;color:#3a3a3c}
+ .plain b{color:#1d1d1f;font-weight:650;margin-right:6px}
 
  /* ===== macOS status-bar polish ===== */
  .theme-light .tb{font-family:var(--sf);align-items:center}
@@ -383,16 +372,14 @@
   .theme-light .blk-h .meta,.theme-light .blk-h .secupd{order:5;flex:1 1 100%;width:100%;white-space:normal;font-size:.62rem;margin-left:0;padding-left:0;text-align:left;color:#86868b}
   .theme-light .tb{gap:10px}
  }
- .ai-wrap{margin-bottom:14px}
- .ios-search-bar{display:flex;align-items:center;gap:8px;padding:6px 0}
- .ios-input{flex:1;display:flex;align-items:center;gap:6px;background:#E5E5EA;border-radius:20px;padding:9px 14px;font:500 15px var(--sf);color:#8E8E93;cursor:text}
- .ios-input svg{flex:0 0 auto}
- .ios-cursor{width:2px;height:18px;background:#007AFF;display:inline-block;animation:iosblink 1s step-end infinite}
- @keyframes iosblink{50%{opacity:0}}
- .ios-return-btn{width:40px;height:40px;background:#3A3A3C;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:0 0 auto}
- .ios-return-btn:active{background:#2a2a2c}
- .imsg.slideup{animation:slideInUp .36s cubic-bezier(.22,.61,.36,1)}
- @keyframes slideInUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+ /* live cost strip + reference divider */
+ .pstrip{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 4px}
+ .pstrip .pi{display:inline-flex;align-items:baseline;gap:8px;padding:9px 14px;border-radius:12px;background:rgba(255,255,255,.62);border:.5px solid rgba(0,0,0,.09);font-family:var(--sf)}
+ .pstrip .pi .s{font-size:.7rem;font-weight:700;letter-spacing:.06em;color:#6e6e73;text-transform:uppercase}
+ .pstrip .pi .v{font-family:var(--mono,'IBM Plex Mono',monospace);font-size:.95rem;font-weight:700;color:#1d1d1f}
+ .pstrip .pi .c{font-size:.78rem;font-weight:700}
+ .pstrip .pi .c.up{color:#b3261e}.pstrip .pi .c.down{color:#0c6b2e}.pstrip .pi .c.flat{color:#8a5a00}
+ .refhd{margin:34px 0 2px;font-family:var(--sf);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#86868b;border-top:1px solid rgba(0,0,0,.1);padding-top:14px}
  .imhead{position:relative}
  .im-x{position:absolute;right:9px;top:9px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(0,0,0,.07);color:#555;font-size:1rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
  .im-x:hover{background:rgba(0,0,0,.14)}
@@ -483,7 +470,7 @@
     <div class="dash-grid" id="dash-grid"></div>
     <div class="dash-foot">A live read of your FOB China/Taiwan inputs — material costs, ocean freight, compliance and supply risk. Tap a tab below for the detail.</div>
   </section>
-  <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-material">Materials</a><a href="#p-shipping">Shipping</a><a href="#p-freight">Freight</a><a href="#p-calc">Landed cost</a><a href="#p-landed2">My cost</a><a href="#p-sail">Sailings</a><a href="#p-watch">Watchlist</a><a href="#p-cduty">Duty calc</a><a href="#p-tariff">Tariffs</a><a href="#p-war">Geopolitics</a><a href="#p-mkt">Markets</a><a href="#p-news">News</a></nav>
+  <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-landed2">My cost</a><a href="#p-sail">Sailings</a><a href="#p-material">Materials</a><a href="#p-shipping">Shipping</a><a href="#p-cduty">TW vs CN duty</a><a href="#p-war">Geopolitics</a><a href="#p-tariff">Tariffs</a><a href="#p-calc">Quick calc</a><a href="#p-freight">Freight</a><a href="#p-watch">Watchlist</a><a href="#p-mkt">Markets</a><a href="#p-news">News</a></nav>
   <div id="tab-hint" class="tab-hint"><div class="mac-note"><span class="mn-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span><div class="mn-txt"><b>SourceIQ</b><span>Pick a section from the tabs above to view it.</span></div></div></div>
 
   <section class="blk" data-open="1" id="p-brief"><button class="blk-h"><span class="k">BRIEF</span><h2>Today &amp; Tomorrow</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
@@ -540,7 +527,7 @@
 
   <section class="blk" data-open="0" id="p-watch"><button class="blk-h"><span class="k">WATCH</span><h2>Cost watchlist</h2><span class="ihelp" title="Key cost inputs: latest level, change, and recent trend.">i</span><span class="meta" id="p-wl-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="svgwrap"><table class="wl" id="p-watchlist"></table></div></div></section>
 
-  <section class="blk" data-open="0" id="p-cduty"><button class="blk-h"><span class="k">DUTY</span><h2>Import duty calculator</h2><span class="ihelp" title="Estimate import duty by destination and origin. Switching origin (Taiwan vs China) shows the tariff stacking you avoid. Illustrative — confirm HS with your broker.">i</span><span class="tog"></span></button><div class="blk-b">
+  <section class="blk" data-open="0" id="p-cduty"><button class="blk-h"><span class="k">DUTY</span><h2>Cost comparison — TW vs CN origin</h2><span class="ihelp" title="Estimate import duty by destination and origin. Switching origin (Taiwan vs China) shows the tariff stacking you avoid. Illustrative — confirm HS with your broker.">i</span><span class="tog"></span></button><div class="blk-b">
     <div class="calc"><div><label for="pcDest">Destination</label><select id="pcDest"></select></div><div><label for="pcOrigin">Country of origin</label><select id="pcOrigin"><option value="TW">Taiwan</option><option value="CN">China</option></select></div><div><label for="pcVal">Shipment value (US$)</label><input id="pcVal" type="number" value="10000" min="0" step="100"></div></div>
     <div class="calc-out" id="pcalcOut"></div><div class="sub" id="pcalc-note" style="margin-top:12px"></div></div></section>
 
@@ -589,9 +576,13 @@
       pth.addEventListener('mouseenter',function(){svg._focus(si,true);});pth.addEventListener('mouseleave',function(){svg._focus(null,false);});});
     svg._focus=function(si,on){_objs.forEach(function(o,j){var dim=on&&si!=null&&j!==si;o.p.setAttribute('opacity',dim?0.1:1);o.p.setAttribute('stroke-width',(on&&j===si)?4.8:3.6);o.d.forEach(function(dd){dd.setAttribute('opacity',dim?0.1:1);});});};}
 
-  // 1) Procurement Brief
-  var pb=P.procurement||{};document.getElementById('pb-sum').textContent=pb.summary||'';document.getElementById('pb-meta').textContent=(pb.actions||[]).length+' actions';
-  var pa=document.getElementById('pb-actions');(pb.actions||[]).forEach(function(a){var lv=a.level||'med';var row=document.createElement('div');row.className='act';row.innerHTML='<span class="lv '+lv+'">'+lv.toUpperCase()+'</span><span class="at">'+a.label+'</span><span class="an">'+(a.note||'')+'</span>';pa.appendChild(row);});
+  // 1) Procurement Brief — prefer the daily-refreshed top-level D.procurement (validated by CI);
+  //    static P.procurement kept only as fallback so the brief is a REAL daily brief.
+  var pbT=D.procurement||{},pbP=P.procurement||{};
+  var pbActs=(pbT.items&&pbT.items.length)?pbT.items.map(function(i){return {level:i.urgency||'med',label:(i.input?i.input+' — ':'')+(i.action||''),note:i.why||''};}):(pbP.actions||[]);
+  document.getElementById('pb-sum').textContent=(D.teamAnalysis||pbP.summary||pbT.note||'');
+  document.getElementById('pb-meta').textContent=pbActs.length+' actions · '+((pbT.items&&pbT.items.length)?'refreshed daily':'desk set');
+  var pa=document.getElementById('pb-actions');pbActs.forEach(function(a){var lv=a.level||'med';var row=document.createElement('div');row.className='act';row.innerHTML='<span class="lv '+lv+'">'+lv.toUpperCase()+'</span><span class="at">'+a.label+'</span><span class="an">'+(a.note||'')+'</span>';pa.appendChild(row);});
 
   // 2) Shipping forecast
   var sh=P.shipping||{};document.getElementById('ship-note').textContent=sh.note||'';
@@ -601,7 +592,7 @@
   // 3) Material forecast
   var mt=P.material||{};
   if(mt.series){lineChart(document.getElementById('matl'),mt.series.map(function(s){return {c:s.c,name:s.name,points:s.points};}),mt.tenors||[],mt.unit||'',true);
-    document.getElementById('matl-note').textContent=mt.note||'';var _ml=document.getElementById('matl-legend');_ml.innerHTML=mt.series.map(function(s,i){return '<span data-i="'+i+'" style="cursor:pointer"><i style="background:'+s.c+'"></i>'+s.name+'</span>';}).join('');var _mc=document.getElementById('matl');[].forEach.call(_ml.children,function(sp){sp.addEventListener('mouseenter',function(){_mc._focus&&_mc._focus(+sp.getAttribute('data-i'),true);});sp.addEventListener('mouseleave',function(){_mc._focus&&_mc._focus(null,false);});});}
+    document.getElementById('matl-note').textContent=(D.material&&D.material.note)||mt.note||'';var _ml=document.getElementById('matl-legend');_ml.innerHTML=mt.series.map(function(s,i){return '<span data-i="'+i+'" style="cursor:pointer"><i style="background:'+s.c+'"></i>'+s.name+'</span>';}).join('');var _mc=document.getElementById('matl');[].forEach.call(_ml.children,function(sp){sp.addEventListener('mouseenter',function(){_mc._focus&&_mc._focus(+sp.getAttribute('data-i'),true);});sp.addEventListener('mouseleave',function(){_mc._focus&&_mc._focus(null,false);});});}
 
   // 4) Landed-cost calculator (interactive)
   var base=(D.landed&&D.landed.components)||[];
@@ -621,8 +612,9 @@
   var tmc=(P.tariffmon&&P.tariffmon.changes)||[];var tm=document.getElementById('tariffmon');
   tm.innerHTML='<thead><tr><th>Date</th><th>Market</th><th>Change</th><th></th></tr></thead><tbody>'+tmc.map(function(c){var col=c.dir==='up'?'var(--red)':(c.dir==='down'?'var(--green)':'var(--amber)');var ar=c.dir==='up'?'▲':(c.dir==='down'?'▼':'■');return '<tr title="'+(c.note||'')+'"><td style="color:var(--gold)">'+c.date+'</td><td style="color:#fff;font-weight:700">'+c.market+'</td><td>'+c.change+'</td><td style="color:'+col+';text-align:right">'+ar+'</td></tr>';}).join('')+'</tbody>';
 
-  // 6) War impact monitor
-  var wr=P.war||{};document.getElementById('war-note').textContent=wr.note||'';var wc=document.getElementById('war');
+  // 6) War impact monitor — prefer daily-refreshed top-level D.war.zones; static P.war as fallback
+  var wr=(D.war&&D.war.zones&&D.war.zones.length)?{note:D.war.note||'',items:D.war.zones.map(function(z){return {event:z.zone,region:(z.status||'').toUpperCase(),impact:z.impact,affects:z.affects||[],note:z.note||''};})}:(P.war||{});
+  document.getElementById('war-note').textContent=wr.note||'';var wc=document.getElementById('war');
   (wr.items||[]).forEach(function(it){var col=it.impact>=70?'#ff5470':(it.impact>=45?'#ff9e2c':'#16c47e');var row=document.createElement('div');row.className='row';
     row.innerHTML='<div class="ev">'+it.event+'<small>'+it.region+' · '+(it.affects||[]).join(', ')+'</small></div><div class="bar" title="'+(it.note||'')+'"><i style="width:'+it.impact+'%;background:'+col+'"></i></div><div class="sc" style="color:'+col+'">'+it.impact+'</div>';
     wc.appendChild(row);});
@@ -648,26 +640,11 @@ if(sel&&content){order.forEach(function(o){var op=document.createElement('option
 <script>function googleTranslateElementInit(){try{new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'en,nl,de,fr,it,pl,es',autoDisplay:false},'google_translate_element');}catch(e){}}</script>
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 <script>(function(){try{var D=JSON.parse(document.getElementById('outlook-data').textContent);var BB=(D.partner&&D.partner.birdbot)||{};
-var GEM='<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><defs><linearGradient id="gemg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4285F4"/><stop offset=".5" stop-color="#9b72cb"/><stop offset="1" stop-color="#d96570"/></linearGradient></defs><path d="M12 2C12 7.5 16.5 12 22 12C16.5 12 12 16.5 12 22C12 16.5 7.5 12 2 12C7.5 12 12 7.5 12 2Z" fill="url(#gemg)"/></svg>';
-function wait(ms){return new Promise(function(r){setTimeout(r,ms);});}
-Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec)return;var body=sec.querySelector('.blk-b');if(!body)return;var b=BB[id];
- var simple=b.simple||'',exp=(b.expert||[]).join(' '),src=b.src||'';
- var _g='gemg'+Math.random().toString(36).slice(2,8),_av=GEM.replace(/gemg/g,_g);
- var wrap=document.createElement('div');wrap.className='ai-wrap';
- wrap.innerHTML='<div class="ios-search-bar"><div class="ios-input"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><span>ask Google AI</span><span class="ios-cursor"></span></div><div class="ios-return-btn" title="Ask Google AI"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2"><polyline points="9,10 4,15 9,20"/><path d="M20,4v7a4,4,0,0,1-4,4H4"/></svg></div></div><div class="imsg" style="display:none"><div class="imhead"><button class="im-x" type="button" aria-label="Close">&times;</button><div class="av">'+_av+'</div><div class="nm">Google AI</div><div class="st">AI desk analyst · active now</div></div><div class="thread"></div></div>';
- body.insertBefore(wrap,body.firstChild);
- var imsg=wrap.querySelector('.imsg'),thread=wrap.querySelector('.thread'),sb=wrap.querySelector('.ios-search-bar'),played=false;
- function bub(side,txt){var row=document.createElement('div');row.className='row '+side+' pop';var d=document.createElement('div');d.className='bubble';d.textContent=txt;row.appendChild(d);thread.appendChild(row);}
- function typing(){var row=document.createElement('div');row.className='row in';row.innerHTML='<div class="typing"><i></i><i></i><i></i></div>';thread.appendChild(row);return row;}
- function play(){thread.innerHTML='';bub('out','Explain this simply.');
-   wait(450).then(function(){var t=typing();return wait(1100).then(function(){t.remove();bub('in','▸ '+simple);});})
-   .then(function(){var t=typing();return wait(1300).then(function(){t.remove();bub('in',exp);if(src){bub('in',src);}});});}
- function openChat(){sb.style.display='none';imsg.style.display='';imsg.classList.remove('slideup');void imsg.offsetWidth;imsg.classList.add('slideup');if(!played){played=true;play();}}
- function closeChat(){imsg.style.display='none';sb.style.display='';}
- sb.querySelector('.ios-input').addEventListener('click',openChat);
- sb.querySelector('.ios-return-btn').addEventListener('click',openChat);
- wrap.querySelector('.im-x').addEventListener('click',closeChat);
-});}catch(e){}})();</script>
+// One calm static line per section (replaces the old scripted fake-AI chat)
+Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec)return;var body=sec.querySelector('.blk-b');if(!body)return;var b=BB[id]||{};
+ if(!b.simple)return;var d=document.createElement('div');d.className='plain';
+ d.innerHTML='<b>In plain terms</b>';d.appendChild(document.createTextNode(b.simple));
+ body.insertBefore(d,body.firstChild);});}catch(e){}})();</script>
 
 <script>(function(){var L=[].slice.call(document.querySelectorAll('.toc a'));if(!L.length||!('IntersectionObserver'in window))return;var m={};L.forEach(function(a){m[a.getAttribute('href').slice(1)]=a;});var secs=Object.keys(m).map(function(i){return document.getElementById(i);}).filter(Boolean);var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){L.forEach(function(x){x.classList.remove('on');});if(m[e.target.id])m[e.target.id].classList.add('on');}});},{rootMargin:'-25% 0px -65% 0px'});secs.forEach(function(s){ob.observe(s);});})();</script>
 <script>(function(){
@@ -779,7 +756,16 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
  ms.forEach(function(s){var d=s.points[6]-s.points[3];if(d>0.3){up++;if(!maxRise||d>maxRise.d)maxRise={n:s.name,d:d};}else if(d<-0.3){dn++;}});
  var matRising=up>=dn;
  var lanes=(P.shipping&&P.shipping.lanes)||[],fsum=0,fn=0;lanes.forEach(function(l){var pts=l.points;fsum+=(pts[pts.length-1].v-pts[3].v);fn++;});var favg=fn?fsum/fn:0,frEasing=favg<0;
+ // prefer daily-refreshed top-level forward curves for the verdict; static P.* only as fallback
+ var fwd=(D.forward&&D.forward.commodities)||[],basis='desk forecast curves (manual)';
+ if(fwd.length){up=0;dn=0;maxRise=null;var frD=null;
+  fwd.forEach(function(c){var pts=c.points||[];if(pts.length<2)return;var d=(pts[pts.length-1].v-pts[0].v)/(pts[0].v||1)*100;
+   if(/freight|container/i.test(c.name)){frD=d;return;}
+   if(d>0.5){up++;if(!maxRise||d>maxRise.d)maxRise={n:c.name,d:d};}else if(d<-0.5)dn++;});
+  matRising=up>=dn;if(frD!=null)frEasing=frD<0;
+  basis='forward curves: '+fwd.map(function(c){return c.name;}).join(', ')+' · refreshed '+(D.updated||'');}
  var war=(P.war&&(P.war.items||(Array.isArray(P.war)?P.war:[])))||[],risk=war.length;
+ var zs=(D.war&&D.war.zones)||[];if(zs.length)risk=zs.length;
  function card(cls,dot,title,val,tk){return '<div class="sig '+cls+'"><div class="st"><span class="dot" style="background:'+dot+'"></span>'+title+'</div><div class="vv">'+val+'</div><div class="tk">'+tk+'</div></div>';}
  var h='';
  h+=card(matRising?'up':'down',matRising?'#b3261e':'#0c6b2e','Material costs',matRising?'Rising &#9650;':'Easing &#9660;',matRising?('Lock prices &amp; order sooner'+(maxRise?' &mdash; '+maxRise.n.split(' ')[0]+' up most.':'.')):'Inputs softening &mdash; less need to pre-buy.');
@@ -787,6 +773,36 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
  h+=card('warn','#8a5a00','Compliance','Action','EUDR (wood) &middot; CBAM (steel) &middot; UFLPA &mdash; keep origin &amp; DDS docs ready.');
  h+=card(risk>=3?'up':'warn',risk>=3?'#b3261e':'#8a5a00','Supply risk',risk?(risk+' active'):'Low','Red Sea reroute can add transit &mdash; book earlier on EU lanes.');
  grid.innerHTML=h;
- if(verdict)verdict.innerHTML='<b>Desk call:</b> '+(matRising?'Material costs are rising while ':'Costs are stable while ')+(frEasing?'ocean freight is easing':'freight is firming')+'. '+(matRising&&frEasing?'Place and lock orders soon to fix today&rsquo;s material price, and ship now while freight is cheap.':(matRising?'Lock material prices now; time your shipping with the freight tab.':'You have room to wait &mdash; keep watching the freight and material tabs.'));
+ if(verdict)verdict.innerHTML='<b>Desk call:</b> '+(matRising?'Material costs are rising while ':'Costs are stable while ')+(frEasing?'ocean freight is easing':'freight is firming')+'. '+(matRising&&frEasing?'Place and lock orders soon to fix today&rsquo;s material price, and ship now while freight is cheap.':(matRising?'Lock material prices now; time your shipping with the freight tab.':'You have room to wait &mdash; keep watching the freight and material tabs.'))+'<div class="dash-foot" style="margin-top:8px">Basis: '+basis+(maxRise?' · biggest mover: '+maxRise.n:'')+'</div>';
 }catch(e){}})();</script>
+<script>(function(){ // boot: live strip · section order · remembered workspace (bd_p_*)
+try{var D=JSON.parse(document.getElementById('outlook-data').textContent);}catch(e){return;}
+var main=document.querySelector('main'),disc=document.getElementById('disc');
+// 1) live cost strip — always visible, straight under the DECISION dash
+(function(){var dash=document.getElementById('dash');if(!dash)return;var s=document.createElement('div');s.className='pstrip';s.id='p-live';
+ var h='<span class="pi"><span class="s" style="color:#0c6b2e">● live costs</span><span class="c flat">'+(D.updated||'')+'</span></span>';
+ (D.indices||[]).slice(0,6).forEach(function(ix){var d=ix.dir||'flat',ar=d==='up'?'▲':(d==='down'?'▼':'■'),ch=(ix.chg!=null?(ix.chg>0?'+':'')+ix.chg.toFixed(1)+'%':'');
+  h+='<span class="pi" title="'+(ix.sub||'')+'"><span class="s">'+(ix.short||ix.label)+'</span><span class="v">'+Number(ix.value).toLocaleString()+(ix.unit?' '+ix.unit:'')+'</span><span class="c '+d+'">'+ar+ch+'</span></span>';});
+ s.innerHTML=h;dash.parentNode.insertBefore(s,dash.nextSibling);})();
+// 2) section order: daily brief & the two money tools first; client-desk duplicates demoted to Reference
+(function(){if(!main||!disc)return;var ORD=['p-brief','p-landed2','p-sail','p-material','p-shipping','p-cduty','p-war','p-tariff'],REF=['p-calc','p-freight','p-watch','p-mkt','p-news'];
+ ORD.concat(REF).forEach(function(id){var s=document.getElementById(id);if(s)main.insertBefore(s,disc);});
+ var hd=document.createElement('div');hd.className='refhd';hd.textContent='Reference data — shared with Client Desk';main.insertBefore(hd,document.getElementById(REF[0]));})();
+// 3) honest freshness: static desk-set blocks must not claim the daily stamp
+(function(){[['p-tariff','manual · desk set'],['p-material','curves manual · note daily'],['p-shipping','curves manual · note daily']].forEach(function(x){var b=document.querySelector('#'+x[0]+' .blk-h .secupd');if(b)b.textContent='⟳ '+x[1];});})();
+// 4) remembered workspace
+var LS={g:function(k){try{return localStorage.getItem('bd_p_'+k);}catch(e){return null;}},s:function(k,v){try{localStorage.setItem('bd_p_'+k,v);}catch(e){}}};
+var FIELDS=['qc_cost','qc_frt','qc_ins','qc_duty','qc_qty','bc_fob','bc_qty','bc_frt','bc_ins','bc_duty','bc_tax','bc_brk','bc_inl','bc_oth','pcVal'],SELS=['pcDest','pcOrigin','s_o','s_d','s_ct','region'];
+FIELDS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=LS.g(id);if(v!==null&&v!==''){e.value=v;e.dispatchEvent(new Event('input',{bubbles:true}));}
+ e.addEventListener('input',function(){LS.s(id,e.value);});});
+SELS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=LS.g(id);if(v!==null&&v!==''){var ok=[].some.call(e.options,function(o){return o.value===v;});if(ok){e.value=v;e.dispatchEvent(new Event('change',{bubbles:true}));}}
+ e.addEventListener('change',function(){LS.s(id,e.value);});});
+// 5) shown sections: restore last workspace; first visit boots the daily BRIEF open
+(function(){var saved=null;try{saved=JSON.parse(LS.g('shown')||'null');}catch(e){}
+ function show(id,open){var t=document.getElementById(id);if(!t)return;t.style.display='block';t.setAttribute('data-open',open?'1':'0');}
+ if(saved&&saved.length){saved.forEach(function(id){show(id,false);});show(saved[0],true);}
+ else show('p-brief',true);
+ function snap(){var ids=[].map.call(document.querySelectorAll('main .blk'),function(s){return s;}).filter(function(s){return s.style.display==='block';}).map(function(s){return s.id;});LS.s('shown',JSON.stringify(ids));}
+ document.addEventListener('click',function(e){if(e.target.closest('.toc a')||e.target.closest('.lt'))setTimeout(snap,450);});})();
+})();</script>
 </body></html>
