@@ -17,6 +17,28 @@ sys.excepthook=_eh
 
 data=json.load(open(DATA_PATH,encoding="utf-8"))
 
+def _extract_json(t):
+    """Robustly pull the outlook JSON object out of a grounded Gemini reply.
+    Handles: markdown ```json fences, a small preamble object before the real one,
+    trailing prose, and the reply arriving as several concatenated parts."""
+    t=t.strip()
+    if t.startswith("```"):
+        t=t[3:]
+        if t[:4].lower()=="json": t=t[4:]
+        if t.endswith("```"): t=t[:-3]
+    dec=json.JSONDecoder(); i=0; L=len(t); best=None
+    while i<L:
+        c=t.find("{",i)
+        if c<0: break
+        try:
+            obj,end=dec.raw_decode(t,c)
+        except ValueError:
+            i=c+1; continue
+        if isinstance(obj,dict) and "regions" in obj: return obj      # the one we want
+        if isinstance(obj,dict) and (best is None or len(obj)>len(best)): best=obj
+        i=end
+    return best
+
 def save_and_build(d):
     d["updated"]=now
     json.dump(d,open(DATA_PATH,"w",encoding="utf-8"),ensure_ascii=False)
@@ -61,8 +83,8 @@ try:
     # grounded (google_search) replies arrive split across MULTIPLE parts — join them all;
     # reading only parts[0] truncated the JSON mid-string and forced the fallback every run
     txt="".join(p.get("text","") for p in resp["candidates"][0]["content"]["parts"])
-    s=txt.find("{");e=txt.rfind("}")
-    cand=json.loads(txt[s:e+1])
+    cand=_extract_json(txt)
+    if cand is None: raise ValueError("no JSON object with 'regions' found in reply")
     # validate structure
     assert set(cand.get("regions",{}).keys())==set(data["regions"].keys()), "region keys changed"
     assert [tuple(x) for x in cand.get("order",[])]==[tuple(x) for x in data["order"]], "order changed"
