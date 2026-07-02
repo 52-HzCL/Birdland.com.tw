@@ -57,7 +57,7 @@ body={"contents":[{"parts":[{"text":prompt}]}],"tools":[{"google_search":{}}],
 url=f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent?key={KEY}"
 try:
     req=urllib.request.Request(url,data=json.dumps(body).encode(),headers={"Content-Type":"application/json"})
-    resp=json.load(urllib.request.urlopen(req,timeout=120))
+    resp=json.load(urllib.request.urlopen(req,timeout=300))  # Gemini + Search grounding on a large JSON often needs >120s
     txt=resp["candidates"][0]["content"]["parts"][0]["text"]
     s=txt.find("{");e=txt.rfind("}")
     cand=json.loads(txt[s:e+1])
