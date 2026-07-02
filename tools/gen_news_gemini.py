@@ -58,7 +58,9 @@ url=f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateCo
 try:
     req=urllib.request.Request(url,data=json.dumps(body).encode(),headers={"Content-Type":"application/json"})
     resp=json.load(urllib.request.urlopen(req,timeout=300))  # Gemini + Search grounding on a large JSON often needs >120s
-    txt=resp["candidates"][0]["content"]["parts"][0]["text"]
+    # grounded (google_search) replies arrive split across MULTIPLE parts — join them all;
+    # reading only parts[0] truncated the JSON mid-string and forced the fallback every run
+    txt="".join(p.get("text","") for p in resp["candidates"][0]["content"]["parts"])
     s=txt.find("{");e=txt.rfind("}")
     cand=json.loads(txt[s:e+1])
     # validate structure
