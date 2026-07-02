@@ -53,7 +53,7 @@ CURRENT JSON:
 """+json.dumps(data,ensure_ascii=False)
 
 body={"contents":[{"parts":[{"text":prompt}]}],"tools":[{"google_search":{}}],
-      "generationConfig":{"temperature":0.3}}
+      "generationConfig":{"temperature":0.3,"maxOutputTokens":65536}}  # full JSON is ~70KB; default cap truncated the response mid-string
 url=f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent?key={KEY}"
 try:
     req=urllib.request.Request(url,data=json.dumps(body).encode(),headers={"Content-Type":"application/json"})
