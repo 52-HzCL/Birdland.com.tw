@@ -1056,14 +1056,16 @@
   .td-pill.td-hi:hover{color:var(--paper);filter:brightness(1.08)}
   .bd-led{display:inline-block;width:8px;height:8px;border-radius:50%;background:#19e36a;box-shadow:0 0 6px #19e36a;flex:0 0 auto;animation:bdblink 2.4s steps(1) infinite}
   @keyframes bdblink{50%{opacity:.2}}
+  .totop{display:none!important}  /* dedupe: #bl-top is the single back-to-top button */
   @media(max-width:860px){.term-dock{display:none}}
   .term-dock-m{display:none}
   @media(max-width:860px){
-    .term-dock-m{display:grid;grid-template-columns:1fr 1fr 1fr;position:fixed;left:0;right:0;bottom:0;z-index:200;background:var(--jade-deep);border-top:1px solid rgba(255,255,255,.12)}
-    .term-dock-m a{padding:.85rem 0;text-align:center;font:700 .68rem "Manrope",system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,236,221,.82);text-decoration:none;border-right:1px solid rgba(255,255,255,.1)}
+    .term-dock-m{display:grid;grid-template-columns:1fr 1fr 1fr;position:fixed;top:auto;left:0;right:0;bottom:0;z-index:200;background:var(--jade-deep);border-top:1px solid rgba(255,255,255,.12);transform:none;padding:0}
+    .term-dock-m a{padding:.9rem 0;min-height:48px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;text-align:center;font:700 .68rem "Manrope",system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,236,221,.82);text-decoration:none;border-right:1px solid rgba(255,255,255,.1)}
     .term-dock-m a:last-child{border-right:0}
     .term-dock-m a.td-hi{color:var(--copper-bright)}
-    body{padding-bottom:52px}
+    body{padding-bottom:56px}
+    #bl-top{bottom:70px}
   }
   @media(prefers-reduced-motion:reduce){.td-pill{transition:none}}
 </style><style id="bd-refresh">
@@ -1554,11 +1556,11 @@
     <div class="foot-bot"><span>Garden &amp; field · manufactured since 1974</span><span>© <span id="yr"></span> Birdland Ind.</span></div>
   </div>
 </footer>
-<nav class="term-dock-m" aria-label="SaaS Terminal">
+<div class="term-dock-m" role="navigation" aria-label="SaaS Terminal">
   <a href="news.html">Client</a>
   <a class="td-hi" href="partner.html">Partner</a>
   <a href="team.html">Team</a>
-</nav>
+</div>
 
 <script>
   var __SS=[];addEventListener('scroll',function(){for(var _i=0;_i<__SS.length;_i++)__SS[_i]();},{passive:true});function __onScroll(fn){__SS.push(fn);}
@@ -1948,7 +1950,7 @@
     box-shadow:0 6px 20px rgba(33,55,43,.3)}
   #bl-top.show{opacity:1;transform:none;pointer-events:auto}
   #bl-top:hover{background:var(--jade)}
-  @media(max-width:640px){#bl-top{right:14px;bottom:14px}}
+  @media(max-width:640px){#bl-top{right:14px;bottom:70px}}
 </style>
 <script>
 (function(){
