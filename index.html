@@ -62,7 +62,7 @@
   nav a:hover::after,nav a:focus-visible::after{width:100%}
   nav a.navcta{background:var(--jade-deep);color:var(--paper);padding:.55rem 1rem;border-top:2px solid var(--copper-bright);border-radius:1px}
   nav a.navcta::after{display:none}
-  .menu{display:none;background:none;border:1px solid var(--line);padding:.55rem .85rem;font:600 .82rem var(--sans);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;color:var(--ink)}
+  .menu{display:none;background:none;border:1px solid var(--line);min-height:44px;padding:.55rem .95rem;font:600 .82rem var(--sans);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;color:var(--ink)}
 
   .hero{position:relative;overflow:hidden;padding-top:clamp(4rem,9vw,8rem);padding-bottom:clamp(4.5rem,9vw,8rem)}
   .hero .branch{position:absolute;top:-30px;right:-40px;width:min(46vw,520px);opacity:.5;z-index:0}
@@ -196,6 +196,10 @@
   .esend.dim{opacity:.4;pointer-events:none}
   .esend:hover{background:var(--jade)}
   .esum .enote{font-size:.92rem;color:#8c8164;font-style:italic;margin-top:.9rem}
+  .esdirect{font-size:.9rem;color:var(--ink-soft);margin-top:.7rem;line-height:1.6}
+  .esdirect a{color:var(--copper-deep);text-decoration:underline;text-underline-offset:.15em}
+  .escopy{margin-left:.5rem;font:600 .74rem var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);background:none;border:1px solid var(--line-cop);border-radius:2px;padding:.25rem .6rem;min-height:32px;cursor:pointer;transition:.2s}
+  .escopy:hover{color:var(--copper-deep);border-color:var(--copper)}
 
   footer{background:var(--jade-deep);color:rgba(242,236,221,.72)}
   .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2rem;padding:clamp(3rem,5vw,4rem) 0 1.2rem;border-top:1px solid var(--line-paper)}
@@ -244,7 +248,7 @@
 
   /* ===== LANGUAGE SWITCHER ===== */
   .langwrap{position:relative}
-  .langbtn{background:none;border:1px solid var(--line-cop);color:var(--ink-soft);font:600 .9rem var(--sans);letter-spacing:.03em;padding:.55rem .9rem;border-radius:2px;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem}
+  .langbtn{background:none;border:1px solid var(--line-cop);color:var(--ink-soft);font:600 .9rem var(--sans);letter-spacing:.03em;min-height:44px;padding:.55rem .9rem;border-radius:2px;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem}
   .langbtn:hover{border-color:var(--copper);color:var(--copper-deep)}
   .langmenu{position:absolute;right:0;top:calc(100% + 10px);background:var(--paper2);border:1px solid var(--line-cop);border-top:3px solid;border-image:var(--metal) 1;min-width:200px;display:none;z-index:130;box-shadow:0 16px 40px -18px rgba(36,31,24,.45)}
   .langmenu.open{display:block}
@@ -1049,7 +1053,7 @@
 <style>
   /* SaaS Terminal — always visible (no click-to-reveal), same jade/copper/paper language */
   .term-dock{display:flex;align-items:center;gap:8px;margin:0 .3rem}
-  .td-pill{display:inline-flex;align-items:center;gap:7px;font-family:"Manrope",system-ui,sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);background:var(--paper2);border:1px solid var(--line);border-radius:20px;padding:.4rem .85rem;transition:color .25s,border-color .25s,transform .2s}
+  .td-pill{display:inline-flex;align-items:center;gap:7px;font-family:"Manrope",system-ui,sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);background:var(--paper2);border:1px solid var(--line);border-radius:20px;min-height:40px;padding:.5rem .95rem;transition:color .25s,border-color .25s,transform .2s}
   .td-pill:hover{color:var(--copper-deep);border-color:var(--copper);transform:translateY(-1px)}
   .td-pill.td-hi{color:var(--paper);background:var(--jade-deep);border-color:var(--jade-deep)}
   .td-pill.td-hi b{font-size:.6rem;color:var(--copper-bright);margin-left:1px;font-weight:800}
@@ -1169,7 +1173,7 @@
     document.documentElement.classList.add('bl-lock');
   }
   function enter(){                                // only ENTER SUPPLY closes it; never auto-closes
-    sessionStorage.setItem('bl_intro_seen','1');
+    try{localStorage.setItem('bl_intro_seen','1');}catch(e){}
     o.classList.add('bl-hide');
     document.documentElement.classList.remove('bl-lock');
     setTimeout(function(){o.hidden=true; fr.src='about:blank';},1000);
@@ -1178,7 +1182,7 @@
   var _ct=document.getElementById('bl-intro-catch');if(_ct)_ct.addEventListener('click',enter);
   window.blPlayIntro=function(e){ if(e&&e.preventDefault)e.preventDefault(); show(); };
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !o.hidden) enter(); });
-  if(!sessionStorage.getItem('bl_intro_seen')) show();
+  var _seen=false;try{_seen=!!localStorage.getItem('bl_intro_seen');}catch(e){}if(!_seen) show();
 })();
 </script>
 <!-- ===== /Birdland opening intro ===== -->
@@ -1503,7 +1507,7 @@
           <div class="esadv" id="esAdv"></div>
           <a class="esend dim" id="esSend" href="#">Send my enquiry →</a>
           <div class="enote">Opens your email app with everything filled in. Handled in confidence.</div>
-
+          <div class="esdirect" id="esDirect">No email app? Call <a href="tel:+886226320150">+886 2 2632 0150</a><span id="esMailWrap" hidden> · write to <a id="esMailLink" href="#"></a><button type="button" class="escopy" id="esCopy">Copy</button></span></div>
         </div>
       </div>
     </div>
@@ -1689,8 +1693,16 @@
           '\nCompany: \nContact name: \nProducts / range of interest: \nTarget timing: \n\nPlease get in touch — we understand everything is handled in confidence.\n\nThank you,';
         send.href='mailto:'+to+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
         send.classList.remove('dim');
-      } else { send.classList.add('dim'); send.href='#'; }
+        var mw=document.getElementById('esMailWrap'),ml=document.getElementById('esMailLink');
+        if(ml){ml.textContent=to;ml.href='mailto:'+to;}
+        if(mw)mw.hidden=false;
+      } else { send.classList.add('dim'); send.href='#'; var mw2=document.getElementById('esMailWrap'); if(mw2)mw2.hidden=true; }
     }
+    var cb=document.getElementById('esCopy');
+    if(cb)cb.addEventListener('click',function(){var ml=document.getElementById('esMailLink'),t=ml?ml.textContent:'';if(!t)return;
+      function ok(){cb.textContent='Copied';setTimeout(function(){cb.textContent='Copy';},1600);}
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){fb(t);ok();});}else{fb(t);ok();}});
+    function fb(t){var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(a);}
   })();
 
   /* LANGUAGE SWITCHER */
