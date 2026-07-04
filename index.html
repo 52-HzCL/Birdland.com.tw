@@ -53,9 +53,9 @@
   .wm{font-family:var(--serif);font-weight:600;letter-spacing:.05em;color:var(--jade-deep)}
   .wm .ind{font-family:var(--sans);font-weight:600;font-size:.5em;letter-spacing:.16em;text-transform:uppercase;color:var(--copper);margin-left:.45em;vertical-align:.18em}
 
-  /* ===== navbar B: desktop also collapses (hamburger everywhere); centered brand; single persistent Partner CTA ===== */
+  /* ===== navbar B: two-tier split toolbar — tier 1 = system (menu+brand), tier 2 = action band (Partner CTA) ===== */
   header{position:sticky;top:0;z-index:100;background:rgba(242,236,221,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-cop)}
-  .bar{position:relative;display:flex;align-items:center;justify-content:space-between;padding:.9rem 0}
+  .bar{position:relative;display:flex;align-items:center;justify-content:flex-start;padding:.9rem 0}
   .brand{display:flex;align-items:center;gap:.7rem;font-size:1.95rem;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
   .menu{display:inline-flex;align-items:center;gap:.6rem;background:none;border:1px solid var(--line);min-height:44px;padding:.5rem .95rem .5rem .75rem;font:600 .8rem var(--sans);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;color:var(--ink)}
   .menu:hover{border-color:var(--copper)}
@@ -64,8 +64,11 @@
   .menu[aria-expanded="true"] .menu-ic span:nth-child(1){transform:translateY(4.5px) rotate(45deg)}
   .menu[aria-expanded="true"] .menu-ic span:nth-child(2){opacity:0}
   .menu[aria-expanded="true"] .menu-ic span:nth-child(3){transform:translateY(-4.5px) rotate(-45deg)}
-  .navcta-partner{display:inline-flex;align-items:center;gap:.4rem;font:700 .82rem var(--sans);letter-spacing:.06em;color:var(--paper);background:var(--jade-deep);border-top:2px solid var(--copper-bright);border-radius:1px;padding:.6rem 1.1rem;min-height:44px;text-decoration:none;transition:filter .25s,transform .2s}
-  .navcta-partner:hover{filter:brightness(1.1);transform:translateY(-1px)}
+  .navcta-tier{background:var(--jade-deep);border-top:1px solid rgba(255,255,255,.08)}
+  .navcta-tier .wrap{display:flex;justify-content:flex-end;align-items:center;padding:.55rem 0}
+  .navcta-partner{display:inline-flex;align-items:center;gap:.4rem;font:700 .82rem var(--sans);letter-spacing:.06em;color:var(--paper);background:none;border-top:0;border-radius:1px;padding:.5rem .2rem;min-height:44px;text-decoration:none;transition:filter .25s,transform .2s}
+  .navcta-partner:hover{filter:brightness(1.25);transform:translateX(3px)}
+  .navcta-partner span{color:var(--copper-bright)}
   nav{position:fixed;inset:0 0 auto 0;z-index:105;display:flex;flex-direction:column;background:var(--paper);padding:5.5rem 2rem 2.5rem;gap:.4rem;transform:translateY(-110%);transition:transform .35s;border-bottom:1px solid var(--line-cop);font-size:1.25rem;max-height:100vh;overflow-y:auto}
   nav.open{transform:none}
   .nav-close{position:absolute;top:1.2rem;right:1.4rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:none;border:1px solid var(--line);border-radius:50%;font-size:1.6rem;line-height:1;color:var(--ink-soft);cursor:pointer;transition:border-color .2s,color .2s,transform .2s}
@@ -97,6 +100,8 @@
   .reveal{opacity:0;transform:translateY(20px);transition:opacity 1.05s cubic-bezier(.16,.74,.24,1),transform 1.05s cubic-bezier(.16,.74,.24,1)}
   .reveal.in{opacity:1;transform:none}
   .sec-head{max-width:60ch}
+  .focus-sec .sec-head{margin-bottom:1.6rem}
+  .focus-sec.heritage h2,.focus-sec.cat h2{margin-bottom:1.6rem}
   .sec-head h2{font-size:clamp(2.3rem,4.6vw,3.5rem);margin:.8rem 0 .5rem}
   .sec-head p{font-size:1.2rem;color:var(--ink-soft);font-weight:300}
   .illus{font-size:.95rem;font-style:italic;color:#8c8164;margin-top:1.4rem}
@@ -695,22 +700,33 @@
   .reveal.reveal-l.in,.reveal.reveal-r.in,.reveal.reveal-zoom.in{transform:none}
   /* ===== reading focus: scroll-driven depth-of-field ===== */
   /* Each reading section frosts to translucent glass at the edges of the viewport and lifts */
-  /* crisp + gently enlarged (~1.4%) across a wide central plateau (small blurred boundary). */
+  /* crisp + gently enlarged across a wide central plateau (small blurred boundary). The headline */
+  /* text gets a second, much bigger zoom (1.55x) so the words themselves visibly grow when centered. */
   .focus-sec{overflow-x:clip}
   .focus-sec>.wrap{transform-origin:center center}
+  .focus-sec .sec-head h2,.heritage h2,.cat h2,.focus-sec .sec-head p,.heritage .lead{transform-origin:left center;will-change:transform}
   @media (prefers-reduced-motion:no-preference){
     @supports (animation-timeline:view()){
       .focus-sec>.wrap{animation:readFocus linear both;animation-timeline:view();animation-range:cover}
       @keyframes readFocus{
-        0%{filter:blur(1px) saturate(.96);opacity:.75;transform:scale(.97)}
-        15%,85%{filter:blur(0) saturate(1);opacity:1;transform:scale(1.045)}
-        100%{filter:blur(1px) saturate(.96);opacity:.75;transform:scale(.97)}
+        0%{filter:blur(1px) saturate(.96);opacity:.75;transform:scale(.985)}
+        15%,85%{filter:blur(0) saturate(1);opacity:1;transform:scale(1.015)}
+        100%{filter:blur(1px) saturate(.96);opacity:.75;transform:scale(.985)}
+      }
+      .focus-sec .sec-head h2,.heritage h2,.cat h2,.focus-sec .sec-head p,.heritage .lead{animation:readFocusText linear both;animation-timeline:view();animation-range:cover}
+      @keyframes readFocusText{
+        0%{transform:scale(.92)}
+        15%,85%{transform:scale(1.55)}
+        100%{transform:scale(.92)}
       }
     }
     @supports not (animation-timeline:view()){
-      .focus-sec>.wrap{filter:blur(.8px) saturate(.97);opacity:.78;transform:scale(.98);
+      .focus-sec>.wrap{filter:blur(.8px) saturate(.97);opacity:.78;transform:scale(.99);
         transition:filter .55s cubic-bezier(.16,.74,.24,1),opacity .55s cubic-bezier(.16,.74,.24,1),transform .55s cubic-bezier(.16,.74,.24,1)}
-      .focus-sec.focus-read>.wrap{filter:blur(0) saturate(1);opacity:1;transform:scale(1.045)}
+      .focus-sec .sec-head h2,.heritage h2,.cat h2,.focus-sec .sec-head p,.heritage .lead{transform:scale(.92);
+        transition:transform .6s cubic-bezier(.16,.74,.24,1)}
+      .focus-sec.focus-read .sec-head h2,.focus-sec.focus-read.heritage h2,.focus-sec.focus-read.cat h2,.focus-sec.focus-read .sec-head p,.focus-sec.focus-read.heritage .lead{transform:scale(1.55)}
+      .focus-sec.focus-read>.wrap{filter:blur(0) saturate(1);opacity:1;transform:scale(1.015)}
     }
   }
   .reveal-stagger>*{opacity:0;transform:translateY(16px);transition:opacity .8s cubic-bezier(.22,.7,.2,1),transform .8s cubic-bezier(.22,.7,.2,1)}
@@ -1207,7 +1223,6 @@
       </svg>
       <span class="wm">Birdland<span class="ind">Ind.</span></span>
     </a>
-    <a class="navcta-partner" href="partner.html">Partner desk <span aria-hidden="true">&rarr;</span></a>
     <nav id="nav">
       <button class="nav-close" type="button" aria-label="Close menu">&times;</button>
       <a href="#heritage">About</a>
@@ -1240,6 +1255,7 @@
       </div>
     </nav>
   </div>
+  <div class="navcta-tier"><div class="wrap"><a class="navcta-partner" href="partner.html">Partner desk <span aria-hidden="true">&rarr;</span></a></div></div>
 </header>
 
 <main id="top">
