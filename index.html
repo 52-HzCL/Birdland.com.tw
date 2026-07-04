@@ -1061,6 +1061,17 @@
   .bd-led{display:inline-block;width:8px;height:8px;border-radius:50%;background:#19e36a;box-shadow:0 0 6px #19e36a;flex:0 0 auto;animation:bdblink 2.4s steps(1) infinite}
   @keyframes bdblink{50%{opacity:.2}}
   .totop{display:none!important}  /* dedupe: #bl-top is the single back-to-top button */
+  /* ===== navbar A: copper accent line + grouped-with-dividers ===== */
+  header::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--copper-deep),#c9805a 45%,var(--copper-deep));z-index:2}
+  #nav{gap:1.4rem}
+  .nav-grp{display:contents}
+  .nav-div{width:1px;height:22px;background:var(--line-cop);flex:0 0 auto;align-self:center}
+  .term-dock{gap:8px;margin:0}
+  .term-dock .bd-led{margin-right:1px}
+  .term-dock .td-pill:not(.td-hi){background:none;border-color:transparent;min-height:auto;padding:.32rem .5rem;color:var(--ink-soft)}
+  .term-dock .td-pill:not(.td-hi):hover{color:var(--copper-deep);border-color:transparent;transform:none}
+  .term-dock .td-pill.td-hi{min-height:auto;padding:.44rem 1rem;border-radius:18px}
+  @media(max-width:980px){.nav-div{display:none}}
   @media(max-width:860px){.term-dock{display:none}}
   .term-dock-m{display:none}
   @media(max-width:860px){
@@ -1203,18 +1214,21 @@
     </a>
     <button class="menu" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav id="nav">
-      <a href="#heritage">About us</a>
-      
-      <a href="#make">What we make</a>
-      
-      <a href="#why">Why Birdland</a>
-      <a href="#enquiry">Contact</a>
-      <a href="#" id="bl-replay" onclick="return window.blPlayIntro(event)">Intro</a>
+      <span class="nav-grp">
+        <a href="#heritage">About</a>
+        <a href="#make">What we make</a>
+        <a href="#why">Why Birdland</a>
+        <a href="#enquiry">Contact</a>
+        <a href="#" id="bl-replay" onclick="return window.blPlayIntro(event)">Intro</a>
+      </span>
+      <span class="nav-div" aria-hidden="true"></span>
       <div class="term-dock" aria-label="SaaS Terminal">
-        <a class="td-pill" href="news.html" title="Market &amp; supply intelligence"><span class="bd-led" aria-hidden="true"></span>Client</a>
+        <span class="bd-led" aria-hidden="true"></span>
+        <a class="td-pill" href="news.html" title="Market &amp; supply intelligence">Client</a>
         <a class="td-pill td-hi" href="partner.html" title="Only invitation, Pro version">Partner<b>VIP</b></a>
         <a class="td-pill" href="team.html" title="Internal &middot; staff only">Team</a>
       </div>
+      <span class="nav-div" aria-hidden="true"></span>
       <div class="langwrap">
         <button class="langbtn" id="langBtn" aria-haspopup="true" aria-expanded="false">&#127760; Language</button>
         <div class="langmenu" id="langMenu">
