@@ -68,6 +68,8 @@
   .navcta-partner:hover{filter:brightness(1.1);transform:translateY(-1px)}
   nav{position:fixed;inset:0 0 auto 0;z-index:105;display:flex;flex-direction:column;background:var(--paper);padding:5.5rem 2rem 2.5rem;gap:.4rem;transform:translateY(-110%);transition:transform .35s;border-bottom:1px solid var(--line-cop);font-size:1.25rem;max-height:100vh;overflow-y:auto}
   nav.open{transform:none}
+  .nav-close{position:absolute;top:1.2rem;right:1.4rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:none;border:1px solid var(--line);border-radius:50%;font-size:1.6rem;line-height:1;color:var(--ink-soft);cursor:pointer;transition:border-color .2s,color .2s,transform .2s}
+  .nav-close:hover{border-color:var(--copper);color:var(--copper-deep);transform:rotate(90deg)}
   nav a{color:var(--ink-soft);padding:.5rem 0;position:relative}
   nav a::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:0;background:var(--metal);transition:width .35s}
   nav a:hover::after,nav a:focus-visible::after{width:100%}
@@ -700,15 +702,15 @@
     @supports (animation-timeline:view()){
       .focus-sec>.wrap{animation:readFocus linear both;animation-timeline:view();animation-range:cover}
       @keyframes readFocus{
-        0%{filter:blur(1px) saturate(.96);opacity:.75;transform:scale(.99)}
-        15%,85%{filter:blur(0) saturate(1);opacity:1;transform:scale(1.014)}
-        100%{filter:blur(1px) saturate(.96);opacity:.75;transform:scale(.99)}
+        0%{filter:blur(1px) saturate(.96);opacity:.75;transform:scale(.97)}
+        15%,85%{filter:blur(0) saturate(1);opacity:1;transform:scale(1.045)}
+        100%{filter:blur(1px) saturate(.96);opacity:.75;transform:scale(.97)}
       }
     }
     @supports not (animation-timeline:view()){
-      .focus-sec>.wrap{filter:blur(.8px) saturate(.97);opacity:.78;transform:scale(.995);
+      .focus-sec>.wrap{filter:blur(.8px) saturate(.97);opacity:.78;transform:scale(.98);
         transition:filter .55s cubic-bezier(.16,.74,.24,1),opacity .55s cubic-bezier(.16,.74,.24,1),transform .55s cubic-bezier(.16,.74,.24,1)}
-      .focus-sec.focus-read>.wrap{filter:blur(0) saturate(1);opacity:1;transform:scale(1.014)}
+      .focus-sec.focus-read>.wrap{filter:blur(0) saturate(1);opacity:1;transform:scale(1.045)}
     }
   }
   .reveal-stagger>*{opacity:0;transform:translateY(16px);transition:opacity .8s cubic-bezier(.22,.7,.2,1),transform .8s cubic-bezier(.22,.7,.2,1)}
@@ -1207,6 +1209,7 @@
     </a>
     <a class="navcta-partner" href="partner.html">Partner desk <span aria-hidden="true">&rarr;</span></a>
     <nav id="nav">
+      <button class="nav-close" type="button" aria-label="Close menu">&times;</button>
       <a href="#heritage">About</a>
       <a href="#make">What we make</a>
       <a href="#why">Why Birdland</a>
@@ -1214,7 +1217,7 @@
       <a href="#" id="bl-replay" onclick="return window.blPlayIntro(event)">Intro</a>
       <span class="nav-div" aria-hidden="true"></span>
       <div class="nav-terminal" aria-label="SaaS Terminal">
-        <span class="nav-term-lab"><span class="bd-led" aria-hidden="true"></span>SaaS Terminal</span>
+        <span class="nav-term-lab"><span class="bd-led" aria-hidden="true"></span>SaaS</span>
         <a href="news.html" title="Market &amp; supply intelligence">Client Desk</a>
         <a href="partner.html" title="Only invitation, Pro version">Partner Desk<b>VIP</b></a>
         <a href="team.html" title="Internal &middot; staff only">Team Desk</a>
@@ -1575,6 +1578,9 @@
   var __SS=[];addEventListener('scroll',function(){for(var _i=0;_i<__SS.length;_i++)__SS[_i]();},{passive:true});function __onScroll(fn){__SS.push(fn);}
   var menu=document.querySelector('.menu'),nav=document.getElementById('nav');
   menu.addEventListener('click',function(){var o=nav.classList.toggle('open');menu.setAttribute('aria-expanded',o);});
+  var navClose=document.getElementById('navClose')||nav.querySelector('.nav-close');
+  if(navClose)navClose.addEventListener('click',function(){nav.classList.remove('open');menu.setAttribute('aria-expanded',false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){nav.classList.remove('open');menu.setAttribute('aria-expanded',false);menu.focus();}});
   nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');menu.setAttribute('aria-expanded',false);});});
   document.getElementById('yr').textContent=new Date().getFullYear();
   var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
