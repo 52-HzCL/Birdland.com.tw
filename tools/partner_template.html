@@ -1104,4 +1104,42 @@ SELS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=L
  rail.addEventListener('click',function(e){var g=e.target.closest('[data-go]');if(!g)return;var a=document.querySelector('.toc a[href="#'+g.getAttribute('data-go')+'"]');if(a)a.click();});
 })();
 })();</script>
+<script>(function(){/* single-panel router — Stripe-app behaviour: one feature at a time */
+ var col=document.getElementById('p-col')||document.querySelector('main');
+ var hero=document.querySelector('.hero');
+ var dash=document.getElementById('dash');
+ var live=document.getElementById('p-live');
+ var hint=document.getElementById('tab-hint');
+ var refhd=document.querySelector('.refhd');
+ var blks=[].slice.call(document.querySelectorAll('main .blk'));
+ var toc=document.querySelector('.toc');
+ if(toc){var ov=document.createElement('a');ov.href='#overview';ov.textContent='Overview';toc.insertBefore(ov,toc.firstChild);
+   var lbl=document.createElement('div');lbl.className='pr-grp';lbl.textContent='Home';toc.insertBefore(lbl,ov);}
+ function setActive(id){[].forEach.call(document.querySelectorAll('.toc a'),function(a){a.classList.toggle('on',(a.getAttribute('href')||'')==='#'+id);});}
+ function showView(id){
+   var overview=(id==='overview'||!id);
+   if(hero)hero.style.display=overview?'':'none';
+   if(dash)dash.style.display=overview?'':'none';
+   if(live)live.style.display=overview?'':'none';
+   if(hint)hint.style.display='none';
+   if(refhd)refhd.style.display='none';
+   blks.forEach(function(b){
+     var hit=(!overview&&b.id===id);
+     b.classList.toggle('sk-off',!hit);
+     if(hit){b.setAttribute('data-open','1');var bb=b.querySelector('.blk-b');if(bb){bb.style.display='block';bb.style.maxHeight='none';bb.style.opacity='1';bb.style.overflow='visible';}}
+   });
+   setActive(id);
+   var main=document.querySelector('main');if(main&&main.scrollIntoView)main.scrollIntoView({block:'start'});
+   window.scrollTo(0,0);
+ }
+ document.addEventListener('click',function(e){
+   var a=e.target.closest&&e.target.closest('.toc a');if(!a)return;
+   e.preventDefault();e.stopPropagation();
+   var id=(a.getAttribute('href')||'').slice(1)||'overview';showView(id);
+ },true);
+ var st=document.createElement('style');
+ st.textContent='body.theme-light main .blk.sk-off,main .blk.sk-off{display:none!important}.blk-h .tog,.blk-h .lights{display:none!important}.blk-h{cursor:default!important}.blk{margin-top:0!important}main .blk:not(.sk-off){animation:skfade .22s ease}@keyframes skfade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}';
+ document.head.appendChild(st);
+ showView('overview');
+})();</script>
 </body></html>
