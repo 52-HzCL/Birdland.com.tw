@@ -548,7 +548,7 @@
  body.theme-light #p-rail{display:block;order:-1;margin-top:16px}
  @media(min-width:900px){
   body.theme-light main.wrap{flex-direction:row;align-items:flex-start;gap:26px;max-width:1280px}
-  body.theme-light #p-rail{width:225px;flex:0 0 225px;position:sticky;top:12px;max-height:calc(100vh - 24px);overflow-y:auto}
+  body.theme-light #p-rail{width:225px;flex:0 0 225px;position:sticky;top:12px;max-height:calc(100vh - 82px);overflow-y:auto}
   body.theme-light #p-rail::-webkit-scrollbar{width:5px}
   body.theme-light #p-rail::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:3px}
  }
@@ -730,6 +730,15 @@ table.tm tr:hover td,.wl tr:hover td{background:rgba(28,24,16,.025)!important}
 .sailcard,.act{border-radius:10px!important}
 .sailcard h4,.act .at{font-family:var(--kb-serif)!important;color:var(--kb-ink)!important}
 * {scrollbar-color: #cfc6ad transparent}
+
+/* ===== live-cost strip: single row, pinned to the bottom, always visible ===== */
+body.theme-light{padding-bottom:58px!important}
+#p-live.pstrip{position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;z-index:85!important;
+  display:flex!important;flex-wrap:nowrap!important;grid-template-columns:none!important;overflow-x:auto!important;-webkit-overflow-scrolling:touch!important;
+  margin:0!important;padding:9px clamp(1rem,3vw,2.2rem)!important;gap:0!important;background:var(--kb-panel)!important;border-top:1px solid var(--kb-line)!important;border-radius:0!important;box-shadow:0 -2px 10px rgba(28,24,16,.05)!important}
+#p-live.pstrip .pi{flex:0 0 auto!important;white-space:nowrap!important}
+#p-live.pstrip::-webkit-scrollbar{height:4px}
+#p-live.pstrip::-webkit-scrollbar-thumb{background:#cfc6ad;border-radius:2px}
 
 </style></head><body class="theme-light">
 <script>window.__TWHOL={"2026-01-01":"New Year\u2019s Day","2026-02-16":"Lunar New Year (Eve)","2026-02-17":"Lunar New Year","2026-02-18":"Lunar New Year","2026-02-19":"Lunar New Year","2026-02-27":"228 Peace Memorial (obs.)","2026-02-28":"228 Peace Memorial Day","2026-04-03":"Children\u2019s Day (obs.)","2026-04-04":"Children\u2019s Day","2026-04-05":"Tomb-Sweeping Day","2026-04-06":"Tomb-Sweeping (obs.)","2026-05-01":"Labour Day","2026-06-19":"Dragon Boat Festival","2026-09-25":"Mid-Autumn Festival","2026-09-28":"Teachers\u2019 Day","2026-10-09":"National Day (obs.)","2026-10-10":"National Day","2026-10-26":"Retrocession Day (obs.)","2026-12-25":"Constitution Day","2027-01-01":"New Year\u2019s Day"};window.__TWHOLnext=function(t){var k=Object.keys(window.__TWHOL).sort();for(var i=0;i<k.length;i++){if(k[i]>=t)return window.__TWHOL[k[i]]+" ("+k[i].slice(5).replace("-","/")+")";}return "";};</script>
@@ -1150,7 +1159,6 @@ SELS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=L
    var overview=(id==='overview'||!id);
    if(hero)hero.style.display=overview?'':'none';
    if(dash)dash.style.display=overview?'':'none';
-   if(live)live.style.display=overview?'':'none';
    if(hint)hint.style.display='none';
    if(refhd)refhd.style.display='none';
    blks.forEach(function(b){
