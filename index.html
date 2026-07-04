@@ -77,10 +77,18 @@
   nav a::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:0;background:var(--metal);transition:width .35s}
   nav a:hover::after,nav a:focus-visible::after{width:100%}
   .nav-div{height:1px;width:100%;background:var(--line-cop);margin:1rem 0}
-  .nav-terminal{display:flex;flex-direction:column;gap:.5rem;align-items:flex-start}
+  .nav-terminal{display:flex;flex-direction:column;gap:.5rem;align-items:flex-start;width:100%}
   .nav-term-lab{display:flex;align-items:center;gap:.45rem;font:700 .72rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#a68b5a;margin-bottom:.15rem}
+  .nav-term-row{display:flex;align-items:center;gap:1.1rem;width:100%;flex-wrap:wrap}
   .nav-terminal a{padding:.3rem 0}
   .nav-terminal a b{font-size:.62em;color:var(--copper-bright);margin-left:.4em;font-weight:800}
+  .nav-term-spacer{flex:1 1 auto}
+  .nav-term-row .langwrap{width:auto}
+  .nav-term-row .langbtn{display:inline-flex!important;align-items:center;gap:.3rem;font:700 .74rem var(--sans);letter-spacing:.08em;color:var(--copper-deep);background:none;border:1px solid var(--line);border-radius:1px;padding:.35rem .7rem;cursor:pointer}
+  .nav-term-row .langbtn:hover,.nav-term-row .langbtn[aria-expanded="true"]{border-color:var(--copper);color:var(--jade-deep)}
+  .langwrap-menu{width:100%}
+  .langmenu{display:none}
+  .langmenu.open{display:block}
 
   .hero{position:relative;overflow:hidden;padding-top:clamp(4rem,9vw,8rem);padding-bottom:clamp(4.5rem,9vw,8rem)}
   .hero .branch{position:absolute;top:-30px;right:-40px;width:min(46vw,520px);opacity:.5;z-index:0}
@@ -267,7 +275,8 @@
   /* ===== LANGUAGE SWITCHER ===== */
   .langwrap{position:relative;width:100%}
   .langbtn{display:none}
-  .langmenu{position:static;display:block;border:none;border-top:1px solid var(--line);box-shadow:none;min-width:0;margin-top:.6rem;background:none}
+  .langmenu{position:static;display:none;border:none;border-top:1px solid var(--line);box-shadow:none;min-width:0;margin-top:.6rem;background:none}
+  .langmenu.open{display:block}
   .langmenu button{display:block;width:100%;text-align:left;background:none;border:none;padding:.55rem 0;font:500 1.02rem var(--sans);color:var(--ink-soft);cursor:pointer;transition:.16s}
   .langmenu button:hover{background:var(--silk);color:var(--copper-deep)}
   /* hide Google Translate chrome */
@@ -710,21 +719,21 @@
       .focus-sec>.wrap{animation:readFocus linear both;animation-timeline:view();animation-range:cover}
       @keyframes readFocus{
         0%{filter:blur(1px) saturate(.96);opacity:.75;transform:scale(.985)}
-        15%,85%{filter:blur(0) saturate(1);opacity:1;transform:scale(1.015)}
+        5%,95%{filter:blur(0) saturate(1);opacity:1;transform:scale(1.015)}
         100%{filter:blur(1px) saturate(.96);opacity:.75;transform:scale(.985)}
       }
       .focus-sec .sec-head h2,.heritage h2,.cat h2,.focus-sec .sec-head p,.heritage .lead{animation:readFocusText linear both;animation-timeline:view();animation-range:cover}
       @keyframes readFocusText{
         0%{transform:scale(.92)}
-        15%,85%{transform:scale(1.55)}
+        5%,95%{transform:scale(1.55)}
         100%{transform:scale(.92)}
       }
     }
     @supports not (animation-timeline:view()){
       .focus-sec>.wrap{filter:blur(.8px) saturate(.97);opacity:.78;transform:scale(.99);
-        transition:filter .55s cubic-bezier(.16,.74,.24,1),opacity .55s cubic-bezier(.16,.74,.24,1),transform .55s cubic-bezier(.16,.74,.24,1)}
+        transition:filter .22s cubic-bezier(.16,.74,.24,1),opacity .22s cubic-bezier(.16,.74,.24,1),transform .22s cubic-bezier(.16,.74,.24,1)}
       .focus-sec .sec-head h2,.heritage h2,.cat h2,.focus-sec .sec-head p,.heritage .lead{transform:scale(.92);
-        transition:transform .6s cubic-bezier(.16,.74,.24,1)}
+        transition:transform .25s cubic-bezier(.16,.74,.24,1)}
       .focus-sec.focus-read .sec-head h2,.focus-sec.focus-read.heritage h2,.focus-sec.focus-read.cat h2,.focus-sec.focus-read .sec-head p,.focus-sec.focus-read.heritage .lead{transform:scale(1.55)}
       .focus-sec.focus-read>.wrap{filter:blur(0) saturate(1);opacity:1;transform:scale(1.015)}
     }
@@ -1232,14 +1241,19 @@
       <a href="#" id="bl-replay" onclick="return window.blPlayIntro(event)">Intro</a>
       <span class="nav-div" aria-hidden="true"></span>
       <div class="nav-terminal" aria-label="SaaS Terminal">
-        <span class="nav-term-lab"><span class="bd-led" aria-hidden="true"></span>SaaS</span>
-        <a href="news.html" title="Market &amp; supply intelligence">Client Desk</a>
-        <a href="partner.html" title="Only invitation, Pro version">Partner Desk<b>VIP</b></a>
-        <a href="team.html" title="Internal &middot; staff only">Team Desk</a>
+        <span class="nav-term-lab"><span class="bd-led" aria-hidden="true"></span>SaaS Terminal</span>
+        <div class="nav-term-row">
+          <a href="news.html" title="Market &amp; supply intelligence">Client</a>
+          <a href="partner.html" title="Only invitation, Pro version">Partner<b>VIP</b></a>
+          <a href="team.html" title="Internal &middot; staff only">Team</a>
+          <span class="nav-term-spacer" aria-hidden="true"></span>
+          <div class="langwrap">
+            <button class="langbtn" id="langBtn" aria-haspopup="true" aria-expanded="false">EN</button>
+          </div>
+        </div>
       </div>
       <span class="nav-div" aria-hidden="true"></span>
-      <div class="langwrap">
-        <button class="langbtn" id="langBtn" aria-haspopup="true" aria-expanded="false">&#127760; Language</button>
+      <div class="langwrap-menu">
         <div class="langmenu" id="langMenu">
           <button data-l="en">English</button>
           <button data-l="nl">Nederlands</button>
@@ -1610,7 +1624,7 @@
   (function(){var fs=[].slice.call(document.querySelectorAll('main section[id]')).filter(function(s){return s.id!=='enquiry';});
     fs.forEach(function(s){s.classList.add('focus-sec');});
     if(!reduce && !(window.CSS&&CSS.supports&&CSS.supports('animation-timeline:view()')) && 'IntersectionObserver' in window){
-      var fio=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('focus-read',e.isIntersecting);});},{rootMargin:'-12% 0px -12% 0px',threshold:0});
+      var fio=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('focus-read',e.isIntersecting);});},{rootMargin:'-6% 0px -6% 0px',threshold:0});
       fs.forEach(function(s){fio.observe(s);});}
   })();
   var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll('.cnum').forEach(runCount);io2.unobserve(e.target);}});},{threshold:.2});
