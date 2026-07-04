@@ -575,12 +575,33 @@
  @keyframes blkFade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
  .blk[data-open="1"] .blk-b{animation:blkFade .3s ease}
  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto!important}}
+
+.lang-sel{font-family:var(--kb-sans);font-size:.74rem;font-weight:600;color:var(--kb-mut);background:var(--kb-panel);border:1px solid var(--kb-line);border-radius:7px;padding:5px 8px;cursor:pointer;margin-right:10px}
+.lang-sel:focus{border-color:var(--kb-accent);outline:none}
+/* ===== bento content grid: 1 large + 1 medium + 2 small, per feature ===== */
+.bento{display:grid;grid-template-columns:1.7fr 1fr;grid-template-rows:auto auto;gap:16px;align-items:start}
+.bento.bento-2{grid-template-rows:auto}
+.bento>.b-lg{grid-column:1;grid-row:1/3;min-width:0}
+.bento.bento-2>.b-lg{grid-row:1}
+.bento>.b-md{grid-column:2;grid-row:1;min-width:0}
+.bento>.b-sm-row{grid-column:2;grid-row:2;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.b-tile{background:var(--kb-bg);border:1px solid var(--kb-line);border-radius:10px;padding:14px 15px}
+.b-tile .b-k{font-family:var(--kb-sans);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--kb-faint);display:block;margin-bottom:6px}
+.b-tile .b-v{font-family:var(--kb-serif);font-size:1.1rem;font-weight:700;color:var(--kb-ink);line-height:1.3}
+@media(max-width:760px){
+  .bento{grid-template-columns:1fr!important;grid-template-rows:auto!important;gap:14px}
+  .bento>.b-lg,.bento>.b-md{grid-column:1!important;grid-row:auto!important}
+  .bento>.b-sm-row{grid-column:1!important;grid-row:auto!important}
+}
 /* ===== Kubera-style editorial skin (final override layer — supersedes Stripe skin) ===== */
 :root{--kb-bg:#f7f5ef;--kb-panel:#fffdf9;--kb-line:#e6e0d0;--kb-line2:#d8d0ba;--kb-ink:#1c1810;--kb-mut:#6b6456;--kb-faint:#9a9382;--kb-accent:#96731f;--kb-accent-dk:#6e5416;--kb-accent-soft:rgba(150,115,31,.1);--kb-green:#2f6b4f;--kb-green-bg:#e6f0e9;--kb-red:#9c3b2e;--kb-red-bg:#f7e8e4;--kb-amber:#8a5a12;--kb-amber-bg:#f6ecd4;--kb-serif:"Source Serif 4",Georgia,"Times New Roman",serif;--kb-sans:"Inter",-apple-system,system-ui,sans-serif;--kb-mono:"IBM Plex Mono",ui-monospace,monospace;--kb-radius:14px}
 body,body.dark,body.theme-light{background:var(--kb-bg)!important;color:var(--kb-ink)!important;font-family:var(--kb-sans)!important;letter-spacing:0!important}
 body::after{display:none!important}
 .tk-wrap,.lights,.hled,.bb-bar .bb-led,.gbar .gd,.gbtn .led,.tpk-led,.sysled,.thm-sun,.thm-moon,.ln-dot,.fxlive .dot,.botbar .d{display:none!important}
 #google_translate_element{display:none!important}
+#google_translate_element.gt-on{display:block!important;margin-right:10px}
+#google_translate_element.gt-on .goog-te-gadget{font-family:var(--kb-sans)!important;font-size:.74rem!important;color:var(--kb-faint)!important}
+#google_translate_element.gt-on .goog-te-combo{font-family:var(--kb-sans)!important;border:1px solid var(--kb-line)!important;border-radius:7px!important;padding:4px 6px!important;background:var(--kb-panel)!important;color:var(--kb-ink)!important}
 ::selection{background:var(--kb-accent);color:#fff}
 
 /* ---- sign-in gate ---- */
@@ -723,7 +744,7 @@ table.tm tr:hover td,.wl tr:hover td{background:rgba(28,24,16,.025)!important}
 </div></div>
 <div class="topbar"><div class="wrap tb">
   <div class="tb-left"><a class="brand" href="index.html"><span class="vip">VIP</span> Partner<span class="sep">|</span><span class="iq">SourceIQ</span> Pro</a></div>
-  <div class="tb-right"><span class="sysgrp"><span class="api-ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="w3" d="M3.7 10.2A11.5 11.5 0 0 1 20.3 10.2"/><path class="w2" d="M6.3 12.9A8 8 0 0 1 17.7 12.9"/><path class="w1" d="M8.9 15.6A4.3 4.3 0 0 1 15.1 15.6"/><circle cx="12" cy="18.6" r="1.5" fill="currentColor" stroke="none"/></svg></span>High-Level&nbsp;API</span><span class="sysgrp"><span class="tokmeter" title="AI token usage rate"><i></i><i></i><i></i><i></i></span><b>AI&nbsp;Token</b></span><span class="tpk" id="tpk" title="Taiwan office hours: Mon-Fri 09:00-17:30 (GMT+8)"><span class="tpk-led" id="tpkLed"></span><b id="tpkSt">—</b><span class="tpk-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v4.7l3 1.8"/></svg><span id="tpkTime">--:--</span> Taipei Time</span></span><span class="tpk-hol" id="tpkHol"></span><a class="back" href="index.html"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>birdland.com.tw</a></div>
+  <div class="tb-right"><span class="sysgrp"><span class="api-ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="w3" d="M3.7 10.2A11.5 11.5 0 0 1 20.3 10.2"/><path class="w2" d="M6.3 12.9A8 8 0 0 1 17.7 12.9"/><path class="w1" d="M8.9 15.6A4.3 4.3 0 0 1 15.1 15.6"/><circle cx="12" cy="18.6" r="1.5" fill="currentColor" stroke="none"/></svg></span>High-Level&nbsp;API</span><span class="sysgrp"><span class="tokmeter" title="AI token usage rate"><i></i><i></i><i></i><i></i></span><b>AI&nbsp;Token</b></span><span class="tpk" id="tpk" title="Taiwan office hours: Mon-Fri 09:00-17:30 (GMT+8)"><span class="tpk-led" id="tpkLed"></span><b id="tpkSt">—</b><span class="tpk-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v4.7l3 1.8"/></svg><span id="tpkTime">--:--</span> Taipei Time</span></span><span class="tpk-hol" id="tpkHol"></span><select id="langSel" aria-label="Language" class="lang-sel"><option value="en">EN</option><option value="nl">NL</option><option value="de">DE</option><option value="fr">FR</option><option value="it">IT</option><option value="pl">PL</option><option value="es">ES</option><option value="auto">🌐 Auto</option></select><a class="back" href="index.html"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>birdland.com.tw</a></div>
 </div></div>
 
 <div class="tk-wrap"><div class="wrap" style="overflow:hidden"><div id="ticker" class="ticker"></div></div></div>
@@ -1150,5 +1171,145 @@ SELS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=L
  st.textContent='body.theme-light main .blk.sk-off,main .blk.sk-off{display:none!important}.blk-h .tog,.blk-h .lights{display:none!important}.blk-h{cursor:default!important}.blk{margin-top:0!important}main .blk:not(.sk-off){animation:skfade .22s ease}@keyframes skfade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}';
  document.head.appendChild(st);
  showView('overview');
+})();</script>
+<script>(function(){/* bento content grid — one feature, one 4-tile layout */
+function txt(sel,body){var e=body.querySelector(sel);return e?e.textContent.trim():'';}
+function bentofy(id,lgSel,mdSel,smFns){
+  var sec=document.getElementById(id);if(!sec)return;
+  var body=sec.querySelector('.blk-b');if(!body)return;
+  var smVals=(smFns||[]).map(function(f){try{return f(body);}catch(e){return null;}}).filter(function(v){return v&&v.v;});
+  var lgEls=[],mdEls=[];
+  (lgSel||[]).forEach(function(x){var e=body.querySelector(x);if(e)lgEls.push(e);});
+  (mdSel||[]).forEach(function(x){var e=body.querySelector(x);if(e)mdEls.push(e);});
+  var used=lgEls.concat(mdEls);
+  var rest=[].slice.call(body.children).filter(function(c){return used.indexOf(c)<0;});
+  var grid=document.createElement('div');grid.className='bento'+(mdEls.length?'':' bento-2');
+  var lgWrap=document.createElement('div');lgWrap.className='b-lg';
+  rest.forEach(function(e){lgWrap.appendChild(e);});
+  lgEls.forEach(function(e){lgWrap.appendChild(e);});
+  grid.appendChild(lgWrap);
+  if(mdEls.length){var mdWrap=document.createElement('div');mdWrap.className='b-md';mdEls.forEach(function(e){mdWrap.appendChild(e);});grid.appendChild(mdWrap);}
+  if(smVals.length){var smRow=document.createElement('div');smRow.className='b-sm-row';
+    smVals.forEach(function(v){var tile=document.createElement('div');tile.className='b-tile';tile.innerHTML='<span class="b-k">'+v.k+'</span><span class="b-v">'+v.v+'</span>';smRow.appendChild(tile);});
+    grid.appendChild(smRow);}
+  body.innerHTML='';body.appendChild(grid);
+}
+function pct(str){var m=/([\d.]+)\s*%/.exec(str||'');return m?m[1]+'%':'—';}
+bentofy('p-brief',['#pb-actions'],['#pb-sum'],[
+  function(b){return {k:'Actions',v:b.querySelectorAll('#pb-actions .act').length+' open items'};},
+  function(){return {k:'Basis',v:'AI + desk review'};}
+]);
+bentofy('p-material',['.svgwrap'],['.legend'],[
+  function(b){return {k:'Model accuracy',v:pct(txt('.fc-acc',b))};},
+  function(){return {k:'Horizon',v:'Rebased to 100 = now'};}
+]);
+bentofy('p-shipping',['.svgwrap'],['.legend'],[
+  function(b){return {k:'Model accuracy',v:pct(txt('.fc-acc',b))};},
+  function(){return {k:'Unit',v:'US$ / FEU'};}
+]);
+bentofy('p-freight',['.svgwrap'],['.fr-src'],[
+  function(b){var t=b.querySelector('table');return {k:'Indices tracked',v:(t?t.querySelectorAll('tr').length:0)+' rows'};},
+  function(){return {k:'Cadence',v:'Monthly, official'};}
+]);
+bentofy('p-calc',['.calc'],['.svgwrap','.legend'],[
+  function(b){return {k:'Landed cost / unit',v:txt('#lc-out',b)||'—'};},
+  function(b){var q=b.querySelector('#qc_qty');return {k:'Quantity',v:q?Number(q.value).toLocaleString():'—'};}
+]);
+bentofy('p-landed2',['.calc'],['#bc_bar','#bc_leg','#bc_out'],[
+  function(b){return {k:'Landed cost / unit',v:txt('#bc_note',b)||'—'};},
+  function(b){var q=b.querySelector('#bc_qty');return {k:'Quantity',v:q?Number(q.value).toLocaleString():'—'};}
+]);
+bentofy('p-sail',['.calc'],['#s_cards'],[
+  function(b){return {k:'Options shown',v:b.querySelectorAll('.sailcard').length+' sailings'};},
+  function(){return {k:'Freight',v:'Indicative — confirm w/ carrier'};}
+]);
+bentofy('p-cduty',['.calc'],['#pcalcOut'],[
+  function(b){return {k:'Note',v:txt('#pcalc-note',b)||'See detail'};},
+  function(b){var v=b.querySelector('#pcVal');return {k:'Shipment value',v:v?('US$'+Number(v.value).toLocaleString()):'—'};}
+]);
+bentofy('p-war',['.war'],['.sub'],[
+  function(b){return {k:'Events tracked',v:b.querySelectorAll('.war .row').length+' items'};},
+  function(){return {k:'Scale',v:'0–100 risk score'};}
+]);
+bentofy('p-tariff',['.svgwrap'],[],[
+  function(b){var t=b.querySelector('table');return {k:'Updates tracked',v:(t?t.querySelectorAll('tr').length:0)+' rows'};},
+  function(){return {k:'Coverage',v:'By market'};}
+]);
+bentofy('p-watch',['.svgwrap'],[],[
+  function(b){var t=b.querySelector('table');return {k:'Inputs tracked',v:(t?t.querySelectorAll('tr').length:0)+' rows'};},
+  function(){return {k:'Cadence',v:'Updated daily'};}
+]);
+bentofy('p-mkt',['#content'],['.ctl'],[]);
+bentofy('p-news',['.news'],[],[]);
+})();</script>
+<script>(function(){/* i18n: 6 pre-translated languages + Google Translate auto-fallback */
+var I18N={
+"Overview":{nl:"Overzicht",de:"Übersicht",fr:"Aperçu",it:"Panoramica",pl:"Przegląd",es:"Resumen"},
+"Brief":{nl:"Samenvatting",de:"Kurzbericht",fr:"Synthèse",it:"Riepilogo",pl:"Podsumowanie",es:"Informe breve"},
+"My cost":{nl:"Mijn kosten",de:"Meine Kosten",fr:"Mon coût",it:"Il mio costo",pl:"Mój koszt",es:"Mi coste"},
+"Sailings":{nl:"Verschepingen",de:"Verschiffungen",fr:"Expéditions",it:"Spedizioni via mare",pl:"Rejsy",es:"Envíos"},
+"Materials":{nl:"Materialen",de:"Materialien",fr:"Matériaux",it:"Materiali",pl:"Materiały",es:"Materiales"},
+"Shipping":{nl:"Verzending",de:"Versand",fr:"Transport maritime",it:"Spedizioni",pl:"Transport morski",es:"Transporte marítimo"},
+"TW vs CN duty":{nl:"Invoerrechten TW vs CN",de:"Zoll TW vs. CN",fr:"Droits de douane TW vs CN",it:"Dazi TW vs CN",pl:"Cło TW vs CN",es:"Aranceles TW vs CN"},
+"Geopolitics":{nl:"Geopolitiek",de:"Geopolitik",fr:"Géopolitique",it:"Geopolitica",pl:"Geopolityka",es:"Geopolítica"},
+"Tariffs":{nl:"Tarieven",de:"Zölle",fr:"Tarifs douaniers",it:"Tariffe doganali",pl:"Taryfy celne",es:"Aranceles"},
+"Quick calc":{nl:"Snelle berekening",de:"Schnellkalkulation",fr:"Calcul rapide",it:"Calcolo rapido",pl:"Szybkie obliczenie",es:"Cálculo rápido"},
+"Freight":{nl:"Vracht",de:"Fracht",fr:"Fret",it:"Nolo",pl:"Fracht",es:"Flete"},
+"Watchlist":{nl:"Volglijst",de:"Beobachtungsliste",fr:"Liste de suivi",it:"Lista di controllo",pl:"Lista obserwowanych",es:"Lista de seguimiento"},
+"Markets":{nl:"Markten",de:"Märkte",fr:"Marchés",it:"Mercati",pl:"Rynki",es:"Mercados"},
+"News":{nl:"Nieuws",de:"Neuigkeiten",fr:"Actualités",it:"Notizie",pl:"Aktualności",es:"Noticias"},
+"Home":{nl:"Start",de:"Start",fr:"Accueil",it:"Home",pl:"Start",es:"Inicio"},
+"Today":{nl:"Vandaag",de:"Heute",fr:"Aujourd'hui",it:"Oggi",pl:"Dziś",es:"Hoy"},
+"Forecasts":{nl:"Prognoses",de:"Prognosen",fr:"Prévisions",it:"Previsioni",pl:"Prognozy",es:"Previsiones"},
+"Risk & tariffs":{nl:"Risico & tarieven",de:"Risiko & Zölle",fr:"Risques & tarifs",it:"Rischi e tariffe",pl:"Ryzyko i cła",es:"Riesgo y aranceles"},
+"Reference":{nl:"Referentie",de:"Referenz",fr:"Référence",it:"Riferimento",pl:"Materiały referencyjne",es:"Referencia"},
+"DECISION":{nl:"BESLISSING",de:"ENTSCHEIDUNG",fr:"DÉCISION",it:"DECISIONE",pl:"DECYZJA",es:"DECISIÓN"},
+"Buy now or wait?":{nl:"Nu kopen of wachten?",de:"Jetzt kaufen oder warten?",fr:"Acheter maintenant ou attendre\u00a0?",it:"Comprare ora o aspettare?",pl:"Kupować teraz czy czekać?",es:"¿Comprar ahora o esperar?"},
+"Built by our own team with outside experts and updated for you daily, so you always buy at the right time and the right price — free, for a handful of trusted partners.":{
+ nl:"Samengesteld door ons eigen team met externe experts en dagelijks voor u bijgewerkt, zodat u altijd op het juiste moment tegen de juiste prijs koopt — gratis, voor een select aantal vertrouwde partners.",
+ de:"Von unserem eigenen Team gemeinsam mit externen Experten erstellt und täglich für Sie aktualisiert, damit Sie stets zum richtigen Zeitpunkt und zum richtigen Preis kaufen — kostenlos, für eine kleine Gruppe vertrauenswürdiger Partner.",
+ fr:"Conçu par notre propre équipe avec des experts externes et mis à jour chaque jour pour vous, afin que vous achetiez toujours au bon moment et au bon prix — gratuitement, pour une poignée de partenaires de confiance.",
+ it:"Realizzato dal nostro team insieme a esperti esterni e aggiornato ogni giorno per voi, così da acquistare sempre al momento giusto e al prezzo giusto — gratuito, per una ristretta cerchia di partner di fiducia.",
+ pl:"Opracowane przez nasz własny zespół wraz z zewnętrznymi ekspertami i aktualizowane codziennie, abyście zawsze kupowali we właściwym momencie i we właściwej cenie — bezpłatnie, dla wąskiego grona zaufanych partnerów.",
+ es:"Elaborado por nuestro propio equipo junto con expertos externos y actualizado a diario para usted, de modo que siempre compre en el momento y al precio adecuados — gratis, para un pequeño grupo de socios de confianza."},
+"Today & Tomorrow":{nl:"Vandaag & morgen",de:"Heute & morgen",fr:"Aujourd'hui et demain",it:"Oggi e domani",pl:"Dziś i jutro",es:"Hoy y mañana"},
+"Material prices ahead":{nl:"Materiaalprijzen vooruitzicht",de:"Materialpreise im Ausblick",fr:"Prix des matériaux à venir",it:"Prospettive sui prezzi dei materiali",pl:"Prognoza cen materiałów",es:"Previsión de precios de materiales"},
+"Shipping prices ahead":{nl:"Verzendprijzen vooruitzicht",de:"Versandpreise im Ausblick",fr:"Prix du transport maritime à venir",it:"Prospettive sui prezzi delle spedizioni",pl:"Prognoza cen frachtu",es:"Previsión de precios de transporte marítimo"},
+"Shipping price indexes":{nl:"Vrachtprijsindexen",de:"Frachtpreisindizes",fr:"Indices des prix du fret",it:"Indici dei prezzi del nolo",pl:"Indeksy cen frachtu",es:"Índices de precios de flete"},
+"Quick cost estimate":{nl:"Snelle kostenraming",de:"Schnelle Kostenschätzung",fr:"Estimation rapide des coûts",it:"Stima rapida dei costi",pl:"Szybka wycena kosztów",es:"Estimación rápida de costes"},
+"Your total cost after we ship":{nl:"Uw totale kosten na verzending",de:"Ihre Gesamtkosten nach dem Versand",fr:"Votre coût total après expédition",it:"Il tuo costo totale dopo la spedizione",pl:"Twój całkowity koszt po wysyłce",es:"Su coste total tras el envío"},
+"Plan a sailing — dates, cost, space":{nl:"Plan een verscheping — data, kosten, ruimte",de:"Verschiffung planen — Termine, Kosten, Kapazität",fr:"Planifier une expédition — dates, coût, espace",it:"Pianifica una spedizione — date, costo, spazio",pl:"Zaplanuj rejs — terminy, koszt, miejsce",es:"Planificar un envío — fechas, coste, espacio"},
+"Cost watchlist":{nl:"Kostenvolglijst",de:"Kosten-Beobachtungsliste",fr:"Liste de suivi des coûts",it:"Lista di controllo dei costi",pl:"Lista obserwowanych kosztów",es:"Lista de seguimiento de costes"},
+"Cost comparison — TW vs CN origin":{nl:"Kostenvergelijking — herkomst TW vs CN",de:"Kostenvergleich — Ursprung TW vs. CN",fr:"Comparaison des coûts — origine TW vs CN",it:"Confronto costi — origine TW vs CN",pl:"Porównanie kosztów — pochodzenie TW vs CN",es:"Comparación de costes — origen TW vs CN"},
+"Tariff news":{nl:"Tariefnieuws",de:"Zoll-Nachrichten",fr:"Actualités douanières",it:"Notizie sui dazi",pl:"Aktualności celne",es:"Noticias arancelarias"},
+"Risk monitor — war & politics":{nl:"Risicomonitor — oorlog & politiek",de:"Risikomonitor — Krieg & Politik",fr:"Moniteur de risques — guerre et politique",it:"Monitor dei rischi — guerra e politica",pl:"Monitor ryzyka — wojna i polityka",es:"Monitor de riesgos — guerra y política"},
+"By country":{nl:"Per land",de:"Nach Land",fr:"Par pays",it:"Per paese",pl:"Według kraju",es:"Por país"},
+"Birdland news":{nl:"Birdland nieuws",de:"Birdland Neuigkeiten",fr:"Actualités Birdland",it:"Notizie Birdland",pl:"Aktualności Birdland",es:"Noticias de Birdland"}
+};
+function captureEn(el){if(!el.hasAttribute('data-en'))el.setAttribute('data-en',el.textContent);}
+function applyLang(lang){
+ var targets=[].slice.call(document.querySelectorAll('.toc a,.pr-grp,.hero .lede,.dash-k,.dash-head h2,.blk-h h2'));
+ targets.forEach(function(el){captureEn(el);var src=el.getAttribute('data-en');
+   if(lang==='en'||lang==='auto'){el.textContent=src;return;}
+   var d=I18N[src];el.textContent=(d&&d[lang])||src;});
+ document.documentElement.setAttribute('lang',lang==='auto'?'en':lang);
+}
+function loadGoogleTranslate(){
+ var gEl=document.getElementById('google_translate_element');if(gEl)gEl.classList.add('gt-on');
+ if(window.__gtLoaded)return;window.__gtLoaded=true;
+ window.googleTranslateElementInit=function(){try{new google.translate.TranslateElement({pageLanguage:'en',autoDisplay:false},'google_translate_element');}catch(e){}};
+ var sc=document.createElement('script');sc.src='https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';sc.async=true;
+ sc.onerror=function(){var gEl2=document.getElementById('google_translate_element');if(gEl2)gEl2.innerHTML='<span style="font-size:.72rem;color:var(--kb-faint)">Auto-translate unavailable offline</span>';};
+ document.body.appendChild(sc);
+}
+var sel=document.getElementById('langSel');
+if(sel){
+ var saved='en';try{saved=localStorage.getItem('bd_p_lang')||'en';}catch(e){}
+ sel.value=saved;applyLang(saved);if(saved==='auto')loadGoogleTranslate();
+ sel.addEventListener('change',function(){var v=sel.value;try{localStorage.setItem('bd_p_lang',v);}catch(e){}
+   applyLang(v);
+   if(v==='auto')loadGoogleTranslate();else{var gEl=document.getElementById('google_translate_element');if(gEl)gEl.classList.remove('gt-on');}
+ });
+}
 })();</script>
 </body></html>
