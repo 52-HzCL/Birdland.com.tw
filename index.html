@@ -53,16 +53,29 @@
   .wm{font-family:var(--serif);font-weight:600;letter-spacing:.05em;color:var(--jade-deep)}
   .wm .ind{font-family:var(--sans);font-weight:600;font-size:.5em;letter-spacing:.16em;text-transform:uppercase;color:var(--copper);margin-left:.45em;vertical-align:.18em}
 
+  /* ===== navbar B: desktop also collapses (hamburger everywhere); centered brand; single persistent Partner CTA ===== */
   header{position:sticky;top:0;z-index:100;background:rgba(242,236,221,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-cop)}
-  .bar{display:flex;align-items:center;justify-content:space-between;padding:.9rem 0}
-  .brand{display:flex;align-items:center;gap:.7rem;font-size:1.95rem}
-  nav{display:flex;gap:1.7rem;font-size:.94rem;font-weight:500;letter-spacing:.04em;align-items:center}
-  nav a{color:var(--ink-soft);padding:.2rem 0;position:relative}
-  nav a::after{content:"";position:absolute;left:0;bottom:-3px;height:1px;width:0;background:var(--metal);transition:width .35s}
+  .bar{position:relative;display:flex;align-items:center;justify-content:space-between;padding:.9rem 0}
+  .brand{display:flex;align-items:center;gap:.7rem;font-size:1.95rem;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
+  .menu{display:inline-flex;align-items:center;gap:.6rem;background:none;border:1px solid var(--line);min-height:44px;padding:.5rem .95rem .5rem .75rem;font:600 .8rem var(--sans);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;color:var(--ink)}
+  .menu:hover{border-color:var(--copper)}
+  .menu-ic{display:inline-flex;flex-direction:column;gap:3px;width:16px}
+  .menu-ic span{display:block;height:1.5px;background:var(--copper-deep);transition:transform .25s,opacity .25s}
+  .menu[aria-expanded="true"] .menu-ic span:nth-child(1){transform:translateY(4.5px) rotate(45deg)}
+  .menu[aria-expanded="true"] .menu-ic span:nth-child(2){opacity:0}
+  .menu[aria-expanded="true"] .menu-ic span:nth-child(3){transform:translateY(-4.5px) rotate(-45deg)}
+  .navcta-partner{display:inline-flex;align-items:center;gap:.4rem;font:700 .82rem var(--sans);letter-spacing:.06em;color:var(--paper);background:var(--jade-deep);border-top:2px solid var(--copper-bright);border-radius:1px;padding:.6rem 1.1rem;min-height:44px;text-decoration:none;transition:filter .25s,transform .2s}
+  .navcta-partner:hover{filter:brightness(1.1);transform:translateY(-1px)}
+  nav{position:fixed;inset:0 0 auto 0;z-index:105;display:flex;flex-direction:column;background:var(--paper);padding:5.5rem 2rem 2.5rem;gap:.4rem;transform:translateY(-110%);transition:transform .35s;border-bottom:1px solid var(--line-cop);font-size:1.25rem;max-height:100vh;overflow-y:auto}
+  nav.open{transform:none}
+  nav a{color:var(--ink-soft);padding:.5rem 0;position:relative}
+  nav a::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:0;background:var(--metal);transition:width .35s}
   nav a:hover::after,nav a:focus-visible::after{width:100%}
-  nav a.navcta{background:var(--jade-deep);color:var(--paper);padding:.55rem 1rem;border-top:2px solid var(--copper-bright);border-radius:1px}
-  nav a.navcta::after{display:none}
-  .menu{display:none;background:none;border:1px solid var(--line);min-height:44px;padding:.55rem .95rem;font:600 .82rem var(--sans);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;color:var(--ink)}
+  .nav-div{height:1px;width:100%;background:var(--line-cop);margin:1rem 0}
+  .nav-terminal{display:flex;flex-direction:column;gap:.5rem;align-items:flex-start}
+  .nav-term-lab{display:flex;align-items:center;gap:.45rem;font:700 .72rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#a68b5a;margin-bottom:.15rem}
+  .nav-terminal a{padding:.3rem 0}
+  .nav-terminal a b{font-size:.62em;color:var(--copper-bright);margin-left:.4em;font-weight:800}
 
   .hero{position:relative;overflow:hidden;padding-top:clamp(4rem,9vw,8rem);padding-bottom:clamp(4.5rem,9vw,8rem)}
   .hero .branch{position:absolute;top:-30px;right:-40px;width:min(46vw,520px);opacity:.5;z-index:0}
@@ -210,8 +223,6 @@
   .foot-bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-bottom:2.4rem;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,236,221,.5)}
 
   @media(max-width:980px){
-    nav{position:fixed;inset:0 0 auto 0;flex-direction:column;background:var(--paper);padding:5.5rem 2rem 2.5rem;gap:1.5rem;transform:translateY(-110%);transition:transform .35s;border-bottom:1px solid var(--line-cop);font-size:1.25rem}
-    nav.open{transform:none}.menu{display:block;z-index:110}
     .pgrid,.steps,.gens,.enq-grid{grid-template-columns:1fr;gap:1.8rem}
     .risk-grid{grid-template-columns:1fr}.esum{position:static}
     .ctrack{height:auto}.cbg,.cfill,.clabels{display:none}.cnodes{position:static;flex-direction:column;gap:.8rem;align-items:flex-start}
@@ -247,19 +258,11 @@
   @media(prefers-reduced-motion:reduce){.btn-pri:hover::after,.esend:hover::after,.fcta:hover::after,.navcta:hover::after{animation:none}}
 
   /* ===== LANGUAGE SWITCHER ===== */
-  .langwrap{position:relative}
-  .langbtn{background:none;border:1px solid var(--line-cop);color:var(--ink-soft);font:600 .9rem var(--sans);letter-spacing:.03em;min-height:44px;padding:.55rem .9rem;border-radius:2px;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem}
-  .langbtn:hover{border-color:var(--copper);color:var(--copper-deep)}
-  .langmenu{position:absolute;right:0;top:calc(100% + 10px);background:var(--paper2);border:1px solid var(--line-cop);border-top:3px solid;border-image:var(--metal) 1;min-width:200px;display:none;z-index:130;box-shadow:0 16px 40px -18px rgba(36,31,24,.45)}
-  .langmenu.open{display:block}
-  .langmenu button{display:block;width:100%;text-align:left;background:none;border:none;padding:.72rem 1.1rem;font:500 1.02rem var(--sans);color:var(--ink-soft);cursor:pointer;transition:.16s}
+  .langwrap{position:relative;width:100%}
+  .langbtn{display:none}
+  .langmenu{position:static;display:block;border:none;border-top:1px solid var(--line);box-shadow:none;min-width:0;margin-top:.6rem;background:none}
+  .langmenu button{display:block;width:100%;text-align:left;background:none;border:none;padding:.55rem 0;font:500 1.02rem var(--sans);color:var(--ink-soft);cursor:pointer;transition:.16s}
   .langmenu button:hover{background:var(--silk);color:var(--copper-deep)}
-  @media(max-width:980px){
-    .langwrap{width:100%}
-    .langbtn{display:none}
-    .langmenu{position:static;display:block;border:none;border-top:1px solid var(--line);box-shadow:none;min-width:0;margin-top:.6rem;background:none}
-    .langmenu button{padding:.55rem 0;font-size:1.15rem}
-  }
   /* hide Google Translate chrome */
   .goog-te-banner-frame{display:none!important}
   body{top:0!important}
@@ -1061,18 +1064,7 @@
   .bd-led{display:inline-block;width:8px;height:8px;border-radius:50%;background:#19e36a;box-shadow:0 0 6px #19e36a;flex:0 0 auto;animation:bdblink 2.4s steps(1) infinite}
   @keyframes bdblink{50%{opacity:.2}}
   .totop{display:none!important}  /* dedupe: #bl-top is the single back-to-top button */
-  /* ===== navbar A: copper accent line + grouped-with-dividers ===== */
   header::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--copper-deep),#c9805a 45%,var(--copper-deep));z-index:2}
-  #nav{gap:1.4rem}
-  .nav-grp{display:contents}
-  .nav-div{width:1px;height:22px;background:var(--line-cop);flex:0 0 auto;align-self:center}
-  .term-dock{gap:8px;margin:0}
-  .term-dock .bd-led{margin-right:1px}
-  .term-dock .td-pill:not(.td-hi){background:none;border-color:transparent;min-height:auto;padding:.32rem .5rem;color:var(--ink-soft)}
-  .term-dock .td-pill:not(.td-hi):hover{color:var(--copper-deep);border-color:transparent;transform:none}
-  .term-dock .td-pill.td-hi{min-height:auto;padding:.44rem 1rem;border-radius:18px}
-  @media(max-width:980px){.nav-div{display:none}}
-  @media(max-width:860px){.term-dock{display:none}}
   .term-dock-m{display:none}
   @media(max-width:860px){
     .term-dock-m{display:grid;grid-template-columns:1fr 1fr 1fr;position:fixed;top:auto;left:0;right:0;bottom:0;z-index:200;background:var(--jade-deep);border-top:1px solid rgba(255,255,255,.12);transform:none;padding:0}
@@ -1203,6 +1195,7 @@
 
 <header>
   <div class="wrap bar">
+    <button class="menu" aria-expanded="false" aria-controls="nav"><span class="menu-ic" aria-hidden="true"><span></span><span></span><span></span></span>Menu</button>
     <a class="brand" href="#top">
       <svg class="logo" viewBox="0 0 97 94" aria-label="Birdland Ind. logo">
         <defs><linearGradient id="cuH" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3A074"/><stop offset=".4" stop-color="#B5472A"/><stop offset=".6" stop-color="#7E2C16"/><stop offset="1" stop-color="#D98A5E"/></linearGradient></defs>
@@ -1212,21 +1205,19 @@
       </svg>
       <span class="wm">Birdland<span class="ind">Ind.</span></span>
     </a>
-    <button class="menu" aria-expanded="false" aria-controls="nav">Menu</button>
+    <a class="navcta-partner" href="partner.html">Partner desk <span aria-hidden="true">&rarr;</span></a>
     <nav id="nav">
-      <span class="nav-grp">
-        <a href="#heritage">About</a>
-        <a href="#make">What we make</a>
-        <a href="#why">Why Birdland</a>
-        <a href="#enquiry">Contact</a>
-        <a href="#" id="bl-replay" onclick="return window.blPlayIntro(event)">Intro</a>
-      </span>
+      <a href="#heritage">About</a>
+      <a href="#make">What we make</a>
+      <a href="#why">Why Birdland</a>
+      <a href="#enquiry">Contact</a>
+      <a href="#" id="bl-replay" onclick="return window.blPlayIntro(event)">Intro</a>
       <span class="nav-div" aria-hidden="true"></span>
-      <div class="term-dock" aria-label="SaaS Terminal">
-        <span class="bd-led" aria-hidden="true"></span>
-        <a class="td-pill" href="news.html" title="Market &amp; supply intelligence">Client</a>
-        <a class="td-pill td-hi" href="partner.html" title="Only invitation, Pro version">Partner<b>VIP</b></a>
-        <a class="td-pill" href="team.html" title="Internal &middot; staff only">Team</a>
+      <div class="nav-terminal" aria-label="SaaS Terminal">
+        <span class="nav-term-lab"><span class="bd-led" aria-hidden="true"></span>SaaS Terminal</span>
+        <a href="news.html" title="Market &amp; supply intelligence">Client Desk</a>
+        <a href="partner.html" title="Only invitation, Pro version">Partner Desk<b>VIP</b></a>
+        <a href="team.html" title="Internal &middot; staff only">Team Desk</a>
       </div>
       <span class="nav-div" aria-hidden="true"></span>
       <div class="langwrap">
