@@ -493,6 +493,9 @@
  body.theme-light .plain{background:var(--panel2);border:0;border-radius:8px;color:var(--ink)}
  body.theme-light .plain b{color:var(--accent)}
  body.theme-light .refhd{color:var(--faint);border-top:.5px solid var(--line2)}
+ .fresh-tier{background:rgba(255,255,255,.4);backdrop-filter:blur(18px) saturate(160%);border-bottom:.5px solid rgba(0,0,0,.07);font-family:var(--sf);font-size:.72rem;color:#6e6e73}
+ .fresh-tier .wrap{max-width:1280px;padding:6px clamp(1rem,3vw,2.2rem);display:flex;gap:14px;align-items:center}
+ .fresh-tier b{color:#1d1d1f;font-weight:600}
  body.theme-light .calc label{color:var(--mut)}
  body.theme-light .calc input,body.theme-light .calc select{background:var(--panel);border:1px solid var(--line2);color:var(--ink);border-radius:8px;box-shadow:none}
  body.theme-light .calc input:focus,body.theme-light .calc select:focus{border-color:var(--accent);outline:none}
@@ -539,12 +542,15 @@
  body.theme-light .pstrip .pi .c{font-family:'IBM Plex Mono',monospace;font-size:.76rem;font-weight:500}
  body.theme-light .pstrip .pi .c.up{color:var(--up)}body.theme-light .pstrip .pi .c.down{color:var(--down)}body.theme-light .pstrip .pi .c.flat{color:var(--flat)}
  body.theme-light .pstrip .pi .spk{display:block;width:100%;height:18px;margin-top:8px}
- /* right rail (light) */
+ /* left rail (light) — flex-column on mobile keeps nav visible up top; row+sticky from 900px */
  body.theme-light #p-col{flex:1;min-width:0}
- body.theme-light #p-rail{display:none}
- @media(min-width:1100px){
-  body.theme-light main.wrap{display:flex;align-items:flex-start;gap:26px;max-width:1280px}
-  body.theme-light #p-rail{display:block;width:225px;flex:0 0 225px;position:sticky;top:66px;margin-top:16px}
+ body.theme-light main.wrap{display:flex;flex-direction:column;gap:14px}
+ body.theme-light #p-rail{display:block;order:-1;margin-top:16px}
+ @media(min-width:900px){
+  body.theme-light main.wrap{flex-direction:row;align-items:flex-start;gap:26px;max-width:1280px}
+  body.theme-light #p-rail{width:225px;flex:0 0 225px;position:sticky;top:12px;max-height:calc(100vh - 24px);overflow-y:auto}
+  body.theme-light #p-rail::-webkit-scrollbar{width:5px}
+  body.theme-light #p-rail::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:3px}
  }
  body.theme-light .pr-h{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.12em;color:var(--faint);text-transform:uppercase;margin:18px 0 8px}
  body.theme-light .pr-h:first-child{margin-top:0}
@@ -556,6 +562,15 @@
  body.theme-light .pr-wl .n{color:var(--mut)}
  body.theme-light .pr-wl .up{color:var(--up)}body.theme-light .pr-wl .down{color:var(--down)}body.theme-light .pr-wl .flat{color:var(--flat)}
  body.theme-light .pr-go{display:block;text-align:center;margin-top:14px;padding:9px 0;border-radius:8px;background:var(--accent);color:#fff;font-size:.78rem;font-weight:600;text-decoration:none;cursor:pointer}
+ /* relocated section nav inside the rail */
+ body.theme-light #p-rail .toc{display:flex;flex-direction:column;flex-wrap:nowrap;overflow:visible;position:static;background:transparent;padding:0;margin:0 0 6px;gap:3px}
+ body.theme-light #p-rail .toc a{background:transparent;border:0;box-shadow:none;color:var(--mut);font-family:var(--sf);font-weight:560;font-size:.82rem;padding:7px 9px;border-radius:8px;text-align:left}
+ body.theme-light #p-rail .toc a:hover{background:rgba(0,0,0,.05);color:var(--ink)}
+ body.theme-light #p-rail .toc a.on{background:var(--ink);color:#fff}
+ body.theme-light #p-rail .pr-grp{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.12em;color:var(--faint);text-transform:uppercase;margin:12px 0 3px;padding:0 9px}
+ body.theme-light #p-rail .pr-grp:first-child{margin-top:0}
+ @media(max-width:899px){ #p-rail .toc{position:static;background:transparent;display:flex;flex-direction:column;overflow:visible} }
+
  /* smooth open + calm-motion (site-wide standard) */
  @keyframes blkFade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
  .blk[data-open="1"] .blk-b{animation:blkFade .3s ease}
@@ -577,6 +592,7 @@
 </div></div>
 
 <div class="tk-wrap"><div class="wrap" style="overflow:hidden"><div id="ticker" class="ticker"></div></div></div>
+<div class="fresh-tier" id="freshTier"></div>
 <div id="google_translate_element"></div>
 <main class="wrap">
   <section class="hero"><h1 class="sqh"><span class="sqmk"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span>SourceIQ<span class="saas">SaaS</span></h1><p class="lede">Built by our own team with outside experts and updated for you daily, so you always buy at the right time and the right price &mdash; free, for a handful of trusted partners.</p></section>
@@ -896,11 +912,23 @@ try{var D=JSON.parse(document.getElementById('outlook-data').textContent);}catch
 var main=document.querySelector('main'),disc=document.getElementById('disc');
 // 1) live cost strip — always visible, straight under the DECISION dash
 (function(){var dash=document.getElementById('dash');if(!dash)return;var s=document.createElement('div');s.className='pstrip';s.id='p-live';
+ var pbT=D.procurement||{},Pq=D.partner||{};
+ var qacts=(pbT.items&&pbT.items.length)?pbT.items:((Pq.procurement&&Pq.procurement.actions)||[]).map(function(a){return {input:'',action:a.label,urgency:a.level};});
+ var topAct=qacts[0];
+ var cduty=Pq.tariffmon&&Pq.tariffmon.cnVsTw;
  function spk(a,d){if(!a||a.length<2)return '';var w=90,hh=18,mn=Math.min.apply(null,a),mx=Math.max.apply(null,a),rg=(mx-mn)||1;var p=a.map(function(v,i){return (i/(a.length-1)*w).toFixed(1)+','+(hh-2-((v-mn)/rg)*(hh-4)).toFixed(1);}).join(' ');var c=d==='up'?'#f23645':(d==='down'?'#089981':'#e8a33d');return '<svg class="spk" viewBox="0 0 '+w+' '+hh+'" preserveAspectRatio="none"><polyline points="'+p+'" fill="none" stroke="'+c+'" stroke-width="1.4"/></svg>';}
  var h='';
+if(topAct)h+='<span class="pi lead" data-go="p-brief" style="cursor:pointer"><span class="s">Next action</span><span class="v" style="font-size:.86rem">'+(topAct.action||'')+'</span></span>';
+ h+='<span class="pi lead" data-go="p-landed2" style="cursor:pointer"><span class="s">My landed cost</span><span class="v">Open calculator →</span></span>';
+ if(cduty)h+='<span class="pi lead" data-go="p-cduty" style="cursor:pointer"><span class="s">TW vs CN duty</span><span class="v">'+cduty+'</span></span>';
  (D.indices||[]).slice(0,6).forEach(function(ix){var d=ix.dir||'flat',ar=d==='up'?'▲':(d==='down'?'▼':'■'),ch=(ix.chg!=null?(ix.chg>0?'+':'')+ix.chg.toFixed(1)+'%':'');
   h+='<span class="pi" title="'+(ix.sub||'')+'"><span class="s">'+(ix.short||ix.label)+'</span><span class="v">'+Number(ix.value).toLocaleString()+(ix.unit?' '+ix.unit:'')+'</span><span class="c '+d+'">'+ar+ch+'</span>'+spk(ix.spark,d)+'</span>';});
- s.innerHTML=h;dash.parentNode.insertBefore(s,dash.nextSibling);})();
+ s.innerHTML=h;dash.parentNode.insertBefore(s,dash.nextSibling);
+ s.addEventListener('click',function(e){var g=e.target.closest('[data-go]');if(!g)return;var a=document.querySelector('.toc a[href="#'+g.getAttribute('data-go')+'"]');if(a)a.click();});
+ })();
+ (function(){var ft=document.getElementById('freshTier');if(!ft)return;
+  ft.innerHTML='<div class="wrap"><span>Data refreshed <b>'+(D.updated||'—')+'</b></span><span>· Indices &amp; forecasts update daily via automated feed</span></div>';
+ })();
 // 2) section order: daily brief & the two money tools first; client-desk duplicates demoted to Reference
 (function(){if(!main||!disc)return;var ORD=['p-brief','p-landed2','p-sail','p-material','p-shipping','p-cduty','p-war','p-tariff'],REF=['p-calc','p-freight','p-watch','p-mkt','p-news'];
  ORD.concat(REF).forEach(function(id){var s=document.getElementById(id);if(s)main.insertBefore(s,disc);});
@@ -929,6 +957,13 @@ SELS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=L
  while(main.firstChild)col.appendChild(main.firstChild);
  main.appendChild(col);
  var rail=document.createElement('aside');rail.id='p-rail';rail.setAttribute('aria-label','Today at a glance');
+ var tocEl=document.querySelector('.toc');
+ if(tocEl){
+   var GROUPS=[['Today','p-brief','p-landed2','p-sail'],['Forecasts','p-material','p-shipping','p-cduty'],['Risk & tariffs','p-war','p-tariff'],['Reference','p-calc','p-freight','p-watch','p-mkt','p-news']];
+   GROUPS.forEach(function(grp){var lbl=document.createElement('div');lbl.className='pr-grp';lbl.textContent=grp[0];
+     var firstHref='#'+grp[1],anchor=tocEl.querySelector('a[href="'+firstHref+'"]');
+     if(anchor)tocEl.insertBefore(lbl,anchor);else tocEl.appendChild(lbl);});
+ }
  var pbT2=D.procurement||{},P2=D.partner||{};
  var acts=(pbT2.items&&pbT2.items.length)?pbT2.items.map(function(i){return {u:i.urgency||'med',t:(i.input?i.input+' — ':'')+(i.action||'')};}):((P2.procurement&&P2.procurement.actions)||[]).map(function(a){return {u:a.level||'med',t:a.label};});
  var h='<div class="pr-h">Today · '+acts.length+' actions</div>';
@@ -937,7 +972,9 @@ SELS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=L
  (D.indices||[]).slice(0,5).forEach(function(ix){var d=ix.dir||'flat',ar=d==='up'?'▲':(d==='down'?'▼':'■');
   h+='<div class="pr-wl" data-go="p-watch"><span class="n">'+(ix.short||ix.label)+'</span><span class="'+d+'">'+Number(ix.value).toLocaleString()+' '+ar+'</span></div>';});
  h+='<span class="pr-go" data-go="p-landed2">My landed cost →</span>';
- rail.innerHTML=h;main.appendChild(rail);
+ rail.innerHTML=h;
+ if(tocEl)rail.insertBefore(tocEl,rail.firstChild);
+ main.appendChild(rail);
  rail.addEventListener('click',function(e){var g=e.target.closest('[data-go]');if(!g)return;var a=document.querySelector('.toc a[href="#'+g.getAttribute('data-go')+'"]');if(a)a.click();});
 })();
 })();</script>

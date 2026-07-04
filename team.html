@@ -224,6 +224,20 @@
  .back{color:var(--mut)}
  /* calm-motion (site-wide standard) */
  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto!important}}
+ /* left rail: persistent section nav, sibling of <main> so groups()/applyState() stay untouched */
+ .team-shell{display:block;max-width:1000px;margin:0 auto;padding:0 16px}
+ .team-shell main.wrap{padding:0;max-width:none;margin:0}
+ @media(min-width:900px){
+   .team-shell{display:flex;align-items:flex-start;gap:26px;max-width:1180px}
+   #t-rail{width:212px;flex:0 0 212px;position:sticky;top:60px;margin-bottom:0;max-height:calc(100vh - 76px);overflow-y:auto}
+ }
+ #t-rail{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:16px}
+ #t-rail .tr-h{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin:10px 4px 5px}
+ #t-rail .tr-h:first-child{margin-top:2px}
+ #t-rail .tr-link{display:block;padding:7px 9px;border-radius:8px;font-size:.85rem;color:var(--mut);cursor:pointer;line-height:1.35}
+ #t-rail .tr-link:hover{background:var(--panel2);color:var(--ink)}
+ #t-rail .tr-link.on{background:var(--ink);color:var(--bg)}
+ #t-rail .rolebar{position:static;padding:0 0 10px;margin-bottom:8px;border-bottom:1px solid var(--line);flex-wrap:wrap}
 </style></head><body>
 <div id="gate"><div class="gbox">
   <div class="gk">Internal · Birdland staff only</div>
@@ -758,5 +772,28 @@ var LS={g:function(k){try{return localStorage.getItem('bd_t_'+k);}catch(e){retur
  if(saved)hs.forEach(function(h,i){var want=saved[i];if(want!=null&&String(h.getAttribute('data-collapsed'))!==String(want))h.click();});
  function snap(){var m={};hs.forEach(function(h,i){m[i]=h.getAttribute('data-collapsed');});LS.s('col',JSON.stringify(m));}
  hs.forEach(function(h){h.addEventListener('click',function(){setTimeout(snap,0);});});})();
+})();</script>
+<script>(function(){ // left rail: wraps <main> without touching its children order (groups() safety)
+var main=document.querySelector('main');if(!main)return;
+var shell=document.createElement('div');shell.className='team-shell';
+main.parentNode.insertBefore(shell,main);
+var rail=document.createElement('aside');rail.id='t-rail';rail.setAttribute('aria-label','Sections');
+shell.appendChild(rail);shell.appendChild(main);
+var rb=document.getElementById('rolebar');
+if(rb)rail.appendChild(rb);
+var hs=[].slice.call(main.querySelectorAll('h2.sh'));
+var lastGrp='';
+hs.forEach(function(h,i){
+  var role=h.getAttribute('data-r')||'all';
+  var grpName=/fin/.test(role)?'財務':(/sales/.test(role)?'業務':(/ship/.test(role)?'船務':(/assist/.test(role)?'業助':'全員')));
+  if(grpName!==lastGrp){var hd=document.createElement('div');hd.className='tr-h';hd.textContent=grpName;rail.appendChild(hd);lastGrp=grpName;}
+  var txt=(h.childNodes[0]&&h.childNodes[0].textContent)||h.textContent.replace(/\+|\u2212/g,'').trim();
+  var a=document.createElement('div');a.className='tr-link';a.textContent=txt;a.setAttribute('data-i',i);
+  a.addEventListener('click',function(){
+    if(h.getAttribute('data-collapsed')==='1')h.click();
+    h.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  rail.appendChild(a);
+});
 })();</script>
 </body></html>
