@@ -577,6 +577,8 @@
  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto!important}}
 
 .lang-sel{font-family:var(--kb-sans);font-size:.74rem;font-weight:600;color:var(--kb-mut);background:var(--kb-panel);border:1px solid var(--kb-line);border-radius:7px;padding:5px 8px;cursor:pointer;margin-right:10px}
+#p-rail .pr-lang{margin-bottom:8px}
+#p-rail .pr-lang .lang-sel{width:100%;margin:4px 0 0;padding:8px 10px;font-size:.85rem;font-weight:600;color:var(--kb-ink)}
 .lang-sel:focus{border-color:var(--kb-accent);outline:none}
 /* ===== bento content grid: 1 large + 1 medium + 2 small, per feature ===== */
 .bento{display:grid;grid-template-columns:1.7fr 1fr;grid-template-rows:auto auto;gap:16px;align-items:start}
@@ -1328,6 +1330,13 @@ function loadGoogleTranslate(){
 }
 var sel=document.getElementById('langSel');
 if(sel){
+ var rail=document.getElementById('p-rail');
+ if(rail){
+   var langWrap=document.createElement('div');langWrap.className='pr-lang';
+   var langLbl=document.createElement('div');langLbl.className='pr-grp';langLbl.textContent='Language';langLbl.style.marginTop='0';
+   langWrap.appendChild(langLbl);langWrap.appendChild(sel);
+   rail.insertBefore(langWrap,rail.firstChild);
+ }
  var saved='en';try{saved=localStorage.getItem('bd_p_lang')||'en';}catch(e){}
  sel.value=saved;applyLang(saved);if(saved==='auto')loadGoogleTranslate();
  sel.addEventListener('change',function(){var v=sel.value;try{localStorage.setItem('bd_p_lang',v);}catch(e){}
