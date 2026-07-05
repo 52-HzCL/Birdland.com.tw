@@ -735,6 +735,16 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
 /* ===== buyer tools: orders / alerts / calendar ===== */
 .tool-btn{font:600 .82rem var(--kb-sans)!important;color:#fff!important;background:var(--kb-accent)!important;border:0!important;border-radius:8px!important;padding:9px 16px!important;cursor:pointer;margin-top:4px}
 .tool-btn:hover{background:var(--kb-accent-dk)!important}
+.tool-btn-ghost{background:var(--kb-panel)!important;color:var(--kb-ink)!important;border:1px solid var(--kb-line)!important}
+.tool-btn-ghost:hover{background:var(--kb-bg)!important}
+.send-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:14px;padding-top:14px;border-top:1px solid var(--kb-line)}
+.send-row input{flex:1;min-width:180px;font:500 .85rem var(--kb-sans);color:var(--kb-ink);background:var(--kb-bg);border:1px solid var(--kb-line);border-radius:8px;padding:9px 11px}
+.send-row .tool-btn,.send-row .tool-btn-ghost{margin-top:0;white-space:nowrap}
+.rp-topics{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px}
+.rp-chip{font:600 .82rem var(--kb-sans);color:var(--kb-mut);background:var(--kb-panel);border:1px solid var(--kb-line);border-radius:999px;padding:7px 14px;cursor:pointer}
+.rp-chip:hover{background:var(--kb-bg);color:var(--kb-ink)}
+.rp-chip.on{background:var(--kb-ink);color:#fff;border-color:var(--kb-ink)}
+.rp-preview{background:var(--kb-bg);border:1px solid var(--kb-line);border-radius:10px;padding:14px 16px;font-family:var(--kb-mono);font-size:.82rem;line-height:1.7;color:var(--kb-ink);white-space:pre-wrap;max-height:360px;overflow-y:auto;margin-top:6px}
 .st-pill{display:inline-block;font:700 .6rem var(--kb-sans);letter-spacing:.04em;padding:3px 9px;border-radius:999px;text-transform:uppercase;white-space:nowrap}
 .st-planning{background:var(--kb-line);color:var(--kb-mut)}
 .st-confirmed{background:#DBEAFE;color:var(--kb-accent-dk)}
@@ -787,7 +797,7 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
     <div class="dash-grid" id="dash-grid"></div>
     <div class="dash-foot">A live read of your FOB China/Taiwan inputs — material costs, ocean freight, compliance and supply risk. Tap a tab below for the detail.</div>
   </section>
-  <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-orders">My orders</a><a href="#p-alerts">Price alerts</a><a href="#p-landed2">My landed cost</a><a href="#p-margin">Retail margin</a><a href="#p-reorder">Reorder timing</a><a href="#p-sail">Plan a sailing</a><a href="#p-calc">Quick estimate</a><a href="#p-cduty">TW vs CN duty</a><a href="#p-material">Materials ahead</a><a href="#p-shipping">Shipping ahead</a><a href="#p-season">Buy calendar</a><a href="#p-freight">Freight indexes</a><a href="#p-watch">Watchlist</a><a href="#p-war">Geopolitics</a><a href="#p-tariff">Tariffs</a><a href="#p-mkt">By country</a><a href="#p-news">News</a></nav>
+  <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-alerts">Price alerts</a><a href="#p-report">Keyword report</a><a href="#p-landed2">My landed cost</a><a href="#p-margin">Retail margin</a><a href="#p-reorder">Reorder timing</a><a href="#p-sail">Plan a sailing</a><a href="#p-calc">Quick estimate</a><a href="#p-cduty">TW vs CN duty</a><a href="#p-material">Materials ahead</a><a href="#p-shipping">Shipping ahead</a><a href="#p-season">Buy calendar</a><a href="#p-freight">Freight indexes</a><a href="#p-watch">Watchlist</a><a href="#p-war">Geopolitics</a><a href="#p-tariff">Tariffs</a><a href="#p-mkt">By country</a><a href="#p-news">News</a></nav>
   <div id="tab-hint" class="tab-hint"><div class="mac-note"><span class="mn-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span><div class="mn-txt"><b>SourceIQ</b><span>Pick a section from the tabs above to view it.</span></div></div></div>
 
   <section class="blk" data-open="1" id="p-brief"><button class="blk-h"><span class="k">BRIEF</span><h2>Today &amp; Tomorrow</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
@@ -857,20 +867,6 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
   <section class="blk" data-open="0" id="p-news"><button class="blk-h"><span class="k">NEWS</span><h2>Birdland news</h2><span class="ihelp" title="Company updates posted by the Birdland team.">i</span><span class="meta">updates</span><span class="tog"></span></button><div class="blk-b"><div class="news" id="newslist"></div></div></section>
 
 
-  <section class="blk" data-open="0" id="p-orders"><button class="blk-h"><span class="k">ORDERS</span><h2>My orders</h2><span class="ihelp" title="Log your open purchase orders and follow them from planning to arrival. Saved on this device only.">i</span><span class="tog"></span></button><div class="blk-b">
-    <div class="sub">Track your open POs from planning to arrival — a private board saved on this device.</div>
-    <div class="calc">
-      <div><label>PO / ref</label><input id="ord_ref" placeholder="PO-1042"></div>
-      <div><label>Product</label><input id="ord_prod" placeholder="Pruning shears"></div>
-      <div><label>Qty (pcs)</label><input id="ord_qty" type="number" value="5000"></div>
-      <div><label>ETD</label><input id="ord_etd" type="date"></div>
-      <div><label>ETA</label><input id="ord_eta" type="date"></div>
-      <div><label>Status</label><select id="ord_status"><option>Planning</option><option>Confirmed</option><option>In production</option><option>Shipped</option><option>Arrived</option></select></div>
-    </div>
-    <button class="tool-btn" id="ord_add" type="button">+ Add order</button>
-    <div id="ord_list" style="margin-top:14px"></div>
-  </div></section>
-
   <section class="blk" data-open="0" id="p-alerts"><button class="blk-h"><span class="k">ALERTS</span><h2>Price alerts</h2><span class="ihelp" title="Arm a target on any tracked index; the desk flags it the day it crosses. Checked against today's live data.">i</span><span class="tog"></span></button><div class="blk-b">
     <div class="sub">Arm a target on any tracked index — the desk flags it the moment today's value crosses.</div>
     <div class="calc">
@@ -880,6 +876,26 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
     </div>
     <button class="tool-btn" id="alr_add" type="button">+ Arm alert</button>
     <div id="alr_list" style="margin-top:14px"></div>
+    <div class="send-row">
+      <input id="alr_email" type="email" placeholder="your@email.com (for the draft's To: field)">
+      <button class="tool-btn tool-btn-ghost" id="alr_dl" type="button">&#8681; Download</button>
+      <button class="tool-btn" id="alr_mail" type="button">&#9993; Draft email</button>
+    </div>
+  </div></section>
+
+  <section class="blk" data-open="0" id="p-report"><button class="blk-h"><span class="k">REPORT</span><h2>Keyword report</h2><span class="ihelp" title="Pick a topic or type your own keyword; the desk pulls every matching indicator, forecast, tariff note and news item into one report you can download or email.">i</span><span class="tog"></span></button><div class="blk-b">
+    <div class="sub">Pick a topic below, or type your own keyword — the desk pulls every matching indicator, forecast and news item into one report.</div>
+    <div class="rp-topics" id="rp_topics"></div>
+    <div class="calc" style="grid-template-columns:1fr auto;align-items:end">
+      <div><label>Or search a keyword</label><input id="rp_kw" placeholder="e.g. steel, EU, freight"></div>
+      <div><button class="tool-btn" id="rp_gen" type="button">Generate report</button></div>
+    </div>
+    <div id="rp_out"></div>
+    <div class="send-row" id="rp_send" style="display:none">
+      <input id="rp_email" type="email" placeholder="your@email.com (for the draft's To: field)">
+      <button class="tool-btn tool-btn-ghost" id="rp_dl" type="button">&#8681; Download</button>
+      <button class="tool-btn" id="rp_mail" type="button">&#9993; Draft email</button>
+    </div>
   </div></section>
 
   <section class="blk" data-open="0" id="p-margin"><button class="blk-h"><span class="k">MARGIN</span><h2>Retail margin planner</h2><span class="ihelp" title="Price for your shelves: enter landed cost and target margin to get suggested retail, markup and gross profit per order.">i</span><span class="tog"></span></button><div class="blk-b">
@@ -1197,7 +1213,7 @@ if(topAct)h+='<span class="pi lead" data-go="p-brief" style="cursor:pointer"><sp
   ft.innerHTML='<div class="wrap"><span>Data refreshed <b>'+(D.updated||'—')+'</b></span><span>· Indices &amp; forecasts update daily via automated feed</span></div>';
  })();
 // 2) section order: daily brief & the two money tools first; client-desk duplicates demoted to Reference
-(function(){if(!main||!disc)return;var ORD=['p-brief','p-orders','p-alerts','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty','p-material','p-shipping','p-season','p-war','p-tariff'],REF=['p-freight','p-watch','p-mkt','p-news'];
+(function(){if(!main||!disc)return;var ORD=['p-brief','p-alerts','p-report','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty','p-material','p-shipping','p-season','p-war','p-tariff'],REF=['p-freight','p-watch','p-mkt','p-news'];
  ORD.concat(REF).forEach(function(id){var s=document.getElementById(id);if(s)main.insertBefore(s,disc);});
  var hd=document.createElement('div');hd.className='refhd';hd.textContent='Reference data — shared with Client Desk';main.insertBefore(hd,document.getElementById(REF[0]));})();
 // 3) honest freshness: static desk-set blocks must not claim the daily stamp
@@ -1210,7 +1226,7 @@ FIELDS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v
 SELS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=LS.g(id);if(v!==null&&v!==''){var ok=[].some.call(e.options,function(o){return o.value===v;});if(ok){e.value=v;e.dispatchEvent(new Event('change',{bubbles:true}));}}
  e.addEventListener('change',function(){LS.s(id,e.value);});});
 // 5) full-scroll accordion: funnel modules open, reference collapsed; remember per-section state
-(function(){var FUN={'p-brief':1,'p-orders':1,'p-alerts':1,'p-landed2':1,'p-margin':1,'p-reorder':1,'p-sail':1,'p-calc':1,'p-cduty':1,'p-material':1,'p-shipping':1,'p-season':1,'p-war':1,'p-tariff':1};
+(function(){var FUN={'p-brief':1,'p-alerts':1,'p-report':1,'p-landed2':1,'p-margin':1,'p-reorder':1,'p-sail':1,'p-calc':1,'p-cduty':1,'p-material':1,'p-shipping':1,'p-season':1,'p-war':1,'p-tariff':1};
  var saved=null;try{saved=JSON.parse(LS.g('col')||'null');}catch(e){}
  [].forEach.call(document.querySelectorAll('main .blk'),function(sec){
    var open=!!FUN[sec.id];
@@ -1226,7 +1242,7 @@ SELS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=L
  var rail=document.createElement('aside');rail.id='p-rail';rail.setAttribute('aria-label','Today at a glance');
  var tocEl=document.querySelector('.toc');
  if(tocEl){
-   var GROUPS=[['Today','p-brief','p-orders','p-alerts'],['Cost tools','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty'],['Forecasts','p-material','p-shipping','p-season','p-freight','p-watch'],['Risk & markets','p-war','p-tariff','p-mkt'],['News','p-news']];
+   var GROUPS=[['Today','p-brief','p-alerts','p-report'],['Cost tools','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty'],['Forecasts','p-material','p-shipping','p-season','p-freight','p-watch'],['Risk & markets','p-war','p-tariff','p-mkt'],['News','p-news']];
    GROUPS.forEach(function(grp){var lbl=document.createElement('div');lbl.className='pr-grp';lbl.textContent=grp[0];
      var firstHref='#'+grp[1],anchor=tocEl.querySelector('a[href="'+firstHref+'"]');
      if(anchor)tocEl.insertBefore(lbl,anchor);else tocEl.appendChild(lbl);});
@@ -1255,21 +1271,8 @@ function money(n){return 'US$'+Number(n).toLocaleString(undefined,{maximumFracti
 function addWeeks(d,w){var x=new Date(d.getTime());x.setDate(x.getDate()+Math.round(w*7));return x;}
 function fmtDate(d){return d.toISOString().slice(0,10);}
 var TODAY=(function(){var u=D.updated||'';var m=/(\d{4})-(\d{2})-(\d{2})/.exec(u);return m?new Date(+m[1],+m[2]-1,+m[3]):new Date(2026,0,1);})();
-
-/* ---- 1) My orders ---- */
-(function(){var list=$('ord_list'),add=$('ord_add');if(!list||!add)return;
- function render(){var os=LSget('orders',[]);
-   if(!os.length){list.innerHTML='<div class="empty-note">No orders yet — add your first PO above to start tracking.</div>';return;}
-   list.innerHTML=os.map(function(o,i){var cls='st-'+String(o.status||'planning').toLowerCase().replace(/ /g,'');
-     return '<div class="li-row"><div class="li-main"><div class="li-t">'+esc(o.ref||'—')+' &middot; '+esc(o.prod||'')+'</div><div class="li-s">'+Number(o.qty||0).toLocaleString()+' pcs &middot; ETD '+esc(o.etd||'—')+' &rarr; ETA '+esc(o.eta||'—')+'</div></div><span class="st-pill '+cls+'">'+esc(o.status||'Planning')+'</span><button class="li-x" data-i="'+i+'" title="Remove">&times;</button></div>';
-   }).join('');
-   [].forEach.call(list.querySelectorAll('.li-x'),function(b){b.addEventListener('click',function(){var os=LSget('orders',[]);os.splice(+b.getAttribute('data-i'),1);LSset('orders',os);render();});});
- }
- add.addEventListener('click',function(){var os=LSget('orders',[]);
-   os.unshift({ref:$('ord_ref').value.trim(),prod:$('ord_prod').value.trim(),qty:$('ord_qty').value,etd:$('ord_etd').value,eta:$('ord_eta').value,status:$('ord_status').value});
-   LSset('orders',os);$('ord_ref').value='';$('ord_prod').value='';render();});
- render();
-})();
+function downloadText(filename,text){var blob=new Blob([text],{type:'text/plain'});var url=URL.createObjectURL(blob);var a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(url);},200);}
+function mailtoDraft(to,subject,body){var href='mailto:'+encodeURIComponent(to||'')+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);window.location.href=href;}
 
 /* ---- 2) Price alerts ---- */
 (function(){var sel=$('alr_idx'),add=$('alr_add'),list=$('alr_list');if(!sel||!add||!list)return;
@@ -1287,6 +1290,17 @@ var TODAY=(function(){var u=D.updated||'';var m=/(\d{4})-(\d{2})-(\d{2})/.exec(u
  add.addEventListener('click',function(){var ix=IX[+sel.value];if(!ix)return;var v=parseFloat($('alr_val').value);if(isNaN(v))return;
    var al=LSget('alerts',[]);al.unshift({name:ix.short||ix.label,dir:$('alr_dir').value,val:v});LSset('alerts',al);$('alr_val').value='';render();});
  render();
+ function buildText(){var al=LSget('alerts',[]);
+   var lines=['BIRDLAND PARTNER DESK — Price alerts','Generated '+(new Date()).toISOString().slice(0,10)+' · data as of '+(D.updated||'—'),''];
+   if(!al.length)lines.push('No alerts armed.');
+   al.forEach(function(a){var ix=cur(a.name);var now=ix?Number(ix.value):null;var hit=now!=null&&(a.dir==='above'?now>=a.val:now<=a.val);
+     lines.push('- '+a.name+': '+(a.dir==='above'?'rises above ':'falls below ')+a.val+(now!=null?' (now '+now+')':'')+' — '+(hit?'TRIGGERED':'armed'));});
+   lines.push('','Indicative planning data — not trade advice.');
+   return lines.join('\n');
+ }
+ var dl=$('alr_dl'),mail=$('alr_mail');
+ if(dl)dl.addEventListener('click',function(){downloadText('birdland-price-alerts.txt',buildText());});
+ if(mail)mail.addEventListener('click',function(){mailtoDraft($('alr_email').value.trim(),'Birdland Partner Desk — Price alerts',buildText());});
 })();
 
 /* ---- 3) Retail margin planner ---- */
@@ -1338,6 +1352,45 @@ var TODAY=(function(){var u=D.updated||'';var m=/(\d{4})-(\d{2})-(\d{2})/.exec(u
    note.innerHTML='With a <b>'+lead+'-week</b> total lead time, place orders around <b>'+M[firstOrder]+'</b> so stock lands before the <b>'+M[peak[0]]+'–'+M[peak[peak.length-1]]+'</b> peak. Blue = order window, red = selling season.';
  }
  $('se_lead').addEventListener('input',render);$('se_hemi').addEventListener('change',render);render();
+})();
+
+/* ---- 6) Keyword report ---- */
+(function(){var topics=$('rp_topics'),kw=$('rp_kw'),gen=$('rp_gen'),out=$('rp_out'),sendRow=$('rp_send'),dl=$('rp_dl'),mail=$('rp_mail');if(!topics||!gen||!out)return;
+ var TOPICS=['Steel','Freight','Tariffs','Geopolitical risk','FX & currency','Resin & plastics'];
+ topics.innerHTML=TOPICS.map(function(t){return '<button type="button" class="rp-chip" data-t="'+esc(t)+'">'+esc(t)+'</button>';}).join('');
+ function realChg(ix){if(ix&&ix.spark&&ix.spark.length>=2){var a=ix.spark[ix.spark.length-2],b=ix.spark[ix.spark.length-1],i=ix.spark.length-2;while(i>0&&a===b){i--;a=ix.spark[i];}if(a)return (b-a)/Math.abs(a)*100;}return ix&&ix.chg;}
+ function hay(s){return String(s||'').toLowerCase();}
+ function search(term){term=hay(term);if(!term)return null;
+   var lines=[];
+   (D.indices||[]).forEach(function(ix){if(hay(ix.label).indexOf(term)>=0||hay(ix.short).indexOf(term)>=0||hay(ix.sub).indexOf(term)>=0){
+     var rc=realChg(ix);lines.push('  [Index] '+(ix.short||ix.label)+': '+Number(ix.value).toLocaleString()+(ix.unit?' '+ix.unit:'')+(rc!=null?' ('+(rc>0?'+':'')+rc.toFixed(1)+'% vs prior)':'')+(ix.sub?' — '+ix.sub:''));}});
+   var P=D.partner||{};
+   ((P.material&&P.material.series)||[]).forEach(function(sr){if(hay(sr.name).indexOf(term)>=0){var pts=sr.points||[];var v=pts.length?(typeof pts[pts.length-1]==='object'?pts[pts.length-1].v:pts[pts.length-1]):null;lines.push('  [Material forecast] '+sr.name+(v!=null?': index '+v:''));}});
+   ((P.shipping&&P.shipping.lanes)||[]).forEach(function(l){if(hay(l.lane).indexOf(term)>=0){lines.push('  [Shipping lane] '+l.lane);}});
+   ((P.tariffmon&&P.tariffmon.changes)||[]).forEach(function(c){if(hay(c.market).indexOf(term)>=0||hay(c.change).indexOf(term)>=0||hay(c.note).indexOf(term)>=0){lines.push('  [Tariff] '+c.market+' ('+c.date+'): '+c.change+(c.note?' — '+c.note:''));}});
+   ((D.war&&D.war.zones)||[]).forEach(function(z){if(hay(z.zone).indexOf(term)>=0||hay(z.note).indexOf(term)>=0){lines.push('  [Geopolitics] '+z.zone+' — '+(z.status||'')+' (impact '+z.impact+'/100)'+(z.note?': '+z.note:''));}});
+   (D.news||[]).forEach(function(n){if(hay(n.title).indexOf(term)>=0||hay(n.blurb).indexOf(term)>=0){lines.push('  [News '+n.date+'] '+n.title);}});
+   return lines;
+ }
+ var TOPIC_TERMS={'Steel':['steel'],'Freight':['freight','container','shipping','ocean'],'Tariffs':['tariff','duty','cbam','section 301'],'Geopolitical risk':['red sea','hormuz','ukraine','taiwan strait','war'],'FX & currency':['usd','eur','cny','fx','currency','dollar'],'Resin & plastics':['resin','pp','pe','plastic']};
+ var lastReport='';
+ function runReport(title,terms){
+   var seen={},lines=[];
+   terms.forEach(function(t){(search(t)||[]).forEach(function(l){if(!seen[l]){seen[l]=1;lines.push(l);}});});
+   var head='BIRDLAND PARTNER DESK — Keyword report: '+title+'\nGenerated '+(new Date()).toISOString().slice(0,10)+' · data as of '+(D.updated||'—')+'\n';
+   var body=lines.length?lines.join('\n'):'  No matching indicators, forecasts or news found for "'+title+'".';
+   var foot='\n\nIndicative planning data — not trade or legal advice.';
+   lastReport=head+'\n'+body+foot;
+   out.innerHTML='<div class="rp-preview">'+esc(lines.length?lines.join('\n'):'No matches for "'+title+'".')+'</div>';
+   if(sendRow)sendRow.style.display=lines.length?'flex':'none';
+ }
+ [].forEach.call(topics.querySelectorAll('.rp-chip'),function(b){b.addEventListener('click',function(){
+   [].forEach.call(topics.children,function(x){x.classList.remove('on');});b.classList.add('on');
+   var t=b.getAttribute('data-t');kw.value='';runReport(t,TOPIC_TERMS[t]||[t]);
+ });});
+ gen.addEventListener('click',function(){var v=kw.value.trim();if(!v)return;[].forEach.call(topics.children,function(x){x.classList.remove('on');});runReport(v,[v]);});
+ if(dl)dl.addEventListener('click',function(){downloadText('birdland-report.txt',lastReport);});
+ if(mail)mail.addEventListener('click',function(){mailtoDraft($('rp_email').value.trim(),'Birdland Partner Desk — Keyword report',lastReport);});
 })();
 })();</script>
 <script>(function(){/* single-panel router — Stripe-app behaviour: one feature at a time */
@@ -1463,8 +1516,8 @@ bentofy('p-watch',['.svgwrap'],[],[
 });
 bentofy('p-mkt',['#content'],['.ctl'],[]);
 bentofy('p-news',['.news'],[],[]);
-bentofy('p-orders',[],[],[]);
 bentofy('p-alerts',[],[],[]);
+bentofy('p-report',[],[],[]);
 bentofy('p-margin',['.calc'],['#mg_out'],[
   function(b){var t=b.querySelector('#mg_out .mg-retail');return {k:'Suggested retail',v:t?t.textContent:'—'};},
   function(b){var t=b.querySelector('#mg_out .mg-gp');return {k:'Gross profit / order',v:t?t.textContent:'—'};}
