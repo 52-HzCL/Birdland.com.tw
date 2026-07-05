@@ -815,7 +815,7 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
     <div class="dash-grid" id="dash-grid"></div>
     <div class="dash-foot">A live read of your FOB China/Taiwan inputs — material costs, ocean freight, compliance and supply risk. Tap a tab below for the detail.</div>
   </section>
-  <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-alerts">Price alerts</a><a href="#p-report">Keyword report</a><a href="#p-landed2">My landed cost</a><a href="#p-margin">Retail margin</a><a href="#p-reorder">Reorder timing</a><a href="#p-sail">Plan a sailing</a><a href="#p-calc">Quick estimate</a><a href="#p-cduty">TW vs CN duty</a><a href="#p-material">Materials ahead</a><a href="#p-shipping">Shipping ahead</a><a href="#p-season">Buy calendar</a><a href="#p-freight">Freight indexes</a><a href="#p-watch">Watchlist</a><a href="#p-war">Geopolitics</a><a href="#p-tariff">Tariffs</a><a href="#p-mkt">By country</a><a href="#p-news">News</a></nav>
+  <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-alerts">Price alerts</a><a href="#p-keynews">Key News</a><a href="#p-report">Keyword report</a><a href="#p-landed2">My landed cost</a><a href="#p-margin">Retail margin</a><a href="#p-reorder">Reorder timing</a><a href="#p-sail">Plan a sailing</a><a href="#p-calc">Quick estimate</a><a href="#p-cduty">TW vs CN duty</a><a href="#p-material">Materials ahead</a><a href="#p-shipping">Shipping ahead</a><a href="#p-season">Buy calendar</a><a href="#p-freight">Freight indexes</a><a href="#p-watch">Watchlist</a><a href="#p-war">Geopolitics</a><a href="#p-tariff">Tariffs</a><a href="#p-mkt">By country</a><a href="#p-news">News</a></nav>
   <div id="tab-hint" class="tab-hint"><div class="mac-note"><span class="mn-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span><div class="mn-txt"><b>SourceIQ</b><span>Pick a section from the tabs above to view it.</span></div></div></div>
 
   <section class="blk" data-open="1" id="p-brief"><button class="blk-h"><span class="k">BRIEF</span><h2>Today &amp; Tomorrow</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
@@ -900,8 +900,13 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
     <div class="rp-preview" id="shr_preview"></div>
   </div></section>
 
-  <section class="blk" data-open="0" id="p-report"><button class="blk-h"><span class="k">REPORT</span><h2>Keyword report</h2><span class="ihelp" title="Tick one or more topics — including ones pulled from today's actual news — or type your own keyword; the desk writes a full-sentence briefing article, at no token/API cost, that you can copy, translate or email.">i</span><span class="tog"></span></button><div class="blk-b">
-    <div class="sub">Not a quick forward — a written briefing. Pick one or more topics (including keywords from today's news headlines below), or type your own, and the desk composes a fluent, article-style summary from the underlying data — zero AI/API cost, just your data written out in full sentences.</div>
+  <section class="blk" data-open="0" id="p-keynews"><button class="blk-h"><span class="k">KEY NEWS</span><h2>Key News</h2><span class="ihelp" title="Free, keyless headlines refreshed daily: tariffs across major markets, ocean-freight/shipping rates, and China &amp; Taiwan production and raw-materials news.">i</span><span class="meta" id="kn-meta"></span><span class="tog"></span></button><div class="blk-b">
+    <div class="sub">Refreshed daily from free public sources — tariffs across major markets, shipping/freight rates, and China &amp; Taiwan production and raw-materials news.</div>
+    <div class="news" id="keynewslist"></div>
+  </div></section>
+
+  <section class="blk" data-open="0" id="p-report"><button class="blk-h"><span class="k">REPORT</span><h2>Keyword report</h2><span class="ihelp" title="Pick one indicator, or one Key-News keyword, or type your own; the desk writes a full-sentence briefing article for that one topic, at no token/API cost.">i</span><span class="tog"></span></button><div class="blk-b">
+    <div class="sub">Not a quick forward — a written briefing. Pick one topic below — any indicator tracked on this desk, or a keyword trending in today's Key News — and the desk composes a fluent, article-style summary from the underlying data — zero AI/API cost, just your data written out in full sentences.</div>
     <div class="rp-topics" id="rp_topics"></div>
     <div class="calc" style="grid-template-columns:1fr auto;align-items:end">
       <div><label>Or search a keyword</label><input id="rp_kw" placeholder="e.g. steel, EU, freight"></div>
@@ -917,21 +922,6 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
       </select>
       <input id="rp_email" type="email" placeholder="your@email.com (for the draft's To: field)">
       <button class="tool-btn tool-btn-ghost" id="rp_copy" type="button">&#128203; Copy</button>
-      <button class="tool-btn" id="rp_mail" type="button">&#9993; Draft email</button>
-    </div>
-  </div></section>
-
-  <section class="blk" data-open="0" id="p-report"><button class="blk-h"><span class="k">REPORT</span><h2>Keyword report</h2><span class="ihelp" title="Pick a topic or type your own keyword; the desk pulls every matching indicator, forecast, tariff note and news item into one report you can download or email.">i</span><span class="tog"></span></button><div class="blk-b">
-    <div class="sub">Pick a topic below, or type your own keyword — the desk pulls every matching indicator, forecast and news item into one report.</div>
-    <div class="rp-topics" id="rp_topics"></div>
-    <div class="calc" style="grid-template-columns:1fr auto;align-items:end">
-      <div><label>Or search a keyword</label><input id="rp_kw" placeholder="e.g. steel, EU, freight"></div>
-      <div><button class="tool-btn" id="rp_gen" type="button">Generate report</button></div>
-    </div>
-    <div id="rp_out"></div>
-    <div class="send-row" id="rp_send" style="display:none">
-      <input id="rp_email" type="email" placeholder="your@email.com (for the draft's To: field)">
-      <button class="tool-btn tool-btn-ghost" id="rp_dl" type="button">&#8681; Download</button>
       <button class="tool-btn" id="rp_mail" type="button">&#9993; Draft email</button>
     </div>
   </div></section>
@@ -1089,6 +1079,16 @@ if(typeof fetch==='function'){var b='https://api.frankfurter.dev/v1/',prior=new 
     var m=document.getElementById('p-wl-meta');if(m)m.textContent=(parseInt(m.textContent,10)+fx.length)+' indicators · '+document.querySelectorAll('#p-watch-cats .wcat').length+' categories';}
  }).catch(function(){});}
 var nl=document.getElementById('newslist');if(nl)(D.news||[]).forEach(function(n){var a=document.createElement('a');a.className='item';a.href=n.url||'#';a.innerHTML='<span class="dt">'+n.date+'</span><div class="ti">'+n.title+'</div><div class="bl">'+(n.blurb||'')+'</div>';nl.appendChild(a);});
+var kn_esc=function(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+var TOPIC_LAB={tariff:'Tariffs',shipping:'Shipping',china:'China',taiwan:'Taiwan'};
+var knl=document.getElementById('keynewslist');
+if(knl){var mn=D.market_news||[];
+  if(!mn.length){knl.innerHTML='<div class="empty-note">No Key News fetched yet — this refreshes automatically with the daily data update.</div>';}
+  else{mn.forEach(function(n){var a=document.createElement('a');a.className='item';a.href=n.url||'#';if(n.url)a.target='_blank';
+    a.innerHTML='<span class="dt">'+(n.date||'')+(n.source?' &middot; '+kn_esc(n.source):'')+(n.topic?' &middot; '+kn_esc(TOPIC_LAB[n.topic]||n.topic):'')+'</span><div class="ti">'+kn_esc(n.title)+'</div>';
+    knl.appendChild(a);});}
+  var knm=document.getElementById('kn-meta');if(knm)knm.textContent=mn.length+' headlines';
+}
 var sel=document.getElementById('region'),content=document.getElementById('content');
 var LANG={us:'en',nl:'nl',ca:'en',de:'de',fr:'fr',it:'it',pl:'pl',uk:'en',au:'en',es:'es',eu:'en',me:'en',sa:'es',global:'en'};
 function setLang(code){try{var lg=LANG[code]||'en';var c=document.querySelector('#google_translate_element select, select.goog-te-combo');if(c){c.value=lg;c.dispatchEvent(new Event('change'));}}catch(e){}}
@@ -1286,7 +1286,7 @@ if(topAct)h+='<span class="pi lead" data-go="p-brief" style="cursor:pointer"><sp
   ft.innerHTML='<div class="wrap"><span>Data refreshed <b>'+(D.updated||'—')+'</b></span><span>· Indices &amp; forecasts update daily via automated feed</span></div>';
  })();
 // 2) section order: daily brief & the two money tools first; client-desk duplicates demoted to Reference
-(function(){if(!main||!disc)return;var ORD=['p-brief','p-alerts','p-report','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty','p-material','p-shipping','p-season','p-war','p-tariff'],REF=['p-freight','p-watch','p-mkt','p-news'];
+(function(){if(!main||!disc)return;var ORD=['p-brief','p-alerts','p-keynews','p-report','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty','p-material','p-shipping','p-season','p-war','p-tariff'],REF=['p-freight','p-watch','p-mkt','p-news'];
  ORD.concat(REF).forEach(function(id){var s=document.getElementById(id);if(s)main.insertBefore(s,disc);});
  var hd=document.createElement('div');hd.className='refhd';hd.textContent='Reference data — shared with Client Desk';main.insertBefore(hd,document.getElementById(REF[0]));})();
 // 3) honest freshness: static desk-set blocks must not claim the daily stamp
@@ -1299,7 +1299,7 @@ FIELDS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v
 SELS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=LS.g(id);if(v!==null&&v!==''){var ok=[].some.call(e.options,function(o){return o.value===v;});if(ok){e.value=v;e.dispatchEvent(new Event('change',{bubbles:true}));}}
  e.addEventListener('change',function(){LS.s(id,e.value);});});
 // 5) full-scroll accordion: funnel modules open, reference collapsed; remember per-section state
-(function(){var FUN={'p-brief':1,'p-alerts':1,'p-report':1,'p-landed2':1,'p-margin':1,'p-reorder':1,'p-sail':1,'p-calc':1,'p-cduty':1,'p-material':1,'p-shipping':1,'p-season':1,'p-war':1,'p-tariff':1};
+(function(){var FUN={'p-brief':1,'p-alerts':1,'p-keynews':1,'p-report':1,'p-landed2':1,'p-margin':1,'p-reorder':1,'p-sail':1,'p-calc':1,'p-cduty':1,'p-material':1,'p-shipping':1,'p-season':1,'p-war':1,'p-tariff':1};
  var saved=null;try{saved=JSON.parse(LS.g('col')||'null');}catch(e){}
  [].forEach.call(document.querySelectorAll('main .blk'),function(sec){
    var open=!!FUN[sec.id];
@@ -1315,7 +1315,7 @@ SELS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=L
  var rail=document.createElement('aside');rail.id='p-rail';rail.setAttribute('aria-label','Today at a glance');
  var tocEl=document.querySelector('.toc');
  if(tocEl){
-   var GROUPS=[['Today','p-brief','p-alerts','p-report'],['Cost tools','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty'],['Forecasts','p-material','p-shipping','p-season','p-freight','p-watch'],['Risk & markets','p-war','p-tariff','p-mkt'],['News','p-news']];
+   var GROUPS=[['Today','p-brief','p-alerts'],['News & reports','p-keynews','p-report'],['Cost tools','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty'],['Forecasts','p-material','p-shipping','p-season','p-freight','p-watch'],['Risk & markets','p-war','p-tariff','p-mkt'],['News','p-news']];
    GROUPS.forEach(function(grp){var lbl=document.createElement('div');lbl.className='pr-grp';lbl.textContent=grp[0];
      var firstHref='#'+grp[1],anchor=tocEl.querySelector('a[href="'+firstHref+'"]');
      if(anchor)tocEl.insertBefore(lbl,anchor);else tocEl.appendChild(lbl);});
@@ -1451,19 +1451,18 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
 
 /* ---- 6) Keyword report ---- */
 (function(){var topics=$('rp_topics'),kw=$('rp_kw'),gen=$('rp_gen'),out=$('rp_out'),sendRow=$('rp_send'),copyBtn=$('rp_copy'),mail=$('rp_mail'),langSel=$('rp_lang');if(!topics||!gen||!out)return;
- var TOPIC_TERMS={
-  'Steel':['steel'],'Aluminium':['aluminium','aluminum'],'Zinc':['zinc'],'Timber':['timber','wood'],
-  'Rubber & TPR':['rubber','tpr','grip'],'Resin & plastics':['resin','pp/pe','plastic','polypropylene'],
-  'Cartonboard & packaging':['cartonboard','packaging','carton'],'Textiles & polyester':['polyester','fabric','textile'],
-  'Container freight':['freight','container','feu'],'Ocean freight lanes':['lane','asia →','north europe','west coast','mediterranean'],
-  'Bunker & energy':['brent','crude','oil','bunker'],'US tariffs':['us','section 301','mfn'],
-  'EU tariffs & CBAM':['eu','cbam'],'UK trade':['uk','gb'],
-  'Geopolitical risk':['red sea','hormuz','ukraine','taiwan strait','war'],'Currency & FX':['usd','eur','cny','fx','currency','dollar','dxy'],
-  'China sourcing':['china','cny','cn '],'Taiwan sourcing':['taiwan','tw ']
- };
- var TOPICS=Object.keys(TOPIC_TERMS);
- topics.innerHTML=TOPICS.map(function(t){return '<button type="button" class="rp-chip" data-t="'+esc(t)+'">'+esc(t)+'</button>';}).join('');
- /* keywords drawn from today's actual news, so coverage isn't limited to the fixed commodity/shipping list */
+ /* Area 1 — every indicator tracked on this desk (not a curated subset), one topic at a time */
+ var TOPIC_TERMS={},TOPIC_ORDER=[];
+ function addTopic(label){if(!label||TOPIC_TERMS[label])return;TOPIC_TERMS[label]=[label];TOPIC_ORDER.push(label);}
+ (D.indices||[]).forEach(function(ix){addTopic(ix.short||ix.label);});
+ (D.macro||[]).forEach(function(m){addTopic(m.short||m.label);});
+ var P0=D.partner||{};
+ ((P0.material&&P0.material.series)||[]).forEach(function(sr){addTopic(sr.name);});
+ ((P0.shipping&&P0.shipping.lanes)||[]).forEach(function(l){addTopic(l.lane);});
+ var seenMkt={};((P0.tariffmon&&P0.tariffmon.changes)||[]).forEach(function(c){if(c.market&&!seenMkt[c.market]){seenMkt[c.market]=1;addTopic(c.market+' tariffs');TOPIC_TERMS[c.market+' tariffs']=[c.market];}});
+ topics.innerHTML=TOPIC_ORDER.map(function(t){return '<button type="button" class="rp-chip" data-t="'+esc(t)+'">'+esc(t)+'</button>';}).join('');
+
+ /* Area 2 — noun-keywords that move with whatever Key News is currently reporting */
  var STOP={'the':1,'and':1,'for':1,'with':1,'from':1,'into':1,'after':1,'over':1,'amid':1,'this':1,'that':1,'will':1,'have':1,'been':1,'their':1,'more':1,'than':1,'also':1,'sets':1};
  function extractKeywords(title){
    var words=(title||'').replace(/[^\w\s%-]/g,'').split(/\s+/).filter(function(w){return w.length>3&&!STOP[w.toLowerCase()];});
@@ -1472,7 +1471,7 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
    return out.slice(0,2);
  }
  var NEWS_TOPICS=[],NEWS_TERMS={};
- (D.news||[]).slice(0,8).forEach(function(n,i){
+ (D.market_news||[]).slice(0,8).forEach(function(n,i){
    var kws=extractKeywords(n.title);if(!kws.length)return;
    var key='news:'+i,label=n.title.length>42?n.title.slice(0,40)+'…':n.title;
    NEWS_TOPICS.push({key:key,label:label,title:n.title});
@@ -1480,14 +1479,14 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
  });
  if(NEWS_TOPICS.length){
    var newsRow=document.createElement('div');newsRow.className='rp-topics rp-topics-news';
-   newsRow.innerHTML='<div class="rp-topics-lab" style="grid-column:1/-1;font-size:.72rem;color:var(--kb-faint);text-transform:uppercase;letter-spacing:.06em;margin:10px 0 2px">From today\'s news</div>'+
+   newsRow.innerHTML='<div class="rp-topics-lab" style="grid-column:1/-1;font-size:.72rem;color:var(--kb-faint);text-transform:uppercase;letter-spacing:.06em;margin:10px 0 2px">Trending in Key News</div>'+
      NEWS_TOPICS.map(function(t){return '<button type="button" class="rp-chip" data-t="'+esc(t.key)+'" title="'+esc(t.title)+'">'+esc(t.label)+'</button>';}).join('');
    topics.parentNode.insertBefore(newsRow,topics.nextSibling);
  }
  function realChg(ix){if(ix&&ix.spark&&ix.spark.length>=2){var a=ix.spark[ix.spark.length-2],b=ix.spark[ix.spark.length-1],i=ix.spark.length-2;while(i>0&&a===b){i--;a=ix.spark[i];}if(a)return (b-a)/Math.abs(a)*100;}return ix&&ix.chg;}
  function hay(s){return String(s||'').toLowerCase();}
- function search(term){term=hay(term);if(!term)return {idx:[],mat:[],ship:[],tar:[],geo:[],news:[],moves:[]};
-   var idx=[],mat=[],ship=[],tar=[],geo=[],news=[],moves=[];
+ function search(term){term=hay(term);if(!term)return {idx:[],mat:[],ship:[],tar:[],geo:[],news:[],mnews:[],moves:[]};
+   var idx=[],mat=[],ship=[],tar=[],geo=[],news=[],mnews=[],moves=[];
    (D.indices||[]).forEach(function(ix){if(hay(ix.label).indexOf(term)>=0||hay(ix.short).indexOf(term)>=0||hay(ix.sub).indexOf(term)>=0){
      var rc=realChg(ix);idx.push({name:ix.short||ix.label,value:Number(ix.value).toLocaleString(),unit:ix.unit||'',chg:rc,sub:ix.sub||''});
      if(rc!=null)moves.push({name:ix.short||ix.label,c:rc});}});
@@ -1497,9 +1496,10 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
    ((P.tariffmon&&P.tariffmon.changes)||[]).forEach(function(c){if(hay(c.market).indexOf(term)>=0||hay(c.change).indexOf(term)>=0||hay(c.note).indexOf(term)>=0){tar.push({market:c.market,date:c.date,change:c.change,note:c.note||''});}});
    ((D.war&&D.war.zones)||[]).forEach(function(z){if(hay(z.zone).indexOf(term)>=0||hay(z.note).indexOf(term)>=0){geo.push({zone:z.zone,status:z.status||'',impact:z.impact,note:z.note||''});}});
    (D.news||[]).forEach(function(n){if(hay(n.title).indexOf(term)>=0||hay(n.blurb).indexOf(term)>=0){news.push({title:n.title,date:n.date});}});
-   return {idx:idx,mat:mat,ship:ship,tar:tar,geo:geo,news:news,moves:moves};
+   (D.market_news||[]).forEach(function(n){if(hay(n.title).indexOf(term)>=0){mnews.push({title:n.title,date:n.date,source:n.source||''});}});
+   return {idx:idx,mat:mat,ship:ship,tar:tar,geo:geo,news:news,mnews:mnews,moves:moves};
  }
- var lastReport='',selectedTopics={};
+ var lastReport='';
  function summarize(moves){if(!moves.length)return null;
    var up=moves.filter(function(m){return m.c>0.05;}),down=moves.filter(function(m){return m.c<-0.05;});
    var top=moves.reduce(function(a,b){return Math.abs(b.c)>Math.abs(a.c)?b:a;});
@@ -1529,14 +1529,17 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
    if(r.geo.length){paras.push('Geopolitical watch: '+dedup(r.geo,function(x){return x.zone;}).map(function(x){
      return x.zone+' is currently rated '+(x.status||'monitored')+' with an impact score of '+x.impact+'/100'+(x.note?' — '+x.note:'');
    }).join('; ')+'.');}
-   if(r.news.length){paras.push('In the news: '+dedup(r.news,function(x){return x.title;}).map(function(x){
+   if(r.mnews.length){paras.push('In today\'s Key News: '+dedup(r.mnews,function(x){return x.title;}).map(function(x){
+     return '"'+x.title+'"'+(x.source?' ('+x.source+(x.date?', '+x.date:'')+')':(x.date?' ('+x.date+')':''));
+   }).join('; ')+'.');}
+   if(r.news.length){paras.push('From Birdland: '+dedup(r.news,function(x){return x.title;}).map(function(x){
      return '"'+x.title+'" ('+x.date+')';
    }).join('; ')+'.');}
    if(!paras.length)paras.push('No matching indicators, forecasts or news were found for "'+titleStr+'" — try a broader keyword or pick a topic chip above.');
    return paras.map(function(p){return p.replace(/\.{2,}/g,'.');});
  }
  function runReport(titles,terms){
-   var merged={idx:[],mat:[],ship:[],tar:[],geo:[],news:[],moves:[]};
+   var merged={idx:[],mat:[],ship:[],tar:[],geo:[],news:[],mnews:[],moves:[]};
    terms.forEach(function(t){var r=search(t);Object.keys(merged).forEach(function(k){merged[k]=merged[k].concat(r[k]);});});
    var titleStr=titles.join(', ');
    var summary=summarize(merged.moves);
@@ -1547,23 +1550,21 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
    var foot='\n\nIndicative planning data — not trade or legal advice.';
    lastReport=head+body+foot;
    out.innerHTML='<div class="rp-preview">'+esc(body)+'</div>';
-   if(sendRow)sendRow.style.display=(merged.idx.length||merged.mat.length||merged.ship.length||merged.tar.length||merged.geo.length||merged.news.length)?'flex':'none';
+   if(sendRow)sendRow.style.display=(merged.idx.length||merged.mat.length||merged.ship.length||merged.tar.length||merged.geo.length||merged.news.length||merged.mnews.length)?'flex':'none';
  }
- function runSelected(){var titles=Object.keys(selectedTopics).filter(function(t){return selectedTopics[t];});
-   if(!titles.length)return;
-   var terms=[],labels=[];
-   titles.forEach(function(t){
-     if(TOPIC_TERMS[t]){terms=terms.concat(TOPIC_TERMS[t]);labels.push(t);}
-     else if(NEWS_TERMS[t]){terms=terms.concat(NEWS_TERMS[t]);var nt=NEWS_TOPICS.filter(function(x){return x.key===t;})[0];labels.push(nt?nt.label:t);}
-   });
-   runReport(labels,terms);
+ /* single topic at a time — clicking a chip immediately generates that one report */
+ function selectChip(t,label,terms){
+   [].forEach.call(topics.parentNode.querySelectorAll('.rp-chip'),function(x){x.classList.toggle('on',x.getAttribute('data-t')===t);});
+   if(kw)kw.value='';
+   runReport([label],terms);
  }
  [].forEach.call(topics.parentNode.querySelectorAll('.rp-chip'),function(b){b.addEventListener('click',function(){
-   var t=b.getAttribute('data-t');selectedTopics[t]=!selectedTopics[t];b.classList.toggle('on',!!selectedTopics[t]);
-   if(kw)kw.value='';runSelected();
+   var t=b.getAttribute('data-t');
+   if(TOPIC_TERMS[t])selectChip(t,t,TOPIC_TERMS[t]);
+   else if(NEWS_TERMS[t]){var nt=NEWS_TOPICS.filter(function(x){return x.key===t;})[0];selectChip(t,nt?nt.label:t,NEWS_TERMS[t]);}
  });});
  gen.addEventListener('click',function(){var v=kw.value.trim();if(!v)return;
-   [].forEach.call(topics.parentNode.querySelectorAll('.rp-chip'),function(x){x.classList.remove('on');});selectedTopics={};runReport([v],[v]);});
+   [].forEach.call(topics.parentNode.querySelectorAll('.rp-chip'),function(x){x.classList.remove('on');});runReport([v],[v]);});
  if(copyBtn)copyBtn.addEventListener('click',function(){copyText(lastReport,copyBtn);});
  if(mail)mail.addEventListener('click',function(){mailtoDraft($('rp_email').value.trim(),'Birdland Partner Desk — Keyword report',lastReport);});
  if(langSel)langSel.addEventListener('change',function(){var lang=langSel.value;if(!lang||!lastReport)return;window.open(translateUrl(lang,lastReport),'_blank');langSel.value='';});
@@ -1693,6 +1694,7 @@ bentofy('p-watch',['#p-watch-cats'],[],[
 bentofy('p-mkt',['#content'],['.ctl'],[]);
 bentofy('p-news',['.news'],[],[]);
 bentofy('p-alerts',[],[],[]);
+bentofy('p-keynews',['.news'],[],[]);
 bentofy('p-report',[],[],[]);
 bentofy('p-margin',['.calc'],['#mg_out'],[
   function(b){var t=b.querySelector('#mg_out .mg-retail');return {k:'Suggested retail',v:t?t.textContent:'—'};},

@@ -133,4 +133,51 @@ except Exception as e:
     print("[materials2] roll failed:",e)
 
 
+# ---- Key News: free, keyless Google News RSS -> tariffs/shipping/China & Taiwan
+#      production & raw-materials headlines. Best-effort; never fails the job. ----
+try:
+    import xml.etree.ElementTree as ET
+    from email.utils import parsedate_to_datetime
+    QUERIES=[
+        ("tariff","steel tariff OR aluminum tariff OR import tariff OR section 301"),
+        ("shipping","container freight rate OR ocean freight rate OR shipping rate"),
+        ("china","China manufacturing PMI OR China factory output OR China steel production"),
+        ("taiwan","Taiwan exports OR Taiwan manufacturing OR Taiwan supply chain"),
+    ]
+    def gnews(topic,q):
+        url="https://news.google.com/rss/search?q="+urllib.parse.quote(q)+"&hl=en-US&gl=US&ceid=US:en"
+        req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"})
+        out=[]
+        try:
+            raw=urllib.request.urlopen(req,timeout=25).read()
+            root=ET.fromstring(raw)
+            for item in root.findall(".//item")[:3]:
+                title=(item.findtext("title") or "").strip()
+                link=(item.findtext("link") or "").strip()
+                src_el=item.find("source")
+                source=(src_el.text or "").strip() if src_el is not None else ""
+                pub=item.findtext("pubDate")
+                try: dt=parsedate_to_datetime(pub).date().isoformat() if pub else ""
+                except Exception: dt=""
+                if title: out.append({"topic":topic,"title":title,"url":link,"source":source,"date":dt})
+        except Exception as e:
+            print("[keynews] %s failed: %s"%(topic,e))
+        return out
+    items=[]
+    for topic,q in QUERIES:
+        items.extend(gnews(topic,q))
+    seen=set();dedup=[]
+    for it in items:
+        k=it["title"].strip().lower()
+        if k and k not in seen:
+            seen.add(k);dedup.append(it)
+    dedup.sort(key=lambda x:x.get("date") or "",reverse=True)
+    if dedup:
+        data["market_news"]=dedup[:8]
+        print("[keynews] fetched %d headlines across %d topics."%(len(dedup[:8]),len(QUERIES)))
+    else:
+        print("[keynews] no headlines fetched; keeping previous market_news if any.")
+except Exception as e:
+    print("[keynews] failed:",e)
+
 json.dump(data,open(PATH,"w",encoding="utf-8"),ensure_ascii=False)

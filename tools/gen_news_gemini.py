@@ -155,7 +155,7 @@ try:
             x.setdefault("chg",0); x.setdefault("spark",[x.get("value",0)])
     cand["macro"]=cm
     # policy/structural blocks: keep exactly (high break-risk, slow-moving)
-    for kk in ("landed","timeline","tariff_calc"):
+    for kk in ("landed","timeline","tariff_calc","market_news"):
         if kk in data: cand[kk]=data[kk]
     # market blocks: accept AI update only if structure validates, else keep old
     def _ok_forward(x):
