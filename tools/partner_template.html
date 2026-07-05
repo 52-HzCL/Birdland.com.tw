@@ -156,7 +156,7 @@
  .theme-light .news .ti{color:#171410;font-family:var(--serif);font-size:1.2rem}.theme-light .news .bl{color:#3a352b;font-size:1rem}.theme-light .news .dt{color:#8a5a2c}
  .theme-light .wl td{color:#171410;border-bottom-color:#d8d0bf}.theme-light .wl th{color:#5a5346}.theme-light .wl tr:hover td{background:#f3eee2}
  .theme-light table.tm td{color:#171410;border-bottom-color:#d8d0bf}.theme-light table.tm th{color:#5a5346}.theme-light table.tm tr:hover td{background:#f3eee2}
- .theme-light .up{color:#b3261e}.theme-light .down{color:#0c6b2e}.theme-light .flat{color:#8a5a00}
+ .theme-light .up{color:#EF4444}.theme-light .down{color:#10B981}.theme-light .flat{color:#D97706}
  .theme-light .war .ev{color:#171410}.theme-light .war .ev small{color:#3a352b}.theme-light .war .bar{background:#efe9da;border:1px solid #cdc4af}
  .theme-light .cot{color:#171410}.theme-light .cot small{color:#3a352b}
  .theme-light .calc label{color:#5a5346}
@@ -378,7 +378,7 @@
  .pstrip .pi .s{font-size:.7rem;font-weight:700;letter-spacing:.06em;color:#6e6e73;text-transform:uppercase}
  .pstrip .pi .v{font-family:var(--mono,'IBM Plex Mono',monospace);font-size:.95rem;font-weight:700;color:#1d1d1f}
  .pstrip .pi .c{font-size:.78rem;font-weight:700}
- .pstrip .pi .c.up{color:#b3261e}.pstrip .pi .c.down{color:#0c6b2e}.pstrip .pi .c.flat{color:#8a5a00}
+ .pstrip .pi .c.up{color:#EF4444}.pstrip .pi .c.down{color:#10B981}.pstrip .pi .c.flat{color:#D97706}
  .refhd{margin:34px 0 2px;font-family:var(--sf);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#86868b;border-top:1px solid rgba(0,0,0,.1);padding-top:14px}
  .imhead{position:relative}
  .im-x{position:absolute;right:9px;top:9px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(0,0,0,.07);color:#555;font-size:1rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
@@ -438,7 +438,7 @@
  .sig .dot{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
  .sig .vv{font-family:var(--sf);font-weight:700;font-size:1.06rem;margin:5px 0 5px;letter-spacing:-.01em}
  .sig .tk{font:.79rem var(--sf);color:#48505a;line-height:1.5}
- .sig.up .vv{color:#b3261e}.sig.down .vv{color:#0c6b2e}.sig.warn .vv{color:#8a5a00}
+ .sig.up .vv{color:#EF4444}.sig.down .vv{color:#10B981}.sig.warn .vv{color:#D97706}
  .dash-foot{margin-top:13px;font:.74rem var(--sf);color:#86868b}
  /* ============================================================
     Minimal-SaaS theme (v5) x TradingView data colors.
@@ -726,6 +726,9 @@ body::after{display:none!important}
 
 /* tables */
 table.tm td,.wl td{color:var(--kb-ink)!important;border-bottom:1px solid var(--kb-line)!important;font-family:var(--kb-mono)!important}
+table.tm td.up,.wl td.up{color:var(--kb-red)!important}
+table.tm td.down,.wl td.down{color:var(--kb-green)!important}
+table.tm td.flat,.wl td.flat{color:var(--kb-amber)!important}
 table.tm th,.wl th{color:var(--kb-faint)!important;font-family:var(--kb-sans)!important;text-transform:uppercase!important;letter-spacing:.06em!important}
 table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
 
@@ -898,7 +901,7 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
   function gv(id){return parseFloat((document.getElementById(id)||{}).value)||0;}
   function calcLanded(){var cost=gv('qc_cost'),frt=gv('qc_frt'),insp=gv('qc_ins'),du=gv('qc_duty'),qt=gv('qc_qty');
     var ins=(cost+frt)*insp/100,duty=(cost+frt+ins)*du/100;
-    var comps=[{name:'Goods',v:cost,c:'#0a4f8a',tip:'Ex-works unit cost.'},{name:'Freight',v:frt,c:'#8a5a2c',tip:'Ocean freight per unit.'},{name:'Insurance',v:ins,c:'#7a1f12',tip:insp+'% of goods+freight.'},{name:'Duty',v:duty,c:'#0c6b2e',tip:'Import duty at '+du+'%.'}];
+    var comps=[{name:'Goods',v:cost,c:'#0a4f8a',tip:'Ex-works unit cost.'},{name:'Freight',v:frt,c:'#8a5a2c',tip:'Ocean freight per unit.'},{name:'Insurance',v:ins,c:'#7a1f12',tip:insp+'% of goods+freight.'},{name:'Duty',v:duty,c:'#10B981',tip:'Import duty at '+du+'%.'}];
     var tot=comps.reduce(function(a,b){return a+b.v;},0);
     var svg=document.getElementById('lcbar');while(svg.firstChild)svg.removeChild(svg.firstChild);var W=720,x=0,H=50,y=18;
     comps.forEach(function(c){var w=c.v/tot*W;var r=el('rect',{x:x,y:y,width:Math.max(0,w-1),height:H,fill:c.c});tt(r,c.name+': US$'+c.v.toFixed(2)+' ('+(c.v/tot*100).toFixed(0)+'%) — '+(c.tip||''));svg.appendChild(r);if(w>42)svg.appendChild(el('text',{x:x+w/2,y:y+H/2+4,'text-anchor':'middle','font-family':'IBM Plex Mono,monospace','font-size':10,'font-weight':700,fill:'#06090d'},Math.round(c.v/tot*100)+'%'));x+=w;});
@@ -1026,7 +1029,7 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
  sail();
 })();</script>
 <script>(function(){var D;try{D=JSON.parse(document.getElementById('outlook-data').textContent);}catch(e){return;}
- var red="#b3261e",green="#0c6b2e",amber="#8a5a00";
+ var red="#EF4444",green="#10B981",amber="#D97706";
  function spark(arr,dir){if(!arr||!arr.length)return '';var w=110,h=26,mn=Math.min.apply(null,arr),mx=Math.max.apply(null,arr),rg=(mx-mn)||1;var pts=arr.map(function(v,i){return (i/(arr.length-1)*w).toFixed(1)+','+(h-2-((v-mn)/rg)*(h-4)).toFixed(1);}).join(' ');var c=dir==='up'?red:(dir==='down'?green:amber);return '<svg width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none"><polyline points="'+pts+'" fill="none" stroke="'+c+'" stroke-width="2"/></svg>';}
  (function(){var wl=document.getElementById('p-watchlist');if(!wl)return;var h='<thead><tr><th class="l">Instrument</th><th>Last</th><th>Chg</th><th>Trend</th><th class="l">Read</th></tr></thead><tbody>';
    (D.indices||[]).forEach(function(ix){var rc=(function(){if(ix&&ix.spark&&ix.spark.length>=2){var a=ix.spark[ix.spark.length-2],b=ix.spark[ix.spark.length-1],__i=ix.spark.length-2;while(__i>0&&a===b){__i--;a=ix.spark[__i];}if(a)return (b-a)/Math.abs(a)*100;}return ix&&ix.chg;})();var dir=(rc!=null?(rc>0.05?'up':(rc<-0.05?'down':'flat')):(ix.dir||'flat')),cls=dir,ar=dir==='up'?'▲':(dir==='down'?'▼':'■');var chg=(rc!=null?(rc>0?'+':'')+rc.toFixed(1)+'%':'');
@@ -1086,10 +1089,10 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
  var zs=(D.war&&D.war.zones)||[];if(zs.length)risk=zs.length;
  function card(cls,dot,title,val,tk){return '<div class="sig '+cls+'"><div class="st"><span class="dot" style="background:'+dot+'"></span>'+title+'</div><div class="vv">'+val+'</div><div class="tk">'+tk+'</div></div>';}
  var h='';
- h+=card(matRising?'up':'down',matRising?'#b3261e':'#0c6b2e','Material costs',matRising?'Rising &#9650;':'Easing &#9660;',matRising?('Lock prices &amp; order sooner'+(maxRise?' &mdash; '+maxRise.n.split(' ')[0]+' up most.':'.')):'Inputs softening &mdash; less need to pre-buy.');
- h+=card(frEasing?'down':'up',frEasing?'#0c6b2e':'#b3261e','Ocean freight',frEasing?'Easing &#9660;':'Rising &#9650;',frEasing?'Good window to ship &mdash; FEU rates falling on your lanes.':'Book early &mdash; freight firming, lock space &amp; rate.');
- h+=card('warn','#8a5a00','Compliance','Action','EUDR (wood) &middot; CBAM (steel) &middot; UFLPA &mdash; keep origin &amp; DDS docs ready.');
- h+=card(risk>=3?'up':'warn',risk>=3?'#b3261e':'#8a5a00','Supply risk',risk?(risk+' active'):'Low','Red Sea reroute can add transit &mdash; book earlier on EU lanes.');
+ h+=card(matRising?'up':'down',matRising?'#EF4444':'#10B981','Material costs',matRising?'Rising &#9650;':'Easing &#9660;',matRising?('Lock prices &amp; order sooner'+(maxRise?' &mdash; '+maxRise.n.split(' ')[0]+' up most.':'.')):'Inputs softening &mdash; less need to pre-buy.');
+ h+=card(frEasing?'down':'up',frEasing?'#10B981':'#EF4444','Ocean freight',frEasing?'Easing &#9660;':'Rising &#9650;',frEasing?'Good window to ship &mdash; FEU rates falling on your lanes.':'Book early &mdash; freight firming, lock space &amp; rate.');
+ h+=card('warn','#D97706','Compliance','Action','EUDR (wood) &middot; CBAM (steel) &middot; UFLPA &mdash; keep origin &amp; DDS docs ready.');
+ h+=card(risk>=3?'up':'warn',risk>=3?'#EF4444':'#D97706','Supply risk',risk?(risk+' active'):'Low','Red Sea reroute can add transit &mdash; book earlier on EU lanes.');
  grid.innerHTML=h;
  if(verdict)verdict.innerHTML='<b>Desk call:</b> '+(matRising?'Material costs are rising while ':'Costs are stable while ')+(frEasing?'ocean freight is easing':'freight is firming')+'. '+(matRising&&frEasing?'Place and lock orders soon to fix today&rsquo;s material price, and ship now while freight is cheap.':(matRising?'Lock material prices now; time your shipping with the freight tab.':'You have room to wait &mdash; keep watching the freight and material tabs.'))+'<div class="dash-foot" style="margin-top:8px">Basis: '+basis+(maxRise?' · biggest mover: '+maxRise.n:'')+'</div>';
 }catch(e){}})();</script>
