@@ -745,6 +745,9 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
 .rp-chip:hover{background:var(--kb-bg);color:var(--kb-ink)}
 .rp-chip.on{background:var(--kb-ink);color:#fff;border-color:var(--kb-ink)}
 .rp-preview{background:var(--kb-bg);border:1px solid var(--kb-line);border-radius:10px;padding:14px 16px;font-family:var(--kb-mono);font-size:.82rem;line-height:1.7;color:var(--kb-ink);white-space:pre-wrap;max-height:360px;overflow-y:auto;margin-top:6px}
+.wcat{margin-bottom:22px}
+.wcat:last-child{margin-bottom:0}
+.wcat-h{font:700 .68rem var(--kb-sans);letter-spacing:.09em;text-transform:uppercase;color:var(--kb-accent-dk);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--kb-line)}
 .st-pill{display:inline-block;font:700 .6rem var(--kb-sans);letter-spacing:.04em;padding:3px 9px;border-radius:999px;text-transform:uppercase;white-space:nowrap}
 .st-planning{background:var(--kb-line);color:var(--kb-mut)}
 .st-confirmed{background:#DBEAFE;color:var(--kb-accent-dk)}
@@ -852,7 +855,7 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
     <div class="sailcards" id="s_cards"></div>
   </div></section>
 
-  <section class="blk" data-open="0" id="p-watch"><button class="blk-h"><span class="k">WATCH</span><h2>Cost watchlist</h2><span class="ihelp" title="Key cost inputs: latest level, change, and recent trend.">i</span><span class="meta" id="p-wl-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="svgwrap"><table class="wl" id="p-watchlist"></table></div></div></section>
+  <section class="blk" data-open="0" id="p-watch"><button class="blk-h"><span class="k">WATCH</span><h2>All indicators</h2><span class="ihelp" title="Every indicator this desk tracks for garden-tool sourcing, grouped by category: raw materials, freight & logistics, currency, macro & financial, and trade & tariffs.">i</span><span class="meta" id="p-wl-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="sub">Every indicator this desk tracks, grouped by category — raw materials, freight, currency, macro and trade.</div><div id="p-watch-cats"></div></div></section>
 
   <section class="blk" data-open="0" id="p-cduty"><button class="blk-h"><span class="k">DUTY</span><h2>Cost comparison — TW vs CN origin</h2><span class="ihelp" title="Estimate import duty by destination and origin. Switching origin (Taiwan vs China) shows the tariff stacking you avoid. Illustrative — confirm HS with your broker.">i</span><span class="tog"></span></button><div class="blk-b">
     <div class="calc"><div><label for="pcDest">Destination</label><select id="pcDest"></select></div><div><label for="pcOrigin">Country of origin</label><select id="pcOrigin"><option value="TW">Taiwan</option><option value="CN">China</option></select></div><div><label for="pcVal">Shipment value (US$)</label><input id="pcVal" type="number" value="10000" min="0" step="100"></div></div>
@@ -1043,7 +1046,13 @@ function tkChg(m){if(m&&m.spark&&m.spark.length>=2){var a=m.spark[m.spark.length
 var tk=(D.macro||[]).map(function(m){var rc=tkChg(m),d=(rc!=null?(rc>0.05?'up':(rc<-0.05?'down':'flat')):(m.dir||'flat')),cls=d,ar=d==='up'?'▲':(d==='down'?'▼':'■');var ch=(rc!=null?(rc>0?'+':'')+rc.toFixed(1)+'%':'');return '<span class="ti">'+(m.live?'<span style="color:#10B981">●</span>':'')+'<span class="s">'+m.short+'</span><span class="v">'+Number(m.value).toFixed(1)+(m.unit?(' '+m.unit):'')+'</span><span class="'+cls+'">'+ar+ch+'</span></span>';}).join('');
 var tkEl=document.getElementById('ticker');if(tkEl)tkEl.innerHTML=tk+tk;
 if(typeof fetch==='function'){var b='https://api.frankfurter.dev/v1/',prior=new Date(Date.now()-7*864e5).toISOString().slice(0,10),sy='EUR,JPY,GBP,CNY,CAD,AUD';
- Promise.all([fetch(b+'latest?base=USD&symbols='+sy).then(function(r){return r.json();}),fetch(b+prior+'?base=USD&symbols='+sy).then(function(r){return r.json();})]).then(function(res){var Lr=res[0].rates,Pr=res[1].rates;if(!Lr||!Pr)return;function pr(s2,inv){var lv=inv?1/Lr[s2]:Lr[s2],pv=inv?1/Pr[s2]:Pr[s2];return {v:lv,chg:(lv-pv)/pv*100};}var fx=[['USD/EUR',pr('EUR',false),4],['USD/GBP',pr('GBP',false),4],['USD/JPY',pr('JPY',false),2],['USD/CNY',pr('CNY',false),4],['USD/CAD',pr('CAD',false),4],['USD/AUD',pr('AUD',false),4]];var lbl='<span class="ti" style="color:#10B981">● FX LIVE · ECB '+res[0].date+'</span>';var fxh=lbl+fx.map(function(f){return fxItem(f[0],f[1].v.toFixed(f[2]),f[1].chg);}).join('');if(tkEl)tkEl.innerHTML=fxh+tk+fxh+tk;}).catch(function(){});}
+ Promise.all([fetch(b+'latest?base=USD&symbols='+sy).then(function(r){return r.json();}),fetch(b+prior+'?base=USD&symbols='+sy).then(function(r){return r.json();})]).then(function(res){var Lr=res[0].rates,Pr=res[1].rates;if(!Lr||!Pr)return;function pr(s2,inv){var lv=inv?1/Lr[s2]:Lr[s2],pv=inv?1/Pr[s2]:Pr[s2];return {v:lv,chg:(lv-pv)/pv*100};}var fx=[['USD/EUR',pr('EUR',false),4],['USD/GBP',pr('GBP',false),4],['USD/JPY',pr('JPY',false),2],['USD/CNY',pr('CNY',false),4],['USD/CAD',pr('CAD',false),4],['USD/AUD',pr('AUD',false),4]];var lbl='<span class="ti" style="color:#10B981">● FX LIVE · ECB '+res[0].date+'</span>';var fxh=lbl+fx.map(function(f){return fxItem(f[0],f[1].v.toFixed(f[2]),f[1].chg);}).join('');if(tkEl)tkEl.innerHTML=fxh+tk+fxh+tk;
+  var fxCatBody=document.querySelector('#p-watch-cats .wcat[data-cat="fx"] tbody');
+  if(fxCatBody){var rows=fx.map(function(f){var v=f[1].v,c=f[1].chg,dir=c>0.05?'up':(c<-0.05?'down':'flat'),ar=dir==='up'?'▲':(dir==='down'?'▼':'■');
+    return '<tr title="Live via frankfurter.dev (ECB reference rates)"><td class="l">'+f[0]+' (live)</td><td>'+v.toFixed(f[2])+'</td><td class="'+dir+'">'+ar+(c>0?'+':'')+c.toFixed(1)+'%</td><td></td></tr>';}).join('');
+    fxCatBody.insertAdjacentHTML('beforeend',rows);
+    var m=document.getElementById('p-wl-meta');if(m)m.textContent=(parseInt(m.textContent,10)+fx.length)+' indicators · '+document.querySelectorAll('#p-watch-cats .wcat').length+' categories';}
+ }).catch(function(){});}
 var nl=document.getElementById('newslist');if(nl)(D.news||[]).forEach(function(n){var a=document.createElement('a');a.className='item';a.href=n.url||'#';a.innerHTML='<span class="dt">'+n.date+'</span><div class="ti">'+n.title+'</div><div class="bl">'+(n.blurb||'')+'</div>';nl.appendChild(a);});
 var sel=document.getElementById('region'),content=document.getElementById('content');
 var LANG={us:'en',nl:'nl',ca:'en',de:'de',fr:'fr',it:'it',pl:'pl',uk:'en',au:'en',es:'es',eu:'en',me:'en',sa:'es',global:'en'};
@@ -1124,10 +1133,39 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
 <script>(function(){var D;try{D=JSON.parse(document.getElementById('outlook-data').textContent);}catch(e){return;}
  var red="#EF4444",green="#10B981",amber="#D97706";
  function spark(arr,dir){if(!arr||!arr.length)return '';var w=110,h=26,mn=Math.min.apply(null,arr),mx=Math.max.apply(null,arr),rg=(mx-mn)||1;var pts=arr.map(function(v,i){return (i/(arr.length-1)*w).toFixed(1)+','+(h-2-((v-mn)/rg)*(h-4)).toFixed(1);}).join(' ');var c=dir==='up'?red:(dir==='down'?green:amber);return '<svg width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none"><polyline points="'+pts+'" fill="none" stroke="'+c+'" stroke-width="2"/></svg>';}
- (function(){var wl=document.getElementById('p-watchlist');if(!wl)return;var h='<thead><tr><th class="l">Instrument</th><th>Last</th><th>Chg</th><th>Trend</th><th class="l">Read</th></tr></thead><tbody>';
-   (D.indices||[]).forEach(function(ix){var rc=(function(){if(ix&&ix.spark&&ix.spark.length>=2){var a=ix.spark[ix.spark.length-2],b=ix.spark[ix.spark.length-1],__i=ix.spark.length-2;while(__i>0&&a===b){__i--;a=ix.spark[__i];}if(a)return (b-a)/Math.abs(a)*100;}return ix&&ix.chg;})();var dir=(rc!=null?(rc>0.05?'up':(rc<-0.05?'down':'flat')):(ix.dir||'flat')),cls=dir,ar=dir==='up'?'▲':(dir==='down'?'▼':'■');var chg=(rc!=null?(rc>0?'+':'')+rc.toFixed(1)+'%':'');
-     h+='<tr><td class="l">'+ix.label+'</td><td>'+Number(ix.value).toFixed(1)+' '+(ix.unit||'')+'</td><td class="'+cls+'">'+ar+chg+'</td><td>'+spark(ix.spark,dir)+'</td><td class="l '+cls+'">'+(ix.sub||'')+'</td></tr>';});
-   wl.innerHTML=h+'</tbody>';var m=document.getElementById('p-wl-meta');if(m)m.textContent=(D.indices||[]).length+' items';})();
+ (function(){var host=document.getElementById('p-watch-cats');if(!host)return;
+   var P2=D.partner||{};
+   function rcSpark(arr){if(!arr||arr.length<2)return null;var a=arr[arr.length-2],b=arr[arr.length-1],i=arr.length-2;while(i>0&&a===b){i--;a=arr[i];}if(!a)return null;return (b-a)/Math.abs(a)*100;}
+   function pointsToNums(pts){return (pts||[]).map(function(p){return typeof p==='object'?p.v:p;});}
+   // normalize every source into one shape: {label,value,unit,sub,spark}
+   function fromIndex(ix){var arr=ix.spark||[];var rc=rcSpark(arr);return {label:ix.label,value:Number(ix.value),unit:ix.unit||'',sub:ix.sub||'',spark:arr,chg:rc!=null?rc:ix.chg};}
+   function fromMacro(m){var arr=m.spark||[];var rc=rcSpark(arr);return {label:m.label+' ('+m.short+')',value:Number(m.value),unit:m.unit||'',sub:'',spark:arr,chg:rc!=null?rc:m.chg};}
+   function fromSeries(s,unit){var arr=pointsToNums(s.points);var rc=rcSpark(arr);var last=arr.length?arr[arr.length-1]:null;return {label:s.name,value:last!=null?Number(last):null,unit:unit||'index',sub:'',spark:arr,chg:rc};}
+   function fromLane(l,unit){var arr=pointsToNums(l.points);var rc=rcSpark(arr);var last=arr.length?arr[arr.length-1]:null;return {label:l.lane,value:last!=null?Number(last):null,unit:unit||'',sub:'',spark:arr,chg:rc};}
+   var IX=(D.indices||[]),MC=(D.macro||[]);
+   var CATS=[
+     {name:'Raw materials',key:'materials',items:((P2.material&&P2.material.series)||[]).map(function(s){return fromSeries(s,P2.material.unit);})},
+     {name:'Freight & logistics',key:'freight',items:[]
+       .concat(IX.filter(function(i){return /freight/i.test(i.label);}).map(fromIndex))
+       .concat(((P2.shipping&&P2.shipping.lanes)||[]).map(function(l){return fromLane(l,P2.shipping.unit);}))},
+     {name:'Energy',key:'energy',items:IX.filter(function(i){return /crude|oil|brent/i.test(i.label);}).map(fromIndex)},
+     {name:'Currency & FX',key:'fx',items:MC.filter(function(m){return /usd|eur|dxy|dollar|euro/i.test(m.short+m.label);}).map(fromMacro)},
+     {name:'Macro & financial',key:'macro',items:MC.filter(function(m){return !/usd|eur|dxy|dollar|euro/i.test(m.short+m.label);}).map(fromMacro)},
+     {name:'Trade & tariffs',key:'tariffs',items:IX.filter(function(i){return /tariff/i.test(i.label);}).map(fromIndex)}
+   ];
+   var h='';
+   CATS.forEach(function(cat){if(!cat.items.length)return;
+     h+='<div class="wcat" data-cat="'+cat.key+'"><div class="wcat-h">'+cat.name+'</div><table class="wl"><thead><tr><th class="l">Instrument</th><th>Last</th><th>Chg</th><th>Trend</th></tr></thead><tbody>';
+     cat.items.forEach(function(it){var rc=it.chg;var dir=(rc!=null?(rc>0.05?'up':(rc<-0.05?'down':'flat')):'flat'),ar=dir==='up'?'▲':(dir==='down'?'▼':'■');var chg=(rc!=null?(rc>0?'+':'')+rc.toFixed(1)+'%':'—');
+       var val=it.value!=null?Number(it.value).toLocaleString(undefined,{maximumFractionDigits:2}):'—';
+       h+='<tr'+(it.sub?' title="'+it.sub+'"':'')+'><td class="l">'+it.label+'</td><td>'+val+(it.unit?' '+it.unit:'')+'</td><td class="'+dir+'">'+ar+chg+'</td><td>'+spark(it.spark,dir)+'</td></tr>';
+     });
+     h+='</tbody></table></div>';
+   });
+   host.innerHTML=h;
+   var total=CATS.reduce(function(n,c){return n+c.items.length;},0);
+   var m=document.getElementById('p-wl-meta');if(m)m.textContent=total+' indicators · '+CATS.filter(function(c){return c.items.length;}).length+' categories';
+ })();
  (function(){var T=D.tariff_calc;if(!T)return;var dst=document.getElementById('pcDest'),org=document.getElementById('pcOrigin'),val=document.getElementById('pcVal'),out=document.getElementById('pcalcOut');
    var note=document.getElementById('pcalc-note');if(note)note.textContent=T.note||'';
    Object.keys(T.destinations).forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=k;dst.appendChild(o);});
@@ -1502,8 +1540,8 @@ bentofy('p-tariff',['.svgwrap'],[],[
   var latest=tmc.slice().sort(function(a,b){return (b.date||'').localeCompare(a.date||'');})[0];
   return '<div class="b-k" style="text-transform:uppercase;font-size:.64rem;letter-spacing:.08em;color:var(--kb-faint);margin-bottom:6px">Latest change</div><div style="font-weight:700;margin-bottom:4px">'+latest.market+' · '+latest.date+'</div><div style="font-size:.92rem;color:var(--kb-mut)">'+latest.change+(latest.note?' — '+latest.note:'')+'</div>';
 });
-bentofy('p-watch',['.svgwrap'],[],[
-  function(b){var t=b.querySelector('table');return {k:'Inputs tracked',v:(t?t.querySelectorAll('tr').length:0)+' rows'};},
+bentofy('p-watch',['#p-watch-cats'],[],[
+  function(b){var rows=b.querySelectorAll('#p-watch-cats tbody tr');return {k:'Inputs tracked',v:rows.length+' across '+b.querySelectorAll('#p-watch-cats .wcat').length+' categories'};},
   function(){return {k:'Cadence',v:'Updated daily'};}
 ],function(){
   var idx=(D.indices||[]).slice();if(!idx.length)return null;
