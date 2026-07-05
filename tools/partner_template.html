@@ -568,6 +568,7 @@
 #p-rail .pr-lang .goog-te-gadget{font-family:var(--kb-sans)!important;font-size:0!important;color:var(--kb-faint)!important;line-height:0}
 #p-rail .pr-lang .goog-te-combo{width:100%!important;font-family:var(--kb-sans)!important;font-size:.85rem!important;font-weight:600!important;color:var(--kb-ink)!important;background:var(--kb-panel)!important;border:1px solid var(--kb-line)!important;border-radius:8px!important;padding:8px 10px!important;margin:0!important;cursor:pointer}
 #p-rail .pr-lang .goog-te-gadget>span{display:none!important}
+#p-rail .pr-lang-note{font-size:.68rem;color:var(--kb-faint);margin-top:4px;line-height:1.3}
 /* ===== bento content grid: 1 large + 1 medium + 2 small, per feature ===== */
 .bento{display:grid;grid-template-columns:1.7fr 1fr;grid-template-rows:auto auto;gap:16px;align-items:start}
 .bento.bento-2{grid-template-columns:1fr;grid-template-rows:auto}
@@ -885,7 +886,7 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
 
 
   <section class="blk" data-open="0" id="p-alerts"><button class="blk-h"><span class="k">SHARE</span><h2>Share with a colleague</h2><span class="ihelp" title="Tick whichever indicators or updates matter to you, then send a ready-to-edit email draft to a colleague — with today's data timestamp included, so they know exactly how fresh it is.">i</span><span class="meta" id="shr-meta"></span><span class="tog"></span></button><div class="blk-b">
-    <div class="sub">Tick anything you think your colleague should see — the desk builds a draft email with today's values and a data timestamp, ready to edit and send.</div>
+    <div class="sub">A quick, hand-picked forward: tick the specific figures your colleague needs to see right now, and the desk drafts a short email with today's values and a timestamp — ready to edit and send.</div>
     <div class="shr-toolbar">
       <button class="chip-btn" id="shr_all" type="button">Select all</button>
       <button class="chip-btn" id="shr_none" type="button">Clear</button>
@@ -899,8 +900,8 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
     <div class="rp-preview" id="shr_preview"></div>
   </div></section>
 
-  <section class="blk" data-open="0" id="p-report"><button class="blk-h"><span class="k">REPORT</span><h2>Keyword report</h2><span class="ihelp" title="Tick one or more topics, or type your own keyword; the desk pulls every matching indicator, forecast, tariff note and news item into one summarized report you can copy, translate or email.">i</span><span class="tog"></span></button><div class="blk-b">
-    <div class="sub">Tick one or more topics below, or type your own keyword — the desk summarizes every matching indicator, forecast and news item into one report.</div>
+  <section class="blk" data-open="0" id="p-report"><button class="blk-h"><span class="k">REPORT</span><h2>Keyword report</h2><span class="ihelp" title="Tick one or more topics — including ones pulled from today's actual news — or type your own keyword; the desk writes a full-sentence briefing article, at no token/API cost, that you can copy, translate or email.">i</span><span class="tog"></span></button><div class="blk-b">
+    <div class="sub">Not a quick forward — a written briefing. Pick one or more topics (including keywords from today's news headlines below), or type your own, and the desk composes a fluent, article-style summary from the underlying data — zero AI/API cost, just your data written out in full sentences.</div>
     <div class="rp-topics" id="rp_topics"></div>
     <div class="calc" style="grid-template-columns:1fr auto;align-items:end">
       <div><label>Or search a keyword</label><input id="rp_kw" placeholder="e.g. steel, EU, freight"></div>
@@ -1369,11 +1370,20 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
  }).join('');
  var checks=[].slice.call(list.querySelectorAll('.shr-cb'));
  function selected(){return ITEMS.filter(function(it){var cb=checks.filter(function(c){return c.getAttribute('data-id')===it.id;})[0];return cb&&cb.checked;});}
+ function clause(it){
+   if(it.grp==='News')return it.label+(it.detail?' ('+it.detail+')':'')+'.';
+   return it.label+' is currently '+it.detail+'.';
+ }
  function buildText(){var sel=selected();
    var lines=['BIRDLAND PARTNER DESK — Shared update','Data as of: '+(D.updated||'—')+' · sent '+(new Date()).toISOString().slice(0,16).replace('T',' ')+' UTC',''];
-   if(!sel.length){lines.push('(No items selected yet.)');}
-   else{var g=null;sel.forEach(function(it){if(it.grp!==g){g=it.grp;lines.push('— '+g+' —');}lines.push('  '+it.label+': '+it.detail);});}
-   lines.push('','Indicative planning data — not trade or legal advice.');
+   if(!sel.length){lines.push('No items selected yet — tick a few above to put together a quick note for a colleague.');}
+   else{
+     var byG={};sel.forEach(function(it){(byG[it.grp]=byG[it.grp]||[]).push(it);});
+     Object.keys(byG).forEach(function(g){
+       lines.push(g+': '+byG[g].map(clause).join(' '));lines.push('');
+     });
+   }
+   lines.push('Indicative planning data — not trade or legal advice.');
    return lines.join('\n');
  }
  function refresh(){var meta=$('shr-meta');if(meta)meta.textContent=selected().length+' selected';if(preview)preview.textContent=buildText();try{LSset('shr_sel',selected().map(function(it){return it.id;}));}catch(e){}}
@@ -1453,51 +1463,107 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
  };
  var TOPICS=Object.keys(TOPIC_TERMS);
  topics.innerHTML=TOPICS.map(function(t){return '<button type="button" class="rp-chip" data-t="'+esc(t)+'">'+esc(t)+'</button>';}).join('');
+ /* keywords drawn from today's actual news, so coverage isn't limited to the fixed commodity/shipping list */
+ var STOP={'the':1,'and':1,'for':1,'with':1,'from':1,'into':1,'after':1,'over':1,'amid':1,'this':1,'that':1,'will':1,'have':1,'been':1,'their':1,'more':1,'than':1,'also':1,'sets':1};
+ function extractKeywords(title){
+   var words=(title||'').replace(/[^\w\s%-]/g,'').split(/\s+/).filter(function(w){return w.length>3&&!STOP[w.toLowerCase()];});
+   words.sort(function(a,b){return b.length-a.length;});
+   var seen={},out=[];words.forEach(function(w){var k=w.toLowerCase();if(!seen[k]){seen[k]=1;out.push(w);}});
+   return out.slice(0,2);
+ }
+ var NEWS_TOPICS=[],NEWS_TERMS={};
+ (D.news||[]).slice(0,8).forEach(function(n,i){
+   var kws=extractKeywords(n.title);if(!kws.length)return;
+   var key='news:'+i,label=n.title.length>42?n.title.slice(0,40)+'…':n.title;
+   NEWS_TOPICS.push({key:key,label:label,title:n.title});
+   NEWS_TERMS[key]=kws;
+ });
+ if(NEWS_TOPICS.length){
+   var newsRow=document.createElement('div');newsRow.className='rp-topics rp-topics-news';
+   newsRow.innerHTML='<div class="rp-topics-lab" style="grid-column:1/-1;font-size:.72rem;color:var(--kb-faint);text-transform:uppercase;letter-spacing:.06em;margin:10px 0 2px">From today\'s news</div>'+
+     NEWS_TOPICS.map(function(t){return '<button type="button" class="rp-chip" data-t="'+esc(t.key)+'" title="'+esc(t.title)+'">'+esc(t.label)+'</button>';}).join('');
+   topics.parentNode.insertBefore(newsRow,topics.nextSibling);
+ }
  function realChg(ix){if(ix&&ix.spark&&ix.spark.length>=2){var a=ix.spark[ix.spark.length-2],b=ix.spark[ix.spark.length-1],i=ix.spark.length-2;while(i>0&&a===b){i--;a=ix.spark[i];}if(a)return (b-a)/Math.abs(a)*100;}return ix&&ix.chg;}
  function hay(s){return String(s||'').toLowerCase();}
- function search(term){term=hay(term);if(!term)return {lines:[],moves:[]};
-   var lines=[],moves=[];
+ function search(term){term=hay(term);if(!term)return {idx:[],mat:[],ship:[],tar:[],geo:[],news:[],moves:[]};
+   var idx=[],mat=[],ship=[],tar=[],geo=[],news=[],moves=[];
    (D.indices||[]).forEach(function(ix){if(hay(ix.label).indexOf(term)>=0||hay(ix.short).indexOf(term)>=0||hay(ix.sub).indexOf(term)>=0){
-     var rc=realChg(ix);lines.push('  [Index] '+(ix.short||ix.label)+': '+Number(ix.value).toLocaleString()+(ix.unit?' '+ix.unit:'')+(rc!=null?' ('+(rc>0?'+':'')+rc.toFixed(1)+'% vs prior)':'')+(ix.sub?' — '+ix.sub:''));
+     var rc=realChg(ix);idx.push({name:ix.short||ix.label,value:Number(ix.value).toLocaleString(),unit:ix.unit||'',chg:rc,sub:ix.sub||''});
      if(rc!=null)moves.push({name:ix.short||ix.label,c:rc});}});
    var P=D.partner||{};
-   ((P.material&&P.material.series)||[]).forEach(function(sr){if(hay(sr.name).indexOf(term)>=0){var pts=(sr.points||[]).map(function(p){return typeof p==='object'?p.v:p;});var v=pts.length?pts[pts.length-1]:null;var rc=realChg({spark:pts});lines.push('  [Material forecast] '+sr.name+(v!=null?': index '+v:'')+(rc!=null?' ('+(rc>0?'+':'')+rc.toFixed(1)+'%)':''));if(rc!=null)moves.push({name:sr.name,c:rc});}});
-   ((P.shipping&&P.shipping.lanes)||[]).forEach(function(l){if(hay(l.lane).indexOf(term)>=0){lines.push('  [Shipping lane] '+l.lane);}});
-   ((P.tariffmon&&P.tariffmon.changes)||[]).forEach(function(c){if(hay(c.market).indexOf(term)>=0||hay(c.change).indexOf(term)>=0||hay(c.note).indexOf(term)>=0){lines.push('  [Tariff] '+c.market+' ('+c.date+'): '+c.change+(c.note?' — '+c.note:''));}});
-   ((D.war&&D.war.zones)||[]).forEach(function(z){if(hay(z.zone).indexOf(term)>=0||hay(z.note).indexOf(term)>=0){lines.push('  [Geopolitics] '+z.zone+' — '+(z.status||'')+' (impact '+z.impact+'/100)'+(z.note?': '+z.note:''));}});
-   (D.news||[]).forEach(function(n){if(hay(n.title).indexOf(term)>=0||hay(n.blurb).indexOf(term)>=0){lines.push('  [News '+n.date+'] '+n.title);}});
-   return {lines:lines,moves:moves};
+   ((P.material&&P.material.series)||[]).forEach(function(sr){if(hay(sr.name).indexOf(term)>=0){var pts=(sr.points||[]).map(function(p){return typeof p==='object'?p.v:p;});var v=pts.length?pts[pts.length-1]:null;var rc=realChg({spark:pts});mat.push({name:sr.name,value:v,chg:rc});if(rc!=null)moves.push({name:sr.name,c:rc});}});
+   ((P.shipping&&P.shipping.lanes)||[]).forEach(function(l){if(hay(l.lane).indexOf(term)>=0){ship.push(l.lane);}});
+   ((P.tariffmon&&P.tariffmon.changes)||[]).forEach(function(c){if(hay(c.market).indexOf(term)>=0||hay(c.change).indexOf(term)>=0||hay(c.note).indexOf(term)>=0){tar.push({market:c.market,date:c.date,change:c.change,note:c.note||''});}});
+   ((D.war&&D.war.zones)||[]).forEach(function(z){if(hay(z.zone).indexOf(term)>=0||hay(z.note).indexOf(term)>=0){geo.push({zone:z.zone,status:z.status||'',impact:z.impact,note:z.note||''});}});
+   (D.news||[]).forEach(function(n){if(hay(n.title).indexOf(term)>=0||hay(n.blurb).indexOf(term)>=0){news.push({title:n.title,date:n.date});}});
+   return {idx:idx,mat:mat,ship:ship,tar:tar,geo:geo,news:news,moves:moves};
  }
  var lastReport='',selectedTopics={};
  function summarize(moves){if(!moves.length)return null;
    var up=moves.filter(function(m){return m.c>0.05;}),down=moves.filter(function(m){return m.c<-0.05;});
    var top=moves.reduce(function(a,b){return Math.abs(b.c)>Math.abs(a.c)?b:a;});
-   return up.length+' of '+moves.length+' tracked series are rising, '+down.length+' easing. Biggest move: '+top.name+' ('+(top.c>0?'+':'')+top.c.toFixed(1)+'%).';
+   return up.length+' of '+moves.length+' tracked series are rising and '+down.length+' are easing back. The biggest single move is '+top.name+', '+(top.c>0?'up':'down')+' '+Math.abs(top.c).toFixed(1)+'%.';
+ }
+ function dedup(arr,key){var seen={},out=[];arr.forEach(function(x){var k=key(x);if(!seen[k]){seen[k]=1;out.push(x);}});return out;}
+ function composeArticle(titleStr,r){
+   var paras=[];
+   if(r.idx.length){var idx=dedup(r.idx,function(x){return x.name;});
+     paras.push('On the indices side, '+idx.map(function(x){
+       var mv=x.chg!=null?(', '+(x.chg>0?'up':'down')+' '+Math.abs(x.chg).toFixed(1)+'% versus the prior reading'):'';
+       return x.name+' is at '+x.value+(x.unit?' '+x.unit:'')+mv+(x.sub?' ('+x.sub+')':'');
+     }).join('; ')+'.');
+   }
+   if(r.mat.length){var mat=dedup(r.mat,function(x){return x.name;});
+     paras.push('Material forecasts show '+mat.map(function(x){
+       var mv=x.chg!=null?(', '+(x.chg>0?'trending up '+x.chg.toFixed(1)+'%':'easing '+Math.abs(x.chg).toFixed(1)+'%')):'';
+       return x.name+(x.value!=null?' at an index of '+x.value:'')+mv;
+     }).join('; ')+'.');
+   }
+   if(r.ship.length){var ship=dedup(r.ship,function(x){return x;});
+     paras.push('On shipping, the '+ship.join(', ')+(ship.length>1?' lanes remain':' lane remains')+' worth keeping on the board.');
+   }
+   if(r.tar.length){paras.push('Trade policy: '+dedup(r.tar,function(x){return x.market+x.date;}).map(function(x){
+     return x.market+' saw a change on '+x.date+' ('+x.change+')'+(x.note?' — '+x.note:'');
+   }).join('; ')+'.');}
+   if(r.geo.length){paras.push('Geopolitical watch: '+dedup(r.geo,function(x){return x.zone;}).map(function(x){
+     return x.zone+' is currently rated '+(x.status||'monitored')+' with an impact score of '+x.impact+'/100'+(x.note?' — '+x.note:'');
+   }).join('; ')+'.');}
+   if(r.news.length){paras.push('In the news: '+dedup(r.news,function(x){return x.title;}).map(function(x){
+     return '"'+x.title+'" ('+x.date+')';
+   }).join('; ')+'.');}
+   if(!paras.length)paras.push('No matching indicators, forecasts or news were found for "'+titleStr+'" — try a broader keyword or pick a topic chip above.');
+   return paras.map(function(p){return p.replace(/\.{2,}/g,'.');});
  }
  function runReport(titles,terms){
-   var seen={},lines=[],allMoves=[];
-   terms.forEach(function(t){var r=search(t);r.lines.forEach(function(l){if(!seen[l]){seen[l]=1;lines.push(l);}});allMoves=allMoves.concat(r.moves);});
+   var merged={idx:[],mat:[],ship:[],tar:[],geo:[],news:[],moves:[]};
+   terms.forEach(function(t){var r=search(t);Object.keys(merged).forEach(function(k){merged[k]=merged[k].concat(r[k]);});});
    var titleStr=titles.join(', ');
-   var summary=summarize(allMoves);
-   var head='BIRDLAND PARTNER DESK — Keyword report: '+titleStr+'\nGenerated '+(new Date()).toISOString().slice(0,10)+' · data as of '+(D.updated||'—')+'\n';
-   var summaryBlock=summary?('Desk summary: '+summary+'\n'):'';
-   var body=lines.length?lines.join('\n'):'  No matching indicators, forecasts or news found for "'+titleStr+'".';
+   var summary=summarize(merged.moves);
+   var intro='Here is a plain-language read on '+titleStr+', put together from today\'s tracked data (as of '+(D.updated||'—')+') — no AI or paid API calls involved, just your own data written out in full sentences.';
+   var paras=composeArticle(titleStr,merged);
+   var head='BIRDLAND PARTNER DESK — Keyword report: '+titleStr+'\nGenerated '+(new Date()).toISOString().slice(0,10)+'\n\n';
+   var body=[intro].concat(summary?[summary]:[]).concat(paras).join('\n\n');
    var foot='\n\nIndicative planning data — not trade or legal advice.';
-   lastReport=head+summaryBlock+'\n'+body+foot;
-   out.innerHTML='<div class="rp-preview">'+esc((summary?'Desk summary: '+summary+'\n\n':'')+(lines.length?lines.join('\n'):'No matches for "'+titleStr+'".'))+'</div>';
-   if(sendRow)sendRow.style.display=lines.length?'flex':'none';
+   lastReport=head+body+foot;
+   out.innerHTML='<div class="rp-preview">'+esc(body)+'</div>';
+   if(sendRow)sendRow.style.display=(merged.idx.length||merged.mat.length||merged.ship.length||merged.tar.length||merged.geo.length||merged.news.length)?'flex':'none';
  }
  function runSelected(){var titles=Object.keys(selectedTopics).filter(function(t){return selectedTopics[t];});
    if(!titles.length)return;
-   var terms=[];titles.forEach(function(t){terms=terms.concat(TOPIC_TERMS[t]||[t]);});
-   runReport(titles,terms);
+   var terms=[],labels=[];
+   titles.forEach(function(t){
+     if(TOPIC_TERMS[t]){terms=terms.concat(TOPIC_TERMS[t]);labels.push(t);}
+     else if(NEWS_TERMS[t]){terms=terms.concat(NEWS_TERMS[t]);var nt=NEWS_TOPICS.filter(function(x){return x.key===t;})[0];labels.push(nt?nt.label:t);}
+   });
+   runReport(labels,terms);
  }
- [].forEach.call(topics.querySelectorAll('.rp-chip'),function(b){b.addEventListener('click',function(){
+ [].forEach.call(topics.parentNode.querySelectorAll('.rp-chip'),function(b){b.addEventListener('click',function(){
    var t=b.getAttribute('data-t');selectedTopics[t]=!selectedTopics[t];b.classList.toggle('on',!!selectedTopics[t]);
    if(kw)kw.value='';runSelected();
  });});
  gen.addEventListener('click',function(){var v=kw.value.trim();if(!v)return;
-   [].forEach.call(topics.children,function(x){x.classList.remove('on');});selectedTopics={};runReport([v],[v]);});
+   [].forEach.call(topics.parentNode.querySelectorAll('.rp-chip'),function(x){x.classList.remove('on');});selectedTopics={};runReport([v],[v]);});
  if(copyBtn)copyBtn.addEventListener('click',function(){copyText(lastReport,copyBtn);});
  if(mail)mail.addEventListener('click',function(){mailtoDraft($('rp_email').value.trim(),'Birdland Partner Desk — Keyword report',lastReport);});
  if(langSel)langSel.addEventListener('change',function(){var lang=langSel.value;if(!lang||!lastReport)return;window.open(translateUrl(lang,lastReport),'_blank');langSel.value='';});
@@ -1641,9 +1707,18 @@ bentofy('p-season',[],[],[]);
 <script>(function(){/* language: single Google-Translate control, relocated into the left rail */
  var rail=document.getElementById('p-rail');var gEl=document.getElementById('google_translate_element');
  if(!rail||!gEl)return;
+ gEl.classList.add('gt-on');
  var wrap=document.createElement('div');wrap.className='pr-lang';
  var lbl=document.createElement('div');lbl.className='pr-grp';lbl.textContent='Language';lbl.style.marginTop='0';
- wrap.appendChild(lbl);wrap.appendChild(gEl);
+ var note=document.createElement('div');note.className='pr-lang-note';note.textContent='Loading translator…';
+ wrap.appendChild(lbl);wrap.appendChild(gEl);wrap.appendChild(note);
  rail.insertBefore(wrap,rail.firstChild);
+ var tries=0;
+ var poll=setInterval(function(){
+   tries++;
+   var combo=gEl.querySelector('select.goog-te-combo');
+   if(combo){note.style.display='none';clearInterval(poll);}
+   else if(tries>20){note.textContent='Translator unavailable (blocked by network/ad-blocker)';clearInterval(poll);}
+ },500);
 })();</script>
 </body></html>

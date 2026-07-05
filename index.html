@@ -74,14 +74,14 @@
   nav a::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:0;background:var(--metal);transition:width .35s}
   nav a:hover::after,nav a:focus-visible::after{width:100%}
   .nav-div{height:1px;width:100%;background:var(--line-cop);margin:1rem 0}
-  .nav-terminal{display:flex;flex-direction:column;gap:.5rem;align-items:flex-start;width:100%}
-  .nav-term-lab{display:flex;align-items:center;gap:.45rem;font:700 .72rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#a68b5a;margin-bottom:.15rem}
-  .nav-term-row{display:flex;align-items:center;gap:1.1rem;width:100%;flex-wrap:wrap}
-  .nav-terminal a{padding:.3rem 0;color:var(--ink-soft)}
+  .nav-terminal{display:flex;flex-direction:row;flex-wrap:wrap;gap:1.1rem;align-items:center;width:100%;font-size:1.05rem}
+  .nav-term-lab{display:flex;align-items:center;gap:.45rem;font:700 1em var(--sans);letter-spacing:.1em;text-transform:uppercase;color:#a68b5a;white-space:nowrap}
+  .nav-term-row{display:flex;align-items:center;gap:1.1rem;flex-wrap:wrap;font-size:1em}
+  .nav-terminal a{padding:.3rem 0;color:var(--ink-soft);font-size:1em}
   .nav-terminal a b{font-size:.62em;color:var(--copper-bright);margin-left:.4em;font-weight:800}
   .nav-term-spacer{flex:1 1 auto}
   .nav-term-row .langwrap{width:auto;position:relative}
-  .nav-term-row .langbtn{display:inline-flex!important;align-items:center;gap:.3rem;font:700 .74rem var(--sans);letter-spacing:.08em;color:var(--copper-deep);background:none;border:1px solid var(--line);border-radius:1px;padding:.35rem .7rem;cursor:pointer}
+  .nav-term-row .langbtn{display:inline-flex!important;align-items:center;gap:.3rem;font:700 1em var(--sans);letter-spacing:.08em;color:var(--copper-deep);background:none;border:1px solid var(--line);border-radius:1px;padding:.35rem .7rem;cursor:pointer}
   .nav-term-row .langbtn:hover,.nav-term-row .langbtn[aria-expanded="true"]{border-color:var(--copper);color:var(--jade-deep)}
   .nav-term-row .langmenu{position:absolute;top:calc(100% + .5rem);right:0;background:var(--paper);border:1px solid var(--line-cop);box-shadow:0 12px 30px rgba(30,25,15,.14);padding:.5rem .9rem;min-width:180px;z-index:110}
   .nav-term-row .langmenu button{font-size:.92rem;padding:.5rem 0}
