@@ -595,6 +595,27 @@
   .mk.lit{background-size:100% 100%}
   .wb-data{display:inline-flex;align-items:center;margin-top:.7rem;padding:.32rem .75rem;background:rgba(168,72,42,.08);border:1px solid rgba(168,72,42,.28);border-radius:2px;font:600 .8rem var(--sans);letter-spacing:.04em;color:var(--copper-deep)}
 
+  /* ===== foliage-cut keyword reveal ===== */
+  .fol{position:relative;display:inline-block}
+  .fol-word{position:relative}
+  .fol-cut{position:absolute;inset:-6px -8px;width:calc(100% + 16px);height:calc(100% + 12px);padding:0;border:0;background:none;cursor:pointer;overflow:visible;-webkit-tap-highlight-color:transparent}
+  .fol-cut:focus-visible{outline:2px solid var(--copper);outline-offset:3px;border-radius:4px}
+  .fol-svg-wrap{position:absolute;inset:0;transform:rotate(var(--fr,0deg));pointer-events:none}
+  .fol-half{position:absolute;inset:0;width:100%;height:100%;transition:transform .5s cubic-bezier(.22,.8,.28,1),opacity .5s cubic-bezier(.22,.8,.28,1)}
+  .fol-half-l{clip-path:inset(0 50% 0 0)}
+  .fol-half-r{clip-path:inset(0 0 0 50%)}
+  .fol.cutting .fol-half-l{transform:translate(-14px,10px) rotate(-18deg);opacity:0}
+  .fol.cutting .fol-half-r{transform:translate(14px,14px) rotate(22deg);opacity:0}
+  .fol.is-cut .fol-cut{display:none}
+  .fol-snip{position:absolute;width:20px;height:20px;margin:-10px 0 0 -10px;pointer-events:none;opacity:1;transform:scale(.6);transition:opacity .3s ease,transform .3s ease}
+  .fol-snip.go{opacity:0;transform:scale(1.4)}
+  .fol-snip i{position:absolute;top:9px;left:0;width:20px;height:2px;background:var(--copper-bright)}
+  .fol-snip i:first-child{transform:rotate(45deg)}
+  .fol-snip i:last-child{transform:rotate(-45deg)}
+  @media(prefers-reduced-motion:reduce){
+    .fol-half-l,.fol-half-r,.fol-snip{transition:none}
+  }
+
   /* ===== "Your data protected" attractor ===== */
   .hero-data{position:relative}
   .hero-data::after{content:"";position:absolute;left:0;bottom:.02em;height:3px;width:38%;background:linear-gradient(90deg,transparent,var(--copper),transparent);animation:hdscan 2.8s ease-in-out infinite;pointer-events:none}
@@ -1295,7 +1316,7 @@
     </svg>
     <div class="wrap">
       <span class="ey">Confidential OEM / ODM &middot; Garden &amp; field tools &middot; Since 1974</span>
-      <h1 class="hero-h1"><a href="#chain">Your shelves stocked.</a><a href="#risk">Your costs steady.</a><a href="#catalogue">Your brand protected.</a><span class="hero-sig">Yours to sell. Ours to make. Never to compete with you.</span></h1>
+      <h1 class="hero-h1"><a href="#chain">Your shelves stocked.</a><a href="#risk">Your costs steady.</a><a href="#catalogue">Your brand</a> <span class="fol" data-fol="hero-protected" style="--fr:-6deg"><span class="fol-word">protected.</span><button type="button" class="fol-cut" aria-label="Reveal hidden word"><span class="fol-svg-wrap"><svg class="fol-half fol-half-l" viewBox="0 0 140 50" aria-hidden="true"><use href="#fol-branch"/></svg><svg class="fol-half fol-half-r" viewBox="0 0 140 50" aria-hidden="true"><use href="#fol-branch"/></svg></span></button></span><span class="hero-sig">Yours to sell. Ours to make. Never to compete with you.</span></h1>
       <div class="metalbar"></div>
       <p class="sub" style="margin-top:1.5rem">For garden &amp; field brands and distributors across Europe, the Commonwealth and the Americas.</p>
       <div class="trust">52 years &middot; 180+ brands &middot; 37 markets &middot; 0 client conflicts</div>
@@ -1314,7 +1335,7 @@
     <div class="wrap">
       <span class="ey">Since 1974 · three generations</span>
       <h2>Three generations. One standard.</h2>
-      <p class="her-intro">Family-owned since a single Taichung workshop in 1974. Three generations on, we make for 180+ brands across 37 markets &mdash; and still <span class="mk">never sell our own</span>.</p>
+      <p class="her-intro">Family-owned since a single Taichung workshop in 1974. Three generations on, we make for 180+ brands across 37 markets &mdash; and still <span class="fol" data-fol="heritage-neversell" style="--fr:4deg"><span class="mk fol-word">never sell our own</span><button type="button" class="fol-cut" aria-label="Reveal hidden word"><span class="fol-svg-wrap"><svg class="fol-half fol-half-l" viewBox="0 0 140 46" aria-hidden="true"><use href="#fol-weeds"/></svg><svg class="fol-half fol-half-r" viewBox="0 0 140 46" aria-hidden="true"><use href="#fol-weeds"/></svg></span></button></span>.</p>
       <div class="timeline reveal">
         <div class="tl"><span class="tl-d"></span><b>1974</b><span class="tl-c">Founded in Taichung</span></div>
         <div class="tl"><span class="tl-d"></span><b>2nd gen</b><span class="tl-c">Into EU &middot; Commonwealth &middot; Americas</span></div>
@@ -1390,12 +1411,29 @@
     <symbol id="ic-factory" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20.5V9.5l6 3.8V9.5l6 3.8V4.5h5.5v16z"/><path d="M3 20.5h18.5"/></g></symbol>
     <symbol id="ic-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M6 3.5h3.5l1.5 4.6-2.3 1.6a11.5 11.5 0 0 0 4.9 4.9l1.6-2.3 4.6 1.5V18a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4 5.7 2 2 0 0 1 6 3.5z"/></symbol>
     <symbol id="ic-camera" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l1.4-2.2h7.2L17 8h3v10H4z"/><circle cx="12" cy="13" r="3.3"/></g></symbol>
+    <path id="fol-leaf" d="M0,0 C3,-9 3,-9 0,-18 C-3,-9 -3,-9 0,0 Z"/>
+    <symbol id="fol-branch" viewBox="0 0 140 50">
+      <path d="M6 42 Q55 8 134 18" fill="none" stroke="var(--jade-deep)" stroke-width="2" stroke-linecap="round"/>
+      <path d="M14 46 Q60 26 128 34" fill="none" stroke="var(--jade)" stroke-width="1.6" stroke-linecap="round"/>
+      <use href="#fol-leaf" transform="translate(30,20) rotate(-25) scale(1.1)" fill="var(--jade)" opacity=".85"/>
+      <use href="#fol-leaf" transform="translate(70,14) rotate(15) scale(0.9)" fill="var(--jade-deep)" opacity=".8"/>
+      <use href="#fol-leaf" transform="translate(100,24) rotate(-10) scale(1.2)" fill="var(--jade)" opacity=".85"/>
+    </symbol>
+    <symbol id="fol-weeds" viewBox="0 0 140 46">
+      <path d="M70 44 Q50 20 30 4" fill="none" stroke="var(--copper)" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M70 44 Q62 14 58 2" fill="none" stroke="var(--copper-soft)" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M70 44 Q72 12 82 3" fill="none" stroke="var(--copper)" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M70 44 Q86 16 108 5" fill="none" stroke="var(--copper-soft)" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M70 44 Q95 24 122 12" fill="none" stroke="var(--copper)" stroke-width="1.6" stroke-linecap="round"/>
+      <use href="#fol-leaf" transform="translate(58,10) rotate(-20) scale(.8)" fill="var(--copper-deep)" opacity=".7"/>
+      <use href="#fol-leaf" transform="translate(100,10) rotate(15) scale(.7)" fill="var(--copper-deep)" opacity=".7"/>
+    </symbol>
   </defs></svg>
 
   <!-- ===== WHAT WE MAKE ===== -->
   <section class="make" id="make">
     <div class="wrap">
-      <div class="sec-head reveal"><span class="ey">What we manufacture</span><h2>The things we make for your shelves.</h2><p>Representative categories &mdash; your specific products are developed with you and <span class="mk">kept confidential</span>.</p></div>
+      <div class="sec-head reveal"><span class="ey">What we manufacture</span><h2>The things we make for your shelves.</h2><p>Representative categories &mdash; your specific products are developed with you and <span class="fol" data-fol="make-confidential" style="--fr:-4deg"><span class="mk fol-word">kept confidential</span><button type="button" class="fol-cut" aria-label="Reveal hidden word"><span class="fol-svg-wrap"><svg class="fol-half fol-half-l" viewBox="0 0 140 46" aria-hidden="true"><use href="#fol-weeds"/></svg><svg class="fol-half fol-half-r" viewBox="0 0 140 46" aria-hidden="true"><use href="#fol-weeds"/></svg></span></button></span>.</p></div>
       <div class="tabs reveal reveal-zoom" id="makeTabs">
         <div class="tabbar" role="tablist">
           <button class="tab on" type="button" role="tab" aria-selected="true" data-tab="garden"><svg class="ic"><use href="#ic-leaf"/></svg>Garden tools</button>
@@ -1435,7 +1473,7 @@
         <div class="wbcard reveal">
           <div class="wb-ic"><svg class="ic"><use href="#ic-shield"/></svg></div>
           <div class="wb-worry">We never compete with you.</div>
-          <p class="wb-ans">No brand of our own &mdash; your designs, tooling and customers <span class="mk">stay yours</span>.</p>
+          <p class="wb-ans">No brand of our own &mdash; your designs, tooling and customers <span class="fol" data-fol="why-stayyours" style="--fr:7deg"><span class="mk fol-word">stay yours</span><button type="button" class="fol-cut" aria-label="Reveal hidden word"><span class="fol-svg-wrap"><svg class="fol-half fol-half-l" viewBox="0 0 140 46" aria-hidden="true"><use href="#fol-weeds"/></svg><svg class="fol-half fol-half-r" viewBox="0 0 140 46" aria-hidden="true"><use href="#fol-weeds"/></svg></span></button></span>.</p>
           <div class="wb-data">50+ yrs &middot; 0 client conflicts</div>
         </div>
         <div class="wbcard reveal">
@@ -1467,7 +1505,7 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="ey">Average supplier vs Birdland</span>
-        <h2>Risk by risk — how far we lift it away.</h2>
+        <h2>Risk by risk — how far we <span class="fol" data-fol="risk-lift" style="--fr:-8deg"><span class="fol-word">lift it away</span><button type="button" class="fol-cut" aria-label="Reveal hidden word"><span class="fol-svg-wrap"><svg class="fol-half fol-half-l" viewBox="0 0 140 50" aria-hidden="true"><use href="#fol-branch"/></svg><svg class="fol-half fol-half-r" viewBox="0 0 140 50" aria-hidden="true"><use href="#fol-branch"/></svg></span></button></span>.</h2>
         <p>Tap any risk to compare Birdland with the average supplier.</p>
       </div>
       <div class="riskcmp reveal" id="riskCmp">
@@ -1490,7 +1528,7 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="ey">One chain · a season ahead</span>
-        <h2>From your order to FOB — we handle every link.</h2>
+        <h2>From your order to FOB — we handle <span class="fol" data-fol="chain-everylink" style="--fr:9deg"><span class="fol-word">every link</span><button type="button" class="fol-cut" aria-label="Reveal hidden word"><span class="fol-svg-wrap"><svg class="fol-half fol-half-l" viewBox="0 0 140 50" aria-hidden="true"><use href="#fol-branch"/></svg><svg class="fol-half fol-half-r" viewBox="0 0 140 50" aria-hidden="true"><use href="#fol-branch"/></svg></span></button></span>.</h2>
         <p>Drag along the journey, from order placed to on board &middot; FOB.</p>
       </div>
       <div class="reveal">
@@ -1514,7 +1552,7 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="ey">Build your enquiry</span>
-        <h2>Three taps to the right team.</h2>
+        <h2>Three taps to the <span class="fol" data-fol="enq-rightteam" style="--fr:-3deg"><span class="fol-word">right team</span><button type="button" class="fol-cut" aria-label="Reveal hidden word"><span class="fol-svg-wrap"><svg class="fol-half fol-half-l" viewBox="0 0 140 46" aria-hidden="true"><use href="#fol-weeds"/></svg><svg class="fol-half fol-half-r" viewBox="0 0 140 46" aria-hidden="true"><use href="#fol-weeds"/></svg></span></button></span>.</h2>
         <p>Tell us a little &mdash; we'll draft an email to your regional team, in confidence.</p>
       </div>
       <div class="enq-grid">
@@ -1604,6 +1642,34 @@
   nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');menu.setAttribute('aria-expanded',false);});});
   document.getElementById('yr').textContent=new Date().getFullYear();
   var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  (function(){
+    function getCut(){try{return JSON.parse(localStorage.getItem('bl_fol_cut')||'[]');}catch(e){return [];}}
+    function saveCut(id){try{var a=getCut();if(a.indexOf(id)===-1){a.push(id);localStorage.setItem('bl_fol_cut',JSON.stringify(a));}}catch(e){}}
+    var cut=getCut();
+    document.querySelectorAll('.fol').forEach(function(el){
+      if(cut.indexOf(el.dataset.fol)>-1)el.classList.add('is-cut');
+    });
+    document.querySelectorAll('.fol-cut').forEach(function(btn){
+      btn.addEventListener('click',function(e){
+        var wrap=btn.closest('.fol');
+        if(!wrap||wrap.classList.contains('is-cut'))return;
+        var id=wrap.dataset.fol;
+        if(reduce){wrap.classList.add('is-cut');saveCut(id);return;}
+        var rect=btn.getBoundingClientRect();
+        var snip=document.createElement('span');
+        snip.className='fol-snip';
+        snip.style.left=(e.clientX-rect.left)+'px';
+        snip.style.top=(e.clientY-rect.top)+'px';
+        snip.innerHTML='<i></i><i></i>';
+        btn.appendChild(snip);
+        requestAnimationFrame(function(){snip.classList.add('go');});
+        setTimeout(function(){snip.remove();},320);
+        wrap.classList.add('cutting');
+        setTimeout(function(){wrap.classList.remove('cutting');wrap.classList.add('is-cut');saveCut(id);},520);
+      });
+    });
+  })();
 
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');
     if(e.target.querySelectorAll)e.target.querySelectorAll('.cnum').forEach(runCount);io.unobserve(e.target);}});},{threshold:.12});
