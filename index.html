@@ -724,7 +724,11 @@
   /* Each reading section frosts to translucent glass at the edges of the viewport and lifts */
   /* crisp + gently enlarged across a wide central plateau (small blurred boundary). The headline */
   /* text gets a second, much bigger zoom (1.55x) so the words themselves visibly grow when centered. */
-  .focus-sec{overflow-x:clip}
+  /* NOTE: intentionally no overflow-x:clip here — the reading-focus zoom below scales headline
+     text well past this section's own width, and clipping at this level was silently deleting
+     the ends of longer headlines. body{overflow-x:hidden} (line 44) is the real safety net that
+     stops any page-level horizontal scrollbar; sections are allowed to overflow into their own
+     margins during the momentary zoom. */
   .focus-sec>.wrap{transform-origin:center center}
   .focus-sec .sec-head h2,.heritage h2,.cat h2,.focus-sec .sec-head p,.heritage .lead{transform-origin:left center;will-change:transform}
   @media (prefers-reduced-motion:no-preference){

@@ -904,7 +904,7 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
   </div></section>
 
   <section class="blk" data-open="0" id="p-report"><button class="blk-h"><span class="k">REPORT</span><h2>Keyword report</h2><span class="ihelp" title="Pick one indicator, or one Key-News keyword, or type your own; the desk writes a full-sentence briefing article for that one topic, at no token/API cost.">i</span><span class="tog"></span></button><div class="blk-b">
-    <div class="sub">Not a quick forward — a written briefing. Pick one topic below — any indicator tracked on this desk, or a keyword trending in today's Key News — and the desk composes a fluent, article-style summary from the underlying data — zero AI/API cost, just your data written out in full sentences.</div>
+    <div class="sub">Not a quick forward — a written briefing. Tick as many topics as you like below — any indicators tracked on this desk, or keywords trending in today's Key News — and the desk composes one fluent, article-style summary from the underlying data — zero AI/API cost, just your data written out in full sentences.</div>
     <div class="rp-topics" id="rp_topics"></div>
     <div class="calc" style="grid-template-columns:1fr auto;align-items:end">
       <div><label>Or search a keyword</label><input id="rp_kw" placeholder="e.g. steel, EU, freight"></div>
@@ -920,7 +920,7 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
       </select>
       <input id="rp_email" type="email" placeholder="your@email.com (for the draft's To: field)">
       <button class="tool-btn tool-btn-ghost" id="rp_copy" type="button">&#128203; Copy</button>
-      <button class="tool-btn" id="rp_mail" type="button">&#9993; Draft email</button>
+      <button class="tool-btn" id="rp_mail" type="button" title="Writes in an AI-style article format from your own tracked data — no API calls, no token cost, nothing sent anywhere until you hit send.">&#9993; AI Email Draft</button>
     </div>
   </div></section>
 
@@ -1536,33 +1536,55 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
    if(!paras.length)paras.push('No matching indicators, forecasts or news were found for "'+titleStr+'" — try a broader keyword or pick a topic chip above.');
    return paras.map(function(p){return p.replace(/\.{2,}/g,'.');});
  }
+ function closing(r){
+   var touched=[];
+   if(r.idx.length||r.mat.length)touched.push('costs');
+   if(r.ship.length)touched.push('shipping');
+   if(r.tar.length)touched.push('trade policy');
+   if(r.geo.length)touched.push('geopolitical risk');
+   if(r.mnews.length||r.news.length)touched.push('the news cycle');
+   if(!touched.length)return null;
+   var last=touched.pop();
+   var list=touched.length?touched.join(', ')+' and '+last:last;
+   return 'Put together, this touches '+list+' — worth a re-read next time the desk refreshes, since every figure above moves with the daily data rather than staying fixed.';
+ }
  function runReport(titles,terms){
    var merged={idx:[],mat:[],ship:[],tar:[],geo:[],news:[],mnews:[],moves:[]};
    terms.forEach(function(t){var r=search(t);Object.keys(merged).forEach(function(k){merged[k]=merged[k].concat(r[k]);});});
    var titleStr=titles.join(', ');
    var summary=summarize(merged.moves);
-   var intro='Here is a plain-language read on '+titleStr+', put together from today\'s tracked data (as of '+(D.updated||'—')+') — no AI or paid API calls involved, just your own data written out in full sentences.';
+   var intro='Here\'s a written read on '+titleStr+', put together from today\'s tracked data (as of '+(D.updated||'—')+').';
    var paras=composeArticle(titleStr,merged);
+   var close=closing(merged);
+   var note='Written in an AI-style article format, but composed entirely from the numbers on this desk — no AI model or paid API was called to generate it, and nothing here leaves your browser until you choose to send it.';
    var head='BIRDLAND PARTNER DESK — Keyword report: '+titleStr+'\nGenerated '+(new Date()).toISOString().slice(0,10)+'\n\n';
-   var body=[intro].concat(summary?[summary]:[]).concat(paras).join('\n\n');
+   var body=[intro].concat(summary?[summary]:[]).concat(paras).concat(close?[close]:[]).concat([note]).join('\n\n');
    var foot='\n\nIndicative planning data — not trade or legal advice.';
    lastReport=head+body+foot;
    out.innerHTML='<div class="rp-preview">'+esc(body)+'</div>';
    if(sendRow)sendRow.style.display=(merged.idx.length||merged.mat.length||merged.ship.length||merged.tar.length||merged.geo.length||merged.news.length||merged.mnews.length)?'flex':'none';
  }
- /* single topic at a time — clicking a chip immediately generates that one report */
- function selectChip(t,label,terms){
-   [].forEach.call(topics.parentNode.querySelectorAll('.rp-chip'),function(x){x.classList.toggle('on',x.getAttribute('data-t')===t);});
-   if(kw)kw.value='';
-   runReport([label],terms);
+ /* multi-select — tick as many topics/keywords as you like, they combine into one report */
+ var selectedChips={};
+ function runSelected(){
+   var picked=Object.keys(selectedChips).filter(function(t){return selectedChips[t];});
+   if(!picked.length)return;
+   var terms=[],labels=[];
+   picked.forEach(function(t){
+     if(TOPIC_TERMS[t]){terms=terms.concat(TOPIC_TERMS[t]);labels.push(t);}
+     else if(NEWS_TERMS[t]){terms=terms.concat(NEWS_TERMS[t]);var nt=NEWS_TOPICS.filter(function(x){return x.key===t;})[0];labels.push(nt?nt.label:t);}
+   });
+   runReport(labels,terms);
  }
  [].forEach.call(topics.parentNode.querySelectorAll('.rp-chip'),function(b){b.addEventListener('click',function(){
    var t=b.getAttribute('data-t');
-   if(TOPIC_TERMS[t])selectChip(t,t,TOPIC_TERMS[t]);
-   else if(NEWS_TERMS[t]){var nt=NEWS_TOPICS.filter(function(x){return x.key===t;})[0];selectChip(t,nt?nt.label:t,NEWS_TERMS[t]);}
+   selectedChips[t]=!selectedChips[t];
+   b.classList.toggle('on',!!selectedChips[t]);
+   if(kw)kw.value='';
+   runSelected();
  });});
  gen.addEventListener('click',function(){var v=kw.value.trim();if(!v)return;
-   [].forEach.call(topics.parentNode.querySelectorAll('.rp-chip'),function(x){x.classList.remove('on');});runReport([v],[v]);});
+   [].forEach.call(topics.parentNode.querySelectorAll('.rp-chip'),function(x){x.classList.remove('on');});selectedChips={};runReport([v],[v]);});
  if(copyBtn)copyBtn.addEventListener('click',function(){copyText(lastReport,copyBtn);});
  if(mail)mail.addEventListener('click',function(){mailtoDraft($('rp_email').value.trim(),'Birdland Partner Desk — Keyword report',lastReport);});
  if(langSel)langSel.addEventListener('change',function(){var lang=langSel.value;if(!lang||!lastReport)return;window.open(translateUrl(lang,lastReport),'_blank');langSel.value='';});
