@@ -560,13 +560,24 @@
  .blk[data-open="1"] .blk-b{animation:blkFade .3s ease}
  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto!important}}
 
-/* rail Google-Translate control */
-#p-rail .pr-lang{margin-bottom:14px}
-#p-rail .pr-lang #google_translate_element{display:block;margin-top:4px}
-#p-rail .pr-lang .goog-te-gadget{font-family:var(--kb-sans)!important;font-size:0!important;color:var(--kb-faint)!important;line-height:0}
-#p-rail .pr-lang .goog-te-combo{width:100%!important;font-family:var(--kb-sans)!important;font-size:.85rem!important;font-weight:600!important;color:var(--kb-ink)!important;background:var(--kb-panel)!important;border:1px solid var(--kb-line)!important;border-radius:8px!important;padding:8px 10px!important;margin:0!important;cursor:pointer}
-#p-rail .pr-lang .goog-te-gadget>span{display:none!important}
-#p-rail .pr-lang-note{font-size:.68rem;color:var(--kb-faint);margin-top:4px;line-height:1.3}
+/* rail Google-Translate control: pill button -> popover */
+#p-rail .pr-lang{margin-bottom:14px;position:relative}
+#p-rail .pr-lang-btn{display:flex;align-items:center;gap:8px;width:100%;background:var(--kb-panel);border:1px solid var(--kb-line);border-radius:10px;padding:9px 11px;font-family:var(--kb-sans);font-size:.85rem;font-weight:600;color:var(--kb-ink);cursor:pointer;transition:border-color .15s ease,box-shadow .15s ease}
+#p-rail .pr-lang-btn:hover{border-color:var(--kb-line2)}
+#p-rail .pr-lang-btn:focus-visible{outline:none;border-color:var(--kb-accent);box-shadow:0 0 0 3px var(--kb-accent-soft)}
+#p-rail .pr-lang-btn[aria-expanded="true"]{border-color:var(--kb-accent);box-shadow:0 0 0 3px var(--kb-accent-soft)}
+#p-rail .pr-lang-btn svg{width:16px;height:16px;flex:0 0 16px;fill:none;stroke:var(--kb-mut);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+#p-rail .pr-lang-btn span{flex:1;text-align:left}
+#p-rail .pr-lang-chev{width:7px;height:7px;flex:0 0 7px;border-right:1.6px solid var(--kb-faint);border-bottom:1.6px solid var(--kb-faint);transform:rotate(45deg);transition:transform .15s ease;margin-top:-2px}
+#p-rail .pr-lang-btn[aria-expanded="true"] .pr-lang-chev{transform:rotate(-135deg);margin-top:2px}
+#p-rail .pr-lang-pop{position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:40;background:var(--kb-panel);border:1px solid var(--kb-line);border-radius:10px;box-shadow:0 8px 24px rgba(20,27,44,.12);padding:10px;animation:prLangIn .14s cubic-bezier(.22,.8,.28,1)}
+@keyframes prLangIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+#p-rail .pr-lang-pop #google_translate_element{display:block}
+#p-rail .pr-lang-pop .goog-te-gadget{font-family:var(--kb-sans)!important;font-size:0!important;color:var(--kb-faint)!important;line-height:0}
+#p-rail .pr-lang-pop .goog-te-combo{width:100%!important;font-family:var(--kb-sans)!important;font-size:.85rem!important;font-weight:600!important;color:var(--kb-ink)!important;background:var(--kb-bg)!important;border:1px solid var(--kb-line)!important;border-radius:8px!important;padding:8px 10px!important;margin:0!important;cursor:pointer}
+#p-rail .pr-lang-pop .goog-te-gadget>span{display:none!important}
+#p-rail .pr-lang-note{font-size:.68rem;color:var(--kb-faint);margin-top:6px;line-height:1.3}
+@media(prefers-reduced-motion:reduce){#p-rail .pr-lang-pop{animation:none}}
 /* ===== bento content grid: 1 large + 1 medium + 2 small, per feature ===== */
 .bento{display:grid;grid-template-columns:1.7fr 1fr;grid-template-rows:auto auto;gap:16px;align-items:start}
 .bento.bento-2{grid-template-columns:1fr;grid-template-rows:auto}
@@ -1726,15 +1737,23 @@ bentofy('p-reorder',['.calc'],['#ro_out'],[
 ]);
 bentofy('p-season',[],[],[]);
 })();</script>
-<script>(function(){/* language: single Google-Translate control, relocated into the left rail */
+<script>(function(){/* language: single Google-Translate control, relocated into the left rail as a button + popover */
  var rail=document.getElementById('p-rail');var gEl=document.getElementById('google_translate_element');
  if(!rail||!gEl)return;
  gEl.classList.add('gt-on');
  var wrap=document.createElement('div');wrap.className='pr-lang';
- var lbl=document.createElement('div');lbl.className='pr-grp';lbl.textContent='Language';lbl.style.marginTop='0';
+ var btn=document.createElement('button');btn.type='button';btn.className='pr-lang-btn';btn.setAttribute('aria-expanded','false');btn.setAttribute('aria-haspopup','true');
+ btn.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.6 2.5 2.6 14.5 0 17c-2.6-2.5-2.6-14.5 0-17z"/></svg><span>Language</span><i class="pr-lang-chev"></i>';
+ var pop=document.createElement('div');pop.className='pr-lang-pop';pop.hidden=true;
  var note=document.createElement('div');note.className='pr-lang-note';note.textContent='Loading translator…';
- wrap.appendChild(lbl);wrap.appendChild(gEl);wrap.appendChild(note);
+ pop.appendChild(gEl);pop.appendChild(note);
+ wrap.appendChild(btn);wrap.appendChild(pop);
  rail.insertBefore(wrap,rail.firstChild);
+ function closePop(){pop.hidden=true;btn.setAttribute('aria-expanded','false');document.removeEventListener('click',onOutside);}
+ function openPop(){pop.hidden=false;btn.setAttribute('aria-expanded','true');setTimeout(function(){document.addEventListener('click',onOutside);},0);}
+ function onOutside(e){if(!wrap.contains(e.target))closePop();}
+ btn.addEventListener('click',function(e){e.stopPropagation();if(pop.hidden)openPop();else closePop();});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!pop.hidden)closePop();});
  var tries=0;
  var poll=setInterval(function(){
    tries++;
