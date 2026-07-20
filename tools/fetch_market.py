@@ -171,10 +171,22 @@ try:
         k=it["title"].strip().lower()
         if k and k not in seen:
             seen.add(k);dedup.append(it)
-    dedup.sort(key=lambda x:x.get("date") or "",reverse=True)
+    # Balance across topics: guarantee up to 2 slots per topic first (newest within each),
+    # then fill remaining slots by date. A pure date sort let fresh tariff/china items
+    # crowd out shipping entirely, even though every topic was fetched.
     if dedup:
-        data["market_news"]=dedup[:8]
-        print("[keynews] fetched %d headlines across %d topics."%(len(dedup[:8]),len(QUERIES)))
+        by_topic={}
+        for it in dedup: by_topic.setdefault(it["topic"],[]).append(it)
+        for lst in by_topic.values(): lst.sort(key=lambda x:x.get("date") or "",reverse=True)
+        picked=[]
+        for topic,_ in QUERIES:
+            picked.extend(by_topic.get(topic,[])[:2])
+        rest=[it for it in dedup if it not in picked]
+        rest.sort(key=lambda x:x.get("date") or "",reverse=True)
+        picked=(picked+rest)[:8]
+        picked.sort(key=lambda x:x.get("date") or "",reverse=True)
+        data["market_news"]=picked
+        print("[keynews] fetched %d headlines, topics: %s"%(len(picked),sorted(set(i["topic"] for i in picked))))
     else:
         print("[keynews] no headlines fetched; keeping previous market_news if any.")
 except Exception as e:
