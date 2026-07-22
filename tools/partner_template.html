@@ -787,6 +787,7 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
 .li-row .li-x{cursor:pointer;color:var(--kb-faint);border:0;background:none;font-size:1.2rem;line-height:1;padding:2px 6px}
 .li-row .li-x:hover{color:var(--kb-red)}
 .empty-note{color:var(--kb-faint);font-size:.86rem;padding:16px 0;text-align:center}
+.news .item.rc-past{opacity:.55}
 .cal-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:8px}
 @media(max-width:520px){.cal-grid{grid-template-columns:repeat(4,1fr)}}
 .cal-m{border:1px solid var(--kb-line);border-radius:8px;padding:10px 6px;text-align:center;background:var(--kb-panel)}
@@ -824,7 +825,7 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
     <div class="dash-grid" id="dash-grid"></div>
     <div class="dash-foot">A live read of your FOB China/Taiwan inputs — material costs, ocean freight, compliance and supply risk. Tap a tab below for the detail.</div>
   </section>
-  <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-alerts">Price alerts</a><a href="#p-keynews">Key News</a><a href="#p-report">Keyword report</a><a href="#p-landed2">My landed cost</a><a href="#p-margin">Retail margin</a><a href="#p-reorder">Reorder timing</a><a href="#p-sail">Plan a sailing</a><a href="#p-calc">Quick estimate</a><a href="#p-cduty">TW vs CN duty</a><a href="#p-material">Materials ahead</a><a href="#p-shipping">Shipping ahead</a><a href="#p-season">Buy calendar</a><a href="#p-freight">Freight indexes</a><a href="#p-watch">Watchlist</a><a href="#p-war">Geopolitics</a><a href="#p-tariff">Tariffs</a><a href="#p-mkt">By country</a><a href="#p-news">News</a></nav>
+  <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-alerts">Price alerts</a><a href="#p-keynews">Key News</a><a href="#p-regcal">Reg. calendar</a><a href="#p-report">Keyword report</a><a href="#p-landed2">My landed cost</a><a href="#p-margin">Retail margin</a><a href="#p-reorder">Reorder timing</a><a href="#p-sail">Plan a sailing</a><a href="#p-calc">Quick estimate</a><a href="#p-cduty">TW vs CN duty</a><a href="#p-material">Materials ahead</a><a href="#p-shipping">Shipping ahead</a><a href="#p-season">Buy calendar</a><a href="#p-freight">Freight indexes</a><a href="#p-watch">Watchlist</a><a href="#p-war">Geopolitics</a><a href="#p-tariff">Tariffs</a><a href="#p-mkt">By country</a><a href="#p-news">News</a></nav>
   <div id="tab-hint" class="tab-hint"><div class="mac-note"><span class="mn-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span><div class="mn-txt"><b>SourceIQ</b><span>Pick a section from the tabs above to view it.</span></div></div></div>
 
   <section class="blk" data-open="1" id="p-brief"><button class="blk-h"><span class="k">BRIEF</span><h2>Today &amp; Tomorrow</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
@@ -912,6 +913,11 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
   <section class="blk" data-open="0" id="p-keynews"><button class="blk-h"><span class="k">KEY NEWS</span><h2>Key News</h2><span class="ihelp" title="Free, keyless headlines refreshed daily: tariffs across major markets, ocean-freight/shipping rates, and China &amp; Taiwan production and raw-materials news.">i</span><span class="meta" id="kn-meta"></span><span class="tog"></span></button><div class="blk-b">
     <div class="sub">Refreshed daily from free public sources — tariffs across major markets, shipping/freight rates, and China &amp; Taiwan production and raw-materials news.</div>
     <div class="news" id="keynewslist"></div>
+  </div></section>
+
+  <section class="blk" data-open="0" id="p-regcal"><button class="blk-h"><span class="k">REG CAL</span><h2>Regulatory calendar</h2><span class="ihelp" title="Tariff, carbon-border and compliance deadlines that affect landed cost, plus trade-show dates — desk-maintained, not a daily feed.">i</span><span class="meta" id="rc-meta"></span><span class="tog"></span></button><div class="blk-b">
+    <div class="sub">Deadlines and events that change landed cost or documentation requirements. Past dates stay for reference; upcoming ones are sorted by how soon they land.</div>
+    <div class="news" id="regcallist"></div>
   </div></section>
 
   <section class="blk" data-open="0" id="p-report"><button class="blk-h"><span class="k">REPORT</span><h2>Keyword report</h2><span class="ihelp" title="Pick one indicator, or one Key-News keyword, or type your own; the desk writes a full-sentence briefing article for that one topic, at no token/API cost.">i</span><span class="tog"></span></button><div class="blk-b">
@@ -1113,6 +1119,25 @@ if(knl){var mn=D.market_news||[];
     knl.appendChild(a);});}
   var knm=document.getElementById('kn-meta');if(knm)knm.textContent=mn.length+' headlines';
 }
+var rcl=document.getElementById('regcallist');
+if(rcl){var tl=D.timeline||{};var items=(tl.items||[]).slice();
+  if(!items.length){rcl.innerHTML='<div class="empty-note">No regulatory calendar data set for this desk yet.</div>';}
+  else{
+    var REG_LAB={EU:'European Union',US:'United States',CA:'Canada',UK:'United Kingdom',AU:'Australia',EVENT:'Trade event'};
+    var todayISO=new Date().toISOString().slice(0,10);
+    function daysUntil(d){return Math.round((Date.parse(d+'T00:00:00Z')-Date.parse(todayISO+'T00:00:00Z'))/864e5);}
+    function whenLabel(n){if(n===0)return 'today';if(n===1)return 'in 1 day';if(n>1)return 'in '+n+' days';if(n===-1)return '1 day ago';return (-n)+' days ago';}
+    var upcoming=items.filter(function(i){return i.date>=todayISO;}).sort(function(a,b){return a.date<b.date?-1:1;});
+    var past=items.filter(function(i){return i.date<todayISO;}).sort(function(a,b){return a.date>b.date?-1:1;});
+    function row(i,cls){var n=daysUntil(i.date);
+      return '<a class="item '+cls+'" href="#" title="'+kn_esc(i.tip||'')+'"><span class="dt">'+kn_esc(i.date)+' &middot; '+kn_esc(REG_LAB[i.region]||i.region||'')+' &middot; '+whenLabel(n)+'</span><div class="ti">'+kn_esc(i.label)+'</div></a>';}
+    var html='';
+    if(upcoming.length)html+=upcoming.map(function(i){return row(i,'rc-up');}).join('');
+    if(past.length)html+=past.map(function(i){return row(i,'rc-past');}).join('');
+    rcl.innerHTML=html;
+  }
+  var rcm=document.getElementById('rc-meta');if(rcm)rcm.textContent=items.filter(function(i){return i.date>=todayISO;}).length+' upcoming';
+}
 var sel=document.getElementById('region'),content=document.getElementById('content');
 var LANG={us:'en',nl:'nl',ca:'en',de:'de',fr:'fr',it:'it',pl:'pl',uk:'en',au:'en',es:'es',eu:'en',me:'en',sa:'es',global:'en'};
 function setLang(code){try{var lg=LANG[code]||'en';var c=document.querySelector('#google_translate_element select, select.goog-te-combo');if(c){c.value=lg;c.dispatchEvent(new Event('change'));}}catch(e){}}
@@ -1310,11 +1335,11 @@ if(topAct)h+='<span class="pi lead" data-go="p-brief" style="cursor:pointer"><sp
   ft.innerHTML='<div class="wrap"><span>Data refreshed <b>'+(D.updated||'—')+'</b></span><span>· Indices &amp; forecasts update daily via automated feed</span></div>';
  })();
 // 2) section order: daily brief & the two money tools first; client-desk duplicates demoted to Reference
-(function(){if(!main||!disc)return;var ORD=['p-brief','p-alerts','p-keynews','p-report','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty','p-material','p-shipping','p-season','p-war','p-tariff'],REF=['p-freight','p-watch','p-mkt','p-news'];
+(function(){if(!main||!disc)return;var ORD=['p-brief','p-alerts','p-keynews','p-regcal','p-report','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty','p-material','p-shipping','p-season','p-war','p-tariff'],REF=['p-freight','p-watch','p-mkt','p-news'];
  ORD.concat(REF).forEach(function(id){var s=document.getElementById(id);if(s)main.insertBefore(s,disc);});
  var hd=document.createElement('div');hd.className='refhd';hd.textContent='Reference data — shared with Client Desk';main.insertBefore(hd,document.getElementById(REF[0]));})();
 // 3) honest freshness: static desk-set blocks must not claim the daily stamp
-(function(){[['p-tariff','manual · desk set'],['p-material','curves manual · note daily'],['p-shipping','rates daily · curve manual']].forEach(function(x){var b=document.querySelector('#'+x[0]+' .blk-h .secupd');if(b)b.textContent='⟳ '+x[1];});})();
+(function(){[['p-tariff','manual · desk set'],['p-regcal','manual · desk set'],['p-material','curves manual · note daily'],['p-shipping','rates daily · curve manual']].forEach(function(x){var b=document.querySelector('#'+x[0]+' .blk-h .secupd');if(b)b.textContent='⟳ '+x[1];});})();
 // 4) remembered workspace
 var LS={g:function(k){try{return localStorage.getItem('bd_p_'+k);}catch(e){return null;}},s:function(k,v){try{localStorage.setItem('bd_p_'+k,v);}catch(e){}}};
 var FIELDS=['qc_cost','qc_frt','qc_ins','qc_duty','qc_qty','bc_fob','bc_qty','bc_frt','bc_ins','bc_duty','bc_tax','bc_brk','bc_inl','bc_oth','pcVal','mg_cost','mg_margin','mg_fx','mg_qty','ro_stock','ro_rate','ro_lead','ro_transit','ro_safety','se_lead'],SELS=['pcDest','pcOrigin','s_o','s_d','s_ct','region','se_hemi'];
@@ -1323,7 +1348,7 @@ FIELDS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v
 SELS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=LS.g(id);if(v!==null&&v!==''){var ok=[].some.call(e.options,function(o){return o.value===v;});if(ok){e.value=v;e.dispatchEvent(new Event('change',{bubbles:true}));}}
  e.addEventListener('change',function(){LS.s(id,e.value);});});
 // 5) full-scroll accordion: funnel modules open, reference collapsed; remember per-section state
-(function(){var FUN={'p-brief':1,'p-alerts':1,'p-keynews':1,'p-report':1,'p-landed2':1,'p-margin':1,'p-reorder':1,'p-sail':1,'p-calc':1,'p-cduty':1,'p-material':1,'p-shipping':1,'p-season':1,'p-war':1,'p-tariff':1};
+(function(){var FUN={'p-brief':1,'p-alerts':1,'p-keynews':1,'p-regcal':1,'p-report':1,'p-landed2':1,'p-margin':1,'p-reorder':1,'p-sail':1,'p-calc':1,'p-cduty':1,'p-material':1,'p-shipping':1,'p-season':1,'p-war':1,'p-tariff':1};
  var saved=null;try{saved=JSON.parse(LS.g('col')||'null');}catch(e){}
  [].forEach.call(document.querySelectorAll('main .blk'),function(sec){
    var open=!!FUN[sec.id];
@@ -1339,7 +1364,7 @@ SELS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=L
  var rail=document.createElement('aside');rail.id='p-rail';rail.setAttribute('aria-label','Today at a glance');
  var tocEl=document.querySelector('.toc');
  if(tocEl){
-   var GROUPS=[['Today','p-brief','p-alerts'],['News & reports','p-keynews','p-report'],['Cost tools','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty'],['Forecasts','p-material','p-shipping','p-season','p-freight','p-watch'],['Risk & markets','p-war','p-tariff','p-mkt'],['News','p-news']];
+   var GROUPS=[['Today','p-brief','p-alerts'],['News & reports','p-keynews','p-regcal','p-report'],['Cost tools','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty'],['Forecasts','p-material','p-shipping','p-season','p-freight','p-watch'],['Risk & markets','p-war','p-tariff','p-mkt'],['News','p-news']];
    GROUPS.forEach(function(grp){var lbl=document.createElement('div');lbl.className='pr-grp';lbl.textContent=grp[0];
      var firstHref='#'+grp[1],anchor=tocEl.querySelector('a[href="'+firstHref+'"]');
      if(anchor)tocEl.insertBefore(lbl,anchor);else tocEl.appendChild(lbl);});
@@ -1741,6 +1766,10 @@ bentofy('p-mkt',['#content'],['.ctl'],[]);
 bentofy('p-news',['.news'],[],[]);
 bentofy('p-alerts',[],[],[]);
 bentofy('p-keynews',['.news'],[],[]);
+bentofy('p-regcal',['.news'],[],[
+  function(b){return {k:'Upcoming',v:b.querySelectorAll('.item.rc-up').length+' milestones'};},
+  function(b){return {k:'Past',v:b.querySelectorAll('.item.rc-past').length+' on record'};}
+]);
 bentofy('p-report',[],[],[]);
 bentofy('p-margin',['.calc'],['#mg_out'],[
   function(b){var t=b.querySelector('#mg_out .mg-retail');return {k:'Suggested retail',v:t?t.textContent:'—'};},
