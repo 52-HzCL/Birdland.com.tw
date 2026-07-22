@@ -831,7 +831,7 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
 
   <section class="blk" data-open="0" id="p-material"><button class="blk-h"><span class="k">MATL</span><h2>Material prices ahead</h2><span class="ihelp" title="Key input materials, rebased to 100 = now, over the forecast horizon. Rising = cost pressure ahead. Hover a point for the index.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="matl-note"></div><div class="svgwrap"><svg id="matl" class="chart" viewBox="0 0 720 280" role="img" aria-label="Material forecast"></svg></div><div class="legend" id="matl-legend"></div><div class="fc-acc">Model hit-rate &asymp; 68% over recent forecasts &middot; indicative guidance, not a guarantee.</div></div></section>
 
-  <section class="blk" data-open="0" id="p-shipping"><button class="blk-h"><span class="k">SHIP</span><h2>Shipping prices ahead</h2><span class="ihelp" title="Indicative ocean-freight forecast per lane (US$/FEU). Use it to time bookings. Hover a point for its value.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="ship-note"></div><div class="svgwrap"><svg id="ship" class="chart" viewBox="0 0 720 280" role="img" aria-label="Shipping forecast"></svg></div><div class="legend" id="ship-legend"></div><div class="fc-acc">Model hit-rate &asymp; 62% over recent forecasts &middot; indicative guidance, not a guarantee.</div></div></section>
+  <section class="blk" data-open="0" id="p-shipping"><button class="blk-h"><span class="k">SHIP</span><h2>Shipping prices ahead</h2><span class="ihelp" title="Live spot rates per lane, refreshed daily, above an indicative forecast curve (US$/FEU). The curve shows direction; the table shows what shipping actually costs today.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="ship-live-note"></div><div class="svgwrap"><table class="wl" id="ship-live-tbl"></table></div><div class="sub" id="ship-note"></div><div class="svgwrap" id="ship-chartwrap"><svg id="ship" class="chart" viewBox="0 0 720 280" role="img" aria-label="Shipping forecast"></svg></div><div class="legend" id="ship-legend"></div><div class="fc-acc">Model hit-rate &asymp; 62% over recent forecasts &middot; indicative guidance, not a guarantee. Curve levels are desk-set and may sit well below the live spot rates above &mdash; read it for direction, not absolute cost.</div></div></section>
 
   <section class="blk" data-open="0" id="p-freight"><button class="blk-h"><span class="k">FREIGHT</span><h2>Shipping price indexes</h2><span class="ihelp" title="FRED ocean-freight cost & shipment indices (monthly, official, free) plus BDI/container as indicative; tap a source link for the latest official figure.">i</span><span class="meta" id="p-fr-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="p-fr-note"></div><div class="svgwrap"><table class="wl" id="p-freight-tbl"></table></div><div class="fr-src">Official sources ↗ <a href="https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/world-container-index-assessed-by-drewry" target="_blank" rel="noopener">Drewry WCI</a> · <a href="https://fbx.freightos.com/" target="_blank" rel="noopener">Freightos FBX</a> · <a href="https://www.balticexchange.com/en/data-services/market-information0/dry-services.html" target="_blank" rel="noopener">Baltic Exchange (BDI)</a></div></div></section>
 
@@ -1020,6 +1020,21 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
   var sh=P.shipping||{};document.getElementById('ship-note').textContent=sh.note||'';
   if(sh.lanes){lineChart(document.getElementById('ship'),sh.lanes,sh.lanes[0].points.map(function(p){return p.t;}),sh.unit||'');
     var _sl=document.getElementById('ship-legend');_sl.innerHTML=sh.lanes.map(function(l,i){return '<span data-i="'+i+'" style="cursor:pointer"><i style="background:'+serc(i)+'"></i>'+l.lane+'</span>';}).join('');var _sc=document.getElementById('ship');[].forEach.call(_sl.children,function(sp){sp.addEventListener('mouseenter',function(){_sc._focus&&_sc._focus(+sp.getAttribute('data-i'),true);});sp.addEventListener('mouseleave',function(){_sc._focus&&_sc._focus(null,false);});});}
+
+  // 2b) LIVE daily lane rates — top-level D.shipping (AI-refreshed, CI-validated). Rendered ABOVE the
+  //     forecast curve because the curve's levels are desk-set and can sit far below real spot cost.
+  //     Deliberately NOT joined to the curve: the two feeds use different lane labels and D.shipping
+  //     has no points[] series, so it can never be passed to lineChart.
+  (function(){var dsh=(D.shipping&&D.shipping.lanes&&D.shipping.lanes.length)?D.shipping:null;
+    var sesc=function(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+    var tb=document.getElementById('ship-live-tbl'),nb=document.getElementById('ship-live-note');
+    if(!dsh){if(tb)tb.innerHTML='';if(nb)nb.textContent='No live lane-rate feed in today’s refresh — the curve below is the desk’s indicative planning guide only.';return;}
+    var rows=dsh.lanes.map(function(l){
+      var d=l.dir||'flat',cl=(d==='up'?'up':(d==='down'?'down':'flat')),ar=(d==='up'?'▲':(d==='down'?'▼':'■'));
+      var ch=(l.chg!=null?((l.chg>0?'+':'')+Number(l.chg).toFixed(1)+'%'):'');
+      return '<tr title="'+sesc(dsh.note||'')+'"><td class="l">'+sesc(l.lane)+'</td><td>'+Number(l.rate).toLocaleString()+' '+sesc(l.unit||'US$/FEU')+'</td><td class="'+cl+'">'+ar+ch+'</td><td>'+sesc(l.rel||'—')+'</td><td>'+sesc(l.transit||'—')+'</td></tr>';}).join('');
+    if(tb)tb.innerHTML='<thead><tr><th class="l">Lane</th><th>Spot rate</th><th>Chg</th><th>Reliability</th><th>Transit</th></tr></thead><tbody>'+rows+'</tbody>';
+    if(nb)nb.textContent='Live spot rates, refreshed daily'+(D.updated?(' · '+D.updated):'')+'.';})();
 
   // 3) Material forecast
   var mt=P.material||{};
@@ -1299,7 +1314,7 @@ if(topAct)h+='<span class="pi lead" data-go="p-brief" style="cursor:pointer"><sp
  ORD.concat(REF).forEach(function(id){var s=document.getElementById(id);if(s)main.insertBefore(s,disc);});
  var hd=document.createElement('div');hd.className='refhd';hd.textContent='Reference data — shared with Client Desk';main.insertBefore(hd,document.getElementById(REF[0]));})();
 // 3) honest freshness: static desk-set blocks must not claim the daily stamp
-(function(){[['p-tariff','manual · desk set'],['p-material','curves manual · note daily'],['p-shipping','curves manual · note daily']].forEach(function(x){var b=document.querySelector('#'+x[0]+' .blk-h .secupd');if(b)b.textContent='⟳ '+x[1];});})();
+(function(){[['p-tariff','manual · desk set'],['p-material','curves manual · note daily'],['p-shipping','rates daily · curve manual']].forEach(function(x){var b=document.querySelector('#'+x[0]+' .blk-h .secupd');if(b)b.textContent='⟳ '+x[1];});})();
 // 4) remembered workspace
 var LS={g:function(k){try{return localStorage.getItem('bd_p_'+k);}catch(e){return null;}},s:function(k,v){try{localStorage.setItem('bd_p_'+k,v);}catch(e){}}};
 var FIELDS=['qc_cost','qc_frt','qc_ins','qc_duty','qc_qty','bc_fob','bc_qty','bc_frt','bc_ins','bc_duty','bc_tax','bc_brk','bc_inl','bc_oth','pcVal','mg_cost','mg_margin','mg_fx','mg_qty','ro_stock','ro_rate','ro_lead','ro_transit','ro_safety','se_lead'],SELS=['pcDest','pcOrigin','s_o','s_d','s_ct','region','se_hemi'];
@@ -1674,7 +1689,7 @@ bentofy('p-material',['.svgwrap'],['.legend'],[
   function(b){return {k:'Model accuracy',v:pct(txt('.fc-acc',b))};},
   function(){return {k:'Horizon',v:'Rebased to 100 = now'};}
 ]);
-bentofy('p-shipping',['.svgwrap'],['.legend'],[
+bentofy('p-shipping',['#ship-chartwrap'],['.legend'],[
   function(b){return {k:'Model accuracy',v:pct(txt('.fc-acc',b))};},
   function(){return {k:'Unit',v:'US$ / FEU'};}
 ]);
