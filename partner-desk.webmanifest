@@ -1,0 +1,24 @@
+{
+  "name": "Birdland Partner Desk",
+  "short_name": "Partner Desk",
+  "description": "Birdland buyer workspace for recurring supply and pricing check-ins.",
+  "start_url": "./partner.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F8F9FA",
+  "theme_color": "#F8F9FA",
+  "icons": [
+    {
+      "src": "./partner-desk-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "./partner-desk-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

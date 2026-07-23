@@ -2,11 +2,22 @@
 """Pull real index/commodity quotes from Twelve Data (server-side; key from env) into
 outlook-data.json. Free tier may not cover every symbol — each is best-effort and
 falls back to the existing seed. Never fails the job."""
-import os,sys,json,urllib.request,urllib.parse
+import os,sys,json,urllib.request,urllib.parse,datetime
 HERE=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PATH=os.path.join(HERE,"outlook-data.json")
 KEY=os.environ.get("TWELVEDATA_API_KEY") or os.environ.get("TWELVEDATA_MAY_API_KEY")
 data=json.load(open(PATH,encoding="utf-8"))
+utc_now=datetime.datetime.utcnow().replace(microsecond=0).isoformat()+"Z"
+
+def ensure_status(d):
+    st=d.setdefault("status",{})
+    st.setdefault("workflow",{})
+    src=st.setdefault("sources",{})
+    for k in ("gemini","twelvedata","fred","fx","market_news"):
+        src.setdefault(k,{})
+    return st
+
+status=ensure_status(data)
 MAP={"DXY":"DXY","EUR/USD":"EUR/USD","GOLD":"XAU/USD","BRENT":"BRENT","S&P 500":"SPX",
      "STOXX 50":"STOXX50E","NIKKEI":"N225","CSI 300":"CSI300","US 10Y":"US10Y","VIX":"VIX"}
 syms=sorted(set(MAP.values()))
@@ -42,6 +53,15 @@ if KEY:
         if sy and upd(m,sy):n+=1
     for ix in data.get("indices",[]):
         if ix.get("short")=="BRENT" and upd(ix,"BRENT"):n+=1
+td_src=status["sources"]["twelvedata"]
+if not KEY:
+    td_src.update({"state":"unavailable","updated":utc_now,"detail":"No Twelve Data API key configured."})
+elif isinstance(resp,dict) and (str(resp.get("code"))=="429" or "rate limit" in str(resp.get("message","")).lower()):
+    td_src.update({"state":"delayed","updated":utc_now,"detail":"Twelve Data rate-limited the workflow; kept last known values."})
+elif n:
+    td_src.update({"state":"current","updated":utc_now,"detail":"Updated %d symbols from Twelve Data."%n})
+else:
+    td_src.update({"state":"delayed","updated":utc_now,"detail":"No Twelve Data symbols updated; kept prior values."})
 
 def fred_latest(series):
     try:
@@ -73,6 +93,13 @@ if fr:
         fr["live"]=True
         if latest_date: fr["updated"]=latest_date
     print("[fred] freight live-updated %d series."%n2)
+    status["sources"]["fred"].update({
+        "state":"current" if n2 else "delayed",
+        "updated":latest_date or utc_now,
+        "detail":"Updated %d FRED freight series."%n2 if n2 else "No FRED freight series updated; kept prior values."
+    })
+else:
+    status["sources"]["fred"].update({"state":"unavailable","updated":utc_now,"detail":"No freight block configured in outlook-data.json."})
 
 json.dump(data,open(PATH,"w",encoding="utf-8"),ensure_ascii=False)
 print("[twelvedata] live-updated %d symbols of %d attempted."%(n,len(syms)))
@@ -89,8 +116,10 @@ if td is not None:
             td["fx_today"]=now
             sp=list(td.get("usdtwd_spark",[]))+[round(r["TWD"],3)]; td["usdtwd_spark"]=sp[-30:]
             print("[teamfx] FX baseline+spark updated USD/TWD=%s"%r["TWD"])
+            status["sources"]["fx"].update({"state":"current","updated":utc_now,"detail":"Updated USD/TWD, USD/CNY and USD/JPY from open.er-api."})
     except Exception as e:
         print("[teamfx] failed:",e)
+        status["sources"]["fx"].update({"state":"delayed","updated":utc_now,"detail":"FX refresh failed; kept prior values."})
 
 
 # ---- Team Desk materials2: weekly self-rolling trend (deterministic, no external feed) ----
@@ -187,9 +216,17 @@ try:
         picked.sort(key=lambda x:x.get("date") or "",reverse=True)
         data["market_news"]=picked
         print("[keynews] fetched %d headlines, topics: %s"%(len(picked),sorted(set(i["topic"] for i in picked))))
+        status["sources"]["market_news"].update({"state":"current","updated":utc_now,"detail":"Fetched %d Google News headlines."%len(picked)})
     else:
         print("[keynews] no headlines fetched; keeping previous market_news if any.")
+        status["sources"]["market_news"].update({"state":"delayed","updated":utc_now,"detail":"No Google News headlines fetched; kept prior market news."})
 except Exception as e:
     print("[keynews] failed:",e)
+    status["sources"]["market_news"].update({"state":"delayed","updated":utc_now,"detail":"Google News refresh failed; kept prior market news."})
 
+source_states=[status["sources"][k].get("state") for k in ("gemini","twelvedata","fred","fx","market_news")]
+status["workflow"].update({
+    "run_at":utc_now,
+    "state":"warning" if any(s in ("delayed","stale","unavailable","unknown") for s in source_states) else "ok"
+})
 json.dump(data,open(PATH,"w",encoding="utf-8"),ensure_ascii=False)

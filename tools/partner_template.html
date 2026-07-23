@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SourceIQ — Birdland Partner</title><meta name="robots" content="noindex">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#F8F9FA">
+<title>Birdland Partner Desk</title><meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%233a5bd9'/><path d='M6 20l5-6 5 4 5-9 5 6' fill='none' stroke='%23ffffff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<link rel="manifest" href="partner-desk.webmanifest">
 <style>
  :root{--bg:#F8F9FA;--panel:#11161d;--panel2:#161c24;--line:#262e39;--txt:#e2e8f0;--mut:#9AA1A9;--gold:#D97706;--amber:#D97706;--cyan:#3B82F6;--green:#10B981;--red:#EF4444;--purple:#3B82F6;--mono:"IBM Plex Mono",ui-monospace,monospace;--sans:"Inter",system-ui,sans-serif;--serif:"Source Serif 4",Georgia,"Times New Roman",serif}
  *{box-sizing:border-box;margin:0;padding:0}
@@ -746,37 +747,63 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
 .cal-m.peak{background:var(--kb-red-bg);border-color:#FCA5A5}.cal-m.peak .mt{color:var(--kb-red)}
 .cal-m.order{background:var(--kb-accent-soft);border-color:#BFDBFE}.cal-m.order .mt{color:var(--kb-accent-dk)}
 .cal-m.now{outline:2px solid var(--kb-ink);outline-offset:1px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:18px}
+.hero-install{display:flex;align-items:center;gap:8px}
+.hero-note{font:500 .78rem var(--kb-sans);color:var(--kb-faint)}
+.brief-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:16px}
+@media(max-width:860px){.brief-grid{grid-template-columns:1fr}}
+.brief-card{border:1px solid var(--kb-line);border-radius:12px;padding:16px 16px 14px;background:var(--kb-panel)}
+.brief-k{font:700 .66rem var(--kb-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--kb-accent-dk);margin-bottom:8px}
+.brief-text{font:500 .92rem/1.7 var(--kb-sans);color:var(--kb-ink)}
+.brief-meta{font:500 .78rem var(--kb-mono);color:var(--kb-faint);margin-bottom:10px}
+.brief-signals{display:grid;gap:8px;margin-top:10px}
+.brief-signal{border:1px solid var(--kb-line);border-radius:10px;padding:10px 12px;background:var(--kb-bg)}
+.brief-signal b{display:block;font:700 .78rem var(--kb-sans);color:var(--kb-ink);margin-bottom:4px}
+.brief-signal span{font:500 .8rem/1.55 var(--kb-sans);color:var(--kb-mut)}
+.room-chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+.room-summary{border:1px solid var(--kb-line);border-radius:12px;background:var(--kb-bg);padding:14px 16px;margin-bottom:14px}
+.room-summary h3{font:700 1rem var(--kb-sans);color:var(--kb-ink);margin-bottom:6px}
+.room-summary p{font:500 .88rem/1.65 var(--kb-sans);color:var(--kb-mut);margin:0 0 8px}
+.room-summary ul{list-style:none;display:grid;gap:8px;padding:0;margin:0}
+.room-summary li{border-top:1px solid var(--kb-line);padding-top:8px;font:500 .84rem/1.55 var(--kb-sans);color:var(--kb-ink)}
+.room-summary li:first-child{border-top:0;padding-top:0}
+.fresh-badges{display:flex;flex-wrap:wrap;gap:8px}
+.fresh-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:var(--kb-panel);border:1px solid var(--kb-line);font:600 .72rem var(--kb-sans);color:var(--kb-mut)}
+.fresh-badge.current{color:var(--kb-green)}
+.fresh-badge.delayed,.fresh-badge.warning{color:var(--kb-amber)}
+.fresh-badge.unavailable{color:var(--kb-red)}
+.fresh-badge.unknown,.fresh-badge.manual{color:var(--kb-faint)}
 * {scrollbar-color: #D1D5DB transparent}
 
 </style></head><body class="theme-light">
 <script>window.__TWHOL={"2026-01-01":"New Year\u2019s Day","2026-02-16":"Lunar New Year (Eve)","2026-02-17":"Lunar New Year","2026-02-18":"Lunar New Year","2026-02-19":"Lunar New Year","2026-02-27":"228 Peace Memorial (obs.)","2026-02-28":"228 Peace Memorial Day","2026-04-03":"Children\u2019s Day (obs.)","2026-04-04":"Children\u2019s Day","2026-04-05":"Tomb-Sweeping Day","2026-04-06":"Tomb-Sweeping (obs.)","2026-05-01":"Labour Day","2026-06-19":"Dragon Boat Festival","2026-09-25":"Mid-Autumn Festival","2026-09-28":"Teachers\u2019 Day","2026-10-09":"National Day (obs.)","2026-10-10":"National Day","2026-10-26":"Retrocession Day (obs.)","2026-12-25":"Constitution Day","2027-01-01":"New Year\u2019s Day"};window.__TWHOLnext=function(t){var k=Object.keys(window.__TWHOL).sort();for(var i=0;i<k.length;i++){if(k[i]>=t)return window.__TWHOL[k[i]]+" ("+k[i].slice(5).replace("-","/")+")";}return "";};</script>
 <div id="gate"><div class="gbox">
   <div class="sq-mk"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></div>
-  <div class="sq-wm">SourceIQ<span class="saas">SaaS</span></div>
-  <div class="sq-tag">Source smarter — buy at the right time and price.</div>
-  <div class="glabel">Partner access token</div>
+  <div class="sq-wm">Birdland<span class="saas">Partner Desk</span></div>
+  <div class="sq-tag">Your buyer workspace for weekly supply shifts, cost moves and next actions.</div>
+  <div class="glabel">Partner desk access</div>
   <div class="pinrow"><input id="pin" type="password" inputmode="text" maxlength="10" autocomplete="off" aria-label="Partner access token" placeholder="••••••••"><button class="gbtn" id="go"><span class="led" aria-hidden="true"></span>Sign in</button></div>
   <div class="gerr" id="err"></div>
   <div class="sq-foot">Reserved for trusted partners · Birdland Ind. since 1974</div>
 </div></div>
 <div class="topbar"><div class="wrap tb">
-  <div class="tb-left"><a class="brand" href="index.html"><span class="vip">VIP</span> Partner<span class="sep">|</span><span class="iq">SourceIQ</span> Pro</a></div>
-  <div class="tb-right"><span class="sysgrp"><span class="api-ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="w3" d="M3.7 10.2A11.5 11.5 0 0 1 20.3 10.2"/><path class="w2" d="M6.3 12.9A8 8 0 0 1 17.7 12.9"/><path class="w1" d="M8.9 15.6A4.3 4.3 0 0 1 15.1 15.6"/><circle cx="12" cy="18.6" r="1.5" fill="currentColor" stroke="none"/></svg></span>High-Level&nbsp;API</span><span class="sysgrp"><span class="tokmeter" title="AI token usage rate"><i></i><i></i><i></i><i></i></span><b>AI&nbsp;Token</b></span><span class="tpk" id="tpk" title="Taiwan office hours: Mon-Fri 09:00-17:30 (GMT+8)"><span class="tpk-led" id="tpkLed"></span><b id="tpkSt">—</b><span class="tpk-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v4.7l3 1.8"/></svg><span id="tpkTime">--:--</span> Taipei Time</span></span><span class="tpk-hol" id="tpkHol"></span><a class="back" href="index.html"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>birdland.com.tw</a></div>
+  <div class="tb-left"><a class="brand" href="index.html"><span class="vip">VIP</span> Partner<span class="sep">|</span><span class="iq">Birdland</span> Desk</a></div>
+  <div class="tb-right"><span class="sysgrp"><span class="api-ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="w3" d="M3.7 10.2A11.5 11.5 0 0 1 20.3 10.2"/><path class="w2" d="M6.3 12.9A8 8 0 0 1 17.7 12.9"/><path class="w1" d="M8.9 15.6A4.3 4.3 0 0 1 15.1 15.6"/><circle cx="12" cy="18.6" r="1.5" fill="currentColor" stroke="none"/></svg></span>Source&nbsp;Feeds</span><span class="sysgrp"><span class="tokmeter" title="Buyer workspace status"><i></i><i></i><i></i><i></i></span><b>Buyer&nbsp;Workspace</b></span><span class="tpk" id="tpk" title="Taiwan office hours: Mon-Fri 09:00-17:30 (GMT+8)"><span class="tpk-led" id="tpkLed"></span><b id="tpkSt">—</b><span class="tpk-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v4.7l3 1.8"/></svg><span id="tpkTime">--:--</span> Taipei Time</span></span><span class="tpk-hol" id="tpkHol"></span><a class="back" href="index.html"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>birdland.com.tw</a></div>
 </div></div>
 
 <div class="tk-wrap"><div class="wrap" style="overflow:hidden"><div id="ticker" class="ticker"></div></div></div>
 <div class="fresh-tier" id="freshTier"></div>
 <div id="google_translate_element"></div>
 <main class="wrap">
-  <section class="hero"><h1 class="sqh"><span class="sqmk"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span>SourceIQ<span class="saas">SaaS</span></h1><p class="lede">Built by our own team with outside experts and updated for you daily, so you always buy at the right time and the right price &mdash; free, for a handful of trusted partners.</p></section>
+  <section class="hero"><h1 class="sqh"><span class="sqmk"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span>Birdland<span class="saas">Partner Desk</span></h1><p class="lede">Your recurring buyer workspace for cost pressure, shipping risk and the next sourcing actions worth checking this week.</p><div class="hero-actions"><div class="hero-install"><button class="tool-btn" id="install-app" type="button" hidden>Install Partner Desk</button><span class="hero-note" id="install-note">Install for one-click return visits on desktop or mobile.</span></div><button class="tool-btn tool-btn-ghost" id="jump-brief" type="button">Open this week's brief</button></div></section>
   <section class="dash" id="dash">
     <div class="dash-head"><span class="dash-k">DECISION</span><h2>Buy now or wait?</h2><span class="dash-upd" id="dash-upd"></span></div>
     <div class="dash-verdict" id="dash-verdict"></div>
     <div class="dash-grid" id="dash-grid"></div>
     <div class="dash-foot">A live read of your FOB China/Taiwan inputs — material costs, ocean freight, compliance and supply risk. Tap a tab below for the detail.</div>
   </section>
-  <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-alerts">Price alerts</a><a href="#p-keynews">Key News</a><a href="#p-regcal">Reg. calendar</a><a href="#p-report">Keyword report</a><a href="#p-landed2">My landed cost</a><a href="#p-margin">Retail margin</a><a href="#p-reorder">Reorder timing</a><a href="#p-sail">Plan a sailing</a><a href="#p-calc">Quick estimate</a><a href="#p-cduty">TW vs CN duty</a><a href="#p-material">Materials ahead</a><a href="#p-shipping">Shipping ahead</a><a href="#p-season">Buy calendar</a><a href="#p-freight">Freight indexes</a><a href="#p-watch">Watchlist</a><a href="#p-war">Geopolitics</a><a href="#p-tariff">Tariffs</a><a href="#p-mkt">By country</a><a href="#p-news">News</a></nav>
-  <div id="tab-hint" class="tab-hint"><div class="mac-note"><span class="mn-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span><div class="mn-txt"><b>SourceIQ</b><span>Pick a section from the tabs above to view it.</span></div></div></div>
+  <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-alerts">Supply Brief</a><a href="#p-mkt">Buying Rooms</a><a href="#p-keynews">Key News</a><a href="#p-regcal">Reg. calendar</a><a href="#p-report">Keyword report</a><a href="#p-landed2">My landed cost</a><a href="#p-margin">Retail margin</a><a href="#p-reorder">Reorder timing</a><a href="#p-sail">Plan a sailing</a><a href="#p-calc">Quick estimate</a><a href="#p-cduty">TW vs CN duty</a><a href="#p-material">Materials ahead</a><a href="#p-shipping">Shipping ahead</a><a href="#p-season">Buy calendar</a><a href="#p-freight">Freight indexes</a><a href="#p-watch">Watchlist</a><a href="#p-war">Geopolitics</a><a href="#p-tariff">Tariffs</a><a href="#p-news">News</a></nav>
+  <div id="tab-hint" class="tab-hint"><div class="mac-note"><span class="mn-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span><div class="mn-txt"><b>Partner Desk</b><span>Pick a section from the tabs above to view it.</span></div></div></div>
 
   <section class="blk" data-open="1" id="p-brief"><button class="blk-h"><span class="k">BRIEF</span><h2>Today &amp; Tomorrow</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
 
@@ -840,13 +867,36 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
 
   <section class="blk" data-open="0" id="p-war"><button class="blk-h"><span class="k">WAR</span><h2>Risk monitor — war &amp; politics</h2><span class="ihelp" title="How active conflicts/tensions are pressuring your supply chain (0–100). Hover a bar for what it affects.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="war-note"></div><div class="war" id="war"></div></div></section>
 
-  <section class="blk" data-open="0" id="p-mkt"><button class="blk-h"><span class="k">MKT</span><h2>By country</h2><span class="ihelp" title="Regulation, supply backdrop and Birdland&rsquo;s view for the selected market. Choosing a market also switches page language.">i</span><span class="meta">pick a country</span><span class="tog"></span></button><div class="blk-b"><div class="ctl"><label for="region">▸ Select market</label><select id="region" class="mkt" aria-label="Choose market"></select></div><div id="content" aria-live="polite"></div></div></section>
+  <section class="blk" data-open="0" id="p-mkt"><button class="blk-h"><span class="k">ROOM</span><h2>Regional Buying Rooms</h2><span class="ihelp" title="Open the room that matches where you buy or where risk is moving. Each room pulls the key policy, supply and action cues into one repeat-check view.">i</span><span class="meta" id="room-meta">pick a room</span><span class="tog"></span></button><div class="blk-b"><div class="ctl"><div><label for="room">Buying room</label><select id="room" class="mkt" aria-label="Choose buying room"></select></div><div><label for="region" id="region-label">Focus market</label><select id="region" class="mkt" aria-label="Choose market"></select></div></div><div class="room-chips" id="room-chips"></div><div class="room-summary" id="room-summary" aria-live="polite"></div><div id="content" aria-live="polite"></div></div></section>
 
   <section class="blk" data-open="0" id="p-news"><button class="blk-h"><span class="k">NEWS</span><h2>Birdland news</h2><span class="ihelp" title="Company updates posted by the Birdland team.">i</span><span class="meta">updates</span><span class="tog"></span></button><div class="blk-b"><div class="news" id="newslist"></div></div></section>
 
 
-  <section class="blk" data-open="0" id="p-alerts"><button class="blk-h"><span class="k">SHARE</span><h2>Share with a colleague</h2><span class="ihelp" title="Tick whichever indicators or updates matter to you, then send a ready-to-edit email draft to a colleague — with today's data timestamp included, so they know exactly how fresh it is.">i</span><span class="meta" id="shr-meta"></span><span class="tog"></span></button><div class="blk-b">
-    <div class="sub">A quick, hand-picked forward: tick the specific figures your colleague needs to see right now, and the desk drafts a short email with today's values and a timestamp — ready to edit and send.</div>
+  <section class="blk" data-open="0" id="p-alerts"><button class="blk-h"><span class="k">BRIEF</span><h2>Supply Brief</h2><span class="ihelp" title="A weekly buyer brief plus a browser-saved return state, so your next visit starts with what changed.">i</span><span class="meta" id="sb-meta"></span><span class="tog"></span></button><div class="blk-b">
+    <div class="sub">A weekly buyer recap for the room you care about, plus a remembered comeback state for this browser so the desk can tell you what changed since last time.</div>
+    <div class="brief-grid">
+      <div class="brief-card">
+        <div class="brief-k">This week's brief</div>
+        <div class="brief-meta" id="sb-status"></div>
+        <div class="brief-text" id="sb-text"></div>
+        <div class="send-row">
+          <input id="sb_email" type="email" placeholder="buyer@company.com (optional To: for this browser)">
+          <button class="tool-btn tool-btn-ghost" id="sb_copy" type="button">Copy brief</button>
+          <button class="tool-btn" id="sb_mail" type="button">Email this week's brief</button>
+        </div>
+      </div>
+      <div class="brief-card">
+        <div class="brief-k">Since your last visit</div>
+        <div class="brief-meta" id="rv-status"></div>
+        <div class="brief-text" id="rv-text"></div>
+        <div class="brief-signals" id="rv-signals"></div>
+        <div class="send-row">
+          <button class="tool-btn tool-btn-ghost" id="rv_mark" type="button">Mark as checked</button>
+          <button class="tool-btn" id="rv_resume" type="button">Resume my last check-in</button>
+        </div>
+      </div>
+    </div>
+    <div class="sub">Use the weekly brief for your own revisit, or hand-pick a few figures below when you need to forward a quick update.</div>
     <div class="shr-toolbar">
       <button class="chip-btn" id="shr_all" type="button">Select all</button>
       <button class="chip-btn" id="shr_none" type="button">Clear</button>
@@ -1088,11 +1138,104 @@ if(rcl){var tl=D.timeline||{};var items=(tl.items||[]).slice();
   }
   var rcm=document.getElementById('rc-meta');if(rcm)rcm.textContent=items.filter(function(i){return i.date>=todayISO;}).length+' upcoming';
 }
-var sel=document.getElementById('region'),content=document.getElementById('content');
+var sel=document.getElementById('region'),roomSel=document.getElementById('room'),roomMeta=document.getElementById('room-meta'),chips=document.getElementById('room-chips'),roomSummary=document.getElementById('room-summary'),content=document.getElementById('content'),regionLabel=document.getElementById('region-label');
 var LANG={us:'en',nl:'nl',ca:'en',de:'de',fr:'fr',it:'it',pl:'pl',uk:'en',au:'en',es:'es',eu:'en',me:'en',sa:'es',global:'en'};
 function setLang(code){try{var lg=LANG[code]||'en';var c=document.querySelector('#google_translate_element select, select.goog-te-combo');if(c){c.value=lg;c.dispatchEvent(new Event('change'));}}catch(e){}}
-function render(code){var r=R[code];if(!r)return;var h='<div class="head2">'+r.headline+'</div><div class="dh">▸ Regulation &amp; policy</div>';r.regulation.forEach(function(it){h+='<div class="card"><h4>'+it.t+'</h4><p>'+it.b+'</p></div>';});h+='<div class="dh c">▸ Supply &amp; cost backdrop</div><div class="supplyb"><p>'+r.supply+'</p></div>';h+='<div class="view"><div class="vh">◆ Birdland’s view</div><p>'+r.view+'</p></div>';if(content)content.innerHTML=h;setLang(code);}
-if(sel&&content){order.forEach(function(o){var op=document.createElement('option');op.value=o[0];op.textContent=o[1];sel.appendChild(op);});sel.addEventListener('change',function(){render(sel.value);});var st=order[0]&&order[0][0];if(st){sel.value=st;render(st);}}
+var ROOMS=[
+  {id:'global',label:'Global',markets:['global'],fallback:'global',intro:'Start here when you want the shortest read on what changed globally, what looks steady and what deserves a second click today.'},
+  {id:'na',label:'North America',markets:['us','ca'],fallback:'us',intro:'Tariffs, origin stacking and steel traceability decide this room more than spot input moves.'},
+  {id:'europe',label:'Europe',markets:['eu','uk','nl','de','fr','it','pl','es'],fallback:'eu',intro:'Compliance and documentation lead this room: EUDR, CBAM, PFAS and route reliability.'},
+  {id:'asia',label:'Asia Supply Base',markets:['global'],fallback:'global',intro:'Factory-side view across Taiwan and China. This room leads with materials, FX and booking rhythm, then uses the global policy backdrop as context.'},
+  {id:'oceania',label:'Oceania',markets:['au'],fallback:'au',intro:'Biosecurity, timber paperwork and shipment readiness shape buyer risk in this room.'},
+  {id:'mea',label:'Middle East & Africa',markets:['me'],fallback:'me',intro:'Energy-led freight volatility and certificate readiness matter most across this room.'},
+  {id:'latam',label:'Latin America',markets:['sa'],fallback:'sa',intro:'FX swings, customs friction and route predictability deserve a dedicated buying cadence here.'}
+];
+function labelFor(code){for(var i=0;i<order.length;i++){if(order[i][0]===code)return order[i][1];}return code;}
+function roomMarketLabel(room,code){if(room&&room.id==='asia'&&code==='global')return 'Global policy backdrop';return labelFor(code);}
+function roomById(id){for(var i=0;i<ROOMS.length;i++){if(ROOMS[i].id===id)return ROOMS[i];}return ROOMS[0];}
+function uniq(list){var seen={},out=[];list.forEach(function(item){if(item&&!seen[item]){seen[item]=1;out.push(item);}});return out;}
+function roomSignals(room){
+  var out=[];
+  room.markets.forEach(function(code){
+    var rg=R[code];
+    if(rg&&rg.summary){
+      out.push({title:labelFor(code),body:rg.summary.changed+' '+rg.summary.action});
+    }
+  });
+  if(room.id==='asia'){
+    var td=D.teamdesk||{},brief=((td.advice||{}).en||'').replace(/^\[Birdland Supply-Chain Brief\]\s*/,'');
+    if(brief)out.unshift({title:'Supply base brief',body:brief});
+    var mats=((td.materials||[]).slice(0,2)).map(function(m){return m.name+' '+(m.dir||'flat')+' — '+(m.note||'');});
+    if(mats.length)out.push({title:'Factory-side inputs',body:mats.join(' ')});
+  }
+  var proc=(D.procurement&&D.procurement.items)||[];
+  if(proc.length){out.push({title:'Shared action queue',body:proc.slice(0,2).map(function(x){return (x.input?x.input+': ':'')+x.action;}).join(' · ')});}
+  return out.slice(0,3);
+}
+function renderRoomSummary(room,focusCode){
+  if(!roomSummary)return;
+  var signals=roomSignals(room);
+  var html='<h3>'+room.label+'</h3><p>'+room.intro+'</p>';
+  html+='<ul>'+signals.map(function(item){return '<li><b>'+item.title+'</b><br>'+item.body+'</li>';}).join('')+'</ul>';
+  roomSummary.innerHTML=html;
+  if(roomMeta)roomMeta.textContent=room.label+' · '+roomMarketLabel(room,focusCode);
+}
+function render(code){
+  var r=R[code]||R.global;if(!r)return;
+  var h='<div class="head2">'+r.headline+'</div>';
+  if(r.summary){h+='<div class="plain"><b>Buyer takeaway</b>'+r.summary.changed+' '+r.summary.action+'</div>';}
+  h+='<div class="dh">▸ Regulation &amp; policy</div>';
+  r.regulation.forEach(function(it){h+='<div class="card"><h4>'+it.t+'</h4><p>'+it.b+'</p></div>';});
+  h+='<div class="dh c">▸ Supply &amp; cost backdrop</div><div class="supplyb"><p>'+r.supply+'</p></div><div class="view"><div class="vh">◆ Birdland’s view</div><p>'+r.view+'</p></div>';
+  if(content)content.innerHTML=h;
+  setLang(code);
+}
+function fillMarkets(room){
+  if(!sel)return;
+  sel.innerHTML='';
+  uniq(room.markets).forEach(function(code){
+    var op=document.createElement('option');
+    op.value=code;
+    op.textContent=roomMarketLabel(room,code);
+    sel.appendChild(op);
+  });
+}
+function paintChips(active){
+  if(!chips)return;
+  chips.innerHTML=ROOMS.map(function(room){return '<button type="button" class="rp-chip'+(room.id===active?' on':'')+'" data-room="'+room.id+'">'+room.label+'</button>';}).join('');
+}
+function setRoom(roomId,requestedCode){
+  var room=roomById(roomId);
+  fillMarkets(room);
+  paintChips(room.id);
+  if(roomSel)roomSel.value=room.id;
+  if(regionLabel)regionLabel.textContent=room.id==='asia'?'Policy backdrop':'Focus market';
+  var target=requestedCode;
+  if(!target||![].some.call(sel.options,function(o){return o.value===target;}))target=room.fallback;
+  if(sel)sel.value=target;
+  try{localStorage.setItem('bd_p_room',room.id);localStorage.setItem('bd_p_region',target);}catch(e){}
+  renderRoomSummary(room,target);
+  render(target);
+}
+if(roomSel&&sel&&content){
+  ROOMS.forEach(function(room){
+    var op=document.createElement('option');
+    op.value=room.id;
+    op.textContent=room.label;
+    roomSel.appendChild(op);
+  });
+  roomSel.addEventListener('change',function(){setRoom(roomSel.value);});
+  sel.addEventListener('change',function(){try{localStorage.setItem('bd_p_region',sel.value);}catch(e){}renderRoomSummary(roomById(roomSel.value),sel.value);render(sel.value);});
+  if(chips)chips.addEventListener('click',function(e){var btn=e.target.closest('[data-room]');if(btn)setRoom(btn.getAttribute('data-room'));});
+  var startRoom='global',startCode=(order[0]&&order[0][0])||'global';
+  try{
+    var savedRoom=localStorage.getItem('bd_p_room');
+    var savedCode=localStorage.getItem('bd_p_region');
+    if(savedRoom)startRoom=savedRoom;
+    if(savedCode)startCode=savedCode;
+  }catch(e){}
+  setRoom(startRoom,startCode);
+}
 })();</script>
 <script>function googleTranslateElementInit(){try{new google.translate.TranslateElement({pageLanguage:'en',autoDisplay:false},'google_translate_element');}catch(e){}}</script>
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
@@ -1282,23 +1425,35 @@ if(topAct)h+='<span class="pi lead" data-go="p-brief" style="cursor:pointer"><sp
  s.addEventListener('click',function(e){var g=e.target.closest('[data-go]');if(!g)return;var a=document.querySelector('.toc a[href="#'+g.getAttribute('data-go')+'"]');if(a)a.click();});
  })();
  (function(){var ft=document.getElementById('freshTier');if(!ft)return;
-  ft.innerHTML='<div class="wrap"><span>Data refreshed <b>'+(D.updated||'—')+'</b></span><span>· Indices &amp; forecasts update daily via automated feed</span></div>';
+  var wf=((D.status||{}).workflow)||{},src=((D.status||{}).sources)||{};
+  function normalizeState(state){if(state==='ok')return 'current';if(state==='stale')return 'delayed';return state||'unknown';}
+  function workflowLabel(){var state=normalizeState(wf.state);if(state==='warning'||state==='delayed')return 'completed with partial data';if(state==='ok'||state==='current')return 'completed';return 'status unavailable';}
+  function badge(label,key,fallback){var s=src[key]||{},state=normalizeState(s.state||fallback||'unknown');return '<span class="fresh-badge '+state+'">'+label+' · '+state+'</span>';}
+  ft.innerHTML='<div class="wrap"><span>Workflow '+workflowLabel()+' <b>'+(wf.run_at||D.updated||'—')+'</b></span><div class="fresh-badges">'+[
+    badge('Gemini','gemini','unknown'),
+    badge('Twelve Data','twelvedata','unknown'),
+    badge('FRED','fred','unknown'),
+    badge('FX','fx','unknown'),
+    badge('Key News','market_news','unknown'),
+    '<span class="fresh-badge manual">Reg. calendar · manual</span>',
+    '<span class="fresh-badge manual">Tariff monitor · manual</span>'
+  ].join('')+'</div></div>';
  })();
 // 2) section order: daily brief & the two money tools first; client-desk duplicates demoted to Reference
-(function(){if(!main||!disc)return;var ORD=['p-brief','p-alerts','p-keynews','p-regcal','p-report','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty','p-material','p-shipping','p-season','p-war','p-tariff'],REF=['p-freight','p-watch','p-mkt','p-news'];
+(function(){if(!main||!disc)return;var ORD=['p-brief','p-alerts','p-mkt','p-keynews','p-regcal','p-report','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty','p-material','p-shipping','p-season','p-war','p-tariff'],REF=['p-freight','p-watch','p-news'];
  ORD.concat(REF).forEach(function(id){var s=document.getElementById(id);if(s)main.insertBefore(s,disc);});
  var hd=document.createElement('div');hd.className='refhd';hd.textContent='Reference data — shared with Client Desk';main.insertBefore(hd,document.getElementById(REF[0]));})();
 // 3) honest freshness: static desk-set blocks must not claim the daily stamp
 (function(){[['p-tariff','manual · desk set'],['p-regcal','manual · desk set'],['p-material','curves manual · note daily'],['p-shipping','rates daily · curve manual']].forEach(function(x){var b=document.querySelector('#'+x[0]+' .blk-h .secupd');if(b)b.textContent='⟳ '+x[1];});})();
 // 4) remembered workspace
 var LS={g:function(k){try{return localStorage.getItem('bd_p_'+k);}catch(e){return null;}},s:function(k,v){try{localStorage.setItem('bd_p_'+k,v);}catch(e){}}};
-var FIELDS=['qc_cost','qc_frt','qc_ins','qc_duty','qc_qty','bc_fob','bc_qty','bc_frt','bc_ins','bc_duty','bc_tax','bc_brk','bc_inl','bc_oth','pcVal','mg_cost','mg_margin','mg_fx','mg_qty','ro_stock','ro_rate','ro_lead','ro_transit','ro_safety','se_lead'],SELS=['pcDest','pcOrigin','s_o','s_d','s_ct','region','se_hemi'];
+var FIELDS=['qc_cost','qc_frt','qc_ins','qc_duty','qc_qty','bc_fob','bc_qty','bc_frt','bc_ins','bc_duty','bc_tax','bc_brk','bc_inl','bc_oth','pcVal','mg_cost','mg_margin','mg_fx','mg_qty','ro_stock','ro_rate','ro_lead','ro_transit','ro_safety','se_lead'],SELS=['pcDest','pcOrigin','s_o','s_d','s_ct','room','region','se_hemi'];
 FIELDS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=LS.g(id);if(v!==null&&v!==''){e.value=v;e.dispatchEvent(new Event('input',{bubbles:true}));}
  e.addEventListener('input',function(){LS.s(id,e.value);});});
 SELS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=LS.g(id);if(v!==null&&v!==''){var ok=[].some.call(e.options,function(o){return o.value===v;});if(ok){e.value=v;e.dispatchEvent(new Event('change',{bubbles:true}));}}
  e.addEventListener('change',function(){LS.s(id,e.value);});});
 // 5) full-scroll accordion: funnel modules open, reference collapsed; remember per-section state
-(function(){var FUN={'p-brief':1,'p-alerts':1,'p-keynews':1,'p-regcal':1,'p-report':1,'p-landed2':1,'p-margin':1,'p-reorder':1,'p-sail':1,'p-calc':1,'p-cduty':1,'p-material':1,'p-shipping':1,'p-season':1,'p-war':1,'p-tariff':1};
+(function(){var FUN={'p-brief':1,'p-alerts':1,'p-mkt':1,'p-keynews':1,'p-regcal':1,'p-report':1,'p-landed2':1,'p-margin':1,'p-reorder':1,'p-sail':1,'p-calc':1,'p-cduty':1,'p-material':1,'p-shipping':1,'p-season':1,'p-war':1,'p-tariff':1};
  var saved=null;try{saved=JSON.parse(LS.g('col')||'null');}catch(e){}
  [].forEach.call(document.querySelectorAll('main .blk'),function(sec){
    var open=!!FUN[sec.id];
@@ -1314,7 +1469,7 @@ SELS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=L
  var rail=document.createElement('aside');rail.id='p-rail';rail.setAttribute('aria-label','Today at a glance');
  var tocEl=document.querySelector('.toc');
  if(tocEl){
-   var GROUPS=[['Today','p-brief','p-alerts'],['News & reports','p-keynews','p-regcal','p-report'],['Cost tools','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty'],['Forecasts','p-material','p-shipping','p-season','p-freight','p-watch'],['Risk & markets','p-war','p-tariff','p-mkt'],['News','p-news']];
+   var GROUPS=[['Today','p-brief','p-alerts','p-mkt'],['News & reports','p-keynews','p-regcal','p-report'],['Cost tools','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty'],['Forecasts','p-material','p-shipping','p-season','p-freight','p-watch'],['Risk & markets','p-war','p-tariff'],['News','p-news']];
    GROUPS.forEach(function(grp){var lbl=document.createElement('div');lbl.className='pr-grp';lbl.textContent=grp[0];
      var firstHref='#'+grp[1],anchor=tocEl.querySelector('a[href="'+firstHref+'"]');
      if(anchor)tocEl.insertBefore(lbl,anchor);else tocEl.appendChild(lbl);});
@@ -1349,6 +1504,89 @@ function copyText(text,btn){function done(ok){if(!btn)return;var old=btn.textCon
  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true);},function(){done(false);});}
  else{var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done(true);}catch(e){done(false);}document.body.removeChild(ta);}}
 function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&tl='+encodeURIComponent(lang)+'&text='+encodeURIComponent(text)+'&op=translate';}
+
+/* ---- 1b) Supply Brief + return state ---- */
+(function(){
+ var brief=$('sb-text'),briefStatus=$('sb-status'),briefMeta=$('sb-meta'),mailInput=$('sb_email');
+ var rvStatus=$('rv-status'),rvText=$('rv-text'),rvSignals=$('rv-signals');
+ var roomSel=$('room'),regionSel=$('region');
+ if(!brief||!briefStatus||!roomSel||!regionSel)return;
+ function labelOf(sel){return sel&&sel.options&&sel.selectedIndex>=0?(sel.options[sel.selectedIndex].textContent||'').trim():'';}
+ function workflowLine(){var wf=((D.status||{}).workflow)||{},state=((wf.state||'')+'').toLowerCase();if(state==='ok'||state==='current')return 'Workflow completed · '+(wf.run_at||D.updated||'—');if(state==='warning'||state==='delayed')return 'Workflow completed with partial data · '+(wf.run_at||D.updated||'—');return 'Workflow status unavailable · '+(wf.run_at||D.updated||'—');}
+ function buildBrief(){
+   var roomLabel=labelOf(roomSel)||'Global',regionCode=regionSel.value||'global',regionLabel=labelOf(regionSel)||'Global';
+   var region=(D.regions&&D.regions[regionCode])||(D.regions&&D.regions.global)||{};
+   var lines=['Supply Brief · '+roomLabel+' / '+regionLabel];
+   if(region.summary&&region.summary.changed)lines.push('Changed: '+region.summary.changed);
+   if(region.summary&&region.summary.action)lines.push('Action: '+region.summary.action);
+   var proc=((D.procurement&&D.procurement.items)||[]).slice(0,2).map(function(x){return (x.input?x.input+': ':'')+(x.action||'');});
+   if(proc.length)lines.push('Queue: '+proc.join(' · '));
+   var td=((D.teamdesk||{}).advice||{}).en;
+   if(roomSel.value==='asia'&&td)lines.push(td.replace(/^\[Birdland Supply-Chain Brief\]\s*/,''));
+   var watch=(D.market_news||[]).slice(0,2).map(function(n){return n.title;});
+   if(watch.length)lines.push('Watch: '+watch.join(' / '));
+   lines.push(workflowLine());
+   return lines.join('\n\n');
+ }
+ function currentSnapshot(){return {
+   updated:D.updated||'',
+   room:roomSel.value||'global',
+   roomLabel:labelOf(roomSel)||'Global',
+   region:regionSel.value||'global',
+   regionLabel:labelOf(regionSel)||'Global',
+   seenAt:(new Date()).toISOString(),
+   actions:((D.procurement&&D.procurement.items)||[]).slice(0,3).map(function(x){return (x.input?x.input+': ':'')+(x.action||'');}),
+   news:(D.market_news||[]).slice(0,6).map(function(x){return x.title;})
+ };}
+ function renderReturn(){
+   if(!rvStatus||!rvText||!rvSignals)return;
+   var snap=LSget('return_snapshot',null),signals=[];
+   if(!snap){
+     rvStatus.textContent='First visit on this browser';
+     rvText.textContent='Save a checkpoint after you read the brief and this desk will call out new workflow runs, action-queue changes and headlines next time.';
+     rvSignals.innerHTML='';
+     return;
+   }
+   var seen=snap.seenAt?new Date(snap.seenAt):null;
+   rvStatus.textContent='Last checked '+(seen&&isFinite(seen)?seen.toLocaleString():'earlier on this browser');
+   if((snap.updated||'')===(D.updated||'')){
+     rvText.textContent='No new workflow completion since your last check-in. Your saved room is still '+(snap.roomLabel||snap.room||'Global')+' / '+(snap.regionLabel||snap.region||'Global')+'.';
+   }else{
+     rvText.textContent='The desk has new data since your last visit. Start with the room summary, then review the updated queue and headlines below.';
+   }
+   var latestActions=((D.procurement&&D.procurement.items)||[]).slice(0,3).map(function(x){return (x.input?x.input+': ':'')+(x.action||'');});
+   var newActions=latestActions.filter(function(x){return (snap.actions||[]).indexOf(x)<0;});
+   if(newActions.length)signals.push({title:'Action queue',body:newActions.slice(0,2).join(' · ')});
+   var latestNews=(D.market_news||[]).slice(0,6).map(function(x){return x.title;});
+   var newNews=latestNews.filter(function(x){return (snap.news||[]).indexOf(x)<0;});
+   if(newNews.length)signals.push({title:'New headlines',body:newNews.slice(0,2).join(' / ')});
+   signals.push({title:'Saved room',body:(snap.roomLabel||snap.room||'Global')+' / '+(snap.regionLabel||snap.region||'Global')});
+   rvSignals.innerHTML=signals.slice(0,3).map(function(item){return '<div class="brief-signal"><b>'+esc(item.title)+'</b><span>'+esc(item.body)+'</span></div>';}).join('');
+ }
+ function renderBrief(){
+   brief.textContent=buildBrief();
+   briefStatus.textContent=workflowLine();
+   if(briefMeta)briefMeta.textContent=(labelOf(roomSel)||'Global')+' · '+(D.updated||'—');
+   renderReturn();
+ }
+ if(mailInput){
+   var savedMail=LSget('sb_email','');
+   if(savedMail)mailInput.value=savedMail;
+   mailInput.addEventListener('input',function(){LSset('sb_email',mailInput.value.trim());});
+ }
+ var copyBtn=$('sb_copy'),mailBtn=$('sb_mail'),markBtn=$('rv_mark'),resumeBtn=$('rv_resume');
+ if(copyBtn)copyBtn.addEventListener('click',function(){copyText(buildBrief(),copyBtn);});
+ if(mailBtn)mailBtn.addEventListener('click',function(){
+   var roomLabel=labelOf(roomSel)||'Global';
+   var to=(mailInput&&mailInput.value.trim())||'';
+   mailtoDraft(to,"This week's Supply Brief — "+roomLabel,buildBrief());
+ });
+ if(markBtn)markBtn.addEventListener('click',function(){LSset('return_snapshot',currentSnapshot());renderReturn();});
+ if(resumeBtn)resumeBtn.addEventListener('click',function(){var a=document.querySelector('.toc a[href="#p-mkt"]');if(a)a.click();});
+ roomSel.addEventListener('change',renderBrief);
+ regionSel.addEventListener('change',renderBrief);
+ renderBrief();
+})();
 
 /* ---- 2) Share with a colleague ---- */
 (function(){var list=$('shr_list'),preview=$('shr_preview');if(!list)return;
@@ -1749,11 +1987,51 @@ bentofy('p-season',[],[],[]);
  btn.addEventListener('click',function(e){e.stopPropagation();if(pop.hidden)openPop();else closePop();});
  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!pop.hidden)closePop();});
  var tries=0;
- var poll=setInterval(function(){
-   tries++;
-   var combo=gEl.querySelector('select.goog-te-combo');
-   if(combo){note.style.display='none';clearInterval(poll);}
-   else if(tries>20){note.textContent='Translator unavailable (blocked by network/ad-blocker)';clearInterval(poll);}
- },500);
+var poll=setInterval(function(){
+  tries++;
+  var combo=gEl.querySelector('select.goog-te-combo');
+  if(combo){note.style.display='none';clearInterval(poll);}
+  else if(tries>20){note.textContent='Translator unavailable (blocked by network/ad-blocker)';clearInterval(poll);}
+},500);
+})();</script>
+<script>(function(){
+ var installBtn=document.getElementById('install-app');
+ var installNote=document.getElementById('install-note');
+ var jumpBtn=document.getElementById('jump-brief');
+ if(jumpBtn)jumpBtn.addEventListener('click',function(){var a=document.querySelector('.toc a[href="#p-alerts"]');if(a)a.click();});
+ if(!installBtn||!installNote)return;
+ var deferredPrompt=null;
+ function setNote(text){installNote.textContent=text;}
+ function installed(){return window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches;}
+ if(installed()){
+   installBtn.hidden=true;
+   setNote('Partner Desk is already installed on this device.');
+ }
+ if('serviceWorker' in navigator){
+   navigator.serviceWorker.register('service-worker.js').catch(function(){setNote('Offline install support is unavailable in this browser session.');});
+ }else{
+   setNote('Install works best in Chrome or Edge with app support enabled.');
+ }
+ window.addEventListener('beforeinstallprompt',function(e){
+   e.preventDefault();
+   deferredPrompt=e;
+   installBtn.hidden=false;
+   setNote('Install for one-click return visits and lighter repeat loads.');
+ });
+ window.addEventListener('appinstalled',function(){
+   deferredPrompt=null;
+   installBtn.hidden=true;
+   setNote('Partner Desk installed. You can reopen it from your desktop or app launcher.');
+ });
+ installBtn.addEventListener('click',function(){
+   if(!deferredPrompt){
+     setNote(installed()?'Partner Desk is already installed on this device.':'Use your browser menu to install or add this page to your home screen.');
+     return;
+   }
+   deferredPrompt.prompt();
+   deferredPrompt.userChoice.then(function(choice){
+     if(choice&&choice.outcome!=='accepted')setNote('Install was dismissed. You can try again from this browser later.');
+   });
+ });
 })();</script>
 </body></html>

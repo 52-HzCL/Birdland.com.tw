@@ -9,13 +9,26 @@ HERE=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_PATH=os.path.join(HERE,"outlook-data.json")
 MODEL=os.environ.get("GEMINI_MODEL","gemini-2.5-flash")
 KEY=os.environ.get("GEMINI_API_KEY","")
-now=datetime.datetime.utcnow().strftime("%d %b %Y, %H:%M UTC")
+utc_now=datetime.datetime.utcnow()
+now=utc_now.strftime("%d %b %Y, %H:%M UTC")
+iso_now=utc_now.replace(microsecond=0).isoformat()+"Z"
 import traceback
 def _eh(t,v,tb):
     traceback.print_exception(t,v,tb); print("[gen_news] swallowed error -> exit 0")
 sys.excepthook=_eh
 
 data=json.load(open(DATA_PATH,encoding="utf-8"))
+
+def ensure_status(d):
+    st=d.setdefault("status",{})
+    st.setdefault("workflow",{})
+    src=st.setdefault("sources",{})
+    src.setdefault("gemini",{})
+    src.setdefault("twelvedata",{})
+    src.setdefault("fred",{})
+    src.setdefault("fx",{})
+    src.setdefault("market_news",{})
+    return st
 
 def _extract_json(t):
     """Robustly pull the outlook JSON object out of a grounded Gemini reply.
@@ -39,15 +52,22 @@ def _extract_json(t):
         i=end
     return best
 
-def save_and_build(d):
+def save_and_build(d, gemini_state, gemini_detail):
     d["updated"]=now
+    st=ensure_status(d)
+    st["workflow"]["narrative_refreshed_at"]=iso_now
+    st["sources"]["gemini"]={
+        "state":gemini_state,
+        "updated":iso_now,
+        "detail":gemini_detail
+    }
     json.dump(d,open(DATA_PATH,"w",encoding="utf-8"),ensure_ascii=False)
     r=subprocess.run([sys.executable,os.path.join(HERE,"tools","build_news.py")],capture_output=True,text=True)
     print("[build_news]",r.stdout.strip(),r.stderr.strip())
     if r.returncode!=0: print("[build_news] FAILED rc",r.returncode)
 
 if not KEY:
-    print("No GEMINI_API_KEY; timestamp-only refresh.");save_and_build(data);sys.exit(0)
+    print("No GEMINI_API_KEY; timestamp-only refresh.");save_and_build(data,"unavailable","No GEMINI_API_KEY; kept previous narrative blocks.");sys.exit(0)
 
 # NOTE: plain string + concatenation (NOT an f-string) — the prompt text contains many
 # literal {braces}; as an f-string those raised NameError at import time and silently
@@ -155,7 +175,7 @@ try:
             x.setdefault("chg",0); x.setdefault("spark",[x.get("value",0)])
     cand["macro"]=cm
     # policy/structural blocks: keep exactly (high break-risk, slow-moving)
-    for kk in ("landed","timeline","tariff_calc","market_news"):
+    for kk in ("landed","timeline","tariff_calc","market_news","status"):
         if kk in data: cand[kk]=data[kk]
     # market blocks: accept AI update only if structure validates, else keep old
     def _ok_forward(x):
@@ -199,7 +219,7 @@ try:
         if k in old_td: mtd[k]=old_td[k]   # never let AI touch live FX numbers
     cand["teamdesk"]=mtd
     print("Gemini update parsed & validated; viz tails rolled.")
-    save_and_build(cand)
+    save_and_build(cand,"current","Narrative blocks refreshed from Gemini.")
 except Exception as ex:
     print("Gemini refresh failed (%s); timestamp-only fallback."%ex)
-    save_and_build(data)
+    save_and_build(data,"delayed","Gemini refresh failed; carried forward previous narrative blocks.")

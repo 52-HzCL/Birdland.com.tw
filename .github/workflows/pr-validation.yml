@@ -1,0 +1,158 @@
+name: PR Validation
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-validation-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate static site
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Check patch whitespace
+        shell: bash
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || '' }}
+        run: |
+          set -euo pipefail
+          base_ref="${BASE_SHA:-origin/main}"
+          git diff --check "$base_ref...HEAD"
+
+      - name: Rebuild in memory and validate schema
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const os = require('os');
+
+          const failures = [];
+          const read = (file) => fs.readFileSync(file, 'utf8');
+          const dataText = read('outlook-data.json');
+          const data = JSON.parse(dataText);
+
+          const requiredTopLevel = [
+            'regions', 'order', 'news', 'indices', 'macro', 'landed',
+            'timeline', 'tariff_calc', 'market_news', 'forward', 'shipping',
+            'war', 'procurement', 'material', 'teamAnalysis', 'partner',
+            'teamdesk', 'updated', 'birdbot_client'
+          ];
+          for (const key of requiredTopLevel) {
+            if (!(key in data)) failures.push(`missing top-level key: ${key}`);
+          }
+
+          const regionKeys = Object.keys(data.regions || {});
+          if (regionKeys.length !== 14) {
+            failures.push(`expected 14 regions, got ${regionKeys.length}`);
+          }
+          if (!Array.isArray(data.order) || data.order.length !== 14) {
+            failures.push(`expected order to contain 14 entries`);
+          } else {
+            const orderCodes = data.order.map((entry) => Array.isArray(entry) ? entry[0] : null);
+            if (orderCodes.some((code) => typeof code !== 'string')) {
+              failures.push('every order entry must be [code, label]');
+            }
+            if ([...orderCodes].sort().join(',') !== [...regionKeys].sort().join(',')) {
+              failures.push('order/regions key mismatch');
+            }
+          }
+          if (typeof data.updated !== 'string' || !data.updated.trim()) {
+            failures.push('updated must be a non-empty string');
+          }
+
+          for (const [code, region] of Object.entries(data.regions || {})) {
+            for (const key of ['headline', 'regulation', 'supply', 'view', 'summary', 'viz']) {
+              if (!(key in region)) failures.push(`region ${code} missing ${key}`);
+            }
+          }
+
+          if ('status' in data) {
+            const workflow = (((data.status || {}).workflow) || {});
+            if (typeof workflow.state !== 'string' || !workflow.state.trim()) {
+              failures.push('status.workflow.state must be a non-empty string');
+            }
+            if (typeof workflow.run_at !== 'string' || !workflow.run_at.trim()) {
+              failures.push('status.workflow.run_at must be a non-empty string');
+            }
+            const requiredSources = ['gemini', 'twelvedata', 'fred', 'fx', 'market_news'];
+            const sources = (((data.status || {}).sources) || {});
+            for (const source of requiredSources) {
+              if (!(source in sources)) failures.push(`status.sources missing ${source}`);
+            }
+          }
+
+          const pairs = [
+            ['tools/news_template.html', 'news.html'],
+            ['tools/partner_template.html', 'partner.html'],
+            ['tools/team_template.html', 'team.html']
+          ];
+          const buildDir = fs.mkdtempSync(path.join(os.tmpdir(), 'birdland-build-'));
+          for (const [template, output] of pairs) {
+            const templateText = read(template);
+            const tokenCount = templateText.split('__DATA__').length - 1;
+            if (tokenCount !== 1) failures.push(`${template} must contain exactly one __DATA__ token`);
+            const expected = templateText.split('__DATA__').join(dataText);
+            fs.writeFileSync(path.join(buildDir, output), expected, 'utf8');
+            if (expected !== read(output)) failures.push(`${output} is not rebuilt from ${template}`);
+            if (read(output).includes('__DATA__')) failures.push(`${output} contains unresolved __DATA__`);
+          }
+
+          const textFiles = [
+            'AGENTS.md', 'index.html', 'outlook-data.json',
+            'news.html', 'partner.html', 'team.html',
+            'tools/news_template.html', 'tools/partner_template.html',
+            'tools/team_template.html', 'tools/build_news.py',
+            'tools/gen_news_gemini.py', 'tools/fetch_market.py',
+            'partner-desk.webmanifest', 'partner-desk-icon.svg', 'service-worker.js'
+          ];
+          for (const file of textFiles) {
+            const bytes = fs.readFileSync(file);
+            if (bytes[0] === 0xef && bytes[1] === 0xbb && bytes[2] === 0xbf) {
+              failures.push(`${file} has a UTF-8 BOM`);
+            }
+            if (Array.from(bytes).some((byte) => byte <= 8 || (byte >= 14 && byte <= 31))) {
+              failures.push(`${file} contains control characters`);
+            }
+          }
+
+          if (failures.length) {
+            console.error(failures.map((failure) => `::error::${failure}`).join('\n'));
+            process.exit(1);
+          }
+          console.log(`Validated ${regionKeys.length} regions and ${pairs.length} generated pages.`);
+          console.log(`Temporary build output: ${buildDir}`);
+          NODE
+
+      - name: Package static preview snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          preview="$RUNNER_TEMP/birdland-preview"
+          mkdir -p "$preview"
+          cp index.html news.html partner.html team.html birdland-intro.html CNAME robots.txt partner-desk.webmanifest partner-desk-icon.svg service-worker.js "$preview/"
+          cp -R images "$preview/images"
+          printf 'This is a PR validation snapshot. It is not deployed.\n' > "$preview/README.txt"
+
+      - name: Upload static preview snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: birdland-static-preview-${{ github.event.pull_request.number || github.run_id }}
+          path: ${{ runner.temp }}/birdland-preview
+          if-no-files-found: error
+          retention-days: 7
