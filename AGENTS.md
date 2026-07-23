@@ -36,6 +36,12 @@ freight, open.er-api FX, Google News RSS → `market_news`) → rebuild → comm
 
 ## Data model (outlook-data.json)
 
+**Full field-by-field reference: [`docs/DATA-SCHEMA.md`](docs/DATA-SCHEMA.md).**
+Read it before touching any data-driven feature — it maps every top-level key,
+which are AI-refreshed vs live-fetched vs desk-set static, and the recurring
+top-level-vs-`partner.*` "looks like a duplicate, isn't" trap. The summary below
+is the two rules that matter most; the doc has the rest.
+
 - In page scripts: `D` = whole JSON, `P` = `D.partner`.
 - **`D.partner.*` subtrees are STATIC desk-set data** (the AI is forbidden from
   touching them, except `partner.birdbot`). **Top-level blocks are daily-refreshed**:
