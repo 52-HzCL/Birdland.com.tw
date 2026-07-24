@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate news.html (Client Desk) and partner.html (Partner Desk) from outlook-data.json."""
+"""Regenerate Client, Partner, Team, and Executive Desk pages from outlook-data.json."""
 import os
 HERE=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TD=os.path.dirname(os.path.abspath(__file__))
@@ -13,3 +13,4 @@ def build(tpl,out):
 build("news_template.html","news.html")
 build("partner_template.html","partner.html")
 build("team_template.html","team.html")
+build("executive_template.html","executive.html")

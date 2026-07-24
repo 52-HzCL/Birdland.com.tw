@@ -1,12 +1,12 @@
 {
-  "name": "Birdland Partner Desk",
-  "short_name": "Partner Desk",
-  "description": "Birdland buyer workspace for recurring supply and pricing check-ins.",
+  "name": "Birdland B2B BUY",
+  "short_name": "B2B BUY",
+  "description": "Birdland product discovery, origin comparison and buying-decision workspace.",
   "start_url": "./partner.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#F8F9FA",
-  "theme_color": "#F8F9FA",
+  "background_color": "#F7F5EF",
+  "theme_color": "#073F35",
   "icons": [
     {
       "src": "./partner-desk-icon.svg",

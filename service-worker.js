@@ -1,15 +1,22 @@
-const VERSION = "partner-desk-v2";
+const VERSION = "birdland-desks-v5";
 const CORE_CACHE = `${VERSION}-core`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const CORE_ASSETS = [
   "./",
   "./index.html",
   "./partner.html",
+  "./executive.html",
   "./news.html",
   "./team.html",
   "./birdland-intro.html",
   "./partner-desk.webmanifest",
-  "./partner-desk-icon.svg"
+  "./executive-desk.webmanifest",
+  "./product-offers.json",
+  "./partner-desk-icon.svg",
+  "./images/thumbs/finished-goods-warehouse.webp",
+  "./images/thumbs/blade-forming.webp",
+  "./images/thumbs/wooden-handle.webp",
+  "./images/thumbs/outbound-shipping.webp"
 ];
 
 self.addEventListener("install", (event) => {
@@ -67,7 +74,8 @@ self.addEventListener("fetch", (event) => {
 
   const url = new URL(request.url);
   if (request.mode === "navigate" || request.destination === "document" || url.pathname.endsWith(".json")) {
-    event.respondWith(networkFirst(request, "./partner.html"));
+    const fallback = url.pathname.endsWith("/executive.html") ? "./executive.html" : "./partner.html";
+    event.respondWith(networkFirst(request, fallback));
     return;
   }
 

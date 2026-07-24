@@ -6,13 +6,14 @@ GitHub Pages, custom domain birdland.com.tw, serving `main` directly — **push 
 ## Pages & build system (the #1 rule)
 
 - `index.html` — hand-authored public landing page. Edit directly.
-- `news.html`, `partner.html`, `team.html` — **BUILT ARTIFACTS. NEVER hand-edit.**
+- `news.html`, `partner.html`, `team.html`, `executive.html` — **BUILT ARTIFACTS. NEVER hand-edit.**
   They are generated from `tools/news_template.html`, `tools/partner_template.html`,
-  `tools/team_template.html` by substituting the literal token `__DATA__` with the
-  full contents of `outlook-data.json` (see `tools/build_news.py`).
+  `tools/team_template.html`, `tools/executive_template.html` by substituting the
+  literal token `__DATA__` with the full contents of `outlook-data.json` (see
+  `tools/build_news.py`).
 - Rebuild after any template change (Node version, works everywhere):
   ```
-  node -e "const fs=require('fs');const d=fs.readFileSync('outlook-data.json','utf8');for(const [t,o] of [['tools/news_template.html','news.html'],['tools/partner_template.html','partner.html'],['tools/team_template.html','team.html']])fs.writeFileSync(o,fs.readFileSync(t,'utf8').split('__DATA__').join(d));"
+  node -e "const fs=require('fs');const d=fs.readFileSync('outlook-data.json','utf8');for(const [t,o] of [['tools/news_template.html','news.html'],['tools/partner_template.html','partner.html'],['tools/team_template.html','team.html'],['tools/executive_template.html','executive.html']])fs.writeFileSync(o,fs.readFileSync(t,'utf8').split('__DATA__').join(d));"
   ```
 - A template you did NOT edit must produce zero `git diff` in its built page.
 
@@ -49,7 +50,7 @@ freight, open.er-api FX, Google News RSS → `market_news`) → rebuild → comm
   `chg` reads 0.0%. Use the existing "walk back past duplicate tail" pattern
   (search `realChg` / `rc(` in partner template) when deriving % change.
 
-## Front-end conventions (Partner/Team desks)
+## Front-end conventions (Partner/Team/Executive desks)
 
 - Palette: ONLY the `--kb-*` Kubera fintech tokens. Chart series colors come from
   the fixed `SERCOL` array by index — never from colors embedded in the data.
@@ -75,9 +76,10 @@ freight, open.er-api FX, Google News RSS → `market_news`) → rebuild → comm
   `.sk-off` class (with `!important`), never bare inline styles (specificity wars).
 - `innerHTML` renderers are INTENTIONAL (static templates, no user input). Do not
   "security-fix" them to textContent — that turns nav markup into visible text.
-- Storage namespaces: partner `bd_p_*`, team `bd_t_*`, index `bl_*`
+- Storage namespaces: partner `bd_p_*`, team `bd_t_*`, executive `bd_e_*`, index `bl_*`
   (`bl_intro_seen`, `bl_fol_cut`). PIN gates bypass in dev:
-  `sessionStorage.bd_partner='1'` / `sessionStorage.bd_team='1'`.
+  `sessionStorage.bd_partner='1'` / `sessionStorage.bd_team='1'` /
+  `sessionStorage.bd_executive='1'`.
 
 ## index.html specifics
 
@@ -112,7 +114,7 @@ freight, open.er-api FX, Google News RSS → `market_news`) → rebuild → comm
 
 ## Verification checklist (every change)
 
-1. Rebuild the three pages; confirm untouched templates give zero diff.
+1. Rebuild the four generated pages; confirm untouched templates give zero diff.
 2. Encoding check (above) on every touched file.
 3. Serve locally (`npx serve . -l 8123`), open each affected page: zero console
    errors is mandatory.

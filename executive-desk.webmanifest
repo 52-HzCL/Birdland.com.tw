@@ -1,0 +1,14 @@
+{
+  "name": "Birdland LIVE REPORTS",
+  "short_name": "LIVE REPORTS",
+  "description": "Birdland global supply, market and regulatory intelligence edition.",
+  "start_url": "./executive.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F2EBDD",
+  "theme_color": "#221E19",
+  "icons": [
+    {"src":"./partner-desk-icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"},
+    {"src":"./partner-desk-icon.svg","sizes":"any","type":"image/svg+xml","purpose":"maskable"}
+  ]
+}

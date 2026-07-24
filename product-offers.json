@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "updated": "2026-07-24",
+  "source_note": "Published OneDrive or SharePoint PDF links maintained by Birdland.",
+  "items": [
+    {
+      "id": "open-garden-catalogue",
+      "type": "catalogue",
+      "title": "Open Garden Catalogue",
+      "subtitle": "The current Birdland garden-tool range and product information.",
+      "category": "Garden tools",
+      "origin": "Birdland supply network",
+      "availability": "Current catalogue",
+      "pdf_url": "https://52804774-my.sharepoint.com/:b:/g/personal/executive_birdland_com_tw/IQDcPidQB3pcTbKyumzwmFpTAYno0hfFX2_b-6GSltgV2ig",
+      "cover_image": "images/thumbs/finished-goods-warehouse.webp",
+      "featured": true,
+      "status": "published"
+    }
+  ]
+}
