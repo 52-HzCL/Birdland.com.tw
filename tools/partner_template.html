@@ -775,6 +775,79 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
 .fresh-badge.unknown,.fresh-badge.manual{color:var(--kb-faint)}
 * {scrollbar-color: #D1D5DB transparent}
 
+/* ===== Partner Desk return-habit polish ===== */
+:root{--topbar-stick:52px}
+.topbar{position:sticky!important;top:0!important;z-index:80!important}
+.tk-wrap{position:sticky!important;top:var(--topbar-stick)!important;z-index:79!important}
+.fresh-tier{position:relative;z-index:10}
+.sysgrp,.tpk{display:inline-flex;align-items:center;gap:5px}
+.sys-api .api-ic,.sys-token .tokmeter,.sys-hq .tpk-led,.sys-time svg{color:#A7F3D0!important}
+.sys-hq .tpk-led{display:inline-block!important;width:7px;height:7px;border-radius:50%;background:#FCA5A5!important;box-shadow:0 0 0 3px rgba(239,68,68,.1)}
+.sys-hq,.sys-hq b{color:#EF4444!important}
+.sys-time{color:#A7F3D0!important}
+.sys-time svg{stroke:currentColor!important}
+.toc-toggle{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;margin:0 0 10px;padding:11px 12px;border:1px solid #BFDBFE;border-radius:10px;background:linear-gradient(135deg,#EFF6FF,#FFFFFF);color:var(--kb-accent-dk);font:700 .78rem var(--kb-sans);letter-spacing:.01em;cursor:pointer;box-shadow:0 4px 12px rgba(59,130,246,.1);transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
+.toc-toggle:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(59,130,246,.16);background:linear-gradient(135deg,#DBEAFE,#FFFFFF)}
+.toc-toggle .toc-toggle-copy{display:flex;align-items:center;gap:8px}
+.toc-toggle .toc-toggle-icon{width:22px;height:22px;display:grid;place-items:center;border-radius:7px;background:var(--kb-accent);color:#fff;font-size:.9rem}
+.toc-toggle .toc-toggle-arrow{font-size:1rem;transition:transform .2s ease}
+.toc.is-collapsed .toc-toggle-arrow{transform:rotate(-90deg)}
+.toc.is-collapsed a,.toc.is-collapsed .pr-grp{display:none!important}
+.pr-home-card{margin:0 0 14px;padding:13px;border:1px solid #BFDBFE;border-radius:11px;background:linear-gradient(145deg,#EFF6FF,#FFFFFF);box-shadow:0 6px 18px rgba(59,130,246,.08)}
+.pr-home-k{font:700 .62rem var(--kb-sans);letter-spacing:.1em;text-transform:uppercase;color:var(--kb-accent-dk);margin-bottom:5px}
+.pr-home-card p{font:500 .74rem/1.45 var(--kb-sans);color:var(--kb-mut);margin:0 0 9px}
+.pr-home-card .hero-install{display:block}
+.pr-home-card .tool-btn{width:100%;margin-top:0;font-size:.76rem;padding:8px 9px}
+.pr-home-card .hero-note{display:block;margin-top:7px;font-size:.68rem;line-height:1.4}
+.offer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.offer-card{position:relative;display:flex;flex-direction:column;min-height:170px;padding:15px;border:1px solid var(--kb-line);border-radius:12px;background:linear-gradient(160deg,#fff,#F8FAFC);box-shadow:var(--kb-shadow);overflow:hidden}
+.offer-card::after{content:"";position:absolute;inset:auto -25px -42px auto;width:110px;height:110px;border-radius:50%;background:var(--kb-accent-soft);pointer-events:none}
+.offer-badge{align-self:flex-start;padding:4px 8px;border-radius:999px;background:var(--kb-green-bg);color:#047857;font:700 .62rem var(--kb-sans);letter-spacing:.06em;text-transform:uppercase}
+.offer-card h3{margin:11px 0 6px;color:var(--kb-ink);font:700 1rem/1.3 var(--kb-sans)}
+.offer-card p{margin:0;color:var(--kb-mut);font:500 .8rem/1.55 var(--kb-sans);flex:1}
+.offer-cta{display:inline-flex;align-items:center;gap:5px;margin-top:12px;color:var(--kb-accent-dk);font:700 .76rem var(--kb-sans);text-decoration:none}
+.offer-cta:hover{text-decoration:underline}
+.market-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:14px}
+.market-card{position:relative;min-height:116px;padding:14px;border:1px solid var(--kb-line);border-radius:11px;background:linear-gradient(160deg,#fff,#F8FAFC);overflow:hidden}
+.market-card .market-k{display:flex;align-items:center;justify-content:space-between;color:var(--kb-faint);font:700 .64rem var(--kb-sans);letter-spacing:.08em;text-transform:uppercase}
+.market-card .market-source{font:600 .61rem var(--kb-mono);letter-spacing:0;text-transform:none;color:var(--kb-faint)}
+.market-card .market-v{margin-top:9px;color:var(--kb-ink);font:700 1.18rem var(--kb-mono)}
+.market-card .market-chg{margin-top:4px;font:600 .72rem var(--kb-sans)}
+.market-card .market-chg.pressure{color:var(--kb-red)}
+.market-card .market-chg.relief{color:var(--kb-green)}
+.market-card .market-chg.neutral{color:var(--kb-amber)}
+.market-card .market-mini{position:absolute;right:12px;bottom:12px;width:82px;height:24px;opacity:.7}
+.market-card .market-mini polyline{fill:none;stroke:var(--kb-accent);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.market-card.missing{background:var(--kb-bg)}
+.market-card.missing .market-v{font:600 .86rem var(--kb-sans);color:var(--kb-faint)}
+.market-read{padding:15px 16px;border:1px solid #BFDBFE;border-radius:11px;background:linear-gradient(145deg,#EFF6FF,#FFFFFF);color:var(--kb-mut);font:500 .88rem/1.65 var(--kb-sans)}
+.market-read b{color:var(--kb-ink)}
+.market-impact{margin-top:14px;border:1px solid var(--kb-line);border-radius:11px;overflow:hidden;background:var(--kb-panel)}
+.market-impact .impact-head{padding:12px 14px;border-bottom:1px solid var(--kb-line);color:var(--kb-accent-dk);font:700 .68rem var(--kb-sans);letter-spacing:.09em;text-transform:uppercase}
+.market-impact table{width:100%;border-collapse:collapse}
+.market-impact td{padding:10px 12px;border-bottom:1px solid var(--kb-line);vertical-align:top;font:500 .8rem/1.45 var(--kb-sans);color:var(--kb-mut)}
+.market-impact tr:last-child td{border-bottom:0}
+.market-impact td:first-child{width:30%;font-weight:700;color:var(--kb-ink)}
+.market-disclaimer{margin-top:12px;color:var(--kb-faint);font:500 .72rem/1.55 var(--kb-sans)}
+@media(max-width:900px){.market-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.market-grid{grid-template-columns:1fr}.market-card{min-height:100px}.market-impact td{display:block;width:auto!important;padding:8px 12px 0}.market-impact td:last-child{padding-bottom:9px}}
+.info-viz{margin:0 0 14px;padding:11px 13px;border:1px solid var(--kb-line);border-radius:11px;background:linear-gradient(180deg,#fff,#F8FAFC);overflow:hidden}
+.info-viz-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;color:var(--kb-faint);font:700 .62rem var(--kb-sans);letter-spacing:.08em;text-transform:uppercase}
+.info-viz-head b{color:var(--kb-accent-dk);font:700 .68rem var(--kb-mono);letter-spacing:0;text-transform:none}
+.info-viz svg{display:block;width:100%;height:74px}
+.info-viz .viz-line{fill:none;stroke:var(--kb-accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:420;stroke-dashoffset:0;animation:vizFlow 7s ease-in-out infinite alternate}
+.info-viz .viz-fill{fill:rgba(59,130,246,.1);stroke:none}
+.info-viz .viz-bar{fill:var(--kb-accent);opacity:.7;transform-origin:bottom;animation:vizBars 3.6s ease-in-out infinite alternate}
+.info-viz .viz-dot{fill:#fff;stroke:var(--kb-accent);stroke-width:2;animation:vizDot 2.4s ease-in-out infinite alternate}
+@keyframes vizFlow{0%{stroke-dashoffset:80;opacity:.72}100%{stroke-dashoffset:0;opacity:1}}
+@keyframes vizBars{0%{opacity:.45;transform:scaleY(.78)}100%{opacity:.9;transform:scaleY(1)}}
+@keyframes vizDot{0%{r:3}100%{r:4.5}}
+@keyframes chartBreath{0%,100%{opacity:.88}50%{opacity:1}}
+svg.chart{animation:chartBreath 5s ease-in-out infinite}
+@media(max-width:900px){.offer-grid{grid-template-columns:1fr}.pr-home-card{margin-top:2px}}
+@media(max-width:760px){:root{--topbar-stick:76px}.tk-wrap{top:var(--topbar-stick)!important}.topbar .tb{align-items:flex-start}.tb-right{flex-wrap:wrap;justify-content:flex-end;gap:5px 9px}.toc-toggle{position:sticky;top:0;z-index:2}}
+@media(prefers-reduced-motion:reduce){.info-viz .viz-line,.info-viz .viz-bar,.info-viz .viz-dot,svg.chart{animation:none!important}}
+
 </style></head><body class="theme-light">
 <script>window.__TWHOL={"2026-01-01":"New Year\u2019s Day","2026-02-16":"Lunar New Year (Eve)","2026-02-17":"Lunar New Year","2026-02-18":"Lunar New Year","2026-02-19":"Lunar New Year","2026-02-27":"228 Peace Memorial (obs.)","2026-02-28":"228 Peace Memorial Day","2026-04-03":"Children\u2019s Day (obs.)","2026-04-04":"Children\u2019s Day","2026-04-05":"Tomb-Sweeping Day","2026-04-06":"Tomb-Sweeping (obs.)","2026-05-01":"Labour Day","2026-06-19":"Dragon Boat Festival","2026-09-25":"Mid-Autumn Festival","2026-09-28":"Teachers\u2019 Day","2026-10-09":"National Day (obs.)","2026-10-10":"National Day","2026-10-26":"Retrocession Day (obs.)","2026-12-25":"Constitution Day","2027-01-01":"New Year\u2019s Day"};window.__TWHOLnext=function(t){var k=Object.keys(window.__TWHOL).sort();for(var i=0;i<k.length;i++){if(k[i]>=t)return window.__TWHOL[k[i]]+" ("+k[i].slice(5).replace("-","/")+")";}return "";};</script>
 <div id="gate"><div class="gbox">
@@ -795,14 +868,14 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
 <div class="fresh-tier" id="freshTier"></div>
 <div id="google_translate_element"></div>
 <main class="wrap">
-  <section class="hero"><h1 class="sqh"><span class="sqmk"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span>Birdland<span class="saas">Partner Desk</span></h1><p class="lede">Your recurring buyer workspace for cost pressure, shipping risk and the next sourcing actions worth checking this week.</p><div class="hero-actions"><div class="hero-install"><button class="tool-btn" id="install-app" type="button" hidden>Install Partner Desk</button><span class="hero-note" id="install-note">Install for one-click return visits on desktop or mobile.</span></div><button class="tool-btn tool-btn-ghost" id="jump-brief" type="button">Open this week's brief</button></div></section>
+  <section class="hero"><h1 class="sqh"><span class="sqmk"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span>Birdland<span class="saas">Partner Desk</span></h1><p class="lede">Your recurring buyer workspace for cost pressure, shipping risk and the next sourcing actions worth checking this week.</p><div class="hero-actions"><div class="hero-install"><button class="tool-btn" id="install-app" type="button" hidden title="Securely install Partner Desk on this device. No account change; remove it anytime from your browser.">Securely install Partner Desk</button><span class="hero-note" id="install-note">Private to this device · no account change · remove anytime.</span></div><button class="tool-btn tool-btn-ghost" id="jump-brief" type="button">Open this week's brief</button></div></section>
   <section class="dash" id="dash">
     <div class="dash-head"><span class="dash-k">DECISION</span><h2>Buy now or wait?</h2><span class="dash-upd" id="dash-upd"></span></div>
     <div class="dash-verdict" id="dash-verdict"></div>
     <div class="dash-grid" id="dash-grid"></div>
     <div class="dash-foot">A live read of your FOB China/Taiwan inputs — material costs, ocean freight, compliance and supply risk. Tap a tab below for the detail.</div>
   </section>
-  <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-alerts">Supply Brief</a><a href="#p-mkt">Buying Rooms</a><a href="#p-keynews">Key News</a><a href="#p-regcal">Reg. calendar</a><a href="#p-report">Keyword report</a><a href="#p-landed2">My landed cost</a><a href="#p-margin">Retail margin</a><a href="#p-reorder">Reorder timing</a><a href="#p-sail">Plan a sailing</a><a href="#p-calc">Quick estimate</a><a href="#p-cduty">TW vs CN duty</a><a href="#p-material">Materials ahead</a><a href="#p-shipping">Shipping ahead</a><a href="#p-season">Buy calendar</a><a href="#p-freight">Freight indexes</a><a href="#p-watch">Watchlist</a><a href="#p-war">Geopolitics</a><a href="#p-tariff">Tariffs</a><a href="#p-news">News</a></nav>
+  <nav class="toc" aria-label="Sections"><a href="#p-brief">Brief</a><a href="#p-alerts">Supply Brief</a><a href="#p-mkt">Buying Rooms</a><a href="#p-market">Market pulse</a><a href="#p-keynews">Key News</a><a href="#p-regcal">Reg. calendar</a><a href="#p-report">Keyword report</a><a href="#p-material">Materials ahead</a><a href="#p-shipping">Shipping ahead</a><a href="#p-season">Buy calendar</a><a href="#p-freight">Freight indexes</a><a href="#p-watch">Watchlist</a><a href="#p-war">Geopolitics</a><a href="#p-tariff">Tariffs</a><a href="#p-offers">Offers &amp; releases</a><a href="#p-news">News</a><a href="#p-landed2">My landed cost</a><a href="#p-margin">Retail margin</a><a href="#p-reorder">Reorder timing</a><a href="#p-sail">Plan a sailing</a><a href="#p-calc">Quick estimate</a><a href="#p-cduty">TW vs CN duty</a></nav>
   <div id="tab-hint" class="tab-hint"><div class="mac-note"><span class="mn-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span><div class="mn-txt"><b>Partner Desk</b><span>Pick a section from the tabs above to view it.</span></div></div></div>
 
   <section class="blk" data-open="1" id="p-brief"><button class="blk-h"><span class="k">BRIEF</span><h2>Today &amp; Tomorrow</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
@@ -868,6 +941,16 @@ table.tm tr:hover td,.wl tr:hover td{background:#F9FAFB!important}
   <section class="blk" data-open="0" id="p-war"><button class="blk-h"><span class="k">WAR</span><h2>Risk monitor — war &amp; politics</h2><span class="ihelp" title="How active conflicts/tensions are pressuring your supply chain (0–100). Hover a bar for what it affects.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="war-note"></div><div class="war" id="war"></div></div></section>
 
   <section class="blk" data-open="0" id="p-mkt"><button class="blk-h"><span class="k">ROOM</span><h2>Regional Buying Rooms</h2><span class="ihelp" title="Open the room that matches where you buy or where risk is moving. Each room pulls the key policy, supply and action cues into one repeat-check view.">i</span><span class="meta" id="room-meta">pick a room</span><span class="tog"></span></button><div class="blk-b"><div class="ctl"><div><label for="room">Buying room</label><select id="room" class="mkt" aria-label="Choose buying room"></select></div><div><label for="region" id="region-label">Focus market</label><select id="region" class="mkt" aria-label="Choose market"></select></div></div><div class="room-chips" id="room-chips"></div><div class="room-summary" id="room-summary" aria-live="polite"></div><div id="content" aria-live="polite"></div></div></section>
+
+  <section class="blk" data-open="0" id="p-market"><button class="blk-h"><span class="k">MARKET</span><h2>Capital &amp; Market Pulse</h2><span class="ihelp" title="A market-context view for procurement leaders: rates, inflation, currency and risk signals translated into landed-cost and inventory decisions. Not investment advice.">i</span><span class="meta" id="mp-meta">market context</span><span class="tog"></span></button><div class="blk-b">
+    <div class="sub">A concise view of the international market signals that can change your buying power, financing cost and order timing. Use the full-market links for research; this desk translates the movement back into procurement decisions.</div>
+    <div class="market-grid" id="mp-grid"></div>
+    <div class="market-read" id="mp-read" aria-live="polite"></div>
+    <div class="market-impact" id="mp-impact"></div>
+    <div class="market-disclaimer">Market context only — not investment, trading or financial advice. Values may be delayed; always check the labelled source before making a financial decision.</div>
+  </div></section>
+
+  <section class="blk" data-open="0" id="p-offers"><button class="blk-h"><span class="k">OFFERS</span><h2>Offers &amp; releases</h2><span class="ihelp" title="A small, rotating shelf for new Birdland products, buyer reports and room invitations. Offers are desk-set until published by the Birdland team.">i</span><span class="meta">desk set</span><span class="tog"></span></button><div class="blk-b"><div class="sub">A calm place to spot new products and useful reports before they disappear into a busy inbox. Check back when the shelf changes; no hard-sell pop-ups.</div><div class="offer-grid" id="offer-grid"></div></div></section>
 
   <section class="blk" data-open="0" id="p-news"><button class="blk-h"><span class="k">NEWS</span><h2>Birdland news</h2><span class="ihelp" title="Company updates posted by the Birdland team.">i</span><span class="meta">updates</span><span class="tog"></span></button><div class="blk-b"><div class="news" id="newslist"></div></div></section>
 
@@ -1417,6 +1500,7 @@ var main=document.querySelector('main'),disc=document.getElementById('disc');
  function spk(a,d){if(!a||a.length<2)return '';var w=90,hh=18,mn=Math.min.apply(null,a),mx=Math.max.apply(null,a),rg=(mx-mn)||1;var p=a.map(function(v,i){return (i/(a.length-1)*w).toFixed(1)+','+(hh-2-((v-mn)/rg)*(hh-4)).toFixed(1);}).join(' ');var c=d==='up'?'#EF4444':(d==='down'?'#10B981':'#D97706');return '<svg class="spk" viewBox="0 0 '+w+' '+hh+'" preserveAspectRatio="none"><polyline points="'+p+'" fill="none" stroke="'+c+'" stroke-width="1.4"/></svg>';}
  var h='';
 if(topAct)h+='<span class="pi lead" data-go="p-brief" style="cursor:pointer"><span class="s">Next action</span><span class="v" style="font-size:.86rem">'+(topAct.action||'')+'</span></span>';
+ h+='<span class="pi lead" data-go="p-market" style="cursor:pointer"><span class="s">Capital &amp; market pulse</span><span class="v" style="font-size:.86rem">Gold · rates · CPI · FX context</span></span>';
  h+='<span class="pi lead" data-go="p-landed2" style="cursor:pointer"><span class="s">My landed cost</span><span class="v">Open calculator →</span></span>';
  if(cduty)h+='<span class="pi lead" data-go="p-cduty" style="cursor:pointer"><span class="s">TW vs CN duty</span><span class="v">'+cduty+'</span></span>';
  (D.indices||[]).slice(0,6).forEach(function(ix){var rc=realChg(ix),d=(rc!=null?(rc>0.05?'up':(rc<-0.05?'down':'flat')):(ix.dir||'flat')),ar=d==='up'?'▲':(d==='down'?'▼':'■'),ch=(rc!=null?(rc>0?'+':'')+rc.toFixed(1)+'%':'');
@@ -1440,11 +1524,13 @@ if(topAct)h+='<span class="pi lead" data-go="p-brief" style="cursor:pointer"><sp
   ].join('')+'</div></div>';
  })();
 // 2) section order: daily brief & the two money tools first; client-desk duplicates demoted to Reference
-(function(){if(!main||!disc)return;var ORD=['p-brief','p-alerts','p-mkt','p-keynews','p-regcal','p-report','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty','p-material','p-shipping','p-season','p-war','p-tariff'],REF=['p-freight','p-watch','p-news'];
+(function(){if(!main||!disc)return;var ORD=['p-brief','p-alerts','p-mkt','p-market','p-keynews','p-regcal','p-report','p-offers','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty','p-material','p-shipping','p-season','p-war','p-tariff'],REF=['p-freight','p-watch','p-news'];
  ORD.concat(REF).forEach(function(id){var s=document.getElementById(id);if(s)main.insertBefore(s,disc);});
  var hd=document.createElement('div');hd.className='refhd';hd.textContent='Reference data — shared with Client Desk';main.insertBefore(hd,document.getElementById(REF[0]));})();
 // 3) honest freshness: static desk-set blocks must not claim the daily stamp
 (function(){[['p-tariff','manual · desk set'],['p-regcal','manual · desk set'],['p-material','curves manual · note daily'],['p-shipping','rates daily · curve manual']].forEach(function(x){var b=document.querySelector('#'+x[0]+' .blk-h .secupd');if(b)b.textContent='⟳ '+x[1];});})();
+// 3b) offers are intentionally desk-set until the Birdland team publishes a refresh
+(function(){var o=document.querySelector('#p-offers .blk-h .meta');if(o)o.textContent='manual · desk set';})();
 // 4) remembered workspace
 var LS={g:function(k){try{return localStorage.getItem('bd_p_'+k);}catch(e){return null;}},s:function(k,v){try{localStorage.setItem('bd_p_'+k,v);}catch(e){}}};
 var FIELDS=['qc_cost','qc_frt','qc_ins','qc_duty','qc_qty','bc_fob','bc_qty','bc_frt','bc_ins','bc_duty','bc_tax','bc_brk','bc_inl','bc_oth','pcVal','mg_cost','mg_margin','mg_fx','mg_qty','ro_stock','ro_rate','ro_lead','ro_transit','ro_safety','se_lead'],SELS=['pcDest','pcOrigin','s_o','s_d','s_ct','room','region','se_hemi'];
@@ -1453,7 +1539,7 @@ FIELDS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v
 SELS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=LS.g(id);if(v!==null&&v!==''){var ok=[].some.call(e.options,function(o){return o.value===v;});if(ok){e.value=v;e.dispatchEvent(new Event('change',{bubbles:true}));}}
  e.addEventListener('change',function(){LS.s(id,e.value);});});
 // 5) full-scroll accordion: funnel modules open, reference collapsed; remember per-section state
-(function(){var FUN={'p-brief':1,'p-alerts':1,'p-mkt':1,'p-keynews':1,'p-regcal':1,'p-report':1,'p-landed2':1,'p-margin':1,'p-reorder':1,'p-sail':1,'p-calc':1,'p-cduty':1,'p-material':1,'p-shipping':1,'p-season':1,'p-war':1,'p-tariff':1};
+(function(){var FUN={'p-brief':1,'p-alerts':1,'p-mkt':1,'p-market':1,'p-keynews':1,'p-regcal':1,'p-report':1,'p-offers':1,'p-landed2':1,'p-margin':1,'p-reorder':1,'p-sail':1,'p-calc':1,'p-cduty':1,'p-material':1,'p-shipping':1,'p-season':1,'p-war':1,'p-tariff':1};
  var saved=null;try{saved=JSON.parse(LS.g('col')||'null');}catch(e){}
  [].forEach.call(document.querySelectorAll('main .blk'),function(sec){
    var open=!!FUN[sec.id];
@@ -1469,11 +1555,16 @@ SELS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=L
  var rail=document.createElement('aside');rail.id='p-rail';rail.setAttribute('aria-label','Today at a glance');
  var tocEl=document.querySelector('.toc');
  if(tocEl){
-   var GROUPS=[['Today','p-brief','p-alerts','p-mkt'],['News & reports','p-keynews','p-regcal','p-report'],['Cost tools','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty'],['Forecasts','p-material','p-shipping','p-season','p-freight','p-watch'],['Risk & markets','p-war','p-tariff'],['News','p-news']];
+   var GROUPS=[['Information','p-brief','p-alerts','p-mkt','p-market','p-keynews','p-regcal','p-report','p-material','p-shipping','p-season','p-freight','p-watch','p-war','p-tariff','p-offers','p-news'],['Tools','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty']];
    GROUPS.forEach(function(grp){var lbl=document.createElement('div');lbl.className='pr-grp';lbl.textContent=grp[0];
      var firstHref='#'+grp[1],anchor=tocEl.querySelector('a[href="'+firstHref+'"]');
      if(anchor)tocEl.insertBefore(lbl,anchor);else tocEl.appendChild(lbl);});
+   var menuBtn=document.createElement('button');menuBtn.type='button';menuBtn.className='toc-toggle';menuBtn.setAttribute('aria-expanded','true');menuBtn.innerHTML='<span class="toc-toggle-copy"><span class="toc-toggle-icon" aria-hidden="true">☷</span><span>Open Partner Desk menu</span></span><span class="toc-toggle-arrow" aria-hidden="true">⌄</span>';tocEl.insertBefore(menuBtn,tocEl.firstChild);
+   menuBtn.addEventListener('click',function(){var collapsed=tocEl.classList.toggle('is-collapsed');menuBtn.setAttribute('aria-expanded',collapsed?'false':'true');var label=menuBtn.querySelector('.toc-toggle-copy span:last-child');if(label)label.textContent=collapsed?'Show Information & Tools':'Open Partner Desk menu';});
  }
+ var homeCard=document.createElement('div');homeCard.className='pr-home-card';homeCard.innerHTML='<div class="pr-home-k">Home · safe return</div><p>Keep Partner Desk one tap away. Installation stays on this device, makes no account change, and can be removed anytime.</p>';
+ var installEl=document.querySelector('.hero-install');if(installEl){homeCard.appendChild(installEl);}
+ rail.appendChild(homeCard);
  var pbT2=D.procurement||{},P2=D.partner||{};
  var acts=(pbT2.items&&pbT2.items.length)?pbT2.items.map(function(i){return {u:i.urgency||'med',t:(i.input?i.input+' — ':'')+(i.action||'')};}):((P2.procurement&&P2.procurement.actions)||[]).map(function(a){return {u:a.level||'med',t:a.label};});
  var h='<div class="pr-h">Today · '+acts.length+' actions</div>';
@@ -1869,6 +1960,17 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
 })();</script>
 <script>(function(){/* bento content grid — one feature, one 4-tile layout */
 var D={},P={};try{D=JSON.parse(document.getElementById('outlook-data').textContent)||{};P=D.partner||{};}catch(e){}
+/* rotating shelf for new products/reports; data can be added to partner.offers without changing the renderer */
+(function(){var host=document.getElementById('offer-grid');if(!host)return;var esc=function(x){return String(x==null?'':x).replace(/[&<>\"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c];});};var items=Array.isArray(P.offers)?P.offers:[];if(!items.length)items=[
+ {badge:'New room',title:'Regional Buying Room spotlight',body:'A focused weekly cue for the region you source from most — policy, lead-time and one practical next move.',cta:'Open Buying Rooms',go:'p-mkt'},
+ {badge:'Buyer report',title:'Materials pulse report',body:'A concise read on the input materials moving your landed cost, written from the desk signals you already track.',cta:'Open Keyword report',go:'p-report'},
+ {badge:'Seasonal',title:'Next garden-tool window',body:'Plan production and sailing timing before the next retail peak turns a small delay into a missed shelf date.',cta:'Open Buy calendar',go:'p-season'}
+ ];host.innerHTML=items.slice(0,6).map(function(o){var go=o.go||'p-mkt';return '<article class="offer-card"><span class="offer-badge">'+esc(o.badge||'Birdland pick')+'</span><h3>'+esc(o.title||'New Birdland update')+'</h3><p>'+esc(o.body||'A new buyer-ready update is waiting in Partner Desk.')+'</p><a class="offer-cta" href="#'+esc(go)+'" data-go="'+esc(go)+'">'+esc(o.cta||'Open in Partner Desk')+' <span aria-hidden="true">→</span></a></article>';}).join('');host.addEventListener('click',function(e){var a=e.target.closest('a[data-go]');if(!a)return;e.preventDefault();var nav=document.querySelector('.toc a[href="#'+a.getAttribute('data-go')+'"]');if(nav)nav.click();});})();
+/* capital & market context: read existing daily macro data; unavailable series stay visibly unavailable */
+(function(){var grid=document.getElementById('mp-grid'),read=document.getElementById('mp-read'),impact=document.getElementById('mp-impact');if(!grid||!read||!impact)return;var esc=function(x){return String(x==null?'':x).replace(/[&<>\"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c];});};var by={};(Array.isArray(D.macro)?D.macro:[]).forEach(function(x){if(x&&x.short)by[x.short]=x;});function chg(x){if(!x)return null;var a=x.spark||[],b=a.length-1;if(b<1)return x.chg;var last=a[b],i=b-1;while(i>0&&a[i]===last)i--;return a[i]!=null?(last-a[i])/Math.abs(a[i])*100:x.chg;}function fmt(x){if(x==null||x==='')return 'Not connected';if(typeof x!=='number')return String(x);return x.toLocaleString(undefined,{maximumFractionDigits:2});}function spark(a){if(!a||a.length<2)return '';var mn=Math.min.apply(null,a),mx=Math.max.apply(null,a),rg=(mx-mn)||1,pts=a.slice(-12).map(function(v,i){return (i/11*84).toFixed(1)+','+(22-((v-mn)/rg)*18).toFixed(1);}).join(' ');return '<svg class="market-mini" viewBox="0 0 84 24" aria-hidden="true"><polyline points="'+pts+'"></polyline></svg>';}function state(x,role){if(!x)return 'missing';var n=chg(x);if(role==='pressure')return n>0.05?'pressure':(n<-0.05?'relief':'neutral');if(role==='relief')return n<-.05?'relief':(n>.05?'pressure':'neutral');return 'neutral';}
+ var defs=[{key:'GOLD',label:'Gold',source:'Macro feed',role:'risk',hint:'Risk-off / hedge signal'},{key:'US 10Y',label:'US 10Y Treasury',source:'Macro feed',role:'pressure',hint:'Funding cost signal'},{key:'DXY',label:'US Dollar Index',source:'Macro feed',role:'neutral',hint:'Currency pressure signal'},{key:'BRENT',label:'Brent crude',source:'Macro feed',role:'pressure',hint:'Freight and resin pressure'},{key:'US CPI',label:'US CPI',source:'FRED',role:'pressure',missing:true,hint:'Official inflation series pending'},{key:'EU 10Y',label:'Germany 10Y Bund',source:'ECB',role:'pressure',missing:true,hint:'Official euro-area rate series pending'}];
+ grid.innerHTML=defs.map(function(def){var x=by[def.key],missing=def.missing&&!x,unit=x&&x.unit?(' '+x.unit):'';var n=x?chg(x):null;var s=missing?'missing':state(x,def.role);var delta=missing?'Source series pending':(n==null?'updated':((n>0?'+':'')+n.toFixed(1)+'% · '+def.hint));return '<article class="market-card '+s+(missing?' missing':'')+'"><div class="market-k"><span>'+esc(def.label)+'</span><span class="market-source">'+esc(def.source)+'</span></div><div class="market-v">'+esc(missing?'Not connected':fmt(x.value)+unit)+'</div><div class="market-chg '+s+'">'+esc(delta)+'</div>'+(x?spark(x.spark):'')+'</article>';}).join('');var gold=by.GOLD,oil=by.BRENT,yld=by['US 10Y'],dxy=by.DXY;var oilTxt=oil&&oil.value?'Brent at '+fmt(oil.value)+' '+(oil.unit||''):'energy prices';var yieldTxt=yld&&yld.value?('US 10Y at '+fmt(yld.value)+'%'):'US funding rates';var fxTxt=dxy&&dxy.value?('the dollar index at '+fmt(dxy.value)):'currency conditions';read.innerHTML='<b>Buyer read:</b> '+esc(oilTxt)+' keeps freight, resin and fuel-linked inputs on the watchlist; '+esc(yieldTxt)+' is the financing signal for inventory; and '+esc(fxTxt)+' helps frame origin and payment decisions. Gold is shown as a risk-sentiment signal, not a tool-cost forecast. <a class="offer-cta" href="https://www.google.com/finance/" target="_blank" rel="noopener">Open full market research ↗</a>';
+ impact.innerHTML='<div class="impact-head">What the move can mean for your buying plan</div><table><tbody><tr><td>Rates &amp; funding</td><td>Rising sovereign yields can make financed inventory more expensive. Keep excess stock intentional and revisit payment terms on long lead-time orders.</td></tr><tr><td>Inflation &amp; demand</td><td>CPI belongs here once the official series is connected; use it to frame retail demand and margin pressure, never as a standalone buying trigger.</td></tr><tr><td>Currency</td><td>USD/TWD and USD/CNY changes can shift the relative landed-cost picture between Taiwan and China origin. Compare origin before locking a quote.</td></tr><tr><td>Risk &amp; energy</td><td>Gold, Brent and volatility are context signals. If risk and energy rise together, secure critical freight and fuel-linked inputs earlier.</td></tr></tbody></table>';})();
 function txt(sel,body){var e=body.querySelector(sel);return e?e.textContent.trim():'';}
 function bentofy(id,lgSel,mdSel,smFns,mdSynth){
   var sec=document.getElementById(id);if(!sec)return;
@@ -1951,6 +2053,8 @@ bentofy('p-watch',['#p-watch-cats'],[],[
   return '<div class="b-k" style="text-transform:uppercase;font-size:.64rem;letter-spacing:.08em;color:var(--kb-faint);margin-bottom:6px">Biggest mover</div><div style="font-weight:700;margin-bottom:4px">'+(top.ix.short||top.ix.label)+'</div><div style="font-size:.92rem" class="'+dir+'">'+ar+' '+(top.c>0?'+':'')+top.c.toFixed(1)+'%</div>';
 });
 bentofy('p-mkt',['#content'],['.ctl'],[]);
+bentofy('p-market',['#mp-grid'],['#mp-read','#mp-impact'],[]);
+bentofy('p-offers',['#offer-grid'],[],[]);
 bentofy('p-news',['.news'],[],[]);
 bentofy('p-alerts',[],[],[]);
 bentofy('p-keynews',['.news'],[],[]);
@@ -1994,6 +2098,11 @@ var poll=setInterval(function(){
   else if(tries>20){note.textContent='Translator unavailable (blocked by network/ad-blocker)';clearInterval(poll);}
 },500);
 })();</script>
+<script>(function(D){/* Information visuals: one distinct, softly animated pulse per information destination */
+ var specs={'p-brief':['Decision pulse','line'],'p-alerts':['Weekly brief cadence','bars'],'p-mkt':['Regional room pulse','dots'],'p-market':['Macro signal pulse','line'],'p-keynews':['Headline velocity','bars'],'p-regcal':['Deadline runway','timeline'],'p-report':['Tracked topic pulse','wave'],'p-material':['Material pressure','line'],'p-shipping':['Lane pressure','wave'],'p-season':['Season window','timeline'],'p-freight':['Freight signal','bars'],'p-watch':['Watchlist breadth','dots'],'p-war':['Risk temperature','wave'],'p-tariff':['Tariff movement','timeline'],'p-offers':['New shelf pulse','dots'],'p-news':['Birdland update pulse','line']};
+ var shapes={line:'<path class="viz-fill" d="M0 62 L45 48 L88 54 L132 30 L174 40 L220 18 L270 28 L320 10 L360 24 L400 17 L450 34 L500 23 L550 35 L600 14 L660 24 L720 8 L720 74 L0 74 Z"></path><path class="viz-line" d="M0 62 L45 48 L88 54 L132 30 L174 40 L220 18 L270 28 L320 10 L360 24 L400 17 L450 34 L500 23 L550 35 L600 14 L660 24 L720 8"></path>',wave:'<path class="viz-fill" d="M0 47 C70 5 110 71 180 34 S300 12 360 42 S470 75 540 31 S640 6 720 39 L720 74 L0 74 Z"></path><path class="viz-line" d="M0 47 C70 5 110 71 180 34 S300 12 360 42 S470 75 540 31 S640 6 720 39"></path>',bars:'<g class="viz-bar"><rect x="18" y="40" width="50" height="34" rx="4"/><rect x="105" y="28" width="50" height="46" rx="4"/><rect x="192" y="48" width="50" height="26" rx="4"/><rect x="279" y="18" width="50" height="56" rx="4"/><rect x="366" y="34" width="50" height="40" rx="4"/><rect x="453" y="24" width="50" height="50" rx="4"/><rect x="540" y="44" width="50" height="30" rx="4"/><rect x="627" y="12" width="50" height="62" rx="4"/></g>',dots:'<path class="viz-line" d="M12 54 L110 26 L210 47 L310 18 L410 38 L510 12 L610 33 L708 20"></path><g class="viz-dot"><circle cx="12" cy="54" r="3"/><circle cx="110" cy="26" r="3"/><circle cx="210" cy="47" r="3"/><circle cx="310" cy="18" r="3"/><circle cx="410" cy="38" r="3"/><circle cx="510" cy="12" r="3"/><circle cx="610" cy="33" r="3"/><circle cx="708" cy="20" r="3"/></g>',timeline:'<path class="viz-line" d="M18 40 H702"></path><g class="viz-dot"><circle cx="92" cy="40" r="4"/><circle cx="236" cy="40" r="4"/><circle cx="384" cy="40" r="4"/><circle cx="526" cy="40" r="4"/><circle cx="666" cy="40" r="4"/></g><path d="M92 40 V20 M236 40 V57 M384 40 V18 M526 40 V58 M666 40 V22" stroke="var(--kb-line2)" stroke-width="1.5"></path>'};
+ Object.keys(specs).forEach(function(id){var sec=document.getElementById(id);if(!sec||sec.querySelector('.info-viz'))return;var body=sec.querySelector('.blk-b');if(!body)return;var box=document.createElement('div');box.className='info-viz';box.innerHTML='<div class="info-viz-head"><span>'+specs[id][0]+'</span><b>'+(D.updated||'live')+'</b></div><svg viewBox="0 0 720 80" role="img" aria-label="'+specs[id][0]+' animated chart">'+shapes[specs[id][1]]+'</svg>';body.insertBefore(box,body.firstChild);});
+})(JSON.parse(document.getElementById('outlook-data').textContent||'{}'));</script>
 <script>(function(){
  var installBtn=document.getElementById('install-app');
  var installNote=document.getElementById('install-note');
@@ -2010,22 +2119,22 @@ var poll=setInterval(function(){
  if('serviceWorker' in navigator){
    navigator.serviceWorker.register('service-worker.js').catch(function(){setNote('Offline install support is unavailable in this browser session.');});
  }else{
-   setNote('Install works best in Chrome or Edge with app support enabled.');
+   setNote('Secure install works best in Chrome or Edge; it stays on this device and can be removed anytime.');
  }
  window.addEventListener('beforeinstallprompt',function(e){
    e.preventDefault();
    deferredPrompt=e;
    installBtn.hidden=false;
-   setNote('Install for one-click return visits and lighter repeat loads.');
+   setNote('Secure one-click return visits on this device — no account change, remove anytime.');
  });
  window.addEventListener('appinstalled',function(){
    deferredPrompt=null;
    installBtn.hidden=true;
-   setNote('Partner Desk installed. You can reopen it from your desktop or app launcher.');
+   setNote('Partner Desk securely installed. Reopen it from your desktop or app launcher.');
  });
  installBtn.addEventListener('click',function(){
    if(!deferredPrompt){
-     setNote(installed()?'Partner Desk is already installed on this device.':'Use your browser menu to install or add this page to your home screen.');
+     setNote(installed()?'Partner Desk is already installed on this device.':'Use your browser menu to securely install or add this page to your home screen.');
      return;
    }
    deferredPrompt.prompt();
@@ -2033,5 +2142,13 @@ var poll=setInterval(function(){
      if(choice&&choice.outcome!=='accepted')setNote('Install was dismissed. You can try again from this browser later.');
    });
  });
+})();</script>
+<script>(function(){
+  var top=document.querySelector('.tb-right');if(!top)return;
+  var groups=top.querySelectorAll('.sysgrp');
+  if(groups[0]){groups[0].classList.add('sys-api');groups[0].setAttribute('title','High-Level API source connectivity');groups[0].innerHTML=groups[0].innerHTML.replace('Source&nbsp;Feeds','High-Level&nbsp;API');}
+  if(groups[1]){groups[1].classList.add('sys-token');groups[1].setAttribute('title','AI Token budget and refresh meter');groups[1].innerHTML=groups[1].innerHTML.replace('Buyer&nbsp;Workspace','AI&nbsp;Token');}
+  var hq=document.getElementById('tpk');if(hq){hq.classList.add('sys-hq');hq.setAttribute('title','Birdland HQ availability: Taiwan office hours Mon-Fri 09:00-17:30 (GMT+8)');}
+  var tm=document.querySelector('.tpk-time');if(tm)tm.classList.add('sys-time');
 })();</script>
 </body></html>
