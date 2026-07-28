@@ -1,0 +1,29 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Birdland//Public Calendar Hub//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Birdland compliance
+BEGIN:VEVENT
+UID:eudr-large-medium-2026@birdland.com.tw
+DTSTAMP:20260727T000000Z
+DTSTART:20261230T090000Z
+DTEND:20261230T100000Z
+SUMMARY:EUDR application: large and medium operators
+DESCRIPTION:Confirm whether your wood-handled products and operator role are in scope\; prepare traceability evidence before the application date. Source: https://environment.ec.europa.eu/topics/forests/deforestation/regulation-deforestation-free-products_en Birdland: https://birdland.com.tw/executive.html#evidence
+URL:https://birdland.com.tw/executive.html#evidence
+STATUS:CONFIRMED
+CATEGORIES:regulation\,wood\,compliance
+END:VEVENT
+BEGIN:VEVENT
+UID:eudr-small-micro-2027@birdland.com.tw
+DTSTAMP:20260727T000000Z
+DTSTART:20270630T090000Z
+DTEND:20270630T100000Z
+SUMMARY:EUDR application: micro and small operators
+DESCRIPTION:Smaller operators should use this runway to map timber evidence and internal responsibilities. Source: https://environment.ec.europa.eu/topics/forests/deforestation/regulation-deforestation-free-products_en Birdland: https://birdland.com.tw/executive.html#evidence
+URL:https://birdland.com.tw/executive.html#evidence
+STATUS:CONFIRMED
+CATEGORIES:regulation\,wood\,compliance
+END:VEVENT
+END:VCALENDAR

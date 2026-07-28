@@ -1,4 +1,4 @@
-const VERSION = "birdland-desks-v5";
+const VERSION = "birdland-desks-v10";
 const CORE_CACHE = `${VERSION}-core`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const CORE_ASSETS = [
@@ -8,13 +8,38 @@ const CORE_ASSETS = [
   "./executive.html",
   "./news.html",
   "./team.html",
+  "./about.html",
+  "./product-101.html",
+  "./why-birdland.html",
+  "./contact.html",
+  "./site-shell.css",
+  "./shell-nav.css",
+  "./site-shell.js",
+  "./terminal-strip.css",
+  "./birdland-visual.css",
+  "./daily-journal.css",
+  "./privacy.html",
   "./birdland-intro.html",
   "./partner-desk.webmanifest",
   "./executive-desk.webmanifest",
   "./product-offers.json",
+  "./calendar-events.json",
+  "./calendars/global.ics",
+  "./calendars/regulation.ics",
   "./partner-desk-icon.svg",
   "./images/thumbs/finished-goods-warehouse.webp",
   "./images/thumbs/blade-forming.webp",
+  "./images/thumbs/chairman-inspection.webp",
+  "./images/thumbs/assembly-calibration.webp",
+  "./images/hero-forged-trowel.webp",
+  "./images/foundry-engraving.webp",
+  "./images/pruner-inspection.webp",
+  "./images/asia-supply-map.webp",
+  "./images/thumbs/raw-materials.webp",
+  "./images/thumbs/tooling-die-library.webp",
+  "./images/thumbs/frame-welding.webp",
+  "./images/thumbs/surface-treatment.webp",
+  "./images/thumbs/pre-shipment-sampling.webp",
   "./images/thumbs/wooden-handle.webp",
   "./images/thumbs/outbound-shipping.webp"
 ];

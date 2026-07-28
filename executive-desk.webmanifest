@@ -1,7 +1,7 @@
 {
-  "name": "Birdland LIVE REPORTS",
-  "short_name": "LIVE REPORTS",
-  "description": "Birdland global supply, market and regulatory intelligence edition.",
+  "name": "Birdland Daily Supply News",
+  "short_name": "Supply News",
+  "description": "Asia production, export and freight signals for Western buyers.",
   "start_url": "./executive.html",
   "scope": "./",
   "display": "standalone",

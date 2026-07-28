@@ -170,9 +170,32 @@ try:
     QUERIES=[
         ("tariff","steel tariff OR aluminum tariff OR import tariff OR section 301"),
         ("shipping","container freight rate OR ocean freight rate OR shipping rate"),
-        ("china","China manufacturing PMI OR China factory output OR China steel production"),
-        ("taiwan","Taiwan exports OR Taiwan manufacturing OR Taiwan supply chain"),
+        ("china","China manufacturing PMI OR China factory output OR China export data"),
+        ("taiwan","Taiwan exports OR Taiwan industrial production OR Taiwan manufacturing"),
     ]
+    OFFICIAL_PUBLISHERS=(
+        "National Bureau of Statistics", "General Administration of Customs",
+        "Ministry of Economic Affairs", "Ministry of Finance", "Customs Administration",
+        "Shanghai Shipping Exchange", "World Trade Organization", "European Commission",
+        "U.S. Customs and Border Protection", "Office of the United States Trade Representative",
+    )
+    TRADE_PUBLISHERS=("Journal of Commerce", "FreightWaves", "Lloyd's List", "S&P Global", "Reuters")
+    def news_meta(topic, publisher):
+        low=(publisher or "").lower()
+        tier="official" if any(x.lower() in low for x in OFFICIAL_PUBLISHERS) else ("trade" if any(x.lower() in low for x in TRADE_PUBLISHERS) else "context")
+        category={"tariff":"Tariff & regulation", "shipping":"Freight & ports", "china":"China production & export", "taiwan":"Taiwan production & export"}.get(topic,"Supply context")
+        region={"china":"China", "taiwan":"Taiwan", "shipping":"Asia routes", "tariff":"Global"}.get(topic,"Global")
+        return {"category":category,"region":region,"source_tier":tier,"fetched_at":utc_now}
+    def relevant(topic, title):
+        text=(title or "").lower()
+        bad=("drone", "election", "military", "defence", "defense", "nationalization")
+        words={
+            "tariff":("tariff", "customs", "import", "trade", "section 301", "compliance"),
+            "shipping":("freight", "shipping", "container", "port", "ocean", "vessel"),
+            "china":("manufactur", "factory", "production", "export", "pmi", "steel", "resin", "port", "supply chain"),
+            "taiwan":("manufactur", "factory", "production", "export", "industrial", "port", "steel", "resin", "supply chain"),
+        }
+        return not any(word in text for word in bad) and any(word in text for word in words.get(topic,()))
     def gnews(topic,q):
         url="https://news.google.com/rss/search?q="+urllib.parse.quote(q)+"&hl=en-US&gl=US&ceid=US:en"
         req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"})
@@ -188,7 +211,10 @@ try:
                 pub=item.findtext("pubDate")
                 try: dt=parsedate_to_datetime(pub).date().isoformat() if pub else ""
                 except Exception: dt=""
-                if title: out.append({"topic":topic,"title":title,"url":link,"source":source,"date":dt})
+                if title and relevant(topic,title):
+                    row={"topic":topic,"title":title,"url":link,"source":source,"date":dt}
+                    row.update(news_meta(topic,source))
+                    out.append(row)
         except Exception as e:
             print("[keynews] %s failed: %s"%(topic,e))
         return out

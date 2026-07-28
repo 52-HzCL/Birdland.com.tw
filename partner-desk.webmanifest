@@ -1,7 +1,7 @@
 {
   "name": "Birdland B2B BUY",
   "short_name": "B2B BUY",
-  "description": "Birdland product discovery, origin comparison and buying-decision workspace.",
+  "description": "Birdland public product discovery, buying decisions and OEM enquiry preparation.",
   "start_url": "./partner.html",
   "scope": "./",
   "display": "standalone",

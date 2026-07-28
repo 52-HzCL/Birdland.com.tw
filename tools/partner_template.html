@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#073F35">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#073F35"><meta name="description" content="B2B BUY is Birdland's public workspace for product discovery, buying decisions and OEM enquiry preparation.">
 <title>Birdland B2B BUY</title><meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="terminal-strip.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23073F35'/><path d='M6 20l5-6 5 4 5-9 5 6' fill='none' stroke='%23ffffff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/></svg>">
 <link rel="manifest" href="partner-desk.webmanifest">
@@ -1076,8 +1076,281 @@ body.theme-light #dash{
   .pd-spark polyline{animation:none!important}
 }
 
-</style></head><body class="theme-light">
+</style><style>#gate{display:none!important}.language-box details{position:relative}.language-box summary{cursor:pointer;font-weight:700;list-style:none}.language-box summary::-webkit-details-marker{display:none}.language-box details[open]{position:absolute;right:0;top:0;z-index:120;min-width:172px;padding:9px;background:var(--kb-panel);border:1px solid var(--kb-line);border-radius:8px}.language-box a,.language-box small{display:block;margin:5px 0;color:var(--kb-ink);text-decoration:none}.language-box small{font-size:10px;line-height:1.35;color:var(--kb-muted)}#p-material,#p-shipping,#p-freight,#p-watch,#p-war,#p-tariff,#p-market,#p-keynews,#p-regcal,#p-report,#p-news{display:none!important}</style></head><body class="theme-light">
+<style>
+  body.theme-light{background:#f5f0e6;color:#173d34}
+  body.theme-light .topbar{background:#123f35;border-bottom:3px solid #b85b2d;box-shadow:0 8px 24px rgba(19,63,53,.18)}
+  body.theme-light .topbar a,body.theme-light .topbar .sysgrp,body.theme-light .topbar .tpk{color:#f7f2e7}
+  body.theme-light .tb{min-height:68px}
+  body.theme-light .hero{margin:20px 0 10px;padding:34px clamp(20px,4vw,48px);border:1px solid #d7cdbd;border-radius:18px;background:linear-gradient(135deg,#fffdf8,#ece5d8);box-shadow:0 14px 34px rgba(38,49,43,.08)}
+  body.theme-light .pd-eyebrow{color:#a84c28;letter-spacing:.16em;font-weight:800}
+  body.theme-light .pd-title{font-family:Georgia,serif;color:#123f35;letter-spacing:.02em;font-size:clamp(46px,7vw,82px);line-height:.94}
+  body.theme-light .lede{max-width:620px;color:#52615a;font-size:1.08rem}
+  body.theme-light .hero-actions{margin-top:24px}
+  body.theme-light .tool-btn{border-color:#17624f;background:#17624f;color:#fffdf8;border-radius:999px;box-shadow:0 5px 12px rgba(23,98,79,.16)}
+  body.theme-light .tool-btn:hover,body.theme-light .tool-btn:focus-visible{background:#0e4a3d}
+  body.theme-light .tool-btn-ghost{background:#fffdf8;color:#17624f;border-color:#b8c9bf;box-shadow:none}
+  body.theme-light .pd-cockpit-foot{padding:9px 3px;color:#68746d}
+  body.theme-light .dash{padding:18px 0 12px}
+  body.theme-light .pd-cockpit-head h2{font-family:Georgia,serif;color:#123f35;font-size:1.7rem}
+  body.theme-light .pd-kpi,body.theme-light .pd-panel{border:1px solid #d8cfc1!important;border-radius:14px!important;background:#fffdf8!important;box-shadow:0 8px 22px rgba(49,56,48,.06)!important}
+  body.theme-light .pd-kpi{position:relative;overflow:hidden}
+  body.theme-light .pd-kpi:before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:#b85b2d}
+  body.theme-light .pd-kpi:nth-child(2):before,body.theme-light .pd-kpi:nth-child(4):before{background:#1a795c}
+  body.theme-light .pd-panel-head{border-bottom:1px solid #e1d8ca!important;padding:17px 18px!important}
+  body.theme-light .pd-panel-head h2{font-family:Georgia,serif;color:#123f35;font-size:1.2rem}
+  body.theme-light .pd-panel-head span{color:#8b5a3c}
+  body.theme-light .pd-link{color:#17624f!important;font-weight:800}
+  body.theme-light .pd-offer{background:#fffdf8;border-color:#dfd5c7}
+  body.theme-light .pd-offers .pd-panel-head{background:#f1eadf}
+  body.theme-light .toc{margin:12px 0 20px;padding:10px;border:1px solid #d8cfc1;border-radius:14px;background:#eee6d9;box-shadow:0 5px 16px rgba(49,56,48,.05)}
+  body.theme-light .toc a{border-radius:999px;color:#31564b!important;font-weight:700}
+  body.theme-light .toc a:hover,body.theme-light .toc a:focus-visible,body.theme-light .toc a.on{background:#17624f!important;color:#fffdf8!important}
+  body.theme-light .blk{border-color:#d8cfc1!important;border-radius:14px!important;background:#fffdf8!important;box-shadow:0 8px 22px rgba(49,56,48,.05)}
+  @media(max-width:680px){body.theme-light .hero{padding:26px 18px}body.theme-light .pd-title{font-size:52px}body.theme-light .tb{padding:0 14px}body.theme-light .tb-right .sysgrp,body.theme-light .tb-right .tpk,body.theme-light .tb-right .tpk-hol,body.theme-light .tb-right .language-box,body.theme-light .tb-right>.back{display:none!important}}
+  @media(prefers-reduced-motion:reduce){body.theme-light *{scroll-behavior:auto!important;animation-duration:.001ms!important}}
+</style>
+<style id="b2b-buy-redesign">
+/* B2B BUY 2026 — buyer mission control + sourcing catalogue + local email brief */
+:root{
+  --kb-bg:#F5F1E8;--kb-panel:#FFFDF8;--kb-line:#D8D1C4;--kb-line2:#BFC8C1;
+  --kb-ink:#172D27;--kb-mut:#55615C;--kb-faint:#7B817D;
+  --kb-accent:#0E6652;--kb-accent-dk:#073F35;--kb-accent-soft:rgba(14,102,82,.10);
+  --kb-green:#0E6652;--kb-green-bg:#E6F0EB;--kb-red:#A83C2E;--kb-red-bg:#F7E8E3;
+  --kb-amber:#B96720;--kb-amber-bg:#F7ECDD;--kb-radius:10px;
+  --kb-shadow:0 2px 10px rgba(30,45,38,.045);
+  --pd-ivory:#F5F1E8;--pd-paper:#FFFDF8;--pd-jade:#073F35;--pd-jade-2:#0E6652;
+  --pd-jade-soft:#E6F0EB;--pd-copper:#B65C2B;--pd-copper-soft:#F7ECDD;
+  --pd-line:#D8D1C4;--pd-muted:#69716C;--pd-manual:#858B88;
+}
+body.theme-light{background:
+  linear-gradient(rgba(7,63,53,.018) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(7,63,53,.018) 1px,transparent 1px),
+  var(--pd-ivory)!important;background-size:32px 32px!important;color:var(--pd-jade)!important}
+body.theme-light .topbar{top:0!important;background:rgba(255,253,248,.98)!important;border:0!important;border-bottom:1px solid var(--pd-line)!important;box-shadow:none!important}
+body.theme-light .tb{min-height:58px!important}
+body.theme-light .topbar a,body.theme-light .topbar .sysgrp,body.theme-light .topbar .tpk{color:var(--pd-jade)!important}
+body.theme-light .topbar .brand{font-family:Georgia,serif!important;letter-spacing:.04em!important}
+body.theme-light .topbar .back{color:var(--pd-jade)!important}
+body.theme-light .topbar .sysgrp,body.theme-light .topbar .tpk{background:transparent!important;border-color:var(--pd-line)!important;box-shadow:none!important}
+body.theme-light .topbar .sys-hq,body.theme-light .topbar .sys-hq b{color:var(--pd-jade)!important}
+body.theme-light .topbar .sys-time{color:var(--pd-muted)!important}
+body.theme-light .topbar .sys-hq .tpk-led{background:#B85C4B!important}
+body.theme-light main.wrap{max-width:1600px!important;padding:0 28px 34px!important;gap:24px!important}
+body.theme-light #p-col{min-width:0!important}
+
+body.theme-light #p-rail{width:236px!important;flex-basis:236px!important;top:76px!important;max-height:calc(100vh - 90px)!important;margin-top:20px!important;padding:0 0 16px!important;border:1px solid var(--pd-line)!important;border-radius:0!important;background:rgba(255,253,248,.96)!important;box-shadow:none!important}
+.pr-brand{padding:22px 20px 19px!important}
+.pr-brand-mark{display:none!important}
+.pr-brand-word{font-size:1.32rem!important;letter-spacing:.14em!important}
+.pr-brand-word small{font-size:.61rem!important;letter-spacing:.25em!important}
+#p-rail .toc{padding:10px 0 0!important}
+#p-rail .pr-grp{margin:18px 22px 7px!important;color:#4E5651!important;font:700 .62rem var(--kb-sans)!important;letter-spacing:.18em!important}
+#p-rail .toc a{margin:0!important;padding:10px 20px!important;border:0!important;border-radius:0!important;color:#2F3934!important;font-size:.83rem!important;letter-spacing:.01em!important}
+#p-rail .toc a::before{width:20px!important;color:#4B5550!important}
+#p-rail .toc a:hover{background:#F3EFE6!important}
+#p-rail .toc a.on{background:var(--pd-jade)!important;color:#fff!important;border-left:4px solid var(--pd-copper)!important;box-shadow:none!important;padding-left:16px!important}
+.pr-install-card{margin:8px 14px 14px!important;padding:10px!important;border-color:var(--pd-line)!important;border-radius:6px!important;background:#F1EEE7!important}
+.pr-install-card .tool-btn{font-size:.72rem!important}
+.pd-live-link{margin:10px 14px 0!important;border-radius:4px!important;background:var(--pd-jade)!important;color:#fff!important;border:0!important;font-size:.73rem!important}
+
+body.theme-light .hero.pd-buy-hero{margin:0!important;padding:28px 4px 20px!important;border:0!important;border-bottom:1px solid var(--pd-line)!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+.pd-buy-hero .pd-eyebrow{margin-bottom:9px!important;color:var(--pd-copper)!important;font-size:.62rem!important;letter-spacing:.19em!important}
+body.theme-light .hero .pd-title{font:700 clamp(2.55rem,5vw,4.25rem)/.95 Georgia,serif!important;color:var(--pd-jade)!important;letter-spacing:-.035em!important}
+body.theme-light .hero .lede{max-width:820px!important;margin:10px 0 0!important;color:#4D5651!important;font:400 1.05rem/1.55 var(--kb-sans)!important}
+.pd-hero-trust{display:flex;gap:0;flex-wrap:wrap;margin-top:17px}
+.pd-hero-trust span{padding:0 16px;border-left:1px solid var(--pd-line);color:var(--pd-muted);font:700 .62rem var(--kb-sans);letter-spacing:.09em;text-transform:uppercase}
+.pd-hero-trust span:first-child{padding-left:0;border-left:0}
+body.theme-light .hero .hero-actions{display:none!important}
+.pd-privacy-line{padding:11px 4px!important;border-bottom:1px solid var(--pd-line)}
+.pd-privacy-line .tool-btn{margin:0!important;padding:6px 10px!important;border-radius:4px!important;background:transparent!important;color:var(--pd-muted)!important;border:1px solid var(--pd-line)!important;box-shadow:none!important;font-size:.67rem!important}
+
+body.theme-light #dash{padding:23px 0 0!important}
+.pd-cockpit-head{align-items:flex-end!important;margin:0 0 12px!important;padding:0!important}
+.pd-cockpit-head>div,.pd-panel-head>div{min-width:0}
+.pd-section-no{display:block;margin-bottom:5px;color:var(--pd-copper);font:700 .58rem var(--kb-sans);letter-spacing:.16em;text-transform:uppercase}
+.pd-cockpit-head h2{font:700 1.52rem/1.1 Georgia,serif!important;letter-spacing:-.01em!important;text-transform:none!important}
+.pd-updated{padding-bottom:2px!important}
+.pd-kpis{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important;margin-bottom:18px!important}
+.pd-kpi{padding:15px 16px 13px!important;border-radius:5px!important;box-shadow:none!important;background:var(--pd-paper)!important;transition:transform .18s ease,border-color .18s ease}
+.pd-kpi:hover{transform:translateY(-2px);border-color:#AABAB2!important}
+.pd-kpi::before{display:none!important}
+.pd-kpi-title{font-size:.8rem!important}
+.pd-kpi-call{font-size:.72rem!important}
+.pd-kpi-viz{margin:11px 0 7px!important}
+.pd-kpi-icon{width:34px!important;height:34px!important;flex-basis:34px!important;border-radius:50%!important;font-size:1rem!important}
+.pd-kpi-meta{font-size:.61rem!important}
+.pd-kpi-action{font-size:.72rem!important;line-height:1.45!important}
+.pd-spark{height:29px!important}
+
+.pd-core-grid{display:grid;grid-template-columns:minmax(0,1.72fr) minmax(310px,.78fr);gap:18px;margin-bottom:20px}
+.pd-panel{border-radius:5px!important;box-shadow:none!important;background:var(--pd-paper)!important}
+.pd-panel-head{min-height:60px;padding:13px 15px!important;background:transparent!important}
+.pd-panel-head h2{font:700 1.13rem/1.1 Georgia,serif!important}
+.pd-panel-head>span{align-self:flex-end;padding-bottom:2px}
+.pd-category-ribbon{display:flex;align-items:stretch;border-bottom:1px solid var(--pd-line);overflow-x:auto}
+.pd-category-ribbon button{flex:1;min-width:105px;padding:12px 10px;border:0;border-right:1px solid var(--pd-line);background:#F5F1E8;color:#46504B;font:700 .62rem var(--kb-sans);letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.pd-category-ribbon button:last-child{border-right:0}
+.pd-category-ribbon button:hover,.pd-category-ribbon button.on{background:var(--pd-jade);color:#fff}
+.pd-offer-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:0!important;padding:0!important}
+.pd-offer{display:flex!important;flex-direction:column!important;gap:0!important;min-height:286px!important;padding:0!important;border:0!important;border-right:1px solid var(--pd-line)!important;border-radius:0!important;background:var(--pd-paper)!important}
+.pd-offer img{width:100%!important;height:146px!important;border-radius:0!important;object-fit:cover!important;filter:saturate(.72) contrast(.98) sepia(.08)!important}
+.pd-offer-copy{display:flex!important;flex:1!important;flex-direction:column!important;padding:14px!important}
+.pd-offer-copy h3{font:700 1.22rem/1.18 Georgia,serif!important}
+.pd-product-type{font-size:.55rem!important;letter-spacing:.15em!important}
+.pd-product-note{font-size:.7rem!important}
+.pd-offer-meta{grid-template-columns:1fr!important;margin:12px 0!important}
+.pd-offer-meta span:not(:first-child){display:none}
+.pd-offer .pd-link{margin-top:auto!important;padding:8px 11px!important;border-radius:3px!important;text-transform:uppercase;letter-spacing:.06em;font-size:.62rem!important}
+.pd-platform-card{display:flex;flex-direction:column;min-height:286px;border-right:1px solid var(--pd-line);background:#FBF8F1}
+.pd-platform-card:last-child{border-right:0}
+.pd-platform-card img{width:100%;height:146px;object-fit:cover;filter:saturate(.65) contrast(.98) sepia(.08)}
+.pd-platform-copy{display:flex;flex:1;flex-direction:column;padding:14px}
+.pd-platform-copy span{color:var(--pd-copper);font:700 .54rem var(--kb-sans);letter-spacing:.15em;text-transform:uppercase}
+.pd-platform-copy h3{margin:6px 0;color:var(--pd-jade);font:700 1rem/1.2 Georgia,serif}
+.pd-platform-copy p{margin:0;color:var(--pd-muted);font:500 .67rem/1.45 var(--kb-sans)}
+.pd-platform-copy a,.pd-platform-copy button{margin-top:auto;padding:10px 0 0;border:0;background:transparent;color:var(--pd-jade);font:700 .63rem var(--kb-sans);letter-spacing:.04em;text-align:left;text-decoration:none;text-transform:uppercase;cursor:pointer}
+.pd-platform-copy a:hover,.pd-platform-copy button:hover{text-decoration:underline}
+.pd-catalogue-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 15px;border-top:1px solid var(--pd-line);background:#F5F1E8}
+.pd-catalogue-foot a,.pd-catalogue-foot button{padding:0;border:0;background:transparent;color:var(--pd-jade);font:700 .65rem var(--kb-sans);letter-spacing:.04em;text-decoration:none;text-transform:uppercase;cursor:pointer}
+.pd-catalogue-foot a:hover,.pd-catalogue-foot button:hover{text-decoration:underline}
+
+.pd-decision-panel{display:flex;flex-direction:column}
+.pd-market-list{border-bottom:1px solid var(--pd-line)}
+.pd-market-row{grid-template-columns:68px 1fr 92px!important;min-height:61px!important;padding:8px 12px!important}
+.pd-market-name b{font-size:.7rem!important}
+.pd-market-name span{font-size:.56rem!important}
+.pd-market-detail{font-size:.54rem!important}
+.pd-market-impact{font-size:.59rem!important;border-radius:3px!important}
+.pd-origin-box{padding:14px 13px;flex:1}
+.pd-origin-head{display:flex;justify-content:space-between;gap:8px;padding-bottom:8px;border-bottom:1px solid var(--pd-line)}
+.pd-origin-head b{color:var(--pd-jade);font:700 .68rem var(--kb-sans);letter-spacing:.07em;text-transform:uppercase}
+.pd-origin-head span{color:var(--pd-muted);font:500 .58rem var(--kb-mono)}
+.pd-room-chips{position:static!important;justify-content:flex-start!important;margin:10px 0!important}
+.pd-room-chip{min-width:27px!important;border-radius:3px!important;background:#F2EFE7!important}
+.pd-room-chip.on{background:var(--pd-jade)!important}
+.pd-room-fact{padding:8px 0!important}
+.pd-room-fact b{font-size:.65rem!important}
+.pd-room-fact span{-webkit-line-clamp:2!important;font-size:.63rem!important}
+.pd-decision-actions{display:flex;justify-content:space-between;gap:8px;padding:9px 12px;border-top:1px solid var(--pd-line);background:#F5F1E8}
+.pd-decision-actions .pd-link{font-size:.6rem!important;text-transform:uppercase;letter-spacing:.04em}
+
+.pd-builder{margin:0 0 16px;border:1px solid var(--pd-line);background:var(--pd-paper)}
+.pd-builder-head{display:flex;justify-content:space-between;gap:20px;padding:20px 22px;border-bottom:1px solid var(--pd-line)}
+.pd-builder-head h2{color:var(--pd-jade);font:700 clamp(1.4rem,2.3vw,2.05rem)/1.06 Georgia,serif;letter-spacing:-.015em}
+.pd-builder-head p{max-width:700px;margin:7px 0 0;color:var(--pd-muted);font:500 .76rem/1.5 var(--kb-sans)}
+.pd-builder-local{align-self:flex-start;padding:5px 8px;border:1px solid var(--pd-line);color:var(--pd-muted);font:700 .57rem var(--kb-sans);letter-spacing:.08em;text-transform:uppercase}
+.pd-builder-grid{display:grid;grid-template-columns:135px minmax(0,1fr) 330px}
+.pd-builder-steps{padding:18px 12px;border-right:1px solid var(--pd-line);background:#F5F1E8}
+.pd-builder-steps span{position:relative;display:grid;grid-template-columns:34px 1fr;align-items:center;gap:7px;min-height:58px;color:#5C6660;font:700 .62rem/1.3 var(--kb-sans);letter-spacing:.04em;text-transform:uppercase}
+.pd-builder-steps span::after{content:"";position:absolute;left:16px;top:45px;bottom:-12px;width:1px;background:#B9C3BD}
+.pd-builder-steps span:last-child::after{display:none}
+.pd-builder-steps b{width:32px;height:32px;display:grid;place-items:center;border:1px solid #8A9890;border-radius:50%;background:var(--pd-paper);color:var(--pd-jade);font:700 .69rem var(--kb-mono)}
+.pd-builder-steps span.on{color:var(--pd-jade)}
+.pd-builder-steps span.on b{background:var(--pd-jade);color:#fff;border-color:var(--pd-jade)}
+.pd-builder-work{min-width:0;padding:18px 20px;border-right:1px solid var(--pd-line)}
+.pd-product-study{display:grid;grid-template-columns:minmax(180px,.95fr) 1.05fr;min-height:150px;border:1px solid var(--pd-line);background:#FAF7F0}
+.pd-study-image{min-height:150px;overflow:hidden}
+.pd-study-image img{width:100%;height:100%;object-fit:cover;filter:saturate(.62) contrast(1.04) sepia(.06)}
+.pd-study-copy{display:flex;flex-direction:column;justify-content:center;padding:18px}
+.pd-study-copy>span{color:var(--pd-copper);font:700 .55rem var(--kb-sans);letter-spacing:.15em}
+.pd-study-copy h3{margin:7px 0;color:var(--pd-jade);font:700 1.2rem/1.15 Georgia,serif}
+.pd-study-copy p{margin:0;color:var(--pd-muted);font:500 .7rem/1.5 var(--kb-sans)}
+.pd-choice-group{min-width:0;margin:15px 0 0;padding:0;border:0}
+.pd-choice-group legend{margin-bottom:7px;color:#46514B;font:700 .59rem var(--kb-sans);letter-spacing:.1em;text-transform:uppercase}
+.pd-choice-row{display:flex;gap:7px;flex-wrap:wrap}
+.pd-choice-row button{min-height:34px;padding:7px 10px;border:1px solid var(--pd-line);border-radius:3px;background:#FAF7F0;color:#38433D;font:700 .63rem var(--kb-sans);cursor:pointer}
+.pd-choice-row button:hover,.pd-choice-row button.on{border-color:var(--pd-copper);background:#FFF9F3;color:#8F431F;box-shadow:inset 0 -2px 0 var(--pd-copper)}
+.pd-choice-split{display:grid;grid-template-columns:1.25fr .75fr;gap:16px}
+.pd-swatch-row button{display:flex;align-items:center;gap:7px}
+.pd-swatch-row i{display:block;width:20px;height:20px;border:1px solid #AAA;background:#B8B8B2}
+.pd-swatch-row i.forged{background:linear-gradient(135deg,#5C625F,#C3C4C0)}
+.pd-swatch-row i.stamped{background:linear-gradient(135deg,#A8AAA6,#ECEDE9)}
+.pd-swatch-row i.aluminium{background:linear-gradient(135deg,#D6D6D0,#F8F8F4)}
+.pd-swatch-row i.grip{background:#164D3F}
+.pd-priority-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pd-priority-row button{min-height:82px;padding:11px;border:1px solid var(--pd-line);border-radius:3px;background:#FAF7F0;text-align:left;cursor:pointer}
+.pd-priority-row button b{display:block;color:var(--pd-jade);font:700 .72rem var(--kb-sans)}
+.pd-priority-row button span{display:block;margin-top:6px;color:var(--pd-muted);font:500 .63rem/1.4 var(--kb-sans)}
+.pd-priority-row button:hover,.pd-priority-row button.on{border-color:var(--pd-jade);background:var(--pd-jade-soft)}
+.pd-brief-sheet{position:relative;margin:18px;padding:22px 18px 17px;background:#FCF8EF;border:1px solid #CEC4B6;box-shadow:4px 6px 0 #E3DDD1}
+.pd-paperclip{position:absolute;top:-9px;left:25px;width:12px;height:42px;border:2px solid var(--pd-copper);border-radius:8px;transform:rotate(2deg)}
+.pd-brief-sheet h3{margin:7px 0 15px;color:var(--pd-jade);font:700 1.25rem/1.15 Georgia,serif}
+.pd-brief-sheet dl{margin:0;border-top:1px solid var(--pd-line)}
+.pd-brief-sheet dl>div{display:grid;grid-template-columns:1fr 1.1fr;gap:8px;padding:9px 0;border-bottom:1px solid var(--pd-line)}
+.pd-brief-sheet dt{color:var(--pd-muted);font:600 .62rem var(--kb-sans)}
+.pd-brief-sheet dd{margin:0;color:var(--pd-jade);font:700 .64rem var(--kb-sans)}
+.pd-brief-sheet select{width:100%;padding:4px;border:1px solid var(--pd-line);background:var(--pd-paper);color:var(--pd-jade);font:600 .61rem var(--kb-sans)}
+.pd-brief-checks{display:grid;gap:7px;margin:14px 0;color:#45524C;font:600 .62rem var(--kb-sans)}
+.pd-brief-pdf,.pd-brief-email{display:flex;align-items:center;justify-content:center;min-height:38px;padding:7px 10px;text-align:center;text-decoration:none;text-transform:uppercase;letter-spacing:.05em;font:700 .62rem var(--kb-sans)}
+.pd-brief-pdf{border:1px solid var(--pd-jade);color:var(--pd-jade)}
+.pd-brief-email{margin-top:7px;background:var(--pd-copper);color:#fff}
+.pd-brief-pdf:hover{background:var(--pd-jade-soft)}
+.pd-brief-email:hover{background:#91451F}
+.pd-brief-sheet small{display:block;margin-top:10px;color:var(--pd-muted);font:500 .57rem/1.45 var(--kb-sans)}
+.pd-data-foot{padding:8px 3px 0!important}
+.pd-category-ribbon button:focus-visible,.pd-catalogue-foot a:focus-visible,.pd-catalogue-foot button:focus-visible,
+.pd-platform-copy a:focus-visible,.pd-platform-copy button:focus-visible,.pd-choice-row button:focus-visible,
+.pd-priority-row button:focus-visible,.pd-brief-pdf:focus-visible,.pd-brief-email:focus-visible{
+  outline:2px solid var(--pd-copper)!important;outline-offset:2px!important
+}
+
+/* Remove legacy blue accents from detailed tools. Buyer-cost red/green semantics remain. */
+.theme-light .dh.c,.theme-light .fr-src a,.theme-light footer a,.theme-light .bcrow.tot b,
+.theme-light .sailcard .big,.theme-light .calc-row.tot .val,.dash-verdict b{color:var(--pd-jade-2)!important}
+.theme-light .supplyb{border-left-color:var(--pd-jade-2)!important}
+.pi.lead,.cal-m.order,.market-read,.pr-home-card{border-color:#B8CEC4!important;background:var(--pd-jade-soft)!important}
+.toc-toggle{border-color:#B8CEC4!important;background:var(--pd-jade-soft)!important;box-shadow:none!important}
+.toc-toggle:hover{background:#DCEAE3!important;box-shadow:none!important}
+
+@media(max-width:1250px){
+  .pd-core-grid{grid-template-columns:1fr}
+  .pd-decision-panel{display:grid;grid-template-columns:1fr 1fr}
+  .pd-decision-panel>.pd-panel-head,.pd-decision-actions{grid-column:1/-1}
+  .pd-market-list{border-right:1px solid var(--pd-line);border-bottom:0}
+  .pd-builder-grid{grid-template-columns:110px minmax(0,1fr)}
+  .pd-brief-sheet{grid-column:1/-1;margin:0;border-width:1px 0 0;box-shadow:none}
+}
+@media(max-width:899px){
+  body.theme-light main.wrap{padding:0 14px 24px!important}
+  body.theme-light #p-rail{width:auto!important;flex-basis:auto!important;top:auto!important;margin-top:12px!important}
+  #p-rail .toc{padding:8px!important}
+  #p-rail .toc a{border-radius:3px!important}
+  .pd-kpis{grid-template-columns:1fr!important}
+  .pd-offer-grid{grid-template-columns:1fr!important}
+  .pd-offer,.pd-platform-card{border-right:0!important;border-bottom:1px solid var(--pd-line)!important}
+  .pd-builder-grid{grid-template-columns:1fr}
+  .pd-builder-steps{display:grid;grid-template-columns:repeat(4,1fr);border-right:0;border-bottom:1px solid var(--pd-line)}
+  .pd-builder-steps span{grid-template-columns:30px 1fr;min-height:46px}
+  .pd-builder-steps span::after{display:none}
+  .pd-builder-work{border-right:0}
+}
+@media(max-width:680px){
+  body.theme-light .hero .pd-title{font-size:3rem!important}
+  .pd-hero-trust{display:grid;gap:6px}
+  .pd-hero-trust span{padding:0;border:0}
+  .pd-core-grid{display:block}
+  .pd-decision-panel{display:block;margin-top:14px}
+  .pd-market-list{border-right:0;border-bottom:1px solid var(--pd-line)}
+  .pd-offer{grid-template-columns:1fr!important}
+  .pd-offer img{height:190px!important}
+  .pd-category-ribbon button{min-width:96px}
+  .pd-catalogue-foot{align-items:flex-start;flex-direction:column}
+  .pd-builder-head{padding:17px;align-items:flex-start;flex-direction:column}
+  .pd-builder-steps{grid-template-columns:repeat(2,1fr)}
+  .pd-builder-work{padding:14px}
+  .pd-product-study,.pd-choice-split{grid-template-columns:1fr}
+  .pd-study-image{max-height:190px}
+  .pd-priority-row{grid-template-columns:1fr}
+  .pd-brief-sheet{margin:0;padding:22px 15px 16px}
+  .pd-data-foot{align-items:flex-start!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .pd-kpi{transition:none!important}.pd-kpi:hover{transform:none!important}
+}
+</style>
 <script>window.__TWHOL={"2026-01-01":"New Year\u2019s Day","2026-02-16":"Lunar New Year (Eve)","2026-02-17":"Lunar New Year","2026-02-18":"Lunar New Year","2026-02-19":"Lunar New Year","2026-02-27":"228 Peace Memorial (obs.)","2026-02-28":"228 Peace Memorial Day","2026-04-03":"Children\u2019s Day (obs.)","2026-04-04":"Children\u2019s Day","2026-04-05":"Tomb-Sweeping Day","2026-04-06":"Tomb-Sweeping (obs.)","2026-05-01":"Labour Day","2026-06-19":"Dragon Boat Festival","2026-09-25":"Mid-Autumn Festival","2026-09-28":"Teachers\u2019 Day","2026-10-09":"National Day (obs.)","2026-10-10":"National Day","2026-10-26":"Retrocession Day (obs.)","2026-12-25":"Constitution Day","2027-01-01":"New Year\u2019s Day"};window.__TWHOLnext=function(t){var k=Object.keys(window.__TWHOL).sort();for(var i=0;i<k.length;i++){if(k[i]>=t)return window.__TWHOL[k[i]]+" ("+k[i].slice(5).replace("-","/")+")";}return "";};</script>
+<nav class="terminal-strip" aria-label="Birdland Terminal"><span class="strip-label">SaaS Terminal</span><a href="index.html">Home</a><span class="strip-sep">·</span><a href="news.html">Data Desk</a><a href="partner.html">B2B BUY</a><a href="executive.html">Daily Supply News</a><a href="team.html">Team</a><span class="strip-sep">·</span><a href="about.html">About</a><a href="product-101.html">Product 101</a><a href="why-birdland.html">Why Birdland</a><a href="contact.html">Contact</a></nav>
 <div id="gate"><div class="gbox">
   <div class="sq-mk"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></div>
   <div class="sq-wm">Birdland<span class="saas">B2B BUY</span></div>
@@ -1088,31 +1361,90 @@ body.theme-light #dash{
   <div class="sq-foot">Reserved for trusted partners · Birdland Ind. since 1974</div>
 </div></div>
 <div class="topbar"><div class="wrap tb">
-  <div class="tb-left"><a class="brand" href="index.html"><span class="vip">B2B</span> BUY<span class="sep">|</span><span class="iq">Birdland</span></a> <a class="back" href="executive.html" title="Open the global intelligence edition">LIVE REPORTS</a></div>
+  <div class="tb-left"><a class="brand" href="index.html"><span class="vip">B2B</span> BUY<span class="sep">|</span><span class="iq">Birdland</span></a> <a class="back" href="executive.html" title="Open Asia production, export and freight intelligence">DAILY SUPPLY NEWS</a></div>
   <div class="tb-right"><span class="sysgrp sys-api" title="Status comes from the configured source feeds."><span class="api-ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="w3" d="M3.7 10.2A11.5 11.5 0 0 1 20.3 10.2"/><path class="w2" d="M6.3 12.9A8 8 0 0 1 17.7 12.9"/><path class="w1" d="M8.9 15.6A4.3 4.3 0 0 1 15.1 15.6"/><circle cx="12" cy="18.6" r="1.5" fill="currentColor" stroke="none"/></svg></span>Source&nbsp;API</span><span class="sysgrp sys-token" title="AI narrative status; this is not a usage or billing meter."><span class="tokmeter"><i></i><i></i><i></i><i></i></span><b>AI&nbsp;Narrative</b></span><span class="tpk sys-hq" id="tpk" title="Taiwan office hours: Mon-Fri 09:00-17:30 (GMT+8)"><span class="tpk-led" id="tpkLed"></span><b>Birdland HQ&nbsp;<span id="tpkSt">—</span></b><span class="tpk-time sys-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v4.7l3 1.8"/></svg><span id="tpkTime">--:--</span> Taipei Time</span></span><span class="tpk-hol" id="tpkHol"></span><div class="language-box" aria-label="Language translation"><div><span>Language</span><small>Google Translate</small></div><div id="google_translate_element"></div></div><a class="back" href="index.html"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>birdland.com.tw</a></div>
 </div></div>
-<div class="fresh-tier" id="freshTier"></div>
 <main class="wrap">
-  <section class="hero"><div class="pd-eyebrow">Product &amp; buying workspace</div><h1 class="pd-title">B2B BUY</h1><p class="lede">Decide what to buy, when to book, and which origin works best.</p><div class="hero-actions"><div class="hero-install"><button class="tool-btn" id="install-app" type="button" title="Securely install B2B BUY on this device. No account change; remove it anytime from your browser.">Securely install B2B BUY</button><span class="hero-note" id="install-note">Private to this device · no account change · remove anytime.</span></div><button class="tool-btn tool-btn-ghost" id="jump-brief" type="button">Open today's buy queue</button></div></section>
-  <section class="dash" id="dash">
-    <div class="pd-cockpit-head"><h2 id="pd-today-title">Today · buyer signals</h2><span class="pd-updated" id="dash-upd"></span></div>
-    <div class="pd-kpis" id="pd-kpis"></div>
-    <div class="pd-main-grid">
-      <article class="pd-panel pd-brief-panel"><div class="pd-panel-head"><h2>Today's Buy Queue</h2><span id="pd-brief-state"></span></div><div class="pd-panel-body"><div class="pd-brief-list" id="pd-brief-list"></div><button class="pd-link" type="button" data-go="p-alerts">Review buying actions <span aria-hidden="true">›</span></button></div></article>
-      <article class="pd-panel pd-room-panel"><div class="pd-panel-head"><h2>Origin &amp; Destination</h2><span id="pd-room-asof"></span></div><div class="pd-panel-body"><div class="pd-room-layout"><div class="pd-world" id="pd-world" data-active="eu" aria-label="Commercial region selector"><span class="pd-land na"></span><span class="pd-land sa"></span><span class="pd-land eu"></span><span class="pd-land af"></span><span class="pd-land as"></span><span class="pd-land oc"></span><div class="pd-room-chips" id="pd-room-chips"></div></div><div class="pd-room-read" id="pd-room-read"></div></div><button class="pd-link" type="button" data-go="p-mkt">Compare regions <span aria-hidden="true">›</span></button></div></article>
-      <article class="pd-panel pd-market-panel"><div class="pd-panel-head"><h2>Buy Signals</h2><span>cost &amp; timing view</span></div><div class="pd-market-list" id="pd-market-list"></div><div class="pd-panel-body"><a class="pd-link" href="executive.html#capital">Open LIVE REPORTS for market context <span aria-hidden="true">›</span></a></div></article>
-    </div>
-    <article class="pd-panel pd-offers"><div class="pd-panel-head"><h2>Product &amp; Offer Finder</h2><span id="pd-product-updated">published PDF shelf</span></div><div class="pd-offer-grid" id="pd-offer-grid"></div></article>
-    <div class="pd-cockpit-foot"><div class="pd-legend"><span class="pd-state current">Current</span><span class="pd-state delayed">Delayed</span><span class="pd-state manual">Manual</span></div><span>Data state is shown per source. “Ask Birdland” starts an enquiry; it does not place an order.</span></div>
+  <section class="hero pd-buy-hero" id="overview">
+    <div class="pd-eyebrow">Public product &amp; buying workspace</div>
+    <h1 class="pd-title">B2B BUY</h1>
+    <p class="lede">Review what matters, open current product information, and prepare a clearer OEM enquiry.</p>
+    <div class="pd-hero-trust"><span>Public product information</span><span>Confidential OEM by email</span><span>No account required</span></div>
+    <div class="hero-actions"><div class="hero-install"><button class="tool-btn" id="install-app" type="button" title="Securely install B2B BUY on this device. No account change; remove it anytime from your browser.">Securely install B2B BUY</button><span class="hero-note" id="install-note">Private to this device · no account change · remove anytime.</span></div><button class="tool-btn tool-btn-ghost" id="jump-brief" type="button">Open today's buy queue</button></div>
   </section>
-  <nav class="toc" aria-label="B2B BUY sections"><a href="#overview" data-icon="⌂">Today</a><a href="#p-alerts" data-icon="▤">Buy Queue</a><a href="#p-offers" data-icon="◇">Product Finder</a><a href="#p-mkt" data-icon="◎">Origin Decision</a><a href="#p-landed2" data-icon="▦">My landed cost</a><a href="#p-margin" data-icon="$">Retail margin</a><a href="#p-reorder" data-icon="◴">Reorder timing</a><a href="#p-sail" data-icon="≋">Plan a sailing</a><a href="#p-calc" data-icon="◌">Quick estimate</a><a href="#p-cduty" data-icon="⚖">TW vs CN duty</a><span class="pd-hidden-nav"><a href="#p-brief">Brief detail</a><a href="#p-market">Market detail</a><a href="#p-keynews">Key News</a><a href="#p-regcal">Regulatory Calendar</a><a href="#p-report">Keyword report</a><a href="#p-material">Materials ahead</a><a href="#p-shipping">Shipping ahead</a><a href="#p-season">Buy calendar</a><a href="#p-freight">Freight indexes</a><a href="#p-watch">Watchlist</a><a href="#p-war">Geopolitics</a><a href="#p-tariff">Tariffs</a><a href="#p-news">News</a></span></nav>
+  <div class="pd-cockpit-foot pd-privacy-line"><span>Keep drawings, prices, quantities and specifications in your normal Birdland email thread.</span><button class="tool-btn tool-btn-ghost" id="clear-b2b-device" type="button">Clear this device</button></div>
+  <section class="dash" id="dash">
+    <div class="pd-cockpit-head"><div><span class="pd-section-no">01 / TODAY</span><h2 id="pd-today-title">Today's buy queue</h2></div><span class="pd-updated" id="dash-upd"></span></div>
+    <div class="pd-kpis" id="pd-kpis"></div>
+
+    <div class="pd-core-grid">
+      <article class="pd-panel pd-offers">
+        <div class="pd-panel-head"><div><span class="pd-section-no">02 / SOURCE</span><h2>Product &amp; Offer Finder</h2></div><span id="pd-product-updated">published PDF shelf</span></div>
+        <div class="pd-category-ribbon" aria-label="Choose a product platform">
+          <button type="button" class="on" data-brief-platform="Hand tools">Hand tools</button>
+          <button type="button" data-brief-platform="Cutting tools">Cutting</button>
+          <button type="button" data-brief-platform="Watering tools">Watering</button>
+          <button type="button" data-brief-platform="Cultivation tools">Cultivation</button>
+          <button type="button" data-brief-platform="Custom OEM">Custom OEM</button>
+        </div>
+        <div class="pd-offer-grid" id="pd-offer-grid"></div>
+        <div class="pd-catalogue-foot"><a href="product-101.html">Understand materials &amp; processes <span aria-hidden="true">→</span></a><button type="button" data-scroll-builder>Build a buyer brief <span aria-hidden="true">→</span></button></div>
+      </article>
+
+      <aside class="pd-panel pd-decision-panel">
+        <div class="pd-panel-head"><div><span class="pd-section-no">03 / DECIDE</span><h2>Cost &amp; Origin</h2></div><span>buyer action view</span></div>
+        <div class="pd-market-list" id="pd-market-list"></div>
+        <div class="pd-origin-box">
+          <div class="pd-origin-head"><b>Destination context</b><span id="pd-room-asof"></span></div>
+          <div class="pd-room-chips" id="pd-room-chips"></div>
+          <div class="pd-room-read" id="pd-room-read"></div>
+        </div>
+        <div class="pd-decision-actions"><button class="pd-link" type="button" data-go="p-mkt">Compare origin context <span aria-hidden="true">→</span></button><a class="pd-link" href="executive.html#cost">Open Daily Supply News <span aria-hidden="true">→</span></a></div>
+      </aside>
+    </div>
+
+    <section class="pd-builder" id="pd-builder" aria-labelledby="pd-builder-title">
+      <div class="pd-builder-head"><div><span class="pd-section-no">04 / PREPARE</span><h2 id="pd-builder-title">Shape the programme before the quote</h2><p>Choose only public planning preferences. Nothing is submitted or stored on Birdland servers.</p></div><span class="pd-builder-local">This tab only</span></div>
+      <div class="pd-builder-grid">
+        <nav class="pd-builder-steps" aria-label="Buyer brief steps">
+          <span class="on"><b>01</b>Product platform</span>
+          <span><b>02</b>Material &amp; process</span>
+          <span><b>03</b>Buying priority</span>
+          <span><b>04</b>Email brief</span>
+        </nav>
+        <div class="pd-builder-work">
+          <div class="pd-product-study">
+            <div class="pd-study-image"><img src="images/pruner-inspection.webp" alt="Birdland pruning tool inspection and manufacturing study"></div>
+            <div class="pd-study-copy"><span>PUBLIC PRODUCT STUDY</span><h3>From product platform to controlled process</h3><p>Use the choices below to organise a first conversation. Birdland will confirm feasibility, sourcing route and the control points that matter.</p></div>
+          </div>
+          <fieldset class="pd-choice-group"><legend>Product platform</legend><div class="pd-choice-row" id="bb-platform"><button type="button" class="on" data-value="Hand tools">Hand tools</button><button type="button" data-value="Cutting tools">Cutting tools</button><button type="button" data-value="Watering tools">Watering</button><button type="button" data-value="Cultivation tools">Cultivation</button><button type="button" data-value="Custom OEM">Custom OEM</button></div></fieldset>
+          <div class="pd-choice-split">
+            <fieldset class="pd-choice-group"><legend>Material direction</legend><div class="pd-choice-row pd-swatch-row" id="bb-material"><button type="button" class="on" data-value="Forged steel"><i class="forged"></i>Forged steel</button><button type="button" data-value="Stamped steel"><i class="stamped"></i>Stamped steel</button><button type="button" data-value="Aluminium"><i class="aluminium"></i>Aluminium</button><button type="button" data-value="Plastics and grips"><i class="grip"></i>Plastics &amp; grips</button></div></fieldset>
+            <fieldset class="pd-choice-group"><legend>Process to discuss</legend><div class="pd-choice-row" id="bb-process"><button type="button" class="on" data-value="Forging">Forging</button><button type="button" data-value="Heat treatment">Heat treatment</button><button type="button" data-value="Grinding">Grinding</button><button type="button" data-value="Coating">Coating</button></div></fieldset>
+          </div>
+          <fieldset class="pd-choice-group"><legend>Buying priority</legend><div class="pd-priority-row" id="bb-priority"><button type="button" class="on" data-value="Cost stability"><b>Cost stability</b><span>Frame a steadier landed-cost programme.</span></button><button type="button" data-value="Lead-time flexibility"><b>Lead-time flexibility</b><span>Keep timing and volume easier to adjust.</span></button><button type="button" data-value="Compliance readiness"><b>Compliance readiness</b><span>Surface documentation needs earlier.</span></button></div></fieldset>
+        </div>
+        <aside class="pd-brief-sheet">
+          <div class="pd-paperclip" aria-hidden="true"></div><span class="pd-section-no">BUYER BRIEF</span><h3>Ready for an informed first email</h3>
+          <dl><div><dt>Product platform</dt><dd id="bb-summary-platform">Hand tools</dd></div><div><dt>Material direction</dt><dd id="bb-summary-material">Forged steel</dd></div><div><dt>Process</dt><dd id="bb-summary-process">Forging</dd></div><div><dt>Priority</dt><dd id="bb-summary-priority">Cost stability</dd></div><div><dt>Destination</dt><dd><select id="bb-destination" aria-label="Destination market"><option>Europe</option><option>North America</option><option>Commonwealth markets</option><option>Global / undecided</option></select></dd></div></dl>
+          <div class="pd-brief-checks"><span>✓ Public references only</span><span>✓ No quote or order submitted</span><span>✓ Continue securely in email</span></div>
+          <a class="pd-brief-pdf" id="bb-pdf" href="product-101.html">Open related public information</a>
+          <a class="pd-brief-email" id="bb-email" href="mailto:executive@birdland.com.tw">Prepare email to Birdland <span aria-hidden="true">→</span></a>
+          <small>Nothing is submitted or stored on Birdland servers. Your email app opens with a planning summary that you can review before sending.</small>
+        </aside>
+      </div>
+    </section>
+
+    <div class="pd-cockpit-foot pd-data-foot"><div class="pd-legend"><span class="pd-state current">Current</span><span class="pd-state delayed">Delayed</span><span class="pd-state manual">Manual</span></div><span>Data state is shown per source. “Prepare email” creates a draft; it does not send, quote or order.</span></div>
+  </section>
+  <nav class="toc" aria-label="B2B BUY sections"><a href="#overview" data-icon="⌂">Today</a><a href="#p-alerts" data-icon="▤">Buy Queue</a><a href="#p-offers" data-icon="◇">Product Finder</a><a href="#pd-builder" data-icon="✎">Buyer Brief</a><a href="#p-mkt" data-icon="◎">Cost &amp; Origin</a><a href="#p-landed2" data-icon="▦">My landed cost</a><a href="#p-margin" data-icon="$">Retail margin</a><a href="#p-reorder" data-icon="◴">Reorder timing</a><a href="#p-sail" data-icon="≋">Plan a sailing</a><a href="#p-calc" data-icon="◌">Quick estimate</a><a href="#p-cduty" data-icon="⚖">TW vs CN duty</a><span class="pd-hidden-nav"><a href="#p-brief">Brief detail</a><a href="#p-market">Market detail</a><a href="#p-keynews">Key News</a><a href="#p-regcal">Regulatory Calendar</a><a href="#p-report">Keyword report</a><a href="#p-material">Materials ahead</a><a href="#p-shipping">Shipping ahead</a><a href="#p-season">Buy calendar</a><a href="#p-freight">Freight indexes</a><a href="#p-watch">Watchlist</a><a href="#p-war">Geopolitics</a><a href="#p-tariff">Tariffs</a><a href="#p-news">News</a></span></nav>
   <div id="tab-hint" class="tab-hint"><div class="mac-note"><span class="mn-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span><div class="mn-txt"><b>B2B BUY</b><span>Choose a buying action from the menu.</span></div></div></div>
 
   <section class="blk" data-open="1" id="p-brief"><button class="blk-h"><span class="k">BRIEF</span><h2>Today &amp; Tomorrow</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
 
-  <section class="blk" data-open="0" id="p-material"><button class="blk-h"><span class="k">MATL</span><h2>Material prices ahead</h2><span class="ihelp" title="Key input materials, rebased to 100 = now, over the forecast horizon. Rising = cost pressure ahead. Hover a point for the index.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="matl-note"></div><div class="svgwrap"><svg id="matl" class="chart" viewBox="0 0 720 280" role="img" aria-label="Material forecast"></svg></div><div class="legend" id="matl-legend"></div><div class="fc-acc">Model hit-rate &asymp; 68% over recent forecasts &middot; indicative guidance, not a guarantee.</div></div></section>
+  <section class="blk" data-open="0" id="p-material"><button class="blk-h"><span class="k">MATL</span><h2>Material prices ahead</h2><span class="ihelp" title="Key input materials, rebased to 100 = now, over the forecast horizon. Rising = cost pressure ahead. Hover a point for the index.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="matl-note"></div><div class="svgwrap"><svg id="matl" class="chart" viewBox="0 0 720 280" role="img" aria-label="Material forecast"></svg></div><div class="legend" id="matl-legend"></div><div class="fc-acc">Desk-set direction only. No forecast hit-rate is claimed; confirm material cover with Birdland before acting.</div></div></section>
 
-  <section class="blk" data-open="0" id="p-shipping"><button class="blk-h"><span class="k">SHIP</span><h2>Shipping prices ahead</h2><span class="ihelp" title="Live spot rates per lane, refreshed daily, above an indicative forecast curve (US$/FEU). The curve shows direction; the table shows what shipping actually costs today.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="ship-live-note"></div><div class="svgwrap"><table class="wl" id="ship-live-tbl"></table></div><div class="sub" id="ship-note"></div><div class="svgwrap" id="ship-chartwrap"><svg id="ship" class="chart" viewBox="0 0 720 280" role="img" aria-label="Shipping forecast"></svg></div><div class="legend" id="ship-legend"></div><div class="fc-acc">Model hit-rate &asymp; 62% over recent forecasts &middot; indicative guidance, not a guarantee. Curve levels are desk-set and may sit well below the live spot rates above &mdash; read it for direction, not absolute cost.</div></div></section>
+  <section class="blk" data-open="0" id="p-shipping"><button class="blk-h"><span class="k">SHIP</span><h2>Shipping prices ahead</h2><span class="ihelp" title="Live spot rates per lane, refreshed daily, above an indicative forecast curve (US$/FEU). The curve shows direction; the table shows what shipping actually costs today.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="ship-live-note"></div><div class="svgwrap"><table class="wl" id="ship-live-tbl"></table></div><div class="sub" id="ship-note"></div><div class="svgwrap" id="ship-chartwrap"><svg id="ship" class="chart" viewBox="0 0 720 280" role="img" aria-label="Shipping forecast"></svg></div><div class="legend" id="ship-legend"></div><div class="fc-acc">Desk-set curve direction only; it may differ from current spot rates. No forecast hit-rate is claimed. Confirm space and pricing with Birdland or your carrier.</div></div></section>
 
   <section class="blk" data-open="0" id="p-freight"><button class="blk-h"><span class="k">FREIGHT</span><h2>Shipping price indexes</h2><span class="ihelp" title="FRED ocean-freight cost & shipment indices (monthly, official, free) plus BDI/container as indicative; tap a source link for the latest official figure.">i</span><span class="meta" id="p-fr-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="p-fr-note"></div><div class="svgwrap"><table class="wl" id="p-freight-tbl"></table></div><div class="fr-src">Official sources ↗ <a href="https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/world-container-index-assessed-by-drewry" target="_blank" rel="noopener">Drewry WCI</a> · <a href="https://fbx.freightos.com/" target="_blank" rel="noopener">Freightos FBX</a> · <a href="https://www.balticexchange.com/en/data-services/market-information0/dry-services.html" target="_blank" rel="noopener">Baltic Exchange (BDI)</a></div></div></section>
 
@@ -1193,9 +1525,9 @@ body.theme-light #dash{
         <div class="brief-meta" id="sb-status"></div>
         <div class="brief-text" id="sb-text"></div>
         <div class="send-row">
-          <input id="sb_email" type="email" placeholder="buyer@company.com (optional To: for this browser)">
+          <input id="sb_email" type="hidden" value="">
           <button class="tool-btn tool-btn-ghost" id="sb_copy" type="button">Copy brief</button>
-          <button class="tool-btn" id="sb_mail" type="button">Email this week's brief</button>
+          <button class="tool-btn" id="sb_mail" type="button">Email public brief link</button>
         </div>
       </div>
       <div class="brief-card">
@@ -1216,7 +1548,7 @@ body.theme-light #dash{
     </div>
     <div id="shr_list" class="shr-list"></div>
     <div class="send-row">
-      <input id="shr_email" type="email" placeholder="colleague@email.com (for the draft's To: field)">
+      <input id="shr_email" type="hidden" value="">
       <button class="tool-btn tool-btn-ghost" id="shr_copy" type="button">&#128203; Copy</button>
       <button class="tool-btn" id="shr_mail" type="button">&#9993; Draft email</button>
     </div>
@@ -1248,7 +1580,7 @@ body.theme-light #dash{
         <option value="de">Deutsch</option><option value="fr">Français</option><option value="es">Español</option>
         <option value="it">Italiano</option><option value="nl">Nederlands</option><option value="pl">Polski</option>
       </select>
-      <input id="rp_email" type="email" placeholder="your@email.com (for the draft's To: field)">
+      <input id="rp_email" type="hidden" value="">
       <button class="tool-btn tool-btn-ghost" id="rp_copy" type="button">&#128203; Copy</button>
       <button class="tool-btn" id="rp_mail" type="button" title="Writes in an AI-style article format from your own tracked data — no API calls, no token cost, nothing sent anywhere until you hit send.">&#9993; AI Email Draft</button>
     </div>
@@ -1302,6 +1634,8 @@ body.theme-light #dash{
   [].forEach.call(document.querySelectorAll('.blk-h'),function(h){h.addEventListener('click',function(ev){if(ev.target.classList.contains('ihelp'))return;var b=h.parentNode;if(window.__bo){window.__bo(b,b.getAttribute('data-open')!=='1');}else{b.setAttribute('data-open',b.getAttribute('data-open')==='1'?'0':'1');}});});
 
   var D;try{D=JSON.parse(document.getElementById('outlook-data').textContent);}catch(e){return;}
+  (function(){var box=document.querySelector('.language-box');if(!box)return;var href=function(lang){return 'https://translate.google.com/?sl=auto&tl='+encodeURIComponent(lang)+'&u='+encodeURIComponent(location.href);};box.innerHTML='<details><summary>Language</summary><a href="'+href('zh-TW')+'" target="_blank" rel="noopener">繁體中文 ↗</a><a href="'+href('ja')+'" target="_blank" rel="noopener">日本語 ↗</a><a href="'+href('de')+'" target="_blank" rel="noopener">Deutsch ↗</a><small>Opens Google Translate only when selected.</small></details>';})();
+  try{localStorage.removeItem('bd_p_sb_email');}catch(e){}
   var P=D.partner||{};var mut='#9AA1A9';
   function el(t,a,x){var e=document.createElementNS('http://www.w3.org/2000/svg',t);for(var k in a)e.setAttribute(k,a[k]);if(x!=null)e.textContent=x;return e;}
   function tt(n,s){n.appendChild(el('title',{},s));return n;}
@@ -1310,7 +1644,7 @@ body.theme-light #dash{
   document.getElementById('disc').innerHTML='BIRDLAND PARTNER DESK · AI-ASSISTED. Forecasts, duty and impact figures are indicative planning guides — not legal, customs or trade advice. Confirm with your customs broker or counsel before acting.';
 
   // on-palette categorical series colors (index-based; ignores whatever colors the daily data ships)
-  var SERCOL=['#3B82F6','#10B981','#D97706','#EF4444','#2563EB','#1A1D20','#9AA1A9'];
+  var SERCOL=['#0E6652','#B95B12','#A6372D','#1F6B49','#6E4424','#1A1D20','#9AA1A9'];
   function serc(i){return SERCOL[i%SERCOL.length];}
   // multi-line chart
   function lineChart(svg,series,tenors,unit,rebased){var W=720,H=280,Pl=46,Pr=14,Pt=16,Pb=34;
@@ -1413,7 +1747,7 @@ function fxItem(sym,val,chg){var cls=chg>0?'up':(chg<0?'down':'flat'),ar=chg>0?'
 function tkChg(m){if(m&&m.spark&&m.spark.length>=2){var a=m.spark[m.spark.length-2],b=m.spark[m.spark.length-1],__i=m.spark.length-2;while(__i>0&&a===b){__i--;a=m.spark[__i];}if(a)return (b-a)/Math.abs(a)*100;}return m&&m.chg;}
 var tk=(D.macro||[]).map(function(m){var rc=tkChg(m),d=(rc!=null?(rc>0.05?'up':(rc<-0.05?'down':'flat')):(m.dir||'flat')),cls=d,ar=d==='up'?'▲':(d==='down'?'▼':'■');var ch=(rc!=null?(rc>0?'+':'')+rc.toFixed(1)+'%':'');return '<span class="ti">'+(m.live?'<span style="color:#10B981">●</span>':'')+'<span class="s">'+m.short+'</span><span class="v">'+Number(m.value).toFixed(1)+(m.unit?(' '+m.unit):'')+'</span><span class="'+cls+'">'+ar+ch+'</span></span>';}).join('');
 var tkEl=document.getElementById('ticker');if(tkEl)tkEl.innerHTML=tk+tk;
-if(typeof fetch==='function'){var b='https://api.frankfurter.dev/v1/',prior=new Date(Date.now()-7*864e5).toISOString().slice(0,10),sy='EUR,JPY,GBP,CNY,CAD,AUD';
+ if(false&&typeof fetch==='function'){var b='https://api.frankfurter.dev/v1/',prior=new Date(Date.now()-7*864e5).toISOString().slice(0,10),sy='EUR,JPY,GBP,CNY,CAD,AUD';
  Promise.all([fetch(b+'latest?base=USD&symbols='+sy).then(function(r){return r.json();}),fetch(b+prior+'?base=USD&symbols='+sy).then(function(r){return r.json();})]).then(function(res){var Lr=res[0].rates,Pr=res[1].rates;if(!Lr||!Pr)return;function pr(s2,inv){var lv=inv?1/Lr[s2]:Lr[s2],pv=inv?1/Pr[s2]:Pr[s2];return {v:lv,chg:(lv-pv)/pv*100};}var fx=[['USD/EUR',pr('EUR',false),4],['USD/GBP',pr('GBP',false),4],['USD/JPY',pr('JPY',false),2],['USD/CNY',pr('CNY',false),4],['USD/CAD',pr('CAD',false),4],['USD/AUD',pr('AUD',false),4]];var lbl='<span class="ti" style="color:#10B981">● FX LIVE · ECB '+res[0].date+'</span>';var fxh=lbl+fx.map(function(f){return fxItem(f[0],f[1].v.toFixed(f[2]),f[1].chg);}).join('');if(tkEl)tkEl.innerHTML=fxh+tk+fxh+tk;
   var fxCatBody=document.querySelector('#p-watch-cats .wcat[data-cat="fx"] tbody');
   if(fxCatBody){var rows=fx.map(function(f){var v=f[1].v,c=f[1].chg,dir=c>0.05?'up':(c<-0.05?'down':'flat'),ar=dir==='up'?'▲':(dir==='down'?'▼':'■');
@@ -1427,7 +1761,7 @@ var TOPIC_LAB={tariff:'Tariffs',shipping:'Shipping',china:'China',taiwan:'Taiwan
 var knl=document.getElementById('keynewslist');
 if(knl){var mn=D.market_news||[];
   if(!mn.length){knl.innerHTML='<div class="empty-note">No Key News fetched yet — this refreshes automatically with the daily data update.</div>';}
-  else{mn.forEach(function(n){var a=document.createElement('a');a.className='item';a.href=n.url||'#';if(n.url)a.target='_blank';
+  else{mn.forEach(function(n){var a=document.createElement(n.url?'a':'div');a.className='item';if(n.url){a.href=n.url;a.target='_blank';a.rel='noopener';}
     a.innerHTML='<span class="dt">'+(n.date||'')+(n.source?' &middot; '+kn_esc(n.source):'')+(n.topic?' &middot; '+kn_esc(TOPIC_LAB[n.topic]||n.topic):'')+'</span><div class="ti">'+kn_esc(n.title)+'</div>';
     knl.appendChild(a);});}
   var knm=document.getElementById('kn-meta');if(knm)knm.textContent=mn.length+' headlines';
@@ -1443,7 +1777,7 @@ if(rcl){var tl=D.timeline||{};var items=(tl.items||[]).slice();
     var upcoming=items.filter(function(i){return i.date>=todayISO;}).sort(function(a,b){return a.date<b.date?-1:1;});
     var past=items.filter(function(i){return i.date<todayISO;}).sort(function(a,b){return a.date>b.date?-1:1;});
     function row(i,cls){var n=daysUntil(i.date);
-      return '<a class="item '+cls+'" href="#" title="'+kn_esc(i.tip||'')+'"><span class="dt">'+kn_esc(i.date)+' &middot; '+kn_esc(REG_LAB[i.region]||i.region||'')+' &middot; '+whenLabel(n)+'</span><div class="ti">'+kn_esc(i.label)+'</div></a>';}
+      return '<div class="item '+cls+'" title="'+kn_esc(i.tip||'')+'"><span class="dt">'+kn_esc(i.date)+' &middot; '+kn_esc(REG_LAB[i.region]||i.region||'')+' &middot; '+whenLabel(n)+'</span><div class="ti">'+kn_esc(i.label)+'</div></div>';}
     var html='';
     if(upcoming.length)html+=upcoming.map(function(i){return row(i,'rc-up');}).join('');
     if(past.length)html+=past.map(function(i){return row(i,'rc-past');}).join('');
@@ -1550,8 +1884,6 @@ if(roomSel&&sel&&content){
   setRoom(startRoom,startCode);
 }
 })();</script>
-<script>function googleTranslateElementInit(){try{new google.translate.TranslateElement({pageLanguage:'en',autoDisplay:false},'google_translate_element');}catch(e){}}</script>
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 <script>(function(){try{var D=JSON.parse(document.getElementById('outlook-data').textContent);var BB=(D.partner&&D.partner.birdbot)||{};
 // One calm static line per section (replaces the old scripted fake-AI chat)
 Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec)return;var body=sec.querySelector('.blk-b');if(!body)return;var b=BB[id]||{};
@@ -1592,7 +1924,7 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
      '<div class="bcrow"><span>Landed cost / unit</span><b>'+(qty>0?'US$'+per.toFixed(3):'—')+'</b></div>'+
      '<div class="bcrow"><span>Uplift vs FOB</span><b>+'+up.toFixed(1)+'%</b></div>';}
  ['bc_fob','bc_qty','bc_frt','bc_ins','bc_duty','bc_tax','bc_brk','bc_inl','bc_oth'].forEach(function(i){var e=$(i);if(e)e.addEventListener('input',landed);});
- if(sel){sel.addEventListener('change',function(){try{localStorage.setItem('bd_bc_co',sel.value);}catch(e){}applyCo();landed();});applyCo();landed();}
+ if(sel){sel.addEventListener('change',function(){applyCo();landed();});applyCo();landed();}
  // ===== Sailing simulator =====
  var OPORT=[['Kaohsiung',0],['Taichung',1],['Keelung',1],['Shanghai',0],['Ningbo',0],['Shenzhen',0],['Xiamen',0]];
  var DPORT={'Rotterdam':['NEU',32,3200],'Hamburg':['NEU',33,3200],'Bremerhaven':['NEU',33,3150],'Felixstowe':['NEU',31,3100],'Southampton':['NEU',32,3100],'Genoa':['MED',26,2900],'La Spezia':['MED',26,2900],'Los Angeles/Long Beach':['USWC',16,2600],'New York':['USEC',30,4200],'Sydney':['AU',18,2400],'Melbourne':['AU',19,2400],'Brisbane':['AU',18,2350],'Auckland':['NZ',22,2700],'Lyttelton':['NZ',24,2750],'Tokyo':['JP',4,700],'Osaka':['JP',5,720],'Sohar (Oman)':['ME',20,2200]};
@@ -1718,8 +2050,7 @@ if(upd)upd.textContent='updated '+(D.updated||'not available');
 if(kpis)kpis.innerHTML=[
  kpi('Cost pressure',costMove>.25?'WATCH':(costMove<-.25?'HOLD':'REVIEW'),costMove>.25?'Recheck steel and resin cover before pricing.':(costMove<-.25?'Inputs are easing; avoid unnecessary pre-buy.':'Mixed inputs; review before committing volume.'),'$',(resin&&resin.spark)||(steel&&steel.spark)||[],sourceState('twelvedata','unknown'),costMove>.25),
  kpi('Freight window',freightMove<=0?'BOOK':'WATCH',freightMove<=0?'Rates are easing; compare and book strategic space.':'Rates are firming; protect critical sailing windows.','≋',(freight&&freight.spark)||lanes.map(function(x){return Number(x.rate)||0;}),norm(workflow.state),freightMove>0),
- kpi('Compliance deadline','PREPARE',upcoming?(esc(upcoming.item.label)+' in '+days+' days.'):'No future dated milestone is connected.','♢',days==null?[]:[120,90,60,Math.min(days,120)],'manual',days!=null&&days<45,days==null?'manual calendar':days+' days left'),
- kpi('Next buyer action','REVIEW',next.action?((next.input?next.input+': ':'')+next.action):'Open the Supply Brief for the next desk-reviewed action.','✓',(steel&&steel.spark)||[],sourceState('gemini',norm(workflow.state)),false)
+ kpi('Compliance deadline','PREPARE',upcoming?(esc(upcoming.item.label)+' in '+days+' days.'):'No future dated milestone is connected.','♢',days==null?[]:[120,90,60,Math.min(days,120)],'manual',days!=null&&days<45,days==null?'manual calendar':days+' days left')
 ].join('');
 
 var brief=$('pd-brief-list'),briefState=$('pd-brief-state');
@@ -1762,17 +2093,17 @@ function marketDetail(item){
  return parts.length?parts.join(' · '):'series unavailable';
 }
 function sparkClass(impact){return impact.cls==='pressure'?'pressure':(impact.cls==='neutral'?'neutral':'');}
-if(market){var usdTwd={short:'USD/TWD',label:'USD/TWD',value:fxToday.TWD,unit:'',spark:fxSpark,chg:null};var rows=[
+if(market){var rows=[
  {name:'Steel',item:steel,state:sourceState('twelvedata','unknown'),role:'cost'},
  {name:'Resin',item:resin,state:sourceState('twelvedata','unknown'),role:'cost'},
- {name:'Freight',item:freight,state:norm(workflow.state),role:'freight'},
- {name:'USD/TWD',item:usdTwd,state:sourceState('fx','unknown'),role:'fx'}
+ {name:'Freight',item:freight,state:norm(workflow.state),role:'freight'}
 ];market.innerHTML=rows.map(function(r){var imp=buyerImpact(r.item,r.role);return '<div class="pd-market-row"><div class="pd-market-name"><b>'+r.name+'</b><span class="pd-state '+norm(r.state)+'">'+stateLabel(r.state)+'</span></div><div class="pd-market-trend">'+spark((r.item&&r.item.spark)||[],sparkClass(imp))+'<div class="pd-market-detail">'+esc(marketDetail(r.item))+'</div></div><div class="pd-market-impact '+imp.cls+'">'+imp.label+'</div></div>';}).join('');}
 
 var offers=$('pd-offer-grid');
 window.BirdlandProductFeed=window.BirdlandProductFeed||fetch('product-offers.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('Product feed '+r.status);return r.json();}).then(function(feed){if(!feed||!Array.isArray(feed.items))throw new Error('Invalid product feed');feed.items=feed.items.filter(function(o){return o&&o.status==='published'&&/^https:\/\//i.test(o.pdf_url||'');});return feed;});
-function productCards(items){return items.map(function(o){return '<article class="pd-offer"><img src="'+esc(o.cover_image||'images/thumbs/finished-goods-warehouse.webp')+'" alt="" loading="lazy"><div class="pd-offer-copy"><span class="pd-product-type">'+esc(o.type||'Product information')+'</span><h3>'+esc(o.title||'Birdland product information')+'</h3><span class="pd-product-note">'+esc(o.subtitle||'Open the current published PDF.')+'</span><div class="pd-offer-meta"><span>Category<br><b>'+esc(o.category||'General')+'</b></span><span>Origin<br><b>'+esc(o.origin||'See PDF')+'</b></span><span>Availability<br><b>'+esc(o.availability||'See PDF')+'</b></span><span>Format<br><b>View-only PDF</b></span></div><a class="pd-link" href="'+esc(o.pdf_url)+'" target="_blank" rel="noopener">Open product PDF</a></div></article>';}).join('');}
-if(offers){offers.innerHTML='<div class="pd-offer-empty">Loading Birdland’s published product information…</div>';window.BirdlandProductFeed.then(function(feed){var items=feed.items.filter(function(o){return o.featured;}).slice(0,3);if(!items.length)items=feed.items.slice(0,3);offers.innerHTML=items.length?productCards(items):'<div class="pd-offer-empty">No published product PDF is currently available.</div>';var updated=$('pd-product-updated');if(updated)updated.textContent='published '+(feed.updated||'date unavailable');}).catch(function(){offers.innerHTML='<div class="pd-offer-empty">The published product feed is unavailable. Please contact Birdland for the current catalogue.</div>';});}
+function platformCards(){return '<article class="pd-platform-card"><img src="images/foundry-engraving.webp" alt="Garden-tool materials and manufacturing reference" loading="lazy"><div class="pd-platform-copy"><span>Manufacturing guide</span><h3>Materials &amp; processes</h3><p>Understand forming, heat treatment, grinding, finishing and the control points a buyer should ask about.</p><a href="product-101.html">Open Product 101 →</a></div></article><article class="pd-platform-card"><img src="images/pruner-inspection.webp" alt="Birdland pruning tool programme study" loading="lazy"><div class="pd-platform-copy"><span>Enquiry preparation</span><h3>Shape an OEM programme</h3><p>Organise a product platform, process direction and buying priority before opening your email.</p><button type="button" data-scroll-builder>Build a buyer brief →</button></div></article>';}
+function productCards(items){return items.slice(0,1).map(function(o){return '<article class="pd-offer"><img src="'+esc(o.cover_image||'images/hero-forged-trowel.webp')+'" alt="" loading="lazy"><div class="pd-offer-copy"><span class="pd-product-type">'+esc(o.type||'Product information')+' · public PDF</span><h3>'+esc(o.title||'Birdland product information')+'</h3><span class="pd-product-note">'+esc(o.subtitle||'Open the current published PDF.')+'</span><div class="pd-offer-meta"><span>Category<br><b>'+esc(o.category||'General')+'</b></span><span>Origin<br><b>'+esc(o.origin||'See PDF')+'</b></span><span>Availability<br><b>'+esc(o.availability||'See PDF')+'</b></span><span>Format<br><b>View-only PDF</b></span></div><a class="pd-link" href="'+esc(o.pdf_url)+'" target="_blank" rel="noopener">Open product PDF</a></div></article>';}).join('')+platformCards();}
+if(offers){offers.innerHTML='<div class="pd-offer-empty">Loading Birdland’s published product information…</div>';window.BirdlandProductFeed.then(function(feed){var items=feed.items.filter(function(o){return o.featured;});if(!items.length)items=feed.items;offers.innerHTML=items.length?productCards(items):'<div class="pd-offer-empty">No published product PDF is currently available.</div>';var updated=$('pd-product-updated');if(updated)updated.textContent='published '+(feed.updated||'date unavailable');}).catch(function(){offers.innerHTML='<div class="pd-offer-empty">The published product feed is unavailable. Please contact Birdland for the current catalogue.</div>';});}
 
 document.addEventListener('click',function(e){var g=e.target.closest&&e.target.closest('[data-go]');if(!g)return;var a=document.querySelector('.toc a[href="#'+g.getAttribute('data-go')+'"]');if(a){e.preventDefault();a.click();}});
 var api=document.querySelector('.sys-api'),ai=document.querySelector('.sys-token');
@@ -1783,7 +2114,7 @@ if(ai){var aiState=sourceState('gemini',norm(workflow.state));ai.classList.add('
 try{var D=JSON.parse(document.getElementById('outlook-data').textContent);}catch(e){return;}
 var main=document.querySelector('main'),disc=document.getElementById('disc');
 // 1) live cost strip — always visible, straight under the DECISION dash
-(function(){var dash=document.getElementById('dash');if(!dash)return;var s=document.createElement('div');s.className='pstrip';s.id='p-live';
+ (function(){var dash=document.getElementById('dash');if(!dash||true)return;var s=document.createElement('div');s.className='pstrip';s.id='p-live';
  function realChg(ix){if(ix&&ix.spark&&ix.spark.length>=2){var a=ix.spark[ix.spark.length-2],b=ix.spark[ix.spark.length-1],__i=ix.spark.length-2;while(__i>0&&a===b){__i--;a=ix.spark[__i];}if(a){return (b-a)/Math.abs(a)*100;}}return ix&&ix.chg;}
  var pbT=D.procurement||{},Pq=D.partner||{};
  var qacts=(pbT.items&&pbT.items.length)?pbT.items:((Pq.procurement&&Pq.procurement.actions)||[]).map(function(a){return {input:'',action:a.label,urgency:a.level};});
@@ -1818,15 +2149,13 @@ if(topAct)h+='<span class="pi lead" data-go="p-brief" style="cursor:pointer"><sp
 // 2) section order: daily brief & the two money tools first; client-desk duplicates demoted to Reference
 (function(){if(!main||!disc)return;var ORD=['p-brief','p-alerts','p-mkt','p-market','p-keynews','p-regcal','p-report','p-offers','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty','p-material','p-shipping','p-season','p-war','p-tariff'],REF=['p-freight','p-watch','p-news'];
  ORD.concat(REF).forEach(function(id){var s=document.getElementById(id);if(s)main.insertBefore(s,disc);});
- var hd=document.createElement('div');hd.className='refhd';hd.textContent='Reference data — shared with Client Desk';main.insertBefore(hd,document.getElementById(REF[0]));})();
+ var hd=document.createElement('div');hd.className='refhd';hd.textContent='Reference data — shared with Data Desk';main.insertBefore(hd,document.getElementById(REF[0]));})();
 // 3) honest freshness: static desk-set blocks must not claim the daily stamp
 (function(){[['p-tariff','manual · desk set'],['p-regcal','manual · desk set'],['p-material','curves manual · note daily'],['p-shipping','rates daily · curve manual']].forEach(function(x){var b=document.querySelector('#'+x[0]+' .blk-h .secupd');if(b)b.textContent='⟳ '+x[1];});})();
 // 3b) product PDFs are maintained in product-offers.json and opened from view-only links
 // 4) remembered workspace
 var LS={g:function(k){try{return localStorage.getItem('bd_p_'+k);}catch(e){return null;}},s:function(k,v){try{localStorage.setItem('bd_p_'+k,v);}catch(e){}}};
-var FIELDS=['qc_cost','qc_frt','qc_ins','qc_duty','qc_qty','bc_fob','bc_qty','bc_frt','bc_ins','bc_duty','bc_tax','bc_brk','bc_inl','bc_oth','pcVal','mg_cost','mg_margin','mg_fx','mg_qty','ro_stock','ro_rate','ro_lead','ro_transit','ro_safety','se_lead'],SELS=['pcDest','pcOrigin','s_o','s_d','s_ct','room','region','se_hemi'];
-FIELDS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=LS.g(id);if(v!==null&&v!==''){e.value=v;e.dispatchEvent(new Event('input',{bubbles:true}));}
- e.addEventListener('input',function(){LS.s(id,e.value);});});
+var SELS=['room','region'];
 SELS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=LS.g(id);if(v!==null&&v!==''){var ok=[].some.call(e.options,function(o){return o.value===v;});if(ok){e.value=v;e.dispatchEvent(new Event('change',{bubbles:true}));}}
  e.addEventListener('change',function(){LS.s(id,e.value);});});
 // 5) full-scroll accordion: funnel modules open, reference collapsed; remember per-section state
@@ -1862,7 +2191,7 @@ SELS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=L
    var todayLink=tocEl.querySelector('a[href="#overview"]');
    if(todayLink)todayLink.insertAdjacentElement('afterend',homeCard);else tocEl.insertBefore(homeCard,tocEl.firstChild);
    rail.appendChild(tocEl);
-   var live=document.createElement('a');live.className='pd-live-link';live.href='executive.html';live.textContent='Open LIVE REPORTS →';rail.appendChild(live);
+   var live=document.createElement('a');live.className='pd-live-link';live.href='executive.html';live.textContent='Open Daily Supply News →';rail.appendChild(live);
  }
  main.appendChild(rail);
 })();
@@ -1876,7 +2205,7 @@ function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return
 function money(n){return 'US$'+Number(n).toLocaleString(undefined,{maximumFractionDigits:2});}
 function addWeeks(d,w){var x=new Date(d.getTime());x.setDate(x.getDate()+Math.round(w*7));return x;}
 function fmtDate(d){return d.toISOString().slice(0,10);}
-var TODAY=(function(){var u=D.updated||'';var m=/(\d{4})-(\d{2})-(\d{2})/.exec(u);return m?new Date(+m[1],+m[2]-1,+m[3]):new Date(2026,0,1);})();
+var TODAY=new Date();
 function downloadText(filename,text){var blob=new Blob([text],{type:'text/plain'});var url=URL.createObjectURL(blob);var a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(url);},200);}
 function mailtoDraft(to,subject,body){var href='mailto:'+encodeURIComponent(to||'')+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);window.location.href=href;}
 function copyText(text,btn){function done(ok){if(!btn)return;var old=btn.textContent;btn.textContent=ok?'Copied ✓':'Copy failed';setTimeout(function(){btn.textContent=old;},1600);}
@@ -1947,11 +2276,6 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
    briefStatus.textContent=workflowLine();
    if(briefMeta)briefMeta.textContent=(labelOf(roomSel)||'Global')+' · '+(D.updated||'—');
    renderReturn();
- }
- if(mailInput){
-   var savedMail=LSget('sb_email','');
-   if(savedMail)mailInput.value=savedMail;
-   mailInput.addEventListener('input',function(){LSset('sb_email',mailInput.value.trim());});
  }
  var copyBtn=$('sb_copy'),mailBtn=$('sb_mail'),markBtn=$('rv_mark'),resumeBtn=$('rv_resume');
  if(copyBtn)copyBtn.addEventListener('click',function(){copyText(buildBrief(),copyBtn);});
@@ -2220,7 +2544,7 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
  if(toc&&!toc.querySelector('a[href="#overview"]')){var ov=document.createElement('a');ov.href='#overview';ov.textContent='Today';ov.setAttribute('data-icon','⌂');toc.insertBefore(ov,toc.firstChild);}
  function setActive(id){[].forEach.call(document.querySelectorAll('.toc a'),function(a){a.classList.toggle('on',(a.getAttribute('href')||'')==='#'+id);});}
  function showView(id){
-   var overview=(id==='overview'||!id);
+   var overview=(id==='overview'||id==='pd-builder'||!id);
    if(hero)hero.style.display=overview?'':'none';
    if(dash)dash.style.display=overview?'':'none';
    if(live)live.classList.toggle('sk-off',!overview);
@@ -2232,8 +2556,14 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
      if(hit){b.setAttribute('data-open','1');var bb=b.querySelector('.blk-b');if(bb){bb.style.display='block';bb.style.maxHeight='none';bb.style.opacity='1';bb.style.overflow='visible';}}
    });
    setActive(id);
-   var main=document.querySelector('main');if(main&&main.scrollIntoView)main.scrollIntoView({block:'start'});
-   window.scrollTo(0,0);
+   if(id==='pd-builder'){
+     var builder=document.getElementById('pd-builder');
+     var motion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth';
+     setTimeout(function(){if(builder&&builder.scrollIntoView)builder.scrollIntoView({behavior:motion,block:'start'});},0);
+   }else{
+     var main=document.querySelector('main');if(main&&main.scrollIntoView)main.scrollIntoView({block:'start'});
+     window.scrollTo(0,0);
+   }
  }
  document.addEventListener('click',function(e){
    var a=e.target.closest&&e.target.closest('.toc a');if(!a)return;
@@ -2243,7 +2573,8 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
  var st=document.createElement('style');
  st.textContent='body.theme-light main .blk.sk-off,main .blk.sk-off{display:none!important}.blk-h .tog,.blk-h .lights{display:none!important}.blk-h{cursor:default!important}.blk{margin-top:0!important}main .blk:not(.sk-off){animation:skfade .22s ease}@keyframes skfade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}';
  document.head.appendChild(st);
- showView('overview');
+ var initial=(location.hash||'').slice(1);
+ showView(initial==='pd-builder'?'pd-builder':'overview');
 })();</script>
 <script>(function(){/* bento content grid — one feature, one 4-tile layout */
 var D={},P={};try{D=JSON.parse(document.getElementById('outlook-data').textContent)||{};P=D.partner||{};}catch(e){}
@@ -2382,6 +2713,52 @@ var poll=setInterval(function(){
   else if(tries>20){note.textContent='Translator unavailable (blocked by network/ad-blocker)';clearInterval(poll);}
 },500);
 })();</script>
+<script>(function(){/* public, local-in-tab Buyer Brief — creates an email draft only */
+ var builder=document.getElementById('pd-builder'),email=document.getElementById('bb-email'),pdf=document.getElementById('bb-pdf'),destination=document.getElementById('bb-destination');
+ if(!builder||!email||!destination)return;
+ var state={platform:'Hand tools',material:'Forged steel',process:'Forging',priority:'Cost stability'};
+ var ids={platform:'bb-platform',material:'bb-material',process:'bb-process',priority:'bb-priority'};
+ function escLine(x){return String(x||'').replace(/[\r\n]+/g,' ').trim();}
+ function select(group,value){
+   state[group]=value;
+   var host=document.getElementById(ids[group]);
+   if(host)[].forEach.call(host.querySelectorAll('button[data-value]'),function(b){var on=b.getAttribute('data-value')===value;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on?'true':'false');});
+   if(group==='platform')[].forEach.call(document.querySelectorAll('[data-brief-platform]'),function(b){var on=b.getAttribute('data-brief-platform')===value;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on?'true':'false');});
+   render();
+ }
+ function render(){
+   Object.keys(state).forEach(function(k){var out=document.getElementById('bb-summary-'+k);if(out)out.textContent=state[k];});
+   var dest=destination.value||'Global / undecided';
+   var subject='Birdland OEM enquiry — '+state.platform;
+   var body=[
+     'Hello Birdland,',
+     '',
+     'I would like to discuss a public product programme.',
+     '',
+     'Product platform: '+escLine(state.platform),
+     'Material direction: '+escLine(state.material),
+     'Process to discuss: '+escLine(state.process),
+     'Buying priority: '+escLine(state.priority),
+     'Destination market: '+escLine(dest),
+     '',
+     'This planning summary was prepared in B2B BUY. No quote or order has been submitted. I will add confidential drawings, quantities, specifications and commercial details only in our normal email thread.',
+     '',
+     'Public workspace: '+location.origin+location.pathname+'#pd-builder'
+   ].join('\n');
+   email.href='mailto:executive@birdland.com.tw?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+ }
+ Object.keys(ids).forEach(function(group){var host=document.getElementById(ids[group]);if(!host)return;host.addEventListener('click',function(e){var b=e.target.closest('button[data-value]');if(b)select(group,b.getAttribute('data-value'));});});
+ destination.addEventListener('change',render);
+ document.addEventListener('click',function(e){
+   var cat=e.target.closest&&e.target.closest('[data-brief-platform]');
+   if(cat)select('platform',cat.getAttribute('data-brief-platform'));
+   var jump=e.target.closest&&e.target.closest('[data-scroll-builder]');
+   if(jump){e.preventDefault();var a=document.querySelector('.toc a[href="#pd-builder"]');if(a)a.click();else builder.scrollIntoView({behavior:(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'),block:'start'});}
+ });
+ var feed=window.BirdlandProductFeed;
+ if(feed&&pdf)feed.then(function(data){var item=(data.items||[])[0];if(item&&/^https:\/\//i.test(item.pdf_url||'')){pdf.href=item.pdf_url;pdf.target='_blank';pdf.rel='noopener';pdf.textContent='Open related public PDF';}}).catch(function(){});
+ render();
+})();</script>
 <script>(function(){
  var installBtn=document.getElementById('install-app');
  var installNote=document.getElementById('install-note');
@@ -2430,4 +2807,7 @@ var poll=setInterval(function(){
   var hq=document.getElementById('tpk');if(hq){hq.classList.add('sys-hq');hq.setAttribute('title','Birdland HQ availability: Taiwan office hours Mon-Fri 09:00-17:30 (GMT+8)');}
   var tm=document.querySelector('.tpk-time');if(tm)tm.classList.add('sys-time');
 })();</script>
+<script>(function(){var button=document.getElementById('clear-b2b-device');if(!button)return;button.addEventListener('click',function(){try{Object.keys(localStorage).filter(function(k){return k.indexOf('bd_p_')===0;}).forEach(function(k){localStorage.removeItem(k);});}catch(e){}button.textContent='Device preferences cleared';setTimeout(function(){location.reload();},450);});})();</script>
+<script>(function(){var disc=document.getElementById('disc');if(disc)disc.textContent='BIRDLAND B2B BUY · PUBLIC BUYING INFORMATION. Forecasts, duty and impact figures are indicative planning guides — not legal, customs or trade advice. Confirm with your customs broker or counsel before acting.';})();</script>
+<script>(function(){var r=document.querySelector('.pd-room-panel .pd-panel-head h2'),m=document.querySelector('.pd-market-panel .pd-panel-head h2'),s=document.querySelector('.pd-market-panel .pd-panel-head span');if(r)r.textContent='Origin & Route Decision';if(m)m.textContent='Cost & Timing Signals';if(s)s.textContent='buyer action view';})();</script>
 </body></html>

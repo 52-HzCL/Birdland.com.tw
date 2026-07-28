@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Product 101 | Birdland Manufacturing Atlas</title>
+  <meta name="description" content="A visual buyer-oriented atlas of materials, tooling, forming, joining, finishing and inspection.">
+  <link rel="stylesheet" href="birdland-visual.css?v=20260728e">
+</head>
+<body>
+  <a class="bl-skip" href="#main">Skip to content</a>
+  <header class="bl-header">
+    <div class="bl-header-inner">
+      <a class="bl-wordmark" href="index.html">BIRDLAND<small>Confidential OEM · Taiwan</small></a>
+      <nav class="bl-nav" aria-label="Main navigation">
+        <a href="about.html">About</a>
+        <a href="product-101.html" aria-current="page">Product 101</a>
+        <a href="why-birdland.html">Why Birdland</a>
+        <details class="bl-menu"><summary>Data Desk</summary><div class="bl-menu-panel"><a href="news.html">Data Desk overview</a><a href="executive.html">Daily Supply News</a><a href="partner.html">B2B BUY</a><a href="team.html">Team</a></div></details>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <a class="bl-terminal" href="partner.html">Open buyer software</a>
+    </div>
+  </header>
+
+  <main class="ledger-main" id="main">
+    <nav class="ledger-crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Product 101</span></nav>
+    <section class="atlas-intro">
+      <div>
+        <span class="bl-eyebrow">Birdland technical atlas</span>
+        <h1>See the route from material to tool.</h1>
+      </div>
+      <p>Choose a production gate to see what enters, what must be controlled and what a buyer should ask. This is public process education—not a customer drawing, specification or programme record.</p>
+    </section>
+
+    <section aria-label="Interactive manufacturing atlas">
+      <div class="atlas-controls">
+        <button type="button" aria-pressed="true" data-step="material"><em>01</em>Material</button>
+        <button type="button" aria-pressed="false" data-step="forming"><em>02</em>Forming</button>
+        <button type="button" aria-pressed="false" data-step="tooling"><em>03</em>Tooling</button>
+        <button type="button" aria-pressed="false" data-step="joining"><em>04</em>Joining</button>
+        <button type="button" aria-pressed="false" data-step="finish"><em>05</em>Finish</button>
+        <button type="button" aria-pressed="false" data-step="inspection"><em>06</em>Inspection</button>
+      </div>
+      <div class="atlas-stage" aria-live="polite">
+        <div class="atlas-stage-image"><img id="atlas-image" src="images/thumbs/raw-materials.webp" alt="Raw material prepared for garden-tool production"></div>
+        <div class="atlas-stage-copy">
+          <span class="bl-eyebrow" id="atlas-number">01 / MATERIAL</span>
+          <h2 id="atlas-title">Material control</h2>
+          <div class="atlas-rows">
+            <div class="atlas-row"><b>WHAT ENTERS</b><span id="atlas-input">Grade, thickness, condition and traceability.</span></div>
+            <div class="atlas-row"><b>CONTROL POINT</b><span id="atlas-control">Specified material must match the intended forming and performance route.</span></div>
+            <div class="atlas-row"><b>BUYER SHOULD ASK</b><span id="atlas-question">Which material property is critical for the intended use?</span></div>
+          </div>
+          <div class="bl-actions"><a class="bl-button" href="contact.html">Discuss a production route</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ledger-section" aria-labelledby="knowledge-title">
+      <span class="bl-eyebrow">How to use the atlas</span>
+      <h2 id="knowledge-title">Ask about the control point, not only the finished appearance.</h2>
+      <div class="ledger-timeline">
+        <article><b>Function</b><span>Begin with the work the tool must perform and the environment it must face.</span></article>
+        <article><b>Material</b><span>Choose grade and condition for the intended forming, load and finish.</span></article>
+        <article><b>Process</b><span>Connect tooling, sequence and inspection to the characteristics that matter.</span></article>
+        <article><b>Hand-off</b><span>Verify agreed control points before production release and shipment.</span></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bl-footer">
+    <span>Product 101 contains public manufacturing education only.</span>
+    <span><a href="why-birdland.html">Next: Why Birdland →</a></span>
+  </footer>
+  <script>
+    (function(){
+      var steps={
+        material:{number:"01 / MATERIAL",title:"Material control",image:"images/thumbs/raw-materials.webp",alt:"Raw material prepared for garden-tool production",input:"Grade, thickness, condition and traceability.",control:"Specified material must match the intended forming and performance route.",question:"Which material property is critical for the intended use?"},
+        forming:{number:"02 / FORMING",title:"Forming and shaping",image:"images/thumbs/blade-forming.webp",alt:"Metal garden-tool blade during forming",input:"Prepared metal and an approved forming route.",control:"Press force, sequence and die clearance affect repeatability.",question:"Which dimension or edge condition matters most?"},
+        tooling:{number:"03 / TOOLING",title:"Tooling discipline",image:"images/thumbs/tooling-die-library.webp",alt:"Production tooling and die library",input:"Approved geometry and maintained production tooling.",control:"Tool condition helps hold repeatable geometry over a production run.",question:"Which feature depends most on tooling repeatability?"},
+        joining:{number:"04 / JOINING",title:"Joining and assembly",image:"images/thumbs/frame-welding.webp",alt:"Metal components during joining",input:"Prepared components, joints and an agreed assembly sequence.",control:"Fit, heat and sequence must protect alignment and load paths.",question:"Which joint carries load or controls alignment?"},
+        finish:{number:"05 / FINISH",title:"Surface treatment",image:"images/thumbs/surface-treatment.webp",alt:"Garden-tool components during surface treatment",input:"A prepared surface and a defined treatment route.",control:"Preparation, coverage and cure must suit the intended exposure.",question:"What environment and service life will the product face?"},
+        inspection:{number:"06 / INSPECTION",title:"Quality gate",image:"images/thumbs/pre-shipment-sampling.webp",alt:"Finished products during pre-shipment sampling",input:"Finished goods, packaging requirements and agreed checkpoints.",control:"Sampling and release checks support a clean commercial hand-off.",question:"What must be verified before release?"}
+      };
+      var ids={number:"atlas-number",title:"atlas-title",input:"atlas-input",control:"atlas-control",question:"atlas-question"};
+      document.querySelectorAll("[data-step]").forEach(function(button){
+        button.addEventListener("click",function(){
+          var step=steps[button.dataset.step];
+          document.querySelectorAll("[data-step]").forEach(function(item){item.setAttribute("aria-pressed",String(item===button));});
+          Object.keys(ids).forEach(function(key){document.getElementById(ids[key]).textContent=step[key];});
+          var image=document.getElementById("atlas-image");
+          image.src=step.image;
+          image.alt=step.alt;
+        });
+      });
+    }());
+  </script>
+</body>
+</html>

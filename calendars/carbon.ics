@@ -1,0 +1,18 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Birdland//Public Calendar Hub//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Birdland carbon
+BEGIN:VEVENT
+UID:cbam-first-declaration-2027@birdland.com.tw
+DTSTAMP:20260727T000000Z
+DTSTART:20270930T170000Z
+DTEND:20270930T180000Z
+SUMMARY:CBAM first declaration and certificate surrender
+DESCRIPTION:Confirm whether your imported product scope and embedded-emissions documentation are relevant before committing long validity quotes. Source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-communication-and-faqs_en Birdland: https://birdland.com.tw/executive.html#evidence
+URL:https://birdland.com.tw/executive.html#evidence
+STATUS:CONFIRMED
+CATEGORIES:regulation\,metal\,carbon
+END:VEVENT
+END:VCALENDAR

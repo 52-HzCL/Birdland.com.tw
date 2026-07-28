@@ -100,7 +100,8 @@ jobs:
           const pairs = [
             ['tools/news_template.html', 'news.html'],
             ['tools/partner_template.html', 'partner.html'],
-            ['tools/team_template.html', 'team.html']
+            ['tools/team_template.html', 'team.html'],
+            ['tools/executive_template.html', 'executive.html']
           ];
           const buildDir = fs.mkdtempSync(path.join(os.tmpdir(), 'birdland-build-'));
           for (const [template, output] of pairs) {
@@ -116,10 +117,13 @@ jobs:
           const textFiles = [
             'AGENTS.md', 'index.html', 'outlook-data.json',
             'news.html', 'partner.html', 'team.html',
+            'executive.html', 'privacy.html', 'calendar-events.json',
             'tools/news_template.html', 'tools/partner_template.html',
-            'tools/team_template.html', 'tools/build_news.py',
+            'tools/team_template.html', 'tools/executive_template.html',
+            'tools/build_news.py', 'tools/build_calendars.js', 'tools/build_feeds.py',
             'tools/gen_news_gemini.py', 'tools/fetch_market.py',
-            'partner-desk.webmanifest', 'partner-desk-icon.svg', 'service-worker.js'
+            'partner-desk.webmanifest', 'executive-desk.webmanifest',
+            'partner-desk-icon.svg', 'service-worker.js'
           ];
           for (const file of textFiles) {
             const bytes = fs.readFileSync(file);
@@ -139,14 +143,37 @@ jobs:
           console.log(`Temporary build output: ${buildDir}`);
           NODE
 
+      - name: Validate public calendar feeds
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/build_calendars.js
+          git diff --exit-code -- calendars
+
+      - name: Validate public RSS feeds
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/build_feeds.py
+          python3 - <<'PY'
+          import glob, xml.etree.ElementTree as ET
+          files=glob.glob('feeds/*.xml')
+          assert files, 'no RSS feeds built'
+          for path in files: ET.parse(path)
+          print('validated', len(files), 'RSS feeds')
+          PY
+          git diff --exit-code -- feeds
+
       - name: Package static preview snapshot
         shell: bash
         run: |
           set -euo pipefail
           preview="$RUNNER_TEMP/birdland-preview"
           mkdir -p "$preview"
-          cp index.html news.html partner.html team.html birdland-intro.html CNAME robots.txt partner-desk.webmanifest partner-desk-icon.svg service-worker.js "$preview/"
+          cp index.html news.html partner.html team.html executive.html privacy.html birdland-intro.html CNAME robots.txt partner-desk.webmanifest executive-desk.webmanifest partner-desk-icon.svg service-worker.js calendar-events.json "$preview/"
           cp -R images "$preview/images"
+          cp -R calendars "$preview/calendars"
+          cp -R feeds "$preview/feeds"
           printf 'This is a PR validation snapshot. It is not deployed.\n' > "$preview/README.txt"
 
       - name: Upload static preview snapshot

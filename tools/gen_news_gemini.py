@@ -153,9 +153,14 @@ try:
         o=oldidx.get(x.get("short") or x.get("label"))
         if o:
             ov=o.get("value"); nv=x.get("value",ov)
-            try: x["chg"]=round((float(nv)-float(ov))/float(ov)*100,1) if ov else o.get("chg",0)
-            except: x["chg"]=o.get("chg",0)
-            sp=list(o.get("spark",[]))+[nv]; x["spark"]=sp[-16:]
+            try:
+                ratio=abs(float(nv)/float(ov)) if ov else 1
+                same_scale=0.05 <= ratio <= 20
+                x["chg"]=round((float(nv)-float(ov))/float(ov)*100,1) if ov and same_scale else 0
+            except:
+                same_scale=True
+                x["chg"]=o.get("chg",0)
+            sp=(list(o.get("spark",[])) if same_scale else [])+[nv]; x["spark"]=sp[-16:]
             x.setdefault("unit",o.get("unit","")); x.setdefault("label",o.get("label",""))
         else:
             x.setdefault("chg",0); x.setdefault("spark",[x.get("value",0)])
@@ -167,9 +172,14 @@ try:
         o=oldm.get(x.get("short") or x.get("label"))
         if o:
             ov=o.get("value"); nv=x.get("value",ov)
-            try: x["chg"]=round((float(nv)-float(ov))/float(ov)*100,1) if ov else o.get("chg",0)
-            except: x["chg"]=o.get("chg",0)
-            sp=list(o.get("spark",[]))+[nv]; x["spark"]=sp[-16:]
+            try:
+                ratio=abs(float(nv)/float(ov)) if ov else 1
+                same_scale=0.05 <= ratio <= 20
+                x["chg"]=round((float(nv)-float(ov))/float(ov)*100,1) if ov and same_scale else 0
+            except:
+                same_scale=True
+                x["chg"]=o.get("chg",0)
+            sp=(list(o.get("spark",[])) if same_scale else [])+[nv]; x["spark"]=sp[-16:]
             x.setdefault("unit",o.get("unit","")); x.setdefault("label",o.get("label",""))
         else:
             x.setdefault("chg",0); x.setdefault("spark",[x.get("value",0)])

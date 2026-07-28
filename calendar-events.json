@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "updated": "2026-07-27",
+  "source_note": "Public planning reminders maintained by Birdland. Verify product-specific obligations with the relevant authority or adviser.",
+  "events": [
+    {
+      "id": "eudr-large-medium-2026",
+      "title": "EUDR application: large and medium operators",
+      "starts_at": "2026-12-30T09:00:00Z",
+      "ends_at": "2026-12-30T10:00:00Z",
+      "region": "Europe",
+      "topics": ["regulation", "wood", "compliance"],
+      "status": "scheduled",
+      "source_name": "European Commission",
+      "source_url": "https://environment.ec.europa.eu/topics/forests/deforestation/regulation-deforestation-free-products_en",
+      "verified_at": "2026-07-27",
+      "buyer_meaning": "Confirm whether your wood-handled products and operator role are in scope; prepare traceability evidence before the application date.",
+      "deep_link": "executive.html#evidence"
+    },
+    {
+      "id": "cbam-first-declaration-2027",
+      "title": "CBAM first declaration and certificate surrender",
+      "starts_at": "2027-09-30T17:00:00Z",
+      "ends_at": "2027-09-30T18:00:00Z",
+      "region": "Europe",
+      "topics": ["regulation", "metal", "carbon"],
+      "status": "scheduled",
+      "source_name": "European Commission, Taxation and Customs Union",
+      "source_url": "https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-communication-and-faqs_en",
+      "verified_at": "2026-07-27",
+      "buyer_meaning": "Confirm whether your imported product scope and embedded-emissions documentation are relevant before committing long validity quotes.",
+      "deep_link": "executive.html#evidence"
+    },
+    {
+      "id": "eudr-small-micro-2027",
+      "title": "EUDR application: micro and small operators",
+      "starts_at": "2027-06-30T09:00:00Z",
+      "ends_at": "2027-06-30T10:00:00Z",
+      "region": "Europe",
+      "topics": ["regulation", "wood", "compliance"],
+      "status": "scheduled",
+      "source_name": "European Commission",
+      "source_url": "https://environment.ec.europa.eu/topics/forests/deforestation/regulation-deforestation-free-products_en",
+      "verified_at": "2026-07-27",
+      "buyer_meaning": "Smaller operators should use this runway to map timber evidence and internal responsibilities.",
+      "deep_link": "executive.html#evidence"
+    }
+  ]
+}
