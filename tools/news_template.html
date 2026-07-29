@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Data Desk | Birdland OEM Operating System</title>
   <meta name="description" content="Explore how Birdland protects customer ownership through manufacturing control, supply context, private correspondence and long-term continuity.">
-  <link rel="stylesheet" href="site-shell.css">
+  <link rel="stylesheet" href="site-shell.css"><script defer src="terminal-status.js"></script>
   <style>
     .os-hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(250px,.75fr);gap:64px;align-items:end;padding:54px 0 36px;border-bottom:1px solid var(--line)}
     .os-hero h1{max-width:790px;margin:10px 0 14px;font:600 clamp(44px,5.5vw,74px)/.96 'Playfair Display',Georgia,serif;letter-spacing:-.04em}
@@ -85,6 +85,7 @@
     @media(max-width:1040px){.control-shell{grid-template-columns:1fr}.control-map{min-height:600px}.evidence-grid{grid-template-columns:repeat(3,1fr)}.evidence-cell:nth-child(2n){border-right:1px solid rgba(242,236,221,.16)}.evidence-cell:last-child{border-right:0}}
     @media(max-width:760px){.os-hero{grid-template-columns:1fr;gap:24px;padding-top:42px}.ownership-note{max-width:470px}.control-map{min-height:auto;padding:26px 18px 22px}.control-map:before,.control-map:after,.map-svg{display:none}.map-label{position:static;display:block;margin-bottom:18px}.customer-core{position:relative;left:auto;top:auto;width:100%;height:auto;min-height:150px;border-radius:0;transform:none;box-shadow:none}.customer-core svg{margin-top:18px}.system-node{position:relative;left:auto;right:auto;top:auto;bottom:auto;width:100%;min-height:0;margin-top:1px;box-shadow:none}.system-node:hover,.system-node:focus-visible{transform:none}.evidence-grid{grid-template-columns:1fr 1fr}.proof-grid{grid-template-columns:1fr}.proof-card{min-height:210px}.section-intro{display:block}.section-intro p{margin-top:13px}.handoff-strip{grid-template-columns:1fr 1fr}.handoff-strip a:nth-child(2){border-right:0}.handoff-strip a:nth-child(-n+2){border-bottom:1px solid rgba(242,236,221,.2)}.handoff-strip a:after{display:none}}
     @media(max-width:480px){.os-hero h1{font-size:43px}.control-shell{margin-top:25px}.evidence-grid{grid-template-columns:1fr}.evidence-cell,.evidence-cell:nth-child(2n){border-right:0}.route-graphic{gap:3px}.route-step b{font-size:8px}.handoff-strip{grid-template-columns:1fr}.handoff-strip a{border-right:0;border-bottom:1px solid rgba(242,236,221,.2)}}
+    .shell-status{display:flex;align-items:center;justify-content:flex-end;gap:10px;color:var(--muted);font:500 9px var(--mono);white-space:nowrap}.shell-status span:first-child{display:inline-flex;align-items:center;gap:5px;color:var(--jade)}.shell-status i{width:7px;height:7px;border-radius:50%;background:#5d8d58;display:inline-block}.shell-status details{position:relative}.shell-status summary{cursor:pointer;list-style:none;color:var(--jade);font-weight:600}.shell-status summary::-webkit-details-marker{display:none}.shell-status details>div{position:absolute;right:0;top:20px;z-index:70;width:170px;padding:9px;background:var(--paper);border:1px solid var(--line);box-shadow:0 12px 30px rgba(0,0,0,.12)}.shell-status details a{display:block;padding:5px 0;color:var(--jade);text-decoration:none}.shell-status details a:hover{color:var(--copper)}
     @media(prefers-reduced-motion:reduce){.control-map:after,.map-svg path{animation:none!important}.system-node{transition:none!important}}
   </style>
 </head>
@@ -112,7 +113,7 @@
           </div>
         </details>
         <a href="contact.html">Contact</a>
-      </nav>
+      </nav><div class="shell-status"><span><i></i>Birdland HQ Online</span><span data-taipei-time>--:-- Taipei</span><details><summary>Language</summary><div><a href="https://translate.google.com/translate?sl=auto&amp;tl=zh-TW&amp;u=https%3A%2F%2Fbirdland.com.tw%2Fnews.html" target="_blank" rel="noopener">繁體中文 ↗</a><a href="https://translate.google.com/translate?sl=auto&amp;tl=zh-CN&amp;u=https%3A%2F%2Fbirdland.com.tw%2Fnews.html" target="_blank" rel="noopener">简体中文 ↗</a><a href="https://translate.google.com/translate?sl=auto&amp;tl=de&amp;u=https%3A%2F%2Fbirdland.com.tw%2Fnews.html" target="_blank" rel="noopener">Deutsch ↗</a></div></details></div>
     </div>
   </header>
 

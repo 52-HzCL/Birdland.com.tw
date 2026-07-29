@@ -162,40 +162,59 @@ except Exception as e:
     print("[materials2] roll failed:",e)
 
 
-# ---- Key News: free, keyless Google News RSS -> tariffs/shipping/China & Taiwan
-#      production & raw-materials headlines. Best-effort; never fails the job. ----
+# ---- Key News: free, keyless Google News RSS. Taiwan/China production desks
+#      deliberately prefer local English-language media and traditional hardware,
+#      metal-processing, plastics and export/manufacturing context.
+#      Best-effort; never fails the job. ----
 try:
     import xml.etree.ElementTree as ET
     from email.utils import parsedate_to_datetime
     QUERIES=[
-        ("tariff","steel tariff OR aluminum tariff OR import tariff OR section 301"),
+        ("tariff","Trump tariff executive order OR US import tariff OR steel tariff OR aluminum tariff OR section 301 (site:whitehouse.gov OR site:ustr.gov OR site:cbp.gov OR site:reuters.com OR site:ft.com)"),
+        ("tariff","EU tariff regulation OR CBAM metals OR EUDR deadline OR European Commission customs (site:ec.europa.eu OR site:reuters.com OR site:handelsblatt.com OR site:lesechos.fr OR site:ilsole24ore.com OR site:dutchnews.nl)"),
+        ("tariff","China export controls OR China export control order OR rare earth export controls OR gallium graphite export (site:english.mofcom.gov.cn OR site:english.customs.gov.cn OR site:chinadaily.com.cn OR site:scmp.com)"),
+        ("tariff","Germany France Italy Netherlands tariff customs manufacturing regulation (site:dw.com OR site:france24.com OR site:lesechos.fr OR site:ilsole24ore.com OR site:nltimes.nl)"),
         ("shipping","container freight rate OR ocean freight rate OR shipping rate"),
-        ("china","China manufacturing PMI OR China factory output OR China export data"),
-        ("taiwan","Taiwan exports OR Taiwan industrial production OR Taiwan manufacturing"),
+        ("china",'("China steel" OR "China plastics" OR "China resin" OR "China hardware" OR "China metal products" OR "China factory exports" OR "China manufacturing exports") (site:caixinglobal.com OR site:yicaiglobal.com OR site:chinadaily.com.cn OR site:globaltimes.cn)'),
+        ("taiwan",'("Taiwan steel" OR "Taiwan plastics" OR "Taiwan resin" OR "Taiwan hardware" OR "Taiwan metal products" OR "Taiwan machinery exports" OR "Taiwan manufacturing exports") (site:focustaiwan.tw OR site:taipeitimes.com OR site:taiwannews.com.tw)'),
     ]
     OFFICIAL_PUBLISHERS=(
         "National Bureau of Statistics", "General Administration of Customs",
         "Ministry of Economic Affairs", "Ministry of Finance", "Customs Administration",
         "Shanghai Shipping Exchange", "World Trade Organization", "European Commission",
         "U.S. Customs and Border Protection", "Office of the United States Trade Representative",
+        "White House", "Ministry of Commerce of the People's Republic of China",
+        "General Administration of Customs of the People's Republic of China",
     )
     TRADE_PUBLISHERS=("Journal of Commerce", "FreightWaves", "Lloyd's List", "S&P Global", "Reuters")
+    LOCAL_ENGLISH_MEDIA=(
+        "Focus Taiwan", "Taipei Times", "Taiwan News",
+        "Caixin Global", "Yicai Global", "China Daily", "Global Times",
+    )
     def news_meta(topic, publisher):
         low=(publisher or "").lower()
-        tier="official" if any(x.lower() in low for x in OFFICIAL_PUBLISHERS) else ("trade" if any(x.lower() in low for x in TRADE_PUBLISHERS) else "context")
-        category={"tariff":"Tariff & regulation", "shipping":"Freight & ports", "china":"China production & export", "taiwan":"Taiwan production & export"}.get(topic,"Supply context")
+        if topic in ("china","taiwan") and any(x.lower() in low for x in LOCAL_ENGLISH_MEDIA):
+            tier="local English media"
+        else:
+            tier="official" if any(x.lower() in low for x in OFFICIAL_PUBLISHERS) else ("trade" if any(x.lower() in low for x in TRADE_PUBLISHERS) else "context")
+        category={"tariff":"Tariff & regulation", "shipping":"Freight & ports", "china":"China local industry news", "taiwan":"Taiwan local industry news"}.get(topic,"Supply context")
         region={"china":"China", "taiwan":"Taiwan", "shipping":"Asia routes", "tariff":"Global"}.get(topic,"Global")
         return {"category":category,"region":region,"source_tier":tier,"fetched_at":utc_now}
-    def relevant(topic, title):
+    def local_media(topic, source):
+        if topic not in ("china","taiwan"):
+            return True
+        low=(source or "").lower()
+        return any(x.lower() in low for x in LOCAL_ENGLISH_MEDIA)
+    def relevant(topic, title, source=""):
         text=(title or "").lower()
         bad=("drone", "election", "military", "defence", "defense", "nationalization")
         words={
-            "tariff":("tariff", "customs", "import", "trade", "section 301", "compliance"),
+            "tariff":("tariff", "customs", "import", "trade", "section 301", "compliance", "executive order", "export control", "export controls", "cbam", "eudr", "sanction", "embargo"),
             "shipping":("freight", "shipping", "container", "port", "ocean", "vessel"),
-            "china":("manufactur", "factory", "production", "export", "pmi", "steel", "resin", "port", "supply chain"),
-            "taiwan":("manufactur", "factory", "production", "export", "industrial", "port", "steel", "resin", "supply chain"),
+            "china":("hardware", "metal", "steel", "aluminum", "aluminium", "plastic", "plastics", "resin", "polypropylene", "molding", "moulding", "factory", "manufacturing exports", "machinery exports", "industrial output"),
+            "taiwan":("hardware", "metal", "steel", "aluminum", "aluminium", "plastic", "plastics", "resin", "polypropylene", "molding", "moulding", "factory", "manufacturing exports", "machinery exports", "industrial output"),
         }
-        return not any(word in text for word in bad) and any(word in text for word in words.get(topic,()))
+        return local_media(topic,source) and not any(word in text for word in bad) and any(word in text for word in words.get(topic,()))
     def gnews(topic,q):
         url="https://news.google.com/rss/search?q="+urllib.parse.quote(q)+"&hl=en-US&gl=US&ceid=US:en"
         req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"})
@@ -211,7 +230,7 @@ try:
                 pub=item.findtext("pubDate")
                 try: dt=parsedate_to_datetime(pub).date().isoformat() if pub else ""
                 except Exception: dt=""
-                if title and relevant(topic,title):
+                if title and relevant(topic,title,source):
                     row={"topic":topic,"title":title,"url":link,"source":source,"date":dt}
                     row.update(news_meta(topic,source))
                     out.append(row)
@@ -242,7 +261,7 @@ try:
         picked.sort(key=lambda x:x.get("date") or "",reverse=True)
         data["market_news"]=picked
         print("[keynews] fetched %d headlines, topics: %s"%(len(picked),sorted(set(i["topic"] for i in picked))))
-        status["sources"]["market_news"].update({"state":"current","updated":utc_now,"detail":"Fetched %d Google News headlines."%len(picked)})
+        status["sources"]["market_news"].update({"state":"current","updated":utc_now,"detail":"Fetched %d Google News headlines; policy coverage checks US, China and European tariff/export-control sources, while Taiwan/China desks prefer local English media and traditional industry terms."%len(picked)})
     else:
         print("[keynews] no headlines fetched; keeping previous market_news if any.")
         status["sources"]["market_news"].update({"state":"delayed","updated":utc_now,"detail":"No Google News headlines fetched; kept prior market news."})
