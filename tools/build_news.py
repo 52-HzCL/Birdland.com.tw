@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate Data Desk, B2B BUY, Team, and Daily Supply News pages from outlook-data.json."""
+"""Regenerate Data Desk, Buyer Desk, Team, and Daily Supply News pages from outlook-data.json."""
 import os, subprocess, sys
 HERE=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TD=os.path.dirname(os.path.abspath(__file__))

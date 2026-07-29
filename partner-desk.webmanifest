@@ -1,7 +1,7 @@
 {
-  "name": "Birdland B2B BUY",
-  "short_name": "B2B BUY",
-  "description": "Birdland public product discovery, buying decisions and OEM enquiry preparation.",
+  "name": "Birdland Buyer Desk",
+  "short_name": "Buyer Desk",
+  "description": "Birdland public procurement workspace for product routes, buying decisions and OEM enquiry preparation.",
   "start_url": "./partner.html",
   "scope": "./",
   "display": "standalone",
