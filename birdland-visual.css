@@ -599,6 +599,7 @@ button{font:inherit}
 .ledger-hero p{max-width:550px;color:var(--bl-muted)}
 .ledger-image{position:relative;min-height:560px;margin:0;overflow:hidden;background:#ddd9ce}
 .ledger-image img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.12)}
+.ledger-image-oem img{filter:none;object-position:center}
 .ledger-image::after{content:"";position:absolute;inset:0;border:18px solid rgba(243,239,229,.22);pointer-events:none}
 .ledger-caption{position:absolute;right:24px;bottom:20px;z-index:2;max-width:260px;color:#fff;text-align:right;font:italic 14px var(--bl-serif);text-shadow:0 1px 8px #000}
 .ledger-facts{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--bl-line)}
