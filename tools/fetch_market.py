@@ -175,8 +175,21 @@ try:
         ("tariff","China export controls OR China export control order OR rare earth export controls OR gallium graphite export (site:english.mofcom.gov.cn OR site:english.customs.gov.cn OR site:chinadaily.com.cn OR site:scmp.com)"),
         ("tariff","Germany France Italy Netherlands tariff customs manufacturing regulation (site:dw.com OR site:france24.com OR site:lesechos.fr OR site:ilsole24ore.com OR site:nltimes.nl)"),
         ("shipping","container freight rate OR ocean freight rate OR shipping rate"),
-        ("china",'("China steel" OR "China plastics" OR "China resin" OR "China hardware" OR "China metal products" OR "China factory exports" OR "China manufacturing exports") (site:caixinglobal.com OR site:yicaiglobal.com OR site:chinadaily.com.cn OR site:globaltimes.cn)'),
-        ("taiwan",'("Taiwan steel" OR "Taiwan plastics" OR "Taiwan resin" OR "Taiwan hardware" OR "Taiwan metal products" OR "Taiwan machinery exports" OR "Taiwan manufacturing exports") (site:focustaiwan.tw OR site:taipeitimes.com OR site:taiwannews.com.tw)'),
+        # Query local publishers one domain at a time. Google News frequently
+        # ignores a parenthesised list of site: filters and returns international
+        # outlets, which are then (correctly) rejected by our local-media rule.
+        ("china",'China (manufacturing OR factory OR machinery OR steel OR plastics OR industrial production OR exports) when:30d site:chinadaily.com.cn'),
+        ("china",'China (manufacturing OR factory OR machinery OR steel OR plastics OR export orders) when:30d site:yicaiglobal.com'),
+        ("china",'China (manufacturing OR factory OR machinery OR steel OR plastics OR exports) when:30d site:caixinglobal.com'),
+        ("china",'China (manufacturing OR factory OR machinery OR steel OR plastics OR industrial production) when:30d site:globaltimes.cn'),
+        ("china",'China (manufacturing OR factory OR machinery OR steel OR plastics OR industrial production) when:30d site:english.news.cn'),
+        ("china",'China (manufacturing OR factory OR machinery OR steel OR plastics OR exports) when:30d site:cgtn.com'),
+        ("china",'China (manufacturing OR factory OR machinery OR steel OR plastics OR exports) when:30d site:scmp.com'),
+        ("taiwan",'Taiwan manufacturing exports when:60d site:focustaiwan.tw'),
+        ("taiwan",'Taiwan machinery exports when:60d site:taipeitimes.com'),
+        ("taiwan",'Taiwan plastics machinery exports when:60d site:taiwannews.com.tw'),
+        ("taiwan",'Taiwan manufacturing industry when:60d site:english.cw.com.tw'),
+        ("taiwan",'Taiwan machinery factory exports when:60d site:taiwantoday.tw'),
     ]
     OFFICIAL_PUBLISHERS=(
         "National Bureau of Statistics", "General Administration of Customs",
@@ -188,8 +201,12 @@ try:
     )
     TRADE_PUBLISHERS=("Journal of Commerce", "FreightWaves", "Lloyd's List", "S&P Global", "Reuters")
     LOCAL_ENGLISH_MEDIA=(
-        "Focus Taiwan", "Taipei Times", "Taiwan News",
+        "Focus Taiwan", "Taipei Times", "taipeitimes.com",
+        "Taiwan News", "taiwannews.com.tw", "Taiwan Today",
+        "CommonWealth Magazine", "天下雜誌", "DigiTimes",
         "Caixin Global", "Yicai Global", "China Daily", "Global Times",
+        "Xinhua", "CGTN", "China.org.cn", "China Economic Net", "ECNS",
+        "South China Morning Post",
     )
     def news_meta(topic, publisher):
         low=(publisher or "").lower()
@@ -207,14 +224,15 @@ try:
         return any(x.lower() in low for x in LOCAL_ENGLISH_MEDIA)
     def relevant(topic, title, source=""):
         text=(title or "").lower()
-        bad=("drone", "election", "military", "defence", "defense", "nationalization")
+        bad=("drone", "election", "military", "defence", "defense", "nationalization", "semiconductor", "chip", "smartphone", "property market", "stock market")
         words={
             "tariff":("tariff", "customs", "import", "trade", "section 301", "compliance", "executive order", "export control", "export controls", "cbam", "eudr", "sanction", "embargo"),
             "shipping":("freight", "shipping", "container", "port", "ocean", "vessel"),
-            "china":("hardware", "metal", "steel", "aluminum", "aluminium", "plastic", "plastics", "resin", "polypropylene", "molding", "moulding", "factory", "manufacturing exports", "machinery exports", "industrial output"),
-            "taiwan":("hardware", "metal", "steel", "aluminum", "aluminium", "plastic", "plastics", "resin", "polypropylene", "molding", "moulding", "factory", "manufacturing exports", "machinery exports", "industrial output"),
+            "china":("hardware", "fastener", "screw", "hand tool", "machine tool", "metal", "steel", "aluminum", "aluminium", "plastic", "plastics", "resin", "polypropylene", "petrochemical", "chemical", "rubber", "molding", "moulding", "machinery", "factory", "manufacturing", "exports", "export order", "industrial output", "industrial production", "pmi"),
+            "taiwan":("hardware", "fastener", "screw", "hand tool", "machine tool", "metal", "steel", "aluminum", "aluminium", "plastic", "plastics", "resin", "polypropylene", "petrochemical", "chemical", "rubber", "molding", "moulding", "machinery", "factory", "manufacturing", "exports", "export order", "industrial output", "industrial production", "pmi"),
         }
-        return local_media(topic,source) and not any(word in text for word in bad) and any(word in text for word in words.get(topic,()))
+        technology_only=(" ai " in (" "+text+" ") or "artificial intelligence" in text)
+        return local_media(topic,source) and not technology_only and not any(word in text for word in bad) and any(word in text for word in words.get(topic,()))
     def gnews(topic,q):
         url="https://news.google.com/rss/search?q="+urllib.parse.quote(q)+"&hl=en-US&gl=US&ceid=US:en"
         req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"})
@@ -222,7 +240,10 @@ try:
         try:
             raw=urllib.request.urlopen(req,timeout=25).read()
             root=ET.fromstring(raw)
-            for item in root.findall(".//item")[:3]:
+            # Filter after examining a useful result window. The old [:3] cut-off
+            # routinely discarded an entire desk when the first headlines were
+            # politics, semiconductors or consumer news.
+            for item in root.findall(".//item")[:20]:
                 title=(item.findtext("title") or "").strip()
                 link=(item.findtext("link") or "").strip()
                 src_el=item.find("source")
@@ -237,31 +258,46 @@ try:
         except Exception as e:
             print("[keynews] %s failed: %s"%(topic,e))
         return out
+    previous=[x for x in data.get("market_news",[]) if isinstance(x,dict)]
     items=[]
     for topic,q in QUERIES:
         items.extend(gnews(topic,q))
+    # Keep recently verified local-industry reports as a continuity fallback.
+    # A quiet publishing day must not turn the desk into invented content or
+    # blank cards. Publication dates remain visible in the UI.
+    cutoff=datetime.date.today()-datetime.timedelta(days=60)
+    retained=[]
+    for it in previous:
+        topic=str(it.get("topic") or "").lower()
+        if topic not in ("taiwan","china") or not relevant(topic,it.get("title",""),it.get("source","")):
+            continue
+        try: published=datetime.date.fromisoformat(str(it.get("date") or ""))
+        except Exception: continue
+        if published>=cutoff: retained.append(it)
     seen=set();dedup=[]
-    for it in items:
+    for it in items+retained:
         k=it["title"].strip().lower()
         if k and k not in seen:
             seen.add(k);dedup.append(it)
-    # Balance across topics: guarantee up to 2 slots per topic first (newest within each),
-    # then fill remaining slots by date. A pure date sort let fresh tariff/china items
-    # crowd out shipping entirely, even though every topic was fetched.
+    # Reserve three slots for each local production desk. Tariff and shipping
+    # keep three each as well; the larger payload prevents one topic crowding out
+    # Taiwan or China before the renderer sees them.
     if dedup:
         by_topic={}
         for it in dedup: by_topic.setdefault(it["topic"],[]).append(it)
         for lst in by_topic.values(): lst.sort(key=lambda x:x.get("date") or "",reverse=True)
         picked=[]
-        for topic,_ in QUERIES:
-            picked.extend(by_topic.get(topic,[])[:2])
+        for topic in ("taiwan","china","tariff","shipping"):
+            picked.extend(by_topic.get(topic,[])[:3])
         rest=[it for it in dedup if it not in picked]
         rest.sort(key=lambda x:x.get("date") or "",reverse=True)
-        picked=(picked+rest)[:8]
+        picked=(picked+rest)[:18]
         picked.sort(key=lambda x:x.get("date") or "",reverse=True)
         data["market_news"]=picked
         print("[keynews] fetched %d headlines, topics: %s"%(len(picked),sorted(set(i["topic"] for i in picked))))
-        status["sources"]["market_news"].update({"state":"current","updated":utc_now,"detail":"Fetched %d Google News headlines; policy coverage checks US, China and European tariff/export-control sources, while Taiwan/China desks prefer local English media and traditional industry terms."%len(picked)})
+        counts={topic:sum(1 for x in picked if x.get("topic")==topic) for topic in ("taiwan","china","tariff","shipping")}
+        local_ready=counts["taiwan"]>=3 and counts["china"]>=3
+        status["sources"]["market_news"].update({"state":"current" if local_ready else "delayed","updated":utc_now,"detail":"Fetched or retained %d verified headlines (Taiwan %d, China %d, tariff %d, shipping %d). Local desks use English-language regional publishers and a 60-day verified continuity window."%(len(picked),counts["taiwan"],counts["china"],counts["tariff"],counts["shipping"])})
     else:
         print("[keynews] no headlines fetched; keeping previous market_news if any.")
         status["sources"]["market_news"].update({"state":"delayed","updated":utc_now,"detail":"No Google News headlines fetched; kept prior market news."})

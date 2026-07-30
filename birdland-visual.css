@@ -999,3 +999,145 @@ button{font:inherit}
   *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
 }
 @keyframes blLinkPulseY{0%,100%{transform:translateY(-4px);opacity:.35}50%{transform:translateY(4px);opacity:1}}
+
+/* Homepage: one quiet, tactile OEM composition. The stage copy is present for
+   assistive technology, then locally revealed through a pointer-position mask. */
+.bl-ink-hero{
+  --ink-x:50%;
+  --ink-y:50%;
+  position:relative;
+  min-height:clamp(540px,calc(100svh - 102px),810px);
+  aspect-ratio:16/9;
+  overflow:hidden;
+  isolation:isolate;
+  background:#102e45;
+  border-bottom:1px solid var(--bl-line);
+}
+.bl-ink-hero-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-1}
+.bl-ink-title{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.bl-ink-promise{
+  position:absolute;
+  z-index:3;
+  left:50%;
+  bottom:28px;
+  width:max-content;
+  max-width:calc(100% - 48px);
+  margin:0;
+  color:rgba(242,230,210,.42);
+  font:500 clamp(7px,.62vw,10px)/1 var(--bl-mono);
+  letter-spacing:.22em;
+  text-align:center;
+  text-transform:uppercase;
+  transform:translateX(-50%);
+  mix-blend-mode:screen;
+  opacity:0;
+  transition:opacity .8s ease;
+}
+.bl-ink-stages{position:absolute;inset:0;z-index:1}
+.bl-ink-stage{position:absolute;inset:0;outline:0;pointer-events:none}
+.bl-ink-stage:focus-visible{outline:1px solid rgba(226,170,119,.9);outline-offset:-8px}
+.bl-ink-marker{
+  position:absolute;
+  z-index:2;
+  color:rgba(48,47,40,.3);
+  font:500 clamp(8px,.72vw,11px)/1 var(--bl-mono);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  transition:opacity .45s ease;
+  opacity:.025;
+}
+.bl-ink-oem .bl-ink-marker{left:5.5%;top:13%;transform:rotate(-90deg);transform-origin:left top}
+.bl-ink-production .bl-ink-marker{left:47%;top:12%;color:rgba(225,189,155,.34)}
+.bl-ink-quality .bl-ink-marker{right:5%;top:15%;color:rgba(218,159,105,.38);writing-mode:vertical-rl}
+.bl-ink-reveal{
+  position:absolute;
+  width:min(360px,26vw);
+  padding:44px 42px;
+  color:#33312b;
+  opacity:0;
+  pointer-events:none;
+  background:#eee7db;
+  -webkit-mask-image:radial-gradient(ellipse 230px 170px at var(--ink-x) var(--ink-y),#000 0 68%,rgba(0,0,0,.82) 78%,transparent 100%);
+  mask-image:radial-gradient(ellipse 230px 170px at var(--ink-x) var(--ink-y),#000 0 68%,rgba(0,0,0,.82) 78%,transparent 100%);
+  transition:opacity .75s ease,filter .75s ease;
+}
+.bl-ink-reveal h2{margin:0;font:600 clamp(15px,1.3vw,23px)/1 var(--bl-sans);letter-spacing:.05em;text-transform:uppercase}
+.bl-ink-reveal p{margin:10px 0 14px;font:500 clamp(11px,.78vw,13px)/1.45 var(--bl-serif)}
+.bl-ink-reveal ul{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none;font:500 clamp(8px,.58vw,10px)/1 var(--bl-mono);letter-spacing:.08em;text-transform:uppercase}
+.bl-ink-reveal li+li::before{content:'·';margin-right:8px}
+.bl-ink-oem .bl-ink-reveal{left:5.5%;top:31%;background:#eee7db;filter:contrast(.8)}
+.bl-ink-production .bl-ink-reveal{left:43%;top:28%;background:#123752;color:#e3c5a6;filter:drop-shadow(0 0 9px rgba(201,141,88,.16))}
+.bl-ink-quality .bl-ink-reveal{right:2.4%;top:43%;width:min(360px,27vw);background:#073c33;color:#d9a26f;filter:drop-shadow(1px 1px 1px rgba(0,0,0,.65))}
+.bl-ink-stage.is-intro .bl-ink-reveal,.bl-ink-reveal.is-near{opacity:1}
+.bl-ink-stage:focus .bl-ink-marker,.bl-ink-stage.is-intro .bl-ink-marker{opacity:.68}
+.bl-ink-hero:hover .bl-ink-promise,.bl-ink-hero:focus-within .bl-ink-promise{opacity:.42}
+
+/* The three notes remain part of the drawing: each is its own small patch of
+   revealed paper, blueprint, or copper-foil inspection annotation. */
+.bl-ink-reveal{width:min(410px,29vw);padding:52px 48px}
+.bl-ink-reveal h2{font-size:clamp(25px,2vw,32px)}
+.bl-ink-reveal p{font-size:clamp(14px,1vw,17px);line-height:1.42}
+.bl-ink-note{
+  position:absolute;
+  z-index:2;
+  width:min(280px,19vw);
+  margin:0;
+  padding:23px 26px 22px;
+  opacity:0;
+  color:#34312c;
+  background:#eee7db;
+  font:600 clamp(16px,1.25vw,20px)/1.28 var(--bl-serif);
+  letter-spacing:.012em;
+  pointer-events:none;
+  -webkit-mask-image:radial-gradient(ellipse 175px 100px at var(--ink-x) var(--ink-y),#000 0 60%,rgba(0,0,0,.82) 80%,transparent 100%);
+  mask-image:radial-gradient(ellipse 175px 100px at var(--ink-x) var(--ink-y),#000 0 60%,rgba(0,0,0,.82) 80%,transparent 100%);
+  transition:opacity .7s ease,filter .7s ease;
+}
+.bl-ink-note::before,.bl-ink-note::after{content:"";position:absolute;pointer-events:none}
+.bl-ink-note::before{left:20px;right:18px;bottom:12px;height:2px;opacity:.45;transform:rotate(-1deg)}
+.bl-ink-note::after{left:12px;top:15px;width:7px;height:7px;border-radius:50%;opacity:.62}
+.bl-ink-note b{display:block;font:600 clamp(26px,2.25vw,36px)/.94 var(--bl-sans);letter-spacing:-.04em;text-transform:uppercase}
+.bl-ink-note span{display:block;margin-top:8px;font:500 clamp(16px,1.05vw,19px)/1.25 var(--bl-serif)}
+.bl-ink-oem .bl-ink-note{background:#eee7db;color:#39342d;filter:contrast(.83)}
+.bl-ink-oem .bl-ink-note::before{background:repeating-linear-gradient(90deg,#4a453c 0 17px,transparent 17px 21px)}
+.bl-ink-oem .bl-ink-note::after{background:#4a453c;box-shadow:12px 3px 0 -2px rgba(74,69,60,.75)}
+.bl-ink-production .bl-ink-note{background:#123752;color:#e4c6a7;filter:drop-shadow(0 0 8px rgba(202,143,91,.12))}
+.bl-ink-production .bl-ink-note::before{background:repeating-linear-gradient(90deg,#d2a176 0 14px,transparent 14px 18px)}
+.bl-ink-production .bl-ink-note::after{border:1px solid #d2a176;background:#123752;box-shadow:12px 0 0 -2px #d2a176}
+.bl-ink-quality .bl-ink-note{background:#073c33;color:#d9a26f;filter:drop-shadow(1px 1px 1px rgba(0,0,0,.65))}
+.bl-ink-quality .bl-ink-note::before{background:linear-gradient(90deg,transparent 0 4%,#d19a69 4% 94%,transparent 94%);box-shadow:0 -4px 0 -3px rgba(209,154,105,.65)}
+.bl-ink-quality .bl-ink-note::after{border:1px solid #d19a69;background:#073c33;transform:rotate(45deg);border-radius:0}
+.bl-ink-oem .bl-ink-note-a{left:3%;top:17%}.bl-ink-oem .bl-ink-note-b{left:4%;top:58%}.bl-ink-oem .bl-ink-note-c{left:2%;bottom:7%}
+.bl-ink-production .bl-ink-note-a{left:43%;top:11%}.bl-ink-production .bl-ink-note-b{left:47%;top:59%}.bl-ink-production .bl-ink-note-c{left:34%;bottom:7%}
+.bl-ink-quality .bl-ink-note-a{right:2%;top:17%}.bl-ink-quality .bl-ink-note-b{right:2%;top:60%}.bl-ink-quality .bl-ink-note-c{right:1%;bottom:7%}
+.bl-ink-oem .bl-ink-reveal{top:33%}.bl-ink-production .bl-ink-reveal{top:28%}.bl-ink-quality .bl-ink-reveal{top:34%}
+.bl-ink-note.is-near{opacity:1}
+@media (pointer:coarse){
+  .bl-ink-reveal{opacity:0}
+  .bl-ink-stage.is-intro .bl-ink-reveal,.bl-ink-stage [data-ink-reveal].is-near{opacity:1}
+  .bl-ink-stage.is-revealed [data-ink-reveal]{-webkit-mask-image:none;mask-image:none}
+}
+@media (max-width:700px){
+  .bl-ink-hero{min-height:calc(100svh - 76px);aspect-ratio:auto}
+  .bl-ink-hero-art{object-position:center;transform:scale(1.15)}
+  .bl-ink-promise{bottom:18px;font-size:7px;letter-spacing:.13em}
+  .bl-ink-reveal{width:48vw;padding:32px 25px}
+  .bl-ink-oem .bl-ink-reveal{left:4%;top:24%}
+  .bl-ink-production .bl-ink-reveal{left:36%;top:18%}
+  .bl-ink-quality .bl-ink-reveal{right:1%;top:40%;width:54vw}
+  .bl-ink-reveal h2{font-size:12px}
+  .bl-ink-reveal p{font-size:10px;margin:7px 0 9px}
+  .bl-ink-reveal ul{gap:4px;font-size:7px}
+  .bl-ink-reveal li+li::before{margin-right:4px}
+  .bl-ink-reveal h2{font-size:20px}
+  .bl-ink-reveal p{font-size:12px}
+  .bl-ink-note{width:42vw;padding:17px 15px 20px;font-size:14px}
+  .bl-ink-note b{font-size:20px;line-height:.98}
+  .bl-ink-note span{margin-top:6px;font-size:14px;line-height:1.22}
+  .bl-ink-note::before{left:13px;right:12px;bottom:8px}
+  .bl-ink-note::after{left:7px;top:10px;width:5px;height:5px}
+  .bl-ink-oem .bl-ink-note-a{left:0;top:12%}.bl-ink-oem .bl-ink-note-b{left:0;top:52%}.bl-ink-oem .bl-ink-note-c{left:0;bottom:5%}
+  .bl-ink-production .bl-ink-note-a{left:31%;top:8%}.bl-ink-production .bl-ink-note-b{left:38%;top:53%}.bl-ink-production .bl-ink-note-c{left:27%;bottom:5%}
+  .bl-ink-quality .bl-ink-note-a{right:0;top:13%}.bl-ink-quality .bl-ink-note-b{right:0;top:54%}.bl-ink-quality .bl-ink-note-c{right:0;bottom:5%}
+}
+@media (prefers-reduced-motion:reduce){.bl-ink-reveal,.bl-ink-note,.bl-ink-marker,.bl-ink-promise{transition:none}}
