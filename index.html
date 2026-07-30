@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#f3efe5">
   <title>Birdland Ind. | Confidential OEM Manufacturing Since 1974</title>
   <meta name="description" content="Birdland is a confidential garden and field tool OEM manufacturer.">
-  <link rel="stylesheet" href="birdland-visual.css?v=20260730p">
-  <script defer src="terminal-status.js?v=20260730c"></script>
+  <link rel="stylesheet" href="birdland-visual.css?v=20260730q">
+  <script defer src="terminal-status.js?v=20260730d"></script>
 </head>
 <body>
   <a class="bl-skip" href="#main">Skip to content</a>
@@ -42,7 +42,7 @@
 
   <main class="bl-main" id="main">
     <section class="bl-ink-hero" aria-labelledby="home-title">
-      <img class="bl-ink-hero-art" src="images/hero-oem-program-production-quality-v2.png" alt="A traditional Dutch hand trowel spanning confidential OEM engineering, controlled production and quality inspection.">
+      <img class="bl-ink-hero-art" src="images/hero-oem-program-production-quality-v2.webp" alt="A traditional Dutch hand trowel spanning confidential OEM engineering, controlled production and quality inspection.">
       <h1 id="home-title" class="bl-ink-title">Your design. Our discipline. Never our brand.</h1>
       <p class="bl-ink-promise">YOUR DESIGN. OUR DISCIPLINE. NEVER OUR BRAND.</p>
       <div class="bl-ink-stages">
@@ -77,10 +77,7 @@
   </footer>
   <script>
     (function(){
-      var header=document.querySelector('.bl-header');
       var hero=document.querySelector('.bl-ink-hero');
-      function updateHeader(){ if(!header) return; var away=window.scrollY>18; header.classList.toggle('is-scrolled',away); header.classList.toggle('is-hidden',away); if(away) document.querySelectorAll('.bl-menu[open]').forEach(function(menu){ menu.removeAttribute('open'); }); }
-      window.addEventListener('scroll',updateHeader,{passive:true}); updateHeader();
       document.addEventListener('click',function(event){ document.querySelectorAll('.bl-menu[open]').forEach(function(menu){ if(!menu.contains(event.target)) menu.removeAttribute('open'); }); });
       if(hero){
         var stages=Array.prototype.slice.call(hero.querySelectorAll('.bl-ink-stage'));

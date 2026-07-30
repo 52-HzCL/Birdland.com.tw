@@ -28,4 +28,18 @@
     document.querySelectorAll('[data-translate-select]').forEach(setPicker);
   }
   tick();setInterval(tick,30000);
+
+  // The banner shows only while the page sits at the very top. Once the reader
+  // scrolls away it leaves the viewport entirely rather than shrinking, so
+  // nothing competes with the content. Any open nav panel is closed on the way
+  // out so a detached menu cannot be left floating over the page.
+  var header=document.querySelector('.bl-header');
+  function headerScroll(){
+    if(!header)return;
+    var away=window.scrollY>18;
+    header.classList.toggle('is-scrolled',away);
+    header.classList.toggle('is-hidden',away);
+    if(away)document.querySelectorAll('.bl-menu[open]').forEach(function(menu){menu.removeAttribute('open');});
+  }
+  window.addEventListener('scroll',headerScroll,{passive:true});headerScroll();
 }());
