@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Product 101 | Birdland Manufacturing Atlas</title>
-  <meta name="description" content="A visual buyer-oriented atlas of materials, tooling, forming, joining, finishing and inspection.">
-  <link rel="stylesheet" href="birdland-visual.css?v=20260730a"><script defer src="terminal-status.js?v=20260730c"></script>
+  <title>Product 101 | Garden Tool Materials, Processes, Packaging &amp; Cost</title>
+  <meta name="description" content="An encyclopedia of garden hand-tool manufacturing: forming and heat-treatment routes, blade steel and grip material grades, recyclable packaging options and the four blocks of landed cost.">
+  <link rel="stylesheet" href="birdland-visual.css?v=20260730p"><script defer src="terminal-status.js?v=20260730c"></script>
 </head>
 <body>
   <a class="bl-skip" href="#main">Skip to content</a>
@@ -33,17 +33,18 @@
         <span class="bl-eyebrow">Birdland technical atlas</span>
         <h1>See the route from material to tool.</h1>
       </div>
-      <p>Choose a production gate to see what enters, what must be controlled and what a buyer should ask. This is public process education—not a customer drawing, specification or programme record.</p>
+      <p>Choose a production gate to see what enters, what must be controlled, which routes exist and what a buyer should ask. This is public process education—not a customer drawing, specification or programme record.</p>
     </section>
 
     <section aria-label="Interactive manufacturing atlas">
       <div class="atlas-controls">
         <button type="button" aria-pressed="true" data-step="material"><em>01</em>Material</button>
         <button type="button" aria-pressed="false" data-step="forming"><em>02</em>Forming</button>
-        <button type="button" aria-pressed="false" data-step="tooling"><em>03</em>Tooling</button>
-        <button type="button" aria-pressed="false" data-step="joining"><em>04</em>Joining</button>
-        <button type="button" aria-pressed="false" data-step="finish"><em>05</em>Finish</button>
-        <button type="button" aria-pressed="false" data-step="inspection"><em>06</em>Inspection</button>
+        <button type="button" aria-pressed="false" data-step="heat"><em>03</em>Heat treat</button>
+        <button type="button" aria-pressed="false" data-step="tooling"><em>04</em>Tooling</button>
+        <button type="button" aria-pressed="false" data-step="joining"><em>05</em>Joining</button>
+        <button type="button" aria-pressed="false" data-step="finish"><em>06</em>Finish</button>
+        <button type="button" aria-pressed="false" data-step="inspection"><em>07</em>Inspection</button>
       </div>
       <div class="atlas-stage" aria-live="polite">
         <div class="atlas-stage-image"><img id="atlas-image" src="images/thumbs/raw-materials.webp" alt="Raw material prepared for garden-tool production"></div>
@@ -55,8 +56,193 @@
             <div class="atlas-row"><b>CONTROL POINT</b><span id="atlas-control">Specified material must match the intended forming and performance route.</span></div>
             <div class="atlas-row"><b>BUYER SHOULD ASK</b><span id="atlas-question">Which material property is critical for the intended use?</span></div>
           </div>
+          <div class="atlas-variants"><b>ROUTES AT THIS GATE</b><ul class="atlas-chips" id="atlas-variants"><li>Blade &amp; spring steel</li><li>Stainless steel</li><li>Aluminium</li><li>Rigid plastics</li><li>Grip compounds</li><li>Timber</li><li>Fabric</li></ul></div>
           <div class="bl-actions"><a class="bl-button" href="contact.html">Discuss a production route</a></div>
         </div>
+      </div>
+    </section>
+
+    <section class="ledger-section" aria-labelledby="materials-title">
+      <span class="bl-eyebrow">Material library</span>
+      <h2 id="materials-title">Nine input families, and the grades inside each one.</h2>
+      <p class="p101-lead">A garden tool is rarely one material. These are the nine families a hand-tool programme draws on, the grades commonly specified inside each, and the trade-off that moves the unit cost. The same nine families are tracked as live inputs on our <a href="partner.html">Buyer Desk</a>.</p>
+      <div class="mat-grid">
+        <article class="mat-card">
+          <b>M01</b>
+          <h3>Blade &amp; spring steel</h3>
+          <p class="mat-use">Cutting blades, anvils, springs, hardened working edges.</p>
+          <ul class="mat-vars"><li>SK5</li><li>65Mn</li><li>420J2</li><li>SUS420J2</li><li>SUS440C</li></ul>
+          <p class="mat-cost"><b>WHAT MOVES COST</b>Harder grades hold an edge longer but are more brittle and slower to machine. Carbon steel needs a plated layer; hardenable stainless does not.</p>
+        </article>
+        <article class="mat-card">
+          <b>M02</b>
+          <h3>Stainless steel</h3>
+          <p class="mat-use">Corrosion-exposed parts, fasteners, sprayer components.</p>
+          <ul class="mat-vars"><li>304</li><li>410</li><li>420</li></ul>
+          <p class="mat-cost"><b>WHAT MOVES COST</b>304 resists corrosion best but cannot be hardened; 410 and 420 can be hardened for edges. Stainless removes a plating step but costs more per kilo.</p>
+        </article>
+        <article class="mat-card">
+          <b>M03</b>
+          <h3>Plating &amp; coating layer</h3>
+          <p class="mat-use">Corrosion protection and appearance on carbon-steel parts.</p>
+          <ul class="mat-vars"><li>Zinc</li><li>Nickel-chrome</li><li>Dacromet</li><li>Powder coat</li><li>E-coat</li></ul>
+          <p class="mat-cost"><b>WHAT MOVES COST</b>Cost tracks layer thickness and the salt-spray hours you need. Specify the hours, not the thickest available option.</p>
+        </article>
+        <article class="mat-card">
+          <b>M04</b>
+          <h3>Aluminium</h3>
+          <p class="mat-use">Telescopic poles, light frames, lightweight handles.</p>
+          <ul class="mat-vars"><li>6061</li><li>6063</li><li>Wall thickness</li><li>Anodised</li></ul>
+          <p class="mat-cost"><b>WHAT MOVES COST</b>A thinner wall is lighter and cheaper but less stiff. 6061 is stronger; 6063 extrudes into finer profiles.</p>
+        </article>
+        <article class="mat-card">
+          <b>M05</b>
+          <h3>Rigid plastics</h3>
+          <p class="mat-use">Housings, sprayer bodies, gear parts, rigid handle cores.</p>
+          <ul class="mat-vars"><li>PP</li><li>PE</li><li>ABS</li><li>PA</li><li>PA+GF</li></ul>
+          <p class="mat-cost"><b>WHAT MOVES COST</b>Glass fill raises stiffness and heat resistance, and the price. Resin is a traded commodity, so quotes move with the resin index.</p>
+        </article>
+        <article class="mat-card">
+          <b>M06</b>
+          <h3>Grips &amp; soft compounds</h3>
+          <p class="mat-use">Handles, over-moulded grips, sleeves, cushioned contact areas.</p>
+          <ul class="mat-vars"><li>TPR</li><li>TPE</li><li>Thermoplastic rubber</li><li>PVC dip</li></ul>
+          <p class="mat-cost"><b>WHAT MOVES COST</b>A two-shot over-mould feels better in the hand and costs more than a slip-on sleeve or a dip coating.</p>
+        </article>
+        <article class="mat-card">
+          <b>M07</b>
+          <h3>Timber</h3>
+          <p class="mat-use">Wooden handles and shafts.</p>
+          <ul class="mat-vars"><li>Beech</li><li>Ash</li><li>Bamboo</li><li>FSC / PEFC stock</li></ul>
+          <p class="mat-cost"><b>WHAT MOVES COST</b>Certified and kiln-dried stock carries a premium. Grade drives the reject rate more than the price per piece does.</p>
+        </article>
+        <article class="mat-card">
+          <b>M08</b>
+          <h3>Fabric &amp; textile</h3>
+          <p class="mat-use">Gloves, storage bags, vests, blinds and covers.</p>
+          <ul class="mat-vars"><li>Canvas</li><li>Polyester</li><li>Coated fabric</li><li>Mesh</li></ul>
+          <p class="mat-cost"><b>WHAT MOVES COST</b>Denier, coating and stitch density set the cost. A coating adds water resistance and price.</p>
+        </article>
+        <article class="mat-card">
+          <b>M09</b>
+          <h3>Packaging board</h3>
+          <p class="mat-use">Export cartons, colour boxes, hang cards and inserts.</p>
+          <ul class="mat-vars"><li>Corrugated</li><li>Folding boxboard</li><li>Recycled content</li><li>Moulded pulp</li></ul>
+          <p class="mat-cost"><b>WHAT MOVES COST</b>Recycled content and mono-material choices affect both price and destination compliance. See the packaging section below.</p>
+        </article>
+      </div>
+
+      <div class="dia-grid">
+        <div class="dia">
+          <h3>Hardness is a choice, not a maximum</h3>
+          <p>Blade hardness is specified as a band, because the same steel can be treated soft and tough or hard and brittle. Harder is not automatically better.</p>
+          <svg viewBox="0 0 520 96" role="img" aria-label="A hardness scale from 38 to 62 HRC with the typical hand-tool blade band highlighted between 52 and 58">
+            <rect x="296" y="30" width="110" height="22" fill="#a4b49e" opacity=".55"></rect>
+            <line x1="40" y1="41" x2="480" y2="41" stroke="#073c33" stroke-width="2"></line>
+            <g stroke="#073c33" stroke-width="1.5">
+              <line x1="40" y1="34" x2="40" y2="48"></line>
+              <line x1="150" y1="34" x2="150" y2="48"></line>
+              <line x1="260" y1="34" x2="260" y2="48"></line>
+              <line x1="370" y1="34" x2="370" y2="48"></line>
+              <line x1="480" y1="34" x2="480" y2="48"></line>
+            </g>
+            <g fill="#66736e" font-family="monospace" font-size="11" text-anchor="middle">
+              <text x="40" y="70">38</text>
+              <text x="150" y="70">44</text>
+              <text x="260" y="70">50</text>
+              <text x="370" y="70">56</text>
+              <text x="480" y="70">62</text>
+            </g>
+            <g stroke="#b96032" stroke-width="2">
+              <line x1="296" y1="24" x2="296" y2="58"></line>
+              <line x1="406" y1="24" x2="406" y2="58"></line>
+            </g>
+          </svg>
+          <ul class="pk-forms" style="margin:16px 0 0"><li>Left: tougher, easier to re-sharpen</li><li>Shaded: common hand-tool blade band</li><li>Right: holds an edge, chips sooner</li></ul>
+        </div>
+        <div class="dia">
+          <h3>What a protected surface is made of</h3>
+          <p>“Plated” is not one thing. A protective surface is a stack, and each layer is a separate cost and a separate control point.</p>
+          <svg viewBox="0 0 520 96" role="img" aria-label="A cross-section showing four stacked layers on a steel base">
+            <rect x="40" y="60" width="440" height="26" fill="#17362f"></rect>
+            <rect x="40" y="48" width="440" height="12" fill="#66736e"></rect>
+            <rect x="40" y="38" width="440" height="10" fill="#b96032"></rect>
+            <rect x="40" y="30" width="440" height="8" fill="#d7a37e"></rect>
+            <g fill="#66736e" font-family="monospace" font-size="11">
+              <text x="490" y="80">1</text>
+              <text x="490" y="58">2</text>
+              <text x="490" y="47">3</text>
+              <text x="490" y="38">4</text>
+            </g>
+          </svg>
+          <ul class="pk-forms" style="margin:16px 0 0"><li>1 · Base metal</li><li>2 · Surface preparation</li><li>3 · Protective layer</li><li>4 · Finish or topcoat</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="ledger-section" aria-labelledby="packaging-title">
+      <span class="bl-eyebrow">Packaging</span>
+      <h2 id="packaging-title">The pack decides compliance as much as the tool does.</h2>
+      <p class="p101-lead">Packaging is where a programme most often meets destination regulation, and where a late change is most expensive. These are the formats a hand tool normally ships in, followed by the lower-impact route for each one.</p>
+      <ul class="pk-forms">
+        <li>Corrugated export carton</li>
+        <li>Colour box</li>
+        <li>Hang tag / header card</li>
+        <li>Blister pack</li>
+        <li>Skin pack</li>
+        <li>Paper-and-plastic composite</li>
+        <li>Shrink film</li>
+        <li>Label set</li>
+        <li>Void fill</li>
+        <li>Strapping</li>
+        <li>Pallet — wood or plastic</li>
+      </ul>
+      <div class="p101-scroll">
+        <table class="p101-table">
+          <thead><tr><th scope="col">Lower-impact option</th><th scope="col">Replaces</th><th scope="col">Why buyers ask for it</th></tr></thead>
+          <tbody>
+            <tr><td>FSC / PEFC certified board</td><td>Uncertified board</td><td>A baseline requirement for most large retail accounts.</td></tr>
+            <tr><td>Recycled-content board</td><td>Virgin board</td><td>Allows a declared recycled percentage on the pack.</td></tr>
+            <tr><td>Mono-material paper pack</td><td>Paper-plus-plastic blister</td><td>Recyclable without the consumer separating materials.</td></tr>
+            <tr><td>Moulded pulp or paper blister</td><td>PET or PVC blister</td><td>The main route to removing plastic from a retail pack.</td></tr>
+            <tr><td>Paper hang tab</td><td>Moulded plastic hook</td><td>Avoids a plastic line item on an otherwise paper pack.</td></tr>
+            <tr><td>Soy or water-based ink</td><td>Solvent-based ink</td><td>Lowers the solvent load in printing.</td></tr>
+            <tr><td>Paper or gummed tape</td><td>PP packing tape</td><td>The whole carton can enter one recycling stream.</td></tr>
+            <tr><td>Unprinted export carton</td><td>Full-colour outer</td><td>Lowest cost and lowest footprint for plain export.</td></tr>
+            <tr><td>Recycled or rPET film</td><td>PVC shrink film</td><td>A compromise where a film genuinely cannot be removed.</td></tr>
+            <tr><td>Heat-treated or plastic pallet</td><td>Untreated wood pallet</td><td>Meets ISPM-15 phytosanitary requirements on export.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="p101-lead" style="margin:26px 0 0">Which options are available depends on the pack format, the volume and the destination. Tell us the market and the retail presentation, and the compliant routes can be quoted alongside the conventional ones.</p>
+    </section>
+
+    <section class="ledger-section" aria-labelledby="cost-title">
+      <span class="bl-eyebrow">Cost structure</span>
+      <h2 id="cost-title">A landed price is four blocks, not one number.</h2>
+      <p class="p101-lead">Most sourcing conversations move only the first block. In a hand-tool programme the last two are frequently larger than the saving being negotiated on the first.</p>
+      <div class="cost-ladder">
+        <div class="cost-cell"><b>BLOCK 01</b><strong>Material</strong><span>Steel, resin, timber, fabric. Traded inputs — grade and weight per piece drive it, and the index moves weekly.</span></div>
+        <div class="cost-cell"><b>BLOCK 02</b><strong>Conversion</strong><span>Forming, heat treatment, finishing and assembly labour. Cycle time, tooling condition and yield drive it.</span></div>
+        <div class="cost-cell"><b>BLOCK 03</b><strong>Packaging</strong><span>Carton, colour box, hang tag, pallet. Routinely underestimated — a pack format can outweigh a material saving.</span></div>
+        <div class="cost-cell"><b>BLOCK 04</b><strong>Logistics</strong><span>Inland trucking, customs, port charges and ocean freight. Cube per carton decides this, not weight.</span></div>
+      </div>
+      <p class="p101-lead" style="margin:0">Run your own numbers: the landed-cost tool on the <a href="partner.html#p-landed2">Buyer Desk</a> uses these same four blocks, with the current material and freight readings already loaded.</p>
+    </section>
+
+    <section class="ledger-section" aria-labelledby="floor-title">
+      <span class="bl-eyebrow">Where this happens</span>
+      <h2 id="floor-title">The same route, on the floor.</h2>
+      <p class="p101-lead">Every gate above corresponds to a physical station. These are stations in the production and warehousing chain behind a Birdland programme.</p>
+      <div class="p101-strip">
+        <figure class="p101-shot"><img src="images/thumbs/taiwan-factory.webp" alt="Taiwan base used for origin, warehousing and shipping" loading="lazy" decoding="async"><figcaption>Taiwan base — origin &amp; shipping</figcaption></figure>
+        <figure class="p101-shot"><img src="images/thumbs/raw-materials.webp" alt="Raw material stock held before production" loading="lazy" decoding="async"><figcaption>Material stock</figcaption></figure>
+        <figure class="p101-shot"><img src="images/thumbs/wooden-handle.webp" alt="Wooden handles being made" loading="lazy" decoding="async"><figcaption>Wooden handle making</figcaption></figure>
+        <figure class="p101-shot"><img src="images/thumbs/laser-marking-qc.webp" alt="Laser marking and quality control station" loading="lazy" decoding="async"><figcaption>Laser marking &amp; QC</figcaption></figure>
+        <figure class="p101-shot"><img src="images/thumbs/assembly-calibration.webp" alt="Assembly and calibration station" loading="lazy" decoding="async"><figcaption>Assembly &amp; calibration</figcaption></figure>
+        <figure class="p101-shot"><img src="images/thumbs/chairman-inspection.webp" alt="Inspection walk on the production floor" loading="lazy" decoding="async"><figcaption>Inspection on the floor</figcaption></figure>
+        <figure class="p101-shot"><img src="images/thumbs/finished-goods-warehouse.webp" alt="Finished goods warehouse" loading="lazy" decoding="async"><figcaption>Finished-goods warehouse</figcaption></figure>
+        <figure class="p101-shot"><img src="images/thumbs/outbound-shipping.webp" alt="Outbound shipping preparation" loading="lazy" decoding="async"><figcaption>Outbound shipping</figcaption></figure>
       </div>
     </section>
 
@@ -79,22 +265,29 @@
   <script>
     (function(){
       var steps={
-        material:{number:"01 / MATERIAL",title:"Material control",image:"images/thumbs/raw-materials.webp",alt:"Raw material prepared for garden-tool production",input:"Grade, thickness, condition and traceability.",control:"Specified material must match the intended forming and performance route.",question:"Which material property is critical for the intended use?"},
-        forming:{number:"02 / FORMING",title:"Forming and shaping",image:"images/thumbs/blade-forming.webp",alt:"Metal garden-tool blade during forming",input:"Prepared metal and an approved forming route.",control:"Press force, sequence and die clearance affect repeatability.",question:"Which dimension or edge condition matters most?"},
-        tooling:{number:"03 / TOOLING",title:"Tooling discipline",image:"images/thumbs/tooling-die-library.webp",alt:"Production tooling and die library",input:"Approved geometry and maintained production tooling.",control:"Tool condition helps hold repeatable geometry over a production run.",question:"Which feature depends most on tooling repeatability?"},
-        joining:{number:"04 / JOINING",title:"Joining and assembly",image:"images/thumbs/frame-welding.webp",alt:"Metal components during joining",input:"Prepared components, joints and an agreed assembly sequence.",control:"Fit, heat and sequence must protect alignment and load paths.",question:"Which joint carries load or controls alignment?"},
-        finish:{number:"05 / FINISH",title:"Surface treatment",image:"images/thumbs/surface-treatment.webp",alt:"Garden-tool components during surface treatment",input:"A prepared surface and a defined treatment route.",control:"Preparation, coverage and cure must suit the intended exposure.",question:"What environment and service life will the product face?"},
-        inspection:{number:"06 / INSPECTION",title:"Quality gate",image:"images/thumbs/pre-shipment-sampling.webp",alt:"Finished products during pre-shipment sampling",input:"Finished goods, packaging requirements and agreed checkpoints.",control:"Sampling and release checks support a clean commercial hand-off.",question:"What must be verified before release?"}
+        material:{number:"01 / MATERIAL",title:"Material control",image:"images/thumbs/raw-materials.webp",alt:"Raw material prepared for garden-tool production",input:"Grade, thickness, condition and traceability.",control:"Specified material must match the intended forming and performance route.",question:"Which material property is critical for the intended use?",variants:["Blade & spring steel","Stainless steel","Aluminium","Rigid plastics","Grip compounds","Timber","Fabric"]},
+        forming:{number:"02 / FORMING",title:"Forming and shaping",image:"images/thumbs/blade-forming.webp",alt:"Metal garden-tool blade during forming",input:"Prepared metal and an approved forming route.",control:"Press force, sequence and die clearance affect repeatability.",question:"Which dimension or edge condition matters most?",variants:["Stamping","Hot forging","Cold forging","Laser cutting","Tube drawing","Tube bending","Swaging","Wood turning","Injection moulding","Two-shot over-moulding","Dip moulding"]},
+        heat:{number:"03 / HEAT TREATMENT",title:"Heat treatment",image:"images/thumbs/heat-treatment.webp",alt:"Steel garden-tool parts during heat treatment",input:"Formed steel parts and a defined hardness band.",control:"Temperature, quench and temper decide hardness, toughness and distortion.",question:"What hardness band does the working edge need, and why?",variants:["Through hardening","Quench & temper","Induction (local) hardening","Solution annealing","Stress relief","Hardness banding by grade"]},
+        tooling:{number:"04 / TOOLING",title:"Tooling discipline",image:"images/thumbs/tooling-die-library.webp",alt:"Production tooling and die library",input:"Approved geometry and maintained production tooling.",control:"Tool condition helps hold repeatable geometry over a production run.",question:"Which feature depends most on tooling repeatability?",variants:["Progressive dies","Single-station dies","Trim & pierce tools","Injection moulds","Welding jigs","Assembly fixtures","Gauges"]},
+        joining:{number:"05 / JOINING",title:"Joining and assembly",image:"images/thumbs/frame-welding.webp",alt:"Metal components during joining",input:"Prepared components, joints and an agreed assembly sequence.",control:"Fit, heat and sequence must protect alignment and load paths.",question:"Which joint carries load or controls alignment?",variants:["Riveting","Bolted joints","Snap-fit","Press-fit","Spot welding","MIG welding","Brazing","Over-moulded joints","Adhesive bonding"]},
+        finish:{number:"06 / FINISH",title:"Surface treatment",image:"images/thumbs/surface-treatment.webp",alt:"Garden-tool components during surface treatment",input:"A prepared surface and a defined treatment route.",control:"Preparation, coverage and cure must suit the intended exposure.",question:"What environment and service life will the product face?",variants:["Zinc plating","Nickel-chrome plating","Dacromet","Powder coating","Wet paint","E-coat","Anodising","Polishing","Sand-blasting","Lacquer or oil on wood","Heat transfer print","Laser marking"]},
+        inspection:{number:"07 / INSPECTION",title:"Quality gate",image:"images/thumbs/pre-shipment-sampling.webp",alt:"Finished products during pre-shipment sampling",input:"Finished goods, packaging requirements and agreed checkpoints.",control:"Sampling and release checks support a clean commercial hand-off.",question:"What must be verified before release?",variants:["Hardness sampling","Open/close cycle life","Salt-spray hours","Dimensional AQL","Edge & function check","Joint pull test","Pack drop test","Barcode & label check"]}
       };
       var ids={number:"atlas-number",title:"atlas-title",input:"atlas-input",control:"atlas-control",question:"atlas-question"};
       document.querySelectorAll("[data-step]").forEach(function(button){
         button.addEventListener("click",function(){
           var step=steps[button.dataset.step];
+          if(!step)return;
           document.querySelectorAll("[data-step]").forEach(function(item){item.setAttribute("aria-pressed",String(item===button));});
           Object.keys(ids).forEach(function(key){document.getElementById(ids[key]).textContent=step[key];});
           var image=document.getElementById("atlas-image");
           image.src=step.image;
           image.alt=step.alt;
+          var list=document.getElementById("atlas-variants");
+          if(list&&step.variants){
+            list.textContent="";
+            step.variants.forEach(function(name){var li=document.createElement("li");li.textContent=name;list.appendChild(li);});
+          }
         });
       });
     }());

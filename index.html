@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#f3efe5">
   <title>Birdland Ind. | Confidential OEM Manufacturing Since 1974</title>
   <meta name="description" content="Birdland is a confidential garden and field tool OEM manufacturer.">
-  <link rel="stylesheet" href="birdland-visual.css?v=20260730n">
+  <link rel="stylesheet" href="birdland-visual.css?v=20260730p">
   <script defer src="terminal-status.js?v=20260730c"></script>
 </head>
 <body>
@@ -79,7 +79,7 @@
     (function(){
       var header=document.querySelector('.bl-header');
       var hero=document.querySelector('.bl-ink-hero');
-      function updateHeader(){ if(header) header.classList.toggle('is-scrolled',window.scrollY>18); }
+      function updateHeader(){ if(!header) return; var away=window.scrollY>18; header.classList.toggle('is-scrolled',away); header.classList.toggle('is-hidden',away); if(away) document.querySelectorAll('.bl-menu[open]').forEach(function(menu){ menu.removeAttribute('open'); }); }
       window.addEventListener('scroll',updateHeader,{passive:true}); updateHeader();
       document.addEventListener('click',function(event){ document.querySelectorAll('.bl-menu[open]').forEach(function(menu){ if(!menu.contains(event.target)) menu.removeAttribute('open'); }); });
       if(hero){
