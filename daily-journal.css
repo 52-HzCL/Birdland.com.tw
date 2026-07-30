@@ -88,10 +88,12 @@ body{
   background:transparent;
   color:var(--kb-red);
 }
-.install{display:flex;justify-content:flex-end;padding:0;border:0;min-width:46px}
-.install .install-mailbox{display:grid;place-items:center;width:46px;min-height:38px;height:38px;padding:0;border:1px solid rgba(7,60,51,.34);background:rgba(251,249,243,.82);color:var(--kb-jade);box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 5px 14px rgba(23,54,47,.08)}
-.install .install-mailbox svg{width:31px;height:25px;fill:none;stroke:currentColor;stroke-width:1.45;stroke-linecap:round;stroke-linejoin:round}
-.install .install-mailbox:hover,.install .install-mailbox:focus-visible{color:var(--kb-red);border-color:var(--kb-red);outline:1px solid rgba(166,79,42,.28);outline-offset:2px}
+.free-app{position:relative;display:flex;justify-content:flex-end;align-items:center;padding:0 8px;border:0;min-width:126px}
+.free-app .subscription-art-button{position:relative;display:block;width:112px;margin:-9px 0 -7px;padding:0;border:0;background:transparent;line-height:0;filter:drop-shadow(0 4px 4px rgba(34,30,25,.16));transform:rotate(-1.1deg);transition:transform .18s ease,filter .18s ease}
+.free-app .subscription-art-button img{display:block;width:100%;height:auto}
+.free-app .subscription-art-button::after{content:"";position:absolute;right:-8px;top:20px;width:35px;height:35px;border:1px solid rgba(166,79,42,.32);border-radius:50%;box-shadow:9px 4px 0 -8px rgba(166,79,42,.36),14px 8px 0 -13px rgba(166,79,42,.36);pointer-events:none}
+.free-app .subscription-art-button:hover{transform:translateY(-2px) rotate(-.5deg);filter:drop-shadow(0 7px 7px rgba(34,30,25,.2))}
+.free-app .subscription-art-button:focus-visible{outline:2px solid var(--kb-red);outline-offset:3px}
 .visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 .hq{color:#8d8171}.hq .dot{background:#8d8171;box-shadow:none}.hq.is-online,.hq.is-online b{color:var(--kb-jade)}.hq.is-online .dot{background:#5d8d58;box-shadow:0 0 0 3px rgba(93,141,88,.16)}.language select{width:100%;margin-top:5px;padding:6px;border:1px solid #a99072;background:var(--kb-dark);color:#f5e9d4;font:500 10px var(--mono)}
 .main{border-top:0}
@@ -214,7 +216,7 @@ dialog{border-radius:0}
   .rail{position:sticky;top:0;z-index:35;display:block;padding:10px 0}
   .rail h2{margin-bottom:8px}
   .navgroups{display:flex}
-  .install{margin-top:9px}
+  .free-app{margin-top:9px}
   .hero-actions{position:static;justify-content:flex-start}
   .hero::after{display:none}
   .hero h1{white-space:normal}
@@ -223,6 +225,8 @@ dialog{border-radius:0}
   .journal-map{border-right:0}
 }
 @media(max-width:640px){
+  .free-app{justify-content:flex-start;min-width:0;padding-left:4px}
+  .free-app .subscription-art-button{width:104px}
   .topin{padding:14px 13px}
   .brand{font-size:23px}
   .brand small{display:block;margin:7px 0 0;padding:0;border:0}

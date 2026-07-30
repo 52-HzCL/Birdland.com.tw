@@ -1,4 +1,4 @@
-const VERSION = "birdland-desks-v16";
+const VERSION = "birdland-desks-v21";
 const CORE_CACHE = `${VERSION}-core`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const CORE_ASSETS = [
@@ -32,6 +32,8 @@ const CORE_ASSETS = [
   "./images/thumbs/chairman-inspection.webp",
   "./images/thumbs/assembly-calibration.webp",
   "./images/hero-forged-trowel.webp",
+  "./images/hero-supply-firewall-option-a-dutch-trowel.png",
+  "./images/free-subscription-mailbox-option-a.webp",
   "./images/foundry-engraving.webp",
   "./images/pruner-inspection.webp",
   "./images/buyer-anatomy-pruner.webp",
