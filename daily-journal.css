@@ -158,29 +158,41 @@ body{
 .journal-map{margin:0;border-right:1px solid var(--kb-line);background:#e9e2d6}
 .journal-map img{display:block;width:100%;height:372px;object-fit:cover;filter:saturate(.76) contrast(.98)}
 .journal-map figcaption{height:38px;padding:10px 13px;color:var(--kb-muted);font:600 8px var(--mono);letter-spacing:.08em;text-transform:uppercase}
-.journal-drivers{padding-right:0}
+ /* The front is a three-column grid — lead, map, risk — and the drivers block
+    was falling into column one of the second row, which is the narrowest of
+    the three (.75fr). That is why three cards could not sit side by side: they
+    were being asked to fit a column built for one headline. It spans the full
+    width, under the lead and the risk scope, which is where it belongs. */
+.journal-drivers{grid-column:1/-1;padding:20px 0 22px;border-top:1px solid var(--kb-line)}
 .journal-driver-head{display:flex;justify-content:space-between;gap:12px;padding-bottom:12px;border-bottom:1px solid var(--kb-line)}
 .journal-driver-head h2{margin:4px 0 3px;font:700 22px/1.1 var(--serif)}
 .journal-driver-head p{margin:0;color:var(--kb-muted);font:11px/1.4 var(--serif)}
-.journal-front .brief-grid{display:grid;grid-template-columns:1fr;margin-top:0;border-top:0}
-.journal-front .brief-card{
-  display:grid;
-  grid-template-columns:90px 90px 1fr auto;
-  align-items:center;
-  gap:10px;
-  min-height:86px;
-  padding:10px 0;
-  border-right:0;
-  border-bottom:1px solid var(--kb-line);
+/* Three drivers, three columns. The base stylesheet already laid these out
+   side by side; this file loads after it and had flattened them back to a
+   single column of wide rows, so the reader got one signal per screen-height
+   instead of the comparison the section is for. */
+.journal-front .brief-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:1px;margin-top:14px;border:1px solid var(--kb-line);background:var(--kb-line);
 }
-.journal-front .brief-card:last-child{border-bottom:0}
-.journal-front .brief-card .eyebrow{grid-column:1}
-.journal-front .brief-card h3{grid-column:2;margin:0;font-size:14px}
-.journal-front .brief-card .state{grid-column:4;grid-row:1}
-.journal-front .brief-card p{grid-column:3;grid-row:1;margin:0;font-size:11px}
+.journal-front .brief-card{
+  display:block;min-width:0;min-height:0;
+  padding:14px 15px 15px;
+  border:0;background:var(--kb-paper);
+}
+.journal-front .brief-card .eyebrow{display:block;margin-bottom:2px}
+.journal-front .brief-card h3{margin:0 0 9px;font:700 15px/1.15 var(--serif)}
+.journal-front .brief-card .state{
+  display:inline-block;margin:0 0 9px;padding:2px 8px;border-radius:999px;
+  background:rgba(6,61,52,.07);font:700 8.5px/1.6 var(--mono);letter-spacing:.1em;text-transform:uppercase;
+}
+.journal-front .brief-card p{margin:0 0 7px;font:11px/1.5 var(--serif)}
 .journal-front .brief-card p:nth-of-type(2){display:none}
-.journal-front .brief-card .move{grid-column:3;grid-row:2;margin:0;padding:0;border:0;font-size:10px}
-.journal-front .brief-card .evidence-button{grid-column:4;grid-row:2}
+.journal-front .brief-card .move{margin:0 0 10px;padding:0;border:0;font:11px/1.5 var(--serif)}
+.journal-front .brief-card .evidence-button{display:inline-block}
+@media(max-width:860px){
+  .journal-front .brief-grid{grid-template-columns:1fr}
+}
 .sectionhead{padding:18px 0 0}
 .sectionhead h2{font-size:27px}
 .sectionhead p{font-size:12px}
