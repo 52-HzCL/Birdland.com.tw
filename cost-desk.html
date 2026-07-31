@@ -5,7 +5,7 @@
 <title>Birdland Buyer Desk</title><meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="terminal-strip.css">
 <!-- the Inter + IBM Plex Mono + Source Serif 4 request lived here, two skins ago -->
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=optional" rel="stylesheet">
 <link rel="icon" href="favicon.svg" type="image/svg+xml"><rect width='32' height='32' rx='7' fill='%23073F35'/><path d='M6 20l5-6 5 4 5-9 5 6' fill='none' stroke='%23ffffff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/></svg>">
 <link rel="manifest" href="partner-desk.webmanifest">
 <style>
@@ -1822,6 +1822,26 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
    planner’s four inputs, which reads as something that failed to load rather
    than as a panel that is simply shorter. They size to their content now. */
 .landed-workspace{align-items:start}
+
+/* ---- The builder reserves its own height ----
+
+   Everything in the brief builder is rendered from script: the family tabs,
+   the part chips, the material and process cards, the signal deck. All of
+   them start at zero height, so whether the page shifts at all depends on
+   whether the product feed resolves before or after the first paint — CLS
+   measured 0.013, 0.193 and 0.013 on three consecutive runs of the same page.
+
+   Measured empty -> full at 1440: tabs 0 -> 55, part list 0 -> 84, materials
+   and processes 0 -> 293 each, signal deck 15 -> 124. */
+#bd-family-tabs{min-height:55px}
+#bd-part-list{min-height:84px}
+#bd-materials,#bd-processes{min-height:293px}
+.bd-signal-deck{min-height:124px}
+@media(max-width:900px){
+  /* One column instead of two doubles the card stacks. */
+  #bd-materials,#bd-processes{min-height:586px}
+  #bd-part-list{min-height:112px}
+}
 </style>
 
 <nav class="terminal-strip" aria-label="Birdland Terminal"><span class="strip-label">SaaS Terminal</span><a href="index.html">Home</a><span class="strip-sep">·</span><a href="news.html">Overview</a><a href="executive.html">Daily Supply News</a><a href="partner.html">Buyer Desk</a><a href="cost-desk.html">Cost Desk</a><a href="team.html">Team Desk</a><span class="strip-sep">·</span><a href="about.html">About</a><a href="product-101.html">Factory</a><a href="contact.html">Contact</a></nav>

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=optional");
 
 /* Names kept, values delegated. Every one of these was a second opinion on a
    colour tokens.css now owns. */
@@ -1485,3 +1485,19 @@ button{font:inherit}
 .mail-route-reveal{padding:0;border:0;background:none;color:var(--bl-jade);font:inherit;text-decoration:underline;text-underline-offset:2px;cursor:pointer}
 .mail-route-reveal:hover{color:var(--bl-copper)}
 #mr-addr{font-family:var(--bl-mono);font-size:11px;color:var(--bl-jade)}
+
+/* ---- The header stops resizing itself ----
+
+   Below 680px the header wraps into rows, and the row count depends on text
+   width — which changes the moment Manrope replaces the fallback. Everything
+   below the header then moves. On Factory that was a 0.129 shift, the only
+   page still over the 0.1 target, and it appeared on roughly one load in
+   three depending on when the font arrived.
+
+   Measured settled heights at 380px: 154px on the pages with a plain header,
+   199px on Factory, which carries the resource switch as well. */
+@media(max-width:680px){
+  .bl-header{min-height:154px}
+  .bl-header:has(.bl-resource-switch){min-height:199px}
+  .bl-header.is-scrolled{min-height:0}
+}
