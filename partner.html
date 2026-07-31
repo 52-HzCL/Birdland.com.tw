@@ -1749,6 +1749,43 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
   .landed-tool-nav{padding:12px}.landed-workspace{gap:12px;padding:12px}.landed-input-panel,.landed-summary{padding:15px}.landed-panel-head h3,.landed-summary h3{font-size:19px}.landed-form{grid-template-columns:1fr 1fr!important}.landed-form>div:first-child{grid-column:1/-1}.landed-hero-result{grid-template-columns:1fr}.landed-tool .bclegend{grid-template-columns:1fr}.landed-tool .bcrow.tot b{font-size:15px}
   :root{--buyer-status-height:54px}body.theme-light .topbar .tb{min-height:var(--buyer-status-height)!important;padding:0 12px!important;gap:9px;overflow-x:auto;scrollbar-width:none}body.theme-light .topbar .tb::-webkit-scrollbar{display:none}body.theme-light .tb-left{display:none!important}body.theme-light .tb-right{margin:0!important;justify-content:flex-start;gap:6px!important}body.theme-light .topbar .sysgrp,body.theme-light .topbar .tpk,body.theme-light .topbar .tpk-hol,body.theme-light .topbar .language-box,body.theme-light .topbar a.back{min-height:32px!important;flex:0 0 auto}body.theme-light .topbar .tpk-hol{display:none!important}body.theme-light .topbar .sys-time{padding:0 7px}.topbar .tb-right>.back:last-child{display:none!important}body.theme-light .topbar .top-language-btn{min-height:32px}.topbar .top-language-pop{position:fixed!important;top:calc(var(--buyer-status-height) - 2px)!important;right:12px!important;width:min(258px,calc(100vw - 24px))!important}
 }
+/* ===== Buying Tools · stage A: quiet inputs, loud answer ===== */
+.calc{display:flex;flex-wrap:wrap;gap:0 30px;margin:0 0 18px;padding:14px 18px;background:var(--kb-panel);border:1px solid var(--kb-line);border-radius:10px}
+.calc>div{flex:0 1 auto;min-width:104px;padding:2px 0 5px;border-bottom:1.5px solid var(--kb-line2)}
+.calc label{margin-bottom:2px;font-size:.58rem;letter-spacing:.1em;color:var(--kb-faint)}
+.calc input,.calc select{width:100%;padding:2px 0;border:0;border-radius:0;background:transparent;box-shadow:none;color:var(--kb-ink);font-family:var(--mono);font-size:.95rem;font-weight:600;font-variant-numeric:tabular-nums}
+.calc input:focus,.calc select:focus{outline:0}
+.calc>div:focus-within{border-bottom-color:var(--kb-accent)}
+.calc select{cursor:pointer}
+/* The declared headline figures, promoted to the top of the tool. */
+.tool-hero{grid-column:1/-1;display:grid;grid-template-columns:1.5fr 1fr;gap:12px;margin-bottom:2px}
+.tool-hero .b-tile{padding:20px 22px}
+.tool-hero .b-tile.hero{background:var(--kb-accent-dk,#073F35);border-color:var(--kb-accent-dk,#073F35)}
+.tool-hero .b-tile.hero .b-k{color:rgba(255,255,255,.62)}
+.tool-hero .b-tile.hero .b-v{color:#fff}
+.tool-hero .b-v{font-family:var(--mono);font-size:1.9rem;font-weight:600;line-height:1.05;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.tool-hero .b-tile:not(.hero) .b-v{font-size:1.45rem}
+.tool-hero .b-k{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em}
+@media(max-width:900px){.calc{gap:0 20px}.tool-hero{grid-template-columns:1fr}}
+@media print{.tool-hero .b-tile.hero{background:#fff;border-color:#1A1D20}.tool-hero .b-tile.hero .b-k{color:#5A626A}.tool-hero .b-tile.hero .b-v{color:#1A1D20}}
+
+
+/* The install prompt renders empty when the browser offers no prompt; an
+   empty bordered card reads as a broken row in the rail. */
+.pr-install-card:empty{display:none}
+/* body.theme-light .calc input carries two classes, so the filter-bar rule
+   has to match that weight to strip the box back to an underline. */
+.blk-b .calc input,.blk-b .calc select,body.theme-light .calc input,body.theme-light .calc select,.calc #s_o,.calc #s_d,.calc #bc_co,.calc select.mkt{
+  padding:2px 0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;
+  color:var(--kb-ink)!important;font-family:var(--mono)!important;font-size:.95rem;font-weight:600;font-variant-numeric:tabular-nums}
+
+.blk-b .calc input:focus,.blk-b .calc select:focus{outline:0!important;box-shadow:none!important}
+.calc>div:focus-within{border-bottom-color:var(--kb-accent)}
+
+.tool-explain{display:block;margin-top:16px;padding:11px 14px;border:1px solid var(--kb-line);border-left:2px solid var(--kb-accent,#0E6652);border-radius:8px;background:var(--kb-panel);color:var(--kb-ink);font-size:.78rem;text-decoration:none}
+.tool-explain span{display:block;margin-bottom:3px;color:var(--kb-accent,#0E6652);font:700 .56rem var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.tool-explain:hover,.tool-explain:focus-visible{border-color:var(--kb-accent,#0E6652)}
+@media print{.tool-explain{display:none}}
 </style>
 <script>window.__TWHOL={"2026-01-01":"New Year\u2019s Day","2026-02-16":"Lunar New Year (Eve)","2026-02-17":"Lunar New Year","2026-02-18":"Lunar New Year","2026-02-19":"Lunar New Year","2026-02-27":"228 Peace Memorial (obs.)","2026-02-28":"228 Peace Memorial Day","2026-04-03":"Children\u2019s Day (obs.)","2026-04-04":"Children\u2019s Day","2026-04-05":"Tomb-Sweeping Day","2026-04-06":"Tomb-Sweeping (obs.)","2026-05-01":"Labour Day","2026-06-19":"Dragon Boat Festival","2026-09-25":"Mid-Autumn Festival","2026-09-28":"Teachers\u2019 Day","2026-10-09":"National Day (obs.)","2026-10-10":"National Day","2026-10-26":"Retrocession Day (obs.)","2026-12-25":"Constitution Day","2027-01-01":"New Year\u2019s Day"};window.__TWHOLnext=function(t){var k=Object.keys(window.__TWHOL).sort();for(var i=0;i<k.length;i++){if(k[i]>=t)return window.__TWHOL[k[i]]+" ("+k[i].slice(5).replace("-","/")+")";}return "";};</script>
 <nav class="terminal-strip" aria-label="Birdland Terminal"><span class="strip-label">SaaS Terminal</span><a href="index.html">Home</a><span class="strip-sep">·</span><a href="news.html">Data Desk</a><a href="partner.html">Buyer Desk</a><a href="executive.html">Daily Supply News</a><a href="team.html">Team</a><span class="strip-sep">·</span><a href="about.html">About</a><a href="product-101.html">Product 101</a><a href="why-birdland.html">Why Birdland</a><a href="contact.html">Contact</a></nav>
@@ -2700,6 +2737,8 @@ SELS.forEach(function(id){var e=document.getElementById(id);if(!e)return;var v=L
    tocEl.setAttribute('data-mode','information');
    [].forEach.call(modeSwitch.querySelectorAll('button'),function(btn){btn.addEventListener('click',function(){var next=btn.getAttribute('data-mode');tocEl.setAttribute('data-mode',next);[].forEach.call(modeSwitch.querySelectorAll('button'),function(x){var on=x===btn;x.classList.toggle('on',on);x.setAttribute('aria-selected',on?'true':'false');});var first=tocEl.querySelector('a[data-mode="'+next+'"]');if(first)first.click();});});
    modeSwitch.querySelector('[data-mode="information"]').classList.add('on');
+   function syncMode(){var id=(location.hash||'').slice(1);var next=TOOL_IDS.indexOf(id)>=0?'tools':'information';if(tocEl.getAttribute('data-mode')===next)return;tocEl.setAttribute('data-mode',next);[].forEach.call(modeSwitch.querySelectorAll('button'),function(x){var on=x.getAttribute('data-mode')===next;x.classList.toggle('on',on);x.setAttribute('aria-selected',on?'true':'false');});}
+   window.addEventListener('hashchange',syncMode);syncMode();
    var menuBtn=document.createElement('button');menuBtn.type='button';menuBtn.className='toc-toggle';menuBtn.setAttribute('aria-expanded','true');menuBtn.innerHTML='<span class="toc-toggle-copy"><span class="toc-toggle-icon" aria-hidden="true">☷</span><span>Open Buyer Desk menu</span></span><span class="toc-toggle-arrow" aria-hidden="true">⌄</span>';tocEl.insertBefore(menuBtn,tocEl.firstChild);
    menuBtn.addEventListener('click',function(){var collapsed=tocEl.classList.toggle('is-collapsed');menuBtn.setAttribute('aria-expanded',collapsed?'false':'true');var label=menuBtn.querySelector('.toc-toggle-copy span:last-child');if(label)label.textContent=collapsed?'Show Information & Tools':'Open Buyer Desk menu';});
    if(window.matchMedia&&window.matchMedia('(max-width:899px)').matches){tocEl.classList.add('is-collapsed');menuBtn.setAttribute('aria-expanded','false');var mobileLabel=menuBtn.querySelector('.toc-toggle-copy span:last-child');if(mobileLabel)mobileLabel.textContent='Show Information & Tools';}
@@ -3112,6 +3151,7 @@ var D={},P={};try{D=JSON.parse(document.getElementById('outlook-data').textConte
  grid.innerHTML=defs.length?defs.map(function(def){var x=by[def.key],unit=x&&x.unit?(' '+x.unit):'',n=chg(x),s=state(x,def.role),delta=n==null?'updated':((n>0?'+':'')+n.toFixed(1)+'% · '+def.hint);return '<article class="market-card '+s+'"><div class="market-k"><span>'+esc(def.label)+'</span><span class="market-source">'+esc(def.source)+'</span></div><div class="market-v">'+esc(fmt(x.value)+unit)+'</div><div class="market-chg '+s+'">'+esc(delta)+'</div>'+spark(x.spark)+'</article>';}).join(''):'<div class="pd-offer-empty">No connected macro or FX series is available in this edition.</div>';var gold=by.GOLD,oil=by.BRENT,yld=by['US 10Y'],dxy=by.DXY,usdtwd=by['USD/TWD'];var oilTxt=oil&&oil.value?'Brent at '+fmt(oil.value)+' '+(oil.unit||''):'energy prices';var yieldTxt=yld&&yld.value?('US 10Y at '+fmt(yld.value)+'%'):'US funding rates';var fxTxt=usdtwd&&usdtwd.value?('USD/TWD at '+fmt(usdtwd.value)):(dxy&&dxy.value?('the dollar index at '+fmt(dxy.value)):'currency conditions');read.innerHTML='<b>Buyer read:</b> '+esc(oilTxt)+' keeps freight, resin and fuel-linked inputs on the watchlist; '+esc(yieldTxt)+' is the financing signal for inventory; and '+esc(fxTxt)+' helps frame Taiwan-origin pricing. Gold is shown as a risk-sentiment signal, not a tool-cost forecast. <a class="offer-cta" href="https://www.google.com/finance/" target="_blank" rel="noopener">Open full market research ↗</a>';
  impact.innerHTML='<div class="impact-head">What the move can mean for your buying plan</div><table><tbody><tr><td>Rates &amp; funding</td><td>Rising sovereign yields can make financed inventory more expensive. Keep excess stock intentional and revisit payment terms on long lead-time orders.</td></tr><tr><td>Inflation &amp; demand</td><td>CPI belongs here once the official series is connected; use it to frame retail demand and margin pressure, never as a standalone buying trigger.</td></tr><tr><td>Currency</td><td>USD/TWD and USD/CNY changes can shift the relative landed-cost picture between Taiwan and China origin. Compare origin before locking a quote.</td></tr><tr><td>Risk &amp; energy</td><td>Gold, Brent and volatility are context signals. If risk and energy rise together, secure critical freight and fuel-linked inputs earlier.</td></tr></tbody></table>';})();
 function txt(sel,body){var e=body.querySelector(sel);return e?e.textContent.trim():'';}
+var TOOLSET={'p-margin':1,'p-reorder':1,'p-sail':1,'p-calc':1,'p-cduty':1,'p-report':1};
 function bentofy(id,lgSel,mdSel,smFns,mdSynth){
   var sec=document.getElementById(id);if(!sec)return;
   var body=sec.querySelector('.blk-b');if(!body)return;
@@ -3130,10 +3170,22 @@ function bentofy(id,lgSel,mdSel,smFns,mdSynth){
   grid.appendChild(lgWrap);
   if(mdEls.length){var mdWrap=document.createElement('div');mdWrap.className='b-md';mdEls.forEach(function(e){mdWrap.appendChild(e);});grid.appendChild(mdWrap);}
   else if(synthHtml){var mdWrap2=document.createElement('div');mdWrap2.className='b-md';mdWrap2.innerHTML=synthHtml;grid.appendChild(mdWrap2);}
-  if(smVals.length){var smRow=document.createElement('div');smRow.className='b-sm-row';
-    smVals.forEach(function(v){var tile=document.createElement('div');tile.className='b-tile';tile.innerHTML='<span class="b-k">'+v.k+'</span><span class="b-v">'+v.v+'</span>';smRow.appendChild(tile);});
-    grid.appendChild(smRow);}
-  body.innerHTML='';body.appendChild(grid);
+  var isTool=TOOLSET[id],smRow=null;
+  if(isTool&&smVals.length&&!/[0-9]/.test(String(smVals[0].v)))isTool=false;
+  if(smVals.length){smRow=document.createElement('div');smRow.className=isTool?'tool-hero':'b-sm-row';
+    smVals.forEach(function(v,ix){var tile=document.createElement('div');tile.className=(isTool&&ix===0)?'b-tile hero':'b-tile';tile.innerHTML='<span class="b-k">'+v.k+'</span><span class="b-v">'+v.v+'</span>';smRow.appendChild(tile);});
+    if(!isTool)grid.appendChild(smRow);}
+  body.innerHTML='';if(isTool&&smVals.length)body.appendChild(smRow);body.appendChild(grid);
+  if(isTool&&smRow){
+   sec._heroFns=smFns||[];sec._heroRow=smRow;
+   var redraw=function(){
+    var vals=(sec._heroFns||[]).map(function(f){try{return f(body);}catch(e){return null;}}).filter(function(v){return v&&v.v;});
+    var tiles=sec._heroRow.querySelectorAll('.b-tile');
+    vals.forEach(function(v,ix){var t=tiles[ix];if(!t)return;var kv=t.querySelector('.b-k'),vv=t.querySelector('.b-v');if(kv)kv.textContent=v.k;if(vv)vv.textContent=v.v;});
+   };
+   body.addEventListener('input',function(){setTimeout(redraw,0);});
+   body.addEventListener('change',function(){setTimeout(redraw,0);});
+  }
 }
 function pct(str){var m=/([\d.]+)\s*%/.exec(str||'');return m?m[1]+'%':'—';}
 bentofy('p-brief',['#pb-actions'],['#pb-sum'],[
@@ -3634,4 +3686,49 @@ function materialTile(kind){var k=String(kind||'');if(/sk5|65mn|s50c|forged/.tes
    syncLabel();
   });
   </script>
+<script>
+/* Stage A groundwork for linking the four surfaces together.
+   1) Tools accept their inputs from the URL, so a link can carry a number
+      rather than just a destination: partner.html?mg_cost=9.2#p-margin opens
+      the margin planner already holding that cost. Input ids are stable and
+      already unique, so no per-tool wiring is needed.
+   2) Each tool names the Product 101 section that explains its inputs, so the
+      encyclopedia and the calculator stop being two separate places. */
+(function(){
+ function prefill(){
+  var q=null;try{q=new URLSearchParams(location.search);}catch(e){return;}
+  var any=false;q.forEach(function(v,k){
+   var el=document.getElementById(k);
+   if(!el||!("value" in el))return;
+   el.value=v;any=true;
+   el.dispatchEvent(new Event("input",{bubbles:true}));
+   el.dispatchEvent(new Event("change",{bubbles:true}));
+  });
+  return any;
+ }
+ var P101={
+  "p-landed2":["s-cost","Cost structure — the four blocks"],
+  "p-margin":["s-cost","Cost structure — what sits behind a landed cost"],
+  "p-calc":["s-cost","Cost structure — the four blocks"],
+  "p-cduty":["s-oem","OEM routes — origin, tooling and who owns it"],
+  "p-sail":["s-pack","Packaging — cube decides freight, not weight"],
+  "p-reorder":["s-route","Production route — the seven gates ahead of a delivery"]
+ };
+ function addLinks(){
+  Object.keys(P101).forEach(function(id){
+   var sec=document.getElementById(id);if(!sec)return;
+   var body=sec.querySelector(".blk-b");if(!body||body.querySelector(".tool-explain"))return;
+   var a=document.createElement("a");
+   a.className="tool-explain";
+   a.href="product-101.html#"+P101[id][0];
+   a.innerHTML="<span>What these inputs mean</span>"+P101[id][1]+" &rarr;";
+   body.appendChild(a);
+  });
+ }
+ function boot(){prefill();addLinks();}
+ function late(){setTimeout(boot,0);setTimeout(prefill,260);setTimeout(prefill,900);}
+ if(document.readyState==="complete")late();else window.addEventListener("load",late);
+ window.addEventListener("hashchange",addLinks);
+}());
+</script>
 </body></html>
