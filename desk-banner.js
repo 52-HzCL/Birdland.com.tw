@@ -25,6 +25,13 @@
   // same things twice.
   var DUPES = ['.topbar', 'header.top', '.terminal-strip'];
 
+  // Overview keeps its site header — that one carries navigation this banner
+  // does not — but it also carried its own HQ light, Taipei clock and language
+  // picker, so those three appeared twice about 60px apart. Rather than name
+  // another selector, take them by the attributes terminal-status.js drives:
+  // whatever is outside this banner and does one of its jobs, goes.
+  var CLAIMED = '[data-hq-status],[data-taipei-time],[data-language-picker]';
+
   function el(tag, cls, html) {
     var e = document.createElement(tag);
     if (cls) e.className = cls;
@@ -86,6 +93,16 @@
     bar.appendChild(sw);
 
     document.body.insertBefore(bar, document.body.firstChild);
+
+    [].forEach.call(document.querySelectorAll(CLAIMED), function (n) {
+      if (bar.contains(n)) return;
+      // Drop the whole wrapper when it holds nothing else, so an empty flex
+      // row is not left behind holding the gap open.
+      var box = n.parentNode;
+      var only = box && box !== document.body &&
+        [].every.call(box.children, function (c) { return c.matches(CLAIMED); });
+      (only ? box : n).remove();
+    });
 
     // The holiday table lives in tw-holidays.js, which may not have parsed yet.
     (function holiday(tries) {
