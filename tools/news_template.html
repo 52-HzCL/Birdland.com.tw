@@ -60,7 +60,14 @@
     .evidence-actions a{display:inline-block;margin:4px 16px 4px 0;color:var(--ivory);font-size:10px;font-weight:800;text-decoration:none;border-bottom:1px solid var(--copper)}
 
     .proof-section{margin-top:56px}
-    .section-intro{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:20px}
+    /* Headline left, note right — but with nothing capping the headline it wrapped
+   at roughly half the page and left the right third holding thirty words and a
+   lot of nothing. Both columns now have a measure. */
+    .section-intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);align-items:end;gap:40px;margin-bottom:20px}
+    .section-intro>div{min-width:0}
+    .section-intro h2{max-width:16ch}
+    .section-intro>p{max-width:46ch;margin:0}
+    @media(max-width:760px){.section-intro{grid-template-columns:minmax(0,1fr);gap:14px}.section-intro h2,.section-intro>p{max-width:none}}
     .section-intro h2{max-width:620px;margin:7px 0 0;font:600 clamp(31px,4vw,50px)/1 'Playfair Display',Georgia,serif}
     .section-intro p{max-width:420px;margin:0;color:var(--muted);font-size:12px}
     .proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
@@ -268,90 +275,5 @@
   <footer class="site-footer"><span>Birdland Ind. · Overview</span><span>Public operating model only.</span></footer>
   <script type="application/json" id="outlook-data">__DATA__</script>
   <script src="site-shell.js"></script>
-  <script>
-    (function(){
-      var modes={
-        make:{
-          kicker:'01 / PRODUCTION ROUTE',
-          title:'Turn intent into controlled production.',
-          steps:[['REQUIREMENT','Function and intent'],['PROCESS','Forming and tooling'],['QUALITY','Control gates'],['OUTCOME','Buyer visibility']],
-          enters:'Product function, material intent and performance requirements.',
-          controls:'Material, forming, tooling, joining, finish and inspection gates.',
-          sees:'Which control point carries each production risk.',
-          risk:'A requirement does not disappear between drawing and production.',
-          actions:'<a href="product-101.html">Open the factory →</a>'
-        },
-        monitor:{
-          kicker:'02 / RISK TRANSLATION',
-          title:'Convert public signals into production questions.',
-          steps:[['SIGNAL','Public evidence'],['EXPOSURE','Buyer relevance'],['REVIEW','Assumption check'],['RESPONSE','Manufacturing action']],
-          enters:'Public origin, material, production, freight and compliance context.',
-          controls:'The interpretation boundary between a market signal and a programme decision.',
-          sees:'What changed, why it may matter and which assumption should be checked.',
-          risk:'Generic market news is not mistaken for a programme-specific answer.',
-          actions:'<a href="about.html#pure-play">See the resilience model →</a><a href="executive.html">View current public evidence →</a>'
-        },
-        private:{
-          kicker:'03 / INFORMATION BOUNDARY',
-          title:'Keep confidential programme work off the public site.',
-          steps:[['CONTEXT','Public website'],['HANDOFF','Direct contact'],['PROGRAMME','Private email'],['DECISION','Buyer approval']],
-          enters:'A public, non-confidential outline of the buyer’s question.',
-          controls:'The handoff from public context to normal private correspondence.',
-          sees:'The website does not store drawings, specifications, prices or approvals.',
-          risk:'Confidential customer information is not turned into public web content.',
-          actions:'<a href="contact.html">Open Correspondence Desk →</a>'
-        },
-        heritage:{
-          kicker:'04 / OPERATING CONTINUITY',
-          title:'Carry manufacturing knowledge across change.',
-          steps:[['1974','Operating identity'],['KNOW-HOW','Process memory'],['ORIGINS','Supply options'],['TODAY','Controlled continuity']],
-          enters:'Manufacturing knowledge, people, tooling experience and origin options.',
-          controls:'A consistent non-competing OEM identity as supply conditions change.',
-          sees:'The public manufacturing history and operating principles behind the work.',
-          risk:'A sourcing change does not require abandoning the operating discipline.',
-          actions:'<a href="about.html">Explore the company history →</a><a href="about.html#pure-play">Open About →</a>'
-        }
-      };
-      function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
-      function select(mode){
-        var d=modes[mode];
-        if(!d)return;
-        document.querySelectorAll('button[data-mode]').forEach(function(button){
-          button.setAttribute('aria-pressed',String(button.dataset.mode===mode));
-        });
-        document.getElementById('dossier-kicker').textContent=d.kicker;
-        document.getElementById('dossier-title').textContent=d.title;
-        document.getElementById('dossier-enters').textContent=d.enters;
-        document.getElementById('dossier-controls').textContent=d.controls;
-        document.getElementById('dossier-sees').textContent=d.sees;
-        document.getElementById('dossier-risk').textContent=d.risk;
-        document.getElementById('route-graphic').innerHTML=d.steps.map(function(step,index){
-          return '<div class="route-step"><i>'+String(index+1).padStart(2,'0')+'</i><b>'+esc(step[0])+'</b><span>'+esc(step[1])+'</span></div>';
-        }).join('');
-        document.getElementById('dossier-actions').innerHTML=d.actions;
-      }
-      document.querySelectorAll('button[data-mode]').forEach(function(button){
-        button.addEventListener('click',function(){select(button.dataset.mode);});
-      });
-      function renderDecisionVisuals(){
-        var data;
-        try{data=JSON.parse(document.getElementById('outlook-data').textContent||'{}');}catch(e){data={};}
-        var idx=Array.isArray(data.indices)?data.indices:[];
-        var wanted=[['STEEL HRC','Steel'],['PP RESIN','Resin'],['FREIGHT WCI','Freight'],['BRENT','Energy']];
-        var vals=wanted.map(function(pair){var item=idx.find(function(x){return String(x.short||'').toUpperCase()===pair[0];});return {label:pair[1],value:item&&Number(item.chg)||0,raw:item&&item.value,unit:item&&item.unit};});
-        var max=Math.max.apply(null,vals.map(function(x){return Math.abs(x.value);}).concat([1]));
-        var svg=document.getElementById('cost-waterfall');
-        svg.innerHTML=vals.map(function(x,i){var h=Math.max(10,Math.abs(x.value)/max*105),xpos=54+i*122,y=x.value>=0?132-h:132;return '<g tabindex="0"><rect class="bar '+(x.value>0?'copper':'')+'" x="'+xpos+'" y="'+y+'" width="62" height="'+h+'" rx="2"><title>'+x.label+': '+(x.value>0?'+':'')+x.value.toFixed(1)+'%</title></rect><text x="'+(xpos+31)+'" y="153" text-anchor="middle">'+x.label.toUpperCase()+'</text><text class="value" x="'+(xpos+31)+'" y="'+(x.value>=0?y-7:y+h+15)+'" text-anchor="middle">'+(x.value>0?'+':'')+x.value.toFixed(1)+'%</text></g>';}).join('')+'<line class="axis" x1="35" y1="132" x2="535" y2="132"></line>';
-        var pressure=vals.filter(function(x){return x.value>0;}).sort(function(a,b){return b.value-a.value;})[0];
-        document.getElementById('cost-summary').textContent=pressure?pressure.label.toUpperCase()+' IS THE FIRST REVIEW':'PUBLIC COST PRESSURE IS STABLE';
-        document.getElementById('cost-updated').textContent=data.updated?'EDITION '+String(data.updated).slice(0,16):'EDITION STATUS';
-        var shipping=data.shipping&&Array.isArray(data.shipping.lanes)?data.shipping.lanes:[];
-        var top=shipping.slice().sort(function(a,b){return Math.abs(Number(b.chg)||0)-Math.abs(Number(a.chg)||0);})[0];
-        var rows=[['Freight',top?top.lane:'Lane context','REVIEW'],['Material',pressure?pressure.label+' pressure':'Public input signal','CHECK'],['Origin','Taiwan / China route','PREPARE']];
-        document.getElementById('risk-actions').innerHTML=rows.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td class="watch">'+r[2]+'</td></tr>';}).join('');
-      }
-      renderDecisionVisuals();
-    }());
-  </script>
 </body>
 </html>
