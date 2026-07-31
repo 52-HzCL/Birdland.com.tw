@@ -1,19 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap");
 
+/* Names kept, values delegated. Every one of these was a second opinion on a
+   colour tokens.css now owns. */
 :root{
-  --bl-ivory:#f3efe5;
-  --bl-paper:#fbf9f3;
-  --bl-jade:#073c33;
-  --bl-jade-soft:#42675d;
-  --bl-sage:#a4b49e;
-  --bl-copper:#b96032;
-  --bl-copper-soft:#d7a37e;
-  --bl-ink:#17362f;
-  --bl-muted:#66736e;
-  --bl-line:rgba(7,60,51,.18);
-  --bl-serif:"Playfair Display",Georgia,serif;
-  --bl-sans:"Manrope",Arial,sans-serif;
-  --bl-mono:"DM Mono",monospace;
+  --bl-ivory:var(--paper-2);
+  --bl-paper:var(--paper);
+  --bl-jade:var(--jade-900);
+  --bl-jade-soft:var(--ink-700);
+  --bl-sage:#a4b49e;            /* the one hue with no token: illustration only */
+  --bl-copper:var(--copper-600);
+  --bl-copper-soft:var(--copper-200);
+  --bl-ink:var(--ink-900);
+  --bl-muted:var(--ink-500);
+  --bl-line:var(--line);
+  --bl-serif:var(--ff-serif);
+  --bl-sans:var(--ff-sans);
+  --bl-mono:var(--ff-mono);
 }
 
 *{box-sizing:border-box}

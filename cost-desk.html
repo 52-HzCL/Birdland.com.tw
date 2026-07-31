@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"><head><link rel="stylesheet" href="desk-banner.css?v=20260731h"><script defer src="desk-banner.js?v=20260731h"></script><script defer src="tw-holidays.js?v=20260731h"></script>
+<html lang="en"><head>
+  <link rel="stylesheet" href="tokens.css?v=20260731a"><link rel="stylesheet" href="desk-banner.css?v=20260731h"><script defer src="desk-banner.js?v=20260731h"></script><script defer src="tw-holidays.js?v=20260731h"></script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#073F35"><meta name="description" content="Buyer Desk is Birdland's public procurement workspace for product routes, buying decisions and OEM enquiry preparation.">
 <title>Birdland Buyer Desk</title><meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="terminal-strip.css">
@@ -8,7 +9,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml"><rect width='32' height='32' rx='7' fill='%23073F35'/><path d='M6 20l5-6 5 4 5-9 5 6' fill='none' stroke='%23ffffff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/></svg>">
 <link rel="manifest" href="partner-desk.webmanifest">
 <style>
- :root{--bg:#F8F9FA;--panel:#11161d;--panel2:#161c24;--line:#262e39;--txt:#e2e8f0;--mut:#9AA1A9;--gold:#D97706;--amber:#D97706;--cyan:#3B82F6;--green:#10B981;--red:#EF4444;--purple:#3B82F6;--mono:"IBM Plex Mono",ui-monospace,monospace;--sans:"Inter",system-ui,sans-serif;--serif:"Source Serif 4",Georgia,"Times New Roman",serif}
+ :root{--bg:#F8F9FA;--panel:#11161d;--panel2:#161c24;--line:#262e39;--txt:#e2e8f0;--mut:var(--ink-500);--gold:var(--copper-600);--amber:var(--copper-600);--cyan:var(--jade-700);--green:var(--down);--red:var(--up);--purple:var(--jade-700);--mono:var(--ff-mono);--sans:var(--ff-sans);--serif:var(--ff-serif)}
  *{box-sizing:border-box;margin:0;padding:0}
  html{font-size:125%}
  body{font-family:var(--sans);background:var(--bg);color:var(--txt);font-size:18px;line-height:1.7}
@@ -563,7 +564,7 @@
   .bento>.b-sm-row{grid-column:1!important;grid-row:auto!important}
 }
 /* ===== Kubera fintech skin (final override layer — supersedes prior skins) ===== */
-:root{--kb-bg:#F8F9FA;--kb-panel:#FFFFFF;--kb-line:#E5E7EB;--kb-line2:#D1D5DB;--kb-ink:#1A1D20;--kb-mut:#5A626A;--kb-faint:#9AA1A9;--kb-accent:#3B82F6;--kb-accent-dk:#2563EB;--kb-accent-soft:rgba(59,130,246,.1);--kb-green:#10B981;--kb-green-bg:#D1FAE5;--kb-red:#EF4444;--kb-red-bg:#FEE2E2;--kb-amber:#D97706;--kb-amber-bg:#FEF3C7;--kb-sans:"Inter",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;--kb-mono:"IBM Plex Mono",ui-monospace,monospace;--kb-radius:12px;--kb-shadow:0 1px 2px rgba(0,0,0,.03),0 1px 8px rgba(0,0,0,.03)}
+/* the SaaS-blue palette lived here; every property was overridden below */
 body,body.dark,body.theme-light{background:var(--kb-bg)!important;color:var(--kb-ink)!important;font-family:var(--kb-sans)!important;letter-spacing:0!important}
 body::after{display:none!important}
 .lights,.hled,.bb-bar .bb-led,.gbar .gd,.tpk-led,.sysled,.thm-sun,.thm-moon,.ln-dot,.fxlive .dot,.botbar .d{display:none!important}
