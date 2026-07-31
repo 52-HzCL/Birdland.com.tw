@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Data Desk | Birdland OEM Operating System</title>
+  <title>Overview | Birdland Desks</title>
   <meta name="description" content="Explore how Birdland protects customer ownership through manufacturing control, supply context, private correspondence and long-term continuity.">
   <link rel="stylesheet" href="site-shell.css"><script defer src="terminal-status.js?v=20260730d"></script>
   <style>
@@ -121,7 +121,7 @@
   </header>
 
   <main class="shell-main">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Data Desk</span></nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Overview</span></nav>
 
     <section class="os-hero">
       <div>
@@ -142,114 +142,146 @@
       </aside>
     </section>
 
-    <section class="control-shell" aria-label="Interactive Birdland OEM control map">
-      <div class="control-map">
-        <span class="map-label">SELECT A CONTROL PATH</span>
-        <svg class="map-svg" viewBox="0 0 800 620" aria-hidden="true">
-          <path d="M400 310 C310 230 260 190 170 150"></path>
-          <path d="M400 310 C490 230 540 190 630 150"></path>
-          <path d="M400 310 C310 390 260 440 170 485"></path>
-          <path d="M400 310 C490 390 540 440 630 485"></path>
-          <circle cx="400" cy="310" r="4"></circle>
-        </svg>
+    <style>
+      /* Overview is the orientation page: the route through the site for a
+         first-time visitor (steps), then the same five surfaces as an index for
+         someone who arrives already knowing what they want (branches).
+         It replaced an interactive "OEM control map", three signal cards and a
+         four-step handoff strip — three attempts at the same job, none of which
+         said which page to open or why. */
+      .ov-steps{display:grid;grid-template-columns:repeat(5,1fr);position:relative;margin-top:26px}
+      .ov-steps:before{content:'';position:absolute;left:6%;right:6%;top:29px;border-top:2px dashed var(--line,#d7cdbb)}
+      .ov-step{position:relative;padding:0 13px}
+      .ov-dot{position:relative;z-index:1;width:58px;height:58px;margin:0 auto 15px;display:grid;place-items:center;border-radius:50%;
+        background:var(--paper,#fbf8f1);border:2px solid var(--jade,#063d34);color:var(--jade,#063d34);font:600 21px 'DM Mono',monospace}
+      .ov-step:first-child .ov-dot{background:var(--jade,#063d34);color:var(--ivory,#f2ecdd)}
+      .ov-step h3{text-align:center;margin:0 0 4px;font:600 17px/1.2 'Playfair Display',Georgia,serif}
+      .ov-where{display:block;text-align:center;margin-bottom:11px;color:var(--copper,#c9763d);font:700 9.5px 'DM Mono',monospace;letter-spacing:.13em;text-transform:uppercase}
+      .ov-step p{margin:0;font-size:12.8px;line-height:1.55;color:#3d4743;text-align:center}
+      .ov-leave{display:block;margin-top:11px;padding-top:10px;border-top:1px solid var(--line,#d7cdbb);color:var(--muted,#6c6255);font-size:11.5px;text-align:center}
+      .ov-leave b{display:block;margin-bottom:3px;color:var(--jade,#063d34);font:700 9px 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase}
+      .ov-cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+      .ov-btn{padding:11px 20px;border-radius:999px;background:var(--jade,#063d34);color:var(--ivory,#f2ecdd);font:700 12.5px system-ui,sans-serif;text-decoration:none}
+      .ov-btn.ghost{background:transparent;color:var(--jade,#063d34);border:1px solid var(--jade,#063d34)}
 
-        <div class="customer-core">
-          <div>
-            <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 13.5 16 5l10 8.5v12H6z"></path><path d="M11 26v-8h10v8M9 11h14"></path></svg>
-            <b>Customer Brand</b>
-            <span>OWNERSHIP STAYS<br>WITH THE BUYER</span>
-          </div>
-        </div>
+      .ov-mind{display:grid;grid-template-columns:250px 46px minmax(0,1fr);align-items:center;margin-top:26px}
+      .ov-core{padding:26px 22px;border-radius:14px;background:var(--jade,#063d34);color:var(--ivory,#f2ecdd)}
+      .ov-core b{display:block;margin-bottom:9px;font:600 25px/1.1 'Playfair Display',Georgia,serif}
+      .ov-core span{display:block;color:rgba(242,236,221,.7);font-size:12.5px;line-height:1.55}
+      .ov-spine{position:relative;height:100%}
+      .ov-spine:before{content:'';position:absolute;left:50%;top:9%;bottom:9%;border-left:2px solid var(--line,#d7cdbb)}
+      .ov-branches{display:grid;gap:11px}
+      .ov-br{position:relative;display:grid;grid-template-columns:130px minmax(0,1fr);background:var(--paper,#fbf8f1);border:1px solid var(--line,#d7cdbb);border-radius:11px;overflow:hidden}
+      .ov-br:before{content:'';position:absolute;left:-46px;top:50%;width:46px;border-top:2px solid var(--line,#d7cdbb)}
+      .ov-lbl{display:grid;align-content:center;gap:3px;padding:14px 13px;background:rgba(6,61,52,.05);border-right:1px solid var(--line,#d7cdbb)}
+      .ov-lbl b{font:700 12.5px system-ui,sans-serif}
+      .ov-lbl small{color:var(--muted,#6c6255);font:600 9px 'DM Mono',monospace;letter-spacing:.11em;text-transform:uppercase}
+      .ov-body{padding:13px 15px;min-width:0}
+      .ov-q{display:block;margin-bottom:7px;font:600 14px 'Playfair Display',Georgia,serif}
+      .ov-chips{display:flex;flex-wrap:wrap;gap:6px}
+      .ov-chip{padding:4px 10px;border:1px solid var(--line,#d7cdbb);border-radius:999px;color:#3d4743;font-size:11.5px}
+      .ov-chip.go{border-color:var(--jade,#063d34);color:var(--jade,#063d34);font-weight:700;text-decoration:none}
+      .ov-note{margin-top:20px;padding:13px 16px;border-left:2px solid var(--copper,#c9763d);background:var(--paper,#fbf8f1);color:var(--muted,#6c6255);font-size:12.5px}
+      @media(max-width:900px){
+        .ov-steps{grid-template-columns:1fr;gap:18px}
+        .ov-steps:before{display:none}
+        .ov-step{padding:0}
+        .ov-mind{grid-template-columns:1fr}
+        .ov-spine{display:none}
+        .ov-br:before{display:none}
+        .ov-core{margin-bottom:14px}
+      }
+      @media print{.ov-cta{display:none}}
+    </style>
 
-        <button class="system-node node-make" type="button" data-mode="make" aria-pressed="true">
-          <span class="node-top"><i class="node-index">01 / MAKE</i><svg class="node-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 22 17 10l5 5L10 27H5zM19 8l3-3 5 5-3 3M13 14l5 5M8 23l2 2"></path></svg></span>
-          <b>Make correctly</b><span>Material, tooling, process and quality gates.</span>
-        </button>
-
-        <button class="system-node node-monitor" type="button" data-mode="monitor" aria-pressed="false">
-          <span class="node-top"><i class="node-index">02 / CONTROL</i><svg class="node-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 26V15M13 26V8M21 26V12M29 26V5M3 26h27"></path><circle cx="13" cy="8" r="2"></circle><circle cx="29" cy="5" r="2"></circle></svg></span>
-          <b>Monitor &amp; control</b><span>Translate public signals into review questions.</span>
-        </button>
-
-        <button class="system-node node-private" type="button" data-mode="private" aria-pressed="false">
-          <span class="node-top"><i class="node-index">03 / PROTECT</i><svg class="node-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 27 7v8c0 7-4.7 11.6-11 14-6.3-2.4-11-7-11-14V7z"></path><path d="M11 16l3 3 7-8"></path></svg></span>
-          <b>Keep private</b><span>Confidential work remains in private correspondence.</span>
-        </button>
-
-        <button class="system-node node-heritage" type="button" data-mode="heritage" aria-pressed="false">
-          <span class="node-top"><i class="node-index">04 / CONTINUE</i><svg class="node-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M6 26h20M9 26V12h14v14M12 12V7h8v5M13 17h6M13 21h6"></path></svg></span>
-          <b>Build continuity</b><span>Manufacturing identity across origins and generations.</span>
-        </button>
-      </div>
-
-      <aside class="evidence-panel" id="dossier" aria-live="polite">
-        <div class="evidence-head">
-          <span class="eyebrow" id="dossier-kicker">01 / PRODUCTION ROUTE</span>
-          <h2 id="dossier-title">Turn intent into controlled production.</h2>
-        </div>
-        <div class="evidence-visual">
-          <div class="route-graphic" id="route-graphic">
-            <div class="route-step"><i>01</i><b>REQUIREMENT</b><span>Function and intent</span></div>
-            <div class="route-step"><i>02</i><b>PROCESS</b><span>Forming and tooling</span></div>
-            <div class="route-step"><i>03</i><b>QUALITY</b><span>Control gates</span></div>
-            <div class="route-step"><i>04</i><b>OUTCOME</b><span>Buyer visibility</span></div>
-          </div>
-        </div>
-        <div class="evidence-grid">
-          <div class="evidence-cell"><b>WHAT ENTERS</b><p id="dossier-enters">Product function, material intent and performance requirements.</p></div>
-          <div class="evidence-cell"><b>BIRDLAND CONTROLS</b><p id="dossier-controls">Material, forming, tooling, joining, finish and inspection gates.</p></div>
-          <div class="evidence-cell"><b>BUYER CAN VERIFY</b><p id="dossier-sees">Which control point carries each production risk.</p></div>
-          <div class="evidence-cell"><b>RISK REDUCED</b><p id="dossier-risk">A requirement does not disappear between drawing and production.</p></div>
-        </div>
-        <div class="evidence-actions" id="dossier-actions"><a href="product-101.html">Open the factory →</a></div>
-      </aside>
-    </section>
-
-    <section class="signal-section" aria-labelledby="decision-signals-title">
-      <div class="section-intro"><div><span class="eyebrow">DECISION VISUALS / PUBLIC DATA</span><h2 id="decision-signals-title">See what can change the next quote.</h2></div><p>Each visual translates a public signal into a manufacturing question. Values come from the current public edition and remain labelled by source state.</p></div>
-      <div class="signal-grid">
-        <article class="signal-card"><span class="eyebrow">QUOTE PRESSURE MAP</span><h3>Cost drivers, in buyer order.</h3><p>Relative movement is shown as a decision aid, not as a fabricated quote. Hover a bar to see the source value.</p><svg class="cost-svg" id="cost-waterfall" viewBox="0 0 560 190" role="img" aria-label="Current public cost drivers"></svg><div class="cost-note"><span id="cost-summary">Reading public cost context…</span><span id="cost-updated"></span></div></article>
-        <article class="signal-card"><span class="eyebrow">ASIA PRODUCTION SIGNAL</span><h3>Where the question starts.</h3><p>Origin context is not a verdict. It tells the buyer which production assumption deserves review first.</p><svg class="asia-map" viewBox="0 0 420 190" role="img" aria-label="Asia production context map"><path class="sea" d="M25 145C100 112 163 154 223 125s102-29 172 5"></path><path class="land" d="M82 45 122 26l43 16 20 29-18 20-30-4-19 26-34-15-28 18-17-28z"></path><path class="land" d="m215 31 39 5 19 25-15 24-27 2-21-22z"></path><path class="land" d="m277 86 35-14 34 19-8 26-28 8-26-17z"></path><path class="china" d="M159 42 204 43l29 20-16 30-36 2-28-22z"></path><circle class="taiwan" cx="241" cy="101" r="6"></circle><text x="170" y="39">CHINA</text><text x="247" y="119">TAIWAN</text><text x="288" y="137">SE ASIA</text></svg><div class="signal-legend"><span><i></i>production context</span><span><i class="c"></i>review first</span></div></article>
-        <article class="signal-card"><span class="eyebrow">RISK → ACTION</span><h3>From signal to next move.</h3><p>A compact control surface for deciding whether to review, book, prepare or hold.</p><table class="risk-table"><thead><tr><th>SIGNAL</th><th>BUYER IMPACT</th><th>NEXT MOVE</th></tr></thead><tbody id="risk-actions"><tr><td>Freight</td><td>Lane cost / space</td><td class="watch">REVIEW</td></tr><tr><td>Material</td><td>Input pressure</td><td>CHECK</td></tr><tr><td>Origin</td><td>Continuity</td><td>PREPARE</td></tr></tbody></table></article>
-      </div>
-    </section>
-
-    <section class="proof-section">
+    <section class="proof-section" aria-labelledby="ov-start-title">
       <div class="section-intro">
-        <div><span class="eyebrow">WHAT BUYERS CAN VERIFY</span><h2>Three visible boundaries behind the operating model.</h2></div>
-        <p>These are public views of the system—not customer programmes, drawings, prices or approvals.</p>
+        <div><span class="eyebrow">START HERE</span><h2 id="ov-start-title">Five steps, in the order they actually happen.</h2></div>
+        <p>Each step names the page, what you do there, and what you walk away holding. Nothing here needs an account.</p>
       </div>
-      <div class="proof-grid">
-        <article class="proof-card">
-          <i class="proof-tag">PROCESS GATES</i>
-          <svg viewBox="0 0 300 90" aria-hidden="true"><path d="M15 45h270"></path><circle cx="35" cy="45" r="13"></circle><circle cx="112" cy="45" r="13"></circle><circle cx="189" cy="45" r="13"></circle><circle cx="266" cy="45" r="13"></circle><path d="m30 45 4 4 7-9M107 45l4 4 7-9M184 45l4 4 7-9M261 45l4 4 7-9"></path></svg>
-          <b>Manufacturing control</b>
-          <span>See where material, tooling, forming, joining, finish and inspection decisions belong.</span>
-        </article>
-        <article class="proof-card">
-          <i class="proof-tag">INFORMATION BOUNDARY</i>
-          <svg viewBox="0 0 300 90" aria-hidden="true"><rect x="20" y="18" width="92" height="54"></rect><rect x="188" y="18" width="92" height="54"></rect><path d="M112 45h76M144 35l12 10-12 10"></path><path d="M224 39v-7a10 10 0 0 1 20 0v7M218 39h32v23h-32z"></path></svg>
-          <b>Public versus private</b>
-          <span>Public manufacturing context stays on the website. Programme detail moves to established private email.</span>
-        </article>
-        <article class="proof-card">
-          <i class="proof-tag">CONTINUITY</i>
-          <svg viewBox="0 0 300 90" aria-hidden="true"><path d="M20 45h260"></path><circle cx="35" cy="45" r="7"></circle><circle cx="115" cy="45" r="7"></circle><circle cx="195" cy="45" r="7"></circle><circle cx="275" cy="45" r="7"></circle><path d="M35 38V23M115 52v15M195 38V23M275 52v15"></path></svg>
-          <b>Operating continuity</b>
-          <span>Trace the manufacturing identity, accumulated process knowledge and multi-origin resilience behind the work.</span>
-        </article>
+      <div class="ov-steps">
+        <div class="ov-step">
+          <div class="ov-dot">1</div><span class="ov-where">About</span>
+          <h3>Know who you're talking to</h3>
+          <p>Fifty-two years behind other people's brands, and never a competing retail label.</p>
+          <span class="ov-leave"><b>You leave with</b>Whether the commercial boundary works for you</span>
+        </div>
+        <div class="ov-step">
+          <div class="ov-dot">2</div><span class="ov-where">Factory</span>
+          <h3>Check we can make it</h3>
+          <p>Photographs of the floor, the catalogue, and every material and process route.</p>
+          <span class="ov-leave"><b>You leave with</b>The material and route your product needs</span>
+        </div>
+        <div class="ov-step">
+          <div class="ov-dot">3</div><span class="ov-where">Daily Supply News</span>
+          <h3>See today's conditions</h3>
+          <p>What moved in steel, resin, freight and policy — and what it changes.</p>
+          <span class="ov-leave"><b>You leave with</b>Whether now is a good week to commit</span>
+        </div>
+        <div class="ov-step">
+          <div class="ov-dot">4</div><span class="ov-where">Buyer &amp; Cost Desk</span>
+          <h3>Work out your number</h3>
+          <p>Plan the programme, then price it: landed cost, margin, timing and sailing.</p>
+          <span class="ov-leave"><b>You leave with</b>A landed cost you can defend internally</span>
+        </div>
+        <div class="ov-step">
+          <div class="ov-dot">5</div><span class="ov-where">Contact</span>
+          <h3>Ask the real question</h3>
+          <p>Routed to your regional desk. Drawings and prices stay in private email.</p>
+          <span class="ov-leave"><b>You leave with</b>A conversation, not a form submission</span>
+        </div>
+      </div>
+      <div class="ov-cta">
+        <a class="ov-btn" href="about.html">Start at step 1 &rarr;</a>
+        <a class="ov-btn ghost" href="cost-desk.html">I already know what I need — go to the Cost Desk</a>
       </div>
     </section>
 
-    <nav class="handoff-strip" aria-label="System handoff">
-      <a href="news.html"><b>01 · UNDERSTAND</b><span>Data Desk</span></a>
-      <a href="executive.html"><b>02 · CHECK CONTEXT</b><span>Daily Supply News</span></a>
-      <a href="partner.html"><b>03 · DECIDE</b><span>Buyer Desk</span></a>
-      <a href="contact.html"><b>04 · CONTINUE PRIVATELY</b><span>Email Birdland</span></a>
-    </nav>
+    <section class="proof-section" aria-labelledby="ov-map-title">
+      <div class="section-intro">
+        <div><span class="eyebrow">OR JUMP STRAIGHT IN</span><h2 id="ov-map-title">One question in the middle. Every page is an answer to it.</h2></div>
+        <p>Not an order — a shape. Arrive with any one of these five questions and go straight to the page that holds the answer.</p>
+      </div>
+      <div class="ov-mind">
+        <div class="ov-core">
+          <b>Can Birdland make my product, and what will it cost me?</b>
+          <span>Everything on this site answers one of the five branches. Nothing needs an account, and nothing you type is stored on this website.</span>
+        </div>
+        <div class="ov-spine" aria-hidden="true"></div>
+        <div class="ov-branches">
+          <div class="ov-br">
+            <div class="ov-lbl"><b>About</b><small>Who</small></div>
+            <div class="ov-body"><span class="ov-q">“Will you compete with me?”</span>
+              <div class="ov-chips"><span class="ov-chip">The commercial boundary</span><span class="ov-chip">52 years · 180+ programmes</span><a class="ov-chip go" href="about.html">Read &rarr;</a></div></div>
+          </div>
+          <div class="ov-br">
+            <div class="ov-lbl"><b>Factory</b><small>What</small></div>
+            <div class="ov-body"><span class="ov-q">“Can you actually make this?”</span>
+              <div class="ov-chips"><span class="ov-chip">Our floor, photographed</span><span class="ov-chip">Materials &amp; processes</span><span class="ov-chip">Packaging</span><a class="ov-chip go" href="product-101.html">Open &rarr;</a></div></div>
+          </div>
+          <div class="ov-br">
+            <div class="ov-lbl"><b>Daily Supply News</b><small>When</small></div>
+            <div class="ov-body"><span class="ov-q">“Is now a bad time to commit?”</span>
+              <div class="ov-chips"><span class="ov-chip">Steel · resin · freight</span><span class="ov-chip">Policy deadlines</span><a class="ov-chip go" href="executive.html">Today's edition &rarr;</a></div></div>
+          </div>
+          <div class="ov-br">
+            <div class="ov-lbl"><b>Buyer Desk</b><small>How</small></div>
+            <div class="ov-body"><span class="ov-q">“How do I specify this properly?”</span>
+              <div class="ov-chips"><span class="ov-chip">Part &amp; material routes</span><span class="ov-chip">Buyer brief</span><a class="ov-chip go" href="partner.html">Open &rarr;</a></div></div>
+          </div>
+          <div class="ov-br">
+            <div class="ov-lbl"><b>Cost Desk</b><small>How much</small></div>
+            <div class="ov-body"><span class="ov-q">“What lands in my warehouse, per unit?”</span>
+              <div class="ov-chips"><span class="ov-chip">Landed cost</span><span class="ov-chip">Retail margin</span><span class="ov-chip">TW vs CN duty</span><a class="ov-chip go" href="cost-desk.html">Open &rarr;</a></div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ov-note"><b>Set once, follows you.</b> Whichever branch you start from, the region, market and product line you choose there carry to every other page — you are never asked the same question twice.</p>
+    </section>
+
   </main>
 
-  <footer class="site-footer"><span>Birdland Ind. · Data Desk</span><span>Public operating model only.</span></footer>
+  <footer class="site-footer"><span>Birdland Ind. · Overview</span><span>Public operating model only.</span></footer>
   <script type="application/json" id="outlook-data">__DATA__</script>
   <script src="site-shell.js"></script>
   <script>
