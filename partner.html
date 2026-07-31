@@ -1084,7 +1084,8 @@ body.theme-light #dash{
   .pd-spark polyline{animation:none!important}
 }
 
-</style><style>#gate{display:none!important}.language-box details{position:relative}.language-box summary{cursor:pointer;font-weight:700;list-style:none}.language-box summary::-webkit-details-marker{display:none}.language-box details[open]{position:absolute;right:0;top:0;z-index:120;min-width:172px;padding:9px;background:var(--kb-panel);border:1px solid var(--kb-line);border-radius:8px}.language-box a,.language-box small{display:block;margin:5px 0;color:var(--kb-ink);text-decoration:none}.language-box small{font-size:10px;line-height:1.35;color:var(--kb-muted)}#p-material,#p-shipping,#p-freight,#p-watch,#p-war,#p-tariff,#p-market,#p-keynews,#p-regcal,#p-report,#p-news{display:none!important}</style></head><body class="theme-light">
+</style><style>#gate{display:none!important}.language-box details{position:relative}.language-box summary{cursor:pointer;font-weight:700;list-style:none}.language-box summary::-webkit-details-marker{display:none}.language-box details[open]{position:absolute;right:0;top:0;z-index:120;min-width:172px;padding:9px;background:var(--kb-panel);border:1px solid var(--kb-line);border-radius:8px}.language-box a,.language-box small{display:block;margin:5px 0;color:var(--kb-ink);text-decoration:none}.language-box small{font-size:10px;line-height:1.35;color:var(--kb-muted)}#p-material,#p-shipping,#p-freight,#p-watch,#p-war,#p-tariff,#p-market,#p-keynews,#p-regcal,#p-report,#p-news{display:none!important}</style>  <script defer src="mail-routing.js?v=20260731a"></script>
+</head><body class="theme-light">
 <style>
   body.theme-light{background:#f5f0e6;color:#173d34}
   body.theme-light .topbar{background:#123f35;border-bottom:3px solid #b85b2d;box-shadow:0 8px 24px rgba(19,63,53,.18)}
@@ -1905,7 +1906,7 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
         </div>
         <div class="bd-brief-actions">
           <a id="bb-pdf" href="#p-offers" data-go="p-offers">Open published product information</a>
-          <a class="primary" id="bb-email" href="mailto:executive@birdland.com.tw">Prepare email to Birdland →</a>
+          <a class="primary" id="bb-email" href="#">Prepare email to Birdland →</a>
         </div>
         <small>No data is submitted or stored on Birdland servers. Add confidential files, prices, quantities and specifications only in your normal Birdland email thread.</small>
         <div class="bd-route"><h3>Why this route</h3><div class="bd-route-flow"><div class="bd-route-node"><b>↗</b>Market change</div><span class="bd-route-arrow">→</span><div class="bd-route-node"><b>⚙</b>Birdland response</div><span class="bd-route-arrow">→</span><div class="bd-route-node"><b>✓</b>Your programme</div></div></div>
@@ -3513,7 +3514,7 @@ function swatchKind(name){
    'No quote or order has been submitted. I will add confidential drawings, quantities, prices and specifications only in our normal Birdland email thread.','',
    'Public workspace: https://birdland.com.tw/partner.html#overview'
   ].join('\n');
-  email.href='mailto:executive@birdland.com.tw?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  email.href=window.blMail?window.blMail.href(window.blMail.recall('bl_mr_region','global'),window.blMail.recall('bl_mr_line',''),subject,body):'#';
  }
  root.addEventListener('click',function(e){
   var b=e.target.closest&&e.target.closest('button');

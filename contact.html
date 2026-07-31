@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Contact Birdland | Private OEM Correspondence</title>
   <meta name="description" content="Start a Birdland OEM conversation through the normal private email workflow.">
-  <link rel="stylesheet" href="birdland-visual.css?v=20260731f"><script defer src="terminal-status.js?v=20260730d"></script>
+  <link rel="stylesheet" href="birdland-visual.css?v=20260731i"><script defer src="terminal-status.js?v=20260730d"></script><script defer src="mail-routing.js?v=20260731a"></script>
 </head>
 <body>
   <a class="bl-skip" href="#main">Skip to content</a>
@@ -28,10 +28,18 @@
         <span class="bl-eyebrow">Private correspondence</span>
         <h1>Keep the programme where it belongs.</h1>
         <p>Use the public website to understand Birdland and prepare a question. Drawings, prices, specifications, approvals and programme details continue through established private email.</p>
-        <div class="bl-actions"><a class="bl-button" href="mailto:executive@birdland.com.tw?subject=Birdland%20OEM%20enquiry">Open an OEM email</a></div>
+        <div class="mail-route">
+          <b class="mail-route-h">Route your enquiry</b>
+          <div class="mail-route-fields">
+            <label>Your market<select id="mr-region" aria-label="Your market"></select></label>
+            <label>Product line<select id="mr-line" aria-label="Product line"></select></label>
+          </div>
+          <div class="bl-actions"><a class="bl-button" id="mr-open" href="#">Open an OEM email</a></div>
+          <p class="mail-route-to">Goes to the <b id="mr-desk">regional</b> desk — <span id="mr-addr">choosing a market shows the address</span></p>
+        </div>
       </div>
       <figure class="ledger-image ledger-image-art">
-        <img src="images/birdland-team.svg" alt="An illustrated group portrait of the Birdland team: about fifteen office staff in front with two leaders at the centre, and two ranks of production staff in work wear behind them, all smiling, drawn over a technical outline of a bypass pruner.">
+        <img src="images/birdland-team.webp" alt="A composite group portrait of the Birdland team: office staff seated in front and the production floor in work uniform ranked behind them, framed by pencil sketches of machine tools and a blueprint panel of garden tools." loading="lazy" decoding="async">
         <figcaption class="ledger-caption">The people behind the programme.<br>Confidential work in private correspondence.</figcaption>
       </figure>
     </section>
@@ -48,5 +56,27 @@
     </section>
   </main>
   <footer class="bl-footer"><span>Birdland Ind. · Private OEM correspondence</span><span><a href="privacy.html">Privacy</a></span></footer>
+  <script>
+    // mail-routing.js is deferred, so it has not run yet while this inline
+    // script is being parsed. Deferred scripts finish before DOMContentLoaded,
+    // so waiting for that event is what guarantees window.blMail exists.
+    document.addEventListener('DOMContentLoaded',function(){
+      var M=window.blMail; if(!M) return;
+      var region=document.getElementById('mr-region'),line=document.getElementById('mr-line'),
+          open=document.getElementById('mr-open'),shown=document.getElementById('mr-addr'),desk=document.getElementById('mr-desk');
+      var DESK={global:'European',europe:'European',uk:'UK & Commonwealth',americas:'Americas'};
+      M.fillSelect(region,M.regions,M.recall('bl_mr_region','global'));
+      M.fillSelect(line,M.lines,M.recall('bl_mr_line',''));
+      function sync(){
+        var r=region.value,l=line.value;
+        M.remember('bl_mr_region',r); M.remember('bl_mr_line',l);
+        var subject='Birdland OEM enquiry'+(l==='hunting'?' — hunting equipment':'');
+        open.href=M.href(r,l,subject,'');
+        shown.textContent=M.addr(r,l);
+        desk.textContent=l==='hunting'?'hunting':(DESK[r]||'regional');
+      }
+      region.addEventListener('change',sync); line.addEventListener('change',sync); sync();
+    });
+  </script>
 </body>
 </html>

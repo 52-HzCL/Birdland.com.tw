@@ -1365,3 +1365,77 @@ button{font:inherit}
 /* The shared caption is white with a dark shadow for photographs; on the light
    artwork it has to invert to stay legible. */
 .ledger-image-art .ledger-caption{right:18px;bottom:16px;max-width:280px;padding:9px 12px;background:rgba(251,249,243,.92);border:1px solid var(--bl-line);color:var(--bl-jade);text-shadow:none;font-size:12.5px;line-height:1.45}
+
+/* ===== Market-routed contact ===== */
+.mail-route{margin:26px 0 0;padding:20px 22px;border:1px solid var(--bl-line);background:var(--bl-paper)}
+.mail-route-h{display:block;margin-bottom:14px;color:var(--bl-copper);font:500 9px var(--bl-mono);letter-spacing:.1em}
+.mail-route-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.mail-route-fields label{display:block;color:var(--bl-muted);font:500 9px var(--bl-mono);letter-spacing:.08em}
+.mail-route-fields select{width:100%;margin-top:6px;padding:9px 10px;border:1px solid var(--bl-line);border-radius:0;background:var(--bl-ivory);color:var(--bl-ink);font:600 12px var(--bl-sans)}
+.mail-route-fields select:focus-visible{outline:2px solid var(--bl-copper);outline-offset:2px}
+.mail-route .bl-actions{margin:0}
+.mail-route-to{margin:14px 0 0;padding-top:12px;border-top:1px solid var(--bl-line);color:var(--bl-muted);font-size:11.5px}
+.mail-route-to b{color:var(--bl-jade)}
+.mail-route-to span{font-family:var(--bl-mono);font-size:11px;color:var(--bl-jade)}
+@media(max-width:680px){.mail-route-fields{grid-template-columns:minmax(0,1fr)}}
+
+/* ===== Product 101 v2: photographs lead, ratings get headings and words ===== */
+/* Entry layout is now photograph | copy | optional schematic. Only three gates
+   keep a schematic — where a camera cannot show the thing being described. */
+.wk-entry-grid{grid-template-columns:318px minmax(0,1fr) 214px}
+.wk-entry-grid.wk-nodiagram{grid-template-columns:318px minmax(0,1fr)}
+.wk-entry-grid.wk-nophoto{grid-template-columns:318px minmax(0,1fr)}
+.wk-shot img{height:214px}
+.wk-shot figcaption{color:var(--bl-jade);font-weight:600}
+.wk-photo{margin:0}
+.wk-photo img{display:block;width:100%;height:214px;object-fit:cover;border:1px solid var(--bl-line)}
+.wk-photo figcaption,.wk-shot figcaption{margin-top:7px;font:9px/1.5 var(--bl-mono);letter-spacing:.05em}
+.wk-photo figcaption{color:var(--bl-jade-soft)}
+.wk-photo figcaption small,.wk-pack figcaption small{display:block;margin-top:3px;color:var(--bl-muted);font:9px/1.4 var(--bl-mono);opacity:.85}
+.wk-pack-img{display:block;width:100%;height:170px;object-fit:cover;border:1px solid var(--bl-line)}
+.wk-pack figcaption small{margin-top:7px}
+
+/* Ratings: a heading row on every list, two different shapes, and a word. */
+.wk-rates li{grid-template-columns:190px 132px 148px minmax(0,1fr);gap:18px;align-items:center}
+.wk-rates-head{border-top:0;padding-bottom:10px;border-bottom:1px solid var(--bl-jade)}
+.wk-rates-head b,.wk-rates-head span{color:var(--bl-copper);font:500 9px var(--bl-mono);letter-spacing:.1em;text-transform:uppercase}
+.wk-rates li+li{border-top:1px solid var(--bl-line)}
+.wk-cell{display:flex;align-items:center;gap:9px;min-width:0}
+.wk-cell em{font-style:normal;color:var(--bl-jade-soft);font:500 10px var(--bl-mono);white-space:nowrap}
+.wk-dots{display:inline-flex;gap:3px;align-items:center;color:var(--bl-jade)}
+.wk-dots i{display:block;width:7px;height:7px;border:1px solid currentColor;border-radius:50%}
+.wk-dots i.on{background:currentColor}
+.wk-steps{display:inline-flex;gap:2px;align-items:flex-end;color:var(--bl-copper)}
+.wk-steps i{display:block;width:5px;border:1px solid currentColor}
+.wk-steps i:nth-child(1){height:4px}
+.wk-steps i:nth-child(2){height:7px}
+.wk-steps i:nth-child(3){height:10px}
+.wk-steps i:nth-child(4){height:13px}
+.wk-steps i:nth-child(5){height:16px}
+.wk-steps i.on{background:currentColor}
+.wk-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.wk-rates-tight li{grid-template-columns:auto auto;gap:10px;align-items:center;padding:0;border:0}
+.wk-rates-tight li+li{border-top:0}
+@media(max-width:1180px){
+  .wk-entry-grid{grid-template-columns:262px minmax(0,1fr) 180px}
+  .wk-entry-grid.wk-nodiagram,.wk-entry-grid.wk-nophoto{grid-template-columns:262px minmax(0,1fr)}
+}
+@media(max-width:900px){
+  .wk-entry-grid,.wk-entry-grid.wk-nodiagram,.wk-entry-grid.wk-nophoto{grid-template-columns:minmax(0,1fr)}
+  .wk-photo,.wk-shot{max-width:420px}
+  .wk-shot img,.wk-photo img{height:230px}
+  .wk-rates li{grid-template-columns:minmax(0,1fr) auto;gap:6px 14px}
+  .wk-rates-head{display:none}
+  .wk-rnote{grid-column:1/-1}
+}
+
+/* The heading row must be hidden on narrow screens, and `.wk-rates li` sets
+   display, so the override has to match that specificity to win. On one column
+   the name takes the full width, the two scales sit side by side under it, and
+   the reason runs full width below. */
+@media(max-width:900px){
+  .wk-rates li.wk-rates-head{display:none}
+  .wk-rates li{grid-template-columns:auto auto;gap:8px 18px;justify-content:start;padding:12px 0}
+  .wk-rates li>b{grid-column:1/-1}
+  .wk-rnote{grid-column:1/-1;margin-top:2px}
+}
