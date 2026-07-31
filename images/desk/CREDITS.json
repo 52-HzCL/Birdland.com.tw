@@ -208,6 +208,14 @@
   {
    "id": "pulp",
    "from": "enc/m-board"
+  },
+  {
+   "id": "dacromet",
+   "from": "enc/m-plating"
+  },
+  {
+   "id": "anodised",
+   "from": "enc/m-aluminium"
   }
  ],
  "pexels": [
