@@ -3344,6 +3344,100 @@ function bentofy(id,lgSel,mdSel,smFns,mdSynth){
   }
 }
 function pct(str){var m=/([\d.]+)\s*%/.exec(str||'');return m?m[1]+'%':'—';}
+
+/* The landed-cost tool was hand-built into a two-panel workspace — set it up on
+   the left, read the answer on the right — while the other five were rendered
+   by bentofy into a generic bento grid. Same page, same job, two shapes, and the
+   one that reads best was the one nobody could reuse.
+
+   toolShell gives the other five that shape, and takes the arguments the bentofy
+   call already passed, so no tool needed rewriting. The split is positional and
+   holds for all five: .calc is the input, the named output element is the
+   answer, anything before .calc is preamble, anything after is a footnote. */
+var SHELL_COPY={
+ 'p-margin':['Margin setup','Set your cost and your target','Retail outcome','What it earns at the shelf'],
+ 'p-reorder':['Stock setup','Describe the run you are holding','Timing outcome','When to place the order'],
+ 'p-sail':['Sailing setup','Choose the route and your readiness','Booking outcome','The sailings that still fit'],
+ 'p-calc':['Quick setup','The three numbers that move it most','Quick outcome','A first-pass landed cost'],
+ 'p-cduty':['Origin setup','Set the shipment and the origin','Origin outcome','Taiwan against China, landed']
+};
+function toolShell(id,outSel,smFns){
+  var sec=document.getElementById(id);if(!sec)return;
+  var body=sec.querySelector('.blk-b');if(!body||body.querySelector('.landed-workspace'))return;
+  var copy=SHELL_COPY[id];if(!copy)return;
+  var calc=body.querySelector('.calc');if(!calc)return;
+  var out=null;(outSel||[]).forEach(function(x){if(!out)out=body.querySelector(x);});
+
+  var seenCalc=false,before=[],after=[];
+  [].slice.call(body.children).forEach(function(k){
+    if(k===calc){seenCalc=true;return;}
+    if(k===out)return;
+    if(/bd-tool-share|tool-explain|tool-links|landed-tool-nav/.test(k.className||''))return;
+    (seenCalc?after:before).push(k);
+  });
+
+  var ws=document.createElement('div');ws.className='landed-workspace';
+  var panel=document.createElement('section');panel.className='landed-input-panel';
+  var head=document.createElement('div');head.className='landed-panel-head';
+  head.innerHTML='<span>01 · '+copy[0]+'</span><h3>'+copy[1]+'</h3>';
+  before.forEach(function(k){head.appendChild(k);});
+  panel.appendChild(head);
+  calc.classList.add('landed-form');
+  panel.appendChild(calc);
+
+  var summary=document.createElement('section');summary.className='landed-summary';
+  var shead=document.createElement('div');shead.className='landed-summary-head';
+  shead.innerHTML='<span>02 · '+copy[2]+'</span><b>Updates as you type</b>';
+  summary.appendChild(shead);
+  var h3=document.createElement('h3');h3.textContent=copy[3];summary.appendChild(h3);
+
+  var vals=(smFns||[]).map(function(f){try{return f(body);}catch(e){return null;}})
+    .filter(function(v){return v&&v.v;});
+  var hero=null;
+  /* A sentence set at hero size reads as a broken number, so a headline that
+     is prose gets no card. 'Order now' is a verdict, not prose, and it is the
+     right answer for a timing tool — the test is length, not digits. TW vs CN
+     duty leads with a paragraph-long caveat and keeps only its outcome panel. */
+  function headlineOK(v){v=String(v||'');return /[0-9]/.test(v)||v.length<=24;}
+  if(vals.length&&headlineOK(vals[0].v)){
+    hero=document.createElement('div');hero.className='landed-hero-result';
+    vals.slice(0,2).forEach(function(v){
+      var d=document.createElement('div'),k=document.createElement('span'),n=document.createElement('b');
+      k.textContent=v.k;n.textContent=v.v;d.appendChild(k);d.appendChild(n);hero.appendChild(d);
+    });
+    summary.appendChild(hero);
+  }
+  if(out)summary.appendChild(out);
+  after.forEach(function(k){summary.appendChild(k);});
+
+  ws.appendChild(panel);ws.appendChild(summary);
+  /* The share bar, the tool switcher, the Product 101 card and the Next chips
+     stay outside the workspace, so every tool still opens and closes the same. */
+  var share=body.querySelector('.bd-tool-share'),nav=body.querySelector('.landed-tool-nav');
+  var tail=[].slice.call(body.querySelectorAll('.tool-explain,.tool-links'));
+  body.innerHTML='';
+  if(share)body.appendChild(share);
+  if(nav)body.appendChild(nav);
+  body.appendChild(ws);
+  tail.forEach(function(t){body.appendChild(t);});
+  sec.classList.add('landed-tool');
+
+  /* Same lesson as the bento hero tiles: a figure rendered once is a figure that
+     goes stale the moment somebody types. */
+  if(hero){
+    var redraw=function(){
+      var v2=(smFns||[]).map(function(f){try{return f(body);}catch(e){return null;}})
+        .filter(function(v){return v&&v.v;});
+      v2.slice(0,2).forEach(function(v,ix){var c=hero.children[ix];if(!c)return;
+        c.firstChild.textContent=v.k;c.lastChild.textContent=v.v;});
+    };
+    body.addEventListener('input',function(){setTimeout(redraw,0);});
+    body.addEventListener('change',function(){setTimeout(redraw,0);});
+    /* Some tools populate their own inputs after this runs, so the first read
+       lands on an empty field and prints a dash. One deferred pass catches it. */
+    setTimeout(redraw,400);
+  }
+}
 bentofy('p-brief',['#pb-actions'],['#pb-sum'],[
   function(b){return {k:'Actions',v:b.querySelectorAll('#pb-actions .act').length+' open items'};},
   function(){return {k:'Basis',v:'AI + desk review'};}
@@ -3360,16 +3454,19 @@ bentofy('p-freight',['.svgwrap'],['.fr-src'],[
   function(b){var t=b.querySelector('table');var n=t?t.querySelectorAll('tr').length:0;return {k:'Indices tracked',v:n?(n+' rows'):'No data today'};},
   function(){return {k:'Cadence',v:'Monthly, official'};}
 ]);
-bentofy('p-calc',['.calc'],['.svgwrap','.legend'],[
-  function(b){return {k:'Landed cost / unit',v:txt('#lc-out',b)||'—'};},
+toolShell('p-calc',['.svgwrap','.legend'],[
+  /* #lc-out is the whole sentence — unit price, then order total. In a bento
+     tile that was fine; at hero size it wrapped to three lines and repeated the
+     figure printed directly underneath it. The headline takes the unit price. */
+  function(b){var t=txt('#lc-out',b)||'',m=/US\$[0-9.,]+/.exec(t);return {k:'Landed cost / unit',v:m?m[0]:(t||'—')};},
   function(b){var q=b.querySelector('#qc_qty');return {k:'Quantity',v:q?Number(q.value).toLocaleString():'—'};}
 ]);
 (function(){var sec=document.getElementById('p-landed2');if(!sec)return;var body=sec.querySelector('.blk-b'),nav=body&&body.querySelector('.landed-tool-nav'),input=body&&body.querySelector('.landed-input-panel'),summary=body&&body.querySelector('.landed-summary');if(!body||!nav||!input||!summary)return;var workspace=document.createElement('div');workspace.className='landed-workspace';workspace.appendChild(input);workspace.appendChild(summary);body.innerHTML='';body.appendChild(nav);body.appendChild(workspace);})();
-bentofy('p-sail',['.calc'],['#s_cards'],[
+toolShell('p-sail',['#s_cards'],[
   function(b){return {k:'Options shown',v:b.querySelectorAll('.sailcard').length+' sailings'};},
   function(){return {k:'Freight',v:'Indicative — confirm w/ carrier'};}
 ]);
-bentofy('p-cduty',['.calc'],['#pcalcOut'],[
+toolShell('p-cduty',['#pcalcOut'],[
   function(b){return {k:'Note',v:txt('#pcalc-note',b)||'See detail'};},
   function(b){var v=b.querySelector('#pcVal');return {k:'Shipment value',v:v?('US$'+Number(v.value).toLocaleString()):'—'};}
 ]);
@@ -3408,15 +3505,32 @@ bentofy('p-regcal',['.news'],[],[
   function(b){return {k:'Past',v:b.querySelectorAll('.item.rc-past').length+' on record'};}
 ]);
 bentofy('p-report',[],[],[]);
-bentofy('p-margin',['.calc'],['#mg_out'],[
+toolShell('p-margin',['#mg_out'],[
   function(b){var t=b.querySelector('#mg_out .mg-retail');return {k:'Suggested retail',v:t?t.textContent:'—'};},
   function(b){var t=b.querySelector('#mg_out .mg-gp');return {k:'Gross profit / order',v:t?t.textContent:'—'};}
 ]);
-bentofy('p-reorder',['.calc'],['#ro_out'],[
+toolShell('p-reorder',['#ro_out'],[
   function(b){var t=b.querySelector('#ro_out .ro-when');return {k:'Reorder by',v:t?t.textContent:'—'};},
   function(b){var t=b.querySelector('#ro_out .ro-qty');return {k:'Suggested qty',v:t?t.textContent:'—'};}
 ]);
 bentofy('p-season',[],[],[]);
+
+/* The tool switcher was written into the landed-cost markup by hand, so it only
+   existed on that one tool: from any of the other five the only way across was
+   the rail. Every tool gets it now, marked to the one you are on. */
+(function(){
+  var src=document.querySelector('#p-landed2 .landed-tool-nav');if(!src)return;
+  ['p-margin','p-reorder','p-sail','p-calc','p-cduty'].forEach(function(id){
+    var body=document.querySelector('#'+id+' .blk-b');
+    if(!body||body.querySelector('.landed-tool-nav'))return;
+    var nav=src.cloneNode(true);
+    [].forEach.call(nav.querySelectorAll('button'),function(b){
+      b.classList.toggle('on',b.getAttribute('data-go')===id);
+    });
+    var ws=body.querySelector('.landed-workspace');
+    if(ws)body.insertBefore(nav,ws);else body.insertBefore(nav,body.firstChild);
+  });
+}());
 })();</script>
 <script>(function(){/* language: single Google-Translate control, relocated into the left rail as a button + popover */
  var rail=document.getElementById('p-rail');var gEl=document.getElementById('google_translate_element');
