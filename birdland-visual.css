@@ -1343,3 +1343,15 @@ button{font:inherit}
 .wk-head{display:grid;grid-template-columns:minmax(0,1fr) 342px;gap:38px;align-items:start;margin-bottom:26px}
 .wk-box{float:none;width:auto;margin:8px 0 0}
 @media(max-width:900px){.wk-head{grid-template-columns:minmax(0,1fr);gap:0}.wk-box{margin:24px 0 0}}
+
+/* ===== Product 101 §OEM: the two routes ===== */
+.wk-faces{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bl-line);margin:20px 0 8px}
+.wk-face{padding:26px 24px;background:var(--bl-paper)}
+.wk-face h3{margin:0 0 16px}
+.wk-face .wk-bp{margin-bottom:16px}
+.wk-face p{margin:0 0 12px;color:var(--bl-jade-soft);font-size:13px}
+.wk-face p:last-child{margin:0}
+.wk-face p b{color:var(--bl-ink)}
+.bl-button-quiet{background:transparent;color:var(--bl-jade);border:1px solid var(--bl-jade)}
+.bl-button-quiet:hover{background:var(--bl-jade);color:var(--bl-paper)}
+@media(max-width:900px){.wk-faces{grid-template-columns:minmax(0,1fr)}}
