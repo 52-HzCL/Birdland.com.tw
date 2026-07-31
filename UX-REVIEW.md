@@ -167,7 +167,10 @@ does not exist; 9px and 13px are more common than 16px.
   — its label is gone. Contact appears only in the footer.
 - **H-5 · Mobile crops the artwork to the middle panel**, so two of the three
   stages are not merely faded but absent.
-- **H-6 · +7px horizontal overflow** at 1440 (`.bl-ink-hero`, `.bl-ink-stages`).
+- **H-6 · ~~+7px horizontal overflow~~ — WITHDRAWN.** The probe counted any box
+  wider than the viewport, including ones clipped by a scrolling ancestor. The
+  page never scrolled sideways. Corrected probe: try to scroll and see if it
+  moves.
 - **待確認:** an intermittent 404 was logged on one of two runs and did not
   reproduce. Not actioned until identified.
 
@@ -238,8 +241,10 @@ does not exist; 9px and 13px are more common than 16px.
 
 ### product-101.html — Factory · P1
 
-- **F-1 · +30px horizontal overflow on mobile.** Culprits are `.p101-table`
-  (wide data tables with no scroll container) and `.bl-resource-switch`.
+- **F-1 · ~~+30px horizontal overflow on mobile~~ — WITHDRAWN.** Same faulty
+  probe as H-6. `.p101-table` is 620px wide inside a `.p101-scroll` box that is
+  348px wide with `overflow-x:auto`, which is correct: the table scrolls, the
+  page does not.
 - **F-2 · CLS 0.178 mobile.**
 - **F-3 · 5,800 words, 3,652 elements** — by far the heaviest page, with no
   in-page navigation captured in the audit. **待確認** whether it should be

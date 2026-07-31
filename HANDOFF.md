@@ -44,11 +44,50 @@ Node: `C:\Program Files\nodejs\node.exe`.
 
 ## Done
 
-- [x] Phase 1 · page inventory, core purpose, P0/P1/P2
-- [x] Phase 1 · `screenshots/before/` — 11 pages × 2 viewports (Playwright)
-- [x] Phase 1 · `design-tokens.md` — measured census + proposed tokens
-- [x] Phase 1 · CLS/LCP per page per viewport
-- [x] Phase 1 · `UX-REVIEW.md`, `ISSUES.md`
+### Phase 1
+- [x] page inventory, core purpose, P0/P1/P2
+- [x] `screenshots/before/` — 11 pages x 2 viewports (Playwright)
+- [x] `design-tokens.md` — measured census + proposed tokens
+- [x] CLS/LCP per page per viewport
+- [x] `UX-REVIEW.md`, `ISSUES.md`
+
+### Phase 2
+- [x] index — visible headline, static propositions, two CTAs, mobile stack (H-1..H-6)
+- [x] site — one favicon, replacing a 404 and two stray marks
+- [x] news — dead decision-visuals script removed (N-1)
+- [x] news — one HQ light / clock / language picker, section-intro measure (N-2, N-4)
+- [x] site — `tokens.css`; four palettes now delegate to it (T-3, M-1)
+- [x] site — seven webfont families to four; 92 literal stacks tokenised (T-1)
+- [x] type scale on the hand-authored pages and shared chrome (T-2)
+- [x] daily supply news — CLS 0.234 -> 0.048; banner stops shifting the page (E-1)
+- [x] site — CLS under 0.1 on every page, both viewports; font-display optional
+- [x] desks — 28/25/17 font sizes down to 7 each (T-2)
+- [x] corrected my own favicon regex damage (stray `">` on three pages)
+
+### Still to do in Phase 2
+- [ ] T-4 motion: one 150/200ms pair; news and executive declare none today
+- [ ] T-5 spacing: 40 paddings / 30 gaps onto the 4/8/16/24/32/48 scale
+- [ ] B-2 radii: 13 down to 3
+- [ ] B-3 buyer desk first screen — everything is on it at once
+- [ ] C-2 cost desk asks for the buying context twice on one screen
+- [ ] E-3 daily supply news shows the same feed three ways
+- [ ] P-1 privacy.html has no site shell
+
+### Phase 3 (not started)
+- [ ] dead CSS left by removed features: `.os-hero`, `.control-map`,
+      `.ownership-note`, `.route-step`, `.dossier*`, `[data-mode]`
+- [ ] console.log / commented-out blocks sweep
+
+### Phase 4 (not started)
+- [ ] `screenshots/after/`, full re-measure, `SUMMARY.md`
+
+## Corrections to Phase 1
+
+Two findings were withdrawn after the probe was fixed. The overflow check
+counted any box wider than the viewport, including boxes correctly clipped by
+a scrolling ancestor — so H-6 (+7px on index) and F-1 (+30px on Factory) were
+measurement artefacts, not defects. The honest test is to scroll the page and
+see whether it moves; `shot.js` does that now.
 
 ## Next
 
