@@ -1,0 +1,24 @@
+{
+ "note": "Buyer Desk choice thumbnails. Material tiles are cropped from the Product 101 stock photographs (Pexels License); process tiles are cropped from Birdland's own production photographs in images/thumbs/.",
+ "pexels_new": [
+  {
+   "id": "fibreglass",
+   "photographer": "Krakograff Textures",
+   "source": "https://www.pexels.com/photo/rough-stone-wall-surface-17204379/"
+  },
+  {
+   "id": "cast",
+   "photographer": "Seamlesstextures",
+   "source": "https://www.pexels.com/photo/a-surface-with-rust-11255039/"
+  }
+ ],
+ "own_floor": [
+  "forming",
+  "heat",
+  "finish",
+  "grind",
+  "test",
+  "assembly",
+  "marking"
+ ]
+}

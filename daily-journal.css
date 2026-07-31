@@ -61,8 +61,7 @@ body{
   padding:5px 0;
   border-top:0;
   border-bottom:1px solid var(--kb-ink);
-  background:rgba(243,239,229,.96);
-  backdrop-filter:blur(12px);
+  background:var(--kb-paper,#fbf9f3);
 }
 .rail h2{margin:0;font:600 10px var(--mono);letter-spacing:.14em}
 .navgroups{display:flex;min-width:0;overflow:auto;scrollbar-width:none}
