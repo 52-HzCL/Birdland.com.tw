@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Contact Birdland | Private OEM Correspondence</title>
   <meta name="description" content="Start a Birdland OEM conversation through the normal private email workflow.">
-  <link rel="stylesheet" href="birdland-visual.css?v=20260731j"><script defer src="terminal-status.js?v=20260730d"></script><script defer src="mail-routing.js?v=20260731c"></script>
+  <link rel="stylesheet" href="birdland-visual.css?v=20260731j"><script defer src="terminal-status.js?v=20260730d"></script><script src="context.js?v=20260731d"></script><script defer src="mail-routing.js?v=20260731c"></script>
 </head>
 <body>
   <a class="bl-skip" href="#main">Skip to content</a>
@@ -65,6 +65,10 @@
       var region=document.getElementById('mr-region'),line=document.getElementById('mr-line'),
           open=document.getElementById('mr-open'),shown=document.getElementById('mr-addr'),
           desk=document.getElementById('mr-desk'),reveal=document.getElementById('mr-reveal');
+      // A buyer who already told the Buyer Desk which region and product line
+      // they work in should not be asked a third time. blCtx mirrors the desk's
+      // answer into the two keys read here, so the desk's latest answer is the
+      // default; changing it here is still allowed and still remembered.
       M.fillSelect(region,M.regions,M.recall('bl_mr_region','global'));
       M.fillSelect(line,M.lines,M.recall('bl_mr_line',''));
       // The desk name is always visible so the reader knows where the enquiry
@@ -73,6 +77,11 @@
       function sync(){
         var r=region.value,l=line.value;
         M.remember('bl_mr_region',r); M.remember('bl_mr_line',l);
+        // The product line means the same thing everywhere, so it flows back to
+        // the shared context. The region does not: four routing regions map
+        // onto seven desk regions, and guessing which one would move the buyer's
+        // desk somewhere they never chose.
+        if(window.blCtx)window.blCtx.set({line:l});
         desk.textContent=M.deskName(r,l);
         if(!shown.hidden) shown.textContent=M.addr(r,l);
       }
