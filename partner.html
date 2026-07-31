@@ -1901,10 +1901,6 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
           <img id="bd-anatomy-image" src="images/buyer-anatomy-pruner.webp" alt="Exploded reference anatomy of a bypass pruner">
           <span class="bd-reference-note">Reference anatomy · not a customer drawing</span>
         </div>
-        <section class="bd-head-routes" id="bd-head-routes" aria-label="Rake head and material routes" hidden>
-          <h3>Rake head &amp; material routes</h3>
-          <div class="bd-head-route-grid" id="bd-head-route-grid"></div>
-        </section>
         <div class="bd-part-list" id="bd-part-list" aria-label="Choose a part to review"></div>
 
         <div class="bd-options" id="bd-make-options">
@@ -3513,22 +3509,9 @@ var poll=setInterval(function(){
    ],
    processes:[['Structural conversion','Die-cut, score and fold control'],['Shell forming','Thermoform gauge and seal fit'],['Print & adhesive','Ink, coating and bond compatibility'],['Transit validation','Hang, drop and carton compression tests']]}
  ];
- var rakeRoutes=[
-  {label:'NL straight rake',market:'Netherlands trade benchmark',tines:14,width:'35–36 cm',head:'Forged carbon steel',handle:'FSC ash',style:'straight',tone:'forged'},
-  {label:'US bow rake',market:'US high-volume retail benchmark',tines:14,width:'17 in',head:'Powder-coated stamped steel',handle:'Fibreglass',style:'bow',tone:'coated'},
-  {label:'Narrow bed rake',market:'Small-bed working route',tines:10,width:'25 cm',head:'Forged carbon steel',handle:'FSC ash',style:'narrow',tone:'forged'},
-  {label:'Stainless level rake',market:'Corrosion-first route',tines:16,width:'42 cm',head:'420 stainless steel',handle:'Ash or aluminium',style:'straight',tone:'stainless'},
-  {label:'US stainless bow rake',market:'US retail corrosion-first route',tines:14,width:'16 in',head:'420 stainless steel',handle:'Fibreglass or ash',style:'bow',tone:'stainless'},
-  /* The three leaf-rake routes below are a different family from the soil rakes
-     above: a fan of springy tines on a light pole, not a rigid tine bar. They
-     are the routes a garden buyer actually shops as alternatives to each other. */
-  {label:'Adjustable spring-tine rake',market:'Electroplated adjustable-width route',tines:22,width:'20–55 cm adjustable',head:'Zinc-plated spring steel',handle:'Powder-coated steel tube',style:'fan',tone:'plated'},
-  {label:'Bamboo leaf rake',market:'Traditional natural-fibre route',tines:22,width:'45 cm',head:'Split bamboo tines',handle:'Bamboo pole',style:'fan',tone:'bamboo'},
-  {label:'Plastic leaf rake',market:'High-volume lightweight route',tines:22,width:'50 cm',head:'Impact PP tines',handle:'Powder-coated steel tube',style:'fan',tone:'plastic'}
- ];
- var state={family:0,part:0,material:0,process:0,rakeRoute:0,priority:'Cost stability'};
+ var state={family:0,part:0,material:0,process:0,priority:'Cost stability'};
  var familyTabs=document.getElementById('bd-family-tabs'),partList=document.getElementById('bd-part-list'),materials=document.getElementById('bd-materials'),processes=document.getElementById('bd-processes');
- var image=document.getElementById('bd-anatomy-image'),headRoutes=document.getElementById('bd-head-routes'),headRouteGrid=document.getElementById('bd-head-route-grid');
+ var image=document.getElementById('bd-anatomy-image');
  var publicItems=[];
  function esc(x){return String(x||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
  function line(x){return String(x||'').replace(/[\r\n]+/g,' ').trim();}
@@ -3536,7 +3519,7 @@ var poll=setInterval(function(){
  function activePart(){return activeFamily().parts[state.part];}
  function activeMaterial(){return activePart().materials[state.material];}
  function activeProcess(){return activeFamily().processes[state.process];}
- function activeModel(){return activeFamily().key==='soil'?rakeRoutes[state.rakeRoute].label:activeFamily().model;}
+ function activeModel(){return activeFamily().model;}
  function setText(id,value){var el=document.getElementById(id);if(el)el.textContent=value;}
  function lastDistinctChange(points){
   if(!Array.isArray(points)||points.length<2)return null;
@@ -3691,25 +3674,6 @@ function processTile(name){var n=String(name||'').toLowerCase();
   else body='<path d="M4 7l5-4 4 4-2 2 8 8-3 3-8-8-2 2-4-4z"/><path d="M12 5l3-2 4 4-3 3"/>';
   return '<svg class="bd-process-icon '+kind+'" viewBox="0 0 24 24" aria-hidden="true">'+body+'</svg>';
  }
- function rakeRouteVisual(route){
-  /* A leaf rake is not a tine bar with a handle in the middle: the tines fan
-     out from a narrow neck to a wide arc, and drawing it with the straight-bar
-     geometry would make three genuinely different products look identical. */
-  if(route.style==='fan'){
-   var n=route.tines,f='',hub=80,neck=14,span=74;
-   for(var j=0;j<n;j++){
-    var t=n===1?0.5:j/(n-1),x0=hub-neck/2+(neck*t),x1=hub-span+(span*2*t);
-    f+='<path class="line" d="M'+x0.toFixed(1)+' 18C'+x0.toFixed(1)+' 30 '+x1.toFixed(1)+' 32 '+x1.toFixed(1)+' 46"/>';
-   }
-   return '<svg viewBox="0 0 160 52" aria-hidden="true"><rect class="fill" x="76" y="2" width="8" height="17" rx="2"/>'+f+'</svg>';
-  }
-  var start=route.style==='narrow'?36:route.tines===16?12:20,end=160-start,step=(end-start)/(route.tines-1),tines='';
-  for(var i=0;i<route.tines;i++){var x=(start+(step*i)).toFixed(1);tines+='<path class="line" d="M'+x+' 25v19"/>';}
-  var joint=route.style==='bow'
-   ?'<path class="line" d="M30 24Q54 4 77 20M130 24Q106 4 83 20"/><rect class="fill" x="76" y="5" width="8" height="19" rx="2"/>'
-   :'<path class="fill" d="M73 24l3-17h8l3 17z"/>';
-  return '<svg viewBox="0 0 160 52" aria-hidden="true"><rect class="fill" x="'+start+'" y="21" width="'+(end-start)+'" height="5" rx="2"/>'+joint+tines+'</svg>';
- }
  function relatedPdf(){
   var f=activeFamily(),words=f.key==='soil'?['rake','hoe','cultivat']:f.key==='digging'?['spade','shovel','trowel','fork']:f.key==='watering'?['water','spray','nozzle','hose']:f.key==='packaging'?['pack','catalog','retail','card','blister']:['prun','shear','lopper','cut'];
   for(var i=0;i<publicItems.length;i++){var hay=((publicItems[i].title||'')+' '+(publicItems[i].category||'')).toLowerCase();if(words.some(function(w){return hay.indexOf(w)>-1;}))return publicItems[i];}
@@ -3781,10 +3745,6 @@ function processTile(name){var n=String(name||'').toLowerCase();
   var f=activeFamily(),part=activePart(),material=activeMaterial(),process=activeProcess(),materialMove=materialMetric(material[0]),processMove=processMetric(process);
   familyTabs.innerHTML=families.map(function(item,i){return '<button type="button" class="bd-family-tab '+(i===state.family?'on':'')+'" data-family="'+i+'" aria-pressed="'+(i===state.family?'true':'false')+'">'+esc(item.label)+'<small>'+esc(item.sub)+'</small></button>';}).join('');
   image.src=f.image;image.alt=f.alt;
-  if(headRoutes&&headRouteGrid){
-   headRoutes.hidden=f.key!=='soil';
-   if(f.key==='soil')headRouteGrid.innerHTML=rakeRoutes.map(function(route,i){return '<button type="button" class="bd-head-route route-'+route.tone+' '+(i===state.rakeRoute?'on':'')+'" data-rake-route="'+i+'" aria-pressed="'+(i===state.rakeRoute?'true':'false')+'">'+rakeRouteVisual(route)+'<b>'+esc(route.label)+'</b><small>'+esc(route.market)+'</small><span>'+route.tines+' tines · '+esc(route.width)+'<br>'+esc(route.head)+' · '+esc(route.handle)+'</span></button>';}).join('');
-  }
   partList.innerHTML=f.parts.map(function(item,i){return '<button type="button" class="bd-part '+(i===state.part?'on':'')+'" data-part="'+i+'" aria-pressed="'+(i===state.part?'true':'false')+'"><b>'+(i+1)+'</b><span>'+esc(item.name)+'</span></button>';}).join('');
   materials.innerHTML=part.materials.map(function(item,i){var m=materialMetric(item[0]);return '<button type="button" class="bd-choice bd-material-choice '+(i===state.material?'on':'')+'" data-material="'+i+'" aria-pressed="'+(i===state.material?'true':'false')+'"><span class="bd-choice-top"><span class="bd-choice-visual"><i class="bd-swatch bd-swatch-'+swatchKind(item[0])+'" aria-hidden="true"><img src="images/desk/'+materialTile(item[0])+'.webp" alt="" loading="lazy" decoding="async"></i><em class="bd-delta '+deltaClass(m)+'">'+deltaText(m)+'</em></span><span class="bd-choice-head"><b>'+esc(item[0])+'</b><small>'+esc(metricLabel(m))+'</small></span></span><span class="bd-choice-purpose">'+esc(item[1])+'</span></button>';}).join('');
   processes.innerHTML=f.processes.map(function(item,i){var m=processMetric(item);return '<button type="button" class="bd-choice bd-process-choice '+(i===state.process?'on':'')+'" data-process="'+i+'" aria-pressed="'+(i===state.process?'true':'false')+'"><span class="bd-choice-top"><span class="bd-choice-visual">'+'<i class="bd-swatch bd-swatch-process" aria-hidden="true"><img src="images/desk/'+processTile(item[0])+'.webp" alt="" loading="lazy" decoding="async"></i>'+'<em class="bd-delta '+deltaClass(m)+'">'+deltaText(m)+'</em></span><span class="bd-choice-head"><b>'+esc(item[0])+'</b><small>'+esc(metricLabel(m))+'</small></span></span><span class="bd-choice-purpose">'+esc(item[1])+'</span></button>';}).join('');
@@ -3818,8 +3778,7 @@ function processTile(name){var n=String(name||'').toLowerCase();
  root.addEventListener('click',function(e){
   var b=e.target.closest&&e.target.closest('button');
   if(!b)return;
-  if(b.hasAttribute('data-family')){state.family=Number(b.getAttribute('data-family'));state.part=0;state.material=0;state.process=0;state.rakeRoute=0;render();return;}
-  if(b.hasAttribute('data-rake-route')){state.rakeRoute=Number(b.getAttribute('data-rake-route'));render();return;}
+  if(b.hasAttribute('data-family')){state.family=Number(b.getAttribute('data-family'));state.part=0;state.material=0;state.process=0;render();return;}
   if(b.hasAttribute('data-part')){state.part=Number(b.getAttribute('data-part'));state.material=0;render();return;}
   if(b.hasAttribute('data-material')){state.material=Number(b.getAttribute('data-material'));render();return;}
   if(b.hasAttribute('data-process')){state.process=Number(b.getAttribute('data-process'));render();return;}
@@ -3831,7 +3790,7 @@ function processTile(name){var n=String(name||'').toLowerCase();
    return;
   }
   if(b.hasAttribute('data-go')){var id=b.getAttribute('data-go'),a=document.querySelector('.toc > a[href="#'+id+'"]');if(a)a.click();return;}
-  if(b.id==='reset-buyer-desk'){state={family:0,part:0,material:0,process:0,rakeRoute:0,priority:'Cost stability'};destination.selectedIndex=0;[].forEach.call(document.querySelectorAll('[data-priority]'),function(x,i){x.classList.toggle('on',i===0);x.setAttribute('aria-pressed',i===0?'true':'false');});render();}
+  if(b.id==='reset-buyer-desk'){state={family:0,part:0,material:0,process:0,priority:'Cost stability'};destination.selectedIndex=0;[].forEach.call(document.querySelectorAll('[data-priority]'),function(x,i){x.classList.toggle('on',i===0);x.setAttribute('aria-pressed',i===0?'true':'false');});render();}
  });
  destination.addEventListener('change',render);
  var feed=window.BirdlandProductFeed;
