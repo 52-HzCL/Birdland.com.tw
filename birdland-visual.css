@@ -1301,3 +1301,45 @@ button{font:inherit}
 .wk-origin p{margin:0 0 11px;color:var(--bl-jade-soft);font-size:13.5px}
 .wk-origin p:last-child{margin:0}
 @media(max-width:900px){.wk-origin{grid-template-columns:minmax(0,1fr);padding:18px}.wk-origin figure{max-width:300px}}
+
+/* ===== Product 101 fixes: float clearance, ratings, callout ===== */
+/* A grid container establishes an independent formatting context, so it shrinks
+   to avoid the floated infobox instead of flowing under it. Without this the
+   entry grids collapsed to 543px inside a 919px column and their middle track
+   went to 68px. Sections clear the float rather than fight it. */
+.wk-sec{clear:right}
+.wk-entry-copy{min-width:0}
+.wk-legend{max-width:780px;margin:0 0 8px;padding:12px 14px;border-left:2px solid var(--bl-copper);background:var(--bl-paper);color:var(--bl-muted);font-size:11.5px;line-height:1.6}
+.wk-legend b{color:var(--bl-ink)}
+.wk-rates-wrap{margin:18px 0 0;padding-top:14px;border-top:1px solid var(--bl-line)}
+.wk-rates-h{display:block;margin-bottom:8px;color:var(--bl-copper);font:500 9px var(--bl-mono);letter-spacing:.08em}
+.wk-rates{margin:0;padding:0;list-style:none}
+.wk-rates li{display:grid;grid-template-columns:186px auto auto minmax(0,1fr);gap:16px;align-items:center;padding:8px 0;border-top:1px solid var(--bl-line)}
+.wk-rates li:first-child{border-top:0}
+.wk-rates b{font:500 13px var(--bl-serif)}
+.wk-rnote{color:var(--bl-muted);font-size:11.5px}
+.wk-meter{display:inline-flex;gap:3px;align-items:center;white-space:nowrap}
+.wk-meter i{display:block;width:7px;height:7px;border:1px solid currentColor;border-radius:50%}
+.wk-meter i.on{background:currentColor}
+.wk-pop{color:var(--bl-jade)}
+.wk-cost{color:var(--bl-copper)}
+.wk-rates-tight{margin-top:12px;padding-top:10px;border-top:1px solid var(--bl-line)}
+.wk-rates-tight li{grid-template-columns:minmax(0,1fr);gap:6px;padding:0;border-top:0}
+.wk-rates-tight b{display:none}
+.wk-rates-tight .wk-rnote{font-size:11px}
+.wk-callout{margin:20px 0;padding:22px 24px;border:1px solid var(--bl-jade);background:var(--bl-paper)}
+.wk-callout>b{display:block;margin-bottom:12px;color:var(--bl-copper);font:500 9px var(--bl-mono);letter-spacing:.1em}
+.wk-callout ul{margin:0;padding:0;list-style:none}
+.wk-callout li{padding:11px 0;border-top:1px solid var(--bl-line);color:var(--bl-jade-soft);font-size:13px}
+.wk-callout li:first-child{border-top:0}
+.wk-callout li b{color:var(--bl-ink)}
+@media(max-width:900px){
+  .wk-rates li{grid-template-columns:minmax(0,1fr) auto auto;gap:8px 14px}
+  .wk-rnote{grid-column:1/-1}
+}
+
+/* The infobox sits in a top grid rather than floating: a floated box left a
+   tall blank gap above section 1 once .wk-sec cleared it. */
+.wk-head{display:grid;grid-template-columns:minmax(0,1fr) 342px;gap:38px;align-items:start;margin-bottom:26px}
+.wk-box{float:none;width:auto;margin:8px 0 0}
+@media(max-width:900px){.wk-head{grid-template-columns:minmax(0,1fr);gap:0}.wk-box{margin:24px 0 0}}
