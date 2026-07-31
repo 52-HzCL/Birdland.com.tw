@@ -924,10 +924,13 @@ body.theme-light #p-rail{
 #p-rail .toc a.on::before{border-color:var(--pd-copper);color:var(--pd-copper)}
 #p-rail .pd-hidden-nav{display:none!important}
 .pr-mode-switch{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:12px 10px 2px;padding:2px;border-bottom:1px solid var(--pd-line);background:transparent}
-.pr-mode-switch button{min-height:30px;border:0;border-radius:6px;background:transparent;color:#617069;font:700 .62rem var(--kb-sans);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .18s ease,color .18s ease,box-shadow .18s ease}
-.pr-mode-switch button:hover,.pr-mode-switch button:focus-visible{color:var(--pd-jade);outline:none}
-.pr-mode-switch button.on{background:#fffdf8;color:var(--pd-jade);box-shadow:0 1px 3px rgba(5,55,45,.12)}
-#p-rail .toc[data-mode="information"]>a[data-mode="tools"],#p-rail .toc[data-mode="tools"]>a[data-mode="information"]{display:none!important}
+.pr-mode-switch button,.pr-mode-switch a{display:grid;place-items:center;min-height:30px;border:0;border-radius:6px;background:transparent;color:#617069;font:700 .62rem var(--kb-sans);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .18s ease,color .18s ease,box-shadow .18s ease}
+.pr-mode-switch button:hover,.pr-mode-switch button:focus-visible,.pr-mode-switch a:hover,.pr-mode-switch a:focus-visible{color:var(--pd-jade);outline:none}
+.pr-mode-switch button.on,.pr-mode-switch a.on{background:#fffdf8;color:var(--pd-jade);box-shadow:0 1px 3px rgba(5,55,45,.12)}
+#p-rail /* The Information/Tools split is two pages now, and each page's menu only ever
+   contains its own entries, so nothing needs hiding by mode. This rule stayed
+   long enough to hide the Overview link on the Cost Desk, whose menu is marked
+   data-mode="tools" while Overview is marked "information". */
 #p-rail .toc[data-mode="information"]>.pr-grp[data-mode="tools"],#p-rail .toc[data-mode="tools"]>.pr-grp[data-mode="information"]{display:none!important}
 .pr-install-card{margin:5px 10px 15px;padding:11px;border:1px solid var(--pd-line);border-radius:9px;background:#F3F1EB}
 .pr-install-card .hero-install{display:block}
@@ -1816,13 +1819,13 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
    Product 101 card so the two read as one hand-off block. */
 .tool-links{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:9px}
 .tool-links-h{color:var(--kb-muted);font:700 .55rem var(--mono);letter-spacing:.11em;text-transform:uppercase}
-.tool-links-a{padding:5px 11px;border:1px solid var(--kb-line);border-radius:999px;background:transparent;
-  color:var(--kb-ink);font-family:var(--sans);font-size:.72rem;font-weight:600;cursor:pointer}
+.tool-links-a{display:inline-block;padding:5px 11px;border:1px solid var(--kb-line);border-radius:999px;background:transparent;
+  color:var(--kb-ink);font-family:var(--sans);font-size:.72rem;font-weight:600;text-decoration:none;cursor:pointer}
 .tool-links-a:hover,.tool-links-a:focus-visible{border-color:var(--kb-accent,#0E6652);color:var(--kb-accent,#0E6652)}
 @media print{.tool-links{display:none}}
 </style>
 <script>window.__TWHOL={"2026-01-01":"New Year\u2019s Day","2026-02-16":"Lunar New Year (Eve)","2026-02-17":"Lunar New Year","2026-02-18":"Lunar New Year","2026-02-19":"Lunar New Year","2026-02-27":"228 Peace Memorial (obs.)","2026-02-28":"228 Peace Memorial Day","2026-04-03":"Children\u2019s Day (obs.)","2026-04-04":"Children\u2019s Day","2026-04-05":"Tomb-Sweeping Day","2026-04-06":"Tomb-Sweeping (obs.)","2026-05-01":"Labour Day","2026-06-19":"Dragon Boat Festival","2026-09-25":"Mid-Autumn Festival","2026-09-28":"Teachers\u2019 Day","2026-10-09":"National Day (obs.)","2026-10-10":"National Day","2026-10-26":"Retrocession Day (obs.)","2026-12-25":"Constitution Day","2027-01-01":"New Year\u2019s Day"};window.__TWHOLnext=function(t){var k=Object.keys(window.__TWHOL).sort();for(var i=0;i<k.length;i++){if(k[i]>=t)return window.__TWHOL[k[i]]+" ("+k[i].slice(5).replace("-","/")+")";}return "";};</script>
-<nav class="terminal-strip" aria-label="Birdland Terminal"><span class="strip-label">SaaS Terminal</span><a href="index.html">Home</a><span class="strip-sep">·</span><a href="news.html">Data Desk</a><a href="partner.html">Buyer Desk</a><a href="executive.html">Daily Supply News</a><a href="team.html">Team</a><span class="strip-sep">·</span><a href="about.html">About</a><a href="product-101.html">Product 101</a><a href="why-birdland.html">Why Birdland</a><a href="contact.html">Contact</a></nav>
+<nav class="terminal-strip" aria-label="Birdland Terminal"><span class="strip-label">SaaS Terminal</span><a href="index.html">Home</a><span class="strip-sep">·</span><a href="news.html">Overview</a><a href="executive.html">Daily Supply News</a><a href="partner.html">Buyer Desk</a><a href="cost-desk.html">Cost Desk</a><a href="team.html">Team Desk</a><span class="strip-sep">·</span><a href="about.html">About</a><a href="product-101.html">Factory</a><a href="contact.html">Contact</a></nav>
 <div id="gate"><div class="gbox">
   <div class="sq-mk"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></div>
   <div class="sq-wm">Birdland<span class="saas">BUYER DESK</span></div>
@@ -2720,6 +2723,57 @@ var api=document.querySelector('.sys-api'),ai=document.querySelector('.sys-token
 if(api){var apiState=sourceState('fx',norm(workflow.state));api.classList.add('is-'+apiState);api.title='Source API · '+stateLabel(apiState);}
 if(ai){var aiState=sourceState('gemini',norm(workflow.state));ai.classList.add('is-'+aiState);ai.title='AI narrative · '+stateLabel(aiState)+'; not a usage or billing meter.';}
 })();</script>
+<script>
+/* Two pages, one template.
+   partner.html is the Buyer Desk — the reading surface. cost-desk.html is the
+   Cost Desk — the six calculators. build_news.py renders this file twice and
+   substitutes __DESKMODE__, and this block then removes whatever does not
+   belong to the page being shown.
+   The calculators are wired through the same shared helpers as everything else
+   on the desk — $, money, esc, LSget, bentofy, the router, the rail. Cutting
+   them out into a separate template would mean unpicking all of that; rendering
+   twice and dropping the other half costs page weight instead, which is the
+   cheaper mistake to make and the easy one to reverse. */
+window.BL_DESK='__DESKMODE__';
+(function(){
+ var TOOLS=['p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty'];
+ /* p-mkt belongs to both pages. It is the Origin & Destination panel — cost
+    content in its own right — and it owns the #room and #region selects the
+    whole context system reads. Dropping it took the buying context off the Cost
+    Desk entirely, which is the one thing the Cost Desk has to carry across. */
+ var BOTH=['p-mkt'];
+ var isCost=window.BL_DESK==='cost',drop=[];
+ [].forEach.call(document.querySelectorAll('main .blk'),function(sec){
+  if(BOTH.indexOf(sec.id)>=0)return;
+  var tool=TOOLS.indexOf(sec.id)>=0;
+  if(tool!==isCost)drop.push(sec);
+ });
+ if(isCost){
+  /* pd-builder is the Buyer Brief: a specification surface, not a calculator.
+     It sits inside the #overview shell, and the shell stays — the router falls
+     back to #overview when a hash names nothing, so removing it would leave the
+     page with no panel to show. */
+  var b=document.getElementById('pd-builder');if(b)drop.push(b);
+  var mast=document.querySelector('.bd-mast-brand');
+  if(mast)mast.innerHTML='BIRDLAND <small>COST DESK</small>';
+  var note=document.querySelector('.bd-mast-note');
+  if(note)note.textContent='Cost workspace · public inputs only';
+ }
+ drop.forEach(function(s){if(s.parentNode)s.parentNode.removeChild(s);});
+ // The menu must lose the same entries, or it lists panels that are not here.
+ var toc=document.querySelector('.toc');
+ if(toc)[].forEach.call(toc.querySelectorAll('a'),function(a){
+  var id=(a.getAttribute('href')||'').slice(1);
+  if(!id||id==='overview')return;
+  if(!document.getElementById(id)&&a.parentNode)a.parentNode.removeChild(a);
+ });
+ if(isCost){
+  document.title='Birdland Cost Desk';
+  var crumb=document.querySelector('.crumbs span:last-child, .pd-crumb');
+  if(crumb&&/Buyer/i.test(crumb.textContent))crumb.textContent='Cost Desk';
+ }
+}());
+</script>
 <script>(function(){ // boot: live strip · section order · remembered workspace (bd_p_*)
 try{var D=JSON.parse(document.getElementById('outlook-data').textContent);}catch(e){return;}
 var main=document.querySelector('main'),disc=document.getElementById('disc');
@@ -2791,21 +2845,20 @@ var LS={g:function(k){try{return localStorage.getItem('bd_p_'+k);}catch(e){retur
       or "Tools". The mode switch directly above it already says which of the
       two you are in, and only one group is ever on screen, so the heading was
       the same word twice in a row. */
-   var modeSwitch=document.createElement('div');modeSwitch.className='pr-mode-switch';modeSwitch.setAttribute('role','tablist');modeSwitch.setAttribute('aria-label','Buyer Desk workspace');
-   modeSwitch.innerHTML='<button type="button" role="tab" aria-selected="true" data-mode="information">Information</button><button type="button" role="tab" aria-selected="false" data-mode="tools">Tools</button>';
-   tocEl.setAttribute('data-mode','information');
-   [].forEach.call(modeSwitch.querySelectorAll('button'),function(btn){btn.addEventListener('click',function(){var next=btn.getAttribute('data-mode');tocEl.setAttribute('data-mode',next);[].forEach.call(modeSwitch.querySelectorAll('button'),function(x){var on=x===btn;x.classList.toggle('on',on);x.setAttribute('aria-selected',on?'true':'false');});var first=tocEl.querySelector('a[data-mode="'+next+'"]');if(first)first.click();});});
-   modeSwitch.querySelector('[data-mode="information"]').classList.add('on');
-   function syncMode(ev){var id=(ev&&ev.detail)||(location.hash||'').slice(1);var next=TOOL_IDS.indexOf(id)>=0?'tools':'information';if(tocEl.getAttribute('data-mode')===next)return;tocEl.setAttribute('data-mode',next);[].forEach.call(modeSwitch.querySelectorAll('button'),function(x){var on=x.getAttribute('data-mode')===next;x.classList.toggle('on',on);x.setAttribute('aria-selected',on?'true':'false');});}
-   // hashchange alone was not enough: the router navigates with pushState, so
-   // in-page moves never fired it and the rail kept listing Information while a
-   // tool was on screen. bl:view is the router saying what it actually showed.
-   window.addEventListener('hashchange',syncMode);window.addEventListener('bl:view',syncMode);syncMode();
+   /* This used to be an Information/Tools switch inside one page. The two
+      groups are now two pages, so the same two-cell control switches desks —
+      and it keeps carrying the buyer across, because blCtx already spans pages
+      and both desks read the same context. */
+   var isCost=window.BL_DESK==='cost';
+   var modeSwitch=document.createElement('div');modeSwitch.className='pr-mode-switch';modeSwitch.setAttribute('aria-label','Desk');
+   modeSwitch.innerHTML='<a href="partner.html"'+(isCost?'':' class="on" aria-current="page"')+'>Buyer</a>'+
+     '<a href="cost-desk.html"'+(isCost?' class="on" aria-current="page"':'')+'>Cost</a>';
+   tocEl.setAttribute('data-mode',isCost?'tools':'information');
    var menuBtn=document.createElement('button');menuBtn.type='button';menuBtn.className='toc-toggle';menuBtn.setAttribute('aria-expanded','true');menuBtn.innerHTML='<span class="toc-toggle-copy"><span class="toc-toggle-icon" aria-hidden="true">☷</span><span>Open Buyer Desk menu</span></span><span class="toc-toggle-arrow" aria-hidden="true">⌄</span>';tocEl.insertBefore(menuBtn,tocEl.firstChild);
    menuBtn.addEventListener('click',function(){var collapsed=tocEl.classList.toggle('is-collapsed');menuBtn.setAttribute('aria-expanded',collapsed?'false':'true');var label=menuBtn.querySelector('.toc-toggle-copy span:last-child');if(label)label.textContent=collapsed?'Show Information & Tools':'Open Buyer Desk menu';});
    if(window.matchMedia&&window.matchMedia('(max-width:899px)').matches){tocEl.classList.add('is-collapsed');menuBtn.setAttribute('aria-expanded','false');var mobileLabel=menuBtn.querySelector('.toc-toggle-copy span:last-child');if(mobileLabel)mobileLabel.textContent='Show Information & Tools';}
  }
- var brand=document.createElement('div');brand.className='pr-brand';brand.innerHTML='<span class="pr-brand-mark" aria-hidden="true">⌁</span><span class="pr-brand-word">BIRDLAND<small>BUYER DESK</small></span>';
+ var brand=document.createElement('div');brand.className='pr-brand';brand.innerHTML='<span class="pr-brand-mark" aria-hidden="true">⌁</span><span class="pr-brand-word">BIRDLAND<small>'+(window.BL_DESK==='cost'?'COST DESK':'BUYER DESK')+'</small></span>';
  rail.appendChild(brand);
  // Context card: the single place the buying context is set. It sits above the
  // mode switch, so it is on screen in Information and in Tools alike — which is
@@ -3744,7 +3797,7 @@ function processTile(name){var n=String(name||'').toLowerCase();
   setText('bb-check-cost','Public input moves are separated from labour, carrying time and the finished quotation.');
   setText('bb-check-market',destination.value+' evidence remains subject to exact-SKU and claim confirmation.');
   var item=relatedPdf();
-  if(pdf){if(item&&/^https:\/\//i.test(item.pdf_url||'')){pdf.href=item.pdf_url;pdf.target='_blank';pdf.rel='noopener';pdf.textContent='Open related public PDF';setText('bb-summary-references','Matched public PDF + Product 101');}else{pdf.href='product-101.html';pdf.removeAttribute('target');pdf.textContent='Open related public information';setText('bb-summary-references','Product 101');}}
+  if(pdf){if(item&&/^https:\/\//i.test(item.pdf_url||'')){pdf.href=item.pdf_url;pdf.target='_blank';pdf.rel='noopener';pdf.textContent='Open related public PDF';setText('bb-summary-references','Matched public PDF + Factory');}else{pdf.href='product-101.html';pdf.removeAttribute('target');pdf.textContent='Open related public information';setText('bb-summary-references','Product 101');}}
   var subject='Birdland OEM planning enquiry — '+f.label;
   var body=[
    'Hello Birdland,','','I would like to discuss an OEM programme using this public planning route.','',
@@ -3920,17 +3973,23 @@ function processTile(name){var n=String(name||'').toLowerCase();
    body.appendChild(a);
    /* Reachability is decided by the menu, not by computed style: this is a
       single-panel router, so every panel that is not the active one is
-      display:none right now. The permanently retired sections are exactly the
-      ones parked in .pd-hidden-nav. */
+      display:none right now. The permanently retired sections are the ones
+      parked in .pd-hidden-nav — and since the desks split in two, a target may
+      simply live on the other page, in which case the chip becomes a normal
+      link there rather than disappearing. */
    function reachable(target){
     var link=document.querySelector('.toc a[href="#'+target+'"]');
     return (link&&!link.closest(".pd-hidden-nav"))?link:null;
    }
-   var next=(NEXT[id]||[]).filter(function(p){return !!reachable(p[1]);});
+   var OTHER=window.BL_DESK==="cost"?"partner.html":"cost-desk.html";
+   var next=(NEXT[id]||[]).filter(function(p){
+    return reachable(p[1])||!document.querySelector('.pd-hidden-nav a[href="#'+p[1]+'"]');});
    if(!next.length)return;
    var row=document.createElement("div");row.className="tool-links";
    row.innerHTML='<span class="tool-links-h">Next</span>'+next.map(function(p){
-    return '<button type="button" class="tool-links-a" data-go="'+p[1]+'">'+p[0]+' &rarr;</button>';}).join("");
+    return reachable(p[1])
+     ?'<button type="button" class="tool-links-a" data-go="'+p[1]+'">'+p[0]+' &rarr;</button>'
+     :'<a class="tool-links-a" href="'+OTHER+'#'+p[1]+'">'+p[0]+' &rarr;</a>';}).join("");
    row.addEventListener("click",function(e){
     var b=e.target.closest("[data-go]");if(!b)return;
     var link=reachable(b.getAttribute("data-go"));

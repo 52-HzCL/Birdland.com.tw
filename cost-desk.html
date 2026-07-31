@@ -2727,14 +2727,14 @@ if(ai){var aiState=sourceState('gemini',norm(workflow.state));ai.classList.add('
 /* Two pages, one template.
    partner.html is the Buyer Desk — the reading surface. cost-desk.html is the
    Cost Desk — the six calculators. build_news.py renders this file twice and
-   substitutes buyer, and this block then removes whatever does not
+   substitutes cost, and this block then removes whatever does not
    belong to the page being shown.
    The calculators are wired through the same shared helpers as everything else
    on the desk — $, money, esc, LSget, bentofy, the router, the rail. Cutting
    them out into a separate template would mean unpicking all of that; rendering
    twice and dropping the other half costs page weight instead, which is the
    cheaper mistake to make and the easy one to reverse. */
-window.BL_DESK='buyer';
+window.BL_DESK='cost';
 (function(){
  var TOOLS=['p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty'];
  /* p-mkt belongs to both pages. It is the Origin & Destination panel — cost

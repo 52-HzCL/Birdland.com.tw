@@ -10,6 +10,9 @@
     .os-hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(250px,.75fr);gap:64px;align-items:end;padding:54px 0 36px;border-bottom:1px solid var(--line)}
     .os-hero h1{max-width:790px;margin:10px 0 14px;font:600 clamp(44px,5.5vw,74px)/.96 'Playfair Display',Georgia,serif;letter-spacing:-.04em}
     .os-hero p{max-width:690px;margin:0;color:#42574e;font-size:16px}
+/* The old headline, kept as the line under the shared one. Sized between the
+   headline and the body so it reads as a second beat, not as a caption. */
+.os-hero-echo{margin:0 0 12px!important;color:#2f4a41!important;font-size:19px!important;font-weight:600;letter-spacing:-.01em}
     .ownership-note{padding:22px 23px;background:var(--jade);color:var(--ivory);border-top:4px solid var(--copper)}
     .ownership-note b{display:block;font:600 26px/1.05 'Playfair Display',Georgia,serif}
     .ownership-note span{display:block;margin-top:10px;color:rgba(242,236,221,.72);font-size:12px;line-height:1.55}
@@ -99,8 +102,8 @@
           <div class="shell-pop">
             <a href="news.html" aria-current="page">Overview</a>
             <a href="about.html">About</a>
-            <a href="product-101.html">Product 101</a>
-            <a href="why-birdland.html">Why Birdland</a>
+            <a href="product-101.html">Factory</a>
+            <a href="about.html#pure-play">About</a>
             <a href="contact.html">Contact</a>
           </div>
         </details>
@@ -122,8 +125,14 @@
 
     <section class="os-hero">
       <div>
-        <span class="eyebrow">DATA DESK / OEM CONTROL SYSTEM</span>
-        <h1>Your brand stays yours. The production system stays controlled.</h1>
+        <span class="eyebrow">DESKS / OEM CONTROL SYSTEM</span>
+        <!-- The same promise as the home page, in the same words. This page used
+             to open with "Your brand stays yours. The production system stays
+             controlled." — the same idea said differently, so a visitor arriving
+             here met a different top line for the same company. That sentence is
+             kept directly underneath rather than thrown away. -->
+        <h1>Your design. Our discipline. Never our brand.</h1>
+        <p class="os-hero-echo">Your brand stays yours. The production system stays controlled.</p>
         <p>Explore how Birdland turns a product requirement into a controlled manufacturing route—without publishing customer programmes, competing with the buyer, or storing confidential project data on this website.</p>
       </div>
       <aside class="ownership-note">
@@ -192,7 +201,7 @@
           <div class="evidence-cell"><b>BUYER CAN VERIFY</b><p id="dossier-sees">Which control point carries each production risk.</p></div>
           <div class="evidence-cell"><b>RISK REDUCED</b><p id="dossier-risk">A requirement does not disappear between drawing and production.</p></div>
         </div>
-        <div class="evidence-actions" id="dossier-actions"><a href="product-101.html">Open Product 101 →</a></div>
+        <div class="evidence-actions" id="dossier-actions"><a href="product-101.html">Open the factory →</a></div>
       </aside>
     </section>
 
@@ -254,7 +263,7 @@
           controls:'Material, forming, tooling, joining, finish and inspection gates.',
           sees:'Which control point carries each production risk.',
           risk:'A requirement does not disappear between drawing and production.',
-          actions:'<a href="product-101.html">Open Product 101 →</a>'
+          actions:'<a href="product-101.html">Open the factory →</a>'
         },
         monitor:{
           kicker:'02 / RISK TRANSLATION',
@@ -264,7 +273,7 @@
           controls:'The interpretation boundary between a market signal and a programme decision.',
           sees:'What changed, why it may matter and which assumption should be checked.',
           risk:'Generic market news is not mistaken for a programme-specific answer.',
-          actions:'<a href="why-birdland.html">See the resilience model →</a><a href="executive.html">View current public evidence →</a>'
+          actions:'<a href="about.html#pure-play">See the resilience model →</a><a href="executive.html">View current public evidence →</a>'
         },
         private:{
           kicker:'03 / INFORMATION BOUNDARY',
@@ -284,7 +293,7 @@
           controls:'A consistent non-competing OEM identity as supply conditions change.',
           sees:'The public manufacturing history and operating principles behind the work.',
           risk:'A sourcing change does not require abandoning the operating discipline.',
-          actions:'<a href="about.html">Explore the company history →</a><a href="why-birdland.html">Open Why Birdland →</a>'
+          actions:'<a href="about.html">Explore the company history →</a><a href="about.html#pure-play">Open About →</a>'
         }
       };
       function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
