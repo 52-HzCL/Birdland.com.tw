@@ -81,5 +81,10 @@
   :root{--dur-fast:0ms;--dur-slow:0ms}
 }
 
+/* Form controls do not inherit type from the page unless told to, which is
+   why a few selects and buttons were still rendering in Arial and in the
+   platform monospace while everything around them was Manrope. */
+input,select,textarea,button{font-family:inherit}
+
 /* Numbers in tables line up or they are not worth tabulating. */
 .num,.tabular{font-family:var(--ff-mono);font-variant-numeric:tabular-nums;text-align:right}

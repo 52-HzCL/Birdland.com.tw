@@ -3,11 +3,11 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Birdland Team Desk is an internal operating view for the manufacturing team.">
 <title>Birdland Team Desk</title><meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="terminal-strip.css"><script defer src="terminal-status.js?v=20260730d"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.svg" type="image/svg+xml"><rect width='32' height='32' fill='%23f7f5f0'/><text x='16' y='23' text-anchor='middle' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%239a2b1e'>B</text></svg>">
 <style>
  /* minimal-SaaS token set: paper white, hairlines, near-black accent (dark: graphite + copper) */
- :root{--bg:#fcfcfa;--panel:#fff;--panel2:#f7f6f1;--ink:#1a1915;--mut:#8a877c;--line:#e7e4db;--accent:#1a1915;--pos:#0f6e56;--neg:#993c1d;--flat:#854f0b;--serif:Georgia,"Times New Roman",serif;--sans:"Inter",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+ :root{--bg:#fcfcfa;--panel:#fff;--panel2:#f7f6f1;--ink:#1a1915;--mut:#8a877c;--line:#e7e4db;--accent:#1a1915;--pos:#0f6e56;--neg:#993c1d;--flat:#854f0b;--serif:var(--ff-serif);--sans:var(--ff-sans);--mono:var(--ff-mono)}
  body.dark{--bg:#161512;--panel:#1c1a16;--panel2:#221f1a;--ink:#f2f0e8;--mut:#8f8b80;--line:#2b2924;--accent:#e8ac80;--pos:#8fbf9f;--neg:#e07a5f;--flat:#d9a54a}
  *{box-sizing:border-box;margin:0;padding:0}
  html{font-size:115%}
@@ -188,7 +188,7 @@
  .t-open{display:flex;flex-wrap:wrap;gap:9px;margin:4px 0 12px}
  .t-open .oc{display:inline-flex;align-items:baseline;gap:7px;padding:8px 13px;border-radius:11px;background:var(--panel,#fff);border:1px solid var(--line,#e2dcc9)}
  .t-open .oc .k{font-size:.68rem;font-weight:700;letter-spacing:.06em;color:var(--mut,#8a857a);text-transform:uppercase}
- .t-open .oc .v{font-family:"IBM Plex Mono",monospace;font-size:.92rem;font-weight:700;color:var(--ink,#1b1812)}
+ .t-open .oc .v{font-family:var(--ff-mono);font-size:.92rem;font-weight:700;color:var(--ink,#1b1812)}
  .t-open .oc .d{font-size:.76rem;font-weight:700}
  .t-open .oc .d.up{color:#EF4444}.t-open .oc .d.down{color:#10B981}.t-open .oc .d.flat{color:#D97706}
  body.dark .t-open .oc{background:#1c1810;border-color:#3a3226}body.dark .t-open .oc .v{color:#f0e8d8}
