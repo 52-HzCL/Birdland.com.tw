@@ -1824,6 +1824,34 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
   color:var(--kb-ink);font-family:var(--sans);font-size:.72rem;font-weight:600;text-decoration:none;cursor:pointer}
 .tool-links-a:hover,.tool-links-a:focus-visible{border-color:var(--kb-accent,#0E6652);color:var(--kb-accent,#0E6652)}
 @media print{.tool-links{display:none}}
+
+/* ---- Buyer brief: the steps go across the top, not down the side ----
+   .bd-steps was a 124px grid track holding four short labels, and because it is
+   a track it stretched to the full height of the builder — 124 x 2024px of
+   screen for eight words, on the widest and most crowded panel of the desk.
+   Four steps read perfectly well as a row, and the column comes back as
+   content width. */
+.bd-grid{grid-template-columns:minmax(0,1fr) 320px}
+.bd-steps{grid-column:1/-1;display:flex;align-items:center;gap:22px;overflow-x:auto;
+  padding:13px 18px!important;border-right:0!important;border-bottom:1px solid rgba(5,55,45,.18);
+  background:rgba(255,255,255,.34);scrollbar-width:thin}
+.bd-steps h2{flex:0 0 auto;margin:0 4px 0 0!important;font:600 14px/1.1 var(--bd-serif,Georgia,serif);white-space:nowrap}
+.bd-steps .bd-step{flex:0 0 auto;width:auto!important;padding:0!important;gap:8px}
+.bd-steps .bd-step span{white-space:nowrap}
+/* The install prompt was buried at the bottom of that column. It is a footnote
+   about this browser, not a fifth step, so it now reads as one: full width,
+   under the work, in the quiet type the desk uses for device notes. */
+.bd-grid .bd-install-card{grid-column:1/-1;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  margin:0;padding:12px 18px;border-top:1px solid rgba(5,55,45,.14);background:transparent}
+.bd-grid .bd-install-card small{color:var(--kb-muted);font-size:11px;line-height:1.45}
+@media(max-width:1100px){.bd-grid{grid-template-columns:minmax(0,1fr)}}
+@media print{.bd-steps{overflow:visible}.bd-grid .bd-install-card{display:none}}
+
+/* The two workspace panels were stretched to a common height, so whichever had
+   fewer rows ended in a block of empty card — 111px of it under the margin
+   planner’s four inputs, which reads as something that failed to load rather
+   than as a panel that is simply shorter. They size to their content now. */
+.landed-workspace{align-items:start}
 </style>
 <script>window.__TWHOL={"2026-01-01":"New Year\u2019s Day","2026-02-16":"Lunar New Year (Eve)","2026-02-17":"Lunar New Year","2026-02-18":"Lunar New Year","2026-02-19":"Lunar New Year","2026-02-27":"228 Peace Memorial (obs.)","2026-02-28":"228 Peace Memorial Day","2026-04-03":"Children\u2019s Day (obs.)","2026-04-04":"Children\u2019s Day","2026-04-05":"Tomb-Sweeping Day","2026-04-06":"Tomb-Sweeping (obs.)","2026-05-01":"Labour Day","2026-06-19":"Dragon Boat Festival","2026-09-25":"Mid-Autumn Festival","2026-09-28":"Teachers\u2019 Day","2026-10-09":"National Day (obs.)","2026-10-10":"National Day","2026-10-26":"Retrocession Day (obs.)","2026-12-25":"Constitution Day","2027-01-01":"New Year\u2019s Day"};window.__TWHOLnext=function(t){var k=Object.keys(window.__TWHOL).sort();for(var i=0;i<k.length;i++){if(k[i]>=t)return window.__TWHOL[k[i]]+" ("+k[i].slice(5).replace("-","/")+")";}return "";};</script>
 <nav class="terminal-strip" aria-label="Birdland Terminal"><span class="strip-label">SaaS Terminal</span><a href="index.html">Home</a><span class="strip-sep">·</span><a href="news.html">Overview</a><a href="executive.html">Daily Supply News</a><a href="partner.html">Buyer Desk</a><a href="cost-desk.html">Cost Desk</a><a href="team.html">Team Desk</a><span class="strip-sep">·</span><a href="about.html">About</a><a href="product-101.html">Factory</a><a href="contact.html">Contact</a></nav>
@@ -3530,6 +3558,16 @@ bentofy('p-season',[],[],[]);
     var ws=body.querySelector('.landed-workspace');
     if(ws)body.insertBefore(nav,ws);else body.insertBefore(nav,body.firstChild);
   });
+}());
+
+/* The install prompt sat at the bottom of the old step column. It is a note
+   about this browser, not a fifth step in building a brief, so it moves out of
+   the step bar and becomes a full-width footnote under the work. Moving it in
+   script rather than in the markup keeps it next to its own button wiring. */
+(function(){
+  var grid=document.querySelector('.bd-grid');if(!grid)return;
+  var card=grid.querySelector('.bd-steps .bd-install-card');if(!card)return;
+  grid.appendChild(card);
 }());
 })();</script>
 <script>(function(){/* language: single Google-Translate control, relocated into the left rail as a button + popover */
