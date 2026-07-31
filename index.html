@@ -8,6 +8,7 @@
   <meta name="description" content="Birdland is a confidential garden and field tool OEM manufacturer.">
   <link rel="stylesheet" href="birdland-visual.css?v=20260731j">
   <script defer src="terminal-status.js?v=20260730d"></script>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
 <body>
   <a class="bl-skip" href="#main">Skip to content</a>
@@ -33,9 +34,17 @@
 
   <main class="bl-main" id="main">
     <section class="bl-ink-hero" aria-labelledby="home-title">
+      <div class="bl-hero-lead">
+        <p class="bl-hero-eyebrow">Confidential OEM · Taiwan · since 1974</p>
+        <h1 id="home-title" class="bl-ink-title">Your design. Our discipline. Never our brand.</h1>
+        <p class="bl-hero-sub">Garden and field tools built behind your label. In fifty-two years Birdland has never sold a product of its own, and never will.</p>
+        <div class="bl-hero-cta">
+          <a class="bl-cta" href="news.html">See how this works</a>
+          <a class="bl-cta bl-cta-ghost" href="contact.html">Talk to a desk</a>
+        </div>
+      </div>
+      <div class="bl-ink-art">
       <img class="bl-ink-hero-art" src="images/hero-oem-program-production-quality-v2.webp" alt="A traditional Dutch hand trowel spanning confidential OEM engineering, controlled production and quality inspection.">
-      <h1 id="home-title" class="bl-ink-title">Your design. Our discipline. Never our brand.</h1>
-      <p class="bl-ink-promise">YOUR DESIGN. OUR DISCIPLINE. NEVER OUR BRAND.</p>
       <div class="bl-ink-stages">
         <article class="bl-ink-stage bl-ink-oem" tabindex="0" aria-labelledby="oem-title">
           <span class="bl-ink-marker" aria-hidden="true">OEM PROGRAM</span>
@@ -53,11 +62,12 @@
         </article>
         <article class="bl-ink-stage bl-ink-quality" tabindex="0" aria-labelledby="quality-title">
           <span class="bl-ink-marker" aria-hidden="true">QUALITY ASSURED</span>
-          <div class="bl-ink-reveal" data-ink-reveal><h2 id="quality-title">KEEP IT YOURS</h2><p>The product, brand and market remain the customer's—not ours.</p></div>
+          <div class="bl-ink-reveal" data-ink-reveal data-ink-main><h2 id="quality-title">KEEP IT YOURS</h2><p>The product, brand and market remain the customer's—not ours.</p></div>
           <p class="bl-ink-note bl-ink-note-a" data-ink-reveal><b>0 COMPETING BRANDS</b><span>Birdland manufactures, never retails against customers</span></p>
           <p class="bl-ink-note bl-ink-note-b" data-ink-reveal><b>0 CLIENT CONFLICTS</b><span>The half-century operating commitment</span></p>
           <p class="bl-ink-note bl-ink-note-c" data-ink-reveal><b>3 PROTECTED OUTCOMES</b><span>Design, channel and delivery</span></p>
         </article>
+      </div>
       </div>
     </section>
   </main>
@@ -114,14 +124,6 @@
           stage.addEventListener('blur',function(){ clear(stage); });
           stage.addEventListener('keydown',function(event){ if(event.key==='Enter'||event.key===' '){ event.preventDefault(); var all=points(stage),current=stage.dataset.inkIndex==null?-1:Number(stage.dataset.inkIndex),next=(current+1)%all.length; show(stage,next); } });
         });
-        var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if(!reduce&&!localStorage.getItem('bl_oem_ink_seen')){
-          stages.forEach(function(stage,index){
-            window.setTimeout(function(){ stage.classList.add('is-intro'); },350+(index*850));
-            window.setTimeout(function(){ stage.classList.remove('is-intro'); },1050+(index*850));
-          });
-          localStorage.setItem('bl_oem_ink_seen','1');
-        }
       }
       if('serviceWorker' in navigator) window.addEventListener('load',function(){ navigator.serviceWorker.register('service-worker.js').catch(function(){}); });
     }());
