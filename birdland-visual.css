@@ -1439,3 +1439,6 @@ button{font:inherit}
   .wk-rates li>b{grid-column:1/-1}
   .wk-rnote{grid-column:1/-1;margin-top:2px}
 }
+.mail-route-reveal{padding:0;border:0;background:none;color:var(--bl-jade);font:inherit;text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+.mail-route-reveal:hover{color:var(--bl-copper)}
+#mr-addr{font-family:var(--bl-mono);font-size:11px;color:var(--bl-jade)}

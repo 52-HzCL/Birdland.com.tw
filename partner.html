@@ -1084,7 +1084,9 @@ body.theme-light #dash{
   .pd-spark polyline{animation:none!important}
 }
 
-</style><style>#gate{display:none!important}.language-box details{position:relative}.language-box summary{cursor:pointer;font-weight:700;list-style:none}.language-box summary::-webkit-details-marker{display:none}.language-box details[open]{position:absolute;right:0;top:0;z-index:120;min-width:172px;padding:9px;background:var(--kb-panel);border:1px solid var(--kb-line);border-radius:8px}.language-box a,.language-box small{display:block;margin:5px 0;color:var(--kb-ink);text-decoration:none}.language-box small{font-size:10px;line-height:1.35;color:var(--kb-muted)}#p-material,#p-shipping,#p-freight,#p-watch,#p-war,#p-tariff,#p-market,#p-keynews,#p-regcal,#p-report,#p-news{display:none!important}</style>  <script defer src="mail-routing.js?v=20260731a"></script>
+.bd-mail-to{margin:10px 0 0;font:500 11px var(--kb-mono,monospace);color:var(--kb-dim,#8a94a6);letter-spacing:.03em}
+.bd-mail-to b{color:var(--kb-accent,#d7a37e);font-weight:700}
+</style><style>#gate{display:none!important}.language-box details{position:relative}.language-box summary{cursor:pointer;font-weight:700;list-style:none}.language-box summary::-webkit-details-marker{display:none}.language-box details[open]{position:absolute;right:0;top:0;z-index:120;min-width:172px;padding:9px;background:var(--kb-panel);border:1px solid var(--kb-line);border-radius:8px}.language-box a,.language-box small{display:block;margin:5px 0;color:var(--kb-ink);text-decoration:none}.language-box small{font-size:10px;line-height:1.35;color:var(--kb-muted)}#p-material,#p-shipping,#p-freight,#p-watch,#p-war,#p-tariff,#p-market,#p-keynews,#p-regcal,#p-report,#p-news{display:none!important}</style>  <script defer src="mail-routing.js?v=20260731c"></script>
 </head><body class="theme-light">
 <style>
   body.theme-light{background:#f5f0e6;color:#173d34}
@@ -1906,8 +1908,9 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
         </div>
         <div class="bd-brief-actions">
           <a id="bb-pdf" href="#p-offers" data-go="p-offers">Open published product information</a>
-          <a class="primary" id="bb-email" href="#">Prepare email to Birdland →</a>
+          <button class="primary" type="button" id="bb-email">Prepare email to Birdland →</button>
         </div>
+        <p class="bd-mail-to">Routed to the <b id="bb-desk">Global</b> desk, from the commercial region selected above.</p>
         <small>No data is submitted or stored on Birdland servers. Add confidential files, prices, quantities and specifications only in your normal Birdland email thread.</small>
         <div class="bd-route"><h3>Why this route</h3><div class="bd-route-flow"><div class="bd-route-node"><b>↗</b>Market change</div><span class="bd-route-arrow">→</span><div class="bd-route-node"><b>⚙</b>Birdland response</div><span class="bd-route-arrow">→</span><div class="bd-route-node"><b>✓</b>Your programme</div></div></div>
       </aside>
@@ -3514,7 +3517,7 @@ function swatchKind(name){
    'No quote or order has been submitted. I will add confidential drawings, quantities, prices and specifications only in our normal Birdland email thread.','',
    'Public workspace: https://birdland.com.tw/partner.html#overview'
   ].join('\n');
-  email.href=window.blMail?window.blMail.href(window.blMail.recall('bl_mr_region','global'),window.blMail.recall('bl_mr_line',''),subject,body):'#';
+  email.__mail={subject:subject,body:body};
  }
  root.addEventListener('click',function(e){
   var b=e.target.closest&&e.target.closest('button');
@@ -3611,4 +3614,21 @@ function swatchKind(name){
     else{status(btn,'Use your browser menu to share this result.');}
   });
 })();</script>
+  <script>
+  // The Buyer Desk already asks for a commercial region and drives the whole
+  // desk from it, so the enquiry follows that choice rather than asking twice.
+  // Nothing composes an address until the button is actually pressed.
+  document.addEventListener('DOMContentLoaded',function(){
+   var btn=document.getElementById('bb-email'),room=document.getElementById('room'),label=document.getElementById('bb-desk');
+   if(!btn||!window.blMail)return;
+   function regionNow(){return (room&&window.blMail.fromRoom[room.value])||window.blMail.recall('bl_mr_region','global');}
+   function syncLabel(){if(label)label.textContent=window.blMail.deskName(regionNow(),'');}
+   if(room)room.addEventListener('change',syncLabel);
+   btn.addEventListener('click',function(){
+    var m=btn.__mail||{};
+    window.blMail.open(regionNow(),window.blMail.recall('bl_mr_line',''),m.subject||'Birdland OEM enquiry',m.body||'');
+   });
+   syncLabel();
+  });
+  </script>
 </body></html>

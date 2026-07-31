@@ -15,7 +15,7 @@ function date(value) { return new Date(value).toISOString().replace(/[-:]/g, '')
 function feed(name, events) {
   const rows = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Birdland//Public Calendar Hub//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'X-WR-CALNAME:Birdland '+name];
   events.forEach((event) => {
-    rows.push('BEGIN:VEVENT', 'UID:'+esc(event.id)+'@birdland.com.tw', 'DTSTAMP:'+stamp, 'DTSTART:'+date(event.starts_at), 'DTEND:'+date(event.ends_at), 'SUMMARY:'+esc(event.title), 'DESCRIPTION:'+esc(event.buyer_meaning+' Source: '+event.source_url+' Birdland: https://birdland.com.tw/'+event.deep_link), 'URL:https://birdland.com.tw/'+event.deep_link, 'STATUS:CONFIRMED', 'CATEGORIES:'+esc((event.topics || []).join(',')), 'END:VEVENT');
+    rows.push('BEGIN:VEVENT', 'UID:'+esc(event.id)+'.birdland-public-calendar', 'DTSTAMP:'+stamp, 'DTSTART:'+date(event.starts_at), 'DTEND:'+date(event.ends_at), 'SUMMARY:'+esc(event.title), 'DESCRIPTION:'+esc(event.buyer_meaning+' Source: '+event.source_url+' Birdland: https://birdland.com.tw/'+event.deep_link), 'URL:https://birdland.com.tw/'+event.deep_link, 'STATUS:CONFIRMED', 'CATEGORIES:'+esc((event.topics || []).join(',')), 'END:VEVENT');
   });
   rows.push('END:VCALENDAR', '');
   return rows.join('\r\n');

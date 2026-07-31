@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Contact Birdland | Private OEM Correspondence</title>
   <meta name="description" content="Start a Birdland OEM conversation through the normal private email workflow.">
-  <link rel="stylesheet" href="birdland-visual.css?v=20260731i"><script defer src="terminal-status.js?v=20260730d"></script><script defer src="mail-routing.js?v=20260731a"></script>
+  <link rel="stylesheet" href="birdland-visual.css?v=20260731j"><script defer src="terminal-status.js?v=20260730d"></script><script defer src="mail-routing.js?v=20260731c"></script>
 </head>
 <body>
   <a class="bl-skip" href="#main">Skip to content</a>
@@ -34,8 +34,8 @@
             <label>Your market<select id="mr-region" aria-label="Your market"></select></label>
             <label>Product line<select id="mr-line" aria-label="Product line"></select></label>
           </div>
-          <div class="bl-actions"><a class="bl-button" id="mr-open" href="#">Open an OEM email</a></div>
-          <p class="mail-route-to">Goes to the <b id="mr-desk">regional</b> desk — <span id="mr-addr">choosing a market shows the address</span></p>
+          <div class="bl-actions"><button class="bl-button" type="button" id="mr-open">Open an OEM email</button></div>
+          <p class="mail-route-to">Goes to the <b id="mr-desk">regional</b> desk. <button type="button" class="mail-route-reveal" id="mr-reveal">Show the address</button><span id="mr-addr" hidden></span></p>
         </div>
       </div>
       <figure class="ledger-image ledger-image-art">
@@ -63,18 +63,27 @@
     document.addEventListener('DOMContentLoaded',function(){
       var M=window.blMail; if(!M) return;
       var region=document.getElementById('mr-region'),line=document.getElementById('mr-line'),
-          open=document.getElementById('mr-open'),shown=document.getElementById('mr-addr'),desk=document.getElementById('mr-desk');
-      var DESK={global:'European',europe:'European',uk:'UK & Commonwealth',americas:'Americas'};
+          open=document.getElementById('mr-open'),shown=document.getElementById('mr-addr'),
+          desk=document.getElementById('mr-desk'),reveal=document.getElementById('mr-reveal');
       M.fillSelect(region,M.regions,M.recall('bl_mr_region','global'));
       M.fillSelect(line,M.lines,M.recall('bl_mr_line',''));
+      // The desk name is always visible so the reader knows where the enquiry
+      // lands; the address itself is only written into the page when they ask
+      // for it, and is never placed in an href.
       function sync(){
         var r=region.value,l=line.value;
         M.remember('bl_mr_region',r); M.remember('bl_mr_line',l);
-        var subject='Birdland OEM enquiry'+(l==='hunting'?' — hunting equipment':'');
-        open.href=M.href(r,l,subject,'');
-        shown.textContent=M.addr(r,l);
-        desk.textContent=l==='hunting'?'hunting':(DESK[r]||'regional');
+        desk.textContent=M.deskName(r,l);
+        if(!shown.hidden) shown.textContent=M.addr(r,l);
       }
+      open.addEventListener('click',function(){
+        var l=line.value;
+        M.open(region.value,l,'Birdland OEM enquiry'+(l==='hunting'?' — hunting equipment':''),'');
+      });
+      reveal.addEventListener('click',function(){
+        shown.textContent=M.addr(region.value,line.value);
+        shown.hidden=false; reveal.hidden=true;
+      });
       region.addEventListener('change',sync); line.addEventListener('change',sync); sync();
     });
   </script>
