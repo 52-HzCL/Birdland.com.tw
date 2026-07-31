@@ -1355,3 +1355,13 @@ button{font:inherit}
 .bl-button-quiet{background:transparent;color:var(--bl-jade);border:1px solid var(--bl-jade)}
 .bl-button-quiet:hover{background:var(--bl-jade);color:var(--bl-paper)}
 @media(max-width:900px){.wk-faces{grid-template-columns:minmax(0,1fr)}}
+
+/* The Contact group illustration is house-palette artwork, so it must not take
+   the grayscale treatment the photographic ledger images get, and it is letter-
+   boxed rather than cropped — cover would cut people out of the group. */
+.ledger-image-art{min-height:0;background:#fbf9f3}
+.ledger-image-art img{height:auto;object-fit:contain;filter:none}
+.ledger-image-art::after{border-width:10px}
+/* The shared caption is white with a dark shadow for photographs; on the light
+   artwork it has to invert to stay legible. */
+.ledger-image-art .ledger-caption{right:18px;bottom:16px;max-width:280px;padding:9px 12px;background:rgba(251,249,243,.92);border:1px solid var(--bl-line);color:var(--bl-jade);text-shadow:none;font-size:12.5px;line-height:1.45}
