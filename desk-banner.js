@@ -19,7 +19,10 @@
   // The preview server serves extensionless URLs, so /cost-desk has to resolve too.
   if (!PAGES[file] && PAGES[file + '.html']) file = file + '.html';
   var here = PAGES[file];
-  if (!here) return;
+  // desk-banner.css reserves 48px at the top of every document it is loaded
+  // into, so that inserting this banner is not a layout shift. A page that
+  // loads the stylesheet but gets no banner must reclaim that space.
+  if (!here) { document.documentElement.className += ' dbar-none'; return; }
 
   // The page's own strip would otherwise sit directly above this one saying the
   // same things twice.
@@ -92,6 +95,8 @@
       });
     bar.appendChild(sw);
 
+    // Same synchronous block: no frame is painted with both or with neither.
+    document.documentElement.className += ' dbar-ready';
     document.body.insertBefore(bar, document.body.firstChild);
 
     [].forEach.call(document.querySelectorAll(CLAIMED), function (n) {

@@ -68,7 +68,44 @@
 
 @media(max-width:820px){
   #desk-banner.dbar{gap:12px;padding:8px 13px}
-  .dbar-hol{display:none}
   .dbar-brand small{display:none}
 }
-@media print{#desk-banner.dbar{display:none!important}}
+@media print{#desk-banner.dbar,body::before{display:none!important}}
+
+/* ---- One row, one height, reserved before the script runs ----
+
+   This banner is built in JavaScript and inserted as the first child of the
+   body, which on Overview was a 0.193 layout shift on its own — the single
+   largest on the site — and about a third of the shift on Daily Supply News.
+   The page painted, then everything moved down.
+
+   The space is now reserved in CSS, which means the banner's height has to be
+   knowable in CSS. So it stops wrapping: at 48px it is one row at every width
+   and scrolls sideways when it runs out of room, the same idiom the desks
+   already use for their toolbars. That also takes 130px of chrome off the top
+   of a phone screen, down to 48px.
+
+   The spacer and the banner are swapped inside one synchronous block, so no
+   frame is ever painted with both or with neither. */
+:root{--dbar-h:48px}
+body::before{
+  content:"";display:block;height:var(--dbar-h);
+  background:#FBF7EE;border-bottom:1px solid #D9D3C6;
+}
+html.dbar-ready body::before{display:none}
+/* The page's own strip was hidden in script, which meant the browser painted
+   it, then removed its height — a shift of exactly its own height. Hiding it
+   here costs nothing and happens before the first paint. */
+.topbar,header.top,.terminal-strip{display:none!important}
+body{padding-top:0!important}
+
+/* Pages with no banner must not get a phantom 48px strip. */
+html.dbar-none body::before{display:none}
+
+#desk-banner.dbar{
+  height:var(--dbar-h);flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;
+  scrollbar-width:none;-ms-overflow-style:none;
+}
+#desk-banner.dbar::-webkit-scrollbar{display:none}
+/* The popover would be clipped by the scroll container, so it leaves it. */
+.dbar-lang>div{position:fixed;right:12px;top:calc(var(--dbar-h) + 4px)}
