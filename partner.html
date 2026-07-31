@@ -1189,7 +1189,7 @@ body.theme-light .bd-mast .tool-btn:hover,body.theme-light .bd-mast .tool-btn:fo
 .bd-head-route.on{border-color:var(--kb-copper-700,#a64b16);background:#fff;box-shadow:inset 0 -3px 0 var(--kb-copper-700,#a64b16)}
 .bd-head-route svg{display:block;width:100%;height:49px;margin-bottom:6px;border-bottom:1px solid rgba(5,55,45,.13);color:var(--route-metal,#42514c)}
 .bd-head-route svg .fill{fill:currentColor}.bd-head-route svg .line{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.bd-head-route.route-stainless{--route-metal:#8f9a96}.bd-head-route.route-forged{--route-metal:#243b34}.bd-head-route.route-coated{--route-metal:#0c5142}.bd-head-route.route-cast{--route-metal:#3d4743}
+.bd-head-route.route-stainless{--route-metal:#8f9a96}.bd-head-route.route-plated{--route-metal:#9fb0ad}.bd-head-route.route-bamboo{--route-metal:#9a7742}.bd-head-route.route-plastic{--route-metal:#3f7d52}.bd-head-route.route-forged{--route-metal:#243b34}.bd-head-route.route-coated{--route-metal:#0c5142}.bd-head-route.route-cast{--route-metal:#3d4743}
 .bd-head-route b{display:block;font-size:9px;line-height:1.2;text-transform:uppercase}.bd-head-route small{display:block;margin-top:3px;color:var(--kb-copper-700,#a64b16);font:700 7px/1.2 Arial,sans-serif;letter-spacing:.04em;text-transform:uppercase}.bd-head-route span{display:block;margin-top:3px;color:var(--kb-ink-500,#5f665f);font-size:8px;line-height:1.25}
 .bd-part-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:10px 0 18px}
 .bd-part{display:flex;align-items:center;gap:7px;padding:8px;border:1px solid rgba(5,55,45,.18);background:rgba(255,255,255,.54);color:var(--kb-jade-900,#073f35);font-size:10px;line-height:1.2;text-align:left;cursor:pointer}
@@ -3420,10 +3420,10 @@ var poll=setInterval(function(){
    processes:[['Blade forming','Deep-draw or forge by material route'],['Tang & handle assembly','Core retention and alignment'],['Heat treatment','Strength and toughness window'],['Bend & pull testing','Blade, tang and grip verification']]},
   {key:'soil',label:'Soil care',sub:'Rakes · hoes · cultivators',model:'Direct-mount Dutch garden rake',image:'images/buyer-anatomy-rake-direct-v4.webp',alt:'Horizontal assembled and exploded anatomy of a direct-mount Dutch ash-handle garden rake',note:'Direct-mount reference · head socket installs on the handle without an adapter',
    parts:[
-    {name:'Head bar',materials:[['Forged carbon steel','Dutch professional route'],['Stamped carbon steel','Commercial strength route'],['420 stainless steel','Corrosion-first route'],['Ductile cast iron','Rigid cast-head route']]},
-    {name:'14-tine set',materials:[['S50C hardened steel','HRC 38–45 · bend resistance'],['65Mn spring steel','HRC 42–48 · resilient route'],['420 stainless steel','HRC 36–42 · wet-soil route']]},
+    {name:'Head bar',materials:[['Forged carbon steel','Dutch professional route'],['Stamped carbon steel','Commercial strength route'],['420 stainless steel','Corrosion-first route'],['Ductile cast iron','Rigid cast-head route'],['Impact polypropylene','Moulded leaf-rake head route']]},
+    {name:'14-tine set',materials:[['S50C hardened steel','HRC 38–45 · bend resistance'],['65Mn spring steel','HRC 42–48 · resilient route'],['420 stainless steel','HRC 36–42 · wet-soil route'],['Zinc-plated spring steel','Springy fan tines · adjustable-width route'],['Split bamboo','Traditional natural leaf-rake route'],['Impact polypropylene','Moulded fan tines · lightweight route']]},
     {name:'Integral head socket',materials:[['Forged carbon steel','Head mounts directly to handle'],['Zinc-plated steel','Protected commercial joint'],['Powder-coated steel','Colour-matched route'],['Ductile cast iron','Rigid socket route']]},
-    {name:'Ash handle',materials:[['FSC ash hardwood','Dutch trade benchmark route'],['FSC eucalyptus hardwood','Dense value route'],['Fibreglass composite','Moisture-stable route'],['6061 aluminium tube','Lightweight route'],['Powder-coated steel tube','Rigid value route']]},
+    {name:'Ash handle',materials:[['FSC ash hardwood','Dutch trade benchmark route'],['FSC eucalyptus hardwood','Dense value route'],['Fibreglass composite','Moisture-stable route'],['6061 aluminium tube','Lightweight route'],['Powder-coated steel tube','Rigid value route'],['Bamboo pole','Light natural leaf-rake route']]},
     {name:'Retaining pin',materials:[['Zinc-plated steel','Standard protection'],['304 stainless steel','Wet-use route'],['Trivalent-plated steel','Chrome-VI-free route']]},
     {name:'Head finish',materials:[['Powder coating','Corrosion and colour'],['E-coating','Base corrosion layer'],['Trivalent zinc plating','Chrome-VI-free finish'],['Black oxide + oil','Low-glare steel finish']]},
     {name:'Handle finish',materials:[['Water-based clear coat','Lower-solvent timber route'],['Natural oil finish','Repairable timber route'],['PU clear coat','Higher moisture barrier'],['Uncoated sanded ash','Traditional dry-use route']]}
@@ -3458,7 +3458,14 @@ var poll=setInterval(function(){
   {label:'NL straight rake',market:'Netherlands trade benchmark',tines:14,width:'35–36 cm',head:'Forged carbon steel',handle:'FSC ash',style:'straight',tone:'forged'},
   {label:'US bow rake',market:'US high-volume retail benchmark',tines:14,width:'17 in',head:'Powder-coated stamped steel',handle:'Fibreglass',style:'bow',tone:'coated'},
   {label:'Narrow bed rake',market:'Small-bed working route',tines:10,width:'25 cm',head:'Forged carbon steel',handle:'FSC ash',style:'narrow',tone:'forged'},
-  {label:'Stainless level rake',market:'Corrosion-first route',tines:16,width:'42 cm',head:'420 stainless steel',handle:'Ash or aluminium',style:'straight',tone:'stainless'}
+  {label:'Stainless level rake',market:'Corrosion-first route',tines:16,width:'42 cm',head:'420 stainless steel',handle:'Ash or aluminium',style:'straight',tone:'stainless'},
+  {label:'US stainless bow rake',market:'US retail corrosion-first route',tines:14,width:'16 in',head:'420 stainless steel',handle:'Fibreglass or ash',style:'bow',tone:'stainless'},
+  /* The three leaf-rake routes below are a different family from the soil rakes
+     above: a fan of springy tines on a light pole, not a rigid tine bar. They
+     are the routes a garden buyer actually shops as alternatives to each other. */
+  {label:'Adjustable spring-tine rake',market:'Electroplated adjustable-width route',tines:22,width:'20–55 cm adjustable',head:'Zinc-plated spring steel',handle:'Powder-coated steel tube',style:'fan',tone:'plated'},
+  {label:'Bamboo leaf rake',market:'Traditional natural-fibre route',tines:22,width:'45 cm',head:'Split bamboo tines',handle:'Bamboo pole',style:'fan',tone:'bamboo'},
+  {label:'Plastic leaf rake',market:'High-volume lightweight route',tines:22,width:'50 cm',head:'Impact PP tines',handle:'Powder-coated steel tube',style:'fan',tone:'plastic'}
  ];
  var state={family:0,part:0,material:0,process:0,rakeRoute:0,priority:'Cost stability'};
  var familyTabs=document.getElementById('bd-family-tabs'),partList=document.getElementById('bd-part-list'),materials=document.getElementById('bd-materials'),processes=document.getElementById('bd-processes');
@@ -3532,7 +3539,70 @@ var poll=setInterval(function(){
   return m.label+(m.kind==='modelled'?' · modelled':m.kind==='official'?' · official':m.kind==='observed'?' · observed':'');
  }
  function deltaClass(m){return !m||!isFinite(m.delta)||Math.abs(m.delta)<0.05?'cost-flat':m.delta>0?'cost-up':'cost-down';}
-function materialTile(kind){var k=String(kind||'');if(/sk5|65mn|s50c|forged/.test(k))return 'steel';if(/420j2|stainless/.test(k))return 'stainless';if(/aluminium/.test(k))return 'aluminium';if(/zinc/.test(k))return 'zinc';if(/wood/.test(k))return 'wood';if(/tpr|rubber/.test(k))return 'tpr';if(/fibreglass/.test(k))return 'fibreglass';if(/cast/.test(k))return 'cast';if(/plastic|resin/.test(k))return 'plastic';return 'steel';}function processTile(name){var n=String(name||'').toLowerCase();if(/heat|temper|harden|quench/.test(n))return 'heat';if(/coat|finish|plat|anodis|anodiz/.test(n))return 'finish';if(/grind|sharp|polish/.test(n))return 'grind';if(/test|validat|inspect|sampl/.test(n))return 'test';if(/assembl|rivet|fit|calibrat/.test(n))return 'assembly';if(/mark|laser|print|label/.test(n))return 'marking';return 'forming';}function swatchKind(name){
+/* Material and process photographs.
+
+   The previous classifier had ten photographs for 113 distinct materials and no
+   branch at all for paper, fibre, elastomers, brass or most polymers, so 67 of
+   the 113 fell through to its default and were shown as a picture of steel —
+   every packaging material included. A display card printed on recycled
+   paperboard was illustrated with a steel coil.
+
+   The rules are ordered most-specific first and matched against the material
+   name itself rather than a coarse swatch class. Two notes on the judgement
+   calls in here:
+
+   - Entries that name a route rather than a substance — a rolled edge, an
+     induction-hardened edge, a hand-finished forged edge — show that route.
+     Two grades of carbon steel bar cannot honestly be told apart in a
+     photograph, but those three can, and the route is what the buyer is
+     actually choosing between.
+   - SK5, 65Mn and S50C blade steels deliberately share one photograph. They
+     are the same substance at different grades; a different picture for each
+     would be decoration presented as information. */
+var MAT_TILE=[
+ [/glassine/,'glassine'],[/tissue/,'tissue'],[/honeycomb/,'honeycomb'],[/bagasse/,'bagasse'],
+ [/grass-fibre|grass fibre/,'grassfibre'],[/pulp/,'pulp'],[/corrugated/,'corrugated'],[/kraft/,'kraft'],
+ [/twist tie/,'papertie'],[/jute|hemp/,'jute'],[/cotton|twine/,'cotton'],
+ [/soy|vegetable ink/,'soyink'],[/ink/,'ink'],
+ [/wash-off|adhesive label/,'adhesivelabel'],[/label/,'label'],
+ [/water-resistant coated|coated board/,'coatedboard'],
+ [/bleached board|fibreboard|basis-weight|liner board/,'printedbox'],[/paperboard|paper /,'paperboard'],
+ [/cellulose/,'cellufilm'],[/rpet/,'rpet'],[/\bpet\b/,'pet'],[/ldpe|polyethylene/,'ldpe'],
+ [/\bpvc\b/,'pvc'],[/\bpom\b|acetal/,'pom'],[/\babs\b/,'abs'],[/pa6|pa12|pa66|nylon/,'nylon'],
+ [/recycled-content pp|recycled pp/,'rpp'],[/polypropylene|\bpp\b|clamshell/,'pp'],
+ [/eva foam|\beva\b/,'eva'],[/silicone/,'silicone'],[/\bnbr\b/,'nbr'],[/epdm/,'rubberseal'],
+ [/\btpe\b/,'tpe'],[/tpr|rubber/,'tpr'],
+ [/satin polish|machine-ground|polish/,'polish'],
+ /* e-coat before powder coat: "E-coat + powder coat" is the two-stage route and
+    belongs to the e-coat photograph, not the plain powder-coat one. */
+ [/e-coat|e-coating/,'ecoat'],[/powder coat|powder-coat/,'powdercoat'],
+ [/water-based clear/,'waterbase'],[/lacquer|clear coat|pu clear/,'lacquer'],
+ [/uncoated/,'uncoated'],[/natural oil|oil finish/,'oilfinish'],
+ [/black oxide|black-oxide/,'blackoxide'],[/trivalent|chrome/,'trivalent'],[/zinc|galvani/,'zinc'],
+ [/bamboo/,'bamboo'],[/eucalyptus/,'wood-euc'],[/ash|hardwood|timber|wood/,'wood-ash'],
+ [/fibreglass/,'fibreglass'],
+ [/induction/,'heat'],[/rolled edge/,'forming'],[/hand-finished|hand finished/,'grind'],
+ [/mesh|screen/,'mesh'],[/brass/,'brass'],[/music wire/,'steel-carbon'],
+ [/cast iron|ductile/,'cast'],[/die casting|die-cast|cast/,'zinc-cast'],
+ [/aluminium|aluminum/,'aluminium'],[/stainless|sus304|\b304\b|420j2|\b420\b/,'stainless'],
+ [/boron|stamped/,'stampedsteel'],[/forged/,'forgedsteel'],
+ [/spcc|40cr|sk5|65mn|s50c|carbon steel|steel|iron|alloy/,'steel-carbon']
+];
+function materialTile(name){var n=String(name||'').toLowerCase();
+ for(var i=0;i<MAT_TILE.length;i++)if(MAT_TILE[i][0].test(n))return MAT_TILE[i][1];
+ return 'steel-carbon';}
+var PROC_TILE=[
+ [/hardness|heat|temper|quench/,'heat'],[/grind|sharp/,'grind'],[/mould|moulding/,'mould'],
+ [/shell forming|thermoform/,'thermoform'],[/structural conversion|die-cut|score|fold/,'diecut'],
+ [/print|adhesive/,'print'],[/transit|drop|compression/,'transit'],
+ [/pressure|leak/,'testpressure'],[/coverage|spray|distribution/,'testspray'],
+ [/drive-cycle|cycle/,'inspect'],[/coat|finish|plat|passivat|anodis/,'finish'],
+ [/assembly|socket|rivet|fit|calibrat/,'assembly'],[/test|validat|inspect|sampl/,'test'],
+ [/weld/,'weld'],[/form|forge|stamp|blade|head/,'forming']
+];
+function processTile(name){var n=String(name||'').toLowerCase();
+ for(var i=0;i<PROC_TILE.length;i++)if(PROC_TILE[i][0].test(n))return PROC_TILE[i][1];
+ return 'forming';}function swatchKind(name){
   var n=String(name||'').toLowerCase();
   if(/sk5/.test(n))return 'sk5';
   if(/65mn/.test(n))return '65mn';
@@ -3563,6 +3633,17 @@ function materialTile(kind){var k=String(kind||'');if(/sk5|65mn|s50c|forged/.tes
   return '<svg class="bd-process-icon '+kind+'" viewBox="0 0 24 24" aria-hidden="true">'+body+'</svg>';
  }
  function rakeRouteVisual(route){
+  /* A leaf rake is not a tine bar with a handle in the middle: the tines fan
+     out from a narrow neck to a wide arc, and drawing it with the straight-bar
+     geometry would make three genuinely different products look identical. */
+  if(route.style==='fan'){
+   var n=route.tines,f='',hub=80,neck=14,span=74;
+   for(var j=0;j<n;j++){
+    var t=n===1?0.5:j/(n-1),x0=hub-neck/2+(neck*t),x1=hub-span+(span*2*t);
+    f+='<path class="line" d="M'+x0.toFixed(1)+' 18C'+x0.toFixed(1)+' 30 '+x1.toFixed(1)+' 32 '+x1.toFixed(1)+' 46"/>';
+   }
+   return '<svg viewBox="0 0 160 52" aria-hidden="true"><rect class="fill" x="76" y="2" width="8" height="17" rx="2"/>'+f+'</svg>';
+  }
   var start=route.style==='narrow'?36:route.tines===16?12:20,end=160-start,step=(end-start)/(route.tines-1),tines='';
   for(var i=0;i<route.tines;i++){var x=(start+(step*i)).toFixed(1);tines+='<path class="line" d="M'+x+' 25v19"/>';}
   var joint=route.style==='bow'
@@ -3646,7 +3727,7 @@ function materialTile(kind){var k=String(kind||'');if(/sk5|65mn|s50c|forged/.tes
    if(f.key==='soil')headRouteGrid.innerHTML=rakeRoutes.map(function(route,i){return '<button type="button" class="bd-head-route route-'+route.tone+' '+(i===state.rakeRoute?'on':'')+'" data-rake-route="'+i+'" aria-pressed="'+(i===state.rakeRoute?'true':'false')+'">'+rakeRouteVisual(route)+'<b>'+esc(route.label)+'</b><small>'+esc(route.market)+'</small><span>'+route.tines+' tines · '+esc(route.width)+'<br>'+esc(route.head)+' · '+esc(route.handle)+'</span></button>';}).join('');
   }
   partList.innerHTML=f.parts.map(function(item,i){return '<button type="button" class="bd-part '+(i===state.part?'on':'')+'" data-part="'+i+'" aria-pressed="'+(i===state.part?'true':'false')+'"><b>'+(i+1)+'</b><span>'+esc(item.name)+'</span></button>';}).join('');
-  materials.innerHTML=part.materials.map(function(item,i){var m=materialMetric(item[0]);return '<button type="button" class="bd-choice bd-material-choice '+(i===state.material?'on':'')+'" data-material="'+i+'" aria-pressed="'+(i===state.material?'true':'false')+'"><span class="bd-choice-top"><span class="bd-choice-visual"><i class="bd-swatch bd-swatch-'+swatchKind(item[0])+'" aria-hidden="true"><img src="images/desk/'+materialTile(swatchKind(item[0]))+'.webp" alt="" loading="lazy" decoding="async"></i><em class="bd-delta '+deltaClass(m)+'">'+deltaText(m)+'</em></span><span class="bd-choice-head"><b>'+esc(item[0])+'</b><small>'+esc(metricLabel(m))+'</small></span></span><span class="bd-choice-purpose">'+esc(item[1])+'</span></button>';}).join('');
+  materials.innerHTML=part.materials.map(function(item,i){var m=materialMetric(item[0]);return '<button type="button" class="bd-choice bd-material-choice '+(i===state.material?'on':'')+'" data-material="'+i+'" aria-pressed="'+(i===state.material?'true':'false')+'"><span class="bd-choice-top"><span class="bd-choice-visual"><i class="bd-swatch bd-swatch-'+swatchKind(item[0])+'" aria-hidden="true"><img src="images/desk/'+materialTile(item[0])+'.webp" alt="" loading="lazy" decoding="async"></i><em class="bd-delta '+deltaClass(m)+'">'+deltaText(m)+'</em></span><span class="bd-choice-head"><b>'+esc(item[0])+'</b><small>'+esc(metricLabel(m))+'</small></span></span><span class="bd-choice-purpose">'+esc(item[1])+'</span></button>';}).join('');
   processes.innerHTML=f.processes.map(function(item,i){var m=processMetric(item);return '<button type="button" class="bd-choice bd-process-choice '+(i===state.process?'on':'')+'" data-process="'+i+'" aria-pressed="'+(i===state.process?'true':'false')+'"><span class="bd-choice-top"><span class="bd-choice-visual">'+'<i class="bd-swatch bd-swatch-process" aria-hidden="true"><img src="images/desk/'+processTile(item[0])+'.webp" alt="" loading="lazy" decoding="async"></i>'+'<em class="bd-delta '+deltaClass(m)+'">'+deltaText(m)+'</em></span><span class="bd-choice-head"><b>'+esc(item[0])+'</b><small>'+esc(metricLabel(m))+'</small></span></span><span class="bd-choice-purpose">'+esc(item[1])+'</span></button>';}).join('');
   setText('bd-cost-method','Cost movement uses the current public input proxy against its prior reference point. Modelled cards are directional planning signals; process cards show a driver, not a supplier quotation. Edition '+line(deskData.updated||'status unavailable')+'.');
   setText('bb-summary-family',f.label);setText('bb-summary-model',activeModel());setText('bb-summary-part',part.name);setText('bb-summary-material',material[0]);setText('bb-summary-material-move',deltaText(materialMove)+' · '+metricLabel(materialMove));setText('bb-summary-process',process[0]);setText('bb-summary-process-move',deltaText(processMove)+' · '+metricLabel(processMove));setText('bb-summary-priority',state.priority);

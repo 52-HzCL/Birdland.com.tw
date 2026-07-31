@@ -1,24 +1,327 @@
 {
- "note": "Buyer Desk choice thumbnails. Material tiles are cropped from the Product 101 stock photographs (Pexels License); process tiles are cropped from Birdland's own production photographs in images/thumbs/.",
- "pexels_new": [
+ "note": "Buyer Desk material and process choice tiles. Reused entries are crops of photographs already in this repo (Product 101 stock under the Pexels License, and Birdland's own floor photographs). Fetched entries are Pexels License, free for commercial use, attribution not required but recorded here.",
+ "reused": [
   {
-   "id": "fibreglass",
-   "photographer": "Krakograff Textures",
-   "source": "https://www.pexels.com/photo/rough-stone-wall-surface-17204379/"
+   "id": "steel-carbon",
+   "from": "enc/m-steel"
   },
   {
-   "id": "cast",
-   "photographer": "Seamlesstextures",
-   "source": "https://www.pexels.com/photo/a-surface-with-rust-11255039/"
+   "id": "stainless",
+   "from": "enc/m-stainless"
+  },
+  {
+   "id": "zinc",
+   "from": "enc/m-plating"
+  },
+  {
+   "id": "aluminium",
+   "from": "enc/m-aluminium"
+  },
+  {
+   "id": "pp",
+   "from": "enc/m-plastic"
+  },
+  {
+   "id": "tpr",
+   "from": "enc/m-grip"
+  },
+  {
+   "id": "wood-ash",
+   "from": "enc/m-timber"
+  },
+  {
+   "id": "cotton",
+   "from": "enc/m-fabric"
+  },
+  {
+   "id": "corrugated",
+   "from": "enc/m-board"
+  },
+  {
+   "id": "carton",
+   "from": "enc/p-carton"
+  },
+  {
+   "id": "printedbox",
+   "from": "enc/p-colourbox"
+  },
+  {
+   "id": "papertie",
+   "from": "enc/p-hangtag"
+  },
+  {
+   "id": "pet",
+   "from": "enc/p-blister"
+  },
+  {
+   "id": "film",
+   "from": "enc/p-skinpack"
+  },
+  {
+   "id": "ldpe",
+   "from": "enc/p-shrink"
+  },
+  {
+   "id": "label",
+   "from": "enc/p-label"
+  },
+  {
+   "id": "voidfill",
+   "from": "enc/p-voidfill"
+  },
+  {
+   "id": "mould",
+   "from": "thumbs/tooling-die-library"
+  },
+  {
+   "id": "transit",
+   "from": "thumbs/outbound-shipping"
+  },
+  {
+   "id": "weld",
+   "from": "thumbs/frame-welding"
+  },
+  {
+   "id": "inspect",
+   "from": "thumbs/chairman-inspection"
+  },
+  {
+   "id": "timberwork",
+   "from": "thumbs/wooden-handle"
+  },
+  {
+   "id": "rawmat",
+   "from": "thumbs/raw-materials"
+  },
+  {
+   "id": "diecut",
+   "from": "enc/p-carton"
+  },
+  {
+   "id": "thermoform",
+   "from": "enc/p-blister"
+  },
+  {
+   "id": "print",
+   "from": "enc/p-label"
+  },
+  {
+   "id": "rpet",
+   "from": "enc/p-blister"
+  },
+  {
+   "id": "cellufilm",
+   "from": "enc/p-skinpack"
+  },
+  {
+   "id": "coatedboard",
+   "from": "enc/m-board"
+  },
+  {
+   "id": "honeycomb",
+   "from": "enc/p-carton"
+  },
+  {
+   "id": "tissue",
+   "from": "enc/p-hangtag"
+  },
+  {
+   "id": "glassine",
+   "from": "enc/p-hangtag"
+  },
+  {
+   "id": "ecoat",
+   "from": "thumbs/surface-treatment"
+  },
+  {
+   "id": "powdercoat",
+   "from": "thumbs/surface-treatment"
+  },
+  {
+   "id": "lacquer",
+   "from": "thumbs/surface-treatment"
+  },
+  {
+   "id": "waterbase",
+   "from": "thumbs/wooden-handle"
+  },
+  {
+   "id": "uncoated",
+   "from": "thumbs/wooden-handle"
+  },
+  {
+   "id": "testpressure",
+   "from": "thumbs/pre-shipment-sampling"
+  },
+  {
+   "id": "testspray",
+   "from": "thumbs/chairman-inspection"
+  },
+  {
+   "id": "blackoxide",
+   "from": "thumbs/heat-treatment"
+  },
+  {
+   "id": "trivalent",
+   "from": "enc/m-plating"
+  },
+  {
+   "id": "mesh",
+   "from": "enc/m-stainless"
+  },
+  {
+   "id": "rpp",
+   "from": "enc/m-plastic"
+  },
+  {
+   "id": "abs",
+   "from": "enc/m-plastic"
+  },
+  {
+   "id": "pom",
+   "from": "enc/m-plastic"
+  },
+  {
+   "id": "pvc",
+   "from": "enc/m-plastic"
+  },
+  {
+   "id": "silicone",
+   "from": "enc/m-grip"
+  },
+  {
+   "id": "nbr",
+   "from": "enc/m-grip"
+  },
+  {
+   "id": "eva",
+   "from": "enc/m-grip"
+  },
+  {
+   "id": "soyink",
+   "from": "enc/p-colourbox"
+  },
+  {
+   "id": "ink",
+   "from": "enc/p-colourbox"
+  },
+  {
+   "id": "pulp",
+   "from": "enc/m-board"
   }
  ],
- "own_floor": [
-  "forming",
-  "heat",
-  "finish",
-  "grind",
-  "test",
-  "assembly",
-  "marking"
+ "pexels": [
+  {
+   "id": "steel-spring",
+   "query": "coiled steel spring wire",
+   "alt": "Close-up of a coiled rope on a wooden deck, showcasing nautical textures and patterns.",
+   "photographer": "Arın  Turkay",
+   "source": "https://www.pexels.com/photo/white-rope-439223/"
+  },
+  {
+   "id": "brass",
+   "query": "brass metal texture golden",
+   "alt": "Detailed close-up of a vintage lion-shaped door knocker on a wooden door, emphasizing craftsmanship.",
+   "photographer": "Jean-Paul Wettstein",
+   "source": "https://www.pexels.com/photo/ornate-vintage-lion-door-knocker-close-up-32166923/"
+  },
+  {
+   "id": "polish",
+   "query": "polished steel mirror surface",
+   "photographer": "Manex Fx",
+   "source": "https://www.pexels.com/photo/reflection-of-a-crane-in-a-water-surface-behind-a-fence-12842630/"
+  },
+  {
+   "id": "oilfinish",
+   "query": "oiled wooden surface grain",
+   "photographer": "FWStudio",
+   "source": "https://www.pexels.com/photo/brown-wooden-surface-129733/"
+  },
+  {
+   "id": "nylon",
+   "query": "nylon plastic pellets granules",
+   "photographer": "Ibrahim Plastic Industry ( IPI )",
+   "source": "https://www.pexels.com/photo/grains-of-salt-13968343/"
+  },
+  {
+   "id": "rubberseal",
+   "query": "rubber o ring seals gasket",
+   "photographer": "Alexander Zvir",
+   "source": "https://www.pexels.com/photo/close-up-of-unox-product-can-with-pull-tab-35740586/"
+  },
+  {
+   "id": "wood-euc",
+   "query": "eucalyptus wood timber logs",
+   "alt": "Scenic view of stacked logs overlooking a misty mountain valley.",
+   "photographer": "Andreas Ebner",
+   "source": "https://www.pexels.com/photo/a-pile-of-logs-in-the-mountains-with-mountains-in-the-background-28352479/"
+  },
+  {
+   "id": "bamboo",
+   "query": "bamboo poles stack",
+   "alt": "Dramatic upward perspective of a lush bamboo forest, showcasing tall green stalks and foliage.",
+   "photographer": "Liuuu _61",
+   "source": "https://www.pexels.com/photo/upward-view-of-bamboo-forest-in-summer-33717667/"
+  },
+  {
+   "id": "kraft",
+   "query": "brown kraft paper texture",
+   "photographer": "Артем Дворецкий",
+   "source": "https://www.pexels.com/photo/close-up-of-the-brown-surface-of-kraft-paper-20818883/"
+  },
+  {
+   "id": "bagasse",
+   "query": "sugarcane fibre pulp",
+   "photographer": "Saad Majeed",
+   "source": "https://www.pexels.com/photo/tractor-with-full-of-sugarcane-13437881/"
+  },
+  {
+   "id": "grassfibre",
+   "query": "dried grass straw fibre",
+   "photographer": "Julia Filirovska",
+   "source": "https://www.pexels.com/photo/brown-grass-flowers-on-white-surface-8128901/"
+  },
+  {
+   "id": "jute",
+   "query": "jute rope twine natural",
+   "photographer": "Arın  Turkay",
+   "source": "https://www.pexels.com/photo/white-rope-439223/"
+  },
+  {
+   "id": "zinc-cast",
+   "query": "die cast metal part zinc",
+   "photographer": "benedicto 13",
+   "source": "https://www.pexels.com/photo/close-up-of-industrial-metal-pipe-fitting-38028966/"
+  },
+  {
+   "id": "paperboard",
+   "query": "recycled grey cardboard sheet",
+   "photographer": "Артем Дворецкий",
+   "source": "https://www.pexels.com/photo/square-empty-beige-background-20818884/"
+  },
+  {
+   "id": "tpe",
+   "query": "soft plastic elastomer sheet",
+   "photographer": "Steve A Johnson",
+   "source": "https://www.pexels.com/photo/white-textile-on-white-surface-9841364/"
+  },
+  {
+   "id": "adhesivelabel",
+   "query": "adhesive sticker roll label",
+   "photographer": "Florencia Ceruti",
+   "source": "https://www.pexels.com/photo/colorful-cartoon-stickers-overflowing-from-envelope-30101191/"
+  },
+  {
+   "id": "forgedsteel",
+   "query": "hot forged steel billet glowing",
+   "photographer": "Sladjan Djordjevic",
+   "source": "https://www.pexels.com/photo/forging-hot-metal-20796312/"
+  },
+  {
+   "id": "stampedsteel",
+   "query": "sheet metal stamped parts press",
+   "photographer": "Alex Andrews",
+   "source": "https://www.pexels.com/photo/carburetor-parts-in-close-up-view-9666306/"
+  }
  ]
 }
