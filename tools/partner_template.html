@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en"><head><link rel="stylesheet" href="desk-banner.css?v=20260731h"><script defer src="desk-banner.js?v=20260731h"></script><script defer src="tw-holidays.js?v=20260731h"></script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#073F35"><meta name="description" content="Buyer Desk is Birdland's public procurement workspace for product routes, buying decisions and OEM enquiry preparation.">
 <title>Birdland Buyer Desk</title><meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="terminal-strip.css">
@@ -1093,10 +1093,11 @@ body.theme-light #dash{
 .bd-swatch{position:relative;overflow:hidden}
 .bd-swatch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .bd-swatch-process{background:var(--kb-line2,#2a3340)}
-</style><style>#gate{display:none!important}.language-box details{position:relative}.language-box summary{cursor:pointer;font-weight:700;list-style:none}.language-box summary::-webkit-details-marker{display:none}.language-box details[open]{position:absolute;right:0;top:0;z-index:120;min-width:172px;padding:9px;background:var(--kb-panel);border:1px solid var(--kb-line);border-radius:8px}.language-box a,.language-box small{display:block;margin:5px 0;color:var(--kb-ink);text-decoration:none}.language-box small{font-size:10px;line-height:1.35;color:var(--kb-muted)}#p-material,#p-shipping,#p-freight,#p-watch,#p-war,#p-tariff,#p-market,#p-keynews,#p-regcal,#p-report,#p-news{display:none!important}</style>  <!-- Not deferred: the desk's tools are inline body scripts, which run before
+</style><style>.language-box details{position:relative}.language-box summary{cursor:pointer;font-weight:700;list-style:none}.language-box summary::-webkit-details-marker{display:none}.language-box details[open]{position:absolute;right:0;top:0;z-index:120;min-width:172px;padding:9px;background:var(--kb-panel);border:1px solid var(--kb-line);border-radius:8px}.language-box a,.language-box small{display:block;margin:5px 0;color:var(--kb-ink);text-decoration:none}.language-box small{font-size:10px;line-height:1.35;color:var(--kb-muted)}#p-material,#p-shipping,#p-freight,#p-watch,#p-war,#p-tariff,#p-market,#p-keynews,#p-regcal,#p-report,#p-news{display:none!important}</style>  <!-- Not deferred: the desk's tools are inline body scripts, which run before
        any deferred script does. blCtx has no DOM dependency, so loading it
        eagerly is what lets those tools read the context at all. -->
   <script src="context.js?v=20260731d"></script><script defer src="mail-routing.js?v=20260731c"></script>
+<script defer src="terminal-status.js?v=20260730d"></script>
 </head><body class="theme-light">
 <style>
   body.theme-light{background:#f5f0e6;color:#173d34}
@@ -1853,17 +1854,8 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
    than as a panel that is simply shorter. They size to their content now. */
 .landed-workspace{align-items:start}
 </style>
-<script>window.__TWHOL={"2026-01-01":"New Year\u2019s Day","2026-02-16":"Lunar New Year (Eve)","2026-02-17":"Lunar New Year","2026-02-18":"Lunar New Year","2026-02-19":"Lunar New Year","2026-02-27":"228 Peace Memorial (obs.)","2026-02-28":"228 Peace Memorial Day","2026-04-03":"Children\u2019s Day (obs.)","2026-04-04":"Children\u2019s Day","2026-04-05":"Tomb-Sweeping Day","2026-04-06":"Tomb-Sweeping (obs.)","2026-05-01":"Labour Day","2026-06-19":"Dragon Boat Festival","2026-09-25":"Mid-Autumn Festival","2026-09-28":"Teachers\u2019 Day","2026-10-09":"National Day (obs.)","2026-10-10":"National Day","2026-10-26":"Retrocession Day (obs.)","2026-12-25":"Constitution Day","2027-01-01":"New Year\u2019s Day"};window.__TWHOLnext=function(t){var k=Object.keys(window.__TWHOL).sort();for(var i=0;i<k.length;i++){if(k[i]>=t)return window.__TWHOL[k[i]]+" ("+k[i].slice(5).replace("-","/")+")";}return "";};</script>
+
 <nav class="terminal-strip" aria-label="Birdland Terminal"><span class="strip-label">SaaS Terminal</span><a href="index.html">Home</a><span class="strip-sep">·</span><a href="news.html">Overview</a><a href="executive.html">Daily Supply News</a><a href="partner.html">Buyer Desk</a><a href="cost-desk.html">Cost Desk</a><a href="team.html">Team Desk</a><span class="strip-sep">·</span><a href="about.html">About</a><a href="product-101.html">Factory</a><a href="contact.html">Contact</a></nav>
-<div id="gate"><div class="gbox">
-  <div class="sq-mk"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></div>
-  <div class="sq-wm">Birdland<span class="saas">BUYER DESK</span></div>
-  <div class="sq-tag">Products, origin choices and buying actions in one focused workspace.</div>
-  <div class="glabel">Buyer Desk access</div>
-  <div class="pinrow"><input id="pin" type="password" inputmode="text" maxlength="10" autocomplete="off" aria-label="Buyer Desk access token" placeholder="••••••••"><button class="gbtn" id="go"><span class="led" aria-hidden="true"></span>Sign in</button></div>
-  <div class="gerr" id="err"></div>
-  <div class="sq-foot">Reserved for trusted partners · Birdland Ind. since 1974</div>
-</div></div>
 <div class="topbar"><div class="wrap tb">
   <div class="tb-left"><a class="brand" href="index.html"><span class="vip">BUYER</span> DESK<span class="sep">|</span><span class="iq">Birdland</span></a></div>
   <div class="tb-right"><span class="sysgrp sys-api" title="Status comes from the configured source feeds."><span class="api-ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="w3" d="M3.7 10.2A11.5 11.5 0 0 1 20.3 10.2"/><path class="w2" d="M6.3 12.9A8 8 0 0 1 17.7 12.9"/><path class="w1" d="M8.9 15.6A4.3 4.3 0 0 1 15.1 15.6"/><circle cx="12" cy="18.6" r="1.5" fill="currentColor" stroke="none"/></svg></span>Source&nbsp;API</span><span class="sysgrp sys-token" title="AI narrative status; this is not a usage or billing meter."><span class="tokmeter"><i></i><i></i><i></i><i></i></span><b>AI&nbsp;Narrative</b></span><span class="tpk sys-hq" id="tpk" title="Taiwan office hours: Mon-Fri 09:00-17:30 (GMT+8)"><span class="tpk-led" id="tpkLed"></span><b>Birdland HQ&nbsp;<span id="tpkSt">—</span></b><span class="tpk-time sys-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v4.7l3 1.8"/></svg><span id="tpkTime">--:--</span> Taipei Time</span></span><span class="tpk-hol" id="tpkHol"></span><div class="language-box" aria-label="Language translation"><div><span>Language</span><small>Google Translate</small></div><div id="google_translate_element"></div></div><a class="back" href="index.html"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>birdland.com.tw</a></div>
@@ -2224,114 +2216,6 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
 
 
 <script type="application/json" id="outlook-data">__DATA__</script>
-<script>
-(function(){
-  var gate=document.getElementById('gate'),pin=document.getElementById('pin'),err=document.getElementById('err');
-  function unlock(){gate.classList.add('hide');try{sessionStorage.setItem('bd_partner','1');}catch(e){}}
-  function go(){if(pin.value==='estd1974'){err.style.color='var(--gold)';err.textContent='ACCESS GRANTED ·';setTimeout(unlock,260);}else{err.style.color='var(--red)';err.textContent='ACCESS DENIED — invalid Partner PIN';pin.value='';pin.focus();}}
-  document.getElementById('go').addEventListener('click',go);pin.addEventListener('keydown',function(e){if(e.key==='Enter')go();});
-  try{if(sessionStorage.getItem('bd_partner')==='1')gate.classList.add('hide');else setTimeout(function(){pin.focus();},200);}catch(e){}
-  [].forEach.call(document.querySelectorAll('.blk-h'),function(h){h.addEventListener('click',function(ev){if(ev.target.classList.contains('ihelp'))return;var b=h.parentNode;if(window.__bo){window.__bo(b,b.getAttribute('data-open')!=='1');}else{b.setAttribute('data-open',b.getAttribute('data-open')==='1'?'0':'1');}});});
-
-  var D;try{D=JSON.parse(document.getElementById('outlook-data').textContent);}catch(e){return;}
-  (function(){
-    var box=document.querySelector('.language-box');if(!box)return;
-    var href=function(lang){return 'https://translate.google.com/?sl=auto&tl='+encodeURIComponent(lang)+'&u='+encodeURIComponent(location.href);};
-    var languages=[['zh-TW','繁體中文'],['ja','日本語'],['de','Deutsch'],['es','Español']];
-    languages=[['ar','Arabic'],['bg','Bulgarian'],['zh-CN','Chinese (Simplified)'],['zh-TW','Chinese (Traditional)'],['hr','Croatian'],['cs','Czech'],['da','Danish'],['nl','Dutch'],['en','English'],['et','Estonian'],['fi','Finnish'],['fr','French'],['de','German'],['el','Greek'],['he','Hebrew'],['hi','Hindi'],['hu','Hungarian'],['id','Indonesian'],['it','Italian'],['ja','Japanese'],['ko','Korean'],['lv','Latvian'],['lt','Lithuanian'],['ms','Malay'],['no','Norwegian'],['pl','Polish'],['pt','Portuguese'],['ro','Romanian'],['ru','Russian'],['sk','Slovak'],['sl','Slovenian'],['es','Spanish'],['sv','Swedish'],['th','Thai'],['tr','Turkish'],['uk','Ukrainian'],['vi','Vietnamese']];
-    box.innerHTML='<button class="top-language-btn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="top-language-pop"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M3.5 12h17"></path><path d="M12 3.5c2.6 2.5 2.6 14.5 0 17c-2.6-2.5-2.6-14.5 0-17z"></path></svg><span>Language</span><i class="top-language-chevron" aria-hidden="true"></i></button><div class="top-language-pop" id="top-language-pop" hidden><p>Translate this public page with Google Translate.</p><div class="top-language-links">'+languages.map(function(item){return '<a href="'+href(item[0])+'" target="_blank" rel="noopener">'+item[1]+' <span aria-hidden="true">↗</span></a>';}).join('')+'</div><small>Opens Google Translate in a new tab. No selection is stored by Birdland.</small></div>';
-    var button=box.querySelector('.top-language-btn'),pop=box.querySelector('.top-language-pop');
-    function close(){pop.hidden=true;button.setAttribute('aria-expanded','false');}
-    button.addEventListener('click',function(){var open=pop.hidden;pop.hidden=!open;button.setAttribute('aria-expanded',open?'true':'false');});
-    document.addEventListener('click',function(event){if(!box.contains(event.target))close();});
-    document.addEventListener('keydown',function(event){if(event.key==='Escape'){close();button.focus();}});
-  })();
-  try{localStorage.removeItem('bd_p_sb_email');}catch(e){}
-  var P=D.partner||{};var mut='#9AA1A9';
-  function el(t,a,x){var e=document.createElementNS('http://www.w3.org/2000/svg',t);for(var k in a)e.setAttribute(k,a[k]);if(x!=null)e.textContent=x;return e;}
-  function tt(n,s){n.appendChild(el('title',{},s));return n;}
-  function pad(n){return (n<10?'0':'')+n;}
-  (function(){function tk(){try{var pp=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Taipei',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());var wd,hh,mm;pp.forEach(function(x){if(x.type=='weekday')wd=x.value;if(x.type=='hour')hh=x.value;if(x.type=='minute')mm=x.value;});var dstr=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());var hol=window.__TWHOL&&window.__TWHOL[dstr];var mins=parseInt(hh,10)*60+parseInt(mm,10);var biz=['Mon','Tue','Wed','Thu','Fri'].indexOf(wd)>=0&&mins>=540&&mins<1050&&!hol;var t=document.getElementById('tpkTime');if(t)t.textContent=hh+':'+mm;var led=document.getElementById('tpkLed');if(led)led.classList.toggle('on',biz);var st=document.getElementById('tpkSt');if(st){st.textContent=biz?'Online':'Offline';st.style.color=biz?'#10B981':'#9AA1A9';}var he=document.getElementById('tpkHol');if(he){if(hol){he.innerHTML='<span class="hol on"><svg width=\"11\" height=\"11\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"vertical-align:-1px;margin-right:4px\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"17\" rx=\"2\"/><path d=\"M3 9h18M8 2v4M16 2v4\"/></svg>PUBLIC HOLIDAY \u00b7 '+hol+'</span>';}else{var nx=window.__TWHOLnext&&window.__TWHOLnext(dstr);he.innerHTML=nx?'<span class="hol"><svg width=\"11\" height=\"11\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"vertical-align:-1px;margin-right:4px\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"17\" rx=\"2\"/><path d=\"M3 9h18M8 2v4M16 2v4\"/></svg>Next TW holiday: '+nx+'</span>':'';}}}catch(e){}}tk();setInterval(tk,30000);})();
-  (function(){function syncHq(){var p=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Taipei',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date()),v={};p.forEach(function(x){v[x.type]=x.value;});var d=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()),mins=parseInt(v.hour,10)*60+parseInt(v.minute,10),online=['Mon','Tue','Wed','Thu','Fri'].indexOf(v.weekday)>=0&&mins>=540&&mins<1050&&!(window.__TWHOL&&window.__TWHOL[d]),hq=document.getElementById('tpk'),label=document.getElementById('tpkSt');if(hq)hq.classList.toggle('is-online',online);if(label)label.textContent=online?'ONLINE':'OFFLINE';}syncHq();setInterval(syncHq,30000);})();
-  document.getElementById('disc').innerHTML='BIRDLAND PARTNER DESK · AI-ASSISTED. Forecasts, duty and impact figures are indicative planning guides — not legal, customs or trade advice. Confirm with your customs broker or counsel before acting.';
-
-  // on-palette categorical series colors (index-based; ignores whatever colors the daily data ships)
-  var SERCOL=['#0E6652','#B95B12','#A6372D','#1F6B49','#6E4424','#1A1D20','#9AA1A9'];
-  function serc(i){return SERCOL[i%SERCOL.length];}
-  // multi-line chart
-  function lineChart(svg,series,tenors,unit,rebased){var W=720,H=280,Pl=46,Pr=14,Pt=16,Pb=34;
-    var all=[];series.forEach(function(s){(s.points||s).forEach(function(p){all.push(typeof p==='object'?p.v:p);});});
-    var mn=Math.min.apply(null,all),mx=Math.max.apply(null,all),rg=(mx-mn)||1;mn-=rg*0.1;mx+=rg*0.1;rg=mx-mn;
-    var n=tenors.length;function X(i){return Pl+i/(n-1)*(W-Pl-Pr);}function Y(v){return Pt+(1-(v-mn)/rg)*(H-Pt-Pb);}
-    for(var g=0;g<=4;g++){var yy=Pt+g/4*(H-Pt-Pb);svg.appendChild(el('line',{x1:Pl,y1:yy,x2:W-Pr,y2:yy,stroke:'#E5E7EB'}));svg.appendChild(el('text',{x:Pl-8,y:yy+4,'text-anchor':'end','font-family':'IBM Plex Mono,monospace','font-size':11,fill:'#9AA1A9'},(mx-g/4*rg).toFixed(rebased?0:0)));}
-    tenors.forEach(function(t,i){svg.appendChild(el('text',{x:X(i),y:H-10,'text-anchor':'middle','font-family':'IBM Plex Mono,monospace','font-size':11,'font-weight':600,fill:'#9AA1A9'},t));});
-    var _objs=[];
-    series.forEach(function(s,si){var pts=(s.points||s),d='';pts.forEach(function(p,i){var v=typeof p==='object'?p.v:p;d+=(i?'L':'M')+X(i)+','+Y(v)+' ';});
-      var pth=el('path',{d:d,fill:'none',stroke:serc(si),'stroke-width':3.6,'stroke-linejoin':'round','stroke-linecap':'round'});pth.style.cursor='pointer';svg.appendChild(pth);
-      var dots=[];pts.forEach(function(p,i){var v=typeof p==='object'?p.v:p;var c=el('circle',{cx:X(i),cy:Y(v),r:3.6,fill:serc(si)});tt(c,(s.lane||s.name)+' · '+tenors[i]+': '+v+' '+unit);svg.appendChild(c);dots.push(c);});
-      _objs.push({p:pth,d:dots});
-      pth.addEventListener('mouseenter',function(){svg._focus(si,true);});pth.addEventListener('mouseleave',function(){svg._focus(null,false);});});
-    svg._focus=function(si,on){_objs.forEach(function(o,j){var dim=on&&si!=null&&j!==si;o.p.setAttribute('opacity',dim?0.1:1);o.p.setAttribute('stroke-width',(on&&j===si)?4.8:3.6);o.d.forEach(function(dd){dd.setAttribute('opacity',dim?0.1:1);});});};}
-
-  // 1) Procurement Brief — prefer the daily-refreshed top-level D.procurement (validated by CI);
-  //    static P.procurement kept only as fallback so the brief is a REAL daily brief.
-  var pbT=D.procurement||{},pbP=P.procurement||{};
-  var pbActs=(pbT.items&&pbT.items.length)?pbT.items.map(function(i){return {level:i.urgency||'med',label:(i.input?i.input+' — ':'')+(i.action||''),note:i.why||''};}):(pbP.actions||[]);
-  document.getElementById('pb-sum').textContent=(D.teamAnalysis||pbP.summary||pbT.note||'');
-  document.getElementById('pb-meta').textContent=pbActs.length+' actions · '+((pbT.items&&pbT.items.length)?'refreshed daily':'desk set');
-  var pa=document.getElementById('pb-actions');pbActs.forEach(function(a){var lv=a.level||'med';var row=document.createElement('div');row.className='act';row.innerHTML='<span class="lv '+lv+'">'+lv.toUpperCase()+'</span><span class="at">'+a.label+'</span><span class="an">'+(a.note||'')+'</span>';pa.appendChild(row);});
-
-  // 2) Shipping forecast
-  var sh=P.shipping||{};document.getElementById('ship-note').textContent=sh.note||'';
-  if(sh.lanes){lineChart(document.getElementById('ship'),sh.lanes,sh.lanes[0].points.map(function(p){return p.t;}),sh.unit||'');
-    var _sl=document.getElementById('ship-legend');_sl.innerHTML=sh.lanes.map(function(l,i){return '<span data-i="'+i+'" style="cursor:pointer"><i style="background:'+serc(i)+'"></i>'+l.lane+'</span>';}).join('');var _sc=document.getElementById('ship');[].forEach.call(_sl.children,function(sp){sp.addEventListener('mouseenter',function(){_sc._focus&&_sc._focus(+sp.getAttribute('data-i'),true);});sp.addEventListener('mouseleave',function(){_sc._focus&&_sc._focus(null,false);});});}
-
-  // 2b) LIVE daily lane rates — top-level D.shipping (AI-refreshed, CI-validated). Rendered ABOVE the
-  //     forecast curve because the curve's levels are desk-set and can sit far below real spot cost.
-  //     Deliberately NOT joined to the curve: the two feeds use different lane labels and D.shipping
-  //     has no points[] series, so it can never be passed to lineChart.
-  (function(){var dsh=(D.shipping&&D.shipping.lanes&&D.shipping.lanes.length)?D.shipping:null;
-    var sesc=function(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
-    var tb=document.getElementById('ship-live-tbl'),nb=document.getElementById('ship-live-note');
-    if(!dsh){if(tb)tb.innerHTML='';if(nb)nb.textContent='No live lane-rate feed in today’s refresh — the curve below is the desk’s indicative planning guide only.';return;}
-    var rows=dsh.lanes.map(function(l){
-      var d=l.dir||'flat',cl=(d==='up'?'up':(d==='down'?'down':'flat')),ar=(d==='up'?'▲':(d==='down'?'▼':'■'));
-      var ch=(l.chg!=null?((l.chg>0?'+':'')+Number(l.chg).toFixed(1)+'%'):'');
-      return '<tr title="'+sesc(dsh.note||'')+'"><td class="l">'+sesc(l.lane)+'</td><td>'+Number(l.rate).toLocaleString()+' '+sesc(l.unit||'US$/FEU')+'</td><td class="'+cl+'">'+ar+ch+'</td><td>'+sesc(l.rel||'—')+'</td><td>'+sesc(l.transit||'—')+'</td></tr>';}).join('');
-    if(tb)tb.innerHTML='<thead><tr><th class="l">Lane</th><th>Spot rate</th><th>Chg</th><th>Reliability</th><th>Transit</th></tr></thead><tbody>'+rows+'</tbody>';
-    if(nb)nb.textContent='Live spot rates, refreshed daily'+(D.updated?(' · '+D.updated):'')+'.';})();
-
-  // 3) Material forecast
-  var mt=P.material||{};
-  if(mt.series){lineChart(document.getElementById('matl'),mt.series.map(function(s){return {c:s.c,name:s.name,points:s.points};}),mt.tenors||[],mt.unit||'',true);
-    document.getElementById('matl-note').textContent=(D.material&&D.material.note)||mt.note||'';var _ml=document.getElementById('matl-legend');_ml.innerHTML=mt.series.map(function(s,i){return '<span data-i="'+i+'" style="cursor:pointer"><i style="background:'+serc(i)+'"></i>'+s.name+'</span>';}).join('');var _mc=document.getElementById('matl');[].forEach.call(_ml.children,function(sp){sp.addEventListener('mouseenter',function(){_mc._focus&&_mc._focus(+sp.getAttribute('data-i'),true);});sp.addEventListener('mouseleave',function(){_mc._focus&&_mc._focus(null,false);});});}
-
-  // 4) Landed-cost calculator (interactive)
-  var base=(D.landed&&D.landed.components)||[];
-  function gv(id){return parseFloat((document.getElementById(id)||{}).value)||0;}
-  function calcLanded(){var cost=gv('qc_cost'),frt=gv('qc_frt'),insp=gv('qc_ins'),du=gv('qc_duty'),qt=gv('qc_qty');
-    var ins=(cost+frt)*insp/100,duty=(cost+frt+ins)*du/100;
-    var comps=[{name:'Goods',v:cost,c:'#0E6652',tip:'Ex-works unit cost.'},{name:'Freight',v:frt,c:'#B95B12',tip:'Ocean freight per unit.'},{name:'Insurance',v:ins,c:'#A6372D',tip:insp+'% of goods+freight.'},{name:'Duty',v:duty,c:'#1F6B49',tip:'Import duty at '+du+'%.'}];
-    var tot=comps.reduce(function(a,b){return a+b.v;},0);
-    var svg=document.getElementById('lcbar');while(svg.firstChild)svg.removeChild(svg.firstChild);var W=720,x=0,H=50,y=18;
-    comps.forEach(function(c){var w=c.v/tot*W;var r=el('rect',{x:x,y:y,width:Math.max(0,w-1),height:H,fill:c.c});tt(r,c.name+': US$'+c.v.toFixed(2)+' ('+(c.v/tot*100).toFixed(0)+'%) — '+(c.tip||''));svg.appendChild(r);if(w>42)svg.appendChild(el('text',{x:x+w/2,y:y+H/2+4,'text-anchor':'middle','font-family':'IBM Plex Mono,monospace','font-size':10,'font-weight':700,fill:'#F8F9FA'},Math.round(c.v/tot*100)+'%'));x+=w;});
-    document.getElementById('lc-legend').innerHTML=comps.map(function(c){return '<span title="'+(c.tip||'')+'"><i style="height:13px;background:'+c.c+'"></i>'+c.name+' · US$'+c.v.toFixed(2)+'</span>';}).join('');
-    document.getElementById('lc-out').innerHTML='US$'+tot.toFixed(2)+' <small>/unit landed · order total ≈ US$'+(tot*qt).toLocaleString(undefined,{maximumFractionDigits:0})+'</small>';
-    document.getElementById('calc-meta').textContent='≈ US$'+tot.toFixed(2)+'/unit';}
-  ['qc_cost','qc_frt','qc_ins','qc_duty','qc_qty'].forEach(function(id){var e=document.getElementById(id);if(e)e.addEventListener('input',calcLanded);});calcLanded();
-
-  // 5) Tariff monitor
-  var tmc=(P.tariffmon&&P.tariffmon.changes)||[];var tm=document.getElementById('tariffmon');
-  tm.innerHTML='<thead><tr><th>Date</th><th>Market</th><th>Change</th><th></th></tr></thead><tbody>'+tmc.map(function(c){var col=c.dir==='up'?'var(--red)':(c.dir==='down'?'var(--green)':'var(--amber)');var ar=c.dir==='up'?'▲':(c.dir==='down'?'▼':'■');return '<tr title="'+(c.note||'')+'"><td style="color:var(--gold)">'+c.date+'</td><td style="color:#fff;font-weight:700">'+c.market+'</td><td>'+c.change+'</td><td style="color:'+col+';text-align:right">'+ar+'</td></tr>';}).join('')+'</tbody>';
-
-  // 6) War impact monitor — prefer daily-refreshed top-level D.war.zones; static P.war as fallback
-  var wr=(D.war&&D.war.zones&&D.war.zones.length)?{note:D.war.note||'',items:D.war.zones.map(function(z){return {event:z.zone,region:(z.status||'').toUpperCase(),impact:z.impact,affects:z.affects||[],note:z.note||''};})}:(P.war||{});
-  document.getElementById('war-note').textContent=wr.note||'';var wc=document.getElementById('war');
-  (wr.items||[]).forEach(function(it){var col=it.impact>=70?'#EF4444':(it.impact>=45?'#D97706':'#10B981');var row=document.createElement('div');row.className='row';
-    row.innerHTML='<div class="ev">'+it.event+'<small>'+it.region+' · '+(it.affects||[]).join(', ')+'</small></div><div class="bar" title="'+(it.note||'')+'"><i style="width:'+it.impact+'%;background:'+col+'"></i></div><div class="sc" style="color:'+col+'">'+it.impact+'</div>';
-    wc.appendChild(row);});
-})();
-</script>
 <script>(function(){try{var D=JSON.parse(document.getElementById('outlook-data').textContent);var U=D.updated||'',frU=(D.freight&&D.freight.updated)||U,nwU=(D.news&&D.news[0]&&D.news[0].date)||U;
 [].forEach.call(document.querySelectorAll('.blk-h'),function(h){var sec=(h.querySelector('h2')||{}).textContent||'';var dt=/Freight/i.test(sec)?frU:(/News/i.test(sec)?nwU:U);var tog=h.querySelector('.tog');var b=document.createElement('span');b.className='secupd';b.textContent='\u27f3 '+dt;if(tog)h.insertBefore(b,tog);else h.appendChild(b);});}catch(e){}})();</script>
 <script>(function(){try{var D=JSON.parse(document.getElementById("outlook-data").textContent);var red="#EF4444",green="#10B981",amber="#D97706";function spk(a,d){if(!a||!a.length)return "";var w=96,h=24,mn=Math.min.apply(null,a),mx=Math.max.apply(null,a),rg=(mx-mn)||1;var pts=a.map(function(v,i){return (i/(a.length-1)*w).toFixed(1)+","+(h-2-((v-mn)/rg)*(h-4)).toFixed(1);}).join(" ");var c=d==="up"?red:(d==="down"?green:amber);return "<svg width=\""+w+"\" height=\""+h+"\" viewBox=\"0 0 "+w+" "+h+"\" preserveAspectRatio=\"none\"><polyline points=\""+pts+"\" fill=\"none\" stroke=\""+c+"\" stroke-width=\"1.6\"/></svg>";}
@@ -3317,13 +3201,18 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
    if(location.hash!==nextHash&&window.history&&history.pushState)history.pushState(null,'',nextHash);
    showView(id);
  },true);
- window.addEventListener('popstate',function(){var id=(location.hash||'').slice(1);showView(id&&document.getElementById(id)?id:'overview');});
- window.addEventListener('hashchange',function(){var id=(location.hash||'').slice(1);showView(id&&document.getElementById(id)?id:'overview');});
+ window.addEventListener('popstate',function(){var id=(location.hash||'').slice(1);showView(id&&document.getElementById(id)?id:(window.BL_DESK==='cost'?'p-mkt':'overview'));});
+ window.addEventListener('hashchange',function(){var id=(location.hash||'').slice(1);showView(id&&document.getElementById(id)?id:(window.BL_DESK==='cost'?'p-mkt':'overview'));});
  var st=document.createElement('style');
  st.textContent='body.theme-light main .blk.sk-off,main .blk.sk-off{display:none!important}.blk-h .tog,.blk-h .lights{display:none!important}.blk-h{cursor:default!important}.blk{margin-top:0!important}main .blk:not(.sk-off){animation:skfade .22s ease}@keyframes skfade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}';
  document.head.appendChild(st);
  var initial=(location.hash||'').slice(1);
- showView(initial&&document.getElementById(initial)?initial:'overview');
+ /* The Cost Desk used to open on #overview, which is the Buyer Desk shell —
+    its masthead and its brief builder, neither of which belongs there. Its own
+    front door is Cost & Origin: the panel that sets the market everything else
+    on the page is priced against. */
+ var home=window.BL_DESK==='cost'?'p-mkt':'overview';
+ showView(initial&&document.getElementById(initial)?initial:home);
 })();</script>
 <script>(function(){/* bento content grid — one feature, one 4-tile layout */
 var D={},P={};try{D=JSON.parse(document.getElementById('outlook-data').textContent)||{};P=D.partner||{};}catch(e){}

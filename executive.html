@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head>
+<head><link rel="stylesheet" href="desk-banner.css?v=20260731i"><script defer src="desk-banner.js?v=20260731i"></script><script defer src="tw-holidays.js?v=20260731i"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#221E19">
@@ -54,6 +54,23 @@
      The previous print rule put break-inside:avoid on whole sections, which
      pushes a tall section onto a fresh page and leaves most of the previous one
      blank. What must not split is the cards inside them. */
+
+  /* ---- the edition head, tidied ----
+     Looking at it rather than at the markup: the top of the page was an
+     index bar of twelve links with a decorative mailbox pinned to its right,
+     then a masthead, then six controls of three unrelated kinds crowded onto
+     one line with "to the European desk" floating loose between two buttons.
+     Three separate things competing before the first headline. */
+  .rail .free-app,.rail img,.rail .mail-art{display:none!important}
+  .hero-actions{width:100%;justify-content:flex-end;align-items:center;gap:14px;row-gap:12px}
+  .hero-send{margin-right:auto}
+  .hero-send{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  /* Reading controls are not edition actions. They get their own cluster at
+     the far end so "Larger text" is findable rather than sixth in a row. */
+  .hero-view{display:flex;align-items:center;gap:6px;padding:3px;border:1px solid var(--kb-line);border-radius:999px}
+  .hero-view .btn{border-radius:999px!important}
+  .mail-dest{margin:0;opacity:.75;font-size:10.5px;white-space:nowrap}
+  @media(max-width:900px){.hero-actions{justify-content:flex-start}}
   @page{size:A4;margin:14mm}
   @media print{
     body.bl-read .page{zoom:1}
@@ -177,6 +194,25 @@
       apply(next);
       try{localStorage.setItem(KEY,next?'1':'0');}catch(e){}
     });
-  })();</script>
+  })();
+  (function(){
+    /* The action row held Subscribe, a market select, Email, a loose "to the
+       X desk" caption, Larger text and Print — six controls, three purposes,
+       one line. Grouping them in script keeps the markup untouched. */
+    var row=document.querySelector('.hero-actions');if(!row)return;
+    var read=document.getElementById('read-size'),print=row.querySelector('.btn.print');
+    if(read&&print){
+      var view=document.createElement('span');view.className='hero-view';
+      row.appendChild(view);view.appendChild(read);view.appendChild(print);
+    }
+    var rss=row.querySelector('a.btn'),pick=row.querySelector('.mail-pick'),mail=document.getElementById('email-edition');
+    if(rss&&pick&&mail){
+      var send=document.createElement('span');send.className='hero-send';
+      row.insertBefore(send,row.firstChild);
+      send.appendChild(rss);send.appendChild(pick);send.appendChild(mail);
+      var dest=row.querySelector('.mail-dest');if(dest)send.appendChild(dest);
+    }
+  }());
+  </script>
 </body>
 </html>
