@@ -127,7 +127,12 @@ body{
 }
 .hero p{max-width:650px;margin:0;font-size:16px}
 .editionline{max-width:820px;margin-top:18px}
-.hero-actions{position:absolute;right:0;bottom:18px;justify-content:flex-end}
+/* The action row was pinned absolutely to the bottom-right of the hero, so it
+   landed on top of the edition line instead of after it: Subscribe RSS printed
+   over the Market label, and "source state shown per report" ran underneath the
+   buttons. It was tucked there when the hero was two lines and had room to
+   spare. It flows now. */
+.hero-actions{position:static;justify-content:flex-end;margin-top:16px;row-gap:10px}
 .btn,.install button{
   border-radius:0;
   background:var(--kb-jade);

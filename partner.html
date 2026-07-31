@@ -924,6 +924,7 @@ body.theme-light #p-rail{
 #p-rail .toc a.on::before{border-color:var(--pd-copper);color:var(--pd-copper)}
 #p-rail .pd-hidden-nav{display:none!important}
 .pr-mode-switch{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:12px 10px 2px;padding:2px;border-bottom:1px solid var(--pd-line);background:transparent}
+.pr-mode-switch.pr-mode-3{grid-template-columns:1fr 1fr 1fr}
 .pr-mode-switch button,.pr-mode-switch a{display:grid;place-items:center;min-height:30px;border:0;border-radius:6px;background:transparent;color:#617069;font:700 .62rem var(--kb-sans);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .18s ease,color .18s ease,box-shadow .18s ease}
 .pr-mode-switch button:hover,.pr-mode-switch button:focus-visible,.pr-mode-switch a:hover,.pr-mode-switch a:focus-visible{color:var(--pd-jade);outline:none}
 .pr-mode-switch button.on,.pr-mode-switch a.on{background:#fffdf8;color:var(--pd-jade);box-shadow:0 1px 3px rgba(5,55,45,.12)}
@@ -2850,8 +2851,13 @@ var LS={g:function(k){try{return localStorage.getItem('bd_p_'+k);}catch(e){retur
       and it keeps carrying the buyer across, because blCtx already spans pages
       and both desks read the same context. */
    var isCost=window.BL_DESK==='cost';
-   var modeSwitch=document.createElement('div');modeSwitch.className='pr-mode-switch';modeSwitch.setAttribute('aria-label','Desk');
-   modeSwitch.innerHTML='<a href="partner.html"'+(isCost?'':' class="on" aria-current="page"')+'>Buyer</a>'+
+   /* Three desks, one control, present on all three pages: read the day
+      (News), work a programme (Buyer), price it (Cost). A buyer moves between
+      those three constantly, and blCtx carries their region, market and line
+      across, so the move costs nothing. */
+   var modeSwitch=document.createElement('div');modeSwitch.className='pr-mode-switch pr-mode-3';modeSwitch.setAttribute('aria-label','Desk');
+   modeSwitch.innerHTML='<a href="executive.html">News</a>'+
+     '<a href="partner.html"'+(isCost?'':' class="on" aria-current="page"')+'>Buyer</a>'+
      '<a href="cost-desk.html"'+(isCost?' class="on" aria-current="page"':'')+'>Cost</a>';
    tocEl.setAttribute('data-mode',isCost?'tools':'information');
    var menuBtn=document.createElement('button');menuBtn.type='button';menuBtn.className='toc-toggle';menuBtn.setAttribute('aria-expanded','true');menuBtn.innerHTML='<span class="toc-toggle-copy"><span class="toc-toggle-icon" aria-hidden="true">☷</span><span>Open Buyer Desk menu</span></span><span class="toc-toggle-arrow" aria-hidden="true">⌄</span>';tocEl.insertBefore(menuBtn,tocEl.firstChild);

@@ -30,16 +30,53 @@
 <style id="production-source-desk">
   .source-deck{margin:16px 18px 0;border-top:1px solid var(--kb-line);padding:15px 0 18px}.source-deck-head{display:flex;justify-content:space-between;gap:15px;align-items:baseline}.source-deck-head h3{margin:0;font:700 18px var(--serif)}.source-deck-head p{margin:0;color:var(--kb-muted);font:11px/1.45 var(--serif)}.source-columns{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:11px;border:1px solid var(--kb-line);background:var(--kb-line)}.source-column{background:#f8f1e5;padding:13px;min-width:0}.source-column h4{margin:0 0 9px;font:700 12px var(--serif);color:var(--kb-ink)}.source-links{display:grid;gap:7px}.source-link{display:flex;justify-content:space-between;gap:10px;align-items:baseline;color:var(--kb-red);font:700 11px/1.25 var(--sans);text-decoration:none}.source-link:hover{text-decoration:underline}.source-link small{flex:0 0 auto;color:var(--kb-jade);font:700 8px var(--mono);letter-spacing:.06em;text-transform:uppercase}.source-link.connected{color:#6d5738}.source-link.connected small{color:var(--kb-amber)}.source-deck-note{margin:10px 0 0;color:var(--kb-muted);font:10px/1.45 var(--mono)}
   @media(max-width:640px){.source-deck{margin-left:14px;margin-right:14px}.source-deck-head{display:block}.source-deck-head p{margin-top:4px}.source-columns{grid-template-columns:1fr}}
+
+  /* ---- the three desks, switchable from the masthead ---- */
+  .desk3{display:inline-flex;gap:2px;padding:2px;border:1px solid var(--kb-line);border-radius:999px}
+  .desk3 a{padding:3px 11px;border-radius:999px;color:var(--kb-muted);font-weight:700;font-size:11px;letter-spacing:.05em;text-decoration:none}
+  .desk3 a:hover{color:var(--kb-ink)}
+  .desk3 a.on{background:var(--kb-jade,#073F35);color:#fff}
+
+  /* ---- reading mode ----
+     This page is built in fixed pixels, so raising a root font-size would move
+     almost nothing. zoom scales the whole composition and lets the existing
+     responsive breakpoints reflow it, which is what someone who enlarges a page
+     actually wants: bigger type and a narrower measure, not bigger type
+     overflowing the same columns. */
+  body.bl-read .page{zoom:1.24}
+  @supports not (zoom:1){
+    body.bl-read .page{font-size:118%}
+    body.bl-read p,body.bl-read li,body.bl-read .item,body.bl-read .lane{font-size:17.5px;line-height:1.75}
+  }
+  #read-size.on{background:var(--kb-jade,#073F35);color:#fff;border-color:var(--kb-jade,#073F35)}
+
+  /* ---- A4 ----
+     The previous print rule put break-inside:avoid on whole sections, which
+     pushes a tall section onto a fresh page and leaves most of the previous one
+     blank. What must not split is the cards inside them. */
+  @page{size:A4;margin:14mm}
+  @media print{
+    body.bl-read .page{zoom:1}
+    .page{display:block;padding:0}
+    .section{break-inside:auto;page-break-inside:auto;border:0;margin-bottom:9mm}
+    .brief-card,.metric,.desk,.news-card,.lane,.route-notes,.calendar-side,.item,
+    .trust-grid>div,.source-column,.follow-panel{break-inside:avoid;page-break-inside:avoid}
+    h1,h2,h3,.sectionhead{break-after:avoid;page-break-after:avoid}
+    .brief-grid,.metric-grid,.desk-grid,.routes,.calendar-grid,.trust-grid,.news-grid,.source-columns{grid-template-columns:1fr 1fr!important}
+    a{color:#000;text-decoration:none}
+    .hero h1{font-size:32pt}
+    .section p,.item,.lane,.source-link{font-size:10pt;line-height:1.5}
+  }
 </style>
   <link rel="stylesheet" href="daily-journal.css?v=20260731a"><script defer src="terminal-status.js?v=20260730d"></script><script defer src="mail-routing.js?v=20260731c"></script>
 </head>
 <body><nav class="terminal-strip" aria-label="Birdland Terminal"><span class="strip-label">SaaS Terminal</span><a href="index.html">Home</a><span class="strip-sep">·</span><a href="news.html">Overview</a><a href="executive.html">Daily Supply News</a><a href="partner.html">Buyer Desk</a><a href="cost-desk.html">Cost Desk</a><a href="team.html">Team Desk</a><span class="strip-sep">·</span><a href="about.html">About</a><a href="product-101.html">Factory</a><a href="contact.html">Contact</a></nav>
   <a class="skip" href="#daily-main">Skip to Daily Supply News</a>
-  <header class="top"><div class="topin"><a class="brand" href="index.html">Birdland <small>DAILY SUPPLY NEWS</small></a><div class="topmeta"><span id="source-state"><i class="dot"></i>Source status</span><span class="hq" data-hq-status><i class="dot"></i>Birdland HQ <b data-hq-label>OFFLINE</b></span><span data-taipei-time>--:-- Taipei</span><a href="partner.html">Buyer Desk</a><details class="language" data-language-picker><summary>Language</summary><div><select data-translate-select aria-label="Translate this page"><option>Choose language…</option></select><small>Opens Google Translate in a new tab.</small></div></details></div></div></header>
+  <header class="top"><div class="topin"><a class="brand" href="index.html">Birdland <small>DAILY SUPPLY NEWS</small></a><div class="topmeta"><span id="source-state"><i class="dot"></i>Source status</span><span class="hq" data-hq-status><i class="dot"></i>Birdland HQ <b data-hq-label>OFFLINE</b></span><span data-taipei-time>--:-- Taipei</span><span class="desk3" aria-label="Desk"><a class="on" aria-current="page" href="executive.html">News</a><a href="partner.html">Buyer</a><a href="cost-desk.html">Cost</a></span><details class="language" data-language-picker><summary>Language</summary><div><select data-translate-select aria-label="Translate this page"><option>Choose language…</option></select><small>Opens Google Translate in a new tab.</small></div></details></div></div></header>
   <div class="page">
     <aside class="rail"><h2>Edition index</h2><nav class="navgroups" aria-label="Daily Supply News sections"><div class="navgroup"><strong>Today</strong><a href="#brief">Supply Brief</a><a href="#cost">Asia Cost Board</a><a href="#production">Taiwan &amp; China</a><a href="#freight">Freight &amp; Ports</a><a href="#policy">Tariff &amp; Regulation</a><a href="#news">Daily News Desk</a></div><div class="navgroup"><strong>Return</strong><a href="#follow">Follow this signal</a><a href="#calendar">Calendar Hub</a><a href="#trust">Data Trust</a><a href="partner.html">Open Buyer Desk</a></div></nav><div class="free-app"><button class="subscription-art-button" id="free-app" type="button" title="Keep Daily Supply News one tap away. No account required." aria-label="Free subscription: add Daily Supply News to this device"><img src="images/free-subscription-mailbox-option-a.webp" alt="" width="410" height="470" decoding="async"></button><small id="free-app-note" class="visually-hidden" aria-live="polite"></small></div></aside>
     <main class="main" id="daily-main">
-      <section class="hero"><div class="eyebrow">Daily Supply News · Birdland Taiwan</div><h1>The Asia Supply View.</h1><p>Production, export, freight and policy signals translated for Western OEM buyers.</p><div class="editionline"><span id="edition-date">Daily edition</span><span>Birdland Industrial · Since 1974</span><span>Source state shown per report</span></div><div class="hero-actions"><a class="btn" href="feeds/daily-supply-news.xml">Subscribe RSS</a><span class="mail-pick"><label for="edition-market">Market</label><select id="edition-market" aria-label="Your market"></select></span><button class="btn ghost" id="email-edition">Email this edition</button><span class="mail-dest">to the <b id="edition-desk">European</b> desk</span><button class="btn print" type="button" onclick="window.print()">Print</button></div></section>
+      <section class="hero"><div class="eyebrow">Daily Supply News · Birdland Taiwan</div><h1>The Asia Supply View.</h1><p>Production, export, freight and policy signals translated for Western OEM buyers.</p><div class="editionline"><span id="edition-date">Daily edition</span><span>Birdland Industrial · Since 1974</span><span>Source state shown per report</span></div><div class="hero-actions"><a class="btn" href="feeds/daily-supply-news.xml">Subscribe RSS</a><span class="mail-pick"><label for="edition-market">Market</label><select id="edition-market" aria-label="Your market"></select></span><button class="btn ghost" id="email-edition">Email this edition</button><span class="mail-dest">to the <b id="edition-desk">European</b> desk</span><button class="btn" type="button" id="read-size" aria-pressed="false">Larger text</button><button class="btn print" type="button" onclick="window.print()">Print</button></div></section>
       <section class="section journal-front-section" id="brief"><div class="journal-front"><article class="journal-lead"><div class="eyebrow">Lead story</div><h2>Reading the regional shifts that move real-world quotes.</h2><p>From raw-material corridors to policy turns and port conditions—what actually changes your landed cost.</p><a href="#production">Read the full Asia view →</a></article><figure class="journal-map"><img src="images/asia-supply-map.webp" alt="Editorial map of China and Taiwan supply routes"><figcaption>Raw-material flow · finished goods · key ports</figcaption></figure><div class="journal-risk"><div class="eyebrow">Risk scope</div><h3>Route disruption</h3><div class="list" id="risk-list"></div></div><div class="journal-drivers"><div class="journal-driver-head"><div><div class="eyebrow">Buyer cost drivers</div><h2>What changes the next quote?</h2><p>Three sourced signals only. Read the action first, then open the evidence.</p></div><span class="tag" id="brief-tag">Source-aware</span></div><div class="brief-grid" id="brief-grid"></div></div></div></section>
       <section class="section" id="cost"><div class="sectionhead"><div><div class="eyebrow">Cost direction</div><h2>Asia Cost Board</h2><p>Inputs are shown only when this edition carries a usable series. Red means rising buyer-cost pressure.</p></div><span class="tag">USD buyer view</span></div><div class="metric-grid" id="metric-grid"></div></section>
       <section class="section" id="production"><div class="sectionhead"><div><div class="eyebrow">Production &amp; export</div><h2>Local News: Taiwan and China</h2><p>Three verified reports per desk, drawn from English-language local media and filtered for traditional hardware, metal-processing, plastics, resin, factory export and industrial supply-chain coverage.</p></div><span class="tag">3 + 3 local reports</span></div><div class="desk-grid"><article class="desk"><h3>Taiwan Local Industry Desk</h3><p class="lede">Local English reporting on Taiwan-origin metal, plastics, machinery, factory and export conditions.</p><div id="taiwan-stories"></div></article><article class="desk"><h3>China Local Industry Desk</h3><p class="lede">Local English reporting on China-origin metals, plastics, factories, exports and traditional manufacturing pressure.</p><div id="china-stories"></div></article></div><div class="source-deck"><div class="source-deck-head"><h3>Local English media source desk</h3><p>Open the local publisher; Birdland's buyer interpretation stays separate.</p></div><div class="source-columns"><div class="source-column"><h4>Taiwan · English local media</h4><div class="source-links"><a class="source-link connected" href="https://focustaiwan.tw/business" target="_blank" rel="noopener">Focus Taiwan · business and export reporting <small>Local media</small></a><a class="source-link connected" href="https://www.taipeitimes.com/News/biz" target="_blank" rel="noopener">Taipei Times · business coverage <small>Local media</small></a><a class="source-link connected" href="https://www.taiwannews.com.tw/categories/2" target="_blank" rel="noopener">Taiwan News · business and industry <small>Local media</small></a><a class="source-link connected" href="https://english.cw.com.tw/" target="_blank" rel="noopener">CommonWealth · Taiwan industry reporting <small>Local media</small></a><a class="source-link connected" href="https://taiwantoday.tw/" target="_blank" rel="noopener">Taiwan Today · local English coverage <small>Local media</small></a></div></div><div class="source-column"><h4>China · English local media</h4><div class="source-links"><a class="source-link connected" href="https://www.caixinglobal.com/business/" target="_blank" rel="noopener">Caixin Global · business and manufacturing <small>Local media</small></a><a class="source-link connected" href="https://www.yicaiglobal.com/" target="_blank" rel="noopener">Yicai Global · China business reporting <small>Local media</small></a><a class="source-link connected" href="https://www.chinadaily.com.cn/business" target="_blank" rel="noopener">China Daily · business and industry <small>Local media</small></a><a class="source-link connected" href="https://english.news.cn/" target="_blank" rel="noopener">Xinhua · China industry and export reporting <small>Local media</small></a><a class="source-link connected" href="https://www.cgtn.com/business" target="_blank" rel="noopener">CGTN · China business coverage <small>Local media</small></a></div></div></div><p class="source-deck-note">The daily fetch examines more results before filtering and preserves recent verified industry reports for up to 60 days when a publisher has a quiet day. Every card retains its publication date; no report is invented or silently labelled as new.</p></div></section>
@@ -110,5 +147,36 @@
     $$('.navgroup a[href^="#"]').forEach(function(a){a.addEventListener('click',function(){var id=a.getAttribute('href');$$('.navgroup a').forEach(function(x){x.classList.toggle('active',x===a);});var el=$(id);if(el)el.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'});});});
   })();
   </script>
+  <script>(function(){
+    /* Reading order.
+       The edition ran: brief · cost · LOCAL NEWS · freight · policy · ASIA NEWS ·
+       follow · calendar · trust. Two news blocks with the cost board, the freight
+       board and the policy deadlines wedged between them, and the policy
+       deadlines separated from the calendar that lists the same dates. A reader
+       met news, left it, and met news again four sections later.
+       Newspaper order instead: what changed, what it costs to move, what
+       happened, what is coming, then act, then the record. */
+    var ORDER=['brief','cost','freight','production','news','policy','calendar','follow','trust'];
+    var main=document.getElementById('daily-main');
+    if(main)ORDER.forEach(function(id){var s=document.getElementById(id);if(s)main.appendChild(s);});
+
+    /* Reading size. Remembered, because someone who needs larger text needs it
+       every day, not once. */
+    var KEY='bl_read_size',btn=document.getElementById('read-size');
+    function apply(on){
+      document.body.classList.toggle('bl-read',on);
+      if(!btn)return;
+      btn.classList.toggle('on',on);
+      btn.setAttribute('aria-pressed',on?'true':'false');
+      btn.textContent=on?'Normal text':'Larger text';
+    }
+    var saved=false;try{saved=localStorage.getItem(KEY)==='1';}catch(e){}
+    apply(saved);
+    if(btn)btn.addEventListener('click',function(){
+      var next=!document.body.classList.contains('bl-read');
+      apply(next);
+      try{localStorage.setItem(KEY,next?'1':'0');}catch(e){}
+    });
+  })();</script>
 </body>
 </html>
