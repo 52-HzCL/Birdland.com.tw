@@ -42,9 +42,10 @@
 /* ── overlay ───────────────────────────────────────────────────────────── */
 .tm-dim{
   position:fixed;inset:0;z-index:800;background:rgba(9,28,44,.42);
-  backdrop-filter:blur(2px);opacity:0;transition:opacity var(--dur-fast) var(--ease);
+  backdrop-filter:blur(2px);opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity var(--dur-fast) var(--ease),visibility 0s linear var(--dur-fast);
 }
-.tm-dim.on{opacity:1}
+.tm-dim.on{opacity:1;visibility:visible;pointer-events:auto;transition:opacity var(--dur-fast) var(--ease),visibility 0s}
 html.tm-open{overflow:hidden}
 html.tm-open .bl-header,html.tm-open #desk-banner{z-index:820}
 
@@ -57,9 +58,10 @@ html.tm-open .bl-header,html.tm-open #desk-banner{z-index:820}
   background-image:linear-gradient(rgba(143,199,232,.085) 1px,transparent 1px),
                    linear-gradient(90deg,rgba(143,199,232,.085) 1px,transparent 1px);
   background-size:19px 19px;
-  opacity:0;transition:opacity var(--dur-fast) var(--ease),transform var(--dur-slow) var(--ease);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity var(--dur-fast) var(--ease),transform var(--dur-slow) var(--ease),visibility 0s linear var(--dur-slow);
 }
-.tm-panel.on{opacity:1;transform:translateX(-50%) scaleY(1)}
+.tm-panel.on{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) scaleY(1);transition:opacity var(--dur-fast) var(--ease),transform var(--dur-slow) var(--ease),visibility 0s}
 @media(prefers-reduced-motion:reduce){.tm-panel,.tm-dim{transition:none}.tm-panel{transform:translateX(-50%)}}
 
 .tm-frame{border:1px solid rgba(143,199,232,.45);position:relative}

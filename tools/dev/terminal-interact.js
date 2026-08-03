@@ -54,11 +54,45 @@ const PAGES = ['index.html', 'partner.html', 'cost-desk.html', 'executive.html',
       });
     }
 
+    // The close path, which this gate did not test until it shipped a site
+    // where every page was dead after one click: the backdrop kept
+    // pointer-events:auto at opacity 0, so an invisible sheet covered
+    // everything. "It opens" is not "it works".
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(900);
+    const closed = await page.evaluate(() => {
+      const gone = sel => {
+        const e = document.querySelector(sel);
+        if (!e) return true;                       // never created is fine
+        const c = getComputedStyle(e);
+        return c.pointerEvents === 'none' || c.visibility === 'hidden' || c.display === 'none';
+      };
+      // Something visible and clickable in the header must be reachable
+      // again. Links inside a closed <details> are laid out but deliberately
+      // not hit-testable, so they would report a false failure.
+      const link = [...document.querySelectorAll('.bl-nav a, .dbar-nav a')]
+        .find(a => a.getBoundingClientRect().width > 0 && !a.closest('details:not([open])'));
+      let reachable = null;
+      if (link) {
+        const r = link.getBoundingClientRect();
+        const hit = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+        reachable = hit === link || link.contains(hit);
+      }
+      return {
+        inert: gone('.tm-dim') && gone('.tm-panel'),
+        reachable,
+        expanded: (document.querySelector('.tm-chip') || {}).getAttribute('aria-expanded'),
+      };
+    });
+    const closeOk = closed.inert && closed.expanded === 'false' && closed.reachable !== false;
+
     const ok = open.found && open.visible;
-    if (!ok || errs.length) fail++;
+    if (!ok || !closeOk || errs.length) fail++;
     console.log(f.padEnd(18) + 'dot ' + dot.padEnd(28) +
       'panel ' + (ok ? open.box.padEnd(12) : 'NOT OPEN    ') +
-      'search ' + search);
+      'search ' + search.padEnd(46) +
+      'close ' + (closeOk ? 'page released' : 'STILL BLOCKING' +
+        (closed.inert ? '' : ' (backdrop live)') + (closed.reachable === false ? ' (nav unreachable)' : '')));
     if (open.steps && open.steps.length) console.log('   steps: ' + JSON.stringify(open.steps));
     errs.forEach(e => console.log('   ERROR ' + e));
     await ctx.close();
