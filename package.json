@@ -1,5 +1,10 @@
 {
-  "dependencies": {
-    "jsdom": "^29.1.1"
+  "name": "birdland-site",
+  "private": true,
+  "description": "Static site for birdland.com.tw. Nothing here ships; these are the dev tools in tools/dev.",
+  "devDependencies": {
+    "jsdom": "^29.1.1",
+    "playwright-core": "^1.62.1",
+    "sharp": "^0.35.3"
   }
 }

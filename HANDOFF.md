@@ -12,11 +12,11 @@ Read this first, then `UX-REVIEW.md`, then confirm the branch is `ux-refine`.
   item marked 待確認 in `UX-REVIEW.md` and `design-tokens.md` left untouched.**
   That list is what the approval gate was protecting.
 
-## Tooling (all outside the repo, in `scratchpad/`)
+## Tooling (in the repo, `tools/dev/` — see its README)
 
 | Script | What it does |
 |---|---|
-| `bl-server.js` | static server on :8123 — must be running for anything below |
+| `serve.js` | static server on :8123 — must be running for anything below |
 | `build.js` | Node replica of `tools/build_news.py`; rebuilds all five generated pages |
 | `syntax-check.js` | parses every inline `<script>`; the guard against silent half-cut code |
 | `verify-desks.js` | boots both desks in jsdom and asserts behaviour |
@@ -33,7 +33,8 @@ Node: `C:\Program Files\nodejs\node.exe`.
    are **built artifacts**. Edit `tools/*_template.html` and run `build.js`.
    `partner_template.html` builds twice via `__DESKMODE__` (buyer / cost).
 2. `index.html`, `about.html`, `contact.html`, `privacy.html` are hand-authored.
-   `product-101.html` comes from `scratchpad/build-p101.js`.
+   `product-101.html` comes from `tools/dev/build-p101.js`, with its data and
+   blueprint sprites beside it.
 3. Files are **CRLF**. Multi-line anchors need `\r\n` or they silently miss.
 4. `String.replace` with no match returns the string unchanged and reports
    nothing. Every edit script here asserts its match count and exits non-zero.

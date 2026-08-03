@@ -32,15 +32,17 @@ Phase 2 removes the stale one as a token change, which is UI work — but the
 remaining single request is still render-blocking against a CDN, and
 self-hosting or preloading is a build/hosting decision outside this brief.
 
-**I-5 · Suspected unused dependency.**
-`package.json` declares only `jsdom`, which no shipped page uses — it is a test
-dependency for the local verification harness. Correct as a `devDependency`,
-currently listed under `dependencies`. Listed, not changed.
+**I-5 · ~~Suspected unused dependency~~ — CLOSED.**
+`jsdom` moved to `devDependencies`, where it belonged, when the tooling came
+into the repo as `tools/dev/`. `playwright-core` and `sharp` joined it: they
+were installed outside the repo and undeclared, so a fresh clone could run
+none of the gates and reproduce no measurement. CI installs no node
+dependencies, so nothing in the pipeline is affected.
 
 **I-6 · `tools/build_terminal.py` has never been executed.**
 There is no Python on the development machine, so the CI version of the
 Terminal index build is untested; only the Node twin
-(`scratchpad/gen-terminal.js`) has been run. It is invoked non-fatally, so a
+(`tools/dev/gen-terminal.js`) has been run. It is invoked non-fatally, so a
 failure costs the panel its live values and its search, not the daily news.
 Watch the first CI run after this merges.
 

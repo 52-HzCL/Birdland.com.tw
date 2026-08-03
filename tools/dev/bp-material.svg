@@ -1,0 +1,291 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+
+  <symbol id="bp-m-steel" viewBox="0 0 200 130">
+    <rect x="0" y="0" width="200" height="130" fill="#f2f7fc"/>
+    <line x1="30" y1="8" x2="30" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="60" y1="8" x2="60" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="90" y1="8" x2="90" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="120" y1="8" x2="120" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="150" y1="8" x2="150" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="180" y1="8" x2="180" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="25" x2="192" y2="25" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="50" x2="192" y2="50" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="75" x2="192" y2="75" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="100" x2="192" y2="100" stroke="#cfe0ef" stroke-width="0.5"/>
+    <path d="M16,94 C22,72 34,53 52,43 C65,36 81,33 95,34 C93,45 85,58 69,70 C55,80 33,90 19,96 C17,96 16,95 16,94 Z" fill="#dce9f4" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M30,88 C41,73 55,58 68,49" fill="none" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M22,86 C34,68 50,52 63,46 C73,41 84,38 91,37" fill="none" stroke="#7ba6c9" stroke-width="0.7" stroke-dasharray="2 2"/>
+    <path d="M24,90 L28,86" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M32,82 L36,78" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M40,74 L44,70" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M50,66 L54,62" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M60,58 L64,54" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M70,50 L74,46" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M78,44 L82,40" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <circle cx="30" cy="84" r="2" fill="none" stroke="#28577f" stroke-width="1.2"/>
+    <path d="M30,84 L16,108" fill="none" stroke="#7ba6c9" stroke-width="0.7"/>
+    <circle cx="90" cy="45" r="3" fill="#dce9f4" stroke="#28577f" stroke-width="1.2"/>
+    <path d="M119,100 C109,96 109,86 121,83 C135,80 135,69 121,66 C109,63 109,53 121,50 C135,47 135,36 121,33 C114,30 112,27 118,22" fill="none" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M119,100 L104,111" fill="none" stroke="#28577f" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M118,22 L133,14" fill="none" stroke="#28577f" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="122" y1="14" x2="122" y2="112" stroke="#7ba6c9" stroke-width="0.7" stroke-dasharray="4 3"/>
+  </symbol>
+
+  <symbol id="bp-m-stainless" viewBox="0 0 200 130">
+    <rect x="0" y="0" width="200" height="130" fill="#f2f7fc"/>
+    <line x1="30" y1="8" x2="30" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="60" y1="8" x2="60" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="90" y1="8" x2="90" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="120" y1="8" x2="120" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="150" y1="8" x2="150" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="180" y1="8" x2="180" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="25" x2="192" y2="25" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="50" x2="192" y2="50" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="75" x2="192" y2="75" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="100" x2="192" y2="100" stroke="#cfe0ef" stroke-width="0.5"/>
+    <path d="M25,20 L45,20 L52,32 L45,44 L25,44 L18,32 Z" fill="#dce9f4" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M29,44 L29,92 L41,92 L41,44" fill="none" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M27,50 L43,54 M27,58 L43,62 M27,66 L43,70 M27,74 L43,78 M27,82 L43,86" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M35,44 L35,92" fill="none" stroke="#7ba6c9" stroke-width="0.7" stroke-dasharray="4 3"/>
+    <path d="M100,20 L115,20 L115,40 L100,40 Z" fill="#dce9f4" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M104,20 L104,40 M108,20 L108,40 M112,20 L112,40" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M115,20 L150,27 L150,33 L115,40 Z" fill="#dce9f4" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M100,30 L150,30" fill="none" stroke="#7ba6c9" stroke-width="0.7" stroke-dasharray="4 3"/>
+    <circle cx="150" cy="30" r="2" fill="#f2f7fc" stroke="#28577f" stroke-width="1.2"/>
+    <path d="M150,30 L164,22 M150,30 L166,28 M150,30 L166,33 M150,30 L164,39" fill="none" stroke="#28577f" stroke-width="0.9" stroke-linecap="round"/>
+    <path d="M85,90 C90,90 92,95 92,100 C92,105 88,105 85,105 C82,105 78,105 78,100 C78,95 80,90 85,90 Z" fill="#dce9f4" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M78,100 L70,105 M92,100 L100,105" fill="none" stroke="#7ba6c9" stroke-width="0.7"/>
+    <path d="M112,88 C117,88 119,94 119,99 C119,104 115,104 112,104 C109,104 105,104 105,99 C105,94 107,88 112,88 Z" fill="#dce9f4" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M105,99 L97,104 M119,99 L127,104" fill="none" stroke="#7ba6c9" stroke-width="0.7"/>
+    <path d="M140,92 C144,92 146,97 146,101 C146,105 143,105 140,105 C137,105 134,105 134,101 C134,97 136,92 140,92 Z" fill="#dce9f4" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M134,101 L127,105 M146,101 L153,105" fill="none" stroke="#7ba6c9" stroke-width="0.7"/>
+    <path d="M60,105 L170,105" fill="none" stroke="#28577f" stroke-width="1.2" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="bp-m-plating" viewBox="0 0 200 130">
+    <rect x="0" y="0" width="200" height="130" fill="#f2f7fc"/>
+    <line x1="30" y1="8" x2="30" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="60" y1="8" x2="60" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="90" y1="8" x2="90" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="120" y1="8" x2="120" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="150" y1="8" x2="150" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="180" y1="8" x2="180" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="25" x2="192" y2="25" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="50" x2="192" y2="50" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="75" x2="192" y2="75" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="100" x2="192" y2="100" stroke="#cfe0ef" stroke-width="0.5"/>
+    <path d="M18,110 L92,108 L93,88 L18,90 Z" fill="#dce9f4" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M18,90 L93,88 L93,82 L18,84 Z" fill="#f2f7fc" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M22,89 L27,84" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M34,88 L39,83" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M46,88 L51,83" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M18,84 L93,82 L93,77 L18,79 Z" fill="#f2f7fc" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M23,83 L28,78" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M40,82 L45,77" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M57,82 L62,77" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M18,79 L93,77 L93,73 L18,75 Z" fill="#f2f7fc" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M25,78 L29,74" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M48,77 L52,73" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M18,75 L93,73 L93,69 L18,71 Z" fill="#f2f7fc" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M26,74 L30,70" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M55,73 L59,69" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <circle cx="112" cy="99" r="1.8" fill="none" stroke="#28577f" stroke-width="1"/>
+    <path d="M112,99 L140,99" fill="none" stroke="#7ba6c9" stroke-width="0.7"/>
+    <circle cx="112" cy="87" r="1.8" fill="none" stroke="#28577f" stroke-width="1"/>
+    <path d="M112,87 L140,87" fill="none" stroke="#7ba6c9" stroke-width="0.7"/>
+    <circle cx="112" cy="81" r="1.8" fill="none" stroke="#28577f" stroke-width="1"/>
+    <path d="M112,81 L140,81" fill="none" stroke="#7ba6c9" stroke-width="0.7"/>
+    <circle cx="112" cy="74" r="1.8" fill="none" stroke="#28577f" stroke-width="1"/>
+    <path d="M112,74 L140,74" fill="none" stroke="#7ba6c9" stroke-width="0.7"/>
+    <path d="M150,20 C150,16 156,16 156,20 L156,35" fill="none" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M148,35 L164,35 L162,50 L150,50 Z" fill="#dce9f4" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="156" y1="35" x2="156" y2="50" stroke="#7ba6c9" stroke-width="0.7" stroke-dasharray="4 3"/>
+  </symbol>
+
+  <symbol id="bp-m-aluminium" viewBox="0 0 200 130">
+    <rect x="0" y="0" width="200" height="130" fill="#f2f7fc"/>
+    <line x1="30" y1="8" x2="30" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="60" y1="8" x2="60" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="90" y1="8" x2="90" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="120" y1="8" x2="120" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="150" y1="8" x2="150" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="180" y1="8" x2="180" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="25" x2="192" y2="25" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="50" x2="192" y2="50" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="75" x2="192" y2="75" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="100" x2="192" y2="100" stroke="#cfe0ef" stroke-width="0.5"/>
+    <path d="M14,58 C14,53 18,50 24,50 L118,49 C124,49 128,53 128,58 C128,63 124,67 118,67 L24,68 C18,68 14,64 14,58 Z" fill="#dce9f4" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M112,55 C112,52 115,50 118,50 L172,52 C177,53 180,58 180,62 C180,66 177,70 172,71 L118,70 C115,70 112,68 112,65 Z" fill="#dce9f4" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M120,51 L120,69" fill="none" stroke="#7ba6c9" stroke-width="0.7" stroke-dasharray="2 2"/>
+    <line x1="14" y1="59" x2="180" y2="61" stroke="#7ba6c9" stroke-width="0.7" stroke-dasharray="4 3"/>
+    <path d="M150,52 L150,71" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M146,54 L150,52 L154,54" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M146,69 L150,71 L154,69" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M143,80 L143,95" fill="none" stroke="#28577f" stroke-width="0.9" stroke-linecap="round"/>
+    <path d="M158,80 L158,95" fill="none" stroke="#28577f" stroke-width="0.9" stroke-linecap="round"/>
+    <path d="M140,87 L145,84" fill="none" stroke="#9dc0dc" stroke-width="0.9"/>
+    <path d="M156,84 L161,87" fill="none" stroke="#9dc0dc" stroke-width="0.9"/>
+    <line x1="143" y1="87" x2="158" y2="87" stroke="#7ba6c9" stroke-width="0.7"/>
+    <path d="M18,95 L18,110" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M28,95 L28,110" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M15,102 L20,99" fill="none" stroke="#9dc0dc" stroke-width="0.9"/>
+    <path d="M26,99 L31,102" fill="none" stroke="#9dc0dc" stroke-width="0.9"/>
+    <line x1="18" y1="102" x2="28" y2="102" stroke="#7ba6c9" stroke-width="0.7"/>
+  </symbol>
+
+  <symbol id="bp-m-plastic" viewBox="0 0 200 130">
+    <rect x="0" y="0" width="200" height="130" fill="#f2f7fc"/>
+    <line x1="30" y1="8" x2="30" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="60" y1="8" x2="60" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="90" y1="8" x2="90" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="120" y1="8" x2="120" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="150" y1="8" x2="150" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="180" y1="8" x2="180" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="25" x2="192" y2="25" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="50" x2="192" y2="50" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="75" x2="192" y2="75" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="100" x2="192" y2="100" stroke="#cfe0ef" stroke-width="0.5"/>
+    <path d="M20,20 C50,14 90,14 112,24 C118,40 118,64 110,84 C90,92 50,92 26,84 C20,64 18,40 20,20 Z" fill="#dce9f4" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M28,26 C52,21 84,21 102,29 C107,43 107,62 101,78 C84,84 52,84 34,78 C29,62 27,43 28,26 Z" fill="#f2f7fc" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="40" y1="30" x2="42" y2="76" stroke="#28577f" stroke-width="0.9" stroke-linecap="round"/>
+    <line x1="55" y1="27" x2="56" y2="79" stroke="#28577f" stroke-width="0.9" stroke-linecap="round"/>
+    <line x1="72" y1="27" x2="73" y2="79" stroke="#28577f" stroke-width="0.9" stroke-linecap="round"/>
+    <line x1="88" y1="29" x2="89" y2="77" stroke="#28577f" stroke-width="0.9" stroke-linecap="round"/>
+    <path d="M112,50 L128,48 C132,48 134,51 133,55 L119,58" fill="#dce9f4" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="131" cy="52" r="1.6" fill="none" stroke="#28577f" stroke-width="1"/>
+    <circle cx="150" cy="100" r="4" fill="#dce9f4" stroke="#28577f" stroke-width="1.2"/>
+    <circle cx="160" cy="104" r="3.4" fill="#dce9f4" stroke="#28577f" stroke-width="1.2"/>
+    <circle cx="142" cy="106" r="3.6" fill="#dce9f4" stroke="#28577f" stroke-width="1.2"/>
+    <circle cx="154" cy="112" r="3.2" fill="#dce9f4" stroke="#28577f" stroke-width="1.2"/>
+    <circle cx="167" cy="112" r="3" fill="#dce9f4" stroke="#28577f" stroke-width="1.2"/>
+    <circle cx="145" cy="115" r="2.8" fill="#dce9f4" stroke="#28577f" stroke-width="1.2"/>
+    <line x1="130" y1="119" x2="180" y2="119" stroke="#7ba6c9" stroke-width="0.7" stroke-dasharray="4 3"/>
+  </symbol>
+
+  <symbol id="bp-m-grip" viewBox="0 0 200 130">
+    <rect x="0" y="0" width="200" height="130" fill="#f2f7fc"/>
+    <line x1="30" y1="8" x2="30" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="60" y1="8" x2="60" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="90" y1="8" x2="90" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="120" y1="8" x2="120" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="150" y1="8" x2="150" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="180" y1="8" x2="180" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="25" x2="192" y2="25" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="50" x2="192" y2="50" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="75" x2="192" y2="75" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="100" x2="192" y2="100" stroke="#cfe0ef" stroke-width="0.5"/>
+    <path d="M60,20 C90,16 122,24 130,44 C136,58 130,74 116,86 C98,100 66,100 46,86 C32,74 30,54 38,38 C44,26 50,22 60,20 Z" fill="#dce9f4" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M64,34 C82,31 100,36 105,48 C109,58 105,68 95,76 C82,86 62,86 50,76 C42,68 41,56 46,46 C50,38 56,35 64,34 Z" fill="#f2f7fc" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M60,25 L64,34" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M78,22 L80,32" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M96,28 L96,38" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M110,42 L102,48" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M118,60 L106,60" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M108,80 L98,72" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M78,92 L78,82" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M50,84 L58,76" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M32,50 C29,52 29,56 33,57" fill="none" stroke="#7ba6c9" stroke-width="0.7" stroke-dasharray="2 2"/>
+    <path d="M30,62 C27,64 27,68 31,69" fill="none" stroke="#7ba6c9" stroke-width="0.7" stroke-dasharray="2 2"/>
+    <path d="M32,74 C29,76 29,80 33,81" fill="none" stroke="#7ba6c9" stroke-width="0.7" stroke-dasharray="2 2"/>
+    <path d="M20,44 C24,58 24,76 20,92" fill="none" stroke="#7ba6c9" stroke-width="0.7" stroke-dasharray="4 3"/>
+    <line x1="8" y1="58" x2="30" y2="58" stroke="#7ba6c9" stroke-width="0.7"/>
+    <line x1="8" y1="70" x2="30" y2="70" stroke="#7ba6c9" stroke-width="0.7"/>
+  </symbol>
+
+  <symbol id="bp-m-timber" viewBox="0 0 200 130">
+    <rect x="0" y="0" width="200" height="130" fill="#f2f7fc"/>
+    <line x1="30" y1="8" x2="30" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="60" y1="8" x2="60" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="90" y1="8" x2="90" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="120" y1="8" x2="120" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="150" y1="8" x2="150" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="180" y1="8" x2="180" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="25" x2="192" y2="25" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="50" x2="192" y2="50" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="75" x2="192" y2="75" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="100" x2="192" y2="100" stroke="#cfe0ef" stroke-width="0.5"/>
+    <path d="M20,58 C24,50 34,46 44,48 C58,50 70,44 84,46 C98,48 108,52 118,50 C122,49 124,53 122,56 C110,60 100,58 86,58 C72,58 58,64 44,62 C34,60 24,64 20,58 Z" fill="#dce9f4" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M24,55 C40,52 56,58 72,54 C88,50 104,56 118,52" fill="none" stroke="#28577f" stroke-width="0.9" stroke-linecap="round"/>
+    <path d="M22,59 C38,56 54,62 70,58 C86,54 102,60 116,56" fill="none" stroke="#28577f" stroke-width="0.9" stroke-linecap="round"/>
+    <path d="M26,51 C42,48 58,54 74,50 C90,46 104,50 116,48" fill="none" stroke="#28577f" stroke-width="0.9" stroke-linecap="round"/>
+    <line x1="20" y1="53" x2="122" y2="53" stroke="#7ba6c9" stroke-width="0.7" stroke-dasharray="4 3"/>
+    <circle cx="150" cy="90" r="26" fill="#dce9f4" stroke="#28577f" stroke-width="1.2"/>
+    <path d="M150,68 C165,71 175,80 176,90 C177,101 166,110 150,112" fill="none" stroke="#28577f" stroke-width="0.9"/>
+    <circle cx="150" cy="90" r="19" fill="none" stroke="#28577f" stroke-width="0.9"/>
+    <circle cx="150" cy="90" r="13" fill="none" stroke="#28577f" stroke-width="0.9"/>
+    <circle cx="150" cy="90" r="7" fill="none" stroke="#28577f" stroke-width="0.9"/>
+    <path d="M150,90 L142,80" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M150,90 L160,84" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+    <path d="M150,90 L146,102" fill="none" stroke="#9dc0dc" stroke-width="0.6"/>
+  </symbol>
+
+  <symbol id="bp-m-fabric" viewBox="0 0 200 130">
+    <rect x="0" y="0" width="200" height="130" fill="#f2f7fc"/>
+    <line x1="30" y1="8" x2="30" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="60" y1="8" x2="60" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="90" y1="8" x2="90" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="120" y1="8" x2="120" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="150" y1="8" x2="150" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="180" y1="8" x2="180" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="25" x2="192" y2="25" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="50" x2="192" y2="50" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="75" x2="192" y2="75" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="100" x2="192" y2="100" stroke="#cfe0ef" stroke-width="0.5"/>
+    <path d="M28,60 C24,46 26,32 32,26 C36,22 40,26 40,34 C42,26 46,20 51,22 C55,24 54,32 52,38 C56,30 61,26 65,29 C69,32 66,40 62,46 C68,42 74,44 74,50 C74,56 66,60 60,62 C64,66 66,74 62,86 C58,100 46,108 34,106 C22,104 16,92 18,80 C19,72 24,66 28,60 Z" fill="#dce9f4" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M22,78 C26,84 24,94 30,100" fill="none" stroke="#7ba6c9" stroke-width="0.7" stroke-dasharray="2 2"/>
+    <path d="M20,80 L24,77" fill="none" stroke="#28577f" stroke-width="0.6"/>
+    <path d="M21,84 L25,81" fill="none" stroke="#28577f" stroke-width="0.6"/>
+    <path d="M22,88 L26,85" fill="none" stroke="#28577f" stroke-width="0.6"/>
+    <path d="M24,92 L28,90" fill="none" stroke="#28577f" stroke-width="0.6"/>
+    <path d="M26,96 L30,94" fill="none" stroke="#28577f" stroke-width="0.6"/>
+    <path d="M28,99 L32,98" fill="none" stroke="#28577f" stroke-width="0.6"/>
+    <circle cx="34" cy="60" r="1.6" fill="none" stroke="#28577f" stroke-width="1"/>
+    <path d="M34,60 L120,40" fill="none" stroke="#7ba6c9" stroke-width="0.7"/>
+    <path d="M120,18 L178,18 L178,64 L120,64 Z" fill="#f2f7fc" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M120,26 L178,26" fill="none" stroke="#28577f" stroke-width="0.9"/>
+    <path d="M120,34 L178,34" fill="none" stroke="#28577f" stroke-width="0.9"/>
+    <path d="M120,42 L178,42" fill="none" stroke="#28577f" stroke-width="0.9"/>
+    <path d="M120,50 L178,50" fill="none" stroke="#28577f" stroke-width="0.9"/>
+    <path d="M120,58 L178,58" fill="none" stroke="#28577f" stroke-width="0.9"/>
+    <path d="M129,18 L129,64" fill="none" stroke="#28577f" stroke-width="0.9"/>
+    <path d="M138,18 L138,64" fill="none" stroke="#28577f" stroke-width="0.9"/>
+    <path d="M148,18 L148,64" fill="none" stroke="#28577f" stroke-width="0.9"/>
+    <path d="M158,18 L158,64" fill="none" stroke="#28577f" stroke-width="0.9"/>
+    <path d="M168,18 L168,64" fill="none" stroke="#28577f" stroke-width="0.9"/>
+  </symbol>
+
+  <symbol id="bp-m-board" viewBox="0 0 200 130">
+    <rect x="0" y="0" width="200" height="130" fill="#f2f7fc"/>
+    <line x1="30" y1="8" x2="30" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="60" y1="8" x2="60" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="90" y1="8" x2="90" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="120" y1="8" x2="120" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="150" y1="8" x2="150" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="180" y1="8" x2="180" y2="122" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="25" x2="192" y2="25" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="50" x2="192" y2="50" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="75" x2="192" y2="75" stroke="#cfe0ef" stroke-width="0.5"/>
+    <line x1="8" y1="100" x2="192" y2="100" stroke="#cfe0ef" stroke-width="0.5"/>
+    <path d="M16,34 L96,30" fill="none" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M16,40 L96,36" fill="none" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M16,78 L96,76" fill="none" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M16,84 L96,82" fill="none" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M18,40 C26,46 26,52 18,56 C26,62 26,68 18,72 C26,66 34,60 26,54 C34,48 34,42 26,36 C22,38 20,39 18,40 Z" fill="none" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M26,36 C34,42 34,48 26,54 C34,60 34,66 26,72 C34,66 42,60 34,54 C42,48 42,42 34,36 C30,38 28,37 26,36 Z" fill="none" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M34,36 C42,42 42,48 34,54 C42,60 42,66 34,72 C42,66 50,60 42,54 C50,48 50,42 42,36 C38,38 36,37 34,36 Z" fill="none" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M42,36 C50,42 50,48 42,54 C50,60 50,66 42,72 C50,66 58,60 50,54 C58,48 58,42 50,36 C46,38 44,37 42,36 Z" fill="none" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M50,36 C58,42 58,48 50,54 C58,60 58,66 50,72 C58,66 66,60 58,54 C66,48 66,42 58,36 C54,38 52,37 50,36 Z" fill="none" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M58,36 C66,42 66,48 58,54 C66,60 66,66 58,72 C66,66 74,60 66,54 C74,48 74,42 66,36 C62,38 60,37 58,36 Z" fill="none" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="102" y1="38" x2="102" y2="78" stroke="#7ba6c9" stroke-width="0.7"/>
+    <path d="M98,42 L102,38 L106,42" fill="none" stroke="#9dc0dc" stroke-width="0.7"/>
+    <path d="M98,74 L102,78 L106,74" fill="none" stroke="#9dc0dc" stroke-width="0.7"/>
+    <path d="M124,30 L168,30 L168,96 L124,96 Z" fill="#dce9f4" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M124,30 L114,38 L114,104 L124,96" fill="#dce9f4" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M124,96 L114,104 L158,104 L168,96" fill="#dce9f4" stroke="#28577f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M114,38 L124,30" fill="none" stroke="#7ba6c9" stroke-width="0.7" stroke-dasharray="2 2"/>
+    <path d="M124,68 L168,68" fill="none" stroke="#7ba6c9" stroke-width="0.7" stroke-dasharray="4 3"/>
+    <path d="M114,72 L124,64" fill="none" stroke="#7ba6c9" stroke-width="0.7" stroke-dasharray="4 3"/>
+    <path d="M134,30 L134,96" fill="none" stroke="#7ba6c9" stroke-width="0.7" stroke-dasharray="4 3"/>
+  </symbol>
+
+</svg>

@@ -5,7 +5,7 @@ Phase 1 audit. Branch `ux-refine`. Nothing has been changed yet.
 Every number here was measured, not estimated: Playwright drove real Chrome at
 1440×900 and 380×780 on all eleven pages, recorded CLS/LCP from
 `PerformanceObserver`, and walked every rendered element for its *computed*
-font-size, colour, padding and transition. Raw data: `scratchpad/ux-data.json`.
+font-size, colour, padding and transition. Raw data: `ux-capture.js` output.
 Screenshots: `screenshots/before/`.
 
 ---

@@ -1,0 +1,29 @@
+// Node replica of tools/build_news.py (no Python on this machine).
+// newline='' on both read and write in the Python means bytes pass through
+// untouched, so a plain utf8 read/write here produces the same file.
+// Keep this in step with the Python — including the __DESKMODE__ substitution,
+// which is what makes the Buyer Desk and the Cost Desk two pages.
+const fs = require('fs'), path = require('path');
+const { REPO } = require('./_env');
+const data = fs.readFileSync(path.join(REPO, 'outlook-data.json'), 'utf8');
+const JOBS = [
+  ['news_template.html', 'guide.html', null],
+  ['partner_template.html', 'partner.html', { __DESKMODE__: 'buyer' }],
+  ['partner_template.html', 'cost-desk.html', { __DESKMODE__: 'cost' }],
+  ['team_template.html', 'team.html', null],
+  ['executive_template.html', 'executive.html', null]
+];
+JOBS.forEach(([tpl, out, extra]) => {
+  const p = path.join(REPO, 'tools', tpl);
+  if (!fs.existsSync(p)) return;
+  let s = fs.readFileSync(p, 'utf8').split('__DATA__').join(data);
+  Object.entries(extra || {}).forEach(([k, v]) => { s = s.split(k).join(v); });
+  fs.writeFileSync(path.join(REPO, out), s, 'utf8');
+  console.log('built', out, s.length, 'bytes');
+});
+// A leftover token would ship as literal text and break the mode switch.
+JOBS.forEach(([, out]) => {
+  const f = path.join(REPO, out);
+  if (fs.existsSync(f) && fs.readFileSync(f, 'utf8').includes('__DESKMODE__'))
+    console.log('WARNING: unsubstituted __DESKMODE__ in', out);
+});

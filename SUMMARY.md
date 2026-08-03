@@ -138,6 +138,6 @@ called here and are reversible:
   the CI version of the index build is untested. It is called non-fatally: if
   it fails, the panel falls back to a plain path and the daily news still
   ships. **Watch the first CI run after this merges.**
-- **The Guide's screenshots are a manual re-run** (`scratchpad/gen-guide-shots.js`).
+- **The Guide's screenshots are a manual re-run** (`tools/dev/gen-guide-shots.js`).
   CI has Python, not Playwright. After any redesign they must be recaptured, or
   the Guide shows the old site — the exact failure it exists to prevent.

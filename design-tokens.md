@@ -4,7 +4,7 @@ Two halves: **what is there now** (measured from computed styles in real
 Chrome, not read off the stylesheets) and **what to standardise on**. Phase 2
 implements the second half; nothing here has been applied yet.
 
-Source data: `scratchpad/ux-data.json`, 11 pages × 2 viewports.
+Source data: `ux-capture.js` output, 11 pages × 2 viewports.
 
 ---
 
