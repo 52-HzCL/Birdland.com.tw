@@ -1088,37 +1088,36 @@ button{font:inherit}
   min-height:clamp(420px,calc(100svh - 260px),660px);aspect-ratio:16/9;
   background:#102e45;border-bottom:1px solid var(--bl-line);
 }
-.bl-hero-lead{
-  width:min(1180px,calc(100% - 64px));margin:0 auto;padding:var(--sp-6) 0 var(--sp-6);
-}
-.bl-hero-eyebrow{
-  margin:0 0 var(--sp-3);color:var(--bl-copper,#b96032);
-  font:600 11px/1 var(--bl-mono);letter-spacing:.2em;text-transform:uppercase;
-}
-/* The h1 stops being screen-reader-only and becomes the page's first line. */
+/* The h1 sits under the drawing as a plate caption, not over it: nothing
+   competes with the engraving, and the one line a returning visitor needs is
+   still on the page. */
 .bl-ink-title{
-  position:static;width:auto;height:auto;margin:0;padding:0;overflow:visible;
-  clip:auto;white-space:normal;
-  max-width:20ch;color:var(--bl-ink);
-  font:500 clamp(32px,4.6vw,48px)/1.06 var(--bl-serif);letter-spacing:-.015em;
+  position:static;width:min(1180px,calc(100% - 64px));max-width:none;height:auto;
+  margin:0 auto;padding:var(--sp-4) 0 var(--sp-5);overflow:visible;clip:auto;white-space:normal;
+  color:var(--bl-jade,#073c33);
+  font:500 clamp(19px,2vw,26px)/1.25 var(--bl-serif);letter-spacing:-.01em;
+  border-top:1px solid var(--bl-line);
 }
-.bl-hero-sub{
-  max-width:56ch;margin:var(--sp-4) 0 0;color:#42675d;
-  font:400 clamp(15px,1.25vw,16px)/1.55 var(--bl-sans);
-}
-.bl-hero-cta{display:flex;flex-wrap:wrap;gap:var(--sp-3);margin-top:var(--sp-5)}
-.bl-cta{
-  display:inline-flex;align-items:center;min-height:46px;padding:0 24px;
-  border:1px solid #073c33;background:#073c33;color:#fbf9f3;text-decoration:none;
-  font:600 var(--fs-body)/1 var(--bl-sans);letter-spacing:.02em;
-  transition:background .15s ease,border-color .15s ease,color .15s ease;
-}
-.bl-cta:hover,.bl-cta:focus-visible{background:#b96032;border-color:#b96032;color:#fff}
-.bl-cta-ghost{background:transparent;color:#073c33}
-.bl-cta-ghost:hover,.bl-cta-ghost:focus-visible{background:#073c33;border-color:#073c33;color:#fbf9f3}
 
-/* The propositions are the argument. They do not wait to be discovered. */
-.bl-ink-stage [data-ink-main]{opacity:1;-webkit-mask-image:none;mask-image:none}
+/* The three markers breathe. A hover reveal with no visible affordance is a
+   torch nobody knows to pick up — which is what the measured 0.025 opacity
+   amounted to. Only opacity is animated: the markers carry rotate() and
+   writing-mode, and an animation on transform would replace them. */
+.bl-ink-marker{opacity:.32;animation:inkBreathe 4.4s ease-in-out infinite}
+.bl-ink-marker::before{
+  content:'';display:inline-block;vertical-align:middle;
+  width:5px;height:5px;margin-right:9px;border-radius:50%;
+  background:var(--bl-copper,#b96032);
+}
+.bl-ink-production .bl-ink-marker{animation-delay:1.5s}
+.bl-ink-quality .bl-ink-marker{animation-delay:3s}
+@keyframes inkBreathe{0%,100%{opacity:.24}50%{opacity:.6}}
+/* Under the cursor the marker steps forward and stops breathing: the stage
+   has been found, so the invitation is spent. */
+.bl-ink-stage:hover .bl-ink-marker,.bl-ink-stage:focus-within .bl-ink-marker{opacity:.72;animation:none}
+@media (prefers-reduced-motion:reduce){.bl-ink-marker{animation:none;opacity:.46}}
+
+
 .bl-ink-reveal{width:min(340px,24vw);padding:var(--sp-5) var(--sp-5)}
 .bl-ink-reveal h2{font-size:clamp(16px,1.5vw,22px)}
 .bl-ink-reveal p{font-size:clamp(13px,.92vw,15px)}
@@ -1129,7 +1128,6 @@ button{font:inherit}
 @media (max-width:900px){
   /* Stacked, because three absolutely-positioned cards over a cropped
      illustration is how two of the three propositions disappeared on a phone. */
-  .bl-hero-lead{width:calc(100% - 40px);padding:var(--sp-5) 0 var(--sp-4)}
   /* The stages leave the frame, so the illustration is just an image again.
      Left absolutely positioned inside a fixed aspect box it clipped the third
      card, which is how KEEP IT YOURS lost its second half. */

@@ -36,15 +36,6 @@
 
   <main class="bl-main" id="main">
     <section class="bl-ink-hero" aria-labelledby="home-title">
-      <div class="bl-hero-lead">
-        <p class="bl-hero-eyebrow">Confidential OEM · Taiwan · since 1974</p>
-        <h1 id="home-title" class="bl-ink-title">Your design. Our discipline. Never our brand.</h1>
-        <p class="bl-hero-sub">Garden and field tools built behind your label. In fifty-two years Birdland has never sold a product of its own, and never will.</p>
-        <div class="bl-hero-cta">
-          <a class="bl-cta" href="guide.html">See how this works</a>
-          <a class="bl-cta bl-cta-ghost" href="contact.html">Talk to a desk</a>
-        </div>
-      </div>
       <div class="bl-ink-art">
       <img class="bl-ink-hero-art" src="images/hero-oem-program-production-quality-v2.webp" alt="A traditional Dutch hand trowel spanning confidential OEM engineering, controlled production and quality inspection.">
       <div class="bl-ink-stages">
@@ -71,6 +62,7 @@
         </article>
       </div>
       </div>
+      <h1 id="home-title" class="bl-ink-title">Your design. Our discipline. Never our brand.</h1>
     </section>
   </main>
 
@@ -126,6 +118,16 @@
           stage.addEventListener('blur',function(){ clear(stage); });
           stage.addEventListener('keydown',function(event){ if(event.key==='Enter'||event.key===' '){ event.preventDefault(); var all=points(stage),current=stage.dataset.inkIndex==null?-1:Number(stage.dataset.inkIndex),next=(current+1)%all.length; show(stage,next); } });
         });
+        var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        try{
+          if(!reduce&&!sessionStorage.getItem('bl_ink_intro')){
+            stages.forEach(function(stage,index){
+              window.setTimeout(function(){ stage.classList.add('is-intro'); },600+(index*900));
+              window.setTimeout(function(){ stage.classList.remove('is-intro'); },1600+(index*900));
+            });
+            sessionStorage.setItem('bl_ink_intro','1');
+          }
+        }catch(e){}
       }
       if('serviceWorker' in navigator) window.addEventListener('load',function(){ navigator.serviceWorker.register('service-worker.js').catch(function(){}); });
     }());

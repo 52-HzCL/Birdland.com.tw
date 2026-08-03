@@ -38,8 +38,11 @@ function findChrome() {
 }
 
 // Screenshots land outside the repo by default so they are not accidentally
-// committed. SHOTS_DIR overrides.
+// committed. SHOTS_DIR overrides. Created on demand — sharp reports a missing
+// directory as "unable to open for write", which reads like a permissions
+// problem and is not one.
 const SHOTS = process.env.SHOTS_DIR || path.join(REPO, '..', 'shots');
+fs.mkdirSync(SHOTS, { recursive: true });
 
 // The local preview server (tools/dev/serve.js).
 const PORT = Number(process.env.BL_PORT || 8123);
