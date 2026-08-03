@@ -12,16 +12,19 @@ View Source. This is a known and deliberate state (it has been called a "假 PIN
 閘門" before), so it is listed for the record rather than as a surprise. Any real
 fix is a hosting/auth change, not a stylesheet change.
 
-**I-2 · `birdland-intro.html` may be orphaned.**
-Nothing in the eleven audited pages links to it. LCP 2,380ms for 7 words. If it
-is genuinely unreferenced it is a deletion, not a restyle — but confirming that
-means checking external links and print material, which is a decision, not an
-audit finding.
+**I-2 · `birdland-intro.html` is orphaned AND broken.**
+Nothing on the site links to it, and it references its images by bare UUID —
+`url("d4598bf2-6df5-4149-8a58-1adb46724366")` and two more — none of which
+exist in the repo. That is the 404 it logs and most of the 2.3 seconds it takes
+to render seven words. It has presumably looked like this for as long as it has
+existed, because nobody opens it.
 
-**I-3 · An intermittent 404 on `index.html`.**
-Logged once across two identical runs and did not reproduce. Not enough to
-identify the resource. Re-check under Phase 4; if it reappears, capture the URL
-before acting.
+Deleting a page is your call, not mine, so it is untouched. If you want it kept,
+it needs its assets; if not, it and its entry in `service-worker.js` can go.
+
+**I-3 · ~~An intermittent 404 on `index.html`~~ — CLOSED.**
+It was `/favicon.ico`: no page declared an icon, so Chrome asked for the default
+and the server had none. Fixed in 552e8c0 — one `favicon.svg` on every page.
 
 **I-4 · Six webfont families across two blocking requests on the desks.**
 `partner.html` and `cost-desk.html` each request two Google Fonts stylesheets.
@@ -33,6 +36,13 @@ self-hosting or preloading is a build/hosting decision outside this brief.
 `package.json` declares only `jsdom`, which no shipped page uses — it is a test
 dependency for the local verification harness. Correct as a `devDependency`,
 currently listed under `dependencies`. Listed, not changed.
+
+**I-6 · `tools/build_terminal.py` has never been executed.**
+There is no Python on the development machine, so the CI version of the
+Terminal index build is untested; only the Node twin
+(`scratchpad/gen-terminal.js`) has been run. It is invoked non-fatally, so a
+failure costs the panel its live values and its search, not the daily news.
+Watch the first CI run after this merges.
 
 ## Closed during the audit
 

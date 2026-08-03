@@ -44,43 +44,23 @@ Node: `C:\Program Files\nodejs\node.exe`.
 
 ## Done
 
-### Phase 1
-- [x] page inventory, core purpose, P0/P1/P2
-- [x] `screenshots/before/` — 11 pages x 2 viewports (Playwright)
-- [x] `design-tokens.md` — measured census + proposed tokens
-- [x] CLS/LCP per page per viewport
-- [x] `UX-REVIEW.md`, `ISSUES.md`
+All four phases are complete. See `SUMMARY.md` for what changed and what was
+measured; `ISSUES.md` for what is open.
 
-### Phase 2
-- [x] index — visible headline, static propositions, two CTAs, mobile stack (H-1..H-6)
-- [x] site — one favicon, replacing a 404 and two stray marks
-- [x] news — dead decision-visuals script removed (N-1)
-- [x] news — one HQ light / clock / language picker, section-intro measure (N-2, N-4)
-- [x] site — `tokens.css`; four palettes now delegate to it (T-3, M-1)
-- [x] site — seven webfont families to four; 92 literal stacks tokenised (T-1)
-- [x] type scale on the hand-authored pages and shared chrome (T-2)
-- [x] daily supply news — CLS 0.234 -> 0.048; banner stops shifting the page (E-1)
-- [x] site — CLS under 0.1 on every page, both viewports; font-display optional
-- [x] desks — 28/25/17 font sizes down to 7 each (T-2)
-- [x] corrected my own favicon regex damage (stray `">` on three pages)
+- [x] Phase 1 — audit, token census, before screenshots, CLS/LCP baseline
+- [x] Phase 2 — index, Overview→Guide, Terminal, tokens, type, colour, spacing,
+      motion, CLS, About Us, privacy, news de-duplication
+- [x] Phase 3 — dead CSS in five sweeps, plus the control-map stylesheet
+- [x] Phase 4 — after screenshots, full re-measure, `SUMMARY.md`
 
-### Still to do in Phase 2
-- [ ] T-4 motion: one 150/200ms pair; news and executive declare none today
-- [ ] T-5 spacing: 40 paddings / 30 gaps onto the 4/8/16/24/32/48 scale
-- [ ] B-2 radii: 13 down to 3
-- [ ] B-3 buyer desk first screen — everything is on it at once
-- [ ] C-2 cost desk asks for the buying context twice on one screen
-- [ ] E-3 daily supply news shows the same feed three ways
-- [ ] P-1 privacy.html has no site shell
+Not done, and why:
 
-### Phase 3 (not started)
-- [ ] dead CSS left by removed features: `.os-hero`, `.control-map`,
-      `.ownership-note`, `.route-step`, `.dossier*`, `[data-mode]`
-- [ ] console.log / commented-out blocks sweep
-
-### Phase 4 (not started)
-- [ ] `screenshots/after/`, full re-measure, `SUMMARY.md`
-
+- **Team Desk** has no shared header and no Terminal trigger. It was excluded
+  from the banner by instruction; revisit only if that instruction changes.
+- **B-3** was attempted and reverted — the brief aside sets the page height, so
+  deferring anything in the work column cannot shorten it (`4afd0a5`).
+- **`birdland-intro.html`** left alone: orphaned and referencing images that do
+  not exist (ISSUES I-2). Deleting a page is the owner's call.
 ## Corrections to Phase 1
 
 Two findings were withdrawn after the probe was fixed. The overflow check
