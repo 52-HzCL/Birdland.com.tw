@@ -56,3 +56,10 @@ somewhere unusual. Screenshots go to `../shots` next to the repo, or
 A replace that matches nothing returns the input unchanged and exits zero.
 Every edit script here asserts its match count and exits non-zero. Keep it
 that way.
+
+## Acceptance
+
+| | |
+|---|---|
+| `verify-textsize.js` | The A/A/A control on all ten pages: present, text actually grows, setting survives reload. |
+| `live-suite.js` | The production walk-through against birdland.com.tw: every page, nav, Terminal open/search/navigate/close, text size across pages, hero hover, contact routing. Run it after every deploy. |
