@@ -1153,6 +1153,68 @@ button{font:inherit}
   .bl-ink-note,.bl-ink-marker{display:none}
 }
 
+/* ===== About: three plates =====
+
+   Figure on one side, argument on the other, sides alternating. The word
+   "plate" is not decoration — this is the language of an engraved book, which
+   is the same visual family as the home page illustration, and it gives the
+   three points the parallel structure the copy already has: your brand, your
+   product, your supply. */
+.ab-plate{
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:var(--sp-6);align-items:center;
+  width:min(1180px,calc(100% - 64px));margin:0 auto;
+  padding:var(--sp-6) 0;border-top:1px solid var(--bl-line);
+}
+.ab-plate-flip .ab-copy{order:-1}
+.ab-fig{margin:0}
+.ab-fig img{
+  display:block;width:100%;height:auto;
+  border:1px solid var(--bl-line);background:var(--bl-paper);
+}
+/* Plate I is a diagram, not a photograph: the two sides of the boundary need
+   a column each, and in a 538px figure that leaves two words a line. They
+   stack here and the boundary reads top-to-bottom instead. */
+.ab-fig-chart .bd-boundary{grid-template-columns:minmax(0,1fr)}
+.ab-fig-chart .bd-side+.bd-side{border-top:1px solid var(--bl-line)}
+/* The supply map is 465px wide at source. Stretched past that it goes soft,
+   and a soft map is a map you do not trust. */
+.ab-fig img[src*="asia-supply-map"]{max-width:465px;margin-inline:auto}
+.ab-cap{
+  margin:var(--sp-2) 0 0;color:var(--bl-muted);
+  font:600 var(--fs-micro) var(--bl-mono);letter-spacing:.16em;text-transform:uppercase;
+}
+.ab-no{
+  display:block;color:var(--bl-copper);
+  font:500 var(--fs-h2) var(--bl-serif);letter-spacing:.14em;
+}
+.ab-copy h2{
+  margin:var(--sp-2) 0 var(--sp-3);max-width:16ch;
+  font:500 var(--fs-h1)/1.1 var(--bl-serif);letter-spacing:-.015em;color:var(--bl-jade);
+}
+.ab-copy p{margin:0;max-width:52ch;font-size:var(--fs-body);line-height:var(--lh-body);color:var(--bl-ink)}
+.ab-facts{display:flex;gap:var(--sp-5);margin:var(--sp-4) 0 0}
+.ab-facts div{max-width:22ch}
+.ab-facts dt{font:500 var(--fs-h1) var(--bl-serif);color:var(--bl-jade);line-height:1}
+.ab-facts dd{margin:var(--sp-1) 0 0;font-size:var(--fs-small);line-height:1.45;color:var(--bl-muted)}
+.ab-go{
+  display:inline-block;margin-top:var(--sp-4);
+  font:600 var(--fs-small) var(--bl-sans);color:var(--bl-jade);text-decoration:none;
+  border-bottom:1px solid var(--bl-copper);padding-bottom:2px;
+}
+.ab-go:hover,.ab-go:focus-visible{color:var(--bl-copper)}
+.ab-firewall{list-style:none;margin:var(--sp-4) 0 0;padding:0;display:grid;gap:var(--sp-2)}
+.ab-firewall li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:var(--sp-3);padding:var(--sp-2) 0;border-top:1px solid var(--bl-line)}
+.ab-firewall b{font:600 var(--fs-micro) var(--bl-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--bl-copper)}
+.ab-firewall span{font-size:var(--fs-small);line-height:1.5;color:var(--bl-ink)}
+.ab-plate .bl-actions{margin-top:var(--sp-4)}
+@media(max-width:900px){
+  .ab-plate{grid-template-columns:minmax(0,1fr);gap:var(--sp-4);width:calc(100% - 40px);padding:var(--sp-5) 0}
+  .ab-plate-flip .ab-copy{order:0}
+  .ab-facts{gap:var(--sp-4)}
+  .ab-firewall li{grid-template-columns:minmax(0,1fr);gap:var(--sp-1)}
+}
+
 /* ===== Product 101 encyclopedia: tables, packaging, cost ladder ===== */
 
 .p101-lead{max-width:660px;margin:0 0 var(--sp-5);color:var(--bl-muted);font-size:13px}
