@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="tokens.css?v=20260731a"><link rel="stylesheet" href="desk-banner.css?v=20260731h"><link rel="stylesheet" href="terminal.css?v=20260803a"><script defer src="terminal.js?v=20260803a"></script><script defer src="desk-banner.js?v=20260731h"></script><script defer src="tw-holidays.js?v=20260731h"></script>
+  <link rel="stylesheet" href="tokens.css?v=20260731a"><script src="text-size.js?v=20260803a"></script><link rel="stylesheet" href="desk-banner.css?v=20260731h"><link rel="stylesheet" href="terminal.css?v=20260803a"><script defer src="terminal.js?v=20260803a"></script><script defer src="desk-banner.js?v=20260731h"></script><script defer src="tw-holidays.js?v=20260731h"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Guide | How this site works | Birdland</title>
@@ -28,7 +28,7 @@
     .evidence-panel{position:relative;display:flex;flex-direction:column;min-width:0;background:var(--jade);color:var(--ivory)}
     .evidence-head{padding:var(--sp-5) var(--sp-5) var(--sp-4);border-bottom:1px solid rgba(242,236,221,.16)}
     .evidence-head .eyebrow{color:var(--copperlite)}
-    .evidence-head h2{margin:var(--sp-2) 0 0;font:600 clamp(32px,3.2vw,48px)/1 'Playfair Display',var(--ff-serif)}
+    .evidence-head h2{margin:var(--sp-2) 0 0;font:600 calc(clamp(32px,3.2vw,48px) * var(--ui-scale))/1 'Playfair Display',var(--ff-serif)}
     .evidence-visual{min-height:190px;padding:var(--sp-4) var(--sp-5);border-bottom:1px solid rgba(242,236,221,.16)}
 
     .evidence-actions{padding:var(--sp-4) var(--sp-5);background:#092f29}
@@ -43,13 +43,13 @@
     .section-intro h2{max-width:16ch}
     .section-intro>p{max-width:46ch;margin:0}
     @media(max-width:760px){.section-intro{grid-template-columns:minmax(0,1fr);gap:var(--sp-3)}.section-intro h2,.section-intro>p{max-width:none}}
-    .section-intro h2{max-width:620px;margin:var(--sp-2) 0 0;font:600 clamp(32px,4vw,48px)/1 'Playfair Display',var(--ff-serif)}
+    .section-intro h2{max-width:620px;margin:var(--sp-2) 0 0;font:600 calc(clamp(32px,4vw,48px) * var(--ui-scale))/1 'Playfair Display',var(--ff-serif)}
     .section-intro p{max-width:420px;margin:0;color:var(--muted);font-size:var(--fs-small)}
     .proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-1);background:var(--line);border:1px solid var(--line)}
     .proof-card{position:relative;min-height:245px;padding:var(--sp-4);background:var(--paper);overflow:hidden}
     .proof-card svg{width:100%;height:88px;margin:var(--sp-1) 0 var(--sp-4);stroke:var(--jade);fill:none;stroke-width:1.2}
     .proof-card b{display:block;font:600 var(--fs-h2)/1 'Playfair Display',var(--ff-serif)}
-    .proof-card span{display:block;margin-top:var(--sp-2);color:var(--muted);font-size:11px;line-height:1.5}
+    .proof-card span{display:block;margin-top:var(--sp-2);color:var(--muted);font-size:var(--fs-micro);line-height:1.5}
     .proof-tag{position:absolute;right:16px;top:15px;color:var(--copper);font:700 var(--fs-micro) 'DM Mono',monospace;letter-spacing:.12em}
 
     .handoff-strip{display:grid;grid-template-columns:repeat(4,1fr);margin-top:var(--sp-6);background:var(--jade);color:var(--ivory)}
@@ -60,8 +60,8 @@
     .handoff-strip span{display:block;margin-top:var(--sp-2);font:600 var(--fs-h3)/1.05 'Playfair Display',var(--ff-serif)}
 
     .signal-section{margin-top:var(--sp-6)}.signal-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:var(--sp-1);background:var(--line);border:1px solid var(--line)}
-    .signal-card{background:var(--paper);padding:var(--sp-4);min-width:0}.signal-card h3{margin:0;font:600 var(--fs-h2)/1 'Playfair Display',var(--ff-serif)}.signal-card p{margin:var(--sp-2) 0 var(--sp-3);color:var(--muted);font-size:11px;line-height:1.5}
-    .cost-svg{width:100%;height:190px;overflow:visible}.cost-svg .axis{stroke:rgba(6,61,52,.2);stroke-width:1}.cost-svg .bar{fill:var(--jade);transition:opacity .2s}.cost-svg .bar:hover{opacity:.72}.cost-svg .bar.copper{fill:var(--copper)}.cost-svg text{fill:var(--ink);font:700 var(--fs-micro) 'DM Mono',monospace}.cost-svg .value{font-size:11px}.cost-note{display:flex;justify-content:space-between;gap:16px;margin-top:var(--sp-3);padding-top:var(--sp-3);border-top:1px solid var(--line);font:700 var(--fs-micro) 'DM Mono',monospace;color:var(--jade);letter-spacing:.08em}
+    .signal-card{background:var(--paper);padding:var(--sp-4);min-width:0}.signal-card h3{margin:0;font:600 var(--fs-h2)/1 'Playfair Display',var(--ff-serif)}.signal-card p{margin:var(--sp-2) 0 var(--sp-3);color:var(--muted);font-size:var(--fs-micro);line-height:1.5}
+    .cost-svg{width:100%;height:190px;overflow:visible}.cost-svg .axis{stroke:rgba(6,61,52,.2);stroke-width:1}.cost-svg .bar{fill:var(--jade);transition:opacity .2s}.cost-svg .bar:hover{opacity:.72}.cost-svg .bar.copper{fill:var(--copper)}.cost-svg text{fill:var(--ink);font:700 var(--fs-micro) 'DM Mono',monospace}.cost-svg .value{font-size:var(--fs-micro)}.cost-note{display:flex;justify-content:space-between;gap:16px;margin-top:var(--sp-3);padding-top:var(--sp-3);border-top:1px solid var(--line);font:700 var(--fs-micro) 'DM Mono',monospace;color:var(--jade);letter-spacing:.08em}
     .asia-map{width:100%;height:190px}.asia-map .land{fill:#d9d5c9;stroke:rgba(6,61,52,.18);stroke-width:1}.asia-map .taiwan{fill:var(--copper)}.asia-map .china{fill:var(--jade)}.asia-map .sea{fill:none;stroke:rgba(6,61,52,.24);stroke-width:1;stroke-dasharray:3 5}.asia-map text{fill:var(--ink);font:700 var(--fs-micro) 'DM Mono',monospace}.signal-legend{display:flex;gap:var(--sp-3);margin-top:var(--sp-2);font:700 var(--fs-micro) 'DM Mono',monospace;color:var(--muted)}.signal-legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:var(--sp-1);background:var(--jade)}.signal-legend i.c{background:var(--copper)}
     .risk-table{width:100%;border-collapse:collapse;margin-top:var(--sp-1)}.risk-table th,.risk-table td{padding:var(--sp-2) 8px;border-bottom:1px solid var(--line);text-align:left;font-size:var(--fs-micro)}.risk-table th{color:var(--muted);font:700 var(--fs-micro) 'DM Mono',monospace;letter-spacing:.1em}.risk-table td:last-child{font-weight:700;color:var(--jade)}.risk-table .watch{color:var(--copper)}
     @media(max-width:760px){.signal-grid{grid-template-columns:1fr}.signal-card{padding:var(--sp-4)}.cost-svg,.asia-map{height:170px}}

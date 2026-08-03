@@ -44,14 +44,19 @@
   --ff-serif:"Playfair Display",Georgia,"Times New Roman",serif;
   --ff-mono:"DM Mono","IBM Plex Mono",ui-monospace,monospace;
 
-  --fs-display:48px;
-  --fs-h1:32px;
-  --fs-h2:22px;
-  --fs-h3:16px;
-  --fs-body:15px;       /* already the most-used size by an order of magnitude */
-  --fs-small:13px;
-  --fs-micro:11px;      /* floor. 8px shipped on 8 of 11 pages; the buyer's first
-                           language is usually not English. */
+  /* Every size is the base multiplied by --ui-scale, which the reader sets
+     from the header. 758 of the 826 font declarations on this site come
+     through these tokens, so one variable moves almost all of the text.
+     The reader's own browser zoom still works on top of this. */
+  --ui-scale:1;
+  --fs-display:calc(48px * var(--ui-scale));
+  --fs-h1:calc(32px * var(--ui-scale));
+  --fs-h2:calc(22px * var(--ui-scale));
+  --fs-h3:calc(16px * var(--ui-scale));
+  --fs-body:calc(15px * var(--ui-scale));   /* the most-used size by an order of magnitude */
+  --fs-small:calc(13px * var(--ui-scale));
+  --fs-micro:calc(11px * var(--ui-scale));  /* floor. 8px shipped on 8 of 11 pages; the
+                                               buyer's first language is usually not English. */
 
   --lh-tight:1.15;
   --lh-head:1.3;
@@ -88,3 +93,32 @@ input,select,textarea,button{font-family:inherit}
 
 /* Numbers in tables line up or they are not worth tabulating. */
 .num,.tabular{font-family:var(--ff-mono);font-variant-numeric:tabular-nums;text-align:right}
+
+/* ===== Reader text size =====
+
+   Three steps, set from the header and remembered. Large is 1.34x: 15px body
+   becomes 20px and the 11px floor becomes 15px, which is the point — this is
+   for a buyer reading a landed-cost table without their glasses, not a
+   decorative preference.
+
+   Only the type scale moves. Spacing and the grid stay put, so nothing
+   reflows into a different layout; the text simply gets bigger inside it. */
+html.ui-md{--ui-scale:1.16}
+html.ui-lg{--ui-scale:1.34}
+
+.bl-textsize{display:inline-flex;align-items:center;gap:0;border:1px solid var(--jade-900);border-radius:999px;overflow:hidden;background:var(--paper)}
+.bl-textsize button{
+  min-width:30px;padding:7px 0;border:0;background:none;cursor:pointer;
+  color:var(--jade-900);font-family:var(--ff-mono);font-weight:700;line-height:1;
+  transition:background var(--dur-fast) var(--ease),color var(--dur-fast) var(--ease);
+}
+/* The buttons show their own effect: A A A, small to large. Fixed px on
+   purpose — a size picker whose labels resize with the setting cannot be
+   read as a scale. */
+.bl-textsize button:nth-child(1){font-size:11px}
+.bl-textsize button:nth-child(2){font-size:13px}
+.bl-textsize button:nth-child(3){font-size:16px}
+.bl-textsize button+button{border-left:1px solid var(--jade-900)}
+.bl-textsize button:hover{background:rgba(7,60,51,.1)}
+.bl-textsize button[aria-pressed="true"]{background:var(--jade-900);color:var(--paper)}
+@media(max-width:680px){.bl-textsize button{min-width:26px}}
