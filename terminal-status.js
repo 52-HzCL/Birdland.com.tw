@@ -24,7 +24,7 @@
     var now=parts(),date=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()),holidays=window.__TWHOL||TAIWAN_HOLIDAYS,minutes=parseInt(now.hour,10)*60+parseInt(now.minute,10),online=['Mon','Tue','Wed','Thu','Fri'].indexOf(now.weekday)>=0&&minutes>=540&&minutes<1050&&!holidays[date],time=now.hour+':'+now.minute;
     document.querySelectorAll('[data-taipei-time]').forEach(function(el){el.textContent=time+' Taipei';});
     document.querySelectorAll('[data-hq-status]').forEach(function(el){el.classList.toggle('is-online',online);el.classList.toggle('is-offline',!online);});
-    document.querySelectorAll('[data-hq-label]').forEach(function(el){el.textContent=online?'ONLINE':'OFFLINE';});
+    document.querySelectorAll('[data-hq-label]').forEach(function(el){el.textContent=online?'Working':'Resting';});
     document.querySelectorAll('[data-translate-select]').forEach(setPicker);
   }
   tick();setInterval(tick,30000);

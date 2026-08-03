@@ -15,32 +15,47 @@
    like every other item, and the only thing marking it as different is one
    5px dot — which is also the only thing on the page reporting whether the
    data behind it is current. */
+/* Styled by the nav's own rule — .bl-nav .tm-chip and .dbar-nav .tm-chip are
+   in the same selector list as the links, so the chip cannot drift away from
+   About and Factory again. Only the button reset lives here. */
 .tm-chip{
-  display:inline-flex;align-items:center;align-self:center;gap:8px;
-  padding:8px var(--sp-3);border:1px solid var(--jade-900);border-radius:999px;
-  background:var(--paper);color:var(--jade-900);cursor:pointer;
-  font:700 var(--fs-micro)/1 var(--ff-mono);letter-spacing:.08em;text-transform:uppercase;
-  transition:background var(--dur-fast) var(--ease),color var(--dur-fast) var(--ease);
+  display:inline-flex;align-items:center;gap:9px;
+  border:0;background:none;cursor:pointer;
+  font-family:inherit;text-transform:none;
 }
 /* The palette primitive, not var(--down): the two desks redefine --down (and
    --up/--flat/--line) inside body.theme-light for their own data colours, and
    the dot would come out a different green there than on the other eight
    pages. It is one signal in one shared header — it gets one colour. */
+/* The one live signal in the header: a slow pulse, the way an instrument
+   shows it is running rather than merely present. box-shadow and opacity
+   only — animating transform would replace the transforms the markers and
+   header rely on. */
 .tm-chip i{
   width:5px;height:5px;border-radius:50%;background:var(--jade-700);
-  transition:background var(--dur-fast) var(--ease);
+  box-shadow:0 0 0 0 rgba(14,102,82,.5);
+  animation:tmPulse 2.6s ease-in-out infinite;
 }
+@keyframes tmPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(14,102,82,.42);opacity:.85}
+  50%    {box-shadow:0 0 0 4px rgba(14,102,82,0);opacity:1}
+}
+.tm-chip.is-stale i{animation-name:tmPulseStale}
+@keyframes tmPulseStale{
+  0%,100%{box-shadow:0 0 0 0 rgba(185,96,50,.42);opacity:.85}
+  50%    {box-shadow:0 0 0 4px rgba(185,96,50,0);opacity:1}
+}
+@media(prefers-reduced-motion:reduce){.tm-chip i{animation:none}}
 /* Amber when the edition did not refresh. The system reports its own state
    rather than looking healthy regardless — see the panel's EDITION field. */
 .tm-chip.is-stale i{background:var(--copper-600)}
-.tm-chip:hover,.tm-chip:focus-visible{background:var(--jade-900);color:var(--paper);outline:0}
-.tm-chip:hover i,.tm-chip:focus-visible i{box-shadow:0 0 0 2px rgba(251,249,243,.28)}
-.tm-chip[aria-expanded="true"]{background:var(--jade-900);color:var(--paper)}
+.tm-chip:hover,.tm-chip:focus-visible{color:var(--copper-600);outline:0}
+.tm-chip[aria-expanded="true"]{color:var(--copper-600)}
 
 /* The chip is a button in a row of links, so it borrows their vertical
    rhythm rather than inventing its own. Both headers use the same padding. */
-.bl-nav .tm-chip,.dbar-nav .tm-chip{margin:0 2px}
-@media(max-width:680px){.bl-nav .tm-chip,.dbar-nav .tm-chip{margin:0}}
+
+
 
 /* ── overlay ───────────────────────────────────────────────────────────── */
 .tm-dim{

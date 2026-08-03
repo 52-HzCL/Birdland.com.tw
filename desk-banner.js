@@ -72,7 +72,7 @@
           '<div class="dbar-status">' +
             // terminal-status.js drives these three by attribute, so they work
             // here without any per-page wiring.
-            '<span class="dbar-online" data-hq-status><i aria-hidden="true"></i>Birdland HQ <b data-hq-label>OFFLINE</b></span>' +
+            '<span class="dbar-online" data-hq-status>Birdland Office <b data-hq-label>Resting</b></span>' +
             // terminal-status.js writes "18:48 Taipei" in here, so a second
             // label saying Taiwan would just be the same word twice.
             '<span class="dbar-time" data-taipei-time>--:-- Taipei</span>' +
