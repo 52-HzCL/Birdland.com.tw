@@ -883,10 +883,10 @@ body.theme-light #p-rail{
   margin-top:14px!important;padding:0 0 14px!important;border-radius:12px!important;
   border-color:var(--pd-line)!important;background:var(--pd-paper)!important;overflow-x:hidden
 }
-.pr-brand{display:flex;align-items:center;gap:12px;padding:20px 20px 17px;border-bottom:1px solid var(--pd-line)}
-.pr-brand-mark{width:36px;height:36px;display:grid;place-items:center;color:var(--pd-jade);font:700 var(--fs-h1) var(--ff-serif);transform:rotate(-12deg)}
-.pr-brand-word{color:var(--pd-jade);font:700 var(--fs-h2) var(--ff-serif);letter-spacing:.16em}
-.pr-brand-word small{display:block;margin-top:3px;color:var(--pd-jade);font:700 var(--fs-micro) var(--kb-sans);letter-spacing:.27em}
+
+
+
+
 #p-rail .toc{padding:12px 10px 0!important}
 #p-rail .toc-toggle{display:none!important}
 #p-rail .pr-grp{color:#343B37!important;font-size:var(--fs-small)!important;letter-spacing:.16em!important;margin:16px 10px 7px!important;padding:0!important}
@@ -896,11 +896,11 @@ body.theme-light #p-rail{
 #p-rail .toc a.on{background:#F1F5F0!important;color:var(--pd-jade)!important;border-left-color:var(--pd-copper)!important;font-weight:700!important}
 #p-rail .toc a.on::before{border-color:var(--pd-copper);color:var(--pd-copper)}
 #p-rail .pd-hidden-nav{display:none!important}
-.pr-mode-switch{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:12px 10px 2px;padding:2px;border-bottom:1px solid var(--pd-line);background:transparent}
-.pr-mode-switch.pr-mode-3{grid-template-columns:1fr 1fr 1fr}
-.pr-mode-switch button,.pr-mode-switch a{display:grid;place-items:center;min-height:30px;border:0;border-radius:6px;background:transparent;color:#617069;font:700 var(--fs-small) var(--kb-sans);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .18s ease,color .18s ease,box-shadow .18s ease}
-.pr-mode-switch button:hover,.pr-mode-switch button:focus-visible,.pr-mode-switch a:hover,.pr-mode-switch a:focus-visible{color:var(--pd-jade);outline:none}
-.pr-mode-switch button.on,.pr-mode-switch a.on{background:#fffdf8;color:var(--pd-jade);box-shadow:0 1px 3px rgba(5,55,45,.12)}
+
+
+
+
+
 #p-rail /* The Information/Tools split is two pages now, and each page's menu only ever
    contains its own entries, so nothing needs hiding by mode. This rule stayed
    long enough to hide the Overview link on the Cost Desk, whose menu is marked
@@ -1034,7 +1034,7 @@ body.theme-light #dash{
 @media(max-width:899px){
   body.theme-light main.wrap{padding:0 14px 20px!important}
   body.theme-light #p-rail{position:relative!important;top:auto!important;width:auto!important;max-height:none!important}
-  .pr-brand{display:none}
+  
   #p-rail .toc{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
   #p-rail .toc-toggle{display:flex!important;grid-column:1/-1}
   #p-rail .pr-grp,.pr-install-card{grid-column:1/-1}
@@ -1308,10 +1308,10 @@ body.theme-light main.wrap{max-width:1600px!important;padding:0 28px 34px!import
 body.theme-light #p-col{min-width:0!important}
 
 body.theme-light #p-rail{width:236px!important;flex-basis:236px!important;top:76px!important;max-height:calc(100vh - 90px)!important;margin-top:20px!important;padding:0 0 16px!important;border:1px solid var(--pd-line)!important;border-radius:0!important;background:rgba(255,253,248,.96)!important;box-shadow:none!important}
-.pr-brand{padding:22px 20px 19px!important}
-.pr-brand-mark{display:none!important}
-.pr-brand-word{font-size:var(--fs-h2)!important;letter-spacing:.14em!important}
-.pr-brand-word small{font-size:var(--fs-small)!important;letter-spacing:.25em!important}
+
+
+
+
 #p-rail .toc{padding:10px 0 0!important}
 #p-rail .pr-grp{margin:18px 22px 7px!important;color:#4E5651!important;font:700 var(--fs-small) var(--kb-sans)!important;letter-spacing:.18em!important}
 #p-rail .toc a{margin:0!important;padding:10px 20px!important;border:0!important;border-radius:0!important;color:#2F3934!important;font-size:var(--fs-h3)!important;letter-spacing:.01em!important}
@@ -1829,9 +1829,7 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
    pair is hidden — not removed, because #room and #region are the elements the
    context system actually reads. */
 #p-mkt .bento .b-md .ctl{display:none}
-/* .pr-mode-switch sets display:grid, which outranks the browser default for
-   [hidden]. Saying it explicitly is cheaper than a second mechanism. */
-.pr-mode-switch[hidden]{display:none!important}
+
 
 /* ---- The builder reserves its own height ----
 
@@ -2743,13 +2741,9 @@ var LS={g:function(k){try{return localStorage.getItem('bd_p_'+k);}catch(e){retur
       (News), work a programme (Buyer), price it (Cost). A buyer moves between
       those three constantly, and blCtx carries their region, market and line
       across, so the move costs nothing. */
-   /* The header carries News / Buyer / Cost now. This is built but not
-      attached: the element is what syncMode listens on, and detaching it is a
-      smaller change than unpicking that wiring. */
-   var modeSwitch=document.createElement('div');modeSwitch.className='pr-mode-switch pr-mode-3';modeSwitch.hidden=true;modeSwitch.setAttribute('aria-label','Desk');
-   modeSwitch.innerHTML='<a href="executive.html">News</a>'+
-     '<a href="partner.html"'+(isCost?'':' class="on" aria-current="page"')+'>Buyer</a>'+
-     '<a href="cost-desk.html"'+(isCost?' class="on" aria-current="page"':'')+'>Cost</a>';
+   /* The rail's News / Buyer / Cost switch is gone: the Terminal panel in the
+      header is the switch now, and it carries the whole path rather than three
+      bare labels. */
    tocEl.setAttribute('data-mode',isCost?'tools':'information');
    var menuBtn=document.createElement('button');menuBtn.type='button';menuBtn.className='toc-toggle';menuBtn.setAttribute('aria-expanded','true');menuBtn.innerHTML='<span class="toc-toggle-copy"><span class="toc-toggle-icon" aria-hidden="true">☷</span><span>Open Buyer Desk menu</span></span><span class="toc-toggle-arrow" aria-hidden="true">⌄</span>';tocEl.insertBefore(menuBtn,tocEl.firstChild);
    menuBtn.addEventListener('click',function(){var collapsed=tocEl.classList.toggle('is-collapsed');menuBtn.setAttribute('aria-expanded',collapsed?'false':'true');var label=menuBtn.querySelector('.toc-toggle-copy span:last-child');if(label)label.textContent=collapsed?'Show Information & Tools':'Open Buyer Desk menu';});
@@ -2791,7 +2785,6 @@ var LS={g:function(k){try{return localStorage.getItem('bd_p_'+k);}catch(e){retur
    cLine.innerHTML=lines.map(function(p){return '<option value="'+p[0]+'">'+p[1]+'</option>';}).join('');
    sync();});
  })();
- rail.appendChild(modeSwitch);
  var homeCard=document.createElement('div');homeCard.className='pr-install-card';
  var installEl=document.querySelector('.hero-install');if(installEl){homeCard.appendChild(installEl);}
  if(tocEl){
@@ -3817,6 +3810,33 @@ function processTile(name){var n=String(name||'').toLowerCase();
  destination.addEventListener('change',render);
  var feed=window.BirdlandProductFeed;
  if(feed)feed.then(function(data){publicItems=(data&&data.items)||[];render();}).catch(function(){publicItems=[];render();});
+
+ /* The Terminal search sends people here with ?q=<material or process>, so the
+    builder opens on the thing they searched for rather than on whatever was
+    selected last. Anything that does not match is ignored — a stale link should
+    land on a working page, not an error. */
+ (function(){
+  var q="";try{q=decodeURIComponent((location.search.match(/[?&]q=([^&]*)/)||[])[1]||"");}catch(e){}
+  if(!q)return;
+  var want=q.toLowerCase();
+  for(var fi=0;fi<families.length;fi++){
+   var fam=families[fi];
+   for(var pi=0;pi<(fam.parts||[]).length;pi++){
+    var part=fam.parts[pi];
+    for(var mi=0;mi<(part.materials||[]).length;mi++){
+     if(String(part.materials[mi][0]).toLowerCase()===want){
+      state.family=fi;state.part=pi;state.material=mi;state.process=0;render();return;
+     }
+    }
+   }
+   for(var qi=0;qi<(fam.processes||[]).length;qi++){
+    if(String(fam.processes[qi][0]).toLowerCase()===want){
+     state.family=fi;state.part=0;state.material=0;state.process=qi;render();return;
+    }
+   }
+  }
+ }());
+
  render();
 })();</script>
 <script>(function(){

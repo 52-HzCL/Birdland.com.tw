@@ -23,6 +23,18 @@ build("partner_template.html","partner.html",{"__DESKMODE__":"buyer"})
 build("partner_template.html","cost-desk.html",{"__DESKMODE__":"cost"})
 build("team_template.html","team.html")
 build("executive_template.html","executive.html")
+# The Terminal panel reads terminal.json: live values plus the search index.
+# It is derived from outlook-data.json and the templates, so it has to be
+# rebuilt in the same run or the panel shows yesterday.
+# Deliberately non-fatal: if this script fails, the panel falls back to a
+# plain list and the daily news still ships. Killing the whole run over a
+# navigation nicety would be the wrong trade.
+term=os.path.join(TD,"build_terminal.py")
+if os.path.exists(term):
+    r=subprocess.run([sys.executable,term],cwd=HERE)
+    if r.returncode:
+        print("WARNING: build_terminal.py failed (%d) — terminal.json not refreshed" % r.returncode)
+
 feeds=os.path.join(TD,"build_feeds.py")
 if os.path.exists(feeds):
     result=subprocess.run([sys.executable,feeds],cwd=HERE)

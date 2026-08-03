@@ -122,27 +122,8 @@ button{font:inherit}
   text-decoration:none;
 }
 .bl-menu-panel a:hover,.bl-menu-panel a:focus-visible{background:#ebe8dc;color:var(--bl-copper)}
-.bl-terminal{
-  display:inline-flex;
-  align-items:center;
-  gap:9px;
-  min-height:36px;
-  padding:0 13px;
-  border:1px solid var(--bl-line);
-  color:var(--bl-jade);
-  text-decoration:none;
-  font:500 var(--fs-micro)/1 var(--bl-mono);
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
-.bl-terminal::before{
-  content:"";
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:#4e8b5b;
-  box-shadow:0 0 0 3px rgba(78,139,91,.13);
-}
+
+
 .bl-header-actions{display:flex;align-items:center;justify-content:flex-end;gap:14px;min-width:0}
 .bl-status{display:flex;align-items:center;gap:10px;color:var(--bl-muted);font:500 var(--fs-micro)/1 var(--bl-mono);white-space:nowrap}
 .bl-status-online{display:inline-flex;align-items:center;gap:5px;color:var(--bl-muted)}
@@ -178,45 +159,19 @@ button{font:inherit}
 .bl-header.is-scrolled .bl-status-online{color:rgba(248,242,231,.76)}
 .bl-header.is-scrolled .bl-status-online.is-online{color:#b9d8b6}
 .bl-header.is-scrolled .bl-language summary{color:#f8f2e7}
-.bl-header.is-scrolled .bl-terminal{border-color:rgba(215,163,126,.62);color:#f8f2e7;background:rgba(255,255,255,.035)}
-.bl-header.is-scrolled .bl-terminal:hover,
-.bl-header.is-scrolled .bl-terminal:focus-visible{background:rgba(215,163,126,.14)}
+
+
 .bl-header.is-scrolled .bl-menu-panel,
 .bl-header.is-scrolled .bl-language[open]>div{background:rgba(251,249,243,.98);color:var(--bl-ink)}
 .bl-header.is-scrolled .bl-menu-panel a{color:var(--bl-ink)}
-.bl-resource-switch{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(112px,1fr));
-  min-height:40px;
-  border:1px solid var(--bl-line);
-  background:rgba(251,249,243,.74);
-}
-.bl-resource-switch a{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  padding:0 13px;
-  color:var(--bl-jade);
-  font:500 var(--fs-micro)/1 var(--bl-mono);
-  letter-spacing:.06em;
-  text-decoration:none;
-  text-transform:uppercase;
-  white-space:nowrap;
-}
-.bl-resource-switch a+a{border-left:1px solid var(--bl-line)}
-.bl-resource-switch a span{
-  color:var(--bl-copper);
-  font-size:var(--fs-micro);
-  letter-spacing:.02em;
-}
-.bl-resource-switch a:hover,.bl-resource-switch a:focus-visible{background:#ebe8dc}
-.bl-resource-switch a[aria-current="page"]{
-  background:var(--bl-jade);
-  color:var(--bl-paper);
-}
-.bl-resource-switch a[aria-current="page"] span{color:var(--bl-copper-soft)}
-.bl-resource-switch a:focus-visible{outline:2px solid var(--bl-copper);outline-offset:2px}
+
+
+
+
+
+
+
+
 .bl-main{width:min(1440px,calc(100% - 56px));margin:auto}
 .bl-eyebrow{
   color:var(--bl-copper);
@@ -875,7 +830,7 @@ button{font:inherit}
   .bl-nav{grid-column:1/-1;order:3;justify-content:flex-start;overflow:auto;gap:20px;border-top:1px solid var(--bl-line);scrollbar-width:none}
   .bl-nav::-webkit-scrollbar{display:none}
   .bl-nav>a,.bl-nav summary{padding:12px 0 10px;white-space:nowrap}
-  .bl-terminal,.bl-resource-switch{justify-self:end}
+  
   .bl-menu-panel{top:42px;left:0;right:auto}
   .bl-main,.ledger-main{width:calc(100% - 32px)}
   .bl-hero{min-height:0}
@@ -913,10 +868,10 @@ button{font:inherit}
   .bl-status-time{display:none}
   /* Three routes to the same place on a 380px header: this button, Desks in
      the nav, and the two buttons in the hero. The button goes. */
-  .bl-terminal{display:none}
-  .bl-resource-switch{grid-template-columns:1fr;min-width:132px}
-  .bl-resource-switch a{min-height:34px;padding:0 9px;font-size:var(--fs-micro)}
-  .bl-resource-switch a+a{border-left:0;border-top:1px solid var(--bl-line)}
+  
+  
+  
+  
   .bl-header-inner{min-height:0}
   .bl-nav{gap:16px}
   .bl-header.is-scrolled .bl-header-inner{grid-template-columns:auto minmax(0,1fr);min-height:62px;padding-top:0;gap:10px}
@@ -930,8 +885,8 @@ button{font:inherit}
   .bl-header.is-scrolled .bl-status-online [data-hq-label]{font:700 var(--fs-micro)/1 var(--bl-mono)}
   .bl-header.is-scrolled .bl-language summary{font-size:0}
   .bl-header.is-scrolled .bl-language summary::after{content:"LANG";font:700 var(--fs-micro)/1 var(--bl-mono);letter-spacing:.04em}
-  .bl-header.is-scrolled .bl-terminal{width:auto;min-height:30px;padding:0 7px;font-size:0}
-  .bl-header.is-scrolled .bl-terminal::after{content:"BUYER";font:700 var(--fs-micro)/1 var(--bl-mono);letter-spacing:.05em}
+  
+  
   .bl-header.is-scrolled .bl-nav>a,.bl-header.is-scrolled .bl-nav summary{padding:0}
   .bl-hero-copy{padding:44px 22px 34px}
   .bl-hero h1{font-size:clamp(48px,14vw,48px);line-height:1}
@@ -1262,7 +1217,10 @@ button{font:inherit}
 
 /* ===== Product 101: reference-article (wiki) layout ===== */
 .wk{display:grid;grid-template-columns:238px minmax(0,1fr);gap:52px;width:min(1380px,calc(100% - 56px));margin:auto;padding:34px 0 0}
-.wk-toc{position:sticky;top:132px;align-self:start;padding-left:16px;border-left:1px solid var(--bl-jade)}
+/* Sticky with no height limit: once the contents ran past one screen, the
+   entries after Packaging could only be reached by scrolling the article to
+   its end — which is exactly when a table of contents is useless. */
+.wk-toc{position:sticky;top:132px;align-self:start;max-height:calc(100vh - 152px);overflow-y:auto;overscroll-behavior:contain;padding-left:16px;border-left:1px solid var(--bl-jade);scrollbar-width:thin}
 .wk-toc b{display:block;margin-bottom:12px;color:var(--bl-copper);font:500 var(--fs-micro) var(--bl-mono);letter-spacing:.12em}
 .wk-toc ol,.wk-toc ul{margin:0;padding:0;list-style:none}
 .wk-toc ul{margin:5px 0 10px 11px}
@@ -1498,6 +1456,6 @@ button{font:inherit}
    199px on Factory, which carries the resource switch as well. */
 @media(max-width:680px){
   .bl-header{min-height:154px}
-  .bl-header:has(.bl-resource-switch){min-height:199px}
+  
   .bl-header.is-scrolled{min-height:0}
 }

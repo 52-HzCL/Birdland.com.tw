@@ -119,14 +119,10 @@ body{padding-top:0!important}
 .dbar-lang small{display:block;margin-top:7px;color:var(--flat);font-size:var(--fs-micro);line-height:1.45}
 
 /* The one thing the home page header does not have. */
-.dbar-switch{display:flex;gap:2px;flex:0 0 auto;padding:2px;border:1px solid var(--line)}
-.dbar-switch a{
-  padding:6px 13px;color:var(--ink-500);text-decoration:none;
-  font:600 var(--fs-micro)/1.2 var(--ff-mono);letter-spacing:.08em;text-transform:uppercase;
-  transition:color var(--dur-fast) var(--ease),background var(--dur-fast) var(--ease);
-}
-.dbar-switch a:hover{color:var(--copper-600)}
-.dbar-switch a.on{background:var(--jade-900);color:var(--paper)}
+
+
+
+
 
 @media(max-width:680px){
   /* Same three rows the home page header wraps into at this width. The desk
@@ -136,8 +132,8 @@ body{padding-top:0!important}
      right edge. */
   .dbar-inner{width:calc(100% - 32px);grid-template-columns:minmax(0,1fr) auto;gap:0 10px;padding-top:14px}
   .dbar-wordmark{grid-column:1;font-size:var(--fs-h3)}
-  .dbar-switch{grid-column:2;grid-row:1;align-self:start;margin-top:2px}
-  .dbar-switch a{padding:5px 9px}
+  
+  
   .dbar-nav{grid-column:1/-1;justify-content:flex-start;gap:18px}
   .dbar-nav>a,.dbar-nav summary{padding:12px 0 10px}
   .dbar-menu-panel{top:38px;right:auto;left:0}

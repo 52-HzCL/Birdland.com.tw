@@ -42,13 +42,6 @@
   // selector, so this holds on any page that grows a second status strip.
   var CLAIMED = '[data-hq-status],[data-taipei-time],[data-language-picker]';
 
-  var DESKS = [
-    ['executive.html', 'Daily Supply News', 'news'],
-    ['partner.html', 'Buyer Desk', 'buyer'],
-    ['cost-desk.html', 'Cost Desk', 'cost'],
-    ['team.html', 'Team Desk', null],
-  ];
-
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
   function build() {
@@ -56,10 +49,6 @@
     DUPES.forEach(function (sel) {
       [].forEach.call(document.querySelectorAll(sel), function (n) { n.style.display = 'none'; });
     });
-
-    var deskLinks = DESKS.map(function (d) {
-      return '<a href="' + d[0] + '"' + (d[2] === here ? ' aria-current="page"' : '') + '>' + esc(d[1]) + '</a>';
-    }).join('');
 
     var bar = document.createElement('header');
     bar.id = 'desk-banner';
@@ -69,10 +58,14 @@
       '<div class="dbar-inner">' +
         '<a class="dbar-wordmark" href="index.html">BIRDLAND<small>' + esc(EYEBROW[here]) + '</small></a>' +
         '<nav class="dbar-nav" aria-label="Main navigation">' +
-          '<a href="about.html">About</a>' +
+          '<details class="dbar-menu"><summary>About</summary><div class="dbar-menu-panel">' +
+            '<a href="about.html">Us</a>' +
+            '<a href="guide.html"' + (here === 'guide' ? ' aria-current="page"' : '') + '>Guide</a>' +
+          '</div></details>' +
           '<a href="product-101.html">Factory</a>' +
-          '<details class="dbar-menu"><summary>Desks</summary>' +
-            '<div class="dbar-menu-panel">' + deskLinks + '</div></details>' +
+          // Same trigger markup as the hand-written headers, so terminal.js
+          // binds to one selector rather than knowing about two headers.
+          '<button type="button" class="tm-chip" data-terminal aria-haspopup="dialog" aria-expanded="false"><i aria-hidden="true"></i>Terminal</button>' +
           '<a href="contact.html">Contact</a>' +
         '</nav>' +
         '<div class="dbar-actions">' +
@@ -90,15 +83,6 @@
             '<option>Choose language&hellip;</option></select>' +
             '<small>Opens Google Translate in a new tab. Nothing is stored.</small></div></details>' +
         '</div>' +
-        // A grid child of .dbar-inner rather than part of the actions cluster:
-        // at 380px it has to move up beside the wordmark, and CSS cannot
-        // reparent an element.
-        '<nav class="dbar-switch" aria-label="Desk">' +
-          [['News', 'executive.html', 'news'], ['Buyer', 'partner.html', 'buyer'], ['Cost', 'cost-desk.html', 'cost']]
-            .map(function (p) {
-              return '<a href="' + p[1] + '"' + (here === p[2] ? ' class="on" aria-current="page"' : '') + '>' + p[0] + '</a>';
-            }).join('') +
-        '</nav>' +
       '</div>';
 
     // Same synchronous block: no frame is painted with both or with neither.
