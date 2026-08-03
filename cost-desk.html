@@ -1823,6 +1823,16 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
    than as a panel that is simply shorter. They size to their content now. */
 .landed-workspace{align-items:start}
 
+/* The rail's context card and the Origin panel's own selects are the same two
+   questions, visible at the same time on the same screen. The rail's is the one
+   that says "set once, the desk and your enquiry follow it", so the panel's
+   pair is hidden — not removed, because #room and #region are the elements the
+   context system actually reads. */
+#p-mkt .bento .b-md .ctl{display:none}
+/* .pr-mode-switch sets display:grid, which outranks the browser default for
+   [hidden]. Saying it explicitly is cheaper than a second mechanism. */
+.pr-mode-switch[hidden]{display:none!important}
+
 /* ---- The builder reserves its own height ----
 
    Everything in the brief builder is rendered from script: the family tabs,
@@ -2733,7 +2743,10 @@ var LS={g:function(k){try{return localStorage.getItem('bd_p_'+k);}catch(e){retur
       (News), work a programme (Buyer), price it (Cost). A buyer moves between
       those three constantly, and blCtx carries their region, market and line
       across, so the move costs nothing. */
-   var modeSwitch=document.createElement('div');modeSwitch.className='pr-mode-switch pr-mode-3';modeSwitch.setAttribute('aria-label','Desk');
+   /* The header carries News / Buyer / Cost now. This is built but not
+      attached: the element is what syncMode listens on, and detaching it is a
+      smaller change than unpicking that wiring. */
+   var modeSwitch=document.createElement('div');modeSwitch.className='pr-mode-switch pr-mode-3';modeSwitch.hidden=true;modeSwitch.setAttribute('aria-label','Desk');
    modeSwitch.innerHTML='<a href="executive.html">News</a>'+
      '<a href="partner.html"'+(isCost?'':' class="on" aria-current="page"')+'>Buyer</a>'+
      '<a href="cost-desk.html"'+(isCost?' class="on" aria-current="page"':'')+'>Cost</a>';
@@ -2742,8 +2755,8 @@ var LS={g:function(k){try{return localStorage.getItem('bd_p_'+k);}catch(e){retur
    menuBtn.addEventListener('click',function(){var collapsed=tocEl.classList.toggle('is-collapsed');menuBtn.setAttribute('aria-expanded',collapsed?'false':'true');var label=menuBtn.querySelector('.toc-toggle-copy span:last-child');if(label)label.textContent=collapsed?'Show Information & Tools':'Open Buyer Desk menu';});
    if(window.matchMedia&&window.matchMedia('(max-width:899px)').matches){tocEl.classList.add('is-collapsed');menuBtn.setAttribute('aria-expanded','false');var mobileLabel=menuBtn.querySelector('.toc-toggle-copy span:last-child');if(mobileLabel)mobileLabel.textContent='Show Information & Tools';}
  }
- var brand=document.createElement('div');brand.className='pr-brand';brand.innerHTML='<span class="pr-brand-mark" aria-hidden="true">⌁</span><span class="pr-brand-word">BIRDLAND<small>'+(window.BL_DESK==='cost'?'COST DESK':'BUYER DESK')+'</small></span>';
- rail.appendChild(brand);
+ /* The rail used to open with BIRDLAND / COST DESK. The header says exactly
+    that, 80px above it. */
  // Context card: the single place the buying context is set. It sits above the
  // mode switch, so it is on screen in Information and in Tools alike — which is
  // the point. The tools no longer ask a question the desk already answered.
