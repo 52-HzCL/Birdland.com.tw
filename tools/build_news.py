@@ -12,7 +12,9 @@ def build(tpl,out,extra=None):
         s=s.replace(k,v)
     open(os.path.join(HERE,out),"w",encoding="utf-8",newline="").write(s)
     print("built",out,len(s),"bytes")
-build("news_template.html","news.html")
+# Overview became About > Guide. news.html is now a hand-written redirect
+# stub and must not be regenerated here, or the daily run overwrites it.
+build("news_template.html","guide.html")
 # The Buyer Desk and the Cost Desk are the same template rendered twice: the
 # calculators share the desk's helpers, router and rail, so each page drops the
 # half that is not its own at load rather than the two being split into separate

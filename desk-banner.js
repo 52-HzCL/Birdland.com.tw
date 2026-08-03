@@ -17,7 +17,10 @@
 // Team Desk is deliberately excluded. It is the internal surface and is not
 // part of the News / Buyer / Cost rotation.
 (function () {
-  var PAGES = { 'news.html': 'overview', 'executive.html': 'news', 'partner.html': 'buyer', 'cost-desk.html': 'cost' };
+  // Guide is not a desk — it is the site's manual, filed under About — but it
+  // still needs the same header as everything else, so it is listed here with
+  // no entry in the desk switch below.
+  var PAGES = { 'guide.html': 'guide', 'executive.html': 'news', 'partner.html': 'buyer', 'cost-desk.html': 'cost' };
   var file = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
   if (!file) file = 'index.html';
   // The preview server serves extensionless URLs, so /cost-desk has to resolve too.
@@ -28,7 +31,7 @@
   // that loads the stylesheet but gets no banner must reclaim that space.
   if (!here) { document.documentElement.className += ' dbar-none'; return; }
 
-  var EYEBROW = { overview: 'Overview', news: 'Daily Supply News', buyer: 'Buyer Desk', cost: 'Cost Desk' };
+  var EYEBROW = { guide: 'Guide', news: 'Daily Supply News', buyer: 'Buyer Desk', cost: 'Cost Desk' };
 
   // Whatever else on the page is a top strip. .shell-header is Overview's own
   // header, which this one now replaces outright rather than sitting above.
@@ -40,7 +43,6 @@
   var CLAIMED = '[data-hq-status],[data-taipei-time],[data-language-picker]';
 
   var DESKS = [
-    ['news.html', 'Overview', 'overview'],
     ['executive.html', 'Daily Supply News', 'news'],
     ['partner.html', 'Buyer Desk', 'buyer'],
     ['cost-desk.html', 'Cost Desk', 'cost'],

@@ -1,4 +1,4 @@
-const VERSION = "birdland-desks-v29";
+const VERSION = "birdland-desks-v30";
 const CORE_CACHE = `${VERSION}-core`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const CORE_ASSETS = [
@@ -6,7 +6,7 @@ const CORE_ASSETS = [
   "./index.html",
   "./partner.html",
   "./executive.html",
-  "./news.html",
+  "./guide.html",
   "./team.html",
   "./about.html",
   "./product-101.html",
