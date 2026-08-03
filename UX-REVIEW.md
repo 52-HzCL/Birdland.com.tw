@@ -217,9 +217,14 @@ does not exist; 9px and 13px are more common than 16px.
   worst concentration of T-2/T-3 on the site.
 - **B-2 · 10 border radii on one page** (50%, 999px, 8, 10, 2, 14, 6, 12, 11,
   7px) — three "rounded card" treatments coexisting.
-- **B-3 · First screen carries everything at once**: family tabs, exploded
-  anatomy, eight part chips, four material cards, four process cards, three
-  priority sliders, the cost floor, and the brief panel. Nothing is deferred.
+- **B-3 · ~~First screen carries everything at once~~ — TRIED AND REVERTED.**
+  The finding was written from reading the page, not from measuring it. The
+  work column is 2,019px and the brief aside beside it is 1,876px, and the
+  grid stretches both to the taller — so folding the 589px cost floor did not
+  shorten the page by a pixel. It only opened a 300px void beside the aside.
+  Deferring anything inside the work column cannot help while the aside sets
+  the height; the real question, if this is ever worth revisiting, is whether
+  the brief belongs in a column at all.
 - **B-4 · LCP 572ms — slowest of the real pages**, driven by the six-family
   double font request (T-1).
 
