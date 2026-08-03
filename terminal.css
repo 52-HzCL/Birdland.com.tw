@@ -97,33 +97,42 @@ html.tm-open .bl-header,html.tm-open #desk-banner{z-index:820}
 .tm-srch input::placeholder{color:rgba(220,234,244,.42)}
 .tm-srch em{font-style:normal;font:500 var(--fs-micro) var(--ff-mono);letter-spacing:.14em;color:rgba(143,199,232,.6);white-space:nowrap}
 
-/* ── the path: 01 → 02 → 03 ────────────────────────────────────────────── */
-.tm-path{display:grid;grid-template-columns:1fr 40px 1fr 40px 1fr}
-.tm-step{display:block;padding:22px 22px 20px;text-decoration:none;color:inherit}
-.tm-step:hover .tm-name,.tm-step:focus-visible .tm-name{color:#8FC7E8}
+/* ── the launcher: four apps on the drawing ─────────────────────────────
+   Tap targets, not diagram boxes. Each app is an iOS-style rounded tile
+   holding a blueprint line icon; the arrows keep the route readable, and the
+   grid behind them stays, because the conceit is apps drawn on the plan. */
+.tm-path{display:grid;grid-template-columns:1fr 34px 1fr 34px 1fr;align-items:stretch}
+.tm-step{
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:7px;
+  padding:24px 20px 22px;text-decoration:none;color:inherit;
+}
 .tm-step:focus-visible{outline:1px solid rgba(143,199,232,.7);outline-offset:-3px}
-.tm-arrow{display:grid;place-items:center;border-left:1px solid rgba(143,199,232,.22);border-right:1px solid rgba(143,199,232,.22)}
-.tm-k{display:flex;align-items:center;gap:9px;margin-bottom:11px}
-.tm-no{
-  display:inline-grid;place-items:center;width:19px;height:19px;border-radius:50%;
-  border:1px solid rgba(143,199,232,.6);font:500 var(--fs-micro) var(--ff-mono);color:#8FC7E8;
+.tm-arrow{display:grid;place-items:center}
+.tm-ico{
+  display:grid;place-items:center;width:60px;height:60px;border-radius:14px;
+  color:#CFE8F8;background:linear-gradient(180deg,rgba(38,86,124,.9),rgba(18,52,82,.95));
+  border:1px solid rgba(143,199,232,.5);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 8px 18px rgba(4,18,30,.45);
+  transition:transform var(--dur-fast) var(--ease),box-shadow var(--dur-fast) var(--ease);
 }
-.tm-k span{font:500 var(--fs-micro) var(--ff-mono);letter-spacing:.2em;color:rgba(143,199,232,.6)}
+.tm-ico svg{width:30px;height:30px}
+.tm-step:hover .tm-ico,.tm-step:focus-visible .tm-ico{
+  transform:translateY(-2px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 12px 22px rgba(4,18,30,.55);
+}
+.tm-k{margin-top:4px;font:500 var(--fs-micro) var(--ff-mono);letter-spacing:.2em;color:rgba(143,199,232,.6)}
 .tm-name{display:block;font:600 var(--fs-h3) var(--ff-sans);color:#fff;transition:color var(--dur-fast) var(--ease)}
-.tm-desc{display:block;margin-top:3px;font:400 var(--fs-small)/1.5 var(--ff-sans);color:rgba(220,234,244,.58)}
-.tm-live{
-  display:inline-block;margin-top:8px;padding:2px 8px;border:1px solid rgba(143,199,232,.4);
-  font:500 var(--fs-micro) var(--ff-mono);letter-spacing:.04em;color:rgba(143,199,232,.75);
-}
-.tm-live.up{color:#F0A08A;border-color:rgba(240,160,138,.45)}
-.tm-live.down{color:#8FD9AC;border-color:rgba(143,217,172,.45)}
+.tm-step:hover .tm-name,.tm-step:focus-visible .tm-name{color:#8FC7E8}
+.tm-desc{display:block;font:400 var(--fs-small)/1.5 var(--ff-sans);color:rgba(220,234,244,.62)}
 
-/* Team Desk is not on the buyer's path, so it is not a step. */
+/* Team Desk is not on the buyer's path, so it is not a tile in the row. */
 .tm-aside{
   display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;
-  padding:13px 22px;border-top:1px solid rgba(143,199,232,.45);
+  padding:12px 22px;border-top:1px solid rgba(143,199,232,.45);
   background:rgba(143,199,232,.05);text-decoration:none;color:inherit;
 }
+.tm-ico-sm{width:34px;height:34px;border-radius:9px}
+.tm-ico-sm svg{width:19px;height:19px}
 .tm-aside .tm-name{font-size:var(--fs-small)}
 .tm-aside .tm-desc{margin-top:1px}
 .tm-aside .fn{font:500 var(--fs-micro) var(--ff-mono);letter-spacing:.18em;color:rgba(143,199,232,.6)}

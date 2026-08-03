@@ -14,12 +14,21 @@
 (function () {
   'use strict';
   var DATA = null, LOADING = null, dim, panel, input, results, chip;
+  // Blueprint line icons, one per app: a newspaper, a spec sheet, a set of
+  // scales, a lock. Stroke only — they sit on the drawing, so they are drawn
+  // like the drawing.
+  var ICON = {
+    news: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h18v18H7a2 2 0 0 1-2-2z"/><path d="M23 11h3a1 1 0 0 1 1 1v11a2 2 0 0 1-2 2H23"/><path d="M9 12h7M9 16h10M9 20h10"/><rect x="17" y="11" width="3" height="3"/></svg>',
+    buyer: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5h10v4h-10z"/><path d="M21 7h3a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h3"/><path d="M11 15l2.5 2.5L18 13"/><path d="M11 21h10"/></svg>',
+    cost: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 5v3M16 8 6 12M16 8l10 4"/><path d="M6 12 3.5 19a4 4 0 0 0 5 0L6 12zM26 12l-2.5 7a4 4 0 0 0 5 0L26 12z"/><path d="M16 8v16M11 27h10"/></svg>',
+    team: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="14" width="18" height="13" rx="2"/><path d="M11 14v-4a5 5 0 0 1 10 0v4"/><path d="M16 19v4"/></svg>',
+  };
   var STEPS = [
-    ['01', 'WHAT CHANGED', 'Daily Supply News', 'executive.html', 'news',
+    ['WHAT CHANGED', 'Daily Supply News', 'executive.html', 'news',
       'Steel, resin, freight and policy — what moved since your last order.'],
-    ['02', 'WHAT YOU NEED', 'Buyer Desk', 'partner.html', 'buyer',
+    ['WHAT YOU NEED', 'Buyer Desk', 'partner.html', 'buyer',
       'Product family, part, material and process route, and the brief that comes out of it.'],
-    ['03', 'WHAT IT COSTS', 'Cost Desk', 'cost-desk.html', 'cost',
+    ['WHAT IT COSTS', 'Cost Desk', 'cost-desk.html', 'cost',
       'Landed cost, retail margin, reorder timing, sailing and duty by origin.'],
   ];
 
@@ -61,15 +70,13 @@
   }
 
   function stepHTML() {
-    var s = (DATA && DATA.steps) || {};
     return STEPS.map(function (st, i) {
-      var live = s[st[4]];
       var cell =
-        '<a class="tm-step" href="' + st[3] + '">' +
-          '<span class="tm-k"><span class="tm-no">' + st[0] + '</span><span>' + st[1] + '</span></span>' +
-          '<span class="tm-name">' + esc(st[2]) + '</span>' +
-          '<span class="tm-desc">' + esc(st[5]) + '</span>' +
-          (live && live.text ? '<span class="tm-live ' + esc(live.dir || '') + '">' + esc(live.text) + '</span>' : '') +
+        '<a class="tm-step" href="' + st[2] + '">' +
+          '<span class="tm-ico">' + ICON[st[3]] + '</span>' +
+          '<span class="tm-k">' + st[0] + '</span>' +
+          '<span class="tm-name">' + esc(st[1]) + '</span>' +
+          '<span class="tm-desc">' + esc(st[4]) + '</span>' +
         '</a>';
       if (i === STEPS.length - 1) return cell;
       return cell +
@@ -106,7 +113,7 @@
         '</div>' +
         '<div class="tm-path">' + stepHTML() + '</div>' +
         '<a class="tm-aside" href="team.html">' +
-          '<span class="tm-no">04</span>' +
+          '<span class="tm-ico tm-ico-sm">' + ICON.team + '</span>' +
           '<span><span class="tm-name">Team Desk</span><span class="tm-desc">Internal dashboard — not on the buyer\'s path.</span></span>' +
           '<span class="fn">INTERNAL</span>' +
         '</a>' +
