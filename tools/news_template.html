@@ -141,15 +141,38 @@
          It replaced an interactive "OEM control map", three signal cards and a
          four-step handoff strip — three attempts at the same job, none of which
          said which page to open or why. */
-      .ov-steps{display:grid;grid-template-columns:repeat(5,1fr);position:relative;margin-top:var(--sp-4)}
-      .ov-steps:before{content:'';position:absolute;left:6%;right:6%;top:29px;border-top:2px dashed var(--line,#d7cdbb)}
-      .ov-step{position:relative;padding:0 var(--sp-3)}
-      .ov-dot{position:relative;z-index:1;width:58px;height:58px;margin:0 auto 15px;display:grid;place-items:center;border-radius:50%;
-        background:var(--paper,#fbf8f1);border:2px solid var(--jade,#063d34);color:var(--jade,#063d34);font:600 var(--fs-h2) 'DM Mono',monospace}
-      .ov-step:first-child .ov-dot{background:var(--jade,#063d34);color:var(--ivory,#f2ecdd)}
-      .ov-step h3{text-align:center;margin:0 0 4px;font:600 var(--fs-h3)/1.2 'Playfair Display',var(--ff-serif)}
+      /* The walk: one leg per screen, copy and screenshot side by side, sides
+         alternating so the eye zig-zags down instead of scanning a wall. The
+         screenshots are of the real pages — a description of a page goes stale
+         the moment that page is redesigned, a picture of it cannot. */
+      .ov-walk{list-style:none;margin:var(--sp-5) 0 0;padding:0;display:grid;gap:var(--sp-6)}
+      .ov-leg{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:var(--sp-6);align-items:center}
+      .ov-leg:nth-child(even) .ov-leg-copy{order:2}
+      .ov-leg-no{font:600 var(--fs-micro) var(--mono);letter-spacing:.2em;color:var(--copper)}
+      .ov-leg-copy .ov-where{display:inline-block;margin-left:var(--sp-2);font:600 var(--fs-micro) var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+      .ov-leg-copy h3{margin:var(--sp-2) 0 var(--sp-2);font:500 var(--fs-h2)/1.2 var(--serif);color:var(--jade)}
+      .ov-leg-copy p{margin:0;max-width:44ch;color:var(--ink);font-size:var(--fs-body);line-height:var(--lh-body)}
+      .ov-leg-go{display:inline-block;margin-top:var(--sp-3);font:600 var(--fs-small) var(--sans);color:var(--jade);text-decoration:none;border-bottom:1px solid var(--copper);padding-bottom:2px}
+      .ov-leg-go:hover,.ov-leg-go:focus-visible{color:var(--copper)}
+      /* .ov-leave was centred for the five-across strip it used to sit in.
+         In a left-aligned column that reads as a stray caption. */
+      .ov-leg-copy .ov-leave{text-align:left;margin-top:var(--sp-3)}
+      .ov-leg-copy .ov-leave b{display:block}
+      .ov-leg-shots{display:grid;gap:var(--sp-3)}
+      .ov-shot{margin:0}
+      .ov-shot img{display:block;width:100%;height:auto;border:1px solid var(--line);background:var(--paper);box-shadow:0 var(--sp-3) var(--sp-5) rgba(7,60,51,.10)}
+      .ov-shot figcaption{margin-top:var(--sp-1);font:500 var(--fs-micro) var(--mono);letter-spacing:.08em;color:var(--muted)}
+      @media(max-width:900px){
+        .ov-leg{grid-template-columns:minmax(0,1fr);gap:var(--sp-4)}
+        .ov-leg:nth-child(even) .ov-leg-copy{order:0}
+      }
+      
+      
+      
+      
+      
       .ov-where{display:block;text-align:center;margin-bottom:var(--sp-2);color:var(--copper,#c9763d);font:700 var(--fs-micro) 'DM Mono',monospace;letter-spacing:.13em;text-transform:uppercase}
-      .ov-step p{margin:0;font-size:var(--fs-small);line-height:1.55;color:#3d4743;text-align:center}
+      
       .ov-leave{display:block;margin-top:var(--sp-2);padding-top:var(--sp-2);border-top:1px solid var(--line,#d7cdbb);color:var(--muted,#6c6255);font-size:var(--fs-micro);text-align:center}
       .ov-leave b{display:block;margin-bottom:var(--sp-1);color:var(--jade,#063d34);font:700 var(--fs-micro) 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase}
       .ov-cta{display:flex;gap:var(--sp-2);justify-content:center;flex-wrap:wrap;margin-top:var(--sp-4)}
@@ -175,9 +198,9 @@
       .ov-chip.go{border-color:var(--jade,#063d34);color:var(--jade,#063d34);font-weight:700;text-decoration:none}
       .ov-note{margin-top:var(--sp-4);padding:var(--sp-3) 16px;border-left:2px solid var(--copper,#c9763d);background:var(--paper,#fbf8f1);color:var(--muted,#6c6255);font-size:var(--fs-small)}
       @media(max-width:900px){
-        .ov-steps{grid-template-columns:1fr;gap:var(--sp-3)}
-        .ov-steps:before{display:none}
-        .ov-step{padding:0}
+        
+        
+        
         .ov-mind{grid-template-columns:1fr}
         .ov-spine{display:none}
         .ov-br:before{display:none}
@@ -191,38 +214,69 @@
         <div><span class="eyebrow">START HERE</span><h2 id="ov-start-title">Five steps, in the order they actually happen.</h2></div>
         <p>Each step names the page, what you do there, and what you walk away holding. Nothing here needs an account.</p>
       </div>
-      <div class="ov-steps">
-        <div class="ov-step">
-          <div class="ov-dot">1</div><span class="ov-where">About</span>
-          <h3>Know who you're talking to</h3>
-          <p>Fifty-two years behind other people's brands, and never a competing retail label.</p>
-          <span class="ov-leave"><b>You leave with</b>Whether the commercial boundary works for you</span>
-        </div>
-        <div class="ov-step">
-          <div class="ov-dot">2</div><span class="ov-where">Factory</span>
-          <h3>Check we can make it</h3>
-          <p>Photographs of the floor, the catalogue, and every material and process route.</p>
-          <span class="ov-leave"><b>You leave with</b>The material and route your product needs</span>
-        </div>
-        <div class="ov-step">
-          <div class="ov-dot">3</div><span class="ov-where">Daily Supply News</span>
-          <h3>See today's conditions</h3>
-          <p>What moved in steel, resin, freight and policy — and what it changes.</p>
-          <span class="ov-leave"><b>You leave with</b>Whether now is a good week to commit</span>
-        </div>
-        <div class="ov-step">
-          <div class="ov-dot">4</div><span class="ov-where">Buyer &amp; Cost Desk</span>
-          <h3>Work out your number</h3>
-          <p>Plan the programme, then price it: landed cost, margin, timing and sailing.</p>
-          <span class="ov-leave"><b>You leave with</b>A landed cost you can defend internally</span>
-        </div>
-        <div class="ov-step">
-          <div class="ov-dot">5</div><span class="ov-where">Contact</span>
-          <h3>Ask the real question</h3>
-          <p>Routed to your regional desk. Drawings and prices stay in private email.</p>
-          <span class="ov-leave"><b>You leave with</b>A conversation, not a form submission</span>
-        </div>
-      </div>
+      <ol class="ov-walk">
+        <li class="ov-leg">
+          <div class="ov-leg-copy">
+            <span class="ov-leg-no">01</span><span class="ov-where">About</span>
+            <h3>Know who you’re talking to</h3>
+            <p>Fifty-two years behind other people’s brands, and never a competing retail label.</p>
+            <span class="ov-leave"><b>You leave with</b>Whether the commercial boundary works for you</span>
+            <a class="ov-leg-go" href="about.html">Open About →</a>
+          </div>
+          <div class="ov-leg-shots">
+            <figure class="ov-shot"><img src="images/guide/about.webp" width="900" height="738" loading="lazy" decoding="async" alt="The About page: the pure-play OEM model and the commercial boundary"><figcaption>about.html</figcaption></figure>
+          </div>
+        </li>
+        <li class="ov-leg">
+          <div class="ov-leg-copy">
+            <span class="ov-leg-no">02</span><span class="ov-where">Factory</span>
+            <h3>Check we can make it</h3>
+            <p>Photographs of the floor, the catalogue, and every material and process route.</p>
+            <span class="ov-leave"><b>You leave with</b>The material and route your product needs</span>
+            <a class="ov-leg-go" href="product-101.html">Open the Factory →</a>
+          </div>
+          <div class="ov-leg-shots">
+            <figure class="ov-shot"><img src="images/guide/factory.webp" width="900" height="738" loading="lazy" decoding="async" alt="The Factory page: the floor, the routes, the material families"><figcaption>product-101.html</figcaption></figure>
+          </div>
+        </li>
+        <li class="ov-leg">
+          <div class="ov-leg-copy">
+            <span class="ov-leg-no">03</span><span class="ov-where">Daily Supply News</span>
+            <h3>See today’s conditions</h3>
+            <p>What moved in steel, resin, freight and policy — and what it changes.</p>
+            <span class="ov-leave"><b>You leave with</b>Whether now is a good week to commit</span>
+            <a class="ov-leg-go" href="executive.html">Read today’s edition →</a>
+          </div>
+          <div class="ov-leg-shots">
+            <figure class="ov-shot"><img src="images/guide/news.webp" width="900" height="738" loading="lazy" decoding="async" alt="Daily Supply News: the day’s steel, freight and policy signals"><figcaption>executive.html</figcaption></figure>
+          </div>
+        </li>
+        <li class="ov-leg">
+          <div class="ov-leg-copy">
+            <span class="ov-leg-no">04</span><span class="ov-where">Buyer &amp; Cost Desk</span>
+            <h3>Work out your number</h3>
+            <p>Plan the programme on the Buyer Desk, then price it on the Cost Desk: landed cost, margin, timing and sailing.</p>
+            <span class="ov-leave"><b>You leave with</b>A landed cost you can defend internally</span>
+            <a class="ov-leg-go" href="partner.html">Open the Buyer Desk →</a>
+          </div>
+          <div class="ov-leg-shots">
+            <figure class="ov-shot"><img src="images/guide/buyer.webp" width="900" height="738" loading="lazy" decoding="async" alt="The Buyer Desk: product family, part, material and process route"><figcaption>partner.html</figcaption></figure>
+            <figure class="ov-shot"><img src="images/guide/cost.webp" width="900" height="738" loading="lazy" decoding="async" alt="The Cost Desk: landed cost, per unit, from your own figures"><figcaption>cost-desk.html</figcaption></figure>
+          </div>
+        </li>
+        <li class="ov-leg">
+          <div class="ov-leg-copy">
+            <span class="ov-leg-no">05</span><span class="ov-where">Contact</span>
+            <h3>Ask the real question</h3>
+            <p>Routed to your regional desk. Drawings and prices stay in private email.</p>
+            <span class="ov-leave"><b>You leave with</b>A conversation, not a form submission</span>
+            <a class="ov-leg-go" href="contact.html">Open Contact →</a>
+          </div>
+          <div class="ov-leg-shots">
+            <figure class="ov-shot"><img src="images/guide/contact.webp" width="900" height="738" loading="lazy" decoding="async" alt="The Contact page: your enquiry routed to a regional desk"><figcaption>contact.html</figcaption></figure>
+          </div>
+        </li>
+      </ol>
       <div class="ov-cta">
         <a class="ov-btn" href="about.html">Start at step 1 &rarr;</a>
         <a class="ov-btn ghost" href="cost-desk.html">I already know what I need — go to the Cost Desk</a>
