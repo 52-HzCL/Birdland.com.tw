@@ -1,0 +1,156 @@
+/* The Terminal — one panel, both headers.
+
+   The site has two header implementations: the hand-written .bl-header on the
+   pages with no build step, and the one desk-banner.js injects. Rather than a
+   third copy of a dropdown, this is a single overlay bound to whatever carries
+   [data-terminal]. One panel, one set of values, no drift.
+
+   The drawing language is deliberate. Birdland makes tools; an engineering
+   sheet is its own handwriting, not a borrowed SaaS convention. Frame, corner
+   marks, grid, part numbers, title block — all of it is how a drawing is
+   actually laid out. */
+
+/* ── the trigger ────────────────────────────────────────────────────────
+   Zero ornament by request: no border, no fill, no chip. It sits in the nav
+   like every other item, and the only thing marking it as different is one
+   5px dot — which is also the only thing on the page reporting whether the
+   data behind it is current. */
+.tm-chip{
+  display:inline-flex;align-items:center;gap:8px;padding:0;border:0;background:none;
+  color:var(--jade-900);cursor:pointer;
+  font:600 var(--fs-micro)/1 var(--ff-sans);letter-spacing:.26em;text-transform:uppercase;
+}
+/* The palette primitive, not var(--down): the two desks redefine --down (and
+   --up/--flat/--line) inside body.theme-light for their own data colours, and
+   the dot would come out a different green there than on the other eight
+   pages. It is one signal in one shared header — it gets one colour. */
+.tm-chip i{
+  width:5px;height:5px;border-radius:50%;background:var(--jade-700);
+  transition:background var(--dur-fast) var(--ease);
+}
+/* Amber when the edition did not refresh. The system reports its own state
+   rather than looking healthy regardless — see the panel's EDITION field. */
+.tm-chip.is-stale i{background:var(--copper-600)}
+.tm-chip:hover,.tm-chip:focus-visible{color:var(--copper-600);outline:0}
+.tm-chip[aria-expanded="true"]{color:var(--copper-600)}
+
+/* The chip is a button in a row of links, so it borrows their vertical
+   rhythm rather than inventing its own. Both headers use the same padding. */
+.bl-nav .tm-chip,.dbar-nav .tm-chip{padding:39px 0 35px}
+@media(max-width:680px){.bl-nav .tm-chip,.dbar-nav .tm-chip{padding:12px 0 10px}}
+
+/* ── overlay ───────────────────────────────────────────────────────────── */
+.tm-dim{
+  position:fixed;inset:0;z-index:800;background:rgba(9,28,44,.42);
+  backdrop-filter:blur(2px);opacity:0;transition:opacity var(--dur-fast) var(--ease);
+}
+.tm-dim.on{opacity:1}
+html.tm-open{overflow:hidden}
+html.tm-open .bl-header,html.tm-open #desk-banner{z-index:820}
+
+.tm-panel{
+  position:fixed;left:50%;transform:translateX(-50%) scaleY(.96);transform-origin:top center;
+  z-index:830;width:min(868px,calc(100% - 32px));max-height:calc(100vh - 150px);overflow:auto;
+  padding:13px;color:rgba(220,234,244,.58);
+  background:#0F2C43;border:1px solid rgba(143,199,232,.42);
+  box-shadow:0 44px 96px rgba(4,18,30,.55);
+  background-image:linear-gradient(rgba(143,199,232,.085) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(143,199,232,.085) 1px,transparent 1px);
+  background-size:19px 19px;
+  opacity:0;transition:opacity var(--dur-fast) var(--ease),transform var(--dur-slow) var(--ease);
+}
+.tm-panel.on{opacity:1;transform:translateX(-50%) scaleY(1)}
+@media(prefers-reduced-motion:reduce){.tm-panel,.tm-dim{transition:none}.tm-panel{transform:translateX(-50%)}}
+
+.tm-frame{border:1px solid rgba(143,199,232,.45);position:relative}
+.tm-frame::before,.tm-frame::after{content:"";position:absolute;width:11px;height:11px;border-color:rgba(143,199,232,.6)}
+.tm-frame::before{left:-1px;top:-1px;border-left:1px solid;border-top:1px solid}
+.tm-frame::after{right:-1px;bottom:-1px;border-right:1px solid;border-bottom:1px solid}
+
+/* ── search ────────────────────────────────────────────────────────────── */
+.tm-srch{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid rgba(143,199,232,.45)}
+.tm-srch svg{flex:0 0 auto}
+.tm-srch input{
+  flex:1;min-width:0;border:0;background:none;outline:0;color:#fff;
+  font:500 var(--fs-body) var(--ff-sans);
+}
+.tm-srch input::placeholder{color:rgba(220,234,244,.42)}
+.tm-srch em{font-style:normal;font:500 var(--fs-micro) var(--ff-mono);letter-spacing:.14em;color:rgba(143,199,232,.6);white-space:nowrap}
+
+/* ── the path: 01 → 02 → 03 ────────────────────────────────────────────── */
+.tm-path{display:grid;grid-template-columns:1fr 40px 1fr 40px 1fr}
+.tm-step{display:block;padding:22px 22px 20px;text-decoration:none;color:inherit}
+.tm-step:hover .tm-name,.tm-step:focus-visible .tm-name{color:#8FC7E8}
+.tm-step:focus-visible{outline:1px solid rgba(143,199,232,.7);outline-offset:-3px}
+.tm-arrow{display:grid;place-items:center;border-left:1px solid rgba(143,199,232,.22);border-right:1px solid rgba(143,199,232,.22)}
+.tm-k{display:flex;align-items:center;gap:9px;margin-bottom:11px}
+.tm-no{
+  display:inline-grid;place-items:center;width:19px;height:19px;border-radius:50%;
+  border:1px solid rgba(143,199,232,.6);font:500 var(--fs-micro) var(--ff-mono);color:#8FC7E8;
+}
+.tm-k span{font:500 var(--fs-micro) var(--ff-mono);letter-spacing:.2em;color:rgba(143,199,232,.6)}
+.tm-name{display:block;font:600 var(--fs-h3) var(--ff-sans);color:#fff;transition:color var(--dur-fast) var(--ease)}
+.tm-desc{display:block;margin-top:3px;font:400 var(--fs-small)/1.5 var(--ff-sans);color:rgba(220,234,244,.58)}
+.tm-live{
+  display:inline-block;margin-top:8px;padding:2px 8px;border:1px solid rgba(143,199,232,.4);
+  font:500 var(--fs-micro) var(--ff-mono);letter-spacing:.04em;color:rgba(143,199,232,.75);
+}
+.tm-live.up{color:#F0A08A;border-color:rgba(240,160,138,.45)}
+.tm-live.down{color:#8FD9AC;border-color:rgba(143,217,172,.45)}
+
+/* Team Desk is not on the buyer's path, so it is not a step. */
+.tm-aside{
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;
+  padding:13px 22px;border-top:1px solid rgba(143,199,232,.45);
+  background:rgba(143,199,232,.05);text-decoration:none;color:inherit;
+}
+.tm-aside .tm-name{font-size:var(--fs-small)}
+.tm-aside .tm-desc{margin-top:1px}
+.tm-aside .fn{font:500 var(--fs-micro) var(--ff-mono);letter-spacing:.18em;color:rgba(143,199,232,.6)}
+.tm-aside:hover .tm-name{color:#8FC7E8}
+
+/* ── results ───────────────────────────────────────────────────────────── */
+.tm-results{display:none}
+.tm-panel.searching .tm-path,.tm-panel.searching .tm-aside{display:none}
+.tm-panel.searching .tm-results{display:block}
+.tm-sec{padding:9px 16px 4px;border-bottom:1px solid rgba(143,199,232,.22);
+  font:500 var(--fs-micro) var(--ff-mono);letter-spacing:.2em;color:rgba(143,199,232,.55)}
+.tm-hit{
+  display:grid;grid-template-columns:78px 1fr auto;gap:12px;align-items:center;
+  padding:10px 16px;border-bottom:1px dashed rgba(143,199,232,.22);text-decoration:none;color:inherit;
+}
+.tm-hit:hover,.tm-hit.on{background:rgba(143,199,232,.07)}
+.tm-hit.on{box-shadow:inset 3px 0 0 var(--copper-600)}
+.tm-tag{padding:2px 6px;border:1px solid rgba(143,199,232,.4);text-align:center;
+  font:500 var(--fs-micro) var(--ff-mono);letter-spacing:.1em;color:rgba(143,199,232,.75)}
+.tm-hit b{font:600 var(--fs-small) var(--ff-sans);color:#fff}
+.tm-hit b mark{background:rgba(185,96,50,.32);color:#fff;padding:0 2px}
+.tm-hit .tm-desc{margin-top:1px}
+.tm-hit .go{font:500 var(--fs-micro) var(--ff-mono);letter-spacing:.06em;color:rgba(143,199,232,.6);white-space:nowrap}
+.tm-hit.on .go{color:var(--copper-200)}
+.tm-none{padding:22px 16px;font:400 var(--fs-small) var(--ff-sans);color:rgba(220,234,244,.55)}
+
+/* ── title block ───────────────────────────────────────────────────────── */
+.tm-tb{display:grid;grid-template-columns:1.5fr 1.4fr 1fr;border-top:1px solid rgba(143,199,232,.45)}
+.tm-tb>div{padding:7px 13px;border-right:1px solid rgba(143,199,232,.22)}
+.tm-tb>div:last-child{border-right:0}
+.tm-tb small{display:block;font:500 var(--fs-micro) var(--ff-mono);letter-spacing:.16em;color:rgba(143,199,232,.6)}
+.tm-tb b{display:block;margin-top:2px;font:600 var(--fs-micro) var(--ff-mono);letter-spacing:.04em;color:#fff}
+.tm-tb b.stale{color:var(--copper-200)}
+
+@media(max-width:820px){
+  /* The three steps stack; the numbering is what carries the order once the
+     arrows have nowhere to point. */
+  .tm-panel{max-height:calc(100vh - 120px)}
+  .tm-path{grid-template-columns:1fr}
+  .tm-arrow{display:none}
+  .tm-step{padding:16px 16px 14px;border-bottom:1px solid rgba(143,199,232,.22)}
+  .tm-aside{padding:12px 16px}
+  .tm-tb{grid-template-columns:1fr}
+  .tm-tb>div{border-right:0;border-bottom:1px solid rgba(143,199,232,.22)}
+  .tm-tb>div:last-child{border-bottom:0}
+  .tm-hit{grid-template-columns:1fr;gap:4px}
+  .tm-tag{justify-self:start}
+  .tm-hit .go{display:none}
+}
+@media print{.tm-panel,.tm-dim{display:none!important}}

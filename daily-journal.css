@@ -27,17 +27,17 @@ body{
   border-top:1px solid var(--kb-ink);
   border-bottom:4px double var(--kb-ink);
 }
-.topin{max-width:1440px;min-height:96px;padding:14px 24px}
+.topin{max-width:1440px;min-height:96px;padding:var(--sp-3) 24px}
 .brand{
   color:var(--kb-jade);
-  font-size:38px;
+  font-size:var(--fs-h1);
   letter-spacing:.12em;
   text-transform:uppercase;
 }
 .brand small{
   color:var(--kb-red);
   border-left:1px solid var(--kb-line2);
-  font-size:9px;
+  font-size:var(--fs-micro);
 }
 .topmeta{color:var(--kb-muted)}
 .topmeta a{color:var(--kb-jade)}
@@ -47,7 +47,7 @@ body{
 .page{
   display:block;
   max-width:1440px;
-  padding:18px 24px 72px;
+  padding:var(--sp-3) 24px var(--sp-6);
 }
 .rail{
   position:sticky;
@@ -56,14 +56,14 @@ body{
   display:grid;
   grid-template-columns:auto 1fr auto;
   align-items:center;
-  gap:22px;
-  margin:0 0 12px;
-  padding:5px 0;
+  gap:var(--sp-4);
+  margin:0 0 var(--sp-3);
+  padding:var(--sp-1) 0;
   border-top:0;
   border-bottom:1px solid var(--kb-ink);
   background:var(--kb-paper,#fbf9f3);
 }
-.rail h2{margin:0;font:600 10px var(--mono);letter-spacing:.14em}
+.rail h2{margin:0;font:600 var(--fs-micro) var(--mono);letter-spacing:.14em}
 .navgroups{display:flex;min-width:0;overflow:auto;scrollbar-width:none}
 .navgroups::-webkit-scrollbar{display:none}
 .navgroup{
@@ -75,7 +75,7 @@ body{
 }
 .navgroup strong{margin:0 8px;color:var(--kb-red)}
 .navgroup a{
-  padding:7px 8px;
+  padding:var(--sp-2) 8px;
   border-left:0;
   border-bottom:2px solid transparent;
   font:600 11px var(--sans);
@@ -88,18 +88,18 @@ body{
   color:var(--kb-red);
 }
 .free-app{position:relative;display:flex;justify-content:flex-end;align-items:center;padding:0 8px;border:0;min-width:126px}
-.free-app .subscription-art-button{position:relative;display:block;width:112px;margin:-9px 0 -7px;padding:0;border:0;background:transparent;line-height:0;filter:drop-shadow(0 4px 4px rgba(34,30,25,.16));transform:rotate(-1.1deg);transition:transform .18s ease,filter .18s ease}
+.free-app .subscription-art-button{position:relative;display:block;width:112px;margin:-9px 0 -7px;padding:0;border:0;background:transparent;line-height:0;filter:drop-shadow(0 4px 4px rgba(34,30,25,.16));transform:rotate(-1.1deg);transition:transform var(--dur-slow) ease,filter var(--dur-slow) ease}
 .free-app .subscription-art-button img{display:block;width:100%;height:auto}
 .free-app .subscription-art-button::after{content:"";position:absolute;right:-8px;top:20px;width:35px;height:35px;border:1px solid rgba(166,79,42,.32);border-radius:50%;box-shadow:9px 4px 0 -8px rgba(166,79,42,.36),14px 8px 0 -13px rgba(166,79,42,.36);pointer-events:none}
 .free-app .subscription-art-button:hover{transform:translateY(-2px) rotate(-.5deg);filter:drop-shadow(0 7px 7px rgba(34,30,25,.2))}
 .free-app .subscription-art-button:focus-visible{outline:2px solid var(--kb-red);outline-offset:3px}
 .visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
-.hq{color:#8d8171}.hq .dot{background:#8d8171;box-shadow:none}.hq.is-online,.hq.is-online b{color:var(--kb-jade)}.hq.is-online .dot{background:#5d8d58;box-shadow:0 0 0 3px rgba(93,141,88,.16)}.language select{width:100%;margin-top:5px;padding:6px;border:1px solid #a99072;background:var(--kb-dark);color:#f5e9d4;font:500 10px var(--mono)}
+.hq{color:#8d8171}.hq .dot{background:#8d8171;box-shadow:none}.hq.is-online,.hq.is-online b{color:var(--kb-jade)}.hq.is-online .dot{background:#5d8d58;box-shadow:0 0 0 3px rgba(93,141,88,.16)}.language select{width:100%;margin-top:var(--sp-1);padding:var(--sp-2);border:1px solid #a99072;background:var(--kb-dark);color:#f5e9d4;font:500 var(--fs-micro) var(--mono)}
 .main{border-top:0}
 .hero{
   position:relative;
   min-height:205px;
-  padding:18px 0 18px;
+  padding:var(--sp-3) 0 var(--sp-3);
   text-align:left;
   border-top:4px double var(--kb-ink);
   border-bottom:4px double var(--kb-ink);
@@ -111,28 +111,28 @@ body{
   top:22px;
   max-width:210px;
   color:var(--kb-muted);
-  font:600 9px/1.7 var(--mono);
+  font:600 var(--fs-micro)/1.7 var(--mono);
   letter-spacing:.12em;
   text-align:right;
 }
 .hero h1{
   max-width:1120px;
-  margin:18px 0 10px;
+  margin:var(--sp-3) 0 var(--sp-2);
   color:var(--kb-ink);
-  font-size:clamp(58px,6.7vw,102px);
+  font-size:clamp(48px,6.7vw,48px);
   line-height:.94;
   letter-spacing:.015em;
   text-transform:uppercase;
   white-space:nowrap;
 }
 .hero p{max-width:650px;margin:0;font-size:16px}
-.editionline{max-width:820px;margin-top:18px}
+.editionline{max-width:820px;margin-top:var(--sp-3)}
 /* The action row was pinned absolutely to the bottom-right of the hero, so it
    landed on top of the edition line instead of after it: Subscribe RSS printed
    over the Market label, and "source state shown per report" ran underneath the
    buttons. It was tucked there when the hero was two lines and had room to
    spare. It flows now. */
-.hero-actions{position:static;justify-content:flex-end;margin-top:16px;row-gap:10px}
+.hero-actions{position:static;justify-content:flex-end;margin-top:16px;row-gap:var(--sp-2)}
 .btn,.install button{
   border-radius:0;
   background:var(--kb-jade);
@@ -140,7 +140,7 @@ body{
 }
 .btn.ghost{color:var(--kb-jade);border-color:var(--kb-jade)}
 .section{
-  margin-top:26px;
+  margin-top:var(--sp-4);
   border-top:1px solid var(--kb-ink);
   border-bottom:3px double var(--kb-ink);
 }
@@ -150,22 +150,22 @@ body{
   grid-template-columns:.75fr 1.18fr 1.35fr;
   min-height:410px;
 }
-.journal-lead,.journal-drivers{padding:22px 20px}
+.journal-lead,.journal-drivers{padding:var(--sp-4) var(--sp-4)}
 .journal-lead{padding-left:0;border-right:1px solid var(--kb-line)}
-.journal-lead h2{margin:13px 0 14px;font:700 31px/1.14 var(--serif);letter-spacing:-.035em}
-.journal-lead p{margin:0;color:#514b41;font:14px/1.5 var(--serif)}
-.journal-lead a{display:inline-block;margin-top:22px;color:var(--kb-red);font:700 10px var(--mono);letter-spacing:.07em;text-decoration:none;text-transform:uppercase}
+.journal-lead h2{margin:var(--sp-3) 0 var(--sp-3);font:700 var(--fs-h1)/1.14 var(--serif);letter-spacing:-.035em}
+.journal-lead p{margin:0;color:#514b41;font:var(--fs-body)/1.5 var(--serif)}
+.journal-lead a{display:inline-block;margin-top:var(--sp-4);color:var(--kb-red);font:700 var(--fs-micro) var(--mono);letter-spacing:.07em;text-decoration:none;text-transform:uppercase}
 .journal-map{margin:0;border-right:1px solid var(--kb-line);background:#e9e2d6}
 .journal-map img{display:block;width:100%;height:372px;object-fit:cover;filter:saturate(.76) contrast(.98)}
-.journal-map figcaption{height:38px;padding:10px 13px;color:var(--kb-muted);font:600 8px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.journal-map figcaption{height:38px;padding:var(--sp-2) var(--sp-3);color:var(--kb-muted);font:600 var(--fs-micro) var(--mono);letter-spacing:.08em;text-transform:uppercase}
  /* The front is a three-column grid — lead, map, risk — and the drivers block
     was falling into column one of the second row, which is the narrowest of
     the three (.75fr). That is why three cards could not sit side by side: they
     were being asked to fit a column built for one headline. It spans the full
     width, under the lead and the risk scope, which is where it belongs. */
-.journal-drivers{grid-column:1/-1;padding:20px 0 22px;border-top:1px solid var(--kb-line)}
-.journal-driver-head{display:flex;justify-content:space-between;gap:12px;padding-bottom:12px;border-bottom:1px solid var(--kb-line)}
-.journal-driver-head h2{margin:4px 0 3px;font:700 22px/1.1 var(--serif)}
+.journal-drivers{grid-column:1/-1;padding:var(--sp-4) 0 var(--sp-4);border-top:1px solid var(--kb-line)}
+.journal-driver-head{display:flex;justify-content:space-between;gap:var(--sp-3);padding-bottom:var(--sp-3);border-bottom:1px solid var(--kb-line)}
+.journal-driver-head h2{margin:4px 0 var(--sp-1);font:700 22px/1.1 var(--serif)}
 .journal-driver-head p{margin:0;color:var(--kb-muted);font:11px/1.4 var(--serif)}
 /* Three drivers, three columns. The base stylesheet already laid these out
    side by side; this file loads after it and had flattened them back to a
@@ -173,66 +173,66 @@ body{
    instead of the comparison the section is for. */
 .journal-front .brief-grid{
   display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:1px;margin-top:14px;border:1px solid var(--kb-line);background:var(--kb-line);
+  gap:var(--sp-1);margin-top:var(--sp-3);border:1px solid var(--kb-line);background:var(--kb-line);
 }
 .journal-front .brief-card{
   display:block;min-width:0;min-height:0;
-  padding:14px 15px 15px;
+  padding:var(--sp-3) var(--sp-3) var(--sp-3);
   border:0;background:var(--kb-paper);
 }
-.journal-front .brief-card .eyebrow{display:block;margin-bottom:2px}
-.journal-front .brief-card h3{margin:0 0 9px;font:700 15px/1.15 var(--serif)}
+.journal-front .brief-card .eyebrow{display:block;margin-bottom:var(--sp-1)}
+.journal-front .brief-card h3{margin:0 0 var(--sp-2);font:700 15px/1.15 var(--serif)}
 .journal-front .brief-card .state{
-  display:inline-block;margin:0 0 9px;padding:2px 8px;border-radius:999px;
-  background:rgba(6,61,52,.07);font:700 8.5px/1.6 var(--mono);letter-spacing:.1em;text-transform:uppercase;
+  display:inline-block;margin:0 0 var(--sp-2);padding:var(--sp-1) 8px;border-radius:999px;
+  background:rgba(6,61,52,.07);font:700 var(--fs-micro)/1.6 var(--mono);letter-spacing:.1em;text-transform:uppercase;
 }
-.journal-front .brief-card p{margin:0 0 7px;font:11px/1.5 var(--serif)}
+.journal-front .brief-card p{margin:0 0 var(--sp-2);font:11px/1.5 var(--serif)}
 .journal-front .brief-card p:nth-of-type(2){display:none}
-.journal-front .brief-card .move{margin:0 0 10px;padding:0;border:0;font:11px/1.5 var(--serif)}
+.journal-front .brief-card .move{margin:0 0 var(--sp-2);padding:0;border:0;font:11px/1.5 var(--serif)}
 .journal-front .brief-card .evidence-button{display:inline-block}
 @media(max-width:860px){
   .journal-front .brief-grid{grid-template-columns:1fr}
 }
-.sectionhead{padding:18px 0 0}
-.sectionhead h2{font-size:27px}
-.sectionhead p{font-size:12px}
+.sectionhead{padding:var(--sp-3) 0 0}
+.sectionhead h2{font-size:var(--fs-h2)}
+.sectionhead p{font-size:var(--fs-small)}
 .tag{background:transparent;border-color:var(--kb-line2);color:var(--kb-red)}
-.brief-grid,.metric-grid,.desk-grid,.routes,.news-grid,.calendar-grid,.trust-grid{margin-top:18px;border-top:1px solid var(--kb-line)}
-.brief-card,.metric,.desk,.lane-list,.route-notes,.news-card,.calendar-side,.trust-grid>div{padding:20px}
+.brief-grid,.metric-grid,.desk-grid,.routes,.news-grid,.calendar-grid,.trust-grid{margin-top:var(--sp-3);border-top:1px solid var(--kb-line)}
+.brief-card,.metric,.desk,.lane-list,.route-notes,.news-card,.calendar-side,.trust-grid>div{padding:var(--sp-4)}
 .brief-card:first-child,.metric:first-child,.desk:first-child,.lane-list,.news-card:first-child,.trust-grid>div:first-child{padding-left:0}
 .brief-card:last-child,.metric:last-child,.desk:last-child,.news-card:last-child,.route-notes,.calendar-side,.trust-grid>div:last-child{padding-right:0}
-.brief-card h3{font-size:23px}
+.brief-card h3{font-size:var(--fs-h2)}
 .brief-card p,.desk .lede,.story p,.news-card p{color:#55584f}
-.metric .value{font-size:30px}
+.metric .value{font-size:var(--fs-h1)}
 .spark{height:42px}
-.desk h3{font-size:24px}
+.desk h3{font-size:var(--fs-h2)}
 .source-deck{margin-left:0;margin-right:0}
 .source-column{background:rgba(251,249,243,.56)}
-.news-card:first-child h3{font-size:26px}
-.follow-panel{padding:0 0 18px}
+.news-card:first-child h3{font-size:var(--fs-h2)}
+.follow-panel{padding:0 0 var(--sp-3)}
 .chip{background:var(--kb-paper)}
 .chip.on{background:#e4e9df;color:var(--kb-jade);border-color:var(--kb-jade)}
 .footer{padding:24px 0}
 .journal-floor{
   display:grid;
   grid-template-columns:minmax(260px,.85fr) 1.15fr;
-  margin-top:18px;
+  margin-top:var(--sp-3);
   border-top:1px solid var(--kb-line);
 }
 .journal-floor img{width:100%;height:230px;object-fit:cover;filter:grayscale(.72) sepia(.08)}
-.journal-floor>div{display:flex;flex-direction:column;justify-content:center;padding:26px 30px}
-.journal-floor h3{margin:8px 0;font:700 25px/1.15 var(--serif)}
+.journal-floor>div{display:flex;flex-direction:column;justify-content:center;padding:var(--sp-4) var(--sp-5)}
+.journal-floor h3{margin:8px 0;font:700 var(--fs-h2)/1.15 var(--serif)}
 .journal-floor p{max-width:470px;margin:0;color:var(--kb-muted);font:13px/1.5 var(--serif)}
-.journal-floor a{margin-top:15px;color:var(--kb-red);font:700 11px var(--sans)}
+.journal-floor a{margin-top:var(--sp-3);color:var(--kb-red);font:700 11px var(--sans)}
 dialog{border-radius:0}
 
 @media(max-width:980px){
   .topin{min-height:88px}
-  .brand{font-size:28px}
-  .rail{position:sticky;top:0;z-index:35;display:block;padding:10px 0}
+  .brand{font-size:var(--fs-h1)}
+  .rail{position:sticky;top:0;z-index:35;display:block;padding:var(--sp-2) 0}
   .rail h2{margin-bottom:8px}
   .navgroups{display:flex}
-  .free-app{margin-top:9px}
+  .free-app{margin-top:var(--sp-2)}
   .hero-actions{position:static;justify-content:flex-start}
   .hero::after{display:none}
   .hero h1{white-space:normal}
@@ -243,17 +243,17 @@ dialog{border-radius:0}
 @media(max-width:640px){
   .free-app{justify-content:flex-start;min-width:0;padding-left:4px}
   .free-app .subscription-art-button{width:104px}
-  .topin{padding:14px 13px}
-  .brand{font-size:23px}
-  .brand small{display:block;margin:7px 0 0;padding:0;border:0}
-  .page{padding:12px 13px 48px}
+  .topin{padding:var(--sp-3) var(--sp-3)}
+  .brand{font-size:var(--fs-h2)}
+  .brand small{display:block;margin:var(--sp-2) 0 0;padding:0;border:0}
+  .page{padding:var(--sp-3) var(--sp-3) 48px}
   .navgroup strong{display:none}
-  .hero{min-height:0;padding-top:20px}
-  .hero h1{font-size:50px;margin-top:22px}
-  .hero p{font-size:14px}
+  .hero{min-height:0;padding-top:var(--sp-4)}
+  .hero h1{font-size:var(--fs-display);margin-top:var(--sp-4)}
+  .hero p{font-size:var(--fs-body)}
   .journal-front{grid-template-columns:1fr}
   .journal-lead,.journal-map{border-right:0;border-bottom:1px solid var(--kb-line)}
-  .journal-lead,.journal-drivers{padding:18px 0}
+  .journal-lead,.journal-drivers{padding:var(--sp-3) 0}
   .journal-map img{height:300px}
   .journal-front .brief-card{grid-template-columns:76px 74px 1fr}
   .journal-front .brief-card .state{grid-column:3}
@@ -261,7 +261,55 @@ dialog{border-radius:0}
   .journal-front .brief-card .move{grid-column:1/-1;grid-row:3}
   .journal-front .brief-card .evidence-button{grid-column:3;grid-row:3;justify-self:end}
   .journal-floor{grid-template-columns:1fr}
-  .journal-floor>div{padding:22px 13px}
-  .brief-card:first-child,.metric:first-child,.desk:first-child,.lane-list,.news-card:first-child,.trust-grid>div:first-child{padding-left:13px}
-  .brief-card:last-child,.metric:last-child,.desk:last-child,.news-card:last-child,.route-notes,.calendar-side,.trust-grid>div:last-child{padding-right:13px}
+  .journal-floor>div{padding:var(--sp-4) var(--sp-3)}
+  .brief-card:first-child,.metric:first-child,.desk:first-child,.lane-list,.news-card:first-child,.trust-grid>div:first-child{padding-left:var(--sp-3)}
+  .brief-card:last-child,.metric:last-child,.desk:last-child,.news-card:last-child,.route-notes,.calendar-side,.trust-grid>div:last-child{padding-right:var(--sp-3)}
+}
+
+/* ---- The front page reserves its own height ----
+
+   Everything in .journal-front is written from the inlined edition JSON after
+   first paint: the block measures 543px empty and 896px full at 1440, so the
+   footer and everything between them dropped 353px once the script ran. That
+   single move was most of this page's 0.234 CLS, the worst on the site.
+
+   The heights below are measured, not guessed — 896 / 1031 / 1157 / 1666 /
+   2192px at 1440 / 1100 / 900 / 700 / 380. min-height only reserves; a taller
+   edition still grows the box, it just grows from the right starting point.
+
+   The tint is the skeleton: something is coming, rather than a white gap. */
+.journal-front{min-height:900px;background:linear-gradient(var(--kb-line,rgba(0,0,0,.03)) 0 0) no-repeat 0 0/100% 1px}
+/* No [data-ready] escape hatch: min-height only reserves, it never caps, so a
+   taller edition still grows and releasing the reservation later would just be
+   a second shift. */
+@media(max-width:1200px){.journal-front{min-height:1040px}}
+@media(max-width:1000px){.journal-front{min-height:1160px}}
+@media(max-width:820px){.journal-front{min-height:1680px}}
+@media(max-width:560px){.journal-front{min-height:2200px}}
+
+/* ---- Sections reserve their height before they have content ----
+
+   Almost every block on this page renders from the inlined edition JSON, so
+   at first paint they are zero-height and the footer sits near the top of the
+   viewport. Then the data lands, the document grows by several thousand
+   pixels and the footer leaves — measured as the largest remaining shift.
+
+   contain-intrinsic-size gives each section a placeholder height until it has
+   really been laid out, and  makes the browser remember the real one
+   afterwards. Print has to opt out or sections outside the viewport render
+   blank on paper. */
+.journal main .section{content-visibility:auto;contain-intrinsic-size:auto 620px}
+@media print{.journal main .section{content-visibility:visible;contain-intrinsic-size:none}}
+
+/* The last of it: four boxes on the front page still change height when the
+   edition data lands. The lead story and the risk list shrink by 15px as the
+   placeholder sentence is replaced by the real one; the driver cards grow,
+   by 15px at 1440 and 297px at 380; the action row grows 8px once the desk
+   name is written into it. Each reserves the taller of its two states. */
+.journal-lead,.journal-risk{min-height:590px}
+.journal-drivers{min-height:330px}
+.hero-actions{min-height:47px}
+@media(max-width:820px){
+  .journal-lead,.journal-risk{min-height:0}
+  .journal-drivers{min-height:800px}
 }

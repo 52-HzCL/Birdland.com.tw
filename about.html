@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="tokens.css?v=20260731a">
+  <link rel="stylesheet" href="terminal.css?v=20260803a"><script defer src="terminal.js?v=20260803a"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>About Birdland | Confidential OEM Manufacturing Since 1974</title>
@@ -14,31 +16,32 @@
        Deliberately HTML and CSS rather than SVG: text inside an SVG has been
        clipped on this site four times, and a two-column band is exactly the
        case where that keeps happening. */
-    .bd-numbers{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:1px;
-      margin:0 0 6px;background:var(--bl-line,#d9d3c6);border:1px solid var(--bl-line,#d9d3c6);border-radius:12px;overflow:hidden}
-    .bd-numbers article{padding:18px 18px 16px;background:var(--bl-paper,#fffdf8)}
-    .bd-numbers b{display:block;font:600 clamp(26px,3vw,38px)/1 'Playfair Display',Georgia,serif;letter-spacing:-.03em;color:#0e5140}
-    .bd-numbers span{display:block;margin-top:7px;font-size:12.5px;line-height:1.45;color:#5a6660}
+    .bd-numbers{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:var(--sp-1);
+      margin:0 0 var(--sp-2);background:var(--bl-line,#d9d3c6);border:1px solid var(--bl-line,#d9d3c6);border-radius:var(--r-md);overflow:hidden}
+    .bd-numbers article{padding:var(--sp-3) var(--sp-3) 16px;background:var(--bl-paper,#fffdf8)}
+    .bd-numbers b{display:block;font:600 clamp(22px,3vw,32px)/1 'Playfair Display',var(--ff-serif);letter-spacing:-.03em;color:#0e5140}
+    .bd-numbers span{display:block;margin-top:var(--sp-2);font-size:var(--fs-small);line-height:1.45;color:#5a6660}
     .bd-boundary{display:grid;grid-template-columns:1fr auto 1fr;gap:0;margin:8px 0 0;
-      border:1px solid var(--bl-line,#d9d3c6);border-radius:12px;background:var(--bl-paper,#fffdf8);overflow:hidden}
-    .bd-side{padding:22px 24px 24px}
-    .bd-side h3{margin:0 0 3px;font:600 19px/1.2 'Playfair Display',Georgia,serif;color:#12251f}
-    .bd-side .bd-role{margin:0 0 14px;font:700 11px/1 system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#0e5140}
+      border:1px solid var(--bl-line,#d9d3c6);border-radius:var(--r-md);background:var(--bl-paper,#fffdf8);overflow:hidden}
+    .bd-side{padding:var(--sp-4) 24px 24px}
+    .bd-side h3{margin:0 0 var(--sp-1);font:600 var(--fs-h3)/1.2 'Playfair Display',var(--ff-serif);color:#12251f}
+    .bd-side .bd-role{margin:0 0 var(--sp-3);font:700 11px/1 var(--ff-sans);letter-spacing:.14em;text-transform:uppercase;color:#0e5140}
     .bd-side ul{margin:0;padding:0;list-style:none}
-    .bd-side li{position:relative;padding:9px 0 9px 20px;border-top:1px solid #ece7dc;font-size:14px;line-height:1.45;color:#2f3a35}
+    .bd-side li{position:relative;padding:var(--sp-2) 0 var(--sp-2) var(--sp-4);border-top:1px solid #ece7dc;font-size:var(--fs-body);line-height:1.45;color:#2f3a35}
     .bd-side li:first-child{border-top:0}
-    .bd-side li::before{content:'';position:absolute;left:2px;top:16px;width:7px;height:7px;border-radius:2px;background:#0e5140}
+    .bd-side li::before{content:'';position:absolute;left:2px;top:16px;width:7px;height:7px;border-radius:var(--r-sm);background:#0e5140}
     .bd-side-birdland li::before{background:#b95b12}
     .bd-side-birdland .bd-role{color:#b95b12}
     .bd-rule{width:1px;background:var(--bl-line,#d9d3c6)}
-    .bd-firewall{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:8px}
-    .bd-firewall article{padding:16px 16px 15px;border:1px solid var(--bl-line,#d9d3c6);border-left:2px solid #0e5140;
+    .bd-firewall{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--sp-3);margin-top:8px}
+    .bd-firewall article{padding:16px 16px var(--sp-3);border:1px solid var(--bl-line,#d9d3c6);border-left:2px solid #0e5140;
       border-radius:10px;background:var(--bl-paper,#fffdf8)}
-    .bd-firewall b{display:block;font:700 10.5px/1 system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#0e5140}
-    .bd-firewall strong{display:block;margin:8px 0 5px;font-size:15px;color:#12251f}
-    .bd-firewall span{display:block;font-size:12.5px;line-height:1.5;color:#5a6660}
+    .bd-firewall b{display:block;font:700 var(--fs-micro)/1 var(--ff-sans);letter-spacing:.14em;text-transform:uppercase;color:#0e5140}
+    .bd-firewall strong{display:block;margin:8px 0 var(--sp-1);font-size:15px;color:#12251f}
+    .bd-firewall span{display:block;font-size:var(--fs-small);line-height:1.5;color:#5a6660}
     @media (max-width:720px){.bd-boundary{grid-template-columns:1fr}.bd-rule{width:auto;height:1px}}
   </style>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
 <body>
   <a class="bl-skip" href="#main">Skip to content</a>
@@ -46,12 +49,12 @@
     <div class="bl-header-inner">
       <a class="bl-wordmark" href="index.html">BIRDLAND<small>Confidential OEM · Taiwan</small></a>
       <nav class="bl-nav" aria-label="Main navigation">
-        <a href="about.html" aria-current="page">About</a>
+        <details class="bl-menu"><summary>About</summary><div class="bl-menu-panel"><a href="about.html" aria-current="page">Us</a><a href="guide.html">Guide</a></div></details>
         <a href="product-101.html">Factory</a>
-        <details class="bl-menu"><summary>Desks</summary><div class="bl-menu-panel"><a href="news.html">Overview</a><a href="executive.html">Daily Supply News</a><a href="partner.html">Buyer Desk</a><a href="cost-desk.html">Cost Desk</a><a href="team.html">Team Desk</a></div></details>
+        <button type="button" class="tm-chip" data-terminal aria-haspopup="dialog" aria-expanded="false"><i aria-hidden="true"></i>Terminal</button>
         <a href="contact.html">Contact</a>
       </nav>
-      <div class="bl-header-actions"><div class="bl-status" aria-label="Birdland system status"><span class="bl-status-online" data-hq-status><i aria-hidden="true"></i>Birdland HQ <b data-hq-label>OFFLINE</b></span><span class="bl-status-time" data-taipei-time>--:-- Taipei</span><details class="bl-language" data-language-picker><summary>Language</summary><div><select data-translate-select aria-label="Translate this page"><option>Choose language…</option></select><small>Opens Google Translate in a new tab. No selection is stored.</small></div></details></div><a class="bl-terminal" href="partner.html">Open buyer software</a></div>
+      <div class="bl-header-actions"><div class="bl-status" aria-label="Birdland system status"><span class="bl-status-online" data-hq-status><i aria-hidden="true"></i>Birdland HQ <b data-hq-label>OFFLINE</b></span><span class="bl-status-time" data-taipei-time>--:-- Taipei</span><details class="bl-language" data-language-picker><summary>Language</summary><div><select data-translate-select aria-label="Translate this page"><option>Choose language…</option></select><small>Opens Google Translate in a new tab. No selection is stored.</small></div></details></div></div>
     </div>
   </header>
 
@@ -73,77 +76,95 @@
       </figure>
     </section>
 
-    <section class="ledger-section" aria-labelledby="numbers-title">
-      <span class="bl-eyebrow">The position, in figures</span>
-      <h2 id="numbers-title">Half a century behind other people's brands.</h2>
-      <div class="bd-numbers">
-        <article><b>52</b><span>Years of OEM manufacturing, since 1974</span></article>
-        <article><b>180+</b><span>Programmes manufactured behind customer brands</span></article>
-        <article><b>0</b><span>Competing brands — Birdland never retails against a customer</span></article>
-        <article><b>3</b><span>Control gates: engineering, tooling, inspection</span></article>
-        <article><b>2</b><span>Qualified origins — Taiwan and China capacity</span></article>
-      </div>
-    </section>
-
-    <section class="ledger-section" id="pure-play" aria-labelledby="boundary-title">
-      <span class="bl-eyebrow">The pure-play OEM model</span>
-      <h2 id="boundary-title">Your market remains yours.</h2>
-      <p>The commercial boundary is the whole product. Everything on the left stays with the customer; everything on the right is what Birdland is accountable for.</p>
-      <div class="bd-boundary">
-        <div class="bd-side">
-          <span class="bd-role">Customer owns</span>
-          <h3>The market relationship</h3>
-          <ul>
-            <li>Brand identity and customer relationship</li>
-            <li>Product specification and commercial positioning</li>
-            <li>Pricing, channel and programme decisions</li>
-            <li>Approval of confidential drawings and programme detail</li>
-          </ul>
+    <section class="ab-plate" id="brand" aria-labelledby="plate-1">
+      <div class="ab-fig ab-fig-chart">
+        <div class="bd-boundary">
+          <div class="bd-side">
+            <span class="bd-role">Customer owns</span>
+            <h3>The market relationship</h3>
+            <ul>
+              <li>Brand identity and customer relationship</li>
+              <li>Product specification and commercial positioning</li>
+              <li>Pricing, channel and programme decisions</li>
+              <li>Approval of confidential drawings and programme detail</li>
+            </ul>
+          </div>
+          <div class="bd-side bd-side-us">
+            <span class="bd-role">Birdland controls</span>
+            <h3>The manufacturing work</h3>
+            <ul>
+              <li>Material, tooling and production process</li>
+              <li>Quality gates and manufacturing execution</li>
+              <li>Origin and continuity options for discussion</li>
+              <li>Export hand-off and documented production workflow</li>
+            </ul>
+          </div>
         </div>
-        <div class="bd-rule" aria-hidden="true"></div>
-        <div class="bd-side bd-side-birdland">
-          <span class="bd-role">Birdland controls</span>
-          <h3>The manufacturing work</h3>
-          <ul>
-            <li>Material, tooling and production process</li>
-            <li>Quality gates and manufacturing execution</li>
-            <li>Origin and continuity options for discussion</li>
-            <li>Export hand-off and documented production workflow</li>
-          </ul>
+        <p class="ab-cap">Plate I &middot; The commercial boundary</p>
+      </div>
+      <div class="ab-copy">
+        <span class="ab-no">I</span>
+        <h2 id="plate-1">Your brand, protected.</h2>
+        <p>Birdland has manufactured for export partners since 1974 and has never
+        sold a product of its own. Not as policy, as structure: there is no retail
+        arm to compete with you, no house brand waiting on the shelf beside yours,
+        no version of this business where your market becomes ours.</p>
+        <dl class="ab-facts">
+          <div><dt>0</dt><dd>Competing brands, in fifty-two years</dd></div>
+          <div><dt>180+</dt><dd>Programmes made behind a customer&rsquo;s label</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="ab-plate ab-plate-flip" id="product" aria-labelledby="plate-2">
+      <figure class="ab-fig">
+        <img src="images/foundry-engraving.webp" width="1448" height="1086" loading="lazy" decoding="async"
+             alt="Engraving of a foundry floor: pouring, forming and the inspection bench">
+        <figcaption class="ab-cap">Plate II &middot; Engineering, tooling, inspection</figcaption>
+      </figure>
+      <div class="ab-copy">
+        <span class="ab-no">II</span>
+        <h2 id="plate-2">Your product, controlled.</h2>
+        <p>A specification becomes a tool through three gates &mdash; engineering,
+        tooling, inspection &mdash; and nothing passes one without a record. That is
+        what makes a second order look like the first, and what lets a requirement
+        survive the distance between a drawing and a production line.</p>
+        <dl class="ab-facts">
+          <div><dt>3</dt><dd>Control gates, every programme, every run</dd></div>
+          <div><dt>52</dt><dd>Years of doing only this</dd></div>
+        </dl>
+        <a class="ab-go" href="product-101.html">See the floor and the routes &rarr;</a>
+      </div>
+    </section>
+
+    <section class="ab-plate" id="supply" aria-labelledby="plate-3">
+      <figure class="ab-fig">
+        <img src="images/asia-supply-map.webp" width="465" height="416" loading="lazy" decoding="async"
+             alt="Map of the Taiwan and China production origins and the lanes out of them">
+        <figcaption class="ab-cap">Plate III &middot; Two qualified origins</figcaption>
+      </figure>
+      <div class="ab-copy">
+        <span class="ab-no">III</span>
+        <h2 id="plate-3">Your supply, continuous.</h2>
+        <p>Tariffs move, lanes close, a material doubles. With two qualified origins
+        and the routes documented in advance, those arrive as a manufacturing
+        question with options attached &mdash; which route still fits, which input
+        carries the pressure &mdash; rather than as a surprise in a delivery week.</p>
+        <ul class="ab-firewall">
+          <li><b>Origin</b><span>Which production route still fits the programme?</span></li>
+          <li><b>Material</b><span>Which input or specification carries the pressure?</span></li>
+          <li><b>Production</b><span>Which gate protects function and repeatability?</span></li>
+          <li><b>Freight</b><span>Which lane or timing assumption needs attention?</span></li>
+          <li><b>Compliance</b><span>Which document or deadline needs verification?</span></li>
+        </ul>
+        <div class="bl-actions">
+          <a class="bl-button" href="executive.html">Open public supply evidence</a>
+          <a class="bl-button bl-button-secondary" href="contact.html">Start an OEM conversation</a>
         </div>
       </div>
     </section>
 
-    <section class="ledger-section" aria-labelledby="firewall-title">
-      <span class="bl-eyebrow">The resilience firewall</span>
-      <!-- Was "External change becomes a manufacturing question before it
-           becomes a surprise." — true, but it ran to five lines at desktop
-           width and pushed the five cards below the fold. -->
-      <h2 id="firewall-title">External change becomes a manufacturing question, not a surprise.</h2>
-      <div class="bd-firewall">
-        <article><b>01 / Origin</b><strong>Review</strong><span>Which production route still fits the programme?</span></article>
-        <article><b>02 / Material</b><strong>Cover</strong><span>Which input or specification carries the pressure?</span></article>
-        <article><b>03 / Production</b><strong>Control</strong><span>Which gate protects function and repeatability?</span></article>
-        <article><b>04 / Freight</b><strong>Plan</strong><span>Which lane or timing assumption needs attention?</span></article>
-        <article><b>05 / Compliance</b><strong>Prepare</strong><span>Which document or deadline needs verification?</span></article>
-      </div>
-      <div class="bl-actions" style="margin-top:18px">
-        <a class="bl-button" href="news.html">Open public supply evidence</a>
-        <a class="bl-button bl-button-secondary" href="contact.html">Start an OEM conversation</a>
-      </div>
-    </section>
-
-    <section class="ledger-section" aria-labelledby="continuity-title">
-      <span class="bl-eyebrow">The continuity line</span>
-      <h2 id="continuity-title">One manufacturing identity, carried forward.</h2>
-      <div class="ledger-timeline">
-        <article><b>1974</b><span>Birdland begins manufacturing garden and field tools for export partners.</span></article>
-        <article><b>Process knowledge</b><span>Experience is carried through people, tooling, inspection and production discipline.</span></article>
-        <article><b>OEM focus</b><span>Capability remains behind customers’ brands instead of becoming a competing retail label.</span></article>
-        <article><b>Today</b><span>Manufacturing knowledge is combined with public supply intelligence and practical origin planning.</span></article>
-      </div>
-    </section>
-  </main>
+</main>
 
   <footer class="bl-footer">
     <span>Birdland Ind. · About</span>
