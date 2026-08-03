@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=optional');
-@import url('shell-nav.css');
+@import url('shell-nav.css?v=20260803a');
 /* --paper is deliberately absent here: tokens.css owns that name now, and
    redeclaring it would shadow the token for the whole page. */
 :root{--ivory:var(--paper-2);--jade:var(--jade-900);--jade2:var(--jade-800);--copper:var(--copper-600);--copperlite:var(--copper-200);--ink:var(--ink-900);--muted:var(--ink-500);--line:rgba(21,58,50,.18);--red:#b74735;--green:#267346;--gray:#77807a}

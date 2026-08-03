@@ -44,6 +44,20 @@ Terminal index build is untested; only the Node twin
 failure costs the panel its live values and its search, not the daily news.
 Watch the first CI run after this merges.
 
+**I-7 · The two desks shadow four palette token names.**
+`body.theme-light` in `partner_template.html` redefines `--down`, `--up`,
+`--flat` and `--line` for the desks' own data colours. Anything shared that
+reads those names renders differently on `partner.html` and `cost-desk.html`
+than on the other pages — `desk-banner.css` uses `var(--line)` six times and
+`var(--flat)` twice, so the shared header's hairlines are cool grey there and
+warm everywhere else.
+
+The Terminal dot was hit by this and is fixed (it reads `--jade-700` directly,
+with a comment saying why). The header hairlines are left alone: the difference
+is small, it is the state you reviewed in the Phase 4 screenshots, and renaming
+the desks' four variables is a change worth making deliberately rather than in
+the last minutes before a deploy.
+
 ## Closed during the audit
 
 **I-0 · `renderDecisionVisuals` throws on every `news.html` load.**

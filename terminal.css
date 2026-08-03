@@ -20,8 +20,12 @@
   color:var(--jade-900);cursor:pointer;
   font:600 var(--fs-micro)/1 var(--ff-sans);letter-spacing:.26em;text-transform:uppercase;
 }
+/* The palette primitive, not var(--down): the two desks redefine --down (and
+   --up/--flat/--line) inside body.theme-light for their own data colours, and
+   the dot would come out a different green there than on the other eight
+   pages. It is one signal in one shared header — it gets one colour. */
 .tm-chip i{
-  width:5px;height:5px;border-radius:50%;background:var(--down);
+  width:5px;height:5px;border-radius:50%;background:var(--jade-700);
   transition:background var(--dur-fast) var(--ease);
 }
 /* Amber when the edition did not refresh. The system reports its own state
