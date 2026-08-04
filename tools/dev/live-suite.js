@@ -40,8 +40,19 @@ const ok = (m) => console.log('  ✓ ' + m);
   await p.click('.bl-menu-panel a[href="about.html"]');
   await p.waitForLoadState('networkidle');
   /about\.html$/.test(p.url()) ? ok('About▾ -> Us 抵達 about.html') : bad('About 下拉點了沒到:' + p.url());
-  const svgs = await p.evaluate(() => document.querySelectorAll('.ab-fig svg').length);
-  svgs === 3 ? ok('三張插圖都在') : bad('插圖數 ' + svgs);
+  // Assert the outcome, not the technique. This used to count three <svg>
+  // and failed the day the drawings became images — the page was correct and
+  // the gate was describing an implementation detail.
+  await p.evaluate(() => document.querySelectorAll('.ab-fig').forEach(f => f.scrollIntoView()));
+  await p.waitForTimeout(1100);
+  const plates = await p.evaluate(() => [...document.querySelectorAll('.ab-fig')].map(f => {
+    const im = f.querySelector('img');
+    if (im) return im.complete && im.naturalWidth > 0 ? 'img' : 'BROKEN';
+    return f.querySelector('svg') ? 'svg' : 'EMPTY';
+  }));
+  (plates.length === 3 && !plates.some(s => s === 'BROKEN' || s === 'EMPTY'))
+    ? ok('三張圖版都在並已載入 (' + plates.join('/') + ')')
+    : bad('圖版狀態 ' + JSON.stringify(plates));
 
   // 3 — Terminal: open, tiles, navigate through a tile, reopen, search, ESC releases
   console.log('③ Terminal');
