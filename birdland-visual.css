@@ -1162,7 +1162,6 @@ button{font:inherit}
 }
 .ab-plate-flip .ab-copy{order:-1}
 .ab-fig{margin:0}
-.ab-fig svg{display:block;width:100%;height:auto;border:1px solid var(--bl-line)}
 .ab-fig img{
   display:block;width:100%;height:auto;
   border:1px solid var(--bl-line);background:var(--bl-paper);
