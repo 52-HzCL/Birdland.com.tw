@@ -87,6 +87,12 @@ body{
   background:transparent;
   color:var(--kb-red);
 }
+/* Under Large the edition index is chrome, like the site header: pinned near
+   normal size. Scaled up it ran past the right edge and the last entries
+   were simply unreachable. */
+html.ui-lg .rail h2,
+html.ui-lg .navgroup strong{font-size:11px}
+html.ui-lg .navgroup a{font-size:12px}
 .free-app{position:relative;display:flex;justify-content:flex-end;align-items:center;padding:0 8px;border:0;min-width:126px}
 .free-app .subscription-art-button{position:relative;display:block;width:112px;margin:-9px 0 -7px;padding:0;border:0;background:transparent;line-height:0;filter:drop-shadow(0 4px 4px rgba(34,30,25,.16));transform:rotate(-1.1deg);transition:transform var(--dur-slow) ease,filter var(--dur-slow) ease}
 .free-app .subscription-art-button img{display:block;width:100%;height:auto}
@@ -145,9 +151,13 @@ body{
   border-bottom:3px double var(--kb-ink);
 }
 .journal-front-section{border-bottom:4px double var(--kb-ink)}
+/* Lead, map, risk. The lead used to get .75fr — 318px at 1440 — which set a
+   36px serif headline two words to the line; the map was a fixed 372px image
+   inside a 600px row, and the leftover 230px showed as a bare beige band.
+   The lead now gets a readable measure and the map fills its cell. */
 .journal-front{
   display:grid;
-  grid-template-columns:.75fr 1.18fr 1.35fr;
+  grid-template-columns:1.05fr 1.2fr 1.15fr;
   min-height:410px;
 }
 .journal-lead,.journal-drivers{padding:var(--sp-4) var(--sp-4)}
@@ -155,8 +165,9 @@ body{
 .journal-lead h2{margin:var(--sp-3) 0 var(--sp-3);font:700 var(--fs-h1)/1.14 var(--serif);letter-spacing:-.035em}
 .journal-lead p{margin:0;color:#514b41;font:var(--fs-body)/1.5 var(--serif)}
 .journal-lead a{display:inline-block;margin-top:var(--sp-4);color:var(--kb-red);font:700 var(--fs-micro) var(--mono);letter-spacing:.07em;text-decoration:none;text-transform:uppercase}
-.journal-map{margin:0;border-right:1px solid var(--kb-line);background:#e9e2d6}
-.journal-map img{display:block;width:100%;height:372px;object-fit:cover;filter:saturate(.76) contrast(.98)}
+.journal-map{margin:0;display:flex;flex-direction:column;border-right:1px solid var(--kb-line);background:#e9e2d6}
+.journal-map img{display:block;width:100%;flex:1;min-height:372px;height:auto;object-fit:cover;filter:saturate(.76) contrast(.98)}
+.journal-map figcaption{flex:0 0 auto}
 .journal-map figcaption{height:38px;padding:var(--sp-2) var(--sp-3);color:var(--kb-muted);font:600 var(--fs-micro) var(--mono);letter-spacing:.08em;text-transform:uppercase}
  /* The front is a three-column grid — lead, map, risk — and the drivers block
     was falling into column one of the second row, which is the narrowest of
@@ -299,7 +310,23 @@ dialog{border-radius:0}
    afterwards. Print has to opt out or sections outside the viewport render
    blank on paper. */
 .journal main .section{content-visibility:auto;contain-intrinsic-size:auto 620px}
-@media print{.journal main .section{content-visibility:visible;contain-intrinsic-size:none}}
+@media print{
+  .journal main .section{content-visibility:visible;contain-intrinsic-size:none}
+  /* The reserved heights below exist to stop the live page jumping while
+     edition data lands; on paper they are just blank paper. */
+  .journal-lead,.journal-risk,.journal-drivers,.hero-actions{min-height:0!important}
+  /* One column reads better than three squeezed ones on A4, and the map keeps
+     its natural height rather than stretching to match a column that is no
+     longer beside it. */
+  .journal-front{display:block}
+  .journal-lead,.journal-map{border-right:0}
+  .journal-map{margin:4mm 0}
+  .journal-map img{min-height:0;height:auto;flex:none}
+  /* Three cards in a 2x2 grid left the fourth cell showing the grid's own
+     line-colour background — a grey brick on paper. */
+  .journal-front .brief-grid{background:transparent;border:0;gap:6px}
+  .journal-front .brief-card{border:1px solid #c9c4b8}
+}
 
 /* The last of it: four boxes on the front page still change height when the
    edition data lands. The lead story and the risk list shrink by 15px as the
