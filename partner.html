@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-  <link rel="stylesheet" href="tokens.css?v=20260731a"><script src="text-size.js?v=20260803a"></script><link rel="stylesheet" href="desk-banner.css?v=20260731h"><link rel="stylesheet" href="terminal.css?v=20260803a"><script defer src="terminal.js?v=20260803a"></script><script defer src="desk-banner.js?v=20260731h"></script><script defer src="tw-holidays.js?v=20260731h"></script>
+  <link rel="stylesheet" href="tokens.css?v=20260804a"><script src="text-size.js?v=20260804a"></script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#073F35"><meta name="description" content="Buyer Desk is Birdland's public procurement workspace for product routes, buying decisions and OEM enquiry preparation.">
 <title>Birdland Buyer Desk</title><meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="terminal-strip.css?v=20260803a">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- the Inter + IBM Plex Mono + Source Serif 4 request lived here, two skins ago -->
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=optional" rel="stylesheet">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="manifest" href="partner-desk.webmanifest">
+<link rel="manifest" href="buyer-desk.webmanifest">
 <style>
  :root{--bg:#F8F9FA;--panel:#11161d;--panel2:#161c24;--line:#262e39;--txt:#e2e8f0;--mut:var(--ink-500);--gold:var(--copper-600);--amber:var(--copper-600);--cyan:var(--jade-700);--green:var(--down);--red:var(--up);--purple:var(--jade-700);--mono:var(--ff-mono);--sans:var(--ff-sans);--serif:var(--ff-serif)}
  *{box-sizing:border-box;margin:0;padding:0}
@@ -848,6 +848,43 @@ body.theme-light{
   --pd-manual:#858B88;
   background:var(--pd-ivory)!important;
 }
+/* ── Cost Desk: same desk, different book ─────────────────────────────
+   The two desks render from one template, so the Cost Desk's own look is a
+   re-inking of the shared palette, not a second skin: paper cools toward
+   ledger green, and the copper slot — the accent everywhere on the Buyer
+   Desk — is filled with counting-house green. Structure, type and layout
+   stay identical on purpose; a buyer moving between the desks should feel
+   the family resemblance and still know at a glance which book is open. */
+body.theme-light.desk-cost{
+  --pd-ivory:#EFF4EE;
+  --pd-paper:#FAFCF8;
+  --pd-jade:#0A3D2B;
+  --pd-jade-2:#15764C;
+  --pd-jade-soft:#E1EFE4;
+  --pd-copper:#0F7A50;
+  --pd-copper-soft:#E2F2E8;
+  --pd-line:#CBDACE;
+  --pd-muted:#5F6E64;
+  --accent:#0F7A50;
+  --cyan:#0F7A50;
+  /* The redesign layer reads its own kb-* family; body-scoped values win
+     over that layer's :root, so the same re-inking reaches the panels. */
+  --kb-bg:#EFF4EE;
+  --kb-panel:#FAFCF8;
+  --kb-line:#CFDCD0;
+  --kb-line2:#B9CDBF;
+  --kb-accent:#0F7A50;
+  --kb-accent-dk:#0A3D2B;
+  --kb-accent-soft:rgba(15,122,80,.10);
+  --kb-green:#0F7A50;
+  --kb-green-bg:#E2F2E8;
+  --kb-amber:#8A7A20;
+  --kb-amber-bg:#EFF0DC;
+  background:var(--pd-ivory)!important;
+}
+/* The Cost Desk's own nameplate — the Buyer Desk's mast belongs to the
+   #overview shell, which the cost build removes. */
+body.desk-cost .cost-mast{margin:10px 0 2px;border-radius:12px}
 body.theme-light .topbar,
 body.theme-light .tk-wrap{background:rgba(255,253,248,.96)!important;border-color:var(--pd-line)!important}
 body.theme-light .fresh-tier{display:none!important}
@@ -1069,7 +1106,7 @@ body.theme-light #dash{
        eagerly is what lets those tools read the context at all. -->
   <script src="context.js?v=20260731d"></script><script defer src="mail-routing.js?v=20260731c"></script>
 <script defer src="terminal-status.js?v=20260730d"></script>
-</head><body class="theme-light">
+</head><body class="theme-light desk-buyer">
 <style>
   body.theme-light{background:var(--paper-2);color:var(--ink-900)}
   body.theme-light .topbar{background:var(--jade-900);border-bottom:3px solid var(--copper-600);box-shadow:0 8px 24px rgba(19,63,53,.18)}
@@ -1659,7 +1696,6 @@ body,body.theme-light{font-family:var(--kb-sans)!important}
 body.theme-light{padding-top:var(--buyer-status-height)}
 body.theme-light .topbar{position:fixed!important;top:0!important;right:0;left:0;z-index:200!important;height:var(--buyer-status-height);background:rgba(255,253,248,.97)!important;border-bottom:1px solid rgba(5,55,45,.18)!important;box-shadow:0 8px 22px rgba(5,55,45,.07)!important;backdrop-filter:blur(18px) saturate(155%)!important;-webkit-backdrop-filter:blur(18px) saturate(155%)!important}
 body.theme-light .topbar .tb{min-height:var(--buyer-status-height)!important;padding:0 var(--sp-4)!important;gap:var(--sp-3);align-items:center!important}
-body.theme-light .terminal-strip{margin-top:0}
 body.theme-light .tb-left{flex:0 0 auto;gap:var(--sp-2)}
 body.theme-light .tb-left .brand{padding-right:var(--sp-3);border-right:1px solid rgba(5,55,45,.18);color:var(--pd-jade)!important;font:600 var(--fs-body)/1 var(--bd-serif)!important;letter-spacing:.08em!important}
 body.theme-light .tb-left .brand .vip{font:600 var(--fs-micro)/1 var(--kb-mono);letter-spacing:.1em}
@@ -1851,10 +1887,9 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
 }
 </style>
 
-<nav class="terminal-strip" aria-label="Birdland Terminal"><span class="strip-label">SaaS Terminal</span><a href="index.html">Home</a><span class="strip-sep">·</span><a href="guide.html">Overview</a><a href="executive.html">Daily Supply News</a><a href="partner.html">Buyer Desk</a><a href="cost-desk.html">Cost Desk</a><a href="team.html">Team Desk</a><span class="strip-sep">·</span><a href="about.html">About</a><a href="product-101.html">Factory</a><a href="contact.html">Contact</a></nav>
 <div class="topbar"><div class="wrap tb">
   <div class="tb-left"><a class="brand" href="index.html"><span class="vip">BUYER</span> DESK<span class="sep">|</span><span class="iq">Birdland</span></a></div>
-  <div class="tb-right"><span class="sysgrp sys-api" title="Status comes from the configured source feeds."><span class="api-ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="w3" d="M3.7 10.2A11.5 11.5 0 0 1 20.3 10.2"/><path class="w2" d="M6.3 12.9A8 8 0 0 1 17.7 12.9"/><path class="w1" d="M8.9 15.6A4.3 4.3 0 0 1 15.1 15.6"/><circle cx="12" cy="18.6" r="1.5" fill="currentColor" stroke="none"/></svg></span>Source&nbsp;API</span><span class="sysgrp sys-token" title="AI narrative status; this is not a usage or billing meter."><span class="tokmeter"><i></i><i></i><i></i><i></i></span><b>AI&nbsp;Narrative</b></span><span class="tpk sys-hq" id="tpk" title="Taiwan office hours: Mon-Fri 09:00-17:30 (GMT+8)"><b>Birdland Office&nbsp;<span id="tpkSt">—</span></b><span class="tpk-time sys-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v4.7l3 1.8"/></svg><span id="tpkTime">--:--</span> Taipei Time</span></span><span class="tpk-hol" id="tpkHol"></span><div class="language-box" aria-label="Language translation"><div><span>Language</span><small>Google Translate</small></div><div id="google_translate_element"></div></div><a class="back" href="index.html"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>birdland.com.tw</a></div>
+  <div class="tb-right"><span class="sysgrp sys-api" title="Status comes from the configured source feeds."><span class="api-ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="w3" d="M3.7 10.2A11.5 11.5 0 0 1 20.3 10.2"/><path class="w2" d="M6.3 12.9A8 8 0 0 1 17.7 12.9"/><path class="w1" d="M8.9 15.6A4.3 4.3 0 0 1 15.1 15.6"/><circle cx="12" cy="18.6" r="1.5" fill="currentColor" stroke="none"/></svg></span>Source&nbsp;API</span><span class="sysgrp sys-token" title="AI narrative status; this is not a usage or billing meter."><span class="tokmeter"><i></i><i></i><i></i><i></i></span><b>AI&nbsp;Narrative</b></span><span class="tpk sys-hq" id="tpk" data-hq-status title="Taiwan office hours: Mon-Fri 09:00-17:30 (GMT+8)"><b>Birdland Office&nbsp;<span id="tpkSt" data-hq-label>—</span></b><span class="tpk-time sys-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v4.7l3 1.8"/></svg><span id="tpkTime" data-taipei-time>--:-- Taipei</span></span></span><span class="tpk-hol" id="tpkHol"></span><div class="language-box" aria-label="Language translation"><div><span>Language</span><small>Google Translate</small></div><div id="google_translate_element"></div></div><a class="back" href="index.html"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>birdland.com.tw</a></div>
 </div></div>
 <main class="wrap">
   <section class="bd-shell" id="overview" aria-labelledby="bd-title">
@@ -2657,6 +2692,20 @@ window.BL_DESK='buyer';
   document.title='Birdland Cost Desk';
   var crumb=document.querySelector('.crumbs span:last-child, .pd-crumb');
   if(crumb&&/Buyer/i.test(crumb.textContent))crumb.textContent='Cost Desk';
+  // The brand in the topbar is shared markup, so the page renames itself.
+  var vip=document.querySelector('.brand .vip');
+  if(vip)vip.textContent='COST';
+  // The browser toolbar takes the ledger green, matching cost-desk.webmanifest.
+  var themeMeta=document.querySelector('meta[name="theme-color"]');
+  if(themeMeta)themeMeta.setAttribute('content','#0A3D2B');
+  // Its own nameplate: the Buyer Desk's mast left with the #overview shell.
+  var mainEl=document.querySelector('main.wrap');
+  if(mainEl){
+   var mast=document.createElement('header');
+   mast.className='bd-mast cost-mast';
+   mast.innerHTML='<div class="bd-mast-brand">BIRDLAND <small>COST DESK</small></div>';
+   mainEl.insertBefore(mast,mainEl.firstChild);
+  }
  }
 }());
 </script>

@@ -96,29 +96,56 @@ input,select,textarea,button{font-family:inherit}
 
 /* ===== Reader text size =====
 
-   Three steps, set from the header and remembered. Large is 1.34x: 15px body
-   becomes 20px and the 11px floor becomes 15px, which is the point — this is
-   for a buyer reading a landed-cost table without their glasses, not a
-   decorative preference.
+   Two steps, named, set from the header and remembered. Large is 1.45x: 15px
+   body becomes 22px and the 11px floor becomes 16px — this is for a buyer
+   reading a landed-cost table without their glasses, not a decorative
+   preference. 1.45 is where it stops: past 1.55 the reference article starts
+   to scroll sideways at 1440px, so the ceiling is measured, not chosen.
 
    Only the type scale moves. Spacing and the grid stay put, so nothing
    reflows into a different layout; the text simply gets bigger inside it. */
-html.ui-md{--ui-scale:1.16}
-html.ui-lg{--ui-scale:1.34}
+html.ui-lg{--ui-scale:1.45}
+/* The reading scale is for the page, not the chrome. At 1.45 the header's
+   right cluster grows past its grid column and slides under the nav, so the
+   status line and the two pills are pinned near their normal size — a buyer
+   who needs Large needs it for the landed-cost table, not for the clock. */
+html.ui-lg .bl-status,
+html.ui-lg .bl-status-time,
+html.ui-lg .bl-language summary{font-size:12px}
+html.ui-lg .bl-nav>a,
+html.ui-lg .bl-nav summary,
+html.ui-lg .bl-nav .tm-chip{font-size:15px}
 
 .bl-textsize{display:inline-flex;align-items:center;gap:0;margin-left:var(--sp-2);border:1px solid var(--jade-900);border-radius:999px;overflow:hidden;background:var(--paper)}
+.bl-textsize-tag{
+  padding:0 9px;border-right:1px solid var(--jade-900);
+  color:var(--jade-900);font:700 12px/1 var(--ff-mono);letter-spacing:.02em;opacity:.62;
+}
 .bl-textsize button{
-  min-width:30px;padding:7px 0;border:0;background:none;cursor:pointer;
+  padding:7px 10px;border:0;background:none;cursor:pointer;white-space:nowrap;
   color:var(--jade-900);font-family:var(--ff-mono);font-weight:700;line-height:1;
+  letter-spacing:.06em;text-transform:uppercase;
   transition:background var(--dur-fast) var(--ease),color var(--dur-fast) var(--ease);
 }
-/* The buttons show their own effect: A A A, small to large. Fixed px on
-   purpose — a size picker whose labels resize with the setting cannot be
-   read as a scale. */
-.bl-textsize button:nth-child(1){font-size:11px}
-.bl-textsize button:nth-child(2){font-size:13px}
-.bl-textsize button:nth-child(3){font-size:16px}
+/* Each button is set at the size it gives you: Normal at the body size, Large
+   at Large. Fixed px on purpose — a size picker whose own labels resize with
+   the setting cannot be read as a scale. */
+.bl-textsize button[data-size="sm"]{font-size:11px}
+.bl-textsize button[data-size="lg"]{font-size:15px;letter-spacing:.03em}
 .bl-textsize button+button{border-left:1px solid var(--jade-900)}
 .bl-textsize button:hover{background:rgba(7,60,51,.1)}
 .bl-textsize button[aria-pressed="true"]{background:var(--jade-900);color:var(--paper)}
-@media(max-width:680px){.bl-textsize button{min-width:26px}}
+/* On a phone the header row is already full; the glyph is the first thing that
+   can go, because the two words carry the meaning on their own. The action
+   rows also get leave to wrap — two named buttons are wider than the three
+   A's were, and a header that scrolls sideways is worse than one that is two
+   lines tall. (The rows live in other stylesheets, but this file is the one
+   loaded everywhere and the one that made them wider.) */
+@media(max-width:680px){
+  .bl-textsize-tag{display:none}
+  .bl-textsize button{padding:6px 8px}
+  .bl-textsize button[data-size="lg"]{font-size:13px}
+  /* .bl-status included: on the hand-written headers the language picker and
+     this control live inside it, not beside it. */
+  .bl-header-actions,.dbar-actions,.bl-status{flex-wrap:wrap;row-gap:6px}
+}

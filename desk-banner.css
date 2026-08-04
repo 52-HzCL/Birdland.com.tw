@@ -85,40 +85,10 @@ body{padding-top:0!important}
 .dbar-menu-panel a[aria-current="page"]{color:var(--copper-600)}
 
 .dbar-actions{display:flex;align-items:center;justify-content:flex-end;gap:var(--sp-3);min-width:0}
-.dbar-status{
-  display:flex;align-items:center;gap:var(--sp-2);white-space:nowrap;
-  color:var(--ink-500);font:500 var(--fs-micro)/1 var(--ff-mono);
-}
-.dbar-online{display:inline-flex;align-items:center;gap:var(--sp-1);color:var(--ink-500)}
-.dbar-online i{display:block;width:7px;height:7px;border-radius:50%;background:#9b9a94;box-shadow:0 0 0 3px rgba(80,78,70,.1)}
-/* terminal-status.js marks the wrapper when the workflow is current. */
-.dbar-online.is-online,.dbar-online.online{color:var(--jade-900)}
-.dbar-online.is-online i,.dbar-online.online i{background:#5d8d58;box-shadow:0 0 0 3px rgba(93,141,88,.14)}
-.dbar-online [data-hq-label]{font-weight:700;letter-spacing:.04em}
-.dbar-time{color:var(--ink-500);font-variant-numeric:tabular-nums}
-.dbar-hol{display:inline-flex;align-items:baseline;gap:var(--sp-2)}
-.dbar-hol small{color:var(--flat);letter-spacing:.13em;text-transform:uppercase}
-.dbar-hol b{font-weight:600;color:var(--ink-900)}
 
-.dbar-lang{position:relative;flex:0 0 auto}
-.dbar-lang>summary{
-  cursor:pointer;list-style:none;color:var(--jade-900);
-  font:600 var(--fs-micro)/1 var(--ff-mono);letter-spacing:.04em;
-}
-.dbar-lang>summary::-webkit-details-marker{display:none}
-.dbar-lang>summary:hover{color:var(--copper-600)}
-.dbar-lang>div{
-  position:absolute;right:0;top:22px;z-index:70;width:200px;padding:var(--sp-2);
-  border:1px solid var(--line);background:var(--paper);
-  box-shadow:0 16px 40px rgba(7,60,51,.12);
-}
-.dbar-lang select{
-  width:100%;padding:var(--sp-2) 8px;border:1px solid var(--line);border-radius:0;
-  background:var(--card);color:var(--jade-900);font:600 var(--fs-micro) var(--ff-sans);
-}
-.dbar-lang small{display:block;margin-top:var(--sp-2);color:var(--flat);font-size:var(--fs-micro);line-height:1.45}
-
-/* The one thing the home page header does not have. */
+/* The right cluster is the home page's markup, so its styles are the home
+   page's too — see the Header status line block at the end of this file. The
+   .dbar-status / .dbar-lang family it replaces is gone with its markup. */
 
 
 
@@ -141,7 +111,6 @@ body{padding-top:0!important}
     grid-column:1/-1;width:100%;justify-content:space-between;gap:8px;
     margin-top:var(--sp-2);padding:8px 0 var(--sp-2);border-top:1px solid var(--line);
   }
-  .dbar-hol{display:none}
 }
 @media print{#desk-banner.dbar,body::before{display:none!important}}
 
@@ -161,4 +130,24 @@ body{padding-top:0!important}
   padding:0 var(--sp-3);border-left:1px solid var(--line-soft);
   color:var(--ink-500);letter-spacing:.1em;font-size:var(--fs-micro);
 }
-.bl-language{padding-left:var(--sp-3);border-left:1px solid var(--line-soft)}
+.bl-language{position:relative;padding-left:var(--sp-3);border-left:1px solid var(--line-soft)}
+/* Language keeps its pill, as on the home page — the one outlined control in
+   the cluster. Same values as birdland-visual.css, read from tokens. */
+.bl-language summary{
+  cursor:pointer;list-style:none;padding:8px var(--sp-3);
+  border:1px solid var(--jade-900);border-radius:999px;background:var(--paper);
+  color:var(--jade-900);font:700 var(--fs-micro)/1 var(--ff-mono);letter-spacing:.07em;
+  transition:background-color .2s ease,color .2s ease;
+}
+.bl-language summary:hover{background:var(--jade-900);color:var(--paper)}
+.bl-language summary::-webkit-details-marker{display:none}
+.bl-language[open]>div{
+  position:absolute;right:0;top:44px;z-index:70;width:200px;padding:var(--sp-2);
+  border:1px solid var(--line);background:var(--paper);
+  box-shadow:0 16px 42px rgba(7,60,51,.14);
+}
+.bl-language select{
+  width:100%;padding:var(--sp-2) 8px;border:1px solid var(--line);border-radius:0;
+  background:var(--card);color:var(--jade-900);font:600 var(--fs-micro) var(--ff-sans);
+}
+.bl-language small{display:block;margin-top:var(--sp-2);color:var(--flat);font-size:var(--fs-micro);line-height:1.45}

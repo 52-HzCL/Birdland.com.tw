@@ -68,20 +68,20 @@
           '<button type="button" class="tm-chip" data-terminal aria-haspopup="dialog" aria-expanded="false"><i aria-hidden="true"></i>Terminal</button>' +
           '<a href="contact.html">Contact</a>' +
         '</nav>' +
+        // The right cluster is the home page's, class for class, so the two
+        // headers cannot drift apart again. The holiday chip is gone — the
+        // home page never had it, and "with the home page" means with it.
         '<div class="dbar-actions">' +
-          '<div class="dbar-status">' +
-            // terminal-status.js drives these three by attribute, so they work
+          '<div class="bl-status" aria-label="Birdland system status">' +
+            // terminal-status.js drives these by attribute, so they work
             // here without any per-page wiring.
-            '<span class="dbar-online" data-hq-status>Birdland Office <b data-hq-label>Resting</b></span>' +
-            // terminal-status.js writes "18:48 Taipei" in here, so a second
-            // label saying Taiwan would just be the same word twice.
-            '<span class="dbar-time" data-taipei-time>--:-- Taipei</span>' +
-            '<span class="dbar-hol"><small>Taiwan holiday</small><b>&mdash;</b></span>' +
+            '<span class="bl-status-online" data-hq-status>Birdland Office <b data-hq-label>Resting</b></span>' +
+            '<span class="bl-status-time" data-taipei-time>--:-- Taipei</span>' +
+            '<details class="bl-language" data-language-picker><summary>Language</summary>' +
+              '<div><select data-translate-select aria-label="Translate this page">' +
+              '<option>Choose language&hellip;</option></select>' +
+              '<small>Opens Google Translate in a new tab. No selection is stored.</small></div></details>' +
           '</div>' +
-          '<details class="dbar-lang" data-language-picker><summary>Language</summary>' +
-            '<div><select data-translate-select aria-label="Translate this page">' +
-            '<option>Choose language&hellip;</option></select>' +
-            '<small>Opens Google Translate in a new tab. Nothing is stored.</small></div></details>' +
         '</div>' +
       '</div>';
 
@@ -105,19 +105,6 @@
       if (m && !m.contains(e.target)) m.removeAttribute('open');
     });
 
-    // The holiday table lives in tw-holidays.js, which may not have parsed yet.
-    (function holiday(tries) {
-      var f = window.__TWHOLnext, slot = bar.querySelector('.dbar-hol b');
-      if (typeof f === 'function' && slot) {
-        var d = new Date(), iso = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
-        var next = '';
-        try { next = f(iso); } catch (e) { }
-        slot.textContent = next || 'none scheduled';
-        return;
-      }
-      if (tries > 0) setTimeout(function () { holiday(tries - 1); }, 120);
-      else if (slot) slot.parentNode.style.display = 'none';
-    }(12));
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);

@@ -3,7 +3,10 @@
 'use strict';
 const { chromium } = require('playwright-core');
 const { CHROME, BASE } = require('./_env');
-const PAGES = ['index.html', 'partner.html', 'cost-desk.html', 'executive.html', 'guide.html', 'about.html'];
+// Site pages only. The three desks are standalone apps since 2026-08: they
+// carry no Terminal chip on purpose — the launcher is the way in, and their
+// own chrome carries the way back.
+const PAGES = ['index.html', 'guide.html', 'about.html'];
 
 (async () => {
   const browser = await chromium.launch({ executablePath: CHROME });

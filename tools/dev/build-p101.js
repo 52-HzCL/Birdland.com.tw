@@ -470,7 +470,7 @@ const HEADER = `  <a class="bl-skip" href="#main">Skip to content</a>
 const html = `<!doctype html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="tokens.css?v=20260731a"><script src="text-size.js?v=20260803a"></script>
+  <link rel="stylesheet" href="tokens.css?v=20260804a"><script src="text-size.js?v=20260804a"></script>
   <link rel="stylesheet" href="terminal.css?v=20260803a"><script defer src="terminal.js?v=20260803a"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">

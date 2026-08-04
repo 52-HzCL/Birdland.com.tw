@@ -1,0 +1,15 @@
+{
+  "name": "Birdland Cost Desk",
+  "short_name": "Cost Desk",
+  "description": "Birdland cost workspace: landed cost, retail margin, reorder timing, sailing plans and duty comparison.",
+  "start_url": "./cost-desk.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#EFF4EE",
+  "theme_color": "#0A3D2B",
+  "icons": [
+    {"src": "./images/app-cost-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "./images/app-cost-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "./images/app-cost-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}

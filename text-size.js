@@ -1,4 +1,9 @@
-/* Reader text size: three steps, set from the header, remembered.
+/* Reader text size: two steps, set from the header, remembered.
+ *
+ * It was three steps labelled A A A, and nobody could tell what it did — three
+ * identical letters read as decoration, and the middle step was a compromise
+ * no one asked for. Two named steps say it outright: Normal, or Large for a
+ * buyer reading a landed-cost table without their glasses.
  *
  * Loaded in <head> WITHOUT defer on purpose. The stored class has to be on
  * <html> before the first paint, or a reader who chose Large gets a flash of
@@ -11,9 +16,8 @@
   'use strict';
   var KEY = 'bl_text_size';
   var STEPS = [
-    { id: 'sm', cls: '', label: 'Small text' },
-    { id: 'md', cls: 'ui-md', label: 'Larger text' },
-    { id: 'lg', cls: 'ui-lg', label: 'Largest text' }
+    { id: 'sm', cls: '', text: 'Normal', label: 'Normal text size' },
+    { id: 'lg', cls: 'ui-lg', text: 'Large', label: 'Large text size, easier to read' }
   ];
 
   function stored() {
@@ -28,8 +32,11 @@
     return step.id;
   }
 
-  // Before paint.
-  var current = apply(stored() || 'sm');
+  // Before paint. 'md' was the middle step that no longer exists; a reader who
+  // had chosen it wanted bigger text, so they get Large rather than a silent
+  // reset to Normal.
+  var saved = stored();
+  var current = apply(saved === 'md' ? 'lg' : saved || 'sm');
 
   function mark(box) {
     [].forEach.call(box.querySelectorAll('button'), function (b) {
@@ -39,23 +46,32 @@
 
   function build() {
     if (document.querySelector('.bl-textsize')) return;      // already placed
-    // The header exists in three forms across this site: the hand-written one,
-    // the one desk-banner.js injects, and the Team Desk's own. All three carry
-    // the language picker, so that is the anchor.
+    // Most headers carry the language picker, so that is the anchor. The
+    // Buyer and Cost desks run their own topbar with a Google Translate box
+    // instead, so their right cluster is named here as the fallback host.
     var anchor = document.querySelector('[data-language-picker]');
     var host = anchor ? anchor.parentNode
-      : document.querySelector('.bl-header-actions,.dbar-actions,.bl-status');
+      : document.querySelector('.bl-header-actions,.dbar-actions,.bl-status,.topbar .tb-right');
     if (!host) return;
 
     var box = document.createElement('div');
     box.className = 'bl-textsize';
     box.setAttribute('role', 'group');
     box.setAttribute('aria-label', 'Text size');
+
+    // The two words say what the choice is; this says what the choice is
+    // about. Decorative, so it stays out of the accessible name.
+    var tag = document.createElement('span');
+    tag.className = 'bl-textsize-tag';
+    tag.setAttribute('aria-hidden', 'true');
+    tag.textContent = 'Aa';
+    box.appendChild(tag);
+
     STEPS.forEach(function (s) {
       var b = document.createElement('button');
       b.type = 'button';
       b.dataset.size = s.id;
-      b.textContent = 'A';
+      b.textContent = s.text;
       b.setAttribute('aria-label', s.label);
       b.title = s.label;
       b.addEventListener('click', function () {
