@@ -66,6 +66,17 @@ const ok = (m) => console.log('  ✓ ' + m);
   await p.click('.tm-step[href="partner.html"]');
   await p.waitForLoadState('networkidle'); await p.waitForTimeout(1500);
   /partner\.html$/.test(p.url()) ? ok('點 Buyer Desk 磁磚抵達 partner.html') : bad('磁磚導航失敗:' + p.url());
+  // The desks are standalone apps and carry no Terminal chip; the desk keeps
+  // its own chrome instead. Assert that, then head home for the search test.
+  const deskChrome = await p.evaluate(() => ({
+    chip: !!document.querySelector('.tm-chip'),
+    topbar: !!document.querySelector('.topbar'),
+    clock: (document.getElementById('tpkTime') || {}).textContent || '',
+  }));
+  (!deskChrome.chip && deskChrome.topbar && /\d\d:\d\d/.test(deskChrome.clock))
+    ? ok('Buyer Desk 是獨立 app:無 Terminal 晶片、自帶工具列、時鐘 ' + deskChrome.clock)
+    : bad('desk chrome 狀態 ' + JSON.stringify(deskChrome));
+  await p.goto(BASE + '/', { waitUntil: 'networkidle' }); await p.waitForTimeout(800);
 
   await p.click('.tm-chip'); await p.waitForTimeout(700);
   await p.fill('.tm-panel input', '420J2'); await p.waitForTimeout(700);
