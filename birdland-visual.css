@@ -1371,6 +1371,30 @@ button{font:inherit}
 .wk-legend b{color:var(--bl-ink)}
 .wk-rates-wrap{margin:var(--sp-3) 0 0;padding-top:var(--sp-3);border-top:1px solid var(--bl-line)}
 .wk-rates-h{display:block;margin-bottom:8px;color:var(--bl-copper);font:500 var(--fs-micro) var(--bl-mono);letter-spacing:.08em}
+/* Hardness tables. Three columns, the number in tabular figures because a
+   band is read by comparing it with the band above it. */
+.wk-hard{margin:var(--sp-3) 0 var(--sp-4);border-top:1px solid var(--bl-line)}
+.wk-hard-head,.wk-hard-row{
+  display:grid;grid-template-columns:minmax(0,1.5fr) 116px minmax(0,1.1fr);
+  gap:var(--sp-3);align-items:baseline;padding:9px 0;border-bottom:1px solid var(--bl-line);
+}
+.wk-hard-head{color:var(--bl-copper);font:600 var(--fs-micro) var(--bl-mono);letter-spacing:.14em;text-transform:uppercase}
+.wk-hard-head span:nth-child(2){text-align:right}
+.wk-hard-row b{font:500 var(--fs-small) var(--bl-serif)}
+.wk-hard-row .num{font-family:var(--bl-mono);font-variant-numeric:tabular-nums;text-align:right;font-size:var(--fs-small);color:var(--bl-jade)}
+.wk-hard-row span:last-child{font-size:var(--fs-small);color:var(--bl-muted)}
+/* The counter-blade group is a separate argument, so it gets a visible break. */
+.wk-hard-gap{border-top:1px solid var(--bl-line);margin-top:9px}
+.wk-rule{padding-left:var(--sp-3);border-left:2px solid var(--bl-copper)}
+.wk-rule b{color:var(--bl-jade)}
+.wk-ask{padding:var(--sp-3);background:var(--bl-paper-2,#F3EFE5);border:1px solid var(--bl-line)}
+.wk-ask b{color:var(--bl-copper);font:600 var(--fs-micro) var(--bl-mono);letter-spacing:.12em;text-transform:uppercase}
+@media(max-width:760px){
+  .wk-hard-head{display:none}
+  .wk-hard-row{grid-template-columns:minmax(0,1fr) 96px;gap:var(--sp-2)}
+  .wk-hard-row span:last-child{grid-column:1/3;color:var(--bl-muted)}
+}
+
 .wk-rates{margin:0;padding:0;list-style:none}
 .wk-rates li{display:grid;grid-template-columns:186px auto auto minmax(0,1fr);gap:16px;align-items:center;padding:8px 0;border-top:1px solid var(--bl-line)}
 .wk-rates li:first-child{border-top:0}

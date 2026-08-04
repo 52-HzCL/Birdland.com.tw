@@ -355,6 +355,58 @@ ${GATES.map(gateHtml(sn)).join('\n')}` },
         ${LEGEND}
 ${MATERIALS.map(matHtml(sn)).join('\n')}` },
 
+  { id: 's-fail', title: 'How a tool fails',
+    subs: [{ id: 's-fail-cut', title: 'Tools that cut' },
+           { id: 's-fail-lever', title: 'Tools that lever' },
+           { id: 's-fail-spring', title: 'Tools that spring' }],
+    render: sn => `        <p>Hardness is the number most often quoted about a hand tool and the one most often quoted wrongly. It is not a quality score, and harder is not better — every point of hardness is bought with toughness. What decides the number is the way the tool is expected to fail.</p>
+        <p>Three groups, three failure modes, three different answers. The bands below are the ones Birdland works to; read them next to each other and they stop looking arbitrary.</p>
+
+        <h3 id="s-fail-cut"><span class="wk-n">${sn}.1</span> Tools that cut &mdash; the failure is blunt</h3>
+        <p>A pruner that goes dull has failed, even though nothing broke. Edge retention comes first, so these run the hardest bands on the site.</p>
+        <div class="wk-hard">
+          <div class="wk-hard-head"><b>Part &amp; grade</b><span>Hardness</span><span>What the route is for</span></div>
+          <div class="wk-hard-row"><b>Upper blade &middot; SK5 high-carbon</b><span class="num">HRC 56&ndash;60</span><span>Highest edge retention</span></div>
+          <div class="wk-hard-row"><b>Upper blade &middot; 65Mn carbon</b><span class="num">HRC 52&ndash;56</span><span>Resilient value route</span></div>
+          <div class="wk-hard-row"><b>Upper blade &middot; S50C carbon</b><span class="num">HRC 50&ndash;55</span><span>Balanced route</span></div>
+          <div class="wk-hard-row"><b>Upper blade &middot; 420J2 stainless</b><span class="num">HRC 50&ndash;54</span><span>Corrosion first</span></div>
+          <div class="wk-hard-row wk-hard-gap"><b>Lower blade &middot; SK5 carbon</b><span class="num">HRC 50&ndash;56</span><span>Higher wear control</span></div>
+          <div class="wk-hard-row"><b>Lower blade &middot; 420J2 stainless</b><span class="num">HRC 46&ndash;52</span><span>Wet-use route</span></div>
+          <div class="wk-hard-row"><b>Lower blade &middot; S50C carbon</b><span class="num">HRC 45&ndash;50</span><span>Strength and value</span></div>
+        </div>
+        <p class="wk-rule"><b>The counter blade is softer on purpose.</b> Read the two halves of that table again: the same SK5 is specified at 56&ndash;60 on the cutting blade and 50&ndash;56 on the blade it closes against. Two equally hard blades chip each other. A softer counter blade wears sacrificially and keeps the cutting edge alive, which is why a pruner that has been resharpened twice still cuts and a &ldquo;fully hardened&rdquo; one has a notch in it.</p>
+
+        <h3 id="s-fail-lever"><span class="wk-n">${sn}.2</span> Tools that lever &mdash; the failure is fracture</h3>
+        <p>A spade meets stones, roots and frozen ground, and it gets used as a lever whether or not anyone intended it to. Its failure mode is a crack, not a dull edge, so the hardness is deliberately capped: the blade should bend before it breaks.</p>
+        <div class="wk-hard">
+          <div class="wk-hard-head"><b>Part &amp; grade</b><span>Hardness</span><span>What the route is for</span></div>
+          <div class="wk-hard-row"><b>Blade &amp; full tang &middot; Boron steel</b><span class="num">HRC 38&ndash;45</span><span>Lower mass at strength</span></div>
+          <div class="wk-hard-row"><b>Blade &amp; full tang &middot; 420 stainless</b><span class="num">HRC 38&ndash;44</span><span>Corrosion first</span></div>
+          <div class="wk-hard-row"><b>Blade &amp; full tang &middot; S50C carbon</b><span class="num">HRC 35&ndash;42</span><span>Proven value route</span></div>
+        </div>
+        <p class="wk-rule"><b>Twenty points of hardness below a pruner blade, on purpose.</b> A spade at HRC 58 would hold a superb edge and snap the first time it was levered against a root.</p>
+        <p>Digging tools fail at the neck, where the bending moment concentrates, so the structure there matters more than the steel. A forged neck carries continuous grain flow around the bend; a cast one has a random grain and any porosity becomes a fracture origin. That is the one place on a long-handled tool where forging earns its cost.</p>
+        <p>The handle is part of the same argument. An aluminium tube is specified by <b>wall thickness and temper</b>, not by diameter: 6061-T6 is materially stronger than the same tube in T5, and a drawing that gives the alloy without the temper has not given a specification. A glass-filled handle core is chosen the same way &mdash; PA6-GF30 is the common balance because at higher glass loading the part stops bending and starts shattering, and for a consumer tool a handle that deforms is safer than one that fails suddenly. Glass also abrades the mould, so a higher loading shortens tool life and shows up in the second order, not the first.</p>
+
+        <h3 id="s-fail-spring"><span class="wk-n">${sn}.3</span> Tools that spring &mdash; the failure is fatigue</h3>
+        <p>A rake tine is never asked to cut and rarely asked to resist a single large load. It is asked to bend and come back, thousands of times. What matters is the elastic limit and the cycle life, not edge retention.</p>
+        <div class="wk-hard">
+          <div class="wk-hard-head"><b>Part &amp; grade</b><span>Hardness</span><span>What the route is for</span></div>
+          <div class="wk-hard-row"><b>14-tine set &middot; 65Mn spring steel</b><span class="num">HRC 42&ndash;48</span><span>Resilient route</span></div>
+          <div class="wk-hard-row"><b>14-tine set &middot; S50C hardened</b><span class="num">HRC 38&ndash;45</span><span>Bend resistance</span></div>
+          <div class="wk-hard-row"><b>14-tine set &middot; 420 stainless</b><span class="num">HRC 36&ndash;42</span><span>Wet-soil route</span></div>
+        </div>
+        <p class="wk-rule"><b>A tine that stays bent has failed as completely as one that snaps.</b> 65Mn is a spring steel and its heat treatment is aimed at return, not at hardness &mdash; the same grade appears in the pruner spring for the same reason.</p>
+
+        <h3><span class="wk-n">${sn}.4</span> Three rules the numbers encode</h3>
+        <dl class="wk-dl">
+          <dt>A band, never a maximum</dt><dd>Every figure on this page is a range. A specification that names only a ceiling invites a plant to hit it, and the top of the range is where brittleness begins. A band fixes the floor and the ceiling together.</dd>
+          <dt>Hard only where it wears</dt><dd>The 40Cr pivot set is induction hardened at the bearing surface and left tough through the body. A pin hardened all the way through does not wear &mdash; it cracks.</dd>
+          <dt>Stainless is a trade, not an upgrade</dt><dd>420J2 gives up roughly four to six points against SK5 in the same position. It is the right answer for wet use, coastal air and grounds-maintenance fleets that will never resharpen. It is the wrong answer for professional pruning in a dry climate, and a supplier who offers it as a free improvement has not priced the edge you are losing.</dd>
+        </dl>
+        <p class="wk-ask"><b>Ask any supplier for:</b> the hardness band rather than a single figure, the sampling plan that confirms it, and whether the resulting report travels with the shipment. A band with no sampling plan behind it is a sentence, not a control.</p>
+        <p>Every grade above is one route among several for that part. The full set &mdash; 159 material routes across 38 part types, with the process and finish options that go with each &mdash; is on the <a href="partner.html">Buyer Desk</a>, or type a grade such as <b>SK5</b> or <b>420J2</b> into the Terminal to go straight to it.</p>` },
+
   { id: 's-pack', title: 'Packaging', subs: [{ id: 's-pack-f', title: 'Formats' }, { id: 's-pack-e', title: 'Lower-impact options' }],
     render: sn => `        <p>Packaging is where a programme most often meets destination regulation, and where a late change is most expensive. It is also the block buyers negotiate least and pay for most.</p>
 
@@ -479,5 +531,5 @@ fs.writeFileSync(path.join(require('./_env').REPO, 'product-101.html'), html, 'u
 console.log('bytes', html.length, '| sections', SECTIONS.length,
   '| symbols', (html.match(/<symbol/g) || []).length,
   '| uses', (html.match(/<use /g) || []).length,
-  '| rated rows', (html.match(/wk-meter wk-pop/g) || []).length,
+  '| rated rows', (html.match(/class="wk-dots"/g) || []).length,
   '| sprite wrapped', /<svg[^>]*>\s*<symbol/.test(html));
