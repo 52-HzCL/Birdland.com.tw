@@ -250,6 +250,7 @@ const packHtml = p => {
 // Order here drives the numbering and the table of contents together.
 const SECTIONS = [
   { id: 's-floor', title: 'The floor', subs: [{ id: 's-origin', title: 'Where it started, in 1974' }],
+    take: "One site since 1974 — the same tooling library and the same hardening practice, which is what makes the rest of this page specific rather than generic.",
     render: sn => `        <p>Everything else on this page describes a route. This section is about the place that route runs through, because a process description is only worth reading if the plant behind it is real.</p>
         <div class="wk-origin">
           <figure><img src="images/thumbs/taiwan-factory.webp" alt="The Taiwan base where Birdland has manufactured since 1974" loading="lazy" decoding="async"><figcaption>The Taiwan base</figcaption></figure>
@@ -265,6 +266,7 @@ const SECTIONS = [
         </figure>` },
 
   { id: 's-cat', title: 'The catalogue', subs: [],
+    take: "A decade-old archive, published for breadth, not as a price list. Nothing in it is a current quotation.",
     render: () => `        <p>Birdland keeps a product catalogue that is roughly a decade old. It is published as an <b>archive</b>, not as a price list: the items in it are not current quotations and nothing in it should be read as an offer. It is worth reading for one reason — breadth.</p>
         <div class="wk-callout">
           <b>What the catalogue actually shows</b>
@@ -284,6 +286,7 @@ const SECTIONS = [
       { id: 'oem-design', title: 'Design OEM' },
       { id: 'oem-levers', title: 'What each route lets you change' },
       { id: 'oem-tooling', title: 'How tooling is arranged' }],
+    take: "Three routes: our tooling, your drawing, or a shared development. What differs is who owns the tooling and who carries the risk.",
     render: sn => `        <p>OEM is not one thing. Almost every programme sits on one of two levels, and the first useful question is not what it will cost — it is which level you are working at. That answer moves the tooling, the lead time and the order size together.</p>
 
         <div class="wk-faces">
@@ -346,11 +349,13 @@ const SECTIONS = [
         <div class="bl-actions"><a class="bl-button" href="contact.html">Start a programme conversation</a></div>` },
 
   { id: 's-route', title: 'Production route', subs: GATES.map(g => ({ id: 'gate-' + g.id, title: g.name })),
+    take: "Seven gates. A tool is only as good as the gate it was allowed to pass.",
     render: sn => `        <p>Each gate below takes a defined input, holds one thing under control and hands the part on. The routes listed at each gate are alternatives, not a sequence: choosing between them is what a specification actually decides.</p>
         ${LEGEND}
 ${GATES.map(gateHtml(sn)).join('\n')}` },
 
   { id: 's-mat', title: 'Material families', subs: MATERIALS.map(m => ({ id: 'mat-' + m.code.toLowerCase(), title: m.name })),
+    take: "Nine families. The grade is a trade-off, never an upgrade — every point of hardness is bought with toughness.",
     render: sn => `        <p>A garden tool is rarely one material. These nine families cover a hand-tool programme, and the same nine are tracked as live inputs on the <a href="partner.html">Buyer Desk</a>, so a grade discussed here can be checked against this week's price movement.</p>
         ${LEGEND}
 ${MATERIALS.map(matHtml(sn)).join('\n')}` },
@@ -359,6 +364,7 @@ ${MATERIALS.map(matHtml(sn)).join('\n')}` },
     subs: [{ id: 's-fail-cut', title: 'Tools that cut' },
            { id: 's-fail-lever', title: 'Tools that lever' },
            { id: 's-fail-spring', title: 'Tools that spring' }],
+    take: "Hardness is set by how the tool is expected to fail: blunt, fractured or fatigued. Three groups, three bands, three different answers.",
     render: sn => `        <p>Hardness is the number most often quoted about a hand tool and the one most often quoted wrongly. It is not a quality score, and harder is not better — every point of hardness is bought with toughness. What decides the number is the way the tool is expected to fail.</p>
         <p>Three groups, three failure modes, three different answers. The bands below are the ones Birdland works to; read them next to each other and they stop looking arbitrary.</p>
 
@@ -385,8 +391,12 @@ ${MATERIALS.map(matHtml(sn)).join('\n')}` },
           <div class="wk-hard-row"><b>Blade &amp; full tang &middot; S50C carbon</b><span class="num">HRC 35&ndash;42</span><span>Proven value route</span></div>
         </div>
         <p class="wk-rule"><b>Twenty points of hardness below a pruner blade, on purpose.</b> A spade at HRC 58 would hold a superb edge and snap the first time it was levered against a root.</p>
-        <p>Digging tools fail at the neck, where the bending moment concentrates, so the structure there matters more than the steel. A forged neck carries continuous grain flow around the bend; a cast one has a random grain and any porosity becomes a fracture origin. That is the one place on a long-handled tool where forging earns its cost.</p>
-        <p>The handle is part of the same argument. An aluminium tube is specified by <b>wall thickness and temper</b>, not by diameter: 6061-T6 is materially stronger than the same tube in T5, and a drawing that gives the alloy without the temper has not given a specification. A glass-filled handle core is chosen the same way &mdash; PA6-GF30 is the common balance because at higher glass loading the part stops bending and starts shattering, and for a consumer tool a handle that deforms is safer than one that fails suddenly. Glass also abrades the mould, so a higher loading shortens tool life and shows up in the second order, not the first.</p>
+        <p>Digging tools fail at the neck, where the bending moment concentrates &mdash; so the structure there matters more than the steel. A forged neck carries continuous grain around the bend; a cast one has random grain, and any porosity becomes a fracture origin. It is the one place on a long-handled tool where forging earns its cost.</p>
+        <p>The handle carries the same logic, and the specification most often left incomplete is the aluminium: a tube is defined by <b>wall thickness and temper</b>, not by diameter.</p>
+        <details class="wk-more"><summary>Handles: temper, glass loading and what they cost later</summary>
+          <p>6061-T6 is materially stronger than the same tube in T5. A drawing that names the alloy but not the temper has not specified anything, and the difference shows up the first time a three-metre pole is levered.</p>
+          <p>A glass-filled core is chosen the same way. PA6-GF30 is the usual balance because above it the part stops bending and starts shattering, and on a consumer tool a handle that deforms is safer than one that fails suddenly. Glass also abrades the mould, so a higher loading quietly shortens tool life &mdash; a cost that lands on the second order, not the first.</p>
+        </details>
 
         <h3 id="s-fail-spring"><span class="wk-n">${sn}.3</span> Tools that spring &mdash; the failure is fatigue</h3>
         <p>A rake tine is never asked to cut and rarely asked to resist a single large load. It is asked to bend and come back, thousands of times. What matters is the elastic limit and the cycle life, not edge retention.</p>
@@ -407,8 +417,65 @@ ${MATERIALS.map(matHtml(sn)).join('\n')}` },
         <p class="wk-ask"><b>Ask any supplier for:</b> the hardness band rather than a single figure, the sampling plan that confirms it, and whether the resulting report travels with the shipment. A band with no sampling plan behind it is a sentence, not a control.</p>
         <p>Every grade above is one route among several for that part. The full set &mdash; 159 material routes across 38 part types, with the process and finish options that go with each &mdash; is on the <a href="partner.html">Buyer Desk</a>, or type a grade such as <b>SK5</b> or <b>420J2</b> into the Terminal to go straight to it.</p>` },
 
-  { id: 's-pack', title: 'Packaging', subs: [{ id: 's-pack-f', title: 'Formats' }, { id: 's-pack-e', title: 'Lower-impact options' }],
-    render: sn => `        <p>Packaging is where a programme most often meets destination regulation, and where a late change is most expensive. It is also the block buyers negotiate least and pay for most.</p>
+  { id: 's-fast', title: 'Nuts, bolts and the joint',
+    subs: [{ id: 's-fast-p', title: 'The pivot' },
+           { id: 's-fast-w', title: 'The washer stack' },
+           { id: 's-fast-m', title: 'What the fastener is made of' }],
+    take: "A hand tool fails at its joint more often than at its blade. The nut decides whether that joint can be brought back or has to be thrown away.",
+    render: sn => `        <p>Every tool on this page is at least two parts held together. The blade gets the specification; the fastener gets whatever is in the bin. That is why a pruner whose blade still takes an edge can already be finished &mdash; the pivot has gone slack, and nothing on it can be tightened.</p>
+
+        <h3 id="s-fast-p"><span class="wk-n">${sn}.1</span> The pivot decides whether the tool is repairable</h3>
+        <p>One choice governs the life of the product: can the user re-tension the joint, or not.</p>
+        <div class="p101-scroll">
+          <table class="p101-table">
+            <thead><tr><th scope="col">Joint</th><th scope="col">What holds it</th><th scope="col">User can re-tension</th><th scope="col">Where it belongs</th></tr></thead>
+            <tbody>
+              <tr><td>Riveted or peened pin</td><td>A deformed head</td><td>No &mdash; drilling it out ends the tool</td><td>Entry-price shears where no service is expected</td></tr>
+              <tr><td>Bolt + nylon-insert lock nut</td><td>Nylon gripping the thread</td><td>Yes, with two spanners</td><td>The ordinary professional pruner pivot</td></tr>
+              <tr><td>Bolt + all-metal prevailing-torque nut</td><td>A deformed thread crest</td><td>Yes, and it survives repeated opening</td><td>Wash-down, heat, or tools stripped each season for sharpening</td></tr>
+              <tr><td>Shoulder bolt + castle nut + split pin</td><td>A mechanical lock</td><td>Yes, and it cannot back off at all</td><td>Loppers and long handles, where leverage is high</td></tr>
+              <tr><td>Knurled or thumb nut</td><td>Hand tension</td><td>Yes, with no tools</td><td>Consumer tools sold on adjustability</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="wk-rule"><b>A rivet is a decision about the product's life, not about its price.</b> It saves a few cents and removes service, resharpening back to a true edge, and any spare-parts programme. On a tool sold as repairable it is a contradiction the pack cannot hide.</p>
+
+        <h3 id="s-fast-w"><span class="wk-n">${sn}.2</span> The washer stack does more than the nut</h3>
+        <div class="wk-kv">
+          <div><b>Belleville (disc-spring) washer</b><span>Holds a preload as the bearing faces polish in. It is the difference between a pruner that keeps its adjustment through a season and one that is loose in a fortnight.</span></div>
+          <div><b>Hardened flat washer</b><span>Spreads the clamp load. Without one the nut sinks into an aluminium or plastic handle and the joint goes slack with nothing actually broken.</span></div>
+          <div><b>Low-friction washer &mdash; bronze or PTFE</b><span>Keeps two steel faces apart so the action stays smooth and the blade does not gall against the counter blade.</span></div>
+          <div><b>Split (spring) lock washer</b><span>Commonly fitted and weak against transverse vibration &mdash; in a Junker-type test it can loosen about as fast as a plain washer. Treat it as a cost decision, not as the anti-loosening feature.</span></div>
+        </div>
+
+        <h3 id="s-fast-m"><span class="wk-n">${sn}.3</span> What the fastener is made of</h3>
+        <div class="p101-scroll">
+          <table class="p101-table">
+            <thead><tr><th scope="col">Route</th><th scope="col">Belongs on</th><th scope="col">The trade</th></tr></thead>
+            <tbody>
+              <tr><td>Zinc-plated carbon steel, class 8.8</td><td>General dry use</td><td>Cheapest. The plating hours, not the steel, decide how long it looks new</td></tr>
+              <tr><td>Stainless A2 (304)</td><td>Wet use; skips plating entirely</td><td>A2-70 is around 700&nbsp;MPa against class 8.8's 800 &mdash; stainless buys corrosion resistance, not strength</td></tr>
+              <tr><td>Stainless A4 (316)</td><td>Salt air and coastal fleets</td><td>Highest cost, same strength trade</td></tr>
+              <tr><td>Bronze or brass bush at the pivot</td><td>Tools sold on a smooth action</td><td>Wears sacrificially and protects the blade &mdash; a serviceable part, if you stock it</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="wk-rule"><b>Match the fastener to the handle, not to the blade.</b> A stainless bolt through an aluminium pole is a small battery: aluminium is the anode and corrodes at the interface. A &ldquo;stainless upgrade&rdquo; can arrive as a seized telescopic joint after one coastal season. Isolate it with a nylon bush or a coated fastener.</p>
+
+        <details class="wk-more"><summary>Threads, lockers and the standards to quote</summary>
+          <p>Rolled threads follow the grain of the material instead of cutting across it, so they are both stronger and cheaper at volume; cut threads belong on repairs and one-offs. Where a joint is never meant to be opened, a medium-strength anaerobic locker does a lock nut's work for less. Where adjustment is a selling feature it is the wrong answer &mdash; the first re-tension breaks the bond and nothing replaces it.</p>
+          <p>A nylon insert is a consumable. It grips by being deformed, so a nut that has been off and on a few times no longer holds what it did. If a tool is meant to be stripped for sharpening every season, specify the all-metal nut and accept the higher torque to fit it.</p>
+        </details>
+        <p class="wk-ask"><b>Ask any supplier for:</b> the nut standard by number (ISO&nbsp;7040 or DIN&nbsp;985 for nylon-insert, DIN&nbsp;980 for all-metal), a drawing of the washer stack rather than a photograph of the finished tool, the salt-spray hours for the plating <i>on the fastener</i> and not only on the blade, and confirmation that the pivot can be re-tensioned with tools a gardener already owns.</p>` },
+
+  { id: 's-pack', title: 'Packaging',
+    subs: [{ id: 's-pack-f', title: 'Formats' },
+           { id: 's-pack-d', title: 'Display and shelf presentation' },
+           { id: 's-pack-r', title: 'Racks and display units' },
+           { id: 's-pack-x', title: 'The parcel network is not the shelf' },
+           { id: 's-pack-e', title: 'Lower-impact options' }],
+    take: "Where a programme meets destination regulation, and the block buyers negotiate least and pay for most.",
+    render: sn => `        <p>Packaging is where a programme meets destination regulation, and where a late change costs most. Four things are being specified at once: the format that protects the tool, the presentation that sells it, the unit that carries it, and the marks the destination requires.</p>
 
         <h3 id="s-pack-f"><span class="wk-n">${sn}.1</span> Formats</h3>
         ${LEGEND}
@@ -416,7 +483,52 @@ ${MATERIALS.map(matHtml(sn)).join('\n')}` },
 ${PACKS.map(packHtml).join('\n')}
         </div>
 
-        <h3 id="s-pack-e"><span class="wk-n">${sn}.2</span> Lower-impact options</h3>
+        <h3 id="s-pack-d"><span class="wk-n">${sn}.2</span> Display and shelf presentation</h3>
+        <p>A format protects the tool. A <i>presentation</i> decides how it is bought. The two are specified together, because the presentation is what dictates the die-cut, the board weight and the hole.</p>
+        <div class="p101-scroll">
+          <table class="p101-table">
+            <thead><tr><th scope="col">Presentation</th><th scope="col">What the pack has to carry</th><th scope="col">Where it wins</th></tr></thead>
+            <tbody>
+              <tr><td>Colour box with a die-cut aperture</td><td>An inner tray or board insert the tool plugs into, so it sits square behind the window and cannot rattle</td><td>Gift and premium lines: the tool is visible and still fully boxed</td></tr>
+              <tr><td>Open-front display box</td><td>A perforated lid that tears away and leaves a tray the store can put straight on the shelf</td><td>Shelf-ready lines &mdash; the case is the display, so nothing is unpacked twice</td></tr>
+              <tr><td>Header card + euro slot</td><td>A folded card with a punched hanging hole sized to the retailer's own hook</td><td>The cheapest route onto a rail; the retailer owns the fixture</td></tr>
+              <tr><td>Blister or clamshell on a hook</td><td>A formed shell welded or folded to a printed backer</td><td>Small tools that need theft resistance and full-face print</td></tr>
+              <tr><td>Skin pack on board</td><td>Film drawn tight over the tool, plus a punched hole</td><td>Shows the real product shape with far less plastic than a blister</td></tr>
+              <tr><td>Counter unit (PDQ)</td><td>A small pre-filled tray shipped ready to stand on a counter</td><td>Impulse lines and seasonal add-ons</td></tr>
+              <tr><td>Floor or pallet display</td><td>A shipper that becomes a free-standing unit, with a printed header</td><td>Season openings, where the volume justifies the tooling</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="wk-rule"><b>Ask which hook it will hang on before drawing the hole.</b> Rail systems, pegboard and slatwall all take a different hook, and a hole punched for the wrong one turns a compliant pack into a repack at the destination. This is the single most common late packaging change on a garden programme.</p>
+
+        <h3 id="s-pack-r"><span class="wk-n">${sn}.3</span> Racks and display units</h3>
+        <p>Two different things get called a display: a fixture the retailer already owns, and a unit you ship. Which it is decides who pays for it, and whether you are quoting a pack or a piece of furniture.</p>
+        <div class="p101-scroll">
+          <table class="p101-table">
+            <thead><tr><th scope="col">Rack</th><th scope="col">Life</th><th scope="col">What it is really for</th></tr></thead>
+            <tbody>
+              <tr><td>Powder-coated steel wire rack or spinner</td><td>Years; usually returnable</td><td>Trade counters and hardware. Doubles as the brand's own footprint in store</td></tr>
+              <tr><td>Corrugated board PDQ or floor unit</td><td>One season, disposable</td><td>Promotions. Ships flat, costs least, and is thrown away rather than returned</td></tr>
+              <tr><td>Chipboard or MDF panel with pegs</td><td>Several seasons</td><td>Garden centres, where the unit has to look like fixture rather than packaging</td></tr>
+              <tr><td>Acrylic tray or riser</td><td>Long, but scratches</td><td>Premium and small parts; the most expensive per facing</td></tr>
+              <tr><td>Retailer's own slatwall or pegboard</td><td>Permanent, not yours</td><td>You supply a euro-slotted pack and nothing else &mdash; the fixture is already there</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="s-pack-x"><span class="wk-n">${sn}.4</span> The parcel network is not the shelf</h3>
+        <p>A retail pack is designed to be stacked on a pallet and to look right under store lighting. A parcel pack is designed to be thrown. The same box rarely does both, and a pack that passes a retail brief can still fail its first month online.</p>
+        <div class="wk-kv">
+          <div><b>Ships in its own container</b><span>A retail pack strong enough to travel alone, with no outer carton. It removes a box, a labour step and a lot of void fill &mdash; but only if it survives the marketplace's own parcel test on its own.</span></div>
+          <div><b>Cube, not weight</b><span>Parcel networks charge for dimensional weight. Right-sizing the box is almost always a larger saving than anything negotiated on the board itself.</span></div>
+          <div><b>One scannable barcode</b><span>A second visible barcode on the outside is a mis-scan waiting to happen. Retail marks belong under the outer label or on a face that is covered.</span></div>
+          <div><b>Poly bag warnings</b><span>A bag above the marketplace's size threshold needs a suffocation warning printed on it, in the required wording. It is small, cheap, and a routine cause of a rejected inbound.</span></div>
+          <div><b>Guarded edges</b><span>A blade that arrives through its own carton is a claim and a safety report. Edge guards are specified for the drop, not for the shelf.</span></div>
+          <div><b>The listing and the pack must agree</b><span>Material names, dimensions and counts on the pack have to match what the listing claims. A mismatch reads as a wrong item and comes back as a return, not as a query.</span></div>
+        </div>
+        <p class="wk-note">Marketplace programme names, thresholds and test protocols change; treat the row above as the questions to ask and confirm each against the current seller or vendor manual for your account.</p>
+
+        <h3 id="s-pack-e"><span class="wk-n">${sn}.5</span> Lower-impact options</h3>
         <p>Each conventional format has a lower-impact route. Availability depends on the pack, the volume and the destination — tell us the market and the retail presentation, and the compliant routes can be quoted alongside the conventional ones.</p>
         <div class="p101-scroll">
           <table class="p101-table">
@@ -427,7 +539,68 @@ ${ECO.map(r => `              <tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td>
           </table>
         </div>` },
 
+  { id: 's-cert', title: 'Certificates and declarations',
+    subs: [{ id: 's-cert-t', title: 'What each mark covers' },
+           { id: 's-cert-r', title: 'Reading a certificate' }],
+    take: "A certificate is a document about a site, a scope and a date. Check all three, because a valid certificate for the wrong site is worth nothing.",
+    render: sn => `        <p>Certification is no longer a differentiator in this trade; it is an entry condition. What still separates suppliers is whether the paperwork survives being checked &mdash; a scope that covers the product you are buying, a site address that matches the plant, and a date that is still live when the container sails.</p>
+
+        <h3 id="s-cert-t"><span class="wk-n">${sn}.1</span> What each mark covers</h3>
+        <div class="p101-scroll">
+          <table class="p101-table">
+            <thead><tr><th scope="col">Mark</th><th scope="col">What it actually certifies</th><th scope="col">Who asks for it</th><th scope="col">What to check on the document</th></tr></thead>
+            <tbody>
+              <tr><td>FSC / PEFC</td><td>Chain of custody for timber and board &mdash; that certified fibre was tracked, not that a tree was certified</td><td>Most large EU and UK retail accounts, increasingly US</td><td>The CoC code, the claim type (100%, Mix or Recycled) and that the certificate covers the product group you are buying</td></tr>
+              <tr><td>EU deforestation rules</td><td>Due diligence that wood placed on the EU market is deforestation-free</td><td>Whoever imports into the EU &mdash; usually you, not the factory</td><td>Geolocation of the harvest area and a due diligence statement; confirm the phase-in date that applies to your operator size</td></tr>
+              <tr><td>amfori BSCI / Sedex SMETA</td><td>Labour and working conditions at a named site, on a named date</td><td>Nearly every EU and US retail account</td><td>The audit date, the rating or findings, and that the audited address is the plant that will make your goods</td></tr>
+              <tr><td>ISO 9001 / ISO 14001</td><td>That a quality or environmental management system exists and is audited</td><td>Almost all trade buyers, as a baseline</td><td>Scope and site. A group certificate naming a different factory is not your certificate</td></tr>
+              <tr><td>REACH &amp; SVHC</td><td>Restricted substances in the article &mdash; grips, coatings and plating as much as steel</td><td>EU importers</td><td>The substance list tested, the test date, and which part of the tool was sampled</td></tr>
+              <tr><td>CPSIA and California Proposition&nbsp;65</td><td>Lead and phthalate limits; warning obligations</td><td>US importers</td><td>The test report, and whether a warning is required on the pack for your channel</td></tr>
+              <tr><td>EN&nbsp;388 with CE / UKCA</td><td>Mechanical performance of protective gloves</td><td>Anyone selling gloves into the EU or UK</td><td>The notified body, the performance levels claimed, and that the certificate is for this glove</td></tr>
+              <tr><td>Packaging EPR registrations</td><td>Who pays for the packaging waste in each market</td><td>Germany, France, Italy, Spain and others individually</td><td>Registration numbers held in the right name, and the on-pack marks each market requires</td></tr>
+              <tr><td>UK plastic packaging tax</td><td>Plastic packaging below the recycled-content threshold</td><td>UK importers</td><td>Evidence of recycled content, not a statement of intent</td></tr>
+              <tr><td>ISPM&nbsp;15</td><td>Heat treatment of wooden pallets and dunnage</td><td>Every destination, for wooden pallets</td><td>The stamp on the pallet itself, at loading</td></tr>
+              <tr><td>GS1 GTIN</td><td>That the barcode belongs to the brand owner</td><td>All retail</td><td>That the prefix is licensed to the brand, not borrowed from a supplier</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="s-cert-r"><span class="wk-n">${sn}.2</span> Reading a certificate</h3>
+        <dl class="wk-dl">
+          <dt>Site, scope, date</dt><dd>Three fields decide whether a certificate applies to your order. A live FSC certificate held by a trading company does not let the factory print the logo, and a social audit of a sister plant says nothing about the one running your line.</dd>
+          <dt>A claim needs a chain, not a logo</dt><dd>To put FSC on a pack, every party that takes ownership of the certified material needs its own chain-of-custody code &mdash; mill, converter, and the factory that assembles the pack. One missing link and the claim cannot be made, however certified the paper was.</dd>
+          <dt>Audits expire; production does not</dt><dd>Ask when the next audit falls and what happens to your shipments if it slips. A certificate that lapses mid-programme is a commercial problem, not a paperwork one.</dd>
+        </dl>
+        <p class="wk-ask"><b>Ask any supplier for:</b> the certificate itself rather than a logo on a presentation, the scope page, and the name and address exactly as they appear on it. Then check that address against the plant you visited.</p>` },
+
+  { id: 's-serve', title: 'What a wholesaler expects',
+    subs: [{ id: 's-serve-b', title: 'Before the order' },
+           { id: 's-serve-a', title: 'After it ships' }],
+    take: "Most of what distinguishes suppliers at this level is not the tool. It is tooling ownership, sample discipline, documents and what happens when something goes wrong.",
+    render: sn => `        <p>Importers, distributors and buying groups in Europe and North America, and the trading houses across Asia they compete with, converge on a short list of expectations. Almost none of it is about manufacturing. It is worth stating plainly, because it is what a first meeting is actually about.</p>
+
+        <h3 id="s-serve-b"><span class="wk-n">${sn}.1</span> Before the order</h3>
+        <div class="wk-kv">
+          <div><b>Tooling ownership, in writing</b><span>Who owns the mould, where it is stored, what it costs to move, and what happens to it if the programme ends. The most expensive ambiguity in this trade.</span></div>
+          <div><b>Sample discipline</b><span>How many rounds before samples are charged, and a sealed golden sample kept by both sides. Production is judged against that sample, not against a memory of it.</span></div>
+          <div><b>MOQ across a range, not per line</b><span>A range of eight tools in three colours is not twenty-four minimums. Whether a supplier can pool a run is often the whole difference between a viable programme and a dead one.</span></div>
+          <div><b>Artwork and label control</b><span>Versioned artwork, the right barcode, market-specific recycling marks and translations. Late artwork is the most common reason a ready order sits in a warehouse.</span></div>
+          <div><b>Inspection terms agreed up front</b><span>Which AQL, who books the third party, who pays for a re-inspection, and what a failed lot actually triggers.</span></div>
+          <div><b>Consolidation</b><span>Several lines, sometimes several factories, into one container &mdash; and one packing list that a customs broker can read.</span></div>
+        </div>
+
+        <h3 id="s-serve-a"><span class="wk-n">${sn}.2</span> After it ships</h3>
+        <div class="wk-kv">
+          <div><b>Documents that arrive before the goods</b><span>Invoice, packing list, certificate of origin, and whatever the destination adds. A container waiting on paperwork costs more per day than the margin on the pallet holding it up.</span></div>
+          <div><b>Spare parts, for a stated number of years</b><span>Blades, springs and pivot kits held and priced. This is what makes a repairability claim real, and it is increasingly asked for in Europe.</span></div>
+          <div><b>A claims process with a number on it</b><span>What evidence is needed, who decides, and how long it takes. &ldquo;We will look after you&rdquo; is not a process.</span></div>
+          <div><b>Terms understood the same way by both sides</b><span>FOB, CIF and DDP move risk and cost to different places. Most disputes we see are a term agreed loosely rather than a price agreed wrongly.</span></div>
+          <div><b>Continuity</b><span>Whether the same line, the same tooling and the same people will still make it next season &mdash; the reason the first section of this page is about a floor rather than a process.</span></div>
+        </div>
+        <p class="wk-ask"><b>Worth asking early:</b> who owns the tooling, how many sample rounds are free, whether MOQ can be pooled across the range, and how long spare parts are held. Four questions, and the answers tell you most of what a supplier relationship will be like.</p>` },
+
   { id: 's-cost', title: 'Cost structure', subs: [],
+    take: "A landed price is four blocks. Most negotiations move only the first, and the last two are usually larger.",
     render: () => `        <p>A landed price is four blocks, not one number. Most sourcing conversations move only the first; in a hand-tool programme the last two are frequently larger than the saving being negotiated on the first.</p>
         <div class="cost-ladder">
 ${COST.map((c, i) => `          <div class="cost-cell"><b>BLOCK 0${i + 1}</b><strong>${esc(c[0])}</strong><span>${esc(c[1])}</span></div>`).join('\n')}
@@ -435,6 +608,7 @@ ${COST.map((c, i) => `          <div class="cost-cell"><b>BLOCK 0${i + 1}</b><st
         <p>Run your own numbers: the landed-cost tool on the <a href="partner.html#p-landed2">Buyer Desk</a> uses these same four blocks, with current material and freight readings already loaded.</p>` },
 
   { id: 's-also', title: 'See also', subs: [],
+    take: "Where to go next, and what this page deliberately does not contain.",
     render: () => `        <ul class="wk-seealso">
           <li><a href="partner.html">Buyer Desk</a> — live material, freight and tariff readings, and the landed-cost tool referenced above.</li>
           <li><a href="executive.html">Daily Supply News</a> — the daily industry brief behind those readings.</li>
@@ -446,7 +620,7 @@ ${COST.map((c, i) => `          <div class="cost-cell"><b>BLOCK 0${i + 1}</b><st
 
 const sectionsHtml = SECTIONS.map((s, i) => `      <section class="wk-sec" id="${s.id}">
         <h2><span class="wk-n">${i + 1}</span> ${esc(s.title)}</h2>
-${s.render(i + 1)}
+${s.take ? `        <p class="wk-take">${s.take}</p>\n` : ''}${s.render(i + 1)}
       </section>`).join('\n\n');
 
 const tocHtml = SECTIONS.map((s, i) => `        <li><a href="#${s.id}">${i + 1} ${esc(s.title)}</a>` +
@@ -496,7 +670,7 @@ ${tocHtml}
       <div>
       <nav class="ledger-crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Factory</span></nav>
       <h1>Garden hand-tool manufacturing</h1>
-      <p class="wk-lead">A tool that looks simple on a shelf is the output of seven controlled gates and nine material families, finished, packed and shipped under rules that differ by destination. This article sets out that route in public terms — where it runs, what it has already produced, what happens at each gate, and where the cost actually sits. It contains no customer drawing, specification or programme record.</p>
+      <p class="wk-lead">A tool that looks simple on a shelf is the output of seven controlled gates and nine material families, packed and shipped under rules that change with the destination. This article sets out that route in public terms. It contains no customer drawing, specification or programme record.</p>
 
       </div>
       <aside class="wk-box" aria-label="At a glance">
@@ -518,6 +692,44 @@ ${tocHtml}
 ${sectionsHtml}
     </article>
   </main>
+
+  <script>
+  /* The contents rail carried 48 links. A reader cannot triage 48 links, so
+     it shows the twelve sections and opens the subsections of the one being
+     read. Sub-links stay reachable: they appear as you arrive, and on focus.
+
+     A probe line, not an IntersectionObserver: two sections are "on screen"
+     whenever a boundary crosses the band, and picking between them needs a
+     rule anyway. Which section have I most recently passed is that rule. */
+  (function(){
+    var toc = document.querySelector('.wk-toc');
+    var secs = [].slice.call(document.querySelectorAll('.wk-sec'));
+    if (!toc || !secs.length) return;
+    toc.classList.add('is-live');
+    var link = {};
+    [].forEach.call(toc.querySelectorAll('a[href^="#"]'), function (a) {
+      link[a.getAttribute('href').slice(1)] = a;
+    });
+    var at = null, queued = false;
+    function paint() {
+      queued = false;
+      var probe = 150, here = secs[0].id;
+      for (var i = 0; i < secs.length; i++) {
+        if (secs[i].getBoundingClientRect().top <= probe) here = secs[i].id;
+        else break;
+      }
+      if (here === at) return;
+      at = here;
+      [].forEach.call(toc.querySelectorAll('.is-here'), function (n) { n.classList.remove('is-here'); });
+      var a = link[here];
+      if (a && a.parentNode) a.parentNode.classList.add('is-here');
+    }
+    function queue() { if (!queued) { queued = true; requestAnimationFrame(paint); } }
+    addEventListener('scroll', queue, { passive: true });
+    addEventListener('resize', queue);
+    paint();
+  })();
+  </script>
 
   <footer class="bl-footer">
     <span>This page contains public manufacturing education only.</span>

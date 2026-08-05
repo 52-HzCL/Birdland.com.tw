@@ -1283,6 +1283,12 @@ button{font:inherit}
 .wk-toc li{margin:0 0 var(--sp-1)}
 .wk-toc a{display:block;color:var(--bl-jade);font:500 var(--fs-micro)/1.35 var(--bl-mono);text-decoration:none}
 .wk-toc ul a{color:var(--bl-muted);font-size:var(--fs-micro)}
+/* Only when the script is running: a rail that collapses without it would
+   hide half the contents from anyone whose JS did not load. */
+.wk-toc.is-live ul{display:none}
+.wk-toc.is-live li.is-here>ul{display:block}
+.wk-toc.is-live li.is-here>a{color:var(--bl-copper);font-weight:700}
+.wk-toc.is-live li:focus-within>ul{display:block}
 .wk-toc a:hover,.wk-toc a:focus-visible{color:var(--bl-copper)}
 .wk-body{min-width:0;padding-bottom:var(--sp-6)}
 .wk-body h1{margin:var(--sp-3) 0 0;font:500 calc(clamp(48px,4.6vw,48px) * var(--ui-scale))/1 var(--bl-serif);letter-spacing:-.04em}
@@ -1370,6 +1376,47 @@ button{font:inherit}
 .wk-legend b{color:var(--bl-ink)}
 .wk-rates-wrap{margin:var(--sp-3) 0 0;padding-top:var(--sp-3);border-top:1px solid var(--bl-line)}
 .wk-rates-h{display:block;margin-bottom:8px;color:var(--bl-copper);font:500 var(--fs-micro) var(--bl-mono);letter-spacing:.08em}
+/* The one line that can be read instead of the section. Sits between the
+   heading and the body, sized between them, so it reads as an answer rather
+   than as the first sentence of the prose. */
+.wk-take{
+  margin:0 0 var(--sp-4);padding-bottom:var(--sp-3);
+  border-bottom:1px solid var(--bl-line);
+  color:var(--bl-ink);font:400 var(--fs-h3)/1.5 var(--bl-serif);
+}
+
+/* Depth, folded. The argument stays on the page for the buyer who wants it
+   and stops being a wall for the one who does not. Never put a fact here that
+   the section above does not already state in short form. */
+.wk-more{margin:var(--sp-3) 0 var(--sp-4);border-top:1px solid var(--bl-line);border-bottom:1px solid var(--bl-line)}
+.wk-more>summary{
+  display:flex;align-items:center;gap:var(--sp-2);padding:var(--sp-3) 0;
+  cursor:pointer;list-style:none;
+  color:var(--bl-copper);font:600 var(--fs-micro) var(--bl-mono);letter-spacing:.12em;text-transform:uppercase;
+}
+.wk-more>summary::-webkit-details-marker{display:none}
+.wk-more>summary::before{
+  content:"";width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+  transform:rotate(-45deg);transition:transform var(--dur-fast) var(--ease);
+}
+.wk-more[open]>summary::before{transform:rotate(45deg)}
+.wk-more>summary:hover{color:var(--bl-jade)}
+.wk-more>*:last-child{margin-bottom:var(--sp-3)}
+@media(prefers-reduced-motion:reduce){.wk-more>summary::before{transition:none}}
+
+/* A two-column key/value strip used by the new commercial sections. Narrower
+   than a table and quieter than a card grid. */
+.wk-kv{margin:var(--sp-3) 0 var(--sp-4);border-top:1px solid var(--bl-line)}
+.wk-kv>div{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:var(--sp-3);
+  padding:10px 0;border-bottom:1px solid var(--bl-line);
+}
+.wk-kv b{font:600 var(--fs-small)/1.35 var(--bl-serif)}
+.wk-kv span{color:var(--bl-muted);font-size:var(--fs-small);line-height:1.5}
+@media(max-width:760px){
+  .wk-kv>div{grid-template-columns:1fr;gap:4px}
+}
+
 /* Hardness tables. Three columns, the number in tabular figures because a
    band is read by comparing it with the band above it. */
 .wk-hard{margin:var(--sp-3) 0 var(--sp-4);border-top:1px solid var(--bl-line)}
