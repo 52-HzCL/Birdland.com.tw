@@ -168,6 +168,11 @@ html.ui-lg .navgroup a{font-size:12px}
 .journal-map{margin:0;display:flex;flex-direction:column;border-right:1px solid var(--kb-line);background:#e9e2d6}
 .journal-map img{display:block;width:100%;flex:1;min-height:372px;height:auto;object-fit:cover;filter:saturate(.76) contrast(.98)}
 .journal-map figcaption{flex:0 0 auto}
+/* The lead column was padded and the risk column was not, so the risk text
+   started flush against the map — 0px, measured. Both sides of the map now
+   have a gutter. */
+.journal-risk{padding-left:var(--sp-4)}
+.journal-lead{padding-right:var(--sp-4)}
 .journal-map figcaption{height:38px;padding:var(--sp-2) var(--sp-3);color:var(--kb-muted);font:600 var(--fs-micro) var(--mono);letter-spacing:.08em;text-transform:uppercase}
  /* The front is a three-column grid — lead, map, risk — and the drivers block
     was falling into column one of the second row, which is the narrowest of
@@ -320,6 +325,8 @@ dialog{border-radius:0}
      longer beside it. */
   .journal-front{display:block}
   .journal-lead,.journal-map{border-right:0}
+  /* One column on paper: a side gutter would read as an indent. */
+  .journal-risk,.journal-lead{padding-left:0;padding-right:0}
   .journal-map{margin:4mm 0}
   .journal-map img{min-height:0;height:auto;flex:none}
   /* Three cards in a 2x2 grid left the fourth cell showing the grid's own

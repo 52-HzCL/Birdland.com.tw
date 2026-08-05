@@ -160,7 +160,9 @@ const MATERIALS = [
 
 const PACKS = [
   { sym: 'bp-p-carton', photo: 'p-carton', name: 'Corrugated export carton', note: 'The outer shipping unit. Board grade and cube per carton drive freight cost more than weight does.' },
-  { sym: 'bp-p-colourbox', photo: 'p-colourbox', name: 'Colour box', note: 'A printed retail folding box. Print process and finish are usually the largest single packaging cost.' },
+  // The name is the key the ratings table is looked up by, so it stays exactly
+  // as it is; the note carries what the format actually is.
+  { sym: 'bp-p-colourbox', photo: 'p-colourbox', name: 'Colour box', note: 'A printed box that ships full and opens into the display: two dozen pruners stand upright in a die-cut insert, held apart and visible. Shipper, shelf unit and print surface in one, which is why it is usually the largest single packaging cost.' },
   { sym: 'bp-p-hangtag', photo: 'p-hangtag', name: 'Hang tag / header card', note: 'A card folded over the tool with a punched hanging hole. The cheapest route to a shelf-ready presentation.' },
   { sym: 'bp-p-blister', photo: 'p-blister', name: 'Blister pack', note: 'A formed shell over a backing card. Highly protective, and the format most affected by plastic regulation.' },
   { sym: 'bp-p-skinpack', photo: 'p-skinpack', name: 'Skin pack', note: 'Film drawn tight over the tool onto board. Uses less plastic than a blister and shows the product shape.' },
@@ -489,7 +491,8 @@ ${PACKS.map(packHtml).join('\n')}
           <table class="p101-table">
             <thead><tr><th scope="col">Presentation</th><th scope="col">What the pack has to carry</th><th scope="col">Where it wins</th></tr></thead>
             <tbody>
-              <tr><td>Colour box with a die-cut aperture</td><td>An inner tray or board insert the tool plugs into, so it sits square behind the window and cannot rattle</td><td>Gift and premium lines: the tool is visible and still fully boxed</td></tr>
+              <tr><td>Colour box the tools stand in</td><td>A die-cut insert sized to the tool, so two dozen pruners travel in one box and stand upright the moment the lid comes off. The insert is the drawing that matters, not the box</td><td>The everyday counter route: one carton, one SKU, and no shelf-filling labour at the store</td></tr>
+              <tr><td>Colour box with a printed window</td><td>The same insert plus a die-cut aperture, so a single tool shows through and is still fully enclosed</td><td>Gift and premium lines, where the box is part of what is being bought</td></tr>
               <tr><td>Open-front display box</td><td>A perforated lid that tears away and leaves a tray the store can put straight on the shelf</td><td>Shelf-ready lines &mdash; the case is the display, so nothing is unpacked twice</td></tr>
               <tr><td>Header card + euro slot</td><td>A folded card with a punched hanging hole sized to the retailer's own hook</td><td>The cheapest route onto a rail; the retailer owns the fixture</td></tr>
               <tr><td>Blister or clamshell on a hook</td><td>A formed shell welded or folded to a printed backer</td><td>Small tools that need theft resistance and full-face print</td></tr>

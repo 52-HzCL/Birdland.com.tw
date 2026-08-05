@@ -1,168 +1,145 @@
 {
- "note": "Third-party stock photographs used as encyclopedia illustrations on product-101.html. These are NOT photographs of Birdland premises; Birdland's own production photographs live in images/ and images/thumbs/ and are captioned as such. Two subjects (paper-and-plastic composite packs, strapping) had no usable stock photograph and keep their blueprint drawing instead.",
- "licence": "Pexels License — free for commercial use, no attribution required. Photographers are credited here as good practice.",
- "items": [
-  {
-   "id": "m-steel",
-   "file": "enc/m-steel.webp",
-   "query": "steel coil rolled metal industry",
-   "photographer": "Willians Huerta",
-   "source": "https://www.pexels.com/photo/industrial-storage-of-steel-wire-coils-outdoors-36397790/",
-   "licence": "Pexels License (free commercial use, attribution not required)",
-   "kb": 34
-  },
-  {
-   "id": "m-stainless",
-   "file": "enc/m-stainless.webp",
-   "query": "steel bolts nuts hardware",
-   "photographer": "Alex Tepetidis",
-   "source": "https://www.pexels.com/photo/heap-of-assorted-mechanical-fasteners-5279361/",
-   "licence": "Pexels License (free commercial use, attribution not required)",
-   "kb": 34
-  },
-  {
-   "id": "m-plating",
-   "file": "enc/m-plating.webp",
-   "query": "galvanized metal surface zinc",
-   "photographer": "Ivan Babydov",
-   "source": "https://www.pexels.com/photo/close-up-of-a-metal-sheet-texture-7790106/",
-   "licence": "Pexels License (free commercial use, attribution not required)",
-   "kb": 22
-  },
-  {
-   "id": "m-aluminium",
-   "file": "enc/m-aluminium.webp",
-   "query": "aluminium profiles extrusion metal",
-   "photographer": "Laura Tancredi",
-   "source": "https://www.pexels.com/photo/closed-metal-gates-with-uneven-surface-7078491/",
-   "licence": "Pexels License (free commercial use, attribution not required)",
-   "kb": 13
-  },
-  {
-   "id": "m-plastic",
-   "file": "enc/m-plastic.webp",
-   "query": "plastic granules pellets industry",
-   "photographer": "Jesus Carlon",
-   "source": "https://www.pexels.com/photo/colorful-plastic-pellets-on-white-background-38741337/",
-   "licence": "Pexels License (free commercial use, attribution not required)",
-   "kb": 15
-  },
-  {
-   "id": "m-grip",
-   "file": "enc/m-grip.webp",
-   "query": "hand tool rubber grip handle",
-   "photographer": "ERIC MUFASA",
-   "source": "https://www.pexels.com/photo/close-up-photo-of-a-tronic-needle-nose-pliers-6349398/",
-   "licence": "Pexels License (free commercial use, attribution not required)",
-   "kb": 13
-  },
-  {
-   "id": "m-timber",
-   "file": "enc/m-timber.webp",
-   "query": "wooden planks timber stacked",
-   "photographer": "Nishant Aneja",
-   "source": "https://www.pexels.com/photo/wooden-planks-marked-with-pen-12142000/",
-   "licence": "Pexels License (free commercial use, attribution not required)",
-   "kb": 44
-  },
-  {
-   "id": "m-fabric",
-   "file": "enc/m-fabric.webp",
-   "query": "canvas fabric texture cloth",
-   "photographer": "Jonathan Borba",
-   "source": "https://www.pexels.com/photo/close-up-of-natural-fabric-texture-36346049/",
-   "licence": "Pexels License (free commercial use, attribution not required)",
-   "kb": 64
-  },
-  {
-   "id": "m-board",
-   "file": "enc/m-board.webp",
-   "query": "corrugated cardboard texture",
-   "photographer": "Simon Potts",
-   "source": "https://www.pexels.com/photo/corrugated-cardboard-boxes-28316095/",
-   "licence": "Pexels License (free commercial use, attribution not required)",
-   "kb": 73
-  },
-  {
-   "id": "p-carton",
-   "file": "enc/p-carton.webp",
-   "query": "cardboard boxes warehouse packaging",
-   "photographer": "Tima Miroshnichenko",
-   "source": "https://www.pexels.com/photo/brown-cardboard-boxes-on-a-concrete-ground-6169055/",
-   "licence": "Pexels License (free commercial use, attribution not required)",
-   "kb": 6
-  },
-  {
-   "id": "p-colourbox",
-   "file": "enc/p-colourbox.webp",
-   "query": "product packaging box printed",
-   "photographer": "George Shervashidze",
-   "source": "https://www.pexels.com/photo/pack-of-medicine-on-white-surface-9227849/",
-   "licence": "Pexels License (free commercial use, attribution not required)",
-   "kb": 4
-  },
-  {
-   "id": "p-hangtag",
-   "file": "enc/p-hangtag.webp",
-   "query": "paper tag label string",
-   "photographer": "Ann H",
-   "source": "https://www.pexels.com/photo/blank-hang-tags-with-a-black-background-6441572/",
-   "licence": "Pexels License (free commercial use, attribution not required)",
-   "kb": 3
-  },
-  {
-   "id": "p-blister",
-   "file": "enc/p-blister.webp",
-   "query": "blister pack plastic packaging",
-   "photographer": "Sophia Moss",
-   "source": "https://www.pexels.com/photo/contraception-pill-3576558/",
-   "licence": "Pexels License (free commercial use, attribution not required)",
-   "kb": 9
-  },
-  {
-   "id": "p-skinpack",
-   "file": "enc/p-skinpack.webp",
-   "query": "plastic film wrapped package",
-   "photographer": "Resource Boy",
-   "source": "https://www.pexels.com/photo/texture-plastic-plastic-wrap-18541871/",
-   "licence": "Pexels License (free commercial use, attribution not required)",
-   "kb": 28
-  },
-  {
-   "id": "p-shrink",
-   "file": "enc/p-shrink.webp",
-   "query": "stretch wrapped pallet plastic film",
-   "photographer": "cottonbro studio",
-   "source": "https://www.pexels.com/photo/silver-cans-in-close-up-shot-5532843/",
-   "licence": "Pexels License (free commercial use, attribution not required)",
-   "kb": 26
-  },
-  {
-   "id": "p-label",
-   "file": "enc/p-label.webp",
-   "query": "barcode label sticker",
-   "photographer": "Kampus Production",
-   "source": "https://www.pexels.com/photo/close-up-shot-of-a-delivery-package-7843978/",
-   "licence": "Pexels License (free commercial use, attribution not required)",
-   "kb": 10
-  },
-  {
-   "id": "p-voidfill",
-   "file": "enc/p-voidfill.webp",
-   "query": "bubble wrap packing material",
-   "photographer": "cottonbro studio",
-   "source": "https://www.pexels.com/photo/close-up-of-bubble-wrap-6144421/",
-   "licence": "Pexels License (free commercial use, attribution not required)",
-   "kb": 8
-  },
-  {
-   "id": "p-pallet",
-   "file": "enc/p-pallet.webp",
-   "query": "wooden pallets stacked warehouse",
-   "photographer": "Timothy Huliselan",
-   "source": "https://www.pexels.com/photo/stacks-of-wooden-pallets-outside-industrial-warehouse-23625701/",
-   "licence": "Pexels License (free commercial use, attribution not required)",
-   "kb": 26
-  }
- ]
+  "note": "Third-party stock photographs used as encyclopedia illustrations on product-101.html. These are NOT photographs of Birdland premises; Birdland's own production photographs live in images/ and images/thumbs/ and are captioned as such. Two subjects (paper-and-plastic composite packs, strapping) had no usable stock photograph and keep their blueprint drawing instead.",
+  "licence": "Pexels License — free for commercial use, no attribution required. Photographers are credited here as good practice.",
+  "items": [
+    {
+      "id": "m-steel",
+      "file": "enc/m-steel.webp",
+      "query": "steel coil rolled metal industry",
+      "photographer": "Willians Huerta",
+      "source": "https://www.pexels.com/photo/industrial-storage-of-steel-wire-coils-outdoors-36397790/",
+      "licence": "Pexels License (free commercial use, attribution not required)",
+      "kb": 34
+    },
+    {
+      "id": "m-stainless",
+      "file": "enc/m-stainless.webp",
+      "query": "steel bolts nuts hardware",
+      "photographer": "Alex Tepetidis",
+      "source": "https://www.pexels.com/photo/heap-of-assorted-mechanical-fasteners-5279361/",
+      "licence": "Pexels License (free commercial use, attribution not required)",
+      "kb": 34
+    },
+    {
+      "id": "m-plating",
+      "file": "enc/m-plating.webp",
+      "query": "galvanized metal surface zinc",
+      "photographer": "Ivan Babydov",
+      "source": "https://www.pexels.com/photo/close-up-of-a-metal-sheet-texture-7790106/",
+      "licence": "Pexels License (free commercial use, attribution not required)",
+      "kb": 22
+    },
+    {
+      "id": "m-aluminium",
+      "file": "enc/m-aluminium.webp",
+      "query": "aluminium profiles extrusion metal",
+      "photographer": "Laura Tancredi",
+      "source": "https://www.pexels.com/photo/closed-metal-gates-with-uneven-surface-7078491/",
+      "licence": "Pexels License (free commercial use, attribution not required)",
+      "kb": 13
+    },
+    {
+      "id": "m-plastic",
+      "file": "enc/m-plastic.webp",
+      "query": "plastic granules pellets industry",
+      "photographer": "Jesus Carlon",
+      "source": "https://www.pexels.com/photo/colorful-plastic-pellets-on-white-background-38741337/",
+      "licence": "Pexels License (free commercial use, attribution not required)",
+      "kb": 15
+    },
+    {
+      "id": "m-grip",
+      "file": "enc/m-grip.webp",
+      "query": "hand tool rubber grip handle",
+      "photographer": "ERIC MUFASA",
+      "source": "https://www.pexels.com/photo/close-up-photo-of-a-tronic-needle-nose-pliers-6349398/",
+      "licence": "Pexels License (free commercial use, attribution not required)",
+      "kb": 13
+    },
+    {
+      "id": "m-timber",
+      "file": "enc/m-timber.webp",
+      "query": "wooden planks timber stacked",
+      "photographer": "Nishant Aneja",
+      "source": "https://www.pexels.com/photo/wooden-planks-marked-with-pen-12142000/",
+      "licence": "Pexels License (free commercial use, attribution not required)",
+      "kb": 44
+    },
+    {
+      "id": "m-fabric",
+      "file": "enc/m-fabric.webp",
+      "query": "canvas fabric texture cloth",
+      "photographer": "Jonathan Borba",
+      "source": "https://www.pexels.com/photo/close-up-of-natural-fabric-texture-36346049/",
+      "licence": "Pexels License (free commercial use, attribution not required)",
+      "kb": 64
+    },
+    {
+      "id": "m-board",
+      "file": "enc/m-board.webp",
+      "query": "corrugated cardboard texture",
+      "photographer": "Simon Potts",
+      "source": "https://www.pexels.com/photo/corrugated-cardboard-boxes-28316095/",
+      "licence": "Pexels License (free commercial use, attribution not required)",
+      "kb": 73
+    },
+    {
+      "id": "p-carton",
+      "file": "enc/p-carton.webp",
+      "query": "cardboard boxes warehouse packaging",
+      "photographer": "Tima Miroshnichenko",
+      "source": "https://www.pexels.com/photo/brown-cardboard-boxes-on-a-concrete-ground-6169055/",
+      "licence": "Pexels License (free commercial use, attribution not required)",
+      "kb": 6
+    },
+    {
+      "id": "p-hangtag",
+      "file": "enc/p-hangtag.webp",
+      "query": "garden tool hang tag label",
+      "photographer": "Thirdman",
+      "source": "https://www.pexels.com/photo/blank-hang-tags-with-a-black-background-6441572/",
+      "licence": "Pexels License (free commercial use, attribution not required)",
+      "kb": 3,
+      "url": "https://www.pexels.com/photo/person-in-white-gloves-writing-on-plant-tags-7655616/"
+    },
+    {
+      "id": "p-blister",
+      "file": "enc/p-blister.webp",
+      "query": "hardware store hanging packaging tools",
+      "photographer": "Joaquin Reyes Ramos",
+      "source": "https://www.pexels.com/photo/contraception-pill-3576558/",
+      "licence": "Pexels License (free commercial use, attribution not required)",
+      "kb": 9,
+      "url": "https://www.pexels.com/photo/diverse-range-of-hardware-tools-displayed-in-store-38575493/"
+    },
+    {
+      "id": "p-label",
+      "file": "enc/p-label.webp",
+      "query": "garden tool printed label shop",
+      "photographer": "Jan van der Wolf",
+      "source": "https://www.pexels.com/photo/close-up-shot-of-a-delivery-package-7843978/",
+      "licence": "Pexels License (free commercial use, attribution not required)",
+      "kb": 10,
+      "url": "https://www.pexels.com/photo/colorful-shovel-handles-lined-up-in-store-34852719/"
+    },
+    {
+      "id": "p-voidfill",
+      "file": "enc/p-voidfill.webp",
+      "query": "bubble wrap packing material",
+      "photographer": "cottonbro studio",
+      "source": "https://www.pexels.com/photo/close-up-of-bubble-wrap-6144421/",
+      "licence": "Pexels License (free commercial use, attribution not required)",
+      "kb": 8
+    },
+    {
+      "id": "p-pallet",
+      "file": "enc/p-pallet.webp",
+      "query": "wooden pallets stacked warehouse",
+      "photographer": "Timothy Huliselan",
+      "source": "https://www.pexels.com/photo/stacks-of-wooden-pallets-outside-industrial-warehouse-23625701/",
+      "licence": "Pexels License (free commercial use, attribution not required)",
+      "kb": 26
+    }
+  ],
+  "note_removed": "p-colourbox, p-skinpack and p-shrink were removed on 2026-08-05: the stock searches for them returned a pharmaceutical carton, a sheet of black film and a pallet of drink cans. Those formats show their blueprint symbol until a correct photograph exists."
 }
