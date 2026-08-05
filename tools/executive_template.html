@@ -100,6 +100,52 @@
      still no horizontal scroll on the page. */
   @media(max-width:900px){.edstrip-in{flex-wrap:wrap;gap:6px;padding:6px var(--sp-3)}.edstrip-seg{width:100%;margin-left:0}}
   @media print{.edstrip{display:none!important}}
+  /* ---- the market band ----
+     A broadsheet prints its market strip as one quiet rule of figures under
+     the masthead, and that is all this is: label, value, move. It is static,
+     not sticky — the strip above it is already measured into a pinned stack
+     and adding a second measured band to that stack buys a scrolling ruler
+     nobody asked for at the cost of the anchor offsets being right.
+     Every row is drawn from the edition's own series; a series this edition
+     did not carry is simply not printed, because a market strip that invents
+     a number is worse than a market strip with five entries instead of six. */
+  .mktband{background:var(--kb-paper);border-bottom:1px solid var(--kb-line)}
+  .mktband-in{display:flex;align-items:center;gap:0;max-width:1480px;margin:auto;min-width:0;padding:0 var(--sp-4);overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+  .mktband-in::-webkit-scrollbar{height:5px}
+  .mktband-in::-webkit-scrollbar-thumb{background:var(--kb-line);border-radius:999px}
+  .mkt{flex:0 0 auto;display:flex;align-items:baseline;gap:6px;padding:5px var(--sp-3);white-space:nowrap;border-left:1px solid var(--kb-line)}
+  .mkt:first-child{border-left:0;padding-left:0}
+  .mkt-l{color:var(--kb-muted);font:600 var(--fs-micro) var(--mono);letter-spacing:.11em;text-transform:uppercase}
+  .mkt-v{color:var(--kb-ink);font:500 var(--fs-micro) var(--mono);letter-spacing:.02em}
+  .mkt-c{font:600 var(--fs-micro) var(--mono);letter-spacing:.02em}
+  /* The page reads a rising input as buyer-cost pressure, so up is the red and
+     down is the jade — the same reading as .up/.down on the cost board. These
+     are written out rather than inherited so a desk-scoped token cannot
+     repaint the strip on one page and not another. */
+  .mkt-c.up{color:var(--kb-red,#9d3027)}
+  .mkt-c.down{color:var(--kb-jade,#1f6248)}
+  .mkt-c.flat{color:var(--kb-muted,#6c6255)}
+  .mkt-note{flex:0 0 auto;margin-left:auto;padding:5px 0 5px var(--sp-3);color:var(--kb-faint);font:400 var(--fs-micro) var(--mono);letter-spacing:.08em;opacity:.85}
+  @media(max-width:900px){.mktband-in{padding:0 var(--sp-3)}.mkt{padding:5px var(--sp-2)}.mkt-note{padding-left:var(--sp-2)}}
+  @media print{.mktband{display:none!important}}
+  /* ---- while you were away ----
+     Shown only to a reader who has seen a different edition of this page
+     before, and only ever about editions this browser can actually vouch for:
+     the date it last read and the date in front of it now. The moves beside it
+     are the same non-duplicated-observation figures the cost board prints, so
+     the line cannot claim a move the edition's own series does not show. */
+  .wya{background:#f6efe0;border-bottom:1px solid var(--kb-line2)}
+  .wya-in{display:flex;align-items:baseline;gap:var(--sp-2);max-width:1480px;margin:auto;min-width:0;padding:6px var(--sp-4)}
+  .wya-k{flex:0 0 auto;color:var(--kb-red);font:600 var(--fs-micro) var(--mono);letter-spacing:.14em;text-transform:uppercase}
+  .wya-t{min-width:0;color:#4d453b;font:var(--fs-micro)/1.5 var(--mono);letter-spacing:.03em}
+  .wya-t b{color:var(--kb-ink);font-weight:600}
+  .wya-t .up{color:var(--kb-red,#9d3027);font-weight:600}
+  .wya-t .down{color:var(--kb-jade,#1f6248);font-weight:600}
+  .wya-t .flat{color:var(--kb-faint,#8d8171);font-weight:600}
+  .wya-x{flex:0 0 auto;margin-left:auto;border:0;background:transparent;color:var(--kb-muted);padding:0 0 0 var(--sp-2);font:600 var(--fs-small) var(--mono);line-height:1}
+  .wya-x:hover,.wya-x:focus-visible{color:var(--kb-red)}
+  @media(max-width:900px){.wya-in{flex-wrap:wrap;gap:6px;padding:6px var(--sp-3)}.wya-t{flex:1 1 100%;order:3}.wya-x{order:2}}
+  @media print{.wya{display:none!important}}
   @page{size:A4;margin:14mm}
   @media print{
     .page{display:block;padding:0}
@@ -120,6 +166,8 @@
   <a class="skip" href="#daily-main">Skip to ABrief</a>
   <header class="top"><div class="topin"><a class="brand" href="index.html">Birdland <small>ABRIEF</small></a><div class="topmeta"><span id="source-state"><i class="dot"></i>Source status</span><span class="hq" data-hq-status>Birdland Office <b data-hq-label>Resting</b></span><span data-taipei-time>--:-- Taipei</span><span class="desk3" aria-label="Desk"><a class="on" aria-current="page" href="executive.html">News</a><a href="partner.html">Buyer</a><a href="cost-desk.html">Cost</a></span><details class="language" data-language-picker><summary>Language</summary><div><select data-translate-select aria-label="Translate this page"><option>Choose language…</option></select><small>Opens Google Translate in a new tab.</small></div></details></div></div></header>
   <div class="edstrip" id="edstrip"><div class="edstrip-in"><span class="edstrip-chip" id="edstrip-chip">Today’s edition</span><nav class="edstrip-seg" id="edstrip-seg" aria-label="Jump to a section of this edition"></nav></div></div>
+  <div class="mktband" id="mktband" hidden><div class="mktband-in" id="mktband-in" role="group" aria-label="Market indicators carried by this edition"></div></div>
+  <div id="wya-slot"></div>
   <div class="page">
     <aside class="rail"><h2>Edition index</h2><nav class="navgroups" aria-label="ABrief sections"><div class="navgroup"><strong>Today</strong><a href="#brief">Supply Brief</a><a href="#cost">Asia Cost Board</a><a href="#production">Taiwan &amp; China</a><a href="#freight">Freight &amp; Ports</a><a href="#policy">Tariff &amp; Regulation</a><a href="#news">Daily News Desk</a></div><div class="navgroup"><strong>Return</strong><a href="#follow">Follow this signal</a><a href="#calendar">Calendar Hub</a><a href="#trust">Data Trust</a><a href="partner.html">Open AsiaSource</a></div></nav><div class="free-app"><button class="subscription-art-button" id="free-app" type="button" title="Keep ABrief one tap away. No account required." aria-label="Free subscription: add ABrief to this device"><img src="images/free-subscription-mailbox-option-a.webp" alt="" width="410" height="470" decoding="async"></button><small id="free-app-note" class="visually-hidden" aria-live="polite"></small></div></aside>
     <main class="main" id="daily-main">
@@ -326,6 +374,125 @@
     /* Web fonts land after first paint and change the masthead's height. */
     if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){place();spy();});
     window.addEventListener('load',function(){place();spy();});
+  }());
+  (function(){
+    /* The market band, and the note for a reader coming back to a new edition.
+       Both read the same six series, so they are built once here.
+
+       What a series is: the edition already carries D.indices and D.macro as
+       {short,label,value,unit,spark}, and the desk's own USD/TWD as a rate plus
+       a thirty-point history. The published .chg on those rows is 0 across the
+       board — the generator writes it, nothing computes it — so the move shown
+       here is derived from the series the way the cost board derives it: the
+       latest value against the last observation that differs from it. A row
+       whose series this edition did not carry is left out; there is no
+       placeholder and no carried-forward figure. */
+    var D={};try{D=JSON.parse(document.getElementById('outlook-data').textContent||'{}');}catch(e){}
+    var band=document.getElementById('mktband'),bandIn=document.getElementById('mktband-in'),slot=document.getElementById('wya-slot');
+    if(!band||!bandIn||!slot)return;
+    var esc=function(v){return String(v==null?'':v).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+
+    var idx=Array.isArray(D.indices)?D.indices:[],macro=Array.isArray(D.macro)?D.macro:[],td=D.teamdesk||{};
+    function bySymbol(list,sym){
+      for(var i=0;i<list.length;i++){var s=String(list[i]&&list[i].short||'').toUpperCase();if(s===sym)return list[i];}
+      return null;
+    }
+    function numbers(a){return Array.isArray(a)?a.filter(function(v){return typeof v==='number'&&isFinite(v);}):[];}
+    /* Percent against the last observation that is not a repeat of the latest.
+       A flat run of duplicates is what a quiet market looks like in this feed;
+       comparing latest with latest would print 0.0% for every row forever. */
+    function move(spark){
+      var a=numbers(spark);if(a.length<2)return null;
+      var last=a[a.length-1],i=a.length-2;
+      while(i>0&&a[i]===last)i--;
+      if(a[i]===last||!a[i])return 0;
+      return (last-a[i])/Math.abs(a[i])*100;
+    }
+    function dec(v){var x=Math.abs(v);return x>=1000?0:x>=100?1:x>=1?2:3;}
+    function num(v,d){return Number(v).toLocaleString('en-GB',{minimumFractionDigits:d,maximumFractionDigits:d});}
+
+    /* Ordered as a buyer reads them: what the part is made of, what it costs to
+       move, what fuels the move, then the two rates that price the invoice. */
+    var wanted=[
+      {label:'Steel HRC',row:bySymbol(idx,'STEEL HRC')},
+      {label:'Freight WCI',row:bySymbol(idx,'FREIGHT WCI')},
+      {label:'Brent',row:bySymbol(idx,'BRENT')||bySymbol(macro,'BRENT')},
+      {label:'PP resin',row:bySymbol(idx,'PP RESIN')},
+      {label:'USD/TWD',row:(typeof (td.fx_today||{}).TWD==='number'?{value:td.fx_today.TWD,unit:'',spark:td.usdtwd_spark}:null)},
+      {label:'US 10Y',row:bySymbol(macro,'US 10Y')}
+    ];
+    var series=wanted.filter(function(w){
+      if(!w.row)return false;
+      var v=w.row.value!=null?w.row.value:w.row.rate;
+      if(typeof v!=='number'||!isFinite(v))return false;
+      w.value=v;w.unit=w.row.unit||'';w.chg=move(w.row.spark);
+      return true;
+    });
+
+    if(series.length){
+      bandIn.innerHTML=series.map(function(w){
+        var c=w.chg,d=c==null?'flat':Math.abs(c)<0.05?'flat':c>0?'up':'down',
+            mark=c==null?'■':d==='up'?'▲':d==='down'?'▼':'■',
+            txt=c==null?'no series':(Math.abs(c)<0.05?'0.0%':(c>0?'+':'−')+Math.abs(c).toFixed(1)+'%'),
+            unit=w.unit?' '+w.unit:'';
+        return '<span class="mkt"><span class="mkt-l">'+esc(w.label)+'</span>'+
+          '<span class="mkt-v">'+esc(num(w.value,dec(w.value))+unit)+'</span>'+
+          '<span class="mkt-c '+d+'" aria-label="'+esc(txt)+'">'+mark+' '+esc(txt)+'</span></span>';
+      }).join('')+'<span class="mkt-note">indicative · daily</span>';
+      band.hidden=false;
+    }
+
+    /* ---- while you were away ----
+       One key, holding the edition string this browser last saw and when. The
+       notice is for the second and later visits only: a first-ever reader is
+       recorded silently, because telling someone what changed since a visit
+       they never made is the kind of small invention this page exists not to
+       make. Storage is wrapped throughout — a browser with it switched off
+       should lose the notice, not the band above it. */
+    var KEY='ab_last_read',SKIP='ab_last_read_dismissed';
+    function readJSON(store,k){try{var v=store.getItem(k);return v?JSON.parse(v):null;}catch(e){return null;}}
+    function writeJSON(store,k,v){try{store.setItem(k,JSON.stringify(v));}catch(e){}}
+
+    var today=String(D.updated||'').trim();
+    var prev=readJSON(window.localStorage,KEY);
+    var prevEdition=prev&&typeof prev.edition==='string'?prev.edition.trim():'';
+
+    /* "04 Aug 2026, 04:17 UTC" -> "4 Aug". The clock time is a workflow stamp,
+       not part of the edition's identity as a reader experiences it.
+       Date.parse of "04 Aug 2026" reads it as local midnight, so formatting the
+       result in UTC hands a reader east of Greenwich the day before — the first
+       run of this printed "31 Jul" for the 1 Aug edition. Formatting in the same
+       zone it was parsed in returns the date that was written down. */
+    function shortDate(stamp){
+      var head=String(stamp||'').split(',')[0].trim();if(!head)return '';
+      var t=Date.parse(head);
+      if(isNaN(t))return head;
+      return new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'short'}).format(new Date(t));
+    }
+
+    function dismissed(){try{return window.sessionStorage.getItem(SKIP)===today;}catch(e){return false;}}
+
+    if(prevEdition&&today&&prevEdition!==today&&!dismissed()){
+      var moves=series.filter(function(w){return typeof w.chg==='number'&&Math.abs(w.chg)>=0.05;})
+        .sort(function(a,b){return Math.abs(b.chg)-Math.abs(a.chg);}).slice(0,2);
+      var line='last read <b>'+esc(shortDate(prevEdition)||prevEdition)+'</b> · this is the <b>'+esc(shortDate(today)||today)+'</b> edition';
+      if(moves.length)line+=' · '+moves.map(function(w){
+        var d=w.chg>0?'up':'down';
+        return esc(w.label)+' <span class="'+d+'">'+(d==='up'?'▲':'▼')+' '+Math.abs(w.chg).toFixed(1)+'%</span>';
+      }).join(' · ');
+      var el=document.createElement('div');
+      el.className='wya';
+      el.innerHTML='<div class="wya-in" role="status"><span class="wya-k">While you were away</span>'+
+        '<span class="wya-t">'+line+'</span>'+
+        '<button class="wya-x" type="button" aria-label="Dismiss this notice">×</button></div>';
+      slot.appendChild(el);
+      el.querySelector('.wya-x').addEventListener('click',function(){
+        el.remove();
+        try{window.sessionStorage.setItem(SKIP,today);}catch(e){}
+      });
+    }
+
+    if(today)writeJSON(window.localStorage,KEY,{edition:today,ts:Date.now()});
   }());
   </script>
 </body>
