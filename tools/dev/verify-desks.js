@@ -66,12 +66,12 @@ function load(file) {
     check(file, 'overview shell gone', !!d.getElementById('overview'), false);
     check(file, 'overview not in the menu', toc.includes('#overview'), false);
     check(file, 'buyer brief not in the menu', toc.includes('#pd-builder'), false);
-    check(file, 'menu opens on cost & origin', toc[0], '#p-mkt');
-    check(file, 'cost & origin is the shown panel',
-      [...q('main .blk')].filter(b => !b.classList.contains('sk-off')).map(b => b.id), ['p-mkt']);
+    check(file, 'menu opens on the workspace', toc[0], '#p-landed2');
+    check(file, 'the workspace is the shown panel',
+      [...q('main .blk')].filter(b => !b.classList.contains('sk-off')).map(b => b.id), ['p-landed2']);
     check(file, 'buying context survives', [!!d.getElementById('room'), !!d.getElementById('region')], [true, true]);
-    check(file, 'the six tools are here',
-      toc.filter(h => /p-(landed2|margin|reorder|sail|calc|cduty)/.test(h)).length, 6);
+    check(file, 'the five tools are here',
+      toc.filter(h => /p-(landed2|margin|reorder|sail|cduty)/.test(h)).length, 5);
   }
 
   const real = errs.filter(e => !/Not implemented|fetch|ENOTFOUND|getContext/i.test(e));

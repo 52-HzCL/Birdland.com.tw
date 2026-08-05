@@ -77,11 +77,10 @@ function add(t, n, d, u) {
  ['Contact', 'Routed to your regional desk', 'contact.html'],
 ].forEach(r => add('PAGE', r[0], r[1], r[2]));
 
-[['My landed cost', 'FOB to your warehouse, per unit', 'cost-desk.html#p-landed2'],
+[['Cost workspace', 'FOB to your warehouse, per unit', 'cost-desk.html#p-landed2'],
  ['Retail margin', 'Cost to shelf price and gross profit', 'cost-desk.html#p-margin'],
  ['Reorder timing', 'When to place the next order', 'cost-desk.html#p-reorder'],
  ['Plan a sailing', 'Lane options and booking window', 'cost-desk.html#p-sail'],
- ['Quick estimate', 'A first number in four inputs', 'cost-desk.html#p-calc'],
  ['TW vs CN duty', 'Origin comparison including duty', 'cost-desk.html#p-cduty'],
 ].forEach(r => add('TOOL', r[0], r[1], r[2]));
 

@@ -2068,11 +2068,11 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
         <div class="bd-references-head"><div><h2 id="bd-references-title">Public product references</h2><p>Current PDF links supplied through Birdland's public product feed.</p></div><span class="bd-updated" id="pd-product-updated">published PDF shelf</span></div>
         <div class="pd-offer-grid" id="pd-offer-grid"></div>
       </section>
-      <aside class="bd-tools"><h2>Buying tools</h2><p>Use your own figures. Inputs remain in this browser session.</p><div class="bd-tool-links"><button type="button" data-go="p-landed2">Landed cost</button><button type="button" data-go="p-margin">Retail margin</button><button type="button" data-go="p-reorder">Reorder timing</button><button type="button" data-go="p-sail">Plan a sailing</button><button type="button" data-go="p-calc">Quick estimate</button><button type="button" data-go="p-cduty">TW vs CN duty</button></div></aside>
+      <aside class="bd-tools"><h2>Buying tools</h2><p>Use your own figures. Inputs remain in this browser session.</p><div class="bd-tool-links"><button type="button" data-go="p-landed2">Workspace</button><button type="button" data-go="p-margin">Retail margin</button><button type="button" data-go="p-reorder">Reorder timing</button><button type="button" data-go="p-sail">Plan a sailing</button><button type="button" data-go="p-cduty">TW vs CN duty</button></div></aside>
     </div>
     <div class="bd-privacy"><span>Public planning only. AsiaSource does not create an order, quotation or account.</span><button id="reset-buyer-desk" type="button">Reset this brief</button></div>
   </section>
-  <nav class="toc" aria-label="AsiaSource sections"><a href="#overview" data-icon="⌂" class="toc-home">Overview</a><a href="#p-alerts" data-icon="▤">Buy Queue</a><a href="#p-offers" data-icon="◇">Product Finder</a><a href="#pd-builder" data-icon="✎">Buyer Brief</a><a href="#p-mkt" data-icon="◎">Cost &amp; Origin</a><a href="#p-landed2" data-icon="▦">My landed cost</a><a href="#p-margin" data-icon="$">Retail margin</a><a href="#p-reorder" data-icon="◴">Reorder timing</a><a href="#p-sail" data-icon="≋">Plan a sailing</a><a href="#p-calc" data-icon="◌">Quick estimate</a><a href="#p-cduty" data-icon="⚖">TW vs CN duty</a><span class="pd-hidden-nav"><a href="#p-brief">Brief detail</a><a href="#p-market">Market detail</a><a href="#p-keynews">Key News</a><a href="#p-regcal">Regulatory Calendar</a><a href="#p-report">Keyword report</a><a href="#p-material">Materials ahead</a><a href="#p-shipping">Shipping ahead</a><a href="#p-season">Buy calendar</a><a href="#p-freight">Freight indexes</a><a href="#p-watch">Watchlist</a><a href="#p-war">Geopolitics</a><a href="#p-tariff">Tariffs</a><a href="#p-news">News</a></span></nav>
+  <nav class="toc" aria-label="AsiaSource sections"><a href="#overview" data-icon="⌂" class="toc-home">Overview</a><a href="#p-alerts" data-icon="▤">Buy Queue</a><a href="#p-offers" data-icon="◇">Product Finder</a><a href="#pd-builder" data-icon="✎">Buyer Brief</a><a href="#p-landed2" data-icon="▦">Workspace</a><a href="#p-mkt" data-icon="◎">Cost &amp; Origin</a><a href="#p-margin" data-icon="$">Retail margin</a><a href="#p-reorder" data-icon="◴">Reorder timing</a><a href="#p-sail" data-icon="≋">Plan a sailing</a><a href="#p-cduty" data-icon="⚖">TW vs CN duty</a><span class="pd-hidden-nav"><a href="#p-brief">Brief detail</a><a href="#p-market">Market detail</a><a href="#p-keynews">Key News</a><a href="#p-regcal">Regulatory Calendar</a><a href="#p-report">Keyword report</a><a href="#p-material">Materials ahead</a><a href="#p-shipping">Shipping ahead</a><a href="#p-season">Buy calendar</a><a href="#p-freight">Freight indexes</a><a href="#p-watch">Watchlist</a><a href="#p-war">Geopolitics</a><a href="#p-tariff">Tariffs</a><a href="#p-news">News</a></span></nav>
   <div id="tab-hint" class="tab-hint"><div class="mac-note"><span class="mn-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span><div class="mn-txt"><b>ASIASOURCE</b><span>Choose a buying action from the menu.</span></div></div></div>
 
   <section class="blk" data-open="1" id="p-brief"><button class="blk-h"><span class="k">BRIEF</span><h2>Today &amp; Tomorrow</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
@@ -2083,23 +2083,7 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
 
   <section class="blk" data-open="0" id="p-freight"><button class="blk-h"><span class="k">FREIGHT</span><h2>Shipping price indexes</h2><span class="ihelp" title="FRED ocean-freight cost & shipment indices (monthly, official, free) plus BDI/container as indicative; tap a source link for the latest official figure.">i</span><span class="meta" id="p-fr-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="p-fr-note"></div><div class="svgwrap"><table class="wl" id="p-freight-tbl"></table></div><div class="fr-src">Official sources ↗ <a href="https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/world-container-index-assessed-by-drewry" target="_blank" rel="noopener">Drewry WCI</a> · <a href="https://fbx.freightos.com/" target="_blank" rel="noopener">Freightos FBX</a> · <a href="https://www.balticexchange.com/en/data-services/market-information0/dry-services.html" target="_blank" rel="noopener">Baltic Exchange (BDI)</a></div></div></section>
 
-  <section class="blk" data-open="0" id="p-calc"><button class="blk-h"><span class="k">CALC</span><h2>Quick cost estimate</h2><span class="ihelp" title="Enter your own numbers for a quick per-unit landed-cost estimate. Hover a bar segment for detail.">i</span><span class="meta" id="calc-meta"></span><span class="tog"></span></button><div class="blk-b">
-    <div class="calc">
-      <div><label>Ex-works unit cost (US$)</label><input id="qc_cost" type="number" value="5" step="0.1"></div>
-      <div><label>Freight / unit (US$)</label><input id="qc_frt" type="number" value="0.6" step="0.05"></div>
-      <div><label>Insurance %</label><input id="qc_ins" type="number" value="0.3" step="0.05"></div>
-      <div><label>Import duty %</label><input id="qc_duty" type="number" value="6" step="0.5"></div>
-      <div><label>Quantity</label><input id="qc_qty" type="number" value="5000" step="100"></div>
-    </div>
-    <div class="svgwrap"><svg id="lcbar" class="chart" viewBox="0 0 720 80" role="img" aria-label="Landed cost bar"></svg></div>
-    <div class="legend" id="lc-legend"></div>
-    <div class="cot" id="lc-out"></div>
-  </div></section>
-
-  <section class="blk landed-tool" data-open="0" id="p-landed2"><button class="blk-h"><span class="k">LANDED</span><h2>Your total cost after we ship</h2><span class="ihelp" title="We deliver FOB at the origin port; everything after that is yours. Pick your country to prefill duty & import tax, then see CIF, duty, VAT/GST, fees and total landed cost per unit.">i</span><span class="tog"></span></button><div class="blk-b">
-    <nav class="landed-tool-nav" aria-label="Buying tools">
-      <button class="on" type="button" data-go="p-landed2">Landed cost</button><button type="button" data-go="p-margin">Retail margin</button><button type="button" data-go="p-reorder">Reorder timing</button><button type="button" data-go="p-sail">Plan a sailing</button><button type="button" data-go="p-calc">Quick estimate</button><button type="button" data-go="p-cduty">TW vs CN duty</button>
-    </nav>
+  <section class="blk landed-tool" data-open="0" id="p-landed2"><button class="blk-h"><span class="k">WORKSPACE</span><h2>Cost workspace — your shipment, priced</h2><span class="ihelp" title="We deliver FOB at the origin port; everything after that is yours. Pick your country to prefill duty & import tax, then see CIF, duty, VAT/GST, fees and total landed cost per unit.">i</span><span class="tog"></span></button><div class="blk-b">
     <section class="landed-input-panel" aria-labelledby="landed-setup-title">
       <div class="landed-panel-head"><span>01 · Shipment setup</span><h3 id="landed-setup-title">Build the landed-cost scenario</h3><p>Birdland delivers FOB at the origin port. Set your destination, shipment value and post-FOB costs; duty and import tax remain editable planning inputs.</p></div>
       <div class="calc landed-form">
@@ -2113,6 +2097,7 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
         <div><label>Customs brokerage (USD)</label><input id="bc_brk" type="number" value="150"></div>
         <div><label>Inland delivery (USD)</label><input id="bc_inl" type="number" value="400"></div>
         <div><label>Other / inspection (USD)</label><input id="bc_oth" type="number" value="0"></div>
+        <div><label>Target gross margin %</label><input id="ws_mg" type="number" value="45" step="1"></div>
       </div>
       <p class="landed-note" id="bc_note"></p>
     </section>
@@ -2123,6 +2108,18 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
       <div class="bcbar" id="bc_bar"></div>
       <div class="bclegend" id="bc_leg"></div>
       <div class="landed-breakdown" id="bc_out"></div>
+    </section>
+    <section class="landed-summary ws-card" id="ws-margin" aria-labelledby="ws-margin-title">
+      <div class="landed-summary-head"><span>03 · Retail outcome</span><b>Same shipment</b></div>
+      <h3 id="ws-margin-title">Your shelf price &amp; profit</h3>
+      <div class="landed-hero-result"><div><span>Suggested retail / unit</span><strong id="ws_retail">—</strong></div><div><span>Gross profit / order</span><strong id="ws_gp">—</strong><small id="ws_mgnote">at 45% margin</small></div></div>
+      <div class="landed-breakdown" id="ws_mg_out"></div>
+    </section>
+    <section class="landed-summary ws-card" id="ws-duty" aria-labelledby="ws-duty-title">
+      <div class="landed-summary-head"><span>04 · Origin compare</span><b>Same destination, two origins</b></div>
+      <h3 id="ws-duty-title">Taiwan vs China duty</h3>
+      <div class="landed-hero-result"><div><span>Taiwan origin duty</span><strong id="ws_tw">—</strong></div><div><span>China origin duty</span><strong id="ws_cn">—</strong><small id="ws_dnote">—</small></div></div>
+      <div class="landed-breakdown" id="ws_duty_out"></div>
     </section>
   </div></section>
 
@@ -2485,8 +2482,19 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
      '<div class="bcrow"><span>Brokerage + inland + other</span><b>'+money(fees)+'</b></div>'+
      '<div class="bcrow tot"><span>Total landed cost</span><b>'+money(total)+'</b></div>'+
      '<div class="bcrow"><span>Landed cost / unit</span><b>'+(qty>0?'US$'+per.toFixed(3):'—')+'</b></div>'+
-     '<div class="bcrow"><span>Uplift vs FOB</span><b>+'+up.toFixed(1)+'%</b></div>';}
- ['bc_fob','bc_qty','bc_frt','bc_ins','bc_duty','bc_tax','bc_brk','bc_inl','bc_oth'].forEach(function(i){var e=$(i);if(e)e.addEventListener('input',landed);});
+     '<div class="bcrow"><span>Uplift vs FOB</span><b>+'+up.toFixed(1)+'%</b></div>';
+   // Retail card: same shipment, priced at the buyer's target margin.
+   var mgEl=$('ws_retail');
+   if(mgEl){var mgP=Math.min(95,Math.max(0,n('ws_mg'))),retail=per>0?per/(1-mgP/100):0,gpU=retail-per,orderGP=gpU*qty;
+     mgEl.textContent=per>0?'US$'+retail.toFixed(2):'—';
+     $('ws_gp').textContent=per>0?money(orderGP):'—';
+     $('ws_mgnote').textContent='at '+mgP.toFixed(0)+'% margin';
+     $('ws_mg_out').innerHTML='<div class="bcrow"><span>Landed cost / unit</span><b>US$'+per.toFixed(3)+'</b></div>'+
+       '<div class="bcrow"><span>Markup on cost</span><b>'+(per>0?(gpU/per*100).toFixed(0):'0')+'%</b></div>'+
+       '<div class="bcrow"><span>Gross profit / unit</span><b>US$'+gpU.toFixed(2)+'</b></div>'+
+       '<div class="bcrow tot"><span>Gross profit / order ('+qty.toLocaleString()+' pcs)</span><b>'+money(orderGP)+'</b></div>';}
+   try{document.dispatchEvent(new CustomEvent('ws:landed'));}catch(e){}}
+ ['bc_fob','bc_qty','bc_frt','bc_ins','bc_duty','bc_tax','bc_brk','bc_inl','bc_oth','ws_mg'].forEach(function(i){var e=$(i);if(e)e.addEventListener('input',landed);});
  if(sel){
   sel.addEventListener('change',function(){
     applyCo();landed();
@@ -2571,7 +2579,25 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
      var h='';lines.forEach(function(l){h+='<div class="calc-row"><span class="lab">'+l[0]+'</span><span class="val">'+l[1]+' · US$'+l[2].toFixed(0)+'</span></div>';});
      h+='<div class="calc-row tot"><span class="lab">Estimated duty ('+(o==='TW'?'Taiwan':'China')+' origin)</span><span class="val">'+totPct.toFixed(1)+'% · US$'+(v*totPct/100).toFixed(0)+'</span></div>';
      out.innerHTML=h;}
-   dst.addEventListener('change',calc);org.addEventListener('change',calc);val.addEventListener('input',calc);calc();})();
+   dst.addEventListener('change',calc);org.addEventListener('change',calc);val.addEventListener('input',calc);calc();
+   // Workspace card: the same comparison, driven by the workspace inputs.
+   (function(){var out=document.getElementById('ws_duty_out');if(!out)return;
+     var MAP={us:'United States',ca:'Canada',de:'European Union',fr:'European Union',nl:'European Union',es:'European Union',pl:'European Union',uk:'United Kingdom',au:'Australia'};
+     function keyFor(code){var want=(MAP[code]||code||'').toLowerCase(),ks=Object.keys(T.destinations),i;
+       for(i=0;i<ks.length;i++)if(ks[i].toLowerCase()===want)return ks[i];
+       for(i=0;i<ks.length;i++)if(want&&ks[i].toLowerCase().indexOf(want.split(' ')[0])===0)return ks[i];
+       return null;}
+     function pct(dd,o){var p=dd.mfn||0;(dd.addons||[]).forEach(function(a){if(a.optional)return;if(a.origin==='ANY'||a.origin===o)p+=a.pct;});return p;}
+     function draw(){var co=document.getElementById('bc_co'),fobEl=document.getElementById('bc_fob');if(!co||!fobEl)return;
+       var v=parseFloat(fobEl.value)||0,k=keyFor(co.value),tw=document.getElementById('ws_tw'),cn=document.getElementById('ws_cn'),note=document.getElementById('ws_dnote');
+       if(!k){tw.textContent='—';cn.textContent='—';note.textContent='no tariff data for this destination';out.innerHTML='';return;}
+       var dd=T.destinations[k],pTW=pct(dd,'TW'),pCN=pct(dd,'CN'),aTW=v*pTW/100,aCN=v*pCN/100;
+       var fm=function(x){return 'US$'+Math.round(x).toLocaleString('en-US');};tw.textContent=fm(aTW);cn.textContent=fm(aCN);
+       note.textContent=aCN>aTW?('Taiwan origin saves '+fm(aCN-aTW)):'same duty either origin';
+       out.innerHTML='<div class="bcrow"><span>'+k+' · Taiwan origin</span><b>'+pTW.toFixed(1)+'% · '+fm(aTW)+'</b></div>'+
+         '<div class="bcrow"><span>'+k+' · China origin</span><b>'+pCN.toFixed(1)+'% · '+fm(aCN)+'</b></div>'+
+         '<div class="bcrow tot"><span>Difference on this shipment</span><b>'+fm(Math.abs(aCN-aTW))+'</b></div>';}
+     document.addEventListener('ws:landed',draw);draw();})();})();
 })();</script>
 <script>(function(){
  window.__bo=function(sec,open){var b=sec.querySelector('.blk-b');if(!b)return;b.style.overflow='hidden';
@@ -2776,7 +2802,7 @@ if(topAct)h+='<span class="pi lead" data-go="p-brief" style="cursor:pointer"><sp
   ].join('')+'</div></div>';
  })();
 // 2) section order: daily brief & the two money tools first; client-desk duplicates demoted to Reference
-(function(){if(!main||!disc)return;var ORD=['p-brief','p-alerts','p-mkt','p-market','p-keynews','p-regcal','p-report','p-offers','p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty','p-material','p-shipping','p-season','p-war','p-tariff'],REF=['p-freight','p-watch','p-news'];
+(function(){if(!main||!disc)return;var ORD=['p-brief','p-alerts','p-landed2','p-margin','p-reorder','p-sail','p-cduty','p-mkt','p-market','p-keynews','p-regcal','p-report','p-offers','p-material','p-shipping','p-season','p-war','p-tariff'],REF=['p-freight','p-watch','p-news'];
  ORD.concat(REF).forEach(function(id){var s=document.getElementById(id);if(s)main.insertBefore(s,disc);});
  var hd=document.createElement('div');hd.className='refhd';hd.textContent='Reference data — shared with Data Desk';main.insertBefore(hd,document.getElementById(REF[0]));})();
 // 3) honest freshness: static desk-set blocks must not claim the daily stamp
@@ -3255,8 +3281,8 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
    if(location.hash!==nextHash&&window.history&&history.pushState)history.pushState(null,'',nextHash);
    showView(id);
  },true);
- window.addEventListener('popstate',function(){var id=(location.hash||'').slice(1);showView(id&&document.getElementById(id)?id:(window.BL_DESK==='cost'?'p-mkt':'overview'));});
- window.addEventListener('hashchange',function(){var id=(location.hash||'').slice(1);showView(id&&document.getElementById(id)?id:(window.BL_DESK==='cost'?'p-mkt':'overview'));});
+ window.addEventListener('popstate',function(){var id=(location.hash||'').slice(1);showView(id&&document.getElementById(id)?id:(window.BL_DESK==='cost'?'p-landed2':'overview'));});
+ window.addEventListener('hashchange',function(){var id=(location.hash||'').slice(1);showView(id&&document.getElementById(id)?id:(window.BL_DESK==='cost'?'p-landed2':'overview'));});
  var st=document.createElement('style');
  st.textContent='body.theme-light main .blk.sk-off,main .blk.sk-off{display:none!important}.blk-h .tog,.blk-h .lights{display:none!important}.blk-h{cursor:default!important}.blk{margin-top:0!important}main .blk:not(.sk-off){animation:skfade .22s ease}@keyframes skfade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}';
  document.head.appendChild(st);
@@ -3265,7 +3291,7 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
     its masthead and its brief builder, neither of which belongs there. Its own
     front door is Cost & Origin: the panel that sets the market everything else
     on the page is priced against. */
- var home=window.BL_DESK==='cost'?'p-mkt':'overview';
+ var home=window.BL_DESK==='cost'?'p-landed2':'overview';
  showView(initial&&document.getElementById(initial)?initial:home);
 })();</script>
 <script>(function(){/* bento content grid — one feature, one 4-tile layout */
@@ -3966,7 +3992,7 @@ function processTile(name){var n=String(name||'').toLowerCase();
   var tm=document.querySelector('.tpk-time');if(tm)tm.classList.add('sys-time');
 })();</script>
 <script>(function(){var button=document.getElementById('clear-b2b-device');if(!button)return;button.addEventListener('click',function(){try{Object.keys(localStorage).filter(function(k){return k.indexOf('bd_p_')===0;}).forEach(function(k){localStorage.removeItem(k);});}catch(e){}button.textContent='Device preferences cleared';setTimeout(function(){location.reload();},450);});})();</script>
-<script>(function(){var disc=document.getElementById('disc');if(disc)disc.textContent='BIRDLAND ASIASOURCE · PUBLIC BUYING INFORMATION. Forecasts, duty and impact figures are indicative planning guides — not legal, customs or trade advice. Confirm with your customs broker or counsel before acting.';})();</script>
+<script>(function(){var disc=document.getElementById('disc');if(disc)disc.textContent='BIRDLAND ASIASOURCE · PUBLIC BUYING INFORMATION. Forecasts, duty and impact figures are indicative planning guides — not legal, customs or trade advice. Confirm with your customs broker or counsel before acting.';if(window.BL_DESK==='cost')disc.textContent='BIRDLAND COSTNOW · PUBLIC COST PLANNING. Duty, tax and impact figures are indicative planning guides — not legal, customs or trade advice. Confirm with your customs broker or counsel before acting.';})();</script>
 <script>(function(){var r=document.querySelector('.pd-room-panel .pd-panel-head h2'),m=document.querySelector('.pd-market-panel .pd-panel-head h2'),s=document.querySelector('.pd-market-panel .pd-panel-head span');if(r)r.textContent='Origin & Route Decision';if(m)m.textContent='Cost & Timing Signals';if(s)s.textContent='buyer action view';})();</script>
 <script>(function(){
   var toolIds=['p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty'];
