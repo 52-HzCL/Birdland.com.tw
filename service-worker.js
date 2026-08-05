@@ -1,7 +1,7 @@
 // Bumped with every deploy that changes core assets: `activate` deletes every
 // cache whose key is not the current one, which is what evicts the previous
 // runtime cache. Without it a returning visitor keeps the old CSS for a load.
-const VERSION = "birdland-desks-v32";
+const VERSION = "birdland-desks-v33";
 const CORE_CACHE = `${VERSION}-core`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const CORE_ASSETS = [
@@ -41,6 +41,9 @@ const CORE_ASSETS = [
   "./buyer-desk.webmanifest",
   "./cost-desk.webmanifest",
   "./executive-desk.webmanifest",
+  "./images/app-news-tile.png",
+  "./images/app-buyer-tile.png",
+  "./images/app-cost-tile.png",
   "./images/app-news-192.png",
   "./images/app-news-512.png",
   "./images/app-buyer-192.png",

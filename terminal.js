@@ -14,13 +14,14 @@
 (function () {
   'use strict';
   var DATA = null, LOADING = null, dim, panel, input, results, chip;
-  // Blueprint line icons, one per app: a newspaper, a spec sheet, a set of
-  // scales, a lock. Stroke only — they sit on the drawing, so they are drawn
-  // like the drawing.
+  // The apps' own icons — the same drawings the browser installs to a home
+  // screen and the same ones each desk shows in its title bar, so the tile you
+  // tap and the app you arrive in are one object. Team is internal, has no
+  // drawing of its own, and keeps the blueprint lock.
   var ICON = {
-    news: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h18v18H7a2 2 0 0 1-2-2z"/><path d="M23 11h3a1 1 0 0 1 1 1v11a2 2 0 0 1-2 2H23"/><path d="M9 12h7M9 16h10M9 20h10"/><rect x="17" y="11" width="3" height="3"/></svg>',
-    buyer: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5h10v4h-10z"/><path d="M21 7h3a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h3"/><path d="M11 15l2.5 2.5L18 13"/><path d="M11 21h10"/></svg>',
-    cost: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 5v3M16 8 6 12M16 8l10 4"/><path d="M6 12 3.5 19a4 4 0 0 0 5 0L6 12zM26 12l-2.5 7a4 4 0 0 0 5 0L26 12z"/><path d="M16 8v16M11 27h10"/></svg>',
+    news: '<img src="images/app-news-tile.png?v=20260805a" width="96" height="96" alt="" decoding="async">',
+    buyer: '<img src="images/app-buyer-tile.png?v=20260805a" width="96" height="96" alt="" decoding="async">',
+    cost: '<img src="images/app-cost-tile.png?v=20260805a" width="96" height="96" alt="" decoding="async">',
     team: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="14" width="18" height="13" rx="2"/><path d="M11 14v-4a5 5 0 0 1 10 0v4"/><path d="M16 19v4"/></svg>',
   };
   var STEPS = [
@@ -73,7 +74,7 @@
     return STEPS.map(function (st, i) {
       var cell =
         '<a class="tm-step" href="' + st[2] + '">' +
-          '<span class="tm-ico">' + ICON[st[3]] + '</span>' +
+          '<span class="tm-ico' + (/^<img/.test(ICON[st[3]]) ? ' tm-ico-art' : '') + '">' + ICON[st[3]] + '</span>' +
           '<span class="tm-k">' + st[0] + '</span>' +
           '<span class="tm-name">' + esc(st[1]) + '</span>' +
           '<span class="tm-desc">' + esc(st[4]) + '</span>' +

@@ -33,10 +33,16 @@ html.ab-ready body{padding-top:0!important}
 
 /* ---- identity ---- */
 .ab-id{display:inline-flex;align-items:center;gap:var(--sp-2);flex:0 0 auto}
+/* The app's own icon, the one the browser installs to a home screen. It is a
+   drawing on paper, not a glyph on a colour, so it gets an icon's edge
+   instead of a tinted plate. */
 .ab-ico{
-  width:30px;height:30px;padding:5px;border-radius:9px;
-  color:#fff;background:var(--ab-accent);
+  width:34px;height:34px;border-radius:9px;
+  border:1px solid var(--line);background:var(--paper);
+  box-shadow:0 1px 2px rgba(7,60,51,.10);
 }
+/* Team has no drawing; its line glyph keeps the old tinted plate. */
+.ab-ico-line{padding:5px;border:0;color:#fff;background:var(--ab-accent);box-shadow:none}
 .ab-id b{font:700 var(--fs-small)/1 var(--ff-sans);letter-spacing:.02em;white-space:nowrap}
 
 /* ---- adopted status chips ----
@@ -55,7 +61,6 @@ html.ab-ready body{padding-top:0!important}
 .ab-act{display:flex;align-items:center;gap:var(--sp-2);flex:0 0 auto;margin-left:auto}
 .ab-act .bl-language{position:relative}
 .ab-act .bl-language summary,
-.ab-switch>summary,
 .ab-home{
   display:inline-flex;align-items:center;gap:6px;
   padding:7px var(--sp-3);border:1px solid var(--line);border-radius:999px;
@@ -64,7 +69,7 @@ html.ab-ready body{padding-top:0!important}
   white-space:nowrap;transition:background-color .2s ease,color .2s ease,border-color .2s ease;
 }
 .ab-act summary::-webkit-details-marker{display:none}
-.ab-act .bl-language summary:hover,.ab-switch>summary:hover,.ab-home:hover{
+.ab-act .bl-language summary:hover,.ab-home:hover{
   border-color:var(--ab-accent);background:var(--ab-accent);color:#fff;
 }
 .ab-home svg{width:14px;height:14px}
@@ -79,40 +84,56 @@ html.ab-ready body{padding-top:0!important}
 .ab-act .bl-language small{display:block;margin-top:var(--sp-2);color:var(--flat);font-size:var(--fs-micro);line-height:1.45}
 
 /* ---- the desk switch ----
-   Four tiles, the launcher's own drawings at popover size. This is the way
-   across between apps; the Terminal stays out of the desks, because a
-   launcher inside an app is a launcher you have to close before you can work. */
-.ab-switch{position:relative}
-.ab-switch>summary i{
-  width:11px;height:11px;
-  background:
-    linear-gradient(currentColor,currentColor) 0 0/4px 4px no-repeat,
-    linear-gradient(currentColor,currentColor) 7px 0/4px 4px no-repeat,
-    linear-gradient(currentColor,currentColor) 0 7px/4px 4px no-repeat,
-    linear-gradient(currentColor,currentColor) 7px 7px/4px 4px no-repeat;
+   The three apps themselves, sitting in a shallow well: a dock, the way a
+   phone shows the apps you keep. It replaced a "Desks" dropdown — three
+   pictures are quicker to read than a word, and one click closer.
+
+   The Terminal stays out of the desks. A launcher inside an app is a
+   launcher you have to close before you can work. */
+.ab-dock{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:4px;border:1px solid var(--line);border-radius:13px;
+  /* the well: a hairline recess, not a raised card */
+  background:rgba(7,60,51,.05);
+  box-shadow:inset 0 1px 2px rgba(7,60,51,.07);
 }
-.ab-apps{
-  position:absolute;right:0;top:44px;z-index:70;
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;
-  width:376px;padding:1px;border:1px solid var(--line);
-  background:var(--line);box-shadow:0 18px 50px rgba(7,60,51,.16);
+.ab-app{
+  position:relative;display:block;line-height:0;border-radius:9px;
+  text-decoration:none;
+  transition:transform .18s var(--ease,cubic-bezier(.22,.8,.28,1)),box-shadow .18s ease;
 }
-.ab-apps a{
-  display:grid;grid-template-columns:34px minmax(0,1fr);grid-template-rows:auto auto;
-  gap:0 10px;align-items:center;padding:var(--sp-3);
-  background:var(--paper);color:var(--ink-900);text-decoration:none;
+.ab-app-ico{
+  display:block;width:36px;height:36px;border-radius:9px;
+  border:1px solid rgba(7,60,51,.14);background:var(--paper);
+  box-shadow:0 1px 2px rgba(7,60,51,.12);
+  /* an icon you are not on reads as available, not as loud as the one you are on */
+  filter:saturate(.82);opacity:.9;
+  transition:filter .18s ease,opacity .18s ease;
 }
-.ab-apps a:hover,.ab-apps a:focus-visible{background:var(--card)}
-.ab-apps a[aria-current="page"]{background:var(--card)}
-.ab-tile{
-  grid-row:1/3;width:34px;height:34px;padding:6px;border-radius:10px;color:#fff;
+.ab-app-name{
+  position:absolute;width:1px;height:1px;margin:-1px;padding:0;
+  overflow:hidden;clip-path:inset(50%);white-space:nowrap;
 }
-.ab-apps a[data-app="news"] .ab-tile{background:#1B5C9B}
-.ab-apps a[data-app="buyer"] .ab-tile{background:#A95324}
-.ab-apps a[data-app="cost"] .ab-tile{background:#146A4C}
-.ab-apps a[data-app="team"] .ab-tile{background:#465561}
-.ab-apps b{font:700 var(--fs-small)/1.2 var(--ff-sans)}
-.ab-apps small{color:var(--flat);font:500 var(--fs-micro)/1.3 var(--ff-mono);letter-spacing:.06em}
+.ab-app:hover{transform:translateY(-2px)}
+.ab-app:hover .ab-app-ico{filter:none;opacity:1;box-shadow:0 5px 12px rgba(7,60,51,.20)}
+.ab-app:focus-visible{outline:2px solid var(--ab-accent);outline-offset:3px}
+.ab-app:active{transform:translateY(0) scale(.95)}
+/* The app you are in: full colour, ringed in its own accent, and a dot under
+   it — the same mark a phone puts under the app that is running. */
+.ab-app[aria-current="page"] .ab-app-ico{
+  filter:none;opacity:1;
+  border-color:var(--ab-accent);
+  box-shadow:0 0 0 2px var(--ab-accent),0 3px 9px rgba(7,60,51,.18);
+}
+.ab-app[aria-current="page"]::after{
+  content:"";position:absolute;left:50%;bottom:-6px;width:4px;height:4px;
+  margin-left:-2px;border-radius:50%;background:var(--ab-accent);
+}
+.ab-dock:has(.ab-app[aria-current="page"]){margin-bottom:0}
+@media(prefers-reduced-motion:reduce){
+  .ab-app,.ab-app-ico{transition:none}
+  .ab-app:hover,.ab-app:active{transform:none}
+}
 
 /* ---- the text-size control, injected by text-size.js after the picker ---- */
 .ab-act .bl-textsize{margin-left:0}
@@ -127,8 +148,10 @@ html.ui-lg #app-bar .ab-status{font-size:12px}
 }
 @media(max-width:680px){
   .ab-in{width:calc(100% - 24px);flex-wrap:wrap;gap:var(--sp-2);padding:var(--sp-2) 0}
-  .ab-act{width:100%;margin-left:0;justify-content:flex-start;flex-wrap:wrap;row-gap:6px}
-  .ab-apps{width:min(340px,calc(100vw - 24px))}
+  .ab-act{width:100%;margin-left:0;justify-content:flex-start;flex-wrap:wrap;row-gap:8px}
+  /* The dock is the one control that must not shrink — it is how you leave. */
+  .ab-app-ico{width:34px;height:34px}
   .ab-home span{display:none}
+  .ab-home{padding:7px 10px}
 }
 @media print{#app-bar.ab{display:none!important}}

@@ -116,6 +116,11 @@ html.tm-open .bl-header,html.tm-open #desk-banner{z-index:820}
   transition:transform var(--dur-fast) var(--ease),box-shadow var(--dur-fast) var(--ease);
 }
 .tm-ico svg{width:30px;height:30px}
+/* An app icon is already a picture on its own ground; the blueprint plate
+   would put a frame around a frame, so it steps back to a hairline. */
+.tm-ico-art{padding:0;overflow:hidden;background:none;border-color:rgba(143,199,232,.34);
+  box-shadow:0 8px 18px rgba(4,18,30,.45)}
+.tm-ico img{display:block;width:100%;height:100%;border-radius:13px;object-fit:cover}
 .tm-step:hover .tm-ico,.tm-step:focus-visible .tm-ico{
   transform:translateY(-2px);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 12px 22px rgba(4,18,30,.55);

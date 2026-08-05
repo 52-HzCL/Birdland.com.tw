@@ -19,30 +19,35 @@
 (function () {
   'use strict';
 
+  // The three public desks carry their own drawn icon — the same picture the
+  // browser puts on the home screen when one is installed, so the switch in
+  // the bar and the icon on the phone are the same object. The Team Desk is
+  // internal, has no icon of its own, and stays off the switch; it is reached
+  // from the Terminal, which is where the internal doors live.
   var APPS = [
     { key: 'news',  file: 'executive.html', name: 'Daily Supply News', desc: 'What changed' },
     { key: 'buyer', file: 'partner.html',   name: 'Buyer Desk',        desc: 'What you need' },
-    { key: 'cost',  file: 'cost-desk.html', name: 'Cost Desk',         desc: 'What it costs' },
-    { key: 'team',  file: 'team.html',      name: 'Team Desk',         desc: 'Internal' }
+    { key: 'cost',  file: 'cost-desk.html', name: 'Cost Desk',         desc: 'What it costs' }
   ];
+  var TEAM = { key: 'team', file: 'team.html', name: 'Team Desk', desc: 'Internal' };
 
-  // The launcher's icons, at title-bar size. Same drawings as the Terminal
-  // tiles and the installed app icons, so the three agree.
-  var ICON = {
-    news: '<path d="M4 6h11v13H6a2 2 0 0 1-2-2z"/><path d="M15 9h3a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-3"/><path d="M7 9h5M7 12h5M7 15h4"/>',
-    buyer: '<path d="M9 4h6v3H9z"/><path d="M9 5.5H7a2 2 0 0 0-2 2V18a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7.5a2 2 0 0 0-2-2h-2"/><path d="M8.5 12.5l2 2 4.5-4.5"/>',
-    cost: '<path d="M12 4.5v14M7 18.5h10"/><path d="M4.5 8h15"/><path d="M4.5 8v2M19.5 8v2"/><path d="M1.8 12.5a2.7 2.7 0 0 0 5.4 0M16.8 12.5a2.7 2.7 0 0 0 5.4 0"/>',
-    team: '<path d="M6 10.5h12a1.5 1.5 0 0 1 1.5 1.5v6A1.5 1.5 0 0 1 18 19.5H6A1.5 1.5 0 0 1 4.5 18v-6A1.5 1.5 0 0 1 6 10.5z"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/>'
-  };
-
-  var svg = function (key, cls) {
+  var ICON_V = '20260805a';
+  function tile(key, cls) {
+    return '<img class="' + cls + '" src="images/app-' + key + '-tile.png?v=' + ICON_V +
+      '" width="36" height="36" alt="" decoding="async">';
+  }
+  // Team has no drawing, so it keeps the launcher's line glyph.
+  function lock(cls) {
     return '<svg class="' + cls + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
-      'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICON[key] + '</svg>';
-  };
+      'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M6 10.5h12a1.5 1.5 0 0 1 1.5 1.5v6A1.5 1.5 0 0 1 18 19.5H6A1.5 1.5 0 0 1 4.5 18v-6A1.5 1.5 0 0 1 6 10.5z"/>' +
+      '<path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>';
+  }
 
   var file = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
   // The preview server serves extensionless URLs, so /cost-desk has to resolve.
-  var here = APPS.filter(function (a) { return a.file === file || a.file === file + '.html'; })[0];
+  var match = function (a) { return a.file === file || a.file === file + '.html'; };
+  var here = APPS.filter(match)[0] || (match(TEAM) ? TEAM : null);
   if (!here) return;
 
   // Whatever the desk used as a top strip before it was an app. Hidden rather
@@ -72,25 +77,33 @@
     bar.dataset.app = here.key;
     bar.innerHTML =
       '<div class="ab-in">' +
-        '<span class="ab-id">' + svg(here.key, 'ab-ico') + '<b>' + here.name + '</b></span>' +
+        '<span class="ab-id">' +
+          (here === TEAM ? lock('ab-ico ab-ico-line') : tile(here.key, 'ab-ico')) +
+          '<b>' + here.name + '</b></span>' +
         '<div class="ab-status"></div>' +
         '<div class="ab-act">' +
           '<details class="bl-language" data-language-picker><summary>Language</summary>' +
             '<div><select data-translate-select aria-label="Translate this page">' +
             '<option>Choose language&hellip;</option></select>' +
             '<small>Opens Google Translate in a new tab. No selection is stored.</small></div></details>' +
-          '<details class="ab-switch"><summary aria-label="Switch desk"><i aria-hidden="true"></i>Desks</summary>' +
-            '<div class="ab-apps">' +
-              APPS.map(function (a) {
-                return '<a href="' + a.file + '" data-app="' + a.key + '"' +
-                  (a.key === here.key ? ' aria-current="page"' : '') + '>' +
-                  svg(a.key, 'ab-tile') + '<b>' + a.name + '</b><small>' + a.desc + '</small></a>';
-              }).join('') +
-            '</div></details>' +
+          // The switch: the apps themselves, sitting in a well. No menu to
+          // open — three icons are shorter to read than the word "Desks" and
+          // one click closer than a dropdown.
+          '<nav class="ab-dock" aria-label="Desk apps">' +
+            APPS.map(function (a) {
+              var on = a.key === here.key;
+              return '<a class="ab-app" href="' + a.file + '" data-app="' + a.key + '"' +
+                (on ? ' aria-current="page"' : '') +
+                ' title="' + a.name + ' · ' + a.desc + '">' +
+                tile(a.key, 'ab-app-ico') +
+                '<span class="ab-app-name">' + a.name + '</span></a>';
+            }).join('') +
+          '</nav>' +
           '<a class="ab-home" href="index.html">' +
             '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" ' +
             'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-            '<path d="M4 11l8-6.5 8 6.5"/><path d="M6.5 10v9h11v-9"/></svg>Birdland</a>' +
+            '<path d="M4 11l8-6.5 8 6.5"/><path d="M6.5 10v9h11v-9"/></svg>' +
+            '<span>Birdland</span></a>' +
         '</div>' +
       '</div>';
 
@@ -125,11 +138,10 @@
       n.style.display = 'none';
     });
 
-    // Close either popover on an outside click, as the site header does.
+    // The language picker is the only thing left that opens.
     document.addEventListener('click', function (e) {
-      [].forEach.call(bar.querySelectorAll('details[open]'), function (d) {
-        if (!d.contains(e.target)) d.removeAttribute('open');
-      });
+      var d = bar.querySelector('details[open]');
+      if (d && !d.contains(e.target)) d.removeAttribute('open');
     });
     document.addEventListener('keydown', function (e) {
       if (e.key !== 'Escape') return;
