@@ -1238,6 +1238,74 @@ body.theme-light .bd-mast .tool-btn:hover,body.theme-light .bd-mast .tool-btn:fo
 .bd-options .bd-choice-purpose{display:block!important;min-height:42px;margin:0!important;padding:8px var(--sp-2);border-top:1px solid rgba(5,55,45,.11);color:var(--kb-ink-500,#5f665f);font-size:var(--fs-micro)!important;line-height:1.4!important}
 .bd-options .bd-delta{right:5px;top:5px;padding:4px var(--sp-1);border:1px solid rgba(5,55,45,.11);border-radius:var(--r-sm);background:rgba(255,253,248,.95);font:700 var(--fs-micro)/1 var(--kb-mono)}
 .bd-options .bd-process-icon{width:42px;height:42px}.bd-options .bd-swatch{opacity:.96}
+/* Shortlist and compare controls.
+
+   A material card is itself a <button>, and a button cannot legally contain
+   another button or a checkbox — browsers unnest them and the card stops
+   working. So each card is wrapped in a positioned cell and the two controls
+   sit beside it as siblings, floated over the top-right corner. They appear on
+   hover, on keyboard focus inside the cell, and whenever the card is pinned,
+   so a pinned card is still legible when the pointer has moved away.
+
+   The shortlist itself is a normal block inside the builder column rather than
+   a floating card: the Buyer Brief rail sits to the right of this column at
+   every width, and anything floating would eventually land on top of it. */
+/* The builder column is a flex container with an explicit order on every
+   child. A new child without one is order:0 and jumps to the top of the
+   column, above the family tabs — which is where these two landed first. */
+.bd-cmp-bar,.bd-shortlist{order:5}.bd-cost-method{order:6}.bd-priority{order:7}.bd-cost-floor{order:8}
+.bd-mat-cell{position:relative;display:flex;min-width:0}
+.bd-mat-cell>.bd-choice{flex:1;min-width:0}
+/* The controls float over the bottom-left of the card, so the route note is
+   given a clear strip to end above rather than being covered on hover. */
+.bd-mat-cell .bd-choice-purpose{padding-bottom:34px!important}
+.bd-mat-tools{position:absolute;left:4px;bottom:4px;z-index:2;display:flex;align-items:center;gap:6px;opacity:0;transition:opacity var(--dur-slow) ease}
+.bd-mat-cell:hover .bd-mat-tools,.bd-mat-tools:focus-within,.bd-mat-tools.has-state{opacity:1}
+/* A touch device never hovers, so on one the controls are simply always
+   there — otherwise the whole feature is invisible on a phone. */
+@media(hover:none){.bd-mat-tools{opacity:1}}
+.bd-pin{width:26px;height:26px;padding:0;border:1px solid rgba(5,55,45,.22);border-radius:50%;background:#fff;color:#8d978f;font:700 13px/1 var(--kb-sans);cursor:pointer}
+.bd-pin[aria-pressed="true"]{border-color:var(--kb-copper-700,#a64b16);color:var(--kb-copper-700,#a64b16)}
+.bd-cmp{display:inline-flex;align-items:center;gap:4px;padding:3px 6px;border:1px solid rgba(5,55,45,.22);background:#fff;color:#46514B;font:700 var(--fs-micro)/1 var(--kb-sans);cursor:pointer}
+.bd-cmp input{width:13px;height:13px;margin:0}
+.bd-pin:focus-visible,.bd-cmp input:focus-visible{outline:2px solid var(--pd-copper);outline-offset:2px}
+.bd-cmp-bar{display:none;align-items:center;gap:var(--sp-2);flex-wrap:wrap;margin-top:var(--sp-2);padding:8px var(--sp-2);border:1px solid var(--pd-line);background:var(--pd-jade-soft)}
+.bd-cmp-bar.on{display:flex}
+.bd-cmp-bar>span{color:#46514B;font:600 var(--fs-micro)/1.4 var(--kb-sans)}
+.bd-cmp-bar button{min-height:28px;padding:4px 10px;border:1px solid var(--pd-jade);background:#fff;color:var(--pd-jade);font:700 var(--fs-micro) var(--kb-sans);cursor:pointer}
+.bd-cmp-bar button:hover{background:var(--pd-jade);color:#fff}
+.bd-shortlist{display:none;margin:var(--sp-3) 0 0;border:1px solid var(--pd-line);background:var(--paper)}
+.bd-shortlist.on{display:block}
+.bd-shortlist-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--sp-2);padding:8px var(--sp-2);border-bottom:1px solid var(--pd-line)}
+.bd-shortlist-head h3{margin:0;color:var(--pd-jade);font:700 var(--fs-micro) var(--kb-sans);letter-spacing:.12em;text-transform:uppercase}
+.bd-shortlist-head span{color:var(--pd-muted);font:500 var(--fs-micro) var(--kb-mono)}
+.bd-sl-rows{margin:0;padding:0;list-style:none}
+.bd-sl-rows li{display:grid;grid-template-columns:minmax(0,1fr) 86px 28px;align-items:center;gap:var(--sp-2);padding:6px var(--sp-2);border-bottom:1px solid rgba(5,55,45,.1)}
+.bd-sl-rows b{display:block;color:var(--pd-jade);font:600 var(--fs-micro)/1.3 var(--kb-sans)}
+.bd-sl-rows small{display:block;color:var(--pd-muted);font:500 var(--fs-micro)/1.3 var(--kb-mono)}
+.bd-sl-rows input{width:100%;min-height:26px;padding:2px 4px;border:1px solid var(--pd-line);background:#fff;color:var(--pd-jade);font:600 var(--fs-micro) var(--kb-sans)}
+.bd-sl-drop{width:26px;height:26px;padding:0;border:1px solid var(--pd-line);background:#fff;color:#8d978f;font:700 13px/1 var(--kb-sans);cursor:pointer}
+.bd-sl-drop:hover{border-color:var(--pd-copper);color:var(--pd-copper)}
+.bd-sl-foot{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-2);flex-wrap:wrap;padding:8px var(--sp-2)}
+.bd-sl-foot small{color:var(--pd-muted);font:500 var(--fs-micro)/1.4 var(--kb-sans)}
+.bd-sl-draft{min-height:32px;padding:6px 12px;border:0;background:var(--pd-copper);color:#fff;font:700 var(--fs-micro) var(--kb-sans);letter-spacing:.05em;text-transform:uppercase;cursor:pointer}
+.bd-sl-draft:hover{background:#91451F}
+.bd-sl-drop:focus-visible,.bd-sl-draft:focus-visible,.bd-cmp-bar button:focus-visible{outline:2px solid var(--pd-copper);outline-offset:2px}
+.bd-modal{position:fixed;inset:0;z-index:1200;display:none;align-items:center;justify-content:center;padding:var(--sp-3);background:rgba(9,28,22,.52)}
+.bd-modal.on{display:flex}
+.bd-modal-card{width:min(940px,100%);max-height:84vh;overflow:auto;border:1px solid var(--pd-line);background:var(--paper);box-shadow:0 18px 44px rgba(5,55,45,.28)}
+.bd-modal-head{position:sticky;top:0;display:flex;align-items:baseline;justify-content:space-between;gap:var(--sp-2);padding:var(--sp-2) var(--sp-3);border-bottom:1px solid var(--pd-line);background:var(--paper)}
+.bd-modal-head h3{margin:0;color:var(--pd-jade);font:700 var(--fs-body) var(--ff-serif)}
+.bd-modal-close{min-height:28px;padding:2px 10px;border:1px solid var(--pd-line);background:#fff;color:var(--pd-jade);font:700 var(--fs-micro) var(--kb-sans);cursor:pointer}
+.bd-modal table{width:100%;border-collapse:collapse}
+.bd-modal th,.bd-modal td{padding:8px var(--sp-2);border-bottom:1px solid rgba(5,55,45,.12);text-align:left;vertical-align:top;font:500 var(--fs-micro)/1.45 var(--kb-sans)}
+.bd-modal th[scope="row"]{width:150px;color:var(--pd-muted);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.bd-modal thead th{color:var(--pd-jade);font:700 var(--fs-small)/1.3 var(--kb-sans)}
+@media(max-width:680px){
+  .bd-modal th,.bd-modal td{font-size:var(--fs-micro)}
+  .bd-modal th[scope="row"]{width:96px}
+  .bd-sl-rows li{grid-template-columns:minmax(0,1fr) 68px 26px}
+}
 .bd-priority{margin-top:16px;padding-top:var(--sp-3);border-top:1px solid rgba(5,55,45,.16)}
 .bd-priority-list{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .bd-priority .bd-choice{min-height:112px;padding:var(--sp-3)}
@@ -1982,6 +2050,24 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
           <section class="bd-option-group"><h3>Material for selected part</h3><div class="bd-materials" id="bd-materials"></div></section>
           <section class="bd-option-group"><h3>Process control point</h3><div class="bd-processes" id="bd-processes"></div></section>
         </div>
+        <div class="bd-cmp-bar" id="bd-compare-bar"><button type="button" id="bd-compare-open">Compare (0) →</button><span>Ticked routes are compared side by side. Two or three at a time.</span></div>
+
+        <div class="bd-modal" id="bd-compare-modal" role="dialog" aria-modal="true" aria-labelledby="bd-compare-title" hidden>
+          <div class="bd-modal-card">
+            <div class="bd-modal-head"><h3 id="bd-compare-title">Material routes side by side</h3><button type="button" class="bd-modal-close" id="bd-compare-close">Close (Esc)</button></div>
+            <div id="bd-compare-body"></div>
+          </div>
+        </div>
+
+        <section class="bd-shortlist" id="bd-shortlist" aria-labelledby="bd-shortlist-title">
+          <div class="bd-shortlist-head"><h3 id="bd-shortlist-title">My shortlist</h3><span id="bd-shortlist-count"></span></div>
+          <ul class="bd-sl-rows" id="bd-shortlist-rows"></ul>
+          <div class="bd-sl-foot">
+            <small>Quantities stay on this device. Nothing is sent until you press Draft enquiry and send the mail yourself.</small>
+            <button type="button" class="bd-sl-draft" id="bd-shortlist-draft">Draft enquiry</button>
+          </div>
+        </section>
+
         <p class="bd-cost-method" id="bd-cost-method">Cost movement compares the current public input proxy with its prior reference point. Process cards show the relevant cost driver—not a supplier quotation.</p>
 
         <section class="bd-priority" id="bd-priority-options">
@@ -3875,12 +3961,159 @@ function processTile(name){var n=String(name||'').toLowerCase();
   if(priority==='Compliance readiness')return {title:'Request an evidence matrix before pricing',body:'Ask Birdland to map each selected material, process, pack claim and destination requirement to an owner, document and confirmation gate.'};
   return {title:'Compare equivalent cost routes',body:'Ask Birdland for a like-for-like cost bridge with material, conversion, labour, quality, packaging, freight and carrying time separated—without weakening the SKU specification.'};
  }
+ /* ---- Shortlist and compare -----------------------------------------------
+
+    Two things a buyer does on paper while reading this palette: star the
+    routes worth asking about, and put two of them next to each other. Both
+    were being done in a notebook and retyped into an email.
+
+    The shortlist is keyed on the part and material *names*, not on their
+    indexes. Indexes move whenever this table is edited; a buyer who pinned
+    "SK5 high-carbon steel / Upper blade" last month should find that, or find
+    nothing, rather than find whatever now sits at position 2.
+
+    Nothing here composes an address. Draft enquiry hands the finished body to
+    window.blMail.open — the same protected path the Buyer Brief button uses —
+    so the address is still built only inside the click and never enters the
+    DOM. */
+ var SL_KEY='bd_shortlist',shortlist=[],compare=[];
+ var slBox=document.getElementById('bd-shortlist'),slRows=document.getElementById('bd-shortlist-rows'),slCount=document.getElementById('bd-shortlist-count');
+ var cmpBar=document.getElementById('bd-compare-bar'),cmpOpen=document.getElementById('bd-compare-open'),cmpModal=document.getElementById('bd-compare-modal'),cmpBody=document.getElementById('bd-compare-body'),cmpClose=document.getElementById('bd-compare-close');
+ function slLoad(){
+  try{
+   var v=JSON.parse(localStorage.getItem(SL_KEY)||'[]');
+   if(Array.isArray(v))shortlist=v.filter(function(r){return r&&r.material&&r.part;}).slice(0,24).map(function(r){
+    return {family:String(r.family||''),part:String(r.part||''),material:String(r.material||''),note:String(r.note||''),qty:String(r.qty||'').slice(0,24)};
+   });
+  }catch(e){shortlist=[];}
+ }
+ function slSave(){try{localStorage.setItem(SL_KEY,JSON.stringify(shortlist));}catch(e){}}
+ function slIndex(partName,mat){for(var i=0;i<shortlist.length;i++)if(shortlist[i].part===partName&&shortlist[i].material===mat)return i;return -1;}
+ function isPinned(partName,mat){return slIndex(partName,mat)>-1;}
+ function isTicked(mat){return compare.indexOf(mat)>-1;}
+ /* The card is a <button>. A button may not contain a button or a checkbox, so
+    the two controls are siblings inside a positioned cell, not children. */
+ function matTools(partName,item,i){
+  var pinned=isPinned(partName,item[0]),ticked=isTicked(item[0]);
+  return '<div class="bd-mat-cell"><span class="bd-mat-tools'+(pinned||ticked?' has-state':'')+'">'+
+   '<button type="button" class="bd-pin" data-pin="'+i+'" aria-pressed="'+(pinned?'true':'false')+'" aria-label="'+(pinned?'Remove ':'Add ')+esc(item[0])+(pinned?' from':' to')+' my shortlist"><span aria-hidden="true">'+(pinned?'★':'☆')+'</span></button>'+
+   '<label class="bd-cmp"><input type="checkbox" data-compare="'+i+'"'+(ticked?' checked':'')+' aria-label="Compare '+esc(item[0])+'">Compare</label></span>';
+ }
+ function renderShortlist(){
+  if(!slBox||!slRows)return;
+  slBox.classList.toggle('on',shortlist.length>0);
+  if(slCount)slCount.textContent=shortlist.length?shortlist.length+(shortlist.length===1?' route pinned':' routes pinned'):'';
+  slRows.innerHTML=shortlist.map(function(r,i){
+   return '<li><span><b>'+esc(r.material)+'</b><small>'+esc(r.part)+(r.family?' · '+esc(r.family):'')+'</small></span>'+
+    '<input type="text" inputmode="numeric" data-qty="'+i+'" value="'+esc(r.qty)+'" placeholder="Qty" aria-label="Quantity for '+esc(r.material)+'">'+
+    '<button type="button" class="bd-sl-drop" data-drop="'+i+'" aria-label="Remove '+esc(r.material)+' from my shortlist">×</button></li>';
+  }).join('');
+ }
+ function togglePin(i){
+  var f=activeFamily(),part=activePart(),item=part.materials[i];
+  if(!item)return;
+  var at=slIndex(part.name,item[0]);
+  if(at>-1)shortlist.splice(at,1);
+  else shortlist.push({family:f.label,part:part.name,material:item[0],note:item[1],qty:''});
+  slSave();render();
+ }
+ function syncCompareBar(){
+  if(!cmpBar||!cmpOpen)return;
+  var names=activePart().materials.map(function(m){return m[0];});
+  compare=compare.filter(function(n){return names.indexOf(n)>-1;});
+  cmpOpen.textContent='Compare ('+compare.length+') →';
+  cmpBar.classList.toggle('on',compare.length>=2);
+  if(compare.length<2&&cmpModal&&cmpModal.classList.contains('on'))closeCompare();
+ }
+ function comparePicked(){
+  var part=activePart(),out=[];
+  compare.forEach(function(n){for(var i=0;i<part.materials.length;i++)if(part.materials[i][0]===n)out.push(part.materials[i]);});
+  return out;
+ }
+ /* Only fields the cards themselves carry. There is no invented row here: a
+    made-up tolerance or price in this table would read exactly like a quoted
+    one. */
+ function openCompare(){
+  if(!cmpModal||!cmpBody)return;
+  var items=comparePicked();
+  if(items.length<2)return;
+  var partName=activePart().name;
+  function row(label,cells){return '<tr><th scope="row">'+label+'</th>'+cells.join('')+'</tr>';}
+  cmpBody.innerHTML='<table><thead><tr><th scope="col">Field</th>'+items.map(function(it){return '<th scope="col">'+esc(it[0])+'</th>';}).join('')+'</tr></thead><tbody>'+
+   row('Part',items.map(function(){return '<td>'+esc(partName)+'</td>';}))+
+   row('Route note',items.map(function(it){return '<td>'+esc(it[1])+'</td>';}))+
+   row('Input move',items.map(function(it){return '<td>'+esc(deltaText(materialMetric(it[0])))+'</td>';}))+
+   row('Proxy basis',items.map(function(it){return '<td>'+esc(metricLabel(materialMetric(it[0])))+'</td>';}))+
+   row('On my shortlist',items.map(function(it){return '<td>'+(isPinned(partName,it[0])?'Pinned':'—')+'</td>';}))+
+   '</tbody></table>';
+  cmpModal.hidden=false;cmpModal.classList.add('on');
+  if(cmpClose)cmpClose.focus();
+ }
+ function closeCompare(){
+  if(!cmpModal)return;
+  cmpModal.classList.remove('on');cmpModal.hidden=true;
+  if(cmpOpen&&cmpBar&&cmpBar.classList.contains('on'))cmpOpen.focus();
+ }
+ function draftEnquiry(){
+  if(!shortlist.length||!window.blMail)return;
+  var room=document.getElementById('room'),ctx=(window.blCtx&&window.blCtx.get())||{};
+  var region=(room&&window.blMail.fromRoom[room.value])||window.blMail.recall('bl_mr_region','global');
+  var lineId=ctx.line||window.blMail.recall('bl_mr_line','');
+  var rows=shortlist.map(function(r,i){
+   return (i+1)+'. '+line(r.material)+' · '+line(r.part)+' · qty '+(line(r.qty)||'to confirm')+(r.note?' — '+line(r.note):'');
+  });
+  var body=['Hello Birdland,','','These are the material routes I have shortlisted on the public AsiaSource workspace.','','Shortlist:']
+   .concat(rows)
+   .concat(['',
+    'Product family in view: '+line(activeFamily().label),
+    'Commercial region: '+line(ctx.room||'not set'),
+    'Focus market: '+line(ctx.market||'not set'),
+    'Product line: '+line(ctx.line||'Garden & field tools'),
+    'Destination market: '+line(destination.value||'Global / undecided'),
+    'Buying priority: '+line(state.priority),'',
+    'Please confirm feasibility, material grade, hardness or finish, MOQ, tooling, timing, test plan and commercial terms for these routes. This public palette is conceptual and is not a customer drawing or a final specification.','',
+    'No quote or order has been submitted. I will add confidential drawings, quantities, prices and specifications only in our normal Birdland email thread.','',
+    'Public workspace: https://birdland.com.tw/partner.html#pd-builder'])
+   .join('\n');
+  window.blMail.open(region,lineId,'Birdland OEM enquiry — shortlist of '+shortlist.length+' material route'+(shortlist.length===1?'':'s'),body);
+ }
+ if(materials)materials.addEventListener('change',function(e){
+  var box=e.target;
+  if(!box||!box.getAttribute||!box.hasAttribute('data-compare'))return;
+  var item=activePart().materials[Number(box.getAttribute('data-compare'))];
+  if(!item)return;
+  var at=compare.indexOf(item[0]);
+  if(box.checked){if(at<0){if(compare.length>=3){box.checked=false;return;}compare.push(item[0]);}}
+  else if(at>-1)compare.splice(at,1);
+  render();
+ });
+ if(slRows)slRows.addEventListener('input',function(e){
+  var f=e.target;
+  if(!f||!f.getAttribute||!f.hasAttribute('data-qty'))return;
+  var r=shortlist[Number(f.getAttribute('data-qty'))];
+  if(!r)return;
+  r.qty=String(f.value||'').slice(0,24);slSave();
+ });
+ /* position:fixed resolves against the nearest transformed or filtered
+    ancestor, not the viewport, and this column has one — left inside the
+    builder the backdrop covered only part of the screen. It is authored in
+    place so the CostNow build can delete it with the rest of #overview, then
+    moved to <body> here, after that deletion has already run. */
+ if(cmpModal&&cmpModal.parentNode!==document.body)document.body.appendChild(cmpModal);
+ if(cmpModal)cmpModal.addEventListener('click',function(e){if(e.target===cmpModal)closeCompare();});
+ if(cmpClose)cmpClose.addEventListener('click',closeCompare);
+ document.addEventListener('keydown',function(e){
+  if((e.key==='Escape'||e.key==='Esc')&&cmpModal&&cmpModal.classList.contains('on'))closeCompare();
+ });
+ slLoad();
+
  function render(){
   var f=activeFamily(),part=activePart(),material=activeMaterial(),process=activeProcess(),materialMove=materialMetric(material[0]),processMove=processMetric(process);
   familyTabs.innerHTML=families.map(function(item,i){return '<button type="button" class="bd-family-tab '+(i===state.family?'on':'')+'" data-family="'+i+'" aria-pressed="'+(i===state.family?'true':'false')+'">'+esc(item.label)+'<small>'+esc(item.sub)+'</small></button>';}).join('');
   image.src=f.image;image.alt=f.alt;
   partList.innerHTML=f.parts.map(function(item,i){return '<button type="button" class="bd-part '+(i===state.part?'on':'')+'" data-part="'+i+'" aria-pressed="'+(i===state.part?'true':'false')+'"><b>'+(i+1)+'</b><span>'+esc(item.name)+'</span></button>';}).join('');
-  materials.innerHTML=part.materials.map(function(item,i){var m=materialMetric(item[0]);return '<button type="button" class="bd-choice bd-material-choice '+(i===state.material?'on':'')+'" data-material="'+i+'" aria-pressed="'+(i===state.material?'true':'false')+'"><span class="bd-choice-top"><span class="bd-choice-visual"><i class="bd-swatch bd-swatch-'+swatchKind(item[0])+'" aria-hidden="true"></i><em class="bd-delta '+deltaClass(m)+'">'+deltaText(m)+'</em></span><span class="bd-choice-head"><b>'+esc(item[0])+'</b><small>'+esc(metricLabel(m))+'</small></span></span><span class="bd-choice-purpose">'+esc(item[1])+'</span></button>';}).join('');
+  materials.innerHTML=part.materials.map(function(item,i){var m=materialMetric(item[0]);return matTools(part.name,item,i)+'<button type="button" class="bd-choice bd-material-choice '+(i===state.material?'on':'')+'" data-material="'+i+'" aria-pressed="'+(i===state.material?'true':'false')+'"><span class="bd-choice-top"><span class="bd-choice-visual"><i class="bd-swatch bd-swatch-'+swatchKind(item[0])+'" aria-hidden="true"></i><em class="bd-delta '+deltaClass(m)+'">'+deltaText(m)+'</em></span><span class="bd-choice-head"><b>'+esc(item[0])+'</b><small>'+esc(metricLabel(m))+'</small></span></span><span class="bd-choice-purpose">'+esc(item[1])+'</span></button></div>';}).join('');
+  syncCompareBar();renderShortlist();
   processes.innerHTML=f.processes.map(function(item,i){var m=processMetric(item);return '<button type="button" class="bd-choice bd-process-choice '+(i===state.process?'on':'')+'" data-process="'+i+'" aria-pressed="'+(i===state.process?'true':'false')+'"><span class="bd-choice-top"><span class="bd-choice-visual">'+'<i class="bd-swatch bd-swatch-process" aria-hidden="true"><img src="images/desk/'+processTile(item[0])+'.webp" alt="" loading="lazy" decoding="async"></i>'+'<em class="bd-delta '+deltaClass(m)+'">'+deltaText(m)+'</em></span><span class="bd-choice-head"><b>'+esc(item[0])+'</b><small>'+esc(metricLabel(m))+'</small></span></span><span class="bd-choice-purpose">'+esc(item[1])+'</span></button>';}).join('');
   setText('bd-cost-method','Cost movement uses the current public input proxy against its prior reference point. Modelled cards are directional planning signals; process cards show a driver, not a supplier quotation. Edition '+line(deskData.updated||'status unavailable')+'.');
   setText('bb-summary-family',f.label);setText('bb-summary-model',activeModel());setText('bb-summary-part',part.name);setText('bb-summary-material',material[0]);setText('bb-summary-material-move',deltaText(materialMove)+' · '+metricLabel(materialMove));setText('bb-summary-process',process[0]);setText('bb-summary-process-move',deltaText(processMove)+' · '+metricLabel(processMove));setText('bb-summary-priority',state.priority);
@@ -3915,13 +4148,17 @@ function processTile(name){var n=String(name||'').toLowerCase();
  root.addEventListener('click',function(e){
   var b=e.target.closest&&e.target.closest('button');
   if(!b)return;
-  if(b.hasAttribute('data-family')){state.family=Number(b.getAttribute('data-family'));state.part=0;state.material=0;state.process=0;render();return;}
-  if(b.hasAttribute('data-part')){state.part=Number(b.getAttribute('data-part'));state.material=0;render();return;}
+  if(b.hasAttribute('data-pin')){togglePin(Number(b.getAttribute('data-pin')));return;}
+  if(b.hasAttribute('data-drop')){var di=Number(b.getAttribute('data-drop'));if(di>-1&&di<shortlist.length){shortlist.splice(di,1);slSave();render();}return;}
+  if(b.id==='bd-shortlist-draft'){draftEnquiry();return;}
+  if(b.id==='bd-compare-open'){openCompare();return;}
+  if(b.hasAttribute('data-family')){state.family=Number(b.getAttribute('data-family'));state.part=0;state.material=0;state.process=0;compare=[];render();return;}
+  if(b.hasAttribute('data-part')){state.part=Number(b.getAttribute('data-part'));state.material=0;compare=[];render();return;}
   if(b.hasAttribute('data-material')){state.material=Number(b.getAttribute('data-material'));render();return;}
   if(b.hasAttribute('data-process')){state.process=Number(b.getAttribute('data-process'));render();return;}
   if(b.hasAttribute('data-priority')){state.priority=b.getAttribute('data-priority');[].forEach.call(document.querySelectorAll('[data-priority]'),function(x){var on=x===b;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on?'true':'false');});render();return;}
   if(b.hasAttribute('data-go')){var id=b.getAttribute('data-go'),a=document.querySelector('.toc > a[href="#'+id+'"]');if(a)a.click();return;}
-  if(b.id==='reset-buyer-desk'){state={family:0,part:0,material:0,process:0,priority:'Cost stability'};destination.selectedIndex=0;[].forEach.call(document.querySelectorAll('[data-priority]'),function(x,i){x.classList.toggle('on',i===0);x.setAttribute('aria-pressed',i===0?'true':'false');});render();}
+  if(b.id==='reset-buyer-desk'){state={family:0,part:0,material:0,process:0,priority:'Cost stability'};compare=[];destination.selectedIndex=0;[].forEach.call(document.querySelectorAll('[data-priority]'),function(x,i){x.classList.toggle('on',i===0);x.setAttribute('aria-pressed',i===0?'true':'false');});render();}
  });
  destination.addEventListener('change',render);
  var feed=window.BirdlandProductFeed;
