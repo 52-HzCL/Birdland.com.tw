@@ -62,7 +62,7 @@ def feed(filename, title, description, items):
     (OUT / filename).write_text("\n".join(rows), encoding="utf-8")
 
 items = [x for x in DATA.get("market_news", []) if isinstance(x, dict) and x.get("title")]
-feed("daily-supply-news.xml", "Birdland Daily Supply News", "Asia production, export and freight signals for Western buyers.", items)
+feed("daily-supply-news.xml", "Birdland ABrief", "Asia production, export and freight signals for Western buyers.", items)
 feed("taiwan-production.xml", "Birdland Taiwan Production", "Public Taiwan production and export signals.", [x for x in items if x.get("topic") == "taiwan"])
 feed("china-production.xml", "Birdland China Production", "Public China production and export signals.", [x for x in items if x.get("topic") == "china"])
 feed("freight-trade-policy.xml", "Birdland Freight & Trade Policy", "Public freight, tariff and policy signals.", [x for x in items if x.get("topic") in ("shipping", "freight", "tariff")])

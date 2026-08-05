@@ -25,11 +25,11 @@
     team: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="14" width="18" height="13" rx="2"/><path d="M11 14v-4a5 5 0 0 1 10 0v4"/><path d="M16 19v4"/></svg>',
   };
   var STEPS = [
-    ['WHAT CHANGED', 'Daily Supply News', 'executive.html', 'news',
+    ['WHAT CHANGED', 'ABrief', 'executive.html', 'news',
       'Steel, resin, freight and policy — what moved since your last order.'],
-    ['WHAT YOU NEED', 'Buyer Desk', 'partner.html', 'buyer',
+    ['WHAT YOU NEED', 'AsiaSource', 'partner.html', 'buyer',
       'Product family, part, material and process route, and the brief that comes out of it.'],
-    ['WHAT IT COSTS', 'Cost Desk', 'cost-desk.html', 'cost',
+    ['WHAT IT COSTS', 'CostNow', 'cost-desk.html', 'cost',
       'Landed cost, retail margin, reorder timing, sailing and duty by origin.'],
   ];
 
@@ -216,7 +216,7 @@
   function dest(u) {
     var f = String(u).split('?')[0].split('#')[0];
     return ({
-      'executive.html': 'DAILY SUPPLY NEWS', 'partner.html': 'BUYER DESK', 'cost-desk.html': 'COST DESK',
+      'executive.html': 'ABRIEF', 'partner.html': 'ASIASOURCE', 'cost-desk.html': 'COSTNOW',
       'team.html': 'TEAM DESK', 'guide.html': 'GUIDE', 'product-101.html': 'FACTORY',
       'about.html': 'ABOUT', 'contact.html': 'CONTACT',
     })[f] || f.replace('.html', '').toUpperCase();

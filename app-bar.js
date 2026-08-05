@@ -5,16 +5,16 @@
 // across with it, because nothing replaced the jobs that header was doing.
 // This is that replacement: not a site header, an app's own chrome.
 //
-//   [icon] Cost Desk    <the desk's own status>    Language · A a · ⊞ · ⌂
+//   [icon] CostNow    <the desk's own status>    Language · A a · ⊞ · ⌂
 //
 // The status chips are ADOPTED, not rebuilt: each desk already renders its own
-// (Source API and AI Narrative on the Buyer Desk, the source state on Daily
+// (Source API and AI Narrative on AsiaSource, the source state on Daily
 // Supply News, the Taipei clock everywhere), and they are already wired to
 // their own scripts. Moving the nodes keeps that wiring intact; rebuilding
 // them would have meant re-implementing four different feeds.
 //
-// Not pinned, deliberately. Daily Supply News sticks its edition index to the
-// top of the viewport and the Buyer Desk sticks its rail; a second sticky bar
+// Not pinned, deliberately. ABrief sticks its edition index to the
+// top of the viewport and AsiaSource sticks its rail; a second sticky bar
 // would be a z-index argument with no winner.
 (function () {
   'use strict';
@@ -25,9 +25,9 @@
   // internal, has no icon of its own, and stays off the switch; it is reached
   // from the Terminal, which is where the internal doors live.
   var APPS = [
-    { key: 'news',  file: 'executive.html', name: 'Daily Supply News', desc: 'What changed' },
-    { key: 'buyer', file: 'partner.html',   name: 'Buyer Desk',        desc: 'What you need' },
-    { key: 'cost',  file: 'cost-desk.html', name: 'Cost Desk',         desc: 'What it costs' }
+    { key: 'news',  file: 'executive.html', name: 'ABrief', desc: 'supply news, every morning' },
+    { key: 'buyer', file: 'partner.html',   name: 'AsiaSource',        desc: "the buyer's handbook" },
+    { key: 'cost',  file: 'cost-desk.html', name: 'CostNow',         desc: 'landed cost & margin' }
   ];
   var TEAM = { key: 'team', file: 'team.html', name: 'Team Desk', desc: 'Internal' };
 
@@ -124,7 +124,7 @@
     var slot = bar.querySelector('.ab-status');
     var found = [].filter.call(document.querySelectorAll(ADOPT), function (n) { return !bar.contains(n); });
     found
-      // The Buyer Desk's clock sits inside its office chip, which is itself a
+      // AsiaSource's clock sits inside its office chip, which is itself a
       // match. Move the outermost node only, or the inner one is torn out of
       // the chip it belongs to.
       .filter(function (n) { return !found.some(function (o) { return o !== n && o.contains(n); }); })
@@ -151,7 +151,7 @@
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
   else build();
-  // The Buyer Desk rewrites its own top strip after load; build again so the
+  // AsiaSource rewrites its own top strip after load; build again so the
   // bar cannot be left behind by a later script.
   window.addEventListener('load', build);
 }());

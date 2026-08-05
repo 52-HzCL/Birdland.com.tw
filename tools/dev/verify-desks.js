@@ -1,5 +1,5 @@
 // Run both built desks with their scripts and assert what the page actually
-// becomes, not what the markup says. The Cost Desk in particular is built by
+// becomes, not what the markup says. CostNow in particular is built by
 // deleting DOM at load, so the only honest check is to let it run.
 'use strict';
 const fs = require('fs');

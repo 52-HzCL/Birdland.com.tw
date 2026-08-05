@@ -1,7 +1,7 @@
 {
-  "name": "Birdland Buyer Desk",
-  "short_name": "Buyer Desk",
-  "description": "Birdland public procurement workspace for product routes, buying decisions and OEM enquiry preparation.",
+  "name": "Birdland AsiaSource",
+  "short_name": "AsiaSource",
+  "description": "AsiaSource — the buyer's handbook. Product routes, materials and OEM enquiry preparation.",
   "start_url": "./partner.html",
   "scope": "./",
   "display": "standalone",

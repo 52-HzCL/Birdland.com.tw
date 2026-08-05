@@ -38,7 +38,7 @@ function cell(short, label) {
   const dir = c > 0.05 ? 'up' : (c < -0.05 ? 'down' : 'flat');
   return { text: (label || short) + ' ' + num(ix.value) + (dir === 'up' ? ' ▲' : dir === 'down' ? ' ▼' : ' —'), dir };
 }
-// The Buyer Desk has no daily price of its own, so it carries the input that
+// AsiaSource has no daily price of its own, so it carries the input that
 // moved most today — the same proxies its material cards already show.
 function biggestMove() {
   const pool = ['STEEL HRC', 'PP RESIN', 'BRENT'].map(s => byShort[s]).filter(Boolean);
@@ -67,9 +67,9 @@ function add(t, n, d, u) {
 
 // The four surfaces and the six tools, by hand: they are the destinations, not
 // data, and a wrong one here is worse than a missing one.
-[['Daily Supply News', "Today's steel, resin, freight and policy signals", 'executive.html'],
- ['Buyer Desk', 'Product families, materials, processes, buyer brief', 'partner.html'],
- ['Cost Desk', 'Landed cost, margin, sailing, duty comparison', 'cost-desk.html'],
+[['ABrief', "Today's steel, resin, freight and policy signals", 'executive.html'],
+ ['AsiaSource', 'Product families, materials, processes, buyer brief', 'partner.html'],
+ ['CostNow', 'Landed cost, margin, sailing, duty comparison', 'cost-desk.html'],
  ['Team Desk', 'Internal dashboard', 'team.html'],
  ['Guide', 'How this site works, step by step', 'guide.html'],
  ['Factory', 'The floor, the routes, the materials, the cost structure', 'product-101.html'],
@@ -85,7 +85,7 @@ function add(t, n, d, u) {
  ['TW vs CN duty', 'Origin comparison including duty', 'cost-desk.html#p-cduty'],
 ].forEach(r => add('TOOL', r[0], r[1], r[2]));
 
-// Materials and processes come out of the Buyer Desk's own tables by bracket
+// Materials and processes come out of AsiaSource's own tables by bracket
 // matching, never by a regex across the whole file — this repo has been bitten
 // twice by that. Zero results is a build warning, not a silent pass.
 function matchBracket(src, open) {
@@ -165,5 +165,5 @@ fs.writeFileSync(path.join(R, 'terminal.json'), JSON.stringify(out), 'utf8');
 const bytes = fs.statSync(path.join(R, 'terminal.json')).size;
 console.log('built terminal.json ' + bytes + ' bytes — ' + index.length + ' entries (' +
   nMat + ' materials, ' + nProc + ' processes, ' + nSec + ' sections, ' + nSig + ' signals)');
-if (!nMat || !nProc) console.log('WARNING: material/process harvest came back empty — the Buyer Desk tables moved');
+if (!nMat || !nProc) console.log('WARNING: material/process harvest came back empty — AsiaSource tables moved');
 if (!nSec) console.log('WARNING: no Factory sections indexed');

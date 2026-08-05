@@ -84,9 +84,9 @@ def add(t, n, d, u):
 
 
 for n, d, u in [
-    ("Daily Supply News", "Today's steel, resin, freight and policy signals", "executive.html"),
-    ("Buyer Desk", "Product families, materials, processes, buyer brief", "partner.html"),
-    ("Cost Desk", "Landed cost, margin, sailing, duty comparison", "cost-desk.html"),
+    ("ABrief", "Today's steel, resin, freight and policy signals", "executive.html"),
+    ("AsiaSource", "Product families, materials, processes, buyer brief", "partner.html"),
+    ("CostNow", "Landed cost, margin, sailing, duty comparison", "cost-desk.html"),
     ("Team Desk", "Internal dashboard", "team.html"),
     ("Guide", "How this site works, step by step", "guide.html"),
     ("Factory", "The floor, the routes, the materials, the cost structure", "product-101.html"),
@@ -106,7 +106,7 @@ for n, d, u in [
     add("TOOL", n, d, u)
 
 
-# Materials and processes come out of the Buyer Desk's own tables by bracket
+# Materials and processes come out of AsiaSource's own tables by bracket
 # matching, never by a regex across the whole file — this repo has been bitten
 # twice by that. Zero results is a build warning, not a silent pass.
 def match_bracket(src, start):
@@ -188,6 +188,6 @@ with open(path, "w", encoding="utf-8", newline="") as f:
 print("built terminal.json %d bytes — %d entries (%d materials, %d processes, %d sections, %d signals)"
       % (os.path.getsize(path), len(index), n_mat, n_proc, n_sec, n_sig))
 if not n_mat or not n_proc:
-    print("WARNING: material/process harvest came back empty — the Buyer Desk tables moved")
+    print("WARNING: material/process harvest came back empty — AsiaSource tables moved")
 if not n_sec:
     print("WARNING: no Factory sections indexed")

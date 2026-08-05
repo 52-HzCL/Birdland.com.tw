@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"><head>
   <link rel="stylesheet" href="tokens.css?v=20260804a"><script src="text-size.js?v=20260804a"></script><link rel="stylesheet" href="app-bar.css?v=20260805c"><script defer src="app-bar.js?v=20260805c"></script>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#073F35"><meta name="description" content="Buyer Desk is Birdland's public procurement workspace for product routes, buying decisions and OEM enquiry preparation.">
-<title>Birdland Buyer Desk</title><meta name="robots" content="noindex">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#073F35"><meta name="description" content="AsiaSource is Birdland's public procurement workspace for product routes, buying decisions and OEM enquiry preparation.">
+<title>Birdland AsiaSource</title><meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- the Inter + IBM Plex Mono + Source Serif 4 request lived here, two skins ago -->
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=optional" rel="stylesheet">
@@ -848,8 +848,8 @@ body.theme-light{
   --pd-manual:#858B88;
   background:var(--pd-ivory)!important;
 }
-/* ── Cost Desk: same desk, different book ─────────────────────────────
-   The two desks render from one template, so the Cost Desk's own look is a
+/* ── CostNow: same desk, different book ─────────────────────────────
+   The two desks render from one template, so CostNow's own look is a
    re-inking of the shared palette, not a second skin: paper cools toward
    ledger green, and the copper slot — the accent everywhere on the Buyer
    Desk — is filled with counting-house green. Structure, type and layout
@@ -937,7 +937,7 @@ body.theme-light #p-rail{
 
 #p-rail /* The Information/Tools split is two pages now, and each page's menu only ever
    contains its own entries, so nothing needs hiding by mode. This rule stayed
-   long enough to hide the Overview link on the Cost Desk, whose menu is marked
+   long enough to hide the Overview link on CostNow, whose menu is marked
    data-mode="tools" while Overview is marked "information". */
 #p-rail .toc[data-mode="information"]>.pr-grp[data-mode="tools"],#p-rail .toc[data-mode="tools"]>.pr-grp[data-mode="information"]{display:none!important}
 .pr-install-card{margin:var(--sp-1) var(--sp-2) var(--sp-3);padding:var(--sp-2);border:1px solid var(--pd-line);border-radius:var(--r-md);background:var(--paper-2)}
@@ -1136,7 +1136,7 @@ body.theme-light #dash{
   body.theme-light .blk{border-color:#d8cfc1!important;border-radius:var(--r-md)!important;background:#fffdf8!important;box-shadow:0 8px 22px rgba(49,56,48,.05)}
   @media(max-width:680px){body.theme-light .hero{padding:var(--sp-4) var(--sp-3)}body.theme-light .pd-title{font-size:var(--fs-display)}body.theme-light .tb{padding:0 var(--sp-3)}body.theme-light .tb-right .sysgrp,body.theme-light .tb-right .tpk,body.theme-light .tb-right .tpk-hol,body.theme-light .tb-right .language-box,body.theme-light .tb-right>.back{display:none!important}}
   @media(prefers-reduced-motion:reduce){body.theme-light *{scroll-behavior:auto!important;animation-duration:var(--dur-fast)!important}}
-/* Buyer Desk 2026 — public procurement decision console */
+/* AsiaSource 2026 — public procurement decision console */
 .bd-shell{margin:var(--sp-3) 0 24px;border:1px solid rgba(5,55,45,.22);background:var(--kb-paper,var(--paper-2));box-shadow:0 18px 48px rgba(4,45,37,.08);overflow:hidden}
 .bd-mast{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-3);padding:16px 24px;background:var(--kb-jade-950,var(--jade-900));color:#fff}
 body.theme-light .bd-mast{background:var(--pd-jade,var(--jade-900))!important;color:#fff!important}
@@ -1313,7 +1313,7 @@ body.bd-printing>*{display:none!important}body.bd-printing .bd-print-sheet{displ
 @media(prefers-reduced-motion:reduce){.bd-shell *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 </style>
 <style id="b2b-buy-redesign">
-/* Buyer Desk 2026 — procurement decisions + public product references + local email brief */
+/* AsiaSource 2026 — procurement decisions + public product references + local email brief */
 :root{
   --kb-bg:#F5F1E8;--kb-panel:#FFFDF8;--kb-line:#D8D1C4;--kb-line2:#BFC8C1;
   --kb-ink:#172D27;--kb-mut:#55615C;--kb-faint:#7B817D;
@@ -1550,7 +1550,7 @@ body.theme-light #dash{padding:var(--sp-4) 0 0!important}
   .pd-kpi{transition:none!important}.pd-kpi:hover{transform:none!important}
 }
 
-/* Buyer Desk type system and reciprocal Product 101 / Buying tools navigation. */
+/* AsiaSource type system and reciprocal Product 101 / Buying tools navigation. */
 :root{
   --kb-sans:"Manrope",var(--ff-sans);
   --kb-mono:"DM Mono",var(--ff-mono);
@@ -1724,7 +1724,7 @@ body,body.theme-light{font-family:var(--kb-sans)!important}
 .landed-tool .bcrow.tot{margin-top:var(--sp-1);padding:var(--sp-2) 0;border-top:1px solid var(--kb-line)}.landed-tool .bcrow.tot span{color:var(--kb-accent-dk);font-weight:700}.landed-tool .bcrow.tot b{font-size:var(--fs-h3)}
 @media(max-width:900px){.landed-workspace{grid-template-columns:1fr}.landed-summary{order:-1}.landed-form{grid-template-columns:repeat(3,minmax(0,1fr))!important}.landed-form>div:first-child{grid-column:auto}}
 
-/* Persistent Buyer Desk status bar */
+/* Persistent AsiaSource status bar */
 :root{--buyer-status-height:64px}
 body.theme-light{padding-top:var(--buyer-status-height)}
 body.theme-light .topbar{position:fixed!important;top:0!important;right:0;left:0;z-index:200!important;height:var(--buyer-status-height);background:rgba(255,253,248,.97)!important;border-bottom:1px solid rgba(5,55,45,.18)!important;box-shadow:0 8px 22px rgba(5,55,45,.07)!important;backdrop-filter:blur(18px) saturate(155%)!important;-webkit-backdrop-filter:blur(18px) saturate(155%)!important}
@@ -1927,12 +1927,12 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
 <main class="wrap">
   <section class="bd-shell" id="overview" aria-labelledby="bd-title">
     <header class="bd-mast">
-      <div class="bd-mast-brand">BIRDLAND <small>BUYER DESK</small></div>
+      <div class="bd-mast-brand">BIRDLAND <small>ASIASOURCE</small></div>
     </header>
 
     <div class="bd-grid">
       <div class="bd-install-card">
-          <button class="tool-btn" id="install-app" type="button" title="Install Buyer Desk on this device. No account is created and it can be removed from your browser.">Install Buyer Desk safely</button>
+          <button class="tool-btn" id="install-app" type="button" title="Install AsiaSource on this device. No account is created and it can be removed from your browser.">Install AsiaSource safely</button>
         <small id="install-note">This device only · no account · remove anytime.</small>
       </div>
 
@@ -2070,10 +2070,10 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
       </section>
       <aside class="bd-tools"><h2>Buying tools</h2><p>Use your own figures. Inputs remain in this browser session.</p><div class="bd-tool-links"><button type="button" data-go="p-landed2">Landed cost</button><button type="button" data-go="p-margin">Retail margin</button><button type="button" data-go="p-reorder">Reorder timing</button><button type="button" data-go="p-sail">Plan a sailing</button><button type="button" data-go="p-calc">Quick estimate</button><button type="button" data-go="p-cduty">TW vs CN duty</button></div></aside>
     </div>
-    <div class="bd-privacy"><span>Public planning only. Buyer Desk does not create an order, quotation or account.</span><button id="reset-buyer-desk" type="button">Reset this brief</button></div>
+    <div class="bd-privacy"><span>Public planning only. AsiaSource does not create an order, quotation or account.</span><button id="reset-buyer-desk" type="button">Reset this brief</button></div>
   </section>
-  <nav class="toc" aria-label="Buyer Desk sections"><a href="#overview" data-icon="⌂" class="toc-home">Overview</a><a href="#p-alerts" data-icon="▤">Buy Queue</a><a href="#p-offers" data-icon="◇">Product Finder</a><a href="#pd-builder" data-icon="✎">Buyer Brief</a><a href="#p-mkt" data-icon="◎">Cost &amp; Origin</a><a href="#p-landed2" data-icon="▦">My landed cost</a><a href="#p-margin" data-icon="$">Retail margin</a><a href="#p-reorder" data-icon="◴">Reorder timing</a><a href="#p-sail" data-icon="≋">Plan a sailing</a><a href="#p-calc" data-icon="◌">Quick estimate</a><a href="#p-cduty" data-icon="⚖">TW vs CN duty</a><span class="pd-hidden-nav"><a href="#p-brief">Brief detail</a><a href="#p-market">Market detail</a><a href="#p-keynews">Key News</a><a href="#p-regcal">Regulatory Calendar</a><a href="#p-report">Keyword report</a><a href="#p-material">Materials ahead</a><a href="#p-shipping">Shipping ahead</a><a href="#p-season">Buy calendar</a><a href="#p-freight">Freight indexes</a><a href="#p-watch">Watchlist</a><a href="#p-war">Geopolitics</a><a href="#p-tariff">Tariffs</a><a href="#p-news">News</a></span></nav>
-  <div id="tab-hint" class="tab-hint"><div class="mac-note"><span class="mn-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span><div class="mn-txt"><b>BUYER DESK</b><span>Choose a buying action from the menu.</span></div></div></div>
+  <nav class="toc" aria-label="AsiaSource sections"><a href="#overview" data-icon="⌂" class="toc-home">Overview</a><a href="#p-alerts" data-icon="▤">Buy Queue</a><a href="#p-offers" data-icon="◇">Product Finder</a><a href="#pd-builder" data-icon="✎">Buyer Brief</a><a href="#p-mkt" data-icon="◎">Cost &amp; Origin</a><a href="#p-landed2" data-icon="▦">My landed cost</a><a href="#p-margin" data-icon="$">Retail margin</a><a href="#p-reorder" data-icon="◴">Reorder timing</a><a href="#p-sail" data-icon="≋">Plan a sailing</a><a href="#p-calc" data-icon="◌">Quick estimate</a><a href="#p-cduty" data-icon="⚖">TW vs CN duty</a><span class="pd-hidden-nav"><a href="#p-brief">Brief detail</a><a href="#p-market">Market detail</a><a href="#p-keynews">Key News</a><a href="#p-regcal">Regulatory Calendar</a><a href="#p-report">Keyword report</a><a href="#p-material">Materials ahead</a><a href="#p-shipping">Shipping ahead</a><a href="#p-season">Buy calendar</a><a href="#p-freight">Freight indexes</a><a href="#p-watch">Watchlist</a><a href="#p-war">Geopolitics</a><a href="#p-tariff">Tariffs</a><a href="#p-news">News</a></span></nav>
+  <div id="tab-hint" class="tab-hint"><div class="mac-note"><span class="mn-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span><div class="mn-txt"><b>ASIASOURCE</b><span>Choose a buying action from the menu.</span></div></div></div>
 
   <section class="blk" data-open="1" id="p-brief"><button class="blk-h"><span class="k">BRIEF</span><h2>Today &amp; Tomorrow</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
 
@@ -2685,8 +2685,8 @@ if(ai){var aiState=sourceState('gemini',norm(workflow.state));ai.classList.add('
 })();</script>
 <script>
 /* Two pages, one template.
-   partner.html is the Buyer Desk — the reading surface. cost-desk.html is the
-   Cost Desk — the six calculators. build_news.py renders this file twice and
+   partner.html is AsiaSource — the reading surface. cost-desk.html is the
+   CostNow — the six calculators. build_news.py renders this file twice and
    substitutes __DESKMODE__, and this block then removes whatever does not
    belong to the page being shown.
    The calculators are wired through the same shared helpers as everything else
@@ -2700,7 +2700,7 @@ window.BL_DESK='__DESKMODE__';
  /* p-mkt belongs to both pages. It is the Origin & Destination panel — cost
     content in its own right — and it owns the #room and #region selects the
     whole context system reads. Dropping it took the buying context off the Cost
-    Desk entirely, which is the one thing the Cost Desk has to carry across. */
+    Desk entirely, which is the one thing CostNow has to carry across. */
  var BOTH=['p-mkt'];
  var isCost=window.BL_DESK==='cost',drop=[];
  [].forEach.call(document.querySelectorAll('main .blk'),function(sec){
@@ -2709,7 +2709,7 @@ window.BL_DESK='__DESKMODE__';
   if(tool!==isCost)drop.push(sec);
  });
  if(isCost){
-  /* The whole #overview shell is the Buyer Desk — its masthead, its brief
+  /* The whole #overview shell is AsiaSource — its masthead, its brief
      builder, its published-PDF shelf. None of it is cost work, so the shell
      goes rather than being shown with most of its contents removed. The Cost
      Desk's front door is Cost & Origin, set as home in the router below. */
@@ -2724,9 +2724,9 @@ window.BL_DESK='__DESKMODE__';
   if(!document.getElementById(id)&&a.parentNode)a.parentNode.removeChild(a);
  });
  if(isCost){
-  document.title='Birdland Cost Desk';
+  document.title='Birdland CostNow';
   var crumb=document.querySelector('.crumbs span:last-child, .pd-crumb');
-  if(crumb&&/Buyer/i.test(crumb.textContent))crumb.textContent='Cost Desk';
+  if(crumb&&/AsiaSource/i.test(crumb.textContent))crumb.textContent='CostNow';
   // The brand in the topbar is shared markup, so the page renames itself.
   var vip=document.querySelector('.brand .vip');
   if(vip)vip.textContent='COST';
@@ -2801,7 +2801,7 @@ var LS={g:function(k){try{return localStorage.getItem('bd_p_'+k);}catch(e){retur
  var col=document.createElement('div');col.id='p-col';
  while(main.firstChild)col.appendChild(main.firstChild);
  main.appendChild(col);
- var rail=document.createElement('aside');rail.id='p-rail';rail.setAttribute('aria-label','Buyer Desk navigation');
+ var rail=document.createElement('aside');rail.id='p-rail';rail.setAttribute('aria-label','AsiaSource navigation');
  var tocEl=document.querySelector('.toc');
  if(tocEl){
    var TOOL_IDS=['p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty'];
@@ -2823,11 +2823,11 @@ var LS={g:function(k){try{return localStorage.getItem('bd_p_'+k);}catch(e){retur
       header is the switch now, and it carries the whole path rather than three
       bare labels. */
    tocEl.setAttribute('data-mode',isCost?'tools':'information');
-   var menuBtn=document.createElement('button');menuBtn.type='button';menuBtn.className='toc-toggle';menuBtn.setAttribute('aria-expanded','true');menuBtn.innerHTML='<span class="toc-toggle-copy"><span class="toc-toggle-icon" aria-hidden="true">☷</span><span>Open Buyer Desk menu</span></span><span class="toc-toggle-arrow" aria-hidden="true">⌄</span>';tocEl.insertBefore(menuBtn,tocEl.firstChild);
-   menuBtn.addEventListener('click',function(){var collapsed=tocEl.classList.toggle('is-collapsed');menuBtn.setAttribute('aria-expanded',collapsed?'false':'true');var label=menuBtn.querySelector('.toc-toggle-copy span:last-child');if(label)label.textContent=collapsed?'Show Information & Tools':'Open Buyer Desk menu';});
+   var menuBtn=document.createElement('button');menuBtn.type='button';menuBtn.className='toc-toggle';menuBtn.setAttribute('aria-expanded','true');menuBtn.innerHTML='<span class="toc-toggle-copy"><span class="toc-toggle-icon" aria-hidden="true">☷</span><span>Open AsiaSource menu</span></span><span class="toc-toggle-arrow" aria-hidden="true">⌄</span>';tocEl.insertBefore(menuBtn,tocEl.firstChild);
+   menuBtn.addEventListener('click',function(){var collapsed=tocEl.classList.toggle('is-collapsed');menuBtn.setAttribute('aria-expanded',collapsed?'false':'true');var label=menuBtn.querySelector('.toc-toggle-copy span:last-child');if(label)label.textContent=collapsed?'Show Information & Tools':'Open AsiaSource menu';});
    if(window.matchMedia&&window.matchMedia('(max-width:899px)').matches){tocEl.classList.add('is-collapsed');menuBtn.setAttribute('aria-expanded','false');var mobileLabel=menuBtn.querySelector('.toc-toggle-copy span:last-child');if(mobileLabel)mobileLabel.textContent='Show Information & Tools';}
  }
- /* The rail used to open with BIRDLAND / COST DESK. The header says exactly
+ /* The rail used to open with BIRDLAND / COSTNOW. The header says exactly
     that, 80px above it. */
  // Context card: the single place the buying context is set. It sits above the
  // mode switch, so it is on screen in Information and in Tools alike — which is
@@ -3011,7 +3011,7 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
  if(none)none.addEventListener('click',function(){checks.forEach(function(c){c.checked=false;});refresh();});
  var copy=$('shr_copy'),mail=$('shr_mail');
  if(copy)copy.addEventListener('click',function(){copyText(buildText(),copy);});
- if(mail)mail.addEventListener('click',function(){mailtoDraft($('shr_email').value.trim(),'Birdland Buyer Desk — shared update',buildText());});
+ if(mail)mail.addEventListener('click',function(){mailtoDraft($('shr_email').value.trim(),'Birdland AsiaSource — shared update',buildText());});
  refresh();
 })();
 
@@ -3205,7 +3205,7 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
  gen.addEventListener('click',function(){var v=kw.value.trim();if(!v)return;
    [].forEach.call(topics.parentNode.querySelectorAll('.rp-chip'),function(x){x.classList.remove('on');});selectedChips={};runReport([v],[v]);});
  if(copyBtn)copyBtn.addEventListener('click',function(){copyText(lastReport,copyBtn);});
- if(mail)mail.addEventListener('click',function(){mailtoDraft($('rp_email').value.trim(),'Birdland Buyer Desk — Keyword report',lastReport);});
+ if(mail)mail.addEventListener('click',function(){mailtoDraft($('rp_email').value.trim(),'Birdland AsiaSource — Keyword report',lastReport);});
  if(langSel)langSel.addEventListener('change',function(){var lang=langSel.value;if(!lang||!lastReport)return;window.open(translateUrl(lang,lastReport),'_blank');langSel.value='';});
 })();
 })();</script>
@@ -3261,7 +3261,7 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
  st.textContent='body.theme-light main .blk.sk-off,main .blk.sk-off{display:none!important}.blk-h .tog,.blk-h .lights{display:none!important}.blk-h{cursor:default!important}.blk{margin-top:0!important}main .blk:not(.sk-off){animation:skfade .22s ease}@keyframes skfade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}';
  document.head.appendChild(st);
  var initial=(location.hash||'').slice(1);
- /* The Cost Desk used to open on #overview, which is the Buyer Desk shell —
+ /* CostNow used to open on #overview, which is AsiaSource shell —
     its masthead and its brief builder, neither of which belongs there. Its own
     front door is Cost & Origin: the panel that sets the market everything else
     on the page is priced against. */
@@ -3539,7 +3539,7 @@ var poll=setInterval(function(){
   else if(tries>20){note.textContent='Translator unavailable (blocked by network/ad-blocker)';clearInterval(poll);}
 },500);
 })();</script>
-<script>(function(){/* Buyer Desk: public choices stay in this tab; email opens a reviewable draft */
+<script>(function(){/* AsiaSource: public choices stay in this tab; email opens a reviewable draft */
  var root=document.getElementById('overview'),email=document.getElementById('bb-email'),pdf=document.getElementById('bb-pdf'),destination=document.getElementById('bb-destination');
  if(!root||!email||!destination)return;
  var deskData={};try{deskData=JSON.parse(document.getElementById('outlook-data').textContent)||{};}catch(e){}
@@ -3928,7 +3928,7 @@ function processTile(name){var n=String(name||'').toLowerCase();
  function installed(){return window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches;}
  if(installed()){
    installBtn.hidden=true;
-   setNote('Buyer Desk is already installed on this device.');
+   setNote('AsiaSource is already installed on this device.');
  }
  if('serviceWorker' in navigator){
    navigator.serviceWorker.register('service-worker.js').catch(function(){setNote('Offline install support is unavailable in this browser session.');});
@@ -3944,11 +3944,11 @@ function processTile(name){var n=String(name||'').toLowerCase();
  window.addEventListener('appinstalled',function(){
    deferredPrompt=null;
    installBtn.hidden=true;
-   setNote('Buyer Desk securely installed. Reopen it from your desktop or app launcher.');
+   setNote('AsiaSource securely installed. Reopen it from your desktop or app launcher.');
  });
  installBtn.addEventListener('click',function(){
    if(!deferredPrompt){
-     setNote(installed()?'Buyer Desk is already installed on this device.':'Use your browser menu to securely install or add this page to your home screen.');
+     setNote(installed()?'AsiaSource is already installed on this device.':'Use your browser menu to securely install or add this page to your home screen.');
      return;
    }
    deferredPrompt.prompt();
@@ -3966,7 +3966,7 @@ function processTile(name){var n=String(name||'').toLowerCase();
   var tm=document.querySelector('.tpk-time');if(tm)tm.classList.add('sys-time');
 })();</script>
 <script>(function(){var button=document.getElementById('clear-b2b-device');if(!button)return;button.addEventListener('click',function(){try{Object.keys(localStorage).filter(function(k){return k.indexOf('bd_p_')===0;}).forEach(function(k){localStorage.removeItem(k);});}catch(e){}button.textContent='Device preferences cleared';setTimeout(function(){location.reload();},450);});})();</script>
-<script>(function(){var disc=document.getElementById('disc');if(disc)disc.textContent='BIRDLAND BUYER DESK · PUBLIC BUYING INFORMATION. Forecasts, duty and impact figures are indicative planning guides — not legal, customs or trade advice. Confirm with your customs broker or counsel before acting.';})();</script>
+<script>(function(){var disc=document.getElementById('disc');if(disc)disc.textContent='BIRDLAND ASIASOURCE · PUBLIC BUYING INFORMATION. Forecasts, duty and impact figures are indicative planning guides — not legal, customs or trade advice. Confirm with your customs broker or counsel before acting.';})();</script>
 <script>(function(){var r=document.querySelector('.pd-room-panel .pd-panel-head h2'),m=document.querySelector('.pd-market-panel .pd-panel-head h2'),s=document.querySelector('.pd-market-panel .pd-panel-head span');if(r)r.textContent='Origin & Route Decision';if(m)m.textContent='Cost & Timing Signals';if(s)s.textContent='buyer action view';})();</script>
 <script>(function(){
   var toolIds=['p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty'];
@@ -3979,18 +3979,18 @@ function processTile(name){var n=String(name||'').toLowerCase();
     body.insertAdjacentHTML('afterbegin','<div class="bd-tool-share" aria-label="Keep this result"><button type="button" class="bd-act" data-share-action="share" data-share-target="'+id+'" aria-label="Share this result"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.4V3.8"/><path d="m8 7.6 4-3.8 4 3.8"/><path d="M5 12.8v5.9a1.8 1.8 0 0 0 1.8 1.8h10.4a1.8 1.8 0 0 0 1.8-1.8v-5.9"/></svg><span class="bd-act-tip">Share</span></button><button type="button" class="bd-act" data-share-action="print" data-share-target="'+id+'" aria-label="Print this result or save it as a PDF"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9.4V3.5h10v5.9"/><path d="M7 18H5.2A1.7 1.7 0 0 1 3.5 16.3v-5.2A1.7 1.7 0 0 1 5.2 9.4h13.6a1.7 1.7 0 0 1 1.7 1.7v5.2A1.7 1.7 0 0 1 18.8 18H17"/><rect x="7" y="14.4" width="10" height="6.1" rx="1.1"/></svg><span class="bd-act-tip">Print · save PDF</span></button><span class="bd-share-status" aria-live="polite"></span></div>');
   });
   function status(btn,msg){var bar=btn.closest('.bd-actbar,.bd-tool-share'),out=bar&&bar.querySelector('.bd-share-status');if(out)out.textContent=msg;}
-  function textFor(target){var el=document.getElementById(target);if(!el)return '';var title=(el.querySelector('h1,h2')||{}).textContent||'Birdland Buyer Desk';return title.trim()+'\n\n'+el.innerText.replace(/\s+\n/g,'\n').replace(/\n{3,}/g,'\n\n').trim()+'\n\nSource: birdland.com.tw/partner.html';}
+  function textFor(target){var el=document.getElementById(target);if(!el)return '';var title=(el.querySelector('h1,h2')||{}).textContent||'Birdland AsiaSource';return title.trim()+'\n\n'+el.innerText.replace(/\s+\n/g,'\n').replace(/\n{3,}/g,'\n\n').trim()+'\n\nSource: birdland.com.tw/partner.html';}
   function printTarget(target,btn){var el=document.getElementById(target);if(!el)return;var sheet=el.cloneNode(true);sheet.removeAttribute('id');sheet.classList.add('bd-print-sheet');document.body.appendChild(sheet);document.body.classList.add('bd-printing');status(btn,'Print dialog opened — choose Save as PDF.');var done=function(){document.body.classList.remove('bd-printing');if(sheet&&sheet.parentNode)sheet.parentNode.removeChild(sheet);window.removeEventListener('afterprint',done);};window.addEventListener('afterprint',done);window.setTimeout(function(){window.print();},40);}
   document.addEventListener('click',function(e){var btn=e.target.closest&&e.target.closest('[data-share-action]');if(!btn)return;var target=btn.getAttribute('data-share-target'),txt=textFor(target),action=btn.getAttribute('data-share-action');
     if(action==='print'){printTarget(target,btn);return;}
-    var url=location.origin+location.pathname+(target==='bd-brief'?'#overview':'#'+target),title=(document.getElementById(target)&&document.getElementById(target).querySelector('h1,h2')||{}).textContent||'Birdland Buyer Desk';
+    var url=location.origin+location.pathname+(target==='bd-brief'?'#overview':'#'+target),title=(document.getElementById(target)&&document.getElementById(target).querySelector('h1,h2')||{}).textContent||'Birdland AsiaSource';
     if(navigator.share){navigator.share({title:title.trim(),text:txt,url:url}).then(function(){status(btn,'Shared from this device.');}).catch(function(err){if(err&&err.name!=='AbortError')status(btn,'Share was not completed.');});}
     else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt+'\n\n'+url).then(function(){status(btn,'Copied a share-ready result.');}).catch(function(){status(btn,'Copy was blocked; use your browser menu to share.');});}
     else{status(btn,'Use your browser menu to share this result.');}
   });
 })();</script>
   <script>
-  // The Buyer Desk already asks for a commercial region and drives the whole
+  // AsiaSource already asks for a commercial region and drives the whole
   // desk from it, so the enquiry follows that choice rather than asking twice.
   // Nothing composes an address until the button is actually pressed.
   document.addEventListener('DOMContentLoaded',function(){

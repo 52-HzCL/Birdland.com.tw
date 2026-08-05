@@ -18,7 +18,7 @@ const TARGETS = {
     // the PIN gate, removed from this desk last session (#tpin/#tgo belong to
     // the Team Desk, which carries its own copy of these styles)
     '#gate', '#pin', '#tpin', '#tgo', '.gbox', '.gt', '.gk', '.gs', '.gsub', '.glabel', '.gbtn', '.gerr', '.pinrow',
-    // the rake head/material route picker, dropped from the Buyer Desk
+    // the rake head/material route picker, dropped from AsiaSource
     '.bd-head-route', '.bd-head-routes', '.bd-head-route-grid',
     // the 01-04 step rail, and the chrome the action icons replaced
     '.bd-steps', '.bd-step', '.bd-mast-actions', '.bd-mast-note', '.bd-reference-note',

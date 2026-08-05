@@ -1,7 +1,7 @@
 {
-  "name": "Birdland Cost Desk",
-  "short_name": "Cost Desk",
-  "description": "Birdland cost workspace: landed cost, retail margin, reorder timing, sailing plans and duty comparison.",
+  "name": "Birdland CostNow",
+  "short_name": "CostNow",
+  "description": "CostNow — landed cost & margin. Landed cost, retail margin, reorder timing, sailing and duty comparison.",
   "start_url": "./cost-desk.html",
   "scope": "./",
   "display": "standalone",

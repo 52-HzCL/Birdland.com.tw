@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate Overview, Buyer Desk, Cost Desk, Team, and Daily Supply News pages from outlook-data.json."""
+"""Regenerate Overview, AsiaSource, CostNow, Team, and ABrief pages from outlook-data.json."""
 import os, subprocess, sys
 HERE=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TD=os.path.dirname(os.path.abspath(__file__))
@@ -15,7 +15,7 @@ def build(tpl,out,extra=None):
 # Overview became About > Guide. news.html is now a hand-written redirect
 # stub and must not be regenerated here, or the daily run overwrites it.
 build("news_template.html","guide.html")
-# The Buyer Desk and the Cost Desk are the same template rendered twice: the
+# AsiaSource and CostNow are the same template rendered twice: the
 # calculators share the desk's helpers, router and rail, so each page drops the
 # half that is not its own at load rather than the two being split into separate
 # templates. Every output must substitute __DESKMODE__ or the token ships.

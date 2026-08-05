@@ -20,7 +20,7 @@ const sprite = `<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" sty
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-// The catalogue link comes from product-offers.json so the Buyer Desk and this
+// The catalogue link comes from product-offers.json so AsiaSource and this
 // page cannot drift apart — that file is the publishing source (docs/PRODUCT-OFFERS.md).
 const OFFERS = JSON.parse(fs.readFileSync('product-offers.json', 'utf8'));
 const CAT = (OFFERS.items || []).find(i => i.type === 'catalogue' && i.status === 'published');
@@ -358,7 +358,7 @@ ${GATES.map(gateHtml(sn)).join('\n')}` },
 
   { id: 's-mat', title: 'Material families', subs: MATERIALS.map(m => ({ id: 'mat-' + m.code.toLowerCase(), title: m.name })),
     take: "Nine families. The grade is a trade-off, never an upgrade — every point of hardness is bought with toughness.",
-    render: sn => `        <p>A garden tool is rarely one material. These nine families cover a hand-tool programme, and the same nine are tracked as live inputs on the <a href="partner.html">Buyer Desk</a>, so a grade discussed here can be checked against this week's price movement.</p>
+    render: sn => `        <p>A garden tool is rarely one material. These nine families cover a hand-tool programme, and the same nine are tracked as live inputs on the <a href="partner.html">AsiaSource</a>, so a grade discussed here can be checked against this week's price movement.</p>
         ${LEGEND}
 ${MATERIALS.map(matHtml(sn)).join('\n')}` },
 
@@ -417,7 +417,7 @@ ${MATERIALS.map(matHtml(sn)).join('\n')}` },
           <dt>Stainless is a trade, not an upgrade</dt><dd>420J2 gives up roughly four to six points against SK5 in the same position. It is the right answer for wet use, coastal air and grounds-maintenance fleets that will never resharpen. It is the wrong answer for professional pruning in a dry climate, and a supplier who offers it as a free improvement has not priced the edge you are losing.</dd>
         </dl>
         <p class="wk-ask"><b>Ask any supplier for:</b> the hardness band rather than a single figure, the sampling plan that confirms it, and whether the resulting report travels with the shipment. A band with no sampling plan behind it is a sentence, not a control.</p>
-        <p>Every grade above is one route among several for that part. The full set &mdash; 159 material routes across 38 part types, with the process and finish options that go with each &mdash; is on the <a href="partner.html">Buyer Desk</a>, or type a grade such as <b>SK5</b> or <b>420J2</b> into the Terminal to go straight to it.</p>` },
+        <p>Every grade above is one route among several for that part. The full set &mdash; 159 material routes across 38 part types, with the process and finish options that go with each &mdash; is on the <a href="partner.html">AsiaSource</a>, or type a grade such as <b>SK5</b> or <b>420J2</b> into the Terminal to go straight to it.</p>` },
 
   { id: 's-fast', title: 'Nuts, bolts and the joint',
     subs: [{ id: 's-fast-p', title: 'The pivot' },
@@ -608,13 +608,13 @@ ${ECO.map(r => `              <tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td>
         <div class="cost-ladder">
 ${COST.map((c, i) => `          <div class="cost-cell"><b>BLOCK 0${i + 1}</b><strong>${esc(c[0])}</strong><span>${esc(c[1])}</span></div>`).join('\n')}
         </div>
-        <p>Run your own numbers: the landed-cost tool on the <a href="partner.html#p-landed2">Buyer Desk</a> uses these same four blocks, with current material and freight readings already loaded.</p>` },
+        <p>Run your own numbers: the landed-cost tool on the <a href="partner.html#p-landed2">AsiaSource</a> uses these same four blocks, with current material and freight readings already loaded.</p>` },
 
   { id: 's-also', title: 'See also', subs: [],
     take: "Where to go next, and what this page deliberately does not contain.",
     render: () => `        <ul class="wk-seealso">
-          <li><a href="partner.html">Buyer Desk</a> — live material, freight and tariff readings, and the landed-cost tool referenced above.</li>
-          <li><a href="executive.html">Daily Supply News</a> — the daily industry brief behind those readings.</li>
+          <li><a href="partner.html">AsiaSource</a> — live material, freight and tariff readings, and the landed-cost tool referenced above.</li>
+          <li><a href="executive.html">ABrief</a> — the daily industry brief behind those readings.</li>
           <li><a href="about.html#pure-play">About</a> — the confidentiality rule that governs what appears on this page.</li>
           <li><a href="contact.html">Contact</a> — to discuss a production route against a real specification.</li>
         </ul>

@@ -2,7 +2,7 @@
 // newline='' on both read and write in the Python means bytes pass through
 // untouched, so a plain utf8 read/write here produces the same file.
 // Keep this in step with the Python — including the __DESKMODE__ substitution,
-// which is what makes the Buyer Desk and the Cost Desk two pages.
+// which is what makes AsiaSource and CostNow two pages.
 const fs = require('fs'), path = require('path');
 const { REPO } = require('./_env');
 const data = fs.readFileSync(path.join(REPO, 'outlook-data.json'), 'utf8');
