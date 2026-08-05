@@ -2085,12 +2085,12 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
 
   <section class="blk landed-tool" data-open="0" id="p-landed2"><button class="blk-h"><span class="k">WORKSPACE</span><h2>Cost workspace — your shipment, priced</h2><span class="ihelp" title="We deliver FOB at the origin port; everything after that is yours. Pick your country to prefill duty & import tax, then see CIF, duty, VAT/GST, fees and total landed cost per unit.">i</span><span class="tog"></span></button><div class="blk-b">
     <section class="landed-input-panel" aria-labelledby="landed-setup-title">
-      <div class="landed-panel-head"><span>01 · Shipment setup</span><h3 id="landed-setup-title">Build the landed-cost scenario</h3><p>Birdland delivers FOB at the origin port. Set your destination, shipment value and post-FOB costs; duty and import tax remain editable planning inputs.</p></div>
+      <div class="landed-panel-head"><span>01 · Shipment setup</span><button type="button" id="ws_sheet_btn" class="ws-pin ws-export">Export estimate (PDF)</button><h3 id="landed-setup-title">Build the landed-cost scenario</h3><p>Birdland delivers FOB at the origin port. Set your destination, shipment value and post-FOB costs; duty and import tax remain editable planning inputs.</p></div>
       <div class="calc landed-form">
         <div><label>Destination country</label><select id="bc_co"></select></div>
         <div><label>FOB value (USD)</label><input id="bc_fob" type="number" value="50000"></div>
         <div><label>Quantity (pcs)</label><input id="bc_qty" type="number" value="5000"></div>
-        <div><label>Ocean freight (USD)</label><input id="bc_frt" type="number" value="3200"></div>
+        <div><label>Ocean freight (USD)</label><input id="bc_frt" type="number" value="3200"><small class="ws-live" id="ws_frt_live" hidden></small></div>
         <div><label>Insurance rate %</label><input id="bc_ins" type="number" value="0.2" step="0.05"></div>
         <div><label>Duty %</label><input id="bc_duty" type="number" value="1.7" step="0.1"></div>
         <div><label id="bc_taxL">Import tax %</label><input id="bc_tax" type="number" value="19" step="0.5"></div>
@@ -2102,9 +2102,9 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
       <p class="landed-note" id="bc_note"></p>
     </section>
     <section class="landed-summary" aria-labelledby="landed-outcome-title">
-      <div class="landed-summary-head"><span>02 · Landed outcome</span><b>Updates as you type</b></div>
+      <div class="landed-summary-head"><span>02 · Landed outcome</span><b>Updates as you type</b><button type="button" id="ws_pinA" class="ws-pin">Pin as scenario A</button></div>
       <h3 id="landed-outcome-title">Your cost after arrival</h3>
-      <div class="landed-hero-result"><div><span>Total landed cost</span><strong id="bc_total">—</strong></div><div><span>Landed cost / unit</span><strong id="bc_unit">—</strong><small id="bc_uplift">—</small></div></div>
+      <div class="landed-hero-result"><div><span>Total landed cost</span><strong id="bc_total">—</strong></div><div><span>Landed cost / unit</span><strong id="bc_unit">—</strong><small id="bc_uplift">—</small><small id="ws_dA" class="ws-delta"></small></div></div>
       <div class="bcbar" id="bc_bar"></div>
       <div class="bclegend" id="bc_leg"></div>
       <div class="landed-breakdown" id="bc_out"></div>
@@ -2489,10 +2489,12 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
      mgEl.textContent=per>0?'US$'+retail.toFixed(2):'—';
      $('ws_gp').textContent=per>0?money(orderGP):'—';
      $('ws_mgnote').textContent='at '+mgP.toFixed(0)+'% margin';
+     window.__wsMg={retail:retail,gp:orderGP};
      $('ws_mg_out').innerHTML='<div class="bcrow"><span>Landed cost / unit</span><b>US$'+per.toFixed(3)+'</b></div>'+
        '<div class="bcrow"><span>Markup on cost</span><b>'+(per>0?(gpU/per*100).toFixed(0):'0')+'%</b></div>'+
        '<div class="bcrow"><span>Gross profit / unit</span><b>US$'+gpU.toFixed(2)+'</b></div>'+
        '<div class="bcrow tot"><span>Gross profit / order ('+qty.toLocaleString()+' pcs)</span><b>'+money(orderGP)+'</b></div>';}
+   window.__ws={per:per,total:total,qty:qty};
    try{document.dispatchEvent(new CustomEvent('ws:landed'));}catch(e){}}
  ['bc_fob','bc_qty','bc_frt','bc_ins','bc_duty','bc_tax','bc_brk','bc_inl','bc_oth','ws_mg'].forEach(function(i){var e=$(i);if(e)e.addEventListener('input',landed);});
  if(sel){
@@ -2592,6 +2594,7 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
        var v=parseFloat(fobEl.value)||0,k=keyFor(co.value),tw=document.getElementById('ws_tw'),cn=document.getElementById('ws_cn'),note=document.getElementById('ws_dnote');
        if(!k){tw.textContent='—';cn.textContent='—';note.textContent='no tariff data for this destination';out.innerHTML='';return;}
        var dd=T.destinations[k],pTW=pct(dd,'TW'),pCN=pct(dd,'CN'),aTW=v*pTW/100,aCN=v*pCN/100;
+       window.__wsDuty={tw:aTW,cn:aCN};
        var fm=function(x){return 'US$'+Math.round(x).toLocaleString('en-US');};tw.textContent=fm(aTW);cn.textContent=fm(aCN);
        note.textContent=aCN>aTW?('Taiwan origin saves '+fm(aCN-aTW)):'same duty either origin';
        out.innerHTML='<div class="bcrow"><span>'+k+' · Taiwan origin</span><b>'+pTW.toFixed(1)+'% · '+fm(aTW)+'</b></div>'+
@@ -4001,6 +4004,78 @@ function processTile(name){var n=String(name||'').toLowerCase();
   var tm=document.querySelector('.tpk-time');if(tm)tm.classList.add('sys-time');
 })();</script>
 <script>(function(){var button=document.getElementById('clear-b2b-device');if(!button)return;button.addEventListener('click',function(){try{Object.keys(localStorage).filter(function(k){return k.indexOf('bd_p_')===0;}).forEach(function(k){localStorage.removeItem(k);});}catch(e){}button.textContent='Device preferences cleared';setTimeout(function(){location.reload();},450);});})();</script>
+<style>
+.ws-live{display:block;margin-top:4px;color:var(--kb-muted,#6b6e65);font:500 var(--fs-micro) var(--mono)}
+.ws-live .ws-use{margin-left:6px;padding:1px 8px;border:1px solid var(--kb-line);border-radius:999px;background:transparent;color:var(--kb-accent,#0E6652);font:600 var(--fs-micro) var(--mono);cursor:pointer}
+.ws-live .ws-use:hover{border-color:var(--kb-accent,#0E6652)}
+.ws-pin{margin-left:auto;padding:3px 10px;border:1px solid var(--kb-line);border-radius:999px;background:transparent;color:var(--kb-accent,#0E6652);font:600 var(--fs-micro) var(--mono);letter-spacing:.06em;cursor:pointer}
+.ws-pin:hover{border-color:var(--kb-accent,#0E6652)}
+.ws-pin.on{background:var(--kb-accent,#0E6652);color:#fff;border-color:var(--kb-accent,#0E6652)}
+.landed-panel-head .ws-export{float:right}
+.ws-delta{display:block;color:#8a4a12;font:600 var(--fs-micro) var(--mono)}
+#ws-sheet{display:none}
+@media print{
+  body.ws-printing main,body.ws-printing header,body.ws-printing aside,body.ws-printing nav,body.ws-printing footer,body.ws-printing #app-bar{display:none!important}
+  body.ws-printing #ws-sheet{display:block!important;font:12px/1.5 Georgia,serif;color:#111;max-width:640px;margin:0 auto}
+  #ws-sheet .qs-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid #111;padding-bottom:8px;margin-bottom:14px}
+  #ws-sheet .qs-head b{font:700 18px Georgia,serif;letter-spacing:.04em}
+  #ws-sheet .qs-head span{font:11px ui-monospace,monospace}
+  #ws-sheet h4{margin:14px 0 4px;font:700 12px ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase}
+  #ws-sheet .bcrow{display:flex;justify-content:space-between;border-bottom:1px solid #ddd;padding:3px 0}
+  #ws-sheet .bcrow.tot{border-bottom:2px solid #111;font-weight:700}
+  #ws-sheet .qs-note{margin-top:16px;font:10px ui-monospace,monospace;color:#555}
+}</style>
+<script>(function(){/* CostNow workspace extras: lane rate, scenario A, quote sheet */
+var host=document.getElementById('p-landed2');if(!host)return;
+var $=function(id){return document.getElementById(id);};
+var D={};try{D=JSON.parse(document.getElementById('outlook-data').textContent)||{};}catch(e){}
+var fmt=function(x){return 'US$'+Math.round(x).toLocaleString('en-US');};
+/* 1 · today's lane rate under the freight input */
+(function(){var el=$('ws_frt_live'),co=$('bc_co'),frt=$('bc_frt');if(!el||!co||!frt)return;
+ var lanes=(D.shipping&&D.shipping.lanes)||[];
+ var WANT={us:'N. America',ca:'N. America',de:'N. Europe',nl:'N. Europe',fr:'N. Europe',pl:'N. Europe',uk:'N. Europe',es:'Mediterranean',au:'Australia',nz:'Australia',jp:'Japan'};
+ function lane(){var w=WANT[co.value];if(!w)return null;for(var i=0;i<lanes.length;i++){if(String(lanes[i].lane||'').indexOf(w)>=0)return lanes[i];}return null;}
+ function paint(){var l=lane();if(!l||!l.rate){el.hidden=true;el.textContent='';return;}
+  el.hidden=false;
+  el.innerHTML='Today '+l.lane+': US$'+Number(l.rate).toLocaleString('en-US')+'/FEU'+(l.transit?' · '+l.transit:'')+' <button type="button" class="ws-use">Use ×1 FEU</button>';
+  el.querySelector('.ws-use').addEventListener('click',function(){frt.value=l.rate;frt.dispatchEvent(new Event('input',{bubbles:true}));});}
+ co.addEventListener('change',function(){setTimeout(paint,0);});paint();})();
+/* 2 · scenario A: pin the current shipment, read deltas as you retune */
+(function(){var btn=$('ws_pinA'),out=$('ws_dA');if(!btn||!out)return;
+ var A=null;try{A=JSON.parse(localStorage.getItem('bd_ws_A'));}catch(e){}
+ function d(x,ref){var v=x-ref,a=Math.abs(v);if(a<0.005)return null;return (v>0?'+':'\u2212')+'US$'+(a>=100?Math.round(a).toLocaleString('en-US'):a.toFixed(2));}
+ function paint(){if(!A||!window.__ws){out.textContent='';return;}
+  var bits=[],u=d(window.__ws.per,A.per),t=d(window.__ws.total,A.total);
+  if(u)bits.push('unit '+u);if(t)bits.push('total '+t);
+  if(window.__wsMg&&A.retail!=null){var r=d(window.__wsMg.retail,A.retail);if(r)bits.push('retail '+r);}
+  out.textContent=bits.length?('\u0394 vs A: '+bits.join(' \u00b7 ')):'\u0394 vs A: unchanged';}
+ function label(){btn.textContent=A?'Scenario A pinned \u00b7 clear':'Pin as scenario A';btn.classList.toggle('on',!!A);}
+ btn.addEventListener('click',function(){
+  if(A){A=null;try{localStorage.removeItem('bd_ws_A');}catch(e){}}
+  else if(window.__ws){A={per:window.__ws.per,total:window.__ws.total,retail:window.__wsMg?window.__wsMg.retail:null};try{localStorage.setItem('bd_ws_A',JSON.stringify(A));}catch(e){}}
+  label();paint();});
+ document.addEventListener('ws:landed',paint);label();paint();})();
+/* 3 · numbered quote sheet through the browser's print-to-PDF */
+(function(){var btn=$('ws_sheet_btn');if(!btn)return;
+ btn.addEventListener('click',function(){
+  var no;try{no=(parseInt(localStorage.getItem('bd_ws_qn')||'0',10)+1);localStorage.setItem('bd_ws_qn',String(no));}catch(e){no=1;}
+  var ref='CN-'+new Date().getFullYear()+'-'+String(no).padStart(4,'0');
+  var co=$('bc_co'),dest=co&&co.options[co.selectedIndex]?co.options[co.selectedIndex].textContent:'\u2014';
+  var rows=function(id){var e=$(id);return e?e.innerHTML:'';};
+  var ins=[['Destination',dest]];
+  [['FOB value','bc_fob','USD'],['Quantity','bc_qty','pcs'],['Ocean freight','bc_frt','USD'],['Insurance rate','bc_ins','%'],['Duty','bc_duty','%'],['Import tax / VAT','bc_tax','%'],['Brokerage','bc_brk','USD'],['Inland delivery','bc_inl','USD'],['Other','bc_oth','USD'],['Target margin','ws_mg','%']].forEach(function(x){var e=$(x[1]);if(e)ins.push([x[0],Number(e.value).toLocaleString('en-US')+' '+x[2]]);});
+  var sheet=$('ws-sheet');if(!sheet){sheet=document.createElement('div');sheet.id='ws-sheet';document.body.appendChild(sheet);}
+  sheet.innerHTML='<div class="qs-head"><b>BIRDLAND \u00b7 COSTNOW</b><span>Cost estimate '+ref+' \u00b7 '+new Date().toISOString().slice(0,10)+'</span></div>'
+   +'<h4>Shipment</h4>'+ins.map(function(x){return '<div class="bcrow"><span>'+x[0]+'</span><b>'+x[1]+'</b></div>';}).join('')
+   +'<h4>Landed outcome</h4>'+rows('bc_out')
+   +'<h4>Retail outcome</h4>'+rows('ws_mg_out')
+   +'<h4>Origin compare \u00b7 Taiwan vs China</h4>'+rows('ws_duty_out')
+   +'<p class="qs-note">Indicative planning figures generated by Birdland CostNow from public daily data \u2014 not a quotation, not legal, customs or trade advice. Confirm duty and tax with your customs broker. birdland.com.tw</p>';
+  document.body.classList.add('ws-printing');
+  var done=function(){document.body.classList.remove('ws-printing');window.removeEventListener('afterprint',done);};
+  window.addEventListener('afterprint',done);setTimeout(done,4000);
+  window.print();});})();
+})();</script>
 <script>(function(){var disc=document.getElementById('disc');if(disc)disc.textContent='BIRDLAND ASIASOURCE · PUBLIC BUYING INFORMATION. Forecasts, duty and impact figures are indicative planning guides — not legal, customs or trade advice. Confirm with your customs broker or counsel before acting.';if(window.BL_DESK==='cost')disc.textContent='BIRDLAND COSTNOW · PUBLIC COST PLANNING. Duty, tax and impact figures are indicative planning guides — not legal, customs or trade advice. Confirm with your customs broker or counsel before acting.';})();</script>
 <script>(function(){var r=document.querySelector('.pd-room-panel .pd-panel-head h2'),m=document.querySelector('.pd-market-panel .pd-panel-head h2'),s=document.querySelector('.pd-market-panel .pd-panel-head span');if(r)r.textContent='Origin & Route Decision';if(m)m.textContent='Cost & Timing Signals';if(s)s.textContent='buyer action view';})();</script>
 <script>(function(){
