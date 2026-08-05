@@ -3567,7 +3567,11 @@ var poll=setInterval(function(){
 })();</script>
 <script>(function(){/* AsiaSource: public choices stay in this tab; email opens a reviewable draft */
  var root=document.getElementById('overview'),email=document.getElementById('bb-email'),pdf=document.getElementById('bb-pdf'),destination=document.getElementById('bb-destination');
- if(!root||!email||!destination)return;
+ /* The guard used to stand here. CostNow drops the whole #overview shell at
+    load, so it returned before reaching the families table below — and that
+    table is the desk's material catalogue, which the command palette has to
+    index on both pages. The table is now defined and published first; the
+    guard that stops the brief builder itself moved to just after it. */
  var deskData={};try{deskData=JSON.parse(document.getElementById('outlook-data').textContent)||{};}catch(e){}
  var families=[
   {key:'cutting',label:'Cutting tools',sub:'Pruners · shears · loppers',model:'Bypass pruner',image:'images/buyer-anatomy-pruner.webp',alt:'Horizontal exploded reference anatomy of a bypass pruner',note:'Cutting platform · representative construction',
@@ -3630,6 +3634,11 @@ var poll=setInterval(function(){
    ],
    processes:[['Structural conversion','Die-cut, score and fold control'],['Shell forming','Thermoform gauge and seal fit'],['Print & adhesive','Ink, coating and bond compatibility'],['Transit validation','Hang, drop and carton compression tests']]}
  ];
+ /* Published flat, in the same shape tools/dev/gen-terminal.js harvests out of
+    this file, so terminal.json and the in-page palette are the same index read
+    two ways rather than two lists that can disagree. */
+ window.BL_FAMILIES=families;
+ if(!root||!email||!destination)return;
  var state={family:0,part:0,material:0,process:0,priority:'Cost stability'};
  var familyTabs=document.getElementById('bd-family-tabs'),partList=document.getElementById('bd-part-list'),materials=document.getElementById('bd-materials'),processes=document.getElementById('bd-processes');
  var image=document.getElementById('bd-anatomy-image');
@@ -4112,6 +4121,206 @@ function processTile(name){var n=String(name||'').toLowerCase();
  function late(){setTimeout(boot,0);setTimeout(prefill,260);setTimeout(prefill,900);}
  if(document.readyState==="complete")late();else window.addEventListener("load",late);
  window.addEventListener("hashchange",addLinks);window.addEventListener("bl:view",addLinks);
+}());
+</script>
+<style>
+/* ---- command palette ----
+   The desk has two ways in and neither is a search: the rail menu, which lists
+   panels, and the brief builder, which holds every material behind three
+   clicks. Someone who arrives knowing the word — "420J2", "sailing" — had to
+   go and find where that word lives. This is the missing third way: one key,
+   one field, both indexes.
+   Paper card, hairline border, no chrome — it borrows the desk's own tokens
+   rather than introducing a palette look. */
+.pd-omni{position:fixed;inset:0;z-index:1200;display:flex;align-items:flex-start;justify-content:center;padding:12vh var(--sp-3) var(--sp-3)}
+.pd-omni[hidden]{display:none}
+.pd-omni-back{position:absolute;inset:0;background:rgba(20,28,24,.42)}
+.pd-omni-card{position:relative;display:flex;flex-direction:column;width:100%;max-width:560px;max-height:70vh;border:1px solid var(--pd-line,#D8D1C4);border-radius:var(--r-md,10px);background:var(--pd-paper,#FFFDF8);box-shadow:0 18px 48px rgba(20,28,24,.22);overflow:hidden;animation:pd-omni-in .13s ease-out}
+@keyframes pd-omni-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.pd-omni-top{display:flex;align-items:center;gap:var(--sp-2);padding:var(--sp-2) var(--sp-3);border-bottom:1px solid var(--pd-line,#D8D1C4)}
+.pd-omni-k{flex:0 0 auto;color:var(--pd-jade,#073F35);font:700 var(--fs-micro) var(--ff-mono);letter-spacing:.14em}
+.pd-omni-top input{flex:1 1 auto;min-width:0;border:0;background:transparent;color:var(--ink-900,#1A1D20);font:500 var(--fs-body) var(--ff-sans);padding:6px 0}
+.pd-omni-top input:focus{outline:none}
+.pd-omni-esc{flex:0 0 auto;border:1px solid var(--pd-line,#D8D1C4);border-radius:5px;background:transparent;color:var(--pd-muted,#69716C);padding:3px 8px;font:700 var(--fs-micro) var(--ff-mono);letter-spacing:.08em;cursor:pointer}
+.pd-omni-esc:hover{color:var(--pd-jade,#073F35)}
+.pd-omni-list{flex:1 1 auto;margin:0;padding:0;list-style:none;overflow-y:auto}
+.pd-omni-row{display:grid;grid-template-columns:74px minmax(0,1fr);align-items:baseline;gap:var(--sp-2);padding:8px var(--sp-3);border-bottom:1px solid rgba(0,0,0,.05);cursor:pointer}
+.pd-omni-row:last-child{border-bottom:0}
+.pd-omni-row .t{color:var(--pd-muted,#69716C);font:700 var(--fs-micro) var(--ff-mono);letter-spacing:.1em}
+.pd-omni-row .n{display:block;color:var(--ink-900,#1A1D20);font:600 var(--fs-small) var(--ff-sans);overflow-wrap:anywhere}
+.pd-omni-row .d{display:block;margin-top:2px;color:var(--pd-muted,#69716C);font:500 var(--fs-micro)/1.35 var(--ff-sans);overflow-wrap:anywhere}
+.pd-omni-row.on{background:var(--pd-jade-soft,#EEF3F0)}
+.pd-omni-row.on .t{color:var(--pd-jade,#073F35)}
+.pd-omni-none{padding:var(--sp-3);color:var(--pd-muted,#69716C);font:500 var(--fs-small) var(--ff-sans)}
+.pd-omni-foot{flex:0 0 auto;padding:6px var(--sp-3);border-top:1px solid var(--pd-line,#D8D1C4);color:var(--pd-muted,#69716C);font:600 var(--fs-micro) var(--ff-mono);letter-spacing:.06em}
+.pd-omni-btn{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;margin:0 var(--sp-2) 0 0;border:1px solid var(--pd-line,#D8D1C4);border-radius:var(--r-md,8px);background:var(--pd-paper,#FFFDF8);color:var(--pd-jade,#073F35);padding:5px 10px;font:700 var(--fs-micro) var(--ff-mono);letter-spacing:.08em;cursor:pointer;white-space:nowrap}
+.pd-omni-btn:hover{background:var(--pd-jade-soft,#EEF3F0)}
+.pd-omni-btn kbd{border:1px solid var(--pd-line,#D8D1C4);border-radius:3px;background:rgba(0,0,0,.03);padding:0 4px;font:inherit}
+/* On the overview masthead it sits on the jade bar, so it dresses for it. */
+.bd-mast .pd-omni-btn{margin:0;border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.08);color:#fff}
+.bd-mast .pd-omni-btn:hover{background:rgba(255,255,255,.18)}
+.bd-mast .pd-omni-btn kbd{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.12)}
+@media(max-width:560px){.pd-omni{padding-top:6vh}.pd-omni-row{grid-template-columns:1fr}.pd-omni-btn kbd{display:none}}
+@media(prefers-reduced-motion:reduce){.pd-omni-card{animation:none}}
+@media print{.pd-omni,.pd-omni-btn{display:none!important}}
+</style>
+<script>(function(){
+ /* Built from the live DOM, and deliberately late: CostNow is this same file
+    with #overview and the reading panels deleted at load, so an index taken
+    any earlier would list panels that are not on the page. Reading the rail
+    after the drop means each desk indexes exactly what it actually has. */
+ function boot(){
+  var toc=document.querySelector('.toc');
+  if(!toc)return;
+
+  var index=[];
+  /* Panels: the rail's own direct links, which is what the desk considers
+     navigable. .pd-hidden-nav entries are nested, so > keeps them out — the
+     same selector the router uses to resolve a data-go. */
+  [].forEach.call(toc.children,function(a){
+   if(a.tagName!=='A')return;
+   var id=(a.getAttribute('href')||'').slice(1),label=(a.textContent||'').trim();
+   if(!id||(a.getAttribute('href')||'').charAt(0)!=='#'||!label||!document.getElementById(id))return;
+   index.push({t:'PANEL',n:label,d:'Desk panel',go:id});
+  });
+
+  /* Materials: the brief builder's own families table, published as
+     window.BL_FAMILIES. gen-terminal.js harvests the same table out of this
+     file to build terminal.json, so a material that exists in one exists in
+     the other. */
+  var fams=window.BL_FAMILIES||[],seen={};
+  fams.forEach(function(f){
+   (f.parts||[]).forEach(function(p){
+    (p.materials||[]).forEach(function(m){
+     var name=String(m&&m[0]||'');
+     if(!name||seen[name])return;seen[name]=1;
+     index.push({t:'MATERIAL',n:name,d:(f.label?f.label+' · ':'')+(p.name||''),q:name});
+    });
+   });
+  });
+  if(!index.length)return;
+
+  /* The palette itself. Nothing is rendered until it is first opened, so a
+     reader who never presses "/" pays nothing for it beyond this listener. */
+  var wrap=document.createElement('div');
+  wrap.className='pd-omni';wrap.id='pd-omni';wrap.hidden=true;
+  wrap.innerHTML='<div class="pd-omni-back" data-omni-close></div>'+
+   '<div class="pd-omni-card" role="dialog" aria-modal="true" aria-label="Search this desk">'+
+    '<div class="pd-omni-top"><span class="pd-omni-k">FIND</span>'+
+     '<input id="pd-omni-q" type="text" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Panel or material…" aria-label="Search panels and materials" role="combobox" aria-expanded="true" aria-controls="pd-omni-list">'+
+     '<button type="button" class="pd-omni-esc" data-omni-close>ESC</button></div>'+
+    '<ul class="pd-omni-list" id="pd-omni-list" role="listbox" aria-label="Results"></ul>'+
+    '<div class="pd-omni-foot">↑ ↓ MOVE · ENTER OPEN · ESC CLOSE</div>'+
+   '</div>';
+  document.body.appendChild(wrap);
+  var input=wrap.querySelector('#pd-omni-q'),list=wrap.querySelector('#pd-omni-list');
+
+  var shown=[],sel=0,lastFocus=null;
+
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function filter(q){
+   q=String(q||'').trim().toLowerCase();
+   var hits=q?index.filter(function(x){return (x.n+' '+x.d).toLowerCase().indexOf(q)>-1;}):index.slice();
+   /* An exact-ish prefix on the name beats a match buried in the context line,
+      so typing a grade lands on the grade. */
+   if(q)hits.sort(function(a,b){return (a.n.toLowerCase().indexOf(q)===0?0:1)-(b.n.toLowerCase().indexOf(q)===0?0:1);});
+   return hits.slice(0,40);
+  }
+  function draw(){
+   if(!shown.length){list.innerHTML='<li class="pd-omni-none">Nothing on this desk matches that.</li>';return;}
+   list.innerHTML=shown.map(function(x,i){
+    return '<li class="pd-omni-row'+(i===sel?' on':'')+'" role="option" aria-selected="'+(i===sel?'true':'false')+'" data-i="'+i+'">'+
+     '<span class="t">'+esc(x.t)+'</span><span><span class="n">'+esc(x.n)+'</span><span class="d">'+esc(x.d)+'</span></span></li>';
+   }).join('');
+   var on=list.querySelector('.pd-omni-row.on');
+   if(on&&on.scrollIntoView)on.scrollIntoView({block:'nearest'});
+  }
+  function run(q){shown=filter(q);sel=0;draw();}
+
+  function open(){
+   if(!wrap.hidden)return;
+   lastFocus=document.activeElement;
+   wrap.hidden=false;input.value='';run('');
+   input.focus();
+  }
+  function close(){
+   if(wrap.hidden)return;
+   wrap.hidden=true;
+   /* Focus goes back where it came from rather than to the top of the page. */
+   try{if(lastFocus&&lastFocus.focus&&document.contains(lastFocus))lastFocus.focus();}catch(e){}
+   lastFocus=null;
+  }
+  function choose(x){
+   if(!x)return;
+   if(x.go){
+    /* The rail link is the router — clicking it is how every other control on
+       this desk changes panel, hash included. */
+    var a=document.querySelector('.toc > a[href="#'+x.go+'"]');
+    close();
+    if(a)a.click();else location.hash='#'+x.go;
+    return;
+   }
+   /* Materials open the builder on the thing that was searched for, through
+      the same ?q= deep link terminal.json writes. It is read at load, so this
+      is a navigation on both desks — and on CostNow the builder lives on the
+      other page anyway. */
+   close();
+   location.href='partner.html?q='+encodeURIComponent(x.q)+'#pd-builder';
+  }
+
+  list.addEventListener('click',function(e){
+   var row=e.target.closest&&e.target.closest('.pd-omni-row');
+   if(!row)return;
+   choose(shown[Number(row.getAttribute('data-i'))]);
+  });
+  wrap.addEventListener('click',function(e){
+   if(e.target.closest&&e.target.closest('[data-omni-close]'))close();
+  });
+  input.addEventListener('input',function(){run(input.value);});
+  input.addEventListener('keydown',function(e){
+   if(e.key==='ArrowDown'){e.preventDefault();if(shown.length){sel=(sel+1)%shown.length;draw();}return;}
+   if(e.key==='ArrowUp'){e.preventDefault();if(shown.length){sel=(sel-1+shown.length)%shown.length;draw();}return;}
+   if(e.key==='Enter'){e.preventDefault();choose(shown[sel]);return;}
+   if(e.key==='Escape'){e.preventDefault();close();}
+  });
+
+  /* "/" is the shortcut every reading surface uses, but only when the reader
+     is not already typing — otherwise it eats the slash out of a lane code. */
+  document.addEventListener('keydown',function(e){
+   if(e.key==='Escape'&&!wrap.hidden){close();return;}
+   if(e.key!=='/'||e.metaKey||e.ctrlKey||e.altKey)return;
+   var t=e.target,tag=t&&t.tagName;
+   if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||(t&&t.isContentEditable))return;
+   e.preventDefault();open();
+  });
+
+  var btn=document.createElement('button');
+  btn.type='button';btn.className='pd-omni-btn';
+  btn.setAttribute('aria-haspopup','dialog');
+  btn.innerHTML='<span aria-hidden="true">⌕</span><span>SEARCH</span><kbd>/</kbd>';
+  btn.setAttribute('aria-label','Search panels and materials');
+  btn.addEventListener('click',open);
+
+  /* One button, two homes. AsiaSource hides the rail while the overview shell
+     is showing (body.bd-overview-active #p-rail{display:none}), so a button
+     parked in the rail is invisible on the page the desk actually opens on.
+     It rides the view instead: the overview masthead while that is up, the
+     rail menu once a panel is. CostNow has no overview shell at all, so there
+     it simply lives in the rail. */
+  var mast=document.querySelector('#overview .bd-mast');
+  function placeBtn(){
+   var home=(mast&&document.body.classList.contains('bd-overview-active'))?mast:toc;
+   if(btn.parentNode===home)return;
+   if(home===toc){
+    var firstLink=[].filter.call(toc.children,function(n){return n.tagName==='A';})[0];
+    if(firstLink)toc.insertBefore(btn,firstLink);else toc.appendChild(btn);
+   }else home.appendChild(btn);
+  }
+  placeBtn();
+  window.addEventListener('bl:view',placeBtn);
+  window.addEventListener('hashchange',function(){setTimeout(placeBtn,0);});
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 }());
 </script>
 </body></html>

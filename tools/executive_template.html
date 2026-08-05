@@ -66,6 +66,40 @@
      the far end so "Larger text" is findable rather than sixth in a row. */
   .mail-dest{margin:0;opacity:.75;font-size:var(--fs-micro);white-space:nowrap}
   @media(max-width:900px){.hero-actions{justify-content:flex-start}}
+  /* ---- the edition strip ----
+     The masthead says which paper this is; it never said which day, and the
+     only way to reach a section was the rail, which scrolls away on a phone.
+     This is one slim band under the topbar: the edition's own date on the
+     left — taken from D.updated, because there is no archive and inventing
+     past dates would be a lie — and the real section list on the right,
+     derived from the edition-index rail so the two can never disagree.
+     It stacks under the sticky topbar rather than fighting it: the script
+     measures the topbar and this strip and feeds --rail-top and --sec-margin,
+     so the rail sits below both and anchors land under both. */
+  .edstrip{position:sticky;top:var(--edstrip-top,58px);z-index:45;background:var(--kb-paper);border-bottom:1px solid var(--kb-line2);box-shadow:0 1px 0 rgba(34,30,25,.05)}
+  .edstrip-in{display:flex;align-items:center;gap:var(--sp-3);max-width:1480px;margin:auto;min-width:0;padding:6px var(--sp-4)}
+  .edstrip-chip{flex:0 0 auto;border:1px solid var(--kb-line2);background:#ede2cf;color:#7b3822;padding:4px var(--sp-2);font:600 var(--fs-micro) var(--mono);letter-spacing:.09em;text-transform:uppercase;white-space:nowrap}
+  .edstrip-seg{display:flex;min-width:0;margin-left:auto;padding:2px;border:1px solid var(--kb-line);border-radius:999px;background:rgba(255,255,255,.55);overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+  .edstrip-seg::-webkit-scrollbar{height:5px}
+  .edstrip-seg::-webkit-scrollbar-thumb{background:var(--kb-line);border-radius:999px}
+  .edstrip-seg a{flex:0 0 auto;padding:4px 10px;border-radius:999px;color:var(--kb-muted);font:600 var(--fs-micro) var(--mono);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+  .edstrip-seg a:hover,.edstrip-seg a:focus-visible{background:#e9dfce;color:var(--kb-ink)}
+  .edstrip-seg a.on{background:var(--kb-dark);color:#f5e9d4}
+  .section{scroll-margin-top:var(--sec-margin,150px)}
+  /* daily-journal.css already lays the edition index out as a sticky
+     horizontal bar carrying these same nine anchors. Two identical navigation
+     rows, one above the other, is what stacking them honestly produces — so
+     the rail stands down and the strip carries the list, with the date and the
+     scrollspy the rail never had. The rail stays in the document as the source
+     the strip reads, and the attribute is only set once the strip has actually
+     built its segments: if that fails, the page is exactly what it was. */
+  .rail[data-superseded]{display:none!important}
+  /* Under 900px the chip and nine segments cannot share one line without
+     squeezing the control down to a peephole, so the strip becomes two rows
+     and the control takes the full width — still one horizontal scroller,
+     still no horizontal scroll on the page. */
+  @media(max-width:900px){.edstrip-in{flex-wrap:wrap;gap:6px;padding:6px var(--sp-3)}.edstrip-seg{width:100%;margin-left:0}}
+  @media print{.edstrip{display:none!important}}
   @page{size:A4;margin:14mm}
   @media print{
     .page{display:block;padding:0}
@@ -85,6 +119,7 @@
 <body>
   <a class="skip" href="#daily-main">Skip to ABrief</a>
   <header class="top"><div class="topin"><a class="brand" href="index.html">Birdland <small>ABRIEF</small></a><div class="topmeta"><span id="source-state"><i class="dot"></i>Source status</span><span class="hq" data-hq-status>Birdland Office <b data-hq-label>Resting</b></span><span data-taipei-time>--:-- Taipei</span><span class="desk3" aria-label="Desk"><a class="on" aria-current="page" href="executive.html">News</a><a href="partner.html">Buyer</a><a href="cost-desk.html">Cost</a></span><details class="language" data-language-picker><summary>Language</summary><div><select data-translate-select aria-label="Translate this page"><option>Choose language…</option></select><small>Opens Google Translate in a new tab.</small></div></details></div></div></header>
+  <div class="edstrip" id="edstrip"><div class="edstrip-in"><span class="edstrip-chip" id="edstrip-chip">Today’s edition</span><nav class="edstrip-seg" id="edstrip-seg" aria-label="Jump to a section of this edition"></nav></div></div>
   <div class="page">
     <aside class="rail"><h2>Edition index</h2><nav class="navgroups" aria-label="ABrief sections"><div class="navgroup"><strong>Today</strong><a href="#brief">Supply Brief</a><a href="#cost">Asia Cost Board</a><a href="#production">Taiwan &amp; China</a><a href="#freight">Freight &amp; Ports</a><a href="#policy">Tariff &amp; Regulation</a><a href="#news">Daily News Desk</a></div><div class="navgroup"><strong>Return</strong><a href="#follow">Follow this signal</a><a href="#calendar">Calendar Hub</a><a href="#trust">Data Trust</a><a href="partner.html">Open AsiaSource</a></div></nav><div class="free-app"><button class="subscription-art-button" id="free-app" type="button" title="Keep ABrief one tap away. No account required." aria-label="Free subscription: add ABrief to this device"><img src="images/free-subscription-mailbox-option-a.webp" alt="" width="410" height="470" decoding="async"></button><small id="free-app-note" class="visually-hidden" aria-live="polite"></small></div></aside>
     <main class="main" id="daily-main">
@@ -200,6 +235,97 @@
     /* Stamped with when the headline last moved rather than with today, so a
        quiet week reads as a quiet week instead of as fresh news. */
     if(a&&g.asof)a.textContent='\u00b7 '+g.asof;
+  }());
+  (function(){
+    /* The edition strip.
+       Two jobs, both of which used to need the rail: say which day's edition
+       this is, and let someone move between sections without scrolling back
+       up. The segment labels are read out of .navgroups rather than written
+       here, so adding a section to the rail adds it to the strip and neither
+       list can go stale. Only in-page anchors qualify \u2014 the rail also carries
+       a link across to AsiaSource, which is not a section of this edition. */
+    var strip=document.getElementById('edstrip'),seg=document.getElementById('edstrip-seg'),chip=document.getElementById('edstrip-chip');
+    if(!strip||!seg||!chip)return;
+    var D={};try{D=JSON.parse(document.getElementById('outlook-data').textContent||'{}');}catch(e){}
+
+    /* "04 Aug 2026, 04:17 UTC" -> "04 Aug 2026". The time belongs to the
+       workflow stamp shown further down, not to a date chip. There is no
+       archive of past editions, so this is the only date the strip may show. */
+    var stamp=String(D.updated||'').trim(),datePart=stamp?stamp.split(',')[0].trim():'';
+    chip.textContent=datePart?'Today\u2019s edition \u00b7 '+datePart:'Today\u2019s edition';
+
+    var links=[].slice.call(document.querySelectorAll('.navgroups a[href^="#"]'))
+      .map(function(a){return {id:(a.getAttribute('href')||'').slice(1),label:(a.textContent||'').trim()};})
+      .filter(function(x){return x.id&&x.label&&document.getElementById(x.id);});
+    var seenId={};links=links.filter(function(x){if(seenId[x.id])return false;seenId[x.id]=1;return true;});
+    if(!links.length){strip.hidden=true;return;}
+    seg.innerHTML=links.map(function(x){return '<a href="#'+x.id+'" data-seg="'+x.id+'">'+x.label+'</a>';}).join('');
+    var segs=[].slice.call(seg.querySelectorAll('a'));
+    var rail=document.querySelector('.rail');
+    if(rail)rail.setAttribute('data-superseded','');
+
+    /* Nothing here assumes a header height, or even a header: app-bar.js
+       replaces this page's masthead with its own bar, which does not stick.
+       So the offset is whatever is actually pinned above the strip right now —
+       measured, summed, handed to CSS. The rail then sits under the whole
+       stack, and a section anchored to by the strip lands clear of it. */
+    function place(){
+      var th=0,n=strip.previousElementSibling;
+      while(n){
+        var cs=window.getComputedStyle(n),r=n.getBoundingClientRect();
+        /* Pinned *and* actually occupying the top of the viewport. The skip
+           link is position:fixed at top:-60px until it takes focus; counting
+           it would push the strip down by a bar nobody can see. */
+        if(cs.display!=='none'&&(cs.position==='sticky'||cs.position==='fixed')&&r.height>0&&r.bottom>0&&r.top<200)th+=Math.round(r.height);
+        n=n.previousElementSibling;
+      }
+      var root=document.documentElement.style;
+      root.setProperty('--edstrip-top',th+'px');
+      var sh=Math.round(strip.getBoundingClientRect().height);
+      root.setProperty('--sec-margin',(th+sh+16)+'px');
+    }
+
+    var current='';
+    function mark(id){
+      if(id===current)return;current=id;
+      segs.forEach(function(a){
+        var on=a.getAttribute('data-seg')===id;
+        a.classList.toggle('on',on);
+        if(on){a.setAttribute('aria-current','true');
+          /* Keep the active segment visible when the control is scrolling
+             sideways on a phone; scrollIntoView on the page itself would fight
+             the reader, so only the strip's own scroller moves. */
+          var l=a.offsetLeft,r=l+a.offsetWidth;
+          if(l<seg.scrollLeft)seg.scrollLeft=l-8;
+          else if(r>seg.scrollLeft+seg.clientWidth)seg.scrollLeft=r-seg.clientWidth+8;
+        }else a.removeAttribute('aria-current');
+      });
+    }
+    /* A ~150px probe line: the section under it is the one being read. Picking
+       "nearest to the top" instead makes the highlight flicker between two
+       neighbours while a long section passes. */
+    function spy(){
+      var probe=150,pick=links[0].id;
+      for(var i=0;i<links.length;i++){
+        var el=document.getElementById(links[i].id);
+        if(el&&el.getBoundingClientRect().top<=probe)pick=links[i].id;
+      }
+      if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-2)pick=links[links.length-1].id;
+      mark(pick);
+    }
+    var ticking=false;
+    function onScroll(){if(ticking)return;ticking=true;requestAnimationFrame(function(){ticking=false;place();spy();});}
+    window.addEventListener('scroll',onScroll,{passive:true});
+    window.addEventListener('resize',onScroll);
+    seg.addEventListener('click',function(e){
+      var a=e.target.closest&&e.target.closest('a[data-seg]');
+      if(!a)return;
+      mark(a.getAttribute('data-seg'));
+    });
+    place();spy();
+    /* Web fonts land after first paint and change the masthead's height. */
+    if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){place();spy();});
+    window.addEventListener('load',function(){place();spy();});
   }());
   </script>
 </body>
