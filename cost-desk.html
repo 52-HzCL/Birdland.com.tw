@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-  <link rel="stylesheet" href="tokens.css?v=20260804a"><script src="text-size.js?v=20260804a"></script>
+  <link rel="stylesheet" href="tokens.css?v=20260804a"><script src="text-size.js?v=20260804a"></script><link rel="stylesheet" href="app-bar.css?v=20260805a"><script defer src="app-bar.js?v=20260805a"></script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#073F35"><meta name="description" content="Buyer Desk is Birdland's public procurement workspace for product routes, buying decisions and OEM enquiry preparation.">
 <title>Birdland Buyer Desk</title><meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -882,9 +882,6 @@ body.theme-light.desk-cost{
   --kb-amber-bg:#EFF0DC;
   background:var(--pd-ivory)!important;
 }
-/* The Cost Desk's own nameplate — the Buyer Desk's mast belongs to the
-   #overview shell, which the cost build removes. */
-body.desk-cost .cost-mast{margin:10px 0 2px;border-radius:12px}
 body.theme-light .topbar,
 body.theme-light .tk-wrap{background:rgba(255,253,248,.96)!important;border-color:var(--pd-line)!important}
 body.theme-light .fresh-tier{display:none!important}
@@ -2698,14 +2695,9 @@ window.BL_DESK='cost';
   // The browser toolbar takes the ledger green, matching cost-desk.webmanifest.
   var themeMeta=document.querySelector('meta[name="theme-color"]');
   if(themeMeta)themeMeta.setAttribute('content','#0A3D2B');
-  // Its own nameplate: the Buyer Desk's mast left with the #overview shell.
-  var mainEl=document.querySelector('main.wrap');
-  if(mainEl){
-   var mast=document.createElement('header');
-   mast.className='bd-mast cost-mast';
-   mast.innerHTML='<div class="bd-mast-brand">BIRDLAND <small>COST DESK</small></div>';
-   mainEl.insertBefore(mast,mainEl.firstChild);
-  }
+  // The nameplate this page briefly grew is gone: main.wrap is a flex row, so
+  // it docked beside the rail at x=292 instead of spanning the width. The app
+  // bar says which desk this is, which is what the nameplate was for.
  }
 }());
 </script>

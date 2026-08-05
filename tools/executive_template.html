@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="tokens.css?v=20260804a"><script src="text-size.js?v=20260804a"></script>
+  <link rel="stylesheet" href="tokens.css?v=20260804a"><script src="text-size.js?v=20260804a"></script><link rel="stylesheet" href="app-bar.css?v=20260805a"><script defer src="app-bar.js?v=20260805a"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#221E19">
@@ -44,12 +44,8 @@
      responsive breakpoints reflow it, which is what someone who enlarges a page
      actually wants: bigger type and a narrower measure, not bigger type
      overflowing the same columns. */
-  body.bl-read .page{zoom:1.24}
   @supports not (zoom:1){
-    body.bl-read .page{font-size:118%}
-    body.bl-read p,body.bl-read li,body.bl-read .item,body.bl-read .lane{font-size:var(--fs-h3);line-height:1.75}
   }
-  #read-size.on{background:var(--kb-jade,var(--jade-900));color:#fff;border-color:var(--kb-jade,var(--jade-900))}
 
   /* ---- A4 ----
      The previous print rule put break-inside:avoid on whole sections, which
@@ -68,13 +64,10 @@
   .hero-send{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   /* Reading controls are not edition actions. They get their own cluster at
      the far end so "Larger text" is findable rather than sixth in a row. */
-  .hero-view{display:flex;align-items:center;gap:var(--sp-2);padding:var(--sp-1);border:1px solid var(--kb-line);border-radius:999px}
-  .hero-view .btn{border-radius:999px!important}
   .mail-dest{margin:0;opacity:.75;font-size:var(--fs-micro);white-space:nowrap}
   @media(max-width:900px){.hero-actions{justify-content:flex-start}}
   @page{size:A4;margin:14mm}
   @media print{
-    body.bl-read .page{zoom:1}
     .page{display:block;padding:0}
     .section{break-inside:auto;page-break-inside:auto;border:0;margin-bottom:9mm}
     .brief-card,.metric,.desk,.news-card,.lane,.route-notes,.calendar-side,.item,
@@ -95,7 +88,7 @@
   <div class="page">
     <aside class="rail"><h2>Edition index</h2><nav class="navgroups" aria-label="Daily Supply News sections"><div class="navgroup"><strong>Today</strong><a href="#brief">Supply Brief</a><a href="#cost">Asia Cost Board</a><a href="#production">Taiwan &amp; China</a><a href="#freight">Freight &amp; Ports</a><a href="#policy">Tariff &amp; Regulation</a><a href="#news">Daily News Desk</a></div><div class="navgroup"><strong>Return</strong><a href="#follow">Follow this signal</a><a href="#calendar">Calendar Hub</a><a href="#trust">Data Trust</a><a href="partner.html">Open Buyer Desk</a></div></nav><div class="free-app"><button class="subscription-art-button" id="free-app" type="button" title="Keep Daily Supply News one tap away. No account required." aria-label="Free subscription: add Daily Supply News to this device"><img src="images/free-subscription-mailbox-option-a.webp" alt="" width="410" height="470" decoding="async"></button><small id="free-app-note" class="visually-hidden" aria-live="polite"></small></div></aside>
     <main class="main" id="daily-main">
-      <section class="hero"><div class="eyebrow">Daily Supply News · Birdland Taiwan</div><h1>The Asia Supply View.</h1><p>Production, export, freight and policy signals translated for Western OEM buyers.</p><div class="editionline"><span id="edition-date">Daily edition</span><span>Birdland Industrial · Since 1974</span><span>Source state shown per report</span></div><div class="hero-actions"><a class="btn" href="feeds/daily-supply-news.xml">Subscribe RSS</a><span class="mail-pick"><label for="edition-market">Market</label><select id="edition-market" aria-label="Your market"></select></span><button class="btn ghost" id="email-edition">Email this edition</button><span class="mail-dest">to the <b id="edition-desk">European</b> desk</span><button class="btn" type="button" id="read-size" aria-pressed="false">Larger text</button><button class="btn print" type="button" onclick="window.print()">Print</button></div></section>
+      <section class="hero"><div class="eyebrow">Daily Supply News · Birdland Taiwan</div><h1>The Asia Supply View.</h1><p>Production, export, freight and policy signals translated for Western OEM buyers.</p><div class="editionline"><span id="edition-date">Daily edition</span><span>Birdland Industrial · Since 1974</span><span>Source state shown per report</span></div><div class="hero-actions"><a class="btn" href="feeds/daily-supply-news.xml">Subscribe RSS</a><span class="mail-pick"><label for="edition-market">Market</label><select id="edition-market" aria-label="Your market"></select></span><button class="btn ghost" id="email-edition">Email this edition</button><span class="mail-dest">to the <b id="edition-desk">European</b> desk</span><button class="btn print" type="button" onclick="window.print()">Print</button></div></section>
       <section class="section journal-front-section" id="brief"><div class="journal-front"><article class="journal-lead"><div class="eyebrow">Lead story <b id="lead-asof"></b></div><h2 id="lead-head">Reading the regional shifts that move real-world quotes.</h2><p id="lead-sub">From raw-material corridors to policy turns and port conditions—what actually changes your landed cost.</p><a href="#production">Read the full Asia view →</a></article><figure class="journal-map"><img src="images/asia-supply-map.webp" alt="Editorial map of China and Taiwan supply routes"><figcaption>Raw-material flow · finished goods · key ports</figcaption></figure><div class="journal-risk"><div class="eyebrow">Risk scope</div><h3>Route disruption</h3><div class="list" id="risk-list"></div></div><div class="journal-drivers"><div class="journal-driver-head"><div><div class="eyebrow">Buyer cost drivers</div><h2>What changes the next quote?</h2><p>Three sourced signals only. Read the action first, then open the evidence.</p></div><span class="tag" id="brief-tag">Source-aware</span></div><div class="brief-grid" id="brief-grid"></div></div></div></section>
 
   <section class="section" id="cost"><div class="sectionhead"><div><div class="eyebrow">Cost direction</div><h2>Asia Cost Board</h2><p>Inputs are shown only when this edition carries a usable series. Red means rising buyer-cost pressure.</p></div><span class="tag">USD buyer view</span></div><div class="metric-grid" id="metric-grid"></div></section>
@@ -179,44 +172,10 @@
   })();
   </script>
   <script>(function(){
-    /* Reading order.
-       The edition ran: brief · cost · LOCAL NEWS · freight · policy · ASIA NEWS ·
-       follow · calendar · trust. Two news blocks with the cost board, the freight
-       board and the policy deadlines wedged between them, and the policy
-       deadlines separated from the calendar that lists the same dates. A reader
-       met news, left it, and met news again four sections later.
-       Newspaper order instead: what changed, what it costs to move, what
-       happened, what is coming, then act, then the record. */
-    var main=document.getElementById('daily-main');
-
-    /* Reading size. Remembered, because someone who needs larger text needs it
-       every day, not once. */
-    var KEY='bl_read_size',btn=document.getElementById('read-size');
-    function apply(on){
-      document.body.classList.toggle('bl-read',on);
-      if(!btn)return;
-      btn.classList.toggle('on',on);
-      btn.setAttribute('aria-pressed',on?'true':'false');
-      btn.textContent=on?'Normal text':'Larger text';
-    }
-    var saved=false;try{saved=localStorage.getItem(KEY)==='1';}catch(e){}
-    apply(saved);
-    if(btn)btn.addEventListener('click',function(){
-      var next=!document.body.classList.contains('bl-read');
-      apply(next);
-      try{localStorage.setItem(KEY,next?'1':'0');}catch(e){}
-    });
-  })();
-  (function(){
-    /* The action row held Subscribe, a market select, Email, a loose "to the
-       X desk" caption, Larger text and Print — six controls, three purposes,
-       one line. Grouping them in script keeps the markup untouched. */
+    /* The action row held Subscribe, a market select, Email and a loose
+       "to the X desk" caption strung along one line. Grouping them in script
+       keeps the markup untouched. */
     var row=document.querySelector('.hero-actions');if(!row)return;
-    var read=document.getElementById('read-size'),print=row.querySelector('.btn.print');
-    if(read&&print){
-      var view=document.createElement('span');view.className='hero-view';
-      row.appendChild(view);view.appendChild(read);view.appendChild(print);
-    }
     var rss=row.querySelector('a.btn'),pick=row.querySelector('.mail-pick'),mail=document.getElementById('email-edition');
     if(rss&&pick&&mail){
       var send=document.createElement('span');send.className='hero-send';

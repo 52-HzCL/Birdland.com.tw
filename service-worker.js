@@ -1,7 +1,7 @@
 // Bumped with every deploy that changes core assets: `activate` deletes every
 // cache whose key is not the current one, which is what evicts the previous
 // runtime cache. Without it a returning visitor keeps the old CSS for a load.
-const VERSION = "birdland-desks-v31";
+const VERSION = "birdland-desks-v32";
 const CORE_CACHE = `${VERSION}-core`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const CORE_ASSETS = [
@@ -18,8 +18,13 @@ const CORE_ASSETS = [
   "./site-shell.css",
   "./shell-nav.css",
   "./site-shell.js",
-  "./terminal-strip.css",
   "./tokens.css",
+  "./text-size.js",
+  // The desks' own title bar. terminal.* and desk-banner.* used to be listed
+  // here; the desks stopped loading either when they became apps, and Guide
+  // is the only page that still wants them.
+  "./app-bar.css",
+  "./app-bar.js",
   "./terminal.css",
   "./terminal.js",
   "./terminal.json",
@@ -30,8 +35,18 @@ const CORE_ASSETS = [
   "./daily-journal.css",
   "./privacy.html",
   "./birdland-intro.html",
+  // One manifest per installable desk. partner-desk stays for anyone who
+  // installed the Buyer Desk before it was renamed.
   "./partner-desk.webmanifest",
+  "./buyer-desk.webmanifest",
+  "./cost-desk.webmanifest",
   "./executive-desk.webmanifest",
+  "./images/app-news-192.png",
+  "./images/app-news-512.png",
+  "./images/app-buyer-192.png",
+  "./images/app-buyer-512.png",
+  "./images/app-cost-192.png",
+  "./images/app-cost-512.png",
   "./product-offers.json",
   "./calendar-events.json",
   "./calendars/global.ics",
