@@ -57,6 +57,68 @@ html.ab-ready body{padding-top:0!important}
 .ab-status [data-hq-label]{font-weight:700;color:var(--ink-700)}
 .ab-status .is-online [data-hq-label]{color:var(--jade-700)}
 
+/* ---- the app's own chips ----
+   Two facts the desks cannot tell you themselves: how old the data is, and
+   which build you are looking at. They sit between the adopted status and the
+   controls, dressed as the other pills in this bar — hairline, paper, mono —
+   so they read as part of the chrome and not as a notice. */
+.ab-chips{display:inline-flex;align-items:center;gap:var(--sp-2);flex:0 0 auto}
+.ab-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 10px;border:1px solid var(--line);border-radius:999px;
+  background:var(--paper);color:var(--ink-700);
+  font:500 var(--fs-micro)/1 var(--ff-mono);letter-spacing:.04em;white-space:nowrap;
+}
+/* The dot is the whole state: green when the edition is known, flat when the
+   feed could not be reached. */
+.ab-dot{
+  width:7px;height:7px;border-radius:50%;flex:0 0 auto;
+  background:var(--jade-700);
+}
+/* Offline is the one state that must not be mistaken for a colour with a
+   meaning, so it is a literal grey rather than --flat: AsiaSource and CostNow
+   both redefine --flat to an amber, and an amber dot on "Offline" reads as a
+   warning about the data rather than about the connection. */
+.ab-fresh[data-state="off"]{color:#7A8480}
+.ab-fresh[data-state="off"] .ab-dot{background:#9AA3A0}
+.ab-fresh[data-state="wait"]{color:#7A8480}
+.ab-fresh[data-state="wait"] .ab-dot{background:#C3C9C6}
+
+.ab-verwrap{position:relative;display:inline-flex}
+button.ab-ver{
+  cursor:pointer;font-weight:700;color:var(--jade-900);letter-spacing:.07em;
+  transition:background-color .2s ease,color .2s ease,border-color .2s ease;
+}
+button.ab-ver:hover,button.ab-ver[aria-expanded="true"]{
+  border-color:var(--ab-accent);background:var(--ab-accent);color:#fff;
+}
+button.ab-ver:focus-visible{outline:2px solid var(--ab-accent);outline-offset:2px}
+
+/* Three lines and a build number. Same well-lit card as the language panel,
+   anchored to the chip rather than to the bar so it cannot drift. */
+.ab-whats{
+  position:absolute;left:0;top:38px;z-index:320;width:264px;
+  padding:var(--sp-3);border:1px solid var(--line);background:var(--card);
+  box-shadow:0 16px 42px rgba(7,60,51,.14);
+}
+.ab-whats[hidden]{display:none}
+.ab-whats h2{
+  margin:0 0 var(--sp-2);color:var(--jade-900);
+  font:700 var(--fs-small)/1.2 var(--ff-sans);letter-spacing:.02em;
+}
+.ab-whats ul{margin:0;padding:0;list-style:none}
+.ab-whats li{
+  padding:7px 0;border-top:1px solid var(--line-soft);
+  color:var(--ink-900);font:500 var(--fs-micro)/1.5 var(--ff-sans);
+}
+.ab-whats li:first-child{border-top:0}
+/* Same reason as the offline dot: --flat is an amber on two of the three
+   desks, and a build number is not a warning. */
+.ab-whats-v{
+  margin:var(--sp-2) 0 0;padding-top:var(--sp-2);border-top:1px solid var(--line);
+  color:#7A8480;font:500 var(--fs-micro)/1 var(--ff-mono);letter-spacing:.07em;
+}
+
 /* ---- controls ---- */
 .ab-act{display:flex;align-items:center;gap:var(--sp-2);flex:0 0 auto;margin-left:auto}
 .ab-act .bl-language{position:relative}
@@ -146,6 +208,27 @@ html.ui-lg #app-bar .ab-status{font-size:12px}
 @media(max-width:900px){
   .ab-status{display:none}          /* the desks repeat their own status below */
 }
+/* The freshness chip's text is the first thing that would overflow a phone
+   bar, and it is the least of what the chip says — the dot already carries the
+   state, and the full stamp stays in the chip's title. The version chip is two
+   characters and stays as it is. */
+@media(max-width:700px){
+  .ab-fresh-t{
+    position:absolute;width:1px;height:1px;margin:-1px;padding:0;
+    overflow:hidden;clip-path:inset(50%);white-space:nowrap;
+  }
+  .ab-fresh{padding:6px 8px;gap:0}
+  /* On a phone the version chip sits close to the left edge, so a card hung
+     off the chip runs off the screen in one direction or the other. Anchor it
+     to the bar's row instead and let it start at the page margin: the card is
+     tied to the bar, which is what it is about. */
+  .ab-in{position:relative}
+  .ab-verwrap{position:static}
+  .ab-whats{
+    left:0;right:auto;top:100%;margin-top:6px;
+    width:min(300px,calc(100vw - 40px));
+  }
+}
 @media(max-width:680px){
   .ab-in{width:calc(100% - 24px);flex-wrap:wrap;gap:var(--sp-2);padding:var(--sp-2) 0}
   .ab-act{width:100%;margin-left:0;justify-content:flex-start;flex-wrap:wrap;row-gap:8px}
@@ -155,3 +238,41 @@ html.ui-lg #app-bar .ab-status{font-size:12px}
   .ab-home{padding:7px 10px}
 }
 @media print{#app-bar.ab{display:none!important}}
+
+/* ---- the launch screen ----
+   Fixed, and deliberately unrelated to the bar: the bar is in the document
+   flow, this is a sheet over the viewport. It is paper, not a brand colour —
+   the app opening should look like the app, so the only colour is the accent
+   hairline under the name, the same one the bar wears.
+
+   Removed by app-bar.js within 1.5s at the latest; the pointer-events drop on
+   the way out means the last 400ms of the fade never eats a click. */
+.ab-splash{
+  position:fixed;inset:0;z-index:9000;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--paper);
+  opacity:1;transition:opacity .4s ease;
+}
+.ab-splash.is-out{opacity:0;pointer-events:none}
+.ab-splash[data-app="news"]{--ab-accent:#1B5C9B}
+.ab-splash[data-app="buyer"]{--ab-accent:#A95324}
+.ab-splash[data-app="cost"]{--ab-accent:#146A4C}
+.ab-splash[data-app="team"]{--ab-accent:#465561}
+.ab-splash-in{
+  display:flex;flex-direction:column;align-items:center;gap:var(--sp-3);
+  padding:0 24px;text-align:center;
+}
+.ab-splash-ico{
+  width:88px;height:88px;border-radius:22px;
+  border:1px solid var(--line);background:var(--paper);
+  box-shadow:0 10px 30px rgba(7,60,51,.16);
+}
+.ab-splash-ico-line{padding:16px;border:0;color:#fff;background:var(--ab-accent);box-shadow:none}
+.ab-splash-in b{
+  display:block;padding-bottom:10px;border-bottom:3px solid var(--ab-accent);
+  color:var(--jade-900);font:700 clamp(20px,4vw,26px)/1 var(--ff-sans);letter-spacing:.02em;
+}
+.ab-splash-in small{
+  color:#7A8480;font:500 var(--fs-micro)/1 var(--ff-mono);letter-spacing:.10em;
+}
+@media print{.ab-splash{display:none!important}}

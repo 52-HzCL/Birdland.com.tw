@@ -31,6 +31,10 @@
   ];
   var TEAM = { key: 'team', file: 'team.html', name: 'Team Desk', desc: 'Internal' };
 
+  // One number for the whole suite. It is on the launch screen, on the chip in
+  // the bar, and on the card the chip opens — three places, one source.
+  var VERSION = '3.0';
+
   var ICON_V = '20260805a';
   function tile(key, cls) {
     return '<img class="' + cls + '" src="images/app-' + key + '-tile.png?v=' + ICON_V +
@@ -67,6 +71,151 @@
   // back-links go too — this bar is the way back now.
   var DROP = '.language-box,.tpk-hol,a.back,[data-language-picker]';
 
+  // ---- the launch screen ----------------------------------------------------
+  // An app you tap should answer immediately, even before it has anything to
+  // show. This is that answer: the same icon the home screen holds, the app's
+  // name, and the build — held for a beat after load, then gone.
+  //
+  // Three rules keep it from becoming a nuisance. Once per session per app, so
+  // moving between desks does not replay it. Never under reduced motion, where
+  // a fade is the thing the reader asked not to see. And a hard 1.5s ceiling:
+  // if the page is slow, the splash is the first thing to give way, never a
+  // sheet the reader has to wait out.
+  function splash() {
+    if (!document.body || document.getElementById('ab-splash')) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    var seenKey = 'ab-splash-' + here.key;
+    try {
+      if (sessionStorage.getItem(seenKey)) return;
+      sessionStorage.setItem(seenKey, '1');
+    } catch (e) { /* private mode: show it, do not track it */ }
+
+    var el = document.createElement('div');
+    el.id = 'ab-splash';
+    el.className = 'ab-splash';
+    el.dataset.app = here.key;
+    el.setAttribute('aria-hidden', 'true');
+    el.innerHTML =
+      '<div class="ab-splash-in">' +
+        (here === TEAM ? lock('ab-splash-ico ab-splash-ico-line') : tile(here.key, 'ab-splash-ico')) +
+        '<b>' + here.name + '</b>' +
+        '<small>v' + VERSION + ' &middot; Birdland</small>' +
+      '</div>';
+    document.body.appendChild(el);
+
+    var done = false;
+    function drop() {
+      if (done) return;
+      done = true;
+      el.className += ' is-out';
+      setTimeout(function () { el.parentNode && el.parentNode.removeChild(el); }, 420);
+    }
+    setTimeout(drop, 1500);                      // the ceiling, always armed
+    if (document.readyState === 'complete') setTimeout(drop, 600);
+    else window.addEventListener('load', function () { setTimeout(drop, 600); });
+  }
+  splash();
+
+  // ---- data freshness -------------------------------------------------------
+  // Every desk reads from the same nightly terminal file. Saying when that file
+  // was written is the difference between a page and an edition — and when the
+  // fetch cannot be made, saying so plainly beats showing a stale time as if it
+  // were live.
+  var freshState = 'wait';   // wait | ok | off
+  var freshText = '';
+
+  // "04 Aug 2026, 04:17 UTC" -> "04 Aug 04:17 UTC". The year is the one part a
+  // reader checking freshness never needs.
+  function shortStamp(s) {
+    var m = /^\s*(\d{1,2}\s+[A-Za-z]{3})\s+\d{4},\s*(.+?)\s*$/.exec(s || '');
+    return m ? m[1] + ' ' + m[2] : (s || '').trim();
+  }
+
+  function paintFresh() {
+    var chip = document.querySelector('#app-bar .ab-fresh');
+    if (!chip) return;
+    var t = chip.querySelector('.ab-fresh-t');
+    chip.setAttribute('data-state', freshState);
+    if (freshState === 'ok') {
+      t.textContent = 'Data · ' + freshText;
+      chip.title = 'Data edition of ' + freshText;
+    } else if (freshState === 'off') {
+      t.textContent = 'Offline · cached edition';
+      chip.title = 'No connection to the data feed; showing the cached edition.';
+    } else {
+      t.textContent = 'Data · …';
+      chip.title = 'Checking the data edition…';
+    }
+  }
+
+  // Fired once, off to the side. The bar is built whether or not this ever
+  // resolves; the chip starts as a placeholder and is filled in later.
+  function loadFresh() {
+    function fail() { freshState = 'off'; paintFresh(); }
+    if (navigator.onLine === false || typeof fetch !== 'function') return fail();
+    try {
+      fetch('terminal.json', { cache: 'no-cache' })
+        .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+        .then(function (j) {
+          var s = shortStamp(j && j.updated);
+          if (!s) throw new Error('no stamp');
+          freshState = 'ok';
+          freshText = s;
+          paintFresh();
+        })
+        .catch(fail);
+    } catch (e) { fail(); }
+  }
+  loadFresh();
+
+  // ---- what's new -----------------------------------------------------------
+  // Short enough to read standing up. Three lines is a release note; ten is a
+  // changelog, and a changelog belongs on a page, not in a popover.
+  var NOTES = [
+    'New names: ABrief, AsiaSource, CostNow',
+    'One workspace on CostNow — enter your shipment once',
+    'Faster start: instant app launch screens'
+  ];
+
+  function chips() {
+    return '<div class="ab-chips">' +
+      '<span class="ab-chip ab-fresh" data-state="wait" title="Checking the data edition&hellip;">' +
+        '<i class="ab-dot" aria-hidden="true"></i>' +
+        '<span class="ab-fresh-t">Data &middot; &hellip;</span>' +
+      '</span>' +
+      '<span class="ab-verwrap">' +
+        '<button type="button" class="ab-chip ab-ver" aria-expanded="false" ' +
+          'aria-haspopup="dialog" aria-controls="ab-whatsnew" title="What\'s new in v' + VERSION + '">' +
+          'v' + VERSION + '</button>' +
+        '<div class="ab-whats" id="ab-whatsnew" role="dialog" aria-label="What\'s new" hidden>' +
+          '<h2>What\'s new</h2><ul>' +
+          NOTES.map(function (n) { return '<li>' + n + '</li>'; }).join('') +
+          '</ul><p class="ab-whats-v">v' + VERSION + ' &middot; Birdland</p>' +
+        '</div>' +
+      '</span>' +
+    '</div>';
+  }
+
+  function wireVersion(bar) {
+    var btn = bar.querySelector('.ab-ver');
+    var pop = bar.querySelector('.ab-whats');
+    if (!btn || !pop) return;
+    function open(on) {
+      pop.hidden = !on;
+      btn.setAttribute('aria-expanded', on ? 'true' : 'false');
+    }
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      open(pop.hidden);
+    });
+    document.addEventListener('click', function (e) {
+      if (!pop.hidden && !pop.contains(e.target) && e.target !== btn) open(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !pop.hidden) { open(false); btn.focus(); }
+    });
+  }
+
   function build() {
     if (document.getElementById('app-bar')) return;
 
@@ -81,6 +230,10 @@
           (here === TEAM ? lock('ab-ico ab-ico-line') : tile(here.key, 'ab-ico')) +
           '<b>' + here.name + '</b></span>' +
         '<div class="ab-status"></div>' +
+        // The bar's own two chips. They sit outside .ab-status because that
+        // slot holds the desks' adopted chips and is dropped below 900px;
+        // these two are the app's own vitals and stay at every width.
+        chips() +
         '<div class="ab-act">' +
           '<details class="bl-language" data-language-picker><summary>Language</summary>' +
             '<div><select data-translate-select aria-label="Translate this page">' +
@@ -137,6 +290,13 @@
       if (bar.contains(n)) return;
       n.style.display = 'none';
     });
+
+    // The chips are built with the bar, so they are wired with it — and if the
+    // freshness fetch already resolved while the DOM was still parsing, the
+    // placeholder is replaced on the spot rather than waiting for a second
+    // answer that is never coming.
+    wireVersion(bar);
+    paintFresh();
 
     // The language picker is the only thing left that opens.
     document.addEventListener('click', function (e) {
