@@ -57,12 +57,26 @@ const ok = (m) => console.log('  ✓ ' + m);
   // 3 — Terminal: open, tiles, navigate through a tile, reopen, search, ESC releases
   console.log('③ Terminal');
   await p.click('.tm-chip'); await p.waitForTimeout(800);
-  const tiles = await p.evaluate(() => ({
-    ico: document.querySelectorAll('.tm-ico svg').length,
-    no: document.querySelectorAll('.tm-no').length,
-    live: document.querySelectorAll('.tm-live').length,
-  }));
-  (tiles.ico === 4 && tiles.no === 0 && tiles.live === 0) ? ok('launcher:4 icon、零編號、零指數') : bad('launcher 狀態 ' + JSON.stringify(tiles));
+  // Count icons that RENDERED, not icons drawn a particular way. This counted
+  // <svg> and went red the day the three public apps started using their real
+  // drawings — the launcher was right and the gate was describing the old
+  // implementation. An <img> only counts if it actually decoded.
+  const tiles = await p.evaluate(() => {
+    const drawn = [...document.querySelectorAll('.tm-ico')].filter(box => {
+      const im = box.querySelector('img');
+      if (im) return im.complete && im.naturalWidth > 0;
+      return !!box.querySelector('svg');
+    });
+    return {
+      ico: drawn.length,
+      broken: document.querySelectorAll('.tm-ico').length - drawn.length,
+      no: document.querySelectorAll('.tm-no').length,
+      live: document.querySelectorAll('.tm-live').length,
+    };
+  });
+  (tiles.ico === 4 && tiles.broken === 0 && tiles.no === 0 && tiles.live === 0)
+    ? ok('launcher:4 個圖示都畫出來了、零編號、零指數')
+    : bad('launcher 狀態 ' + JSON.stringify(tiles));
   await p.click('.tm-step[href="partner.html"]');
   await p.waitForLoadState('networkidle'); await p.waitForTimeout(1500);
   /partner\.html$/.test(p.url()) ? ok('點 Buyer Desk 磁磚抵達 partner.html') : bad('磁磚導航失敗:' + p.url());
