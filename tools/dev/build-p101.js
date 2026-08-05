@@ -709,23 +709,44 @@ ${sectionsHtml}
     var secs = [].slice.call(document.querySelectorAll('.wk-sec'));
     if (!toc || !secs.length) return;
     toc.classList.add('is-live');
-    var link = {};
+    var byId = {};
     [].forEach.call(toc.querySelectorAll('a[href^="#"]'), function (a) {
-      link[a.getAttribute('href').slice(1)] = a;
+      byId[a.getAttribute('href').slice(1)] = a;
     });
+    // Read-out: how far through the article, and which section of how many.
+    var art = document.querySelector('.wk-body');
+    var out = document.createElement('p');
+    out.className = 'wk-read';
+    toc.appendChild(out);
+
     var at = null, queued = false;
     function paint() {
       queued = false;
-      var probe = 150, here = secs[0].id;
+      var probe = 150, here = secs[0].id, n = 1;
       for (var i = 0; i < secs.length; i++) {
-        if (secs[i].getBoundingClientRect().top <= probe) here = secs[i].id;
+        if (secs[i].getBoundingClientRect().top <= probe) { here = secs[i].id; n = i + 1; }
         else break;
       }
+      // At the foot of the document the probe line still sits in the section
+      // above, so the last one could never be reached. If there is nothing
+      // left to scroll, you are in the last section.
+      if (innerHeight + scrollY >= document.documentElement.scrollHeight - 2) {
+        here = secs[secs.length - 1].id; n = secs.length;
+      }
+      // How much of the article has passed the foot of the window. Not the
+      // same as scroll position on the document: the header and the footer
+      // are not the article.
+      var box = art.getBoundingClientRect();
+      var done = Math.max(0, Math.min(1, (innerHeight - box.top) / box.height));
+      toc.style.setProperty('--wk-prog', Math.round(done * 100) + '%');
+      var line = 'Read ' + Math.round(done * 100) + '% · ' + n + ' of ' + secs.length;
+      if (out.textContent !== line) out.textContent = line;
+
       if (here === at) return;
       at = here;
-      [].forEach.call(toc.querySelectorAll('.is-here'), function (n) { n.classList.remove('is-here'); });
-      var a = link[here];
-      if (a && a.parentNode) a.parentNode.classList.add('is-here');
+      [].forEach.call(toc.querySelectorAll('.is-here'), function (n2) { n2.classList.remove('is-here'); });
+      var link = at && byId[at];
+      if (link && link.parentNode) link.parentNode.classList.add('is-here');
     }
     function queue() { if (!queued) { queued = true; requestAnimationFrame(paint); } }
     addEventListener('scroll', queue, { passive: true });
