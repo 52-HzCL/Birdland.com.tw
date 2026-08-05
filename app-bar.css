@@ -207,6 +207,14 @@ html.ui-lg #app-bar .ab-status{font-size:12px}
 
 @media(max-width:900px){
   .ab-status{display:none}          /* the desks repeat their own status below */
+  /* The bar cannot rely on the 700px collapse alone: between 700 and 900 the
+     dock, home and both new chips already exceed a tablet row, so the
+     freshness stamp folds to its dot here, not at phone width. */
+  .ab-fresh-t{
+    position:absolute;width:1px;height:1px;margin:-1px;padding:0;
+    overflow:hidden;clip-path:inset(50%);white-space:nowrap;
+  }
+  .ab-fresh{padding:6px 8px;gap:0}
 }
 /* The freshness chip's text is the first thing that would overflow a phone
    bar, and it is the least of what the chip says — the dot already carries the
