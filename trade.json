@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "generated": "2026-08-06T16:30:57.920Z",
+  "period": {
+    "latest": "2024",
+    "previous": "2023"
+  },
+  "source": {
+    "eu": "Eurostat Comext DS-045409",
+    "uk": "HMRC uktradeinfo OTS"
+  },
+  "markets": {
+    "de": {
+      "82013000": {
+        "basis": "kg",
+        "uv_change_pct": -19.5,
+        "vol_change_pct": 145.2,
+        "share_tw": 3,
+        "share_tw_prev": 2,
+        "share_cn": 29,
+        "stale": false
+      },
+      "82015000": {
+        "basis": "piece",
+        "uv_change_pct": -15.1,
+        "vol_change_pct": 19.1,
+        "share_tw": 9,
+        "share_tw_prev": 10,
+        "share_cn": 23,
+        "stale": false
+      },
+      "82016000": {
+        "basis": "kg",
+        "uv_change_pct": -10.7,
+        "vol_change_pct": 62.8,
+        "share_tw": 20,
+        "share_tw_prev": 16,
+        "share_cn": 26,
+        "stale": false
+      }
+    },
+    "fr": {
+      "82013000": {
+        "basis": "kg",
+        "uv_change_pct": -30,
+        "vol_change_pct": 161.2,
+        "share_tw": 3,
+        "share_tw_prev": 1,
+        "share_cn": 32,
+        "stale": false
+      },
+      "82015000": {
+        "basis": "piece",
+        "uv_change_pct": 1.3,
+        "vol_change_pct": -22.4,
+        "share_tw": 5,
+        "share_tw_prev": 6,
+        "share_cn": 12,
+        "stale": false
+      },
+      "82016000": {
+        "basis": "kg",
+        "uv_change_pct": -6.9,
+        "vol_change_pct": -14.5,
+        "share_tw": 6,
+        "share_tw_prev": 7,
+        "share_cn": 11,
+        "stale": false
+      }
+    },
+    "nl": {
+      "82013000": {
+        "basis": "kg",
+        "uv_change_pct": 91,
+        "vol_change_pct": -13.4,
+        "share_tw": 2,
+        "share_tw_prev": 2,
+        "share_cn": 33,
+        "stale": true
+      },
+      "82015000": {
+        "basis": "piece",
+        "uv_change_pct": -1.4,
+        "vol_change_pct": 19.6,
+        "share_tw": 6,
+        "share_tw_prev": 6,
+        "share_cn": 38,
+        "stale": false
+      },
+      "82016000": {
+        "basis": "kg",
+        "uv_change_pct": -4,
+        "vol_change_pct": 34,
+        "share_tw": 2,
+        "share_tw_prev": 2,
+        "share_cn": 31,
+        "stale": false
+      }
+    }
+  }
+}
