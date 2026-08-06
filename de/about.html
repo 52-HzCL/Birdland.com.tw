@@ -10,6 +10,13 @@
   <meta name="description" content="Die Fertigungsidentität, der OEM-Fokus, die kommerzielle Grenze und die Kontinuität hinter Birdland seit 1974.">
   <link rel="stylesheet" href="../birdland-visual.css?v=20260731j"><script defer src="../terminal-status.js?v=20260730d"></script>
   <style>
+    /* About absorbed Why Birdland. Both pages were short, both argued the same
+       thing — who owns what — and they took two top-level menu slots between
+       them. The ownership argument was two bullet lists; here it is the shape it
+       always was, a boundary with a side each.
+       Deliberately HTML and CSS rather than SVG: text inside an SVG has been
+       clipped on this site four times, and a two-column band is exactly the
+       case where that keeps happening. */
     .bd-numbers{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:var(--sp-1);
       margin:0 0 var(--sp-2);background:var(--bl-line,#d9d3c6);border:1px solid var(--bl-line,#d9d3c6);border-radius:var(--r-md);overflow:hidden}
     .bd-numbers article{padding:var(--sp-3) var(--sp-3) 16px;background:var(--bl-paper,#fffdf8)}
@@ -34,12 +41,12 @@
     .bd-firewall strong{display:block;margin:8px 0 var(--sp-1);font-size:15px;color:#12251f}
     .bd-firewall span{display:block;font-size:var(--fs-small);line-height:1.5;color:#5a6660}
     @media (max-width:720px){.bd-boundary{grid-template-columns:1fr}.bd-rule{width:auto;height:1px}}
-    .bl-footer{flex-wrap:wrap}.bl-i18n-note{flex:1 0 100%;margin-top:4px;font-size:11px;opacity:.7}
   </style>
   <link rel="alternate" hreflang="en" href="https://birdland.com.tw/about.html">
   <link rel="alternate" hreflang="de" href="https://birdland.com.tw/de/about.html">
   <link rel="alternate" hreflang="zh-Hant" href="https://birdland.com.tw/zh-tw/about.html">
   <link rel="alternate" hreflang="x-default" href="https://birdland.com.tw/about.html">
+  <style>.bl-footer{flex-wrap:wrap}.bl-i18n-note{flex:1 0 100%;margin-top:4px;font-size:11px;opacity:.7}</style>
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 </head>
 <body>
@@ -120,7 +127,7 @@
         <span class="ab-no">III</span>
         <h2 id="plate-3">Ihre Versorgung, kontinuierlich.</h2>
         <p>Zwei qualifizierte Ursprünge und im Voraus dokumentierte Routen machen aus einem Zoll oder einer gesperrten Route eine Wahl des Weges — keine Überraschung in der Lieferwoche.</p>
-
+        
         <div class="bl-actions">
           <a class="bl-button" href="../executive.html">Öffentliche Liefer-Evidenz öffnen</a>
           <a class="bl-button bl-button-secondary" href="contact.html">Ein OEM-Gespräch beginnen</a>
@@ -133,7 +140,6 @@
   <footer class="bl-footer">
     <span>Birdland Ind. · Über uns</span>
     <span><a href="../product-101.html">Weiter: die Fabrik →</a></span>
-    <span class="bl-i18n-note">Übersetzung des englischen Originals — für Spezifikationen und Compliance-Inhalte ist die englische Fassung maßgeblich.</span>
-  </footer>
+  <span class="bl-i18n-note">Übersetzung des englischen Originals — für Spezifikationen und Compliance-Inhalte ist die englische Fassung maßgeblich.</span></footer>
 </body>
 </html>
