@@ -12,9 +12,9 @@ TRADE_PATH=os.path.join(HERE,"trade.json")
 
 EUROSTAT_BASE="https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data/ds-045409"
 REPORTERS=["DE","NL","FR"]
-PRODUCTS=["82015000","82013000","82015000","82016000"]
+PRODUCTS=["82011000","82013000","82015000","82016000"]
 PARTNERS=["TW","CN","WORLD"]
-BASIS_MAP={"82015000":"piece","82013000":"kg","82015000":"piece","82016000":"kg"}
+BASIS_MAP={"82011000":"piece","82013000":"kg","82015000":"piece","82016000":"kg"}
 
 def flat_index_to_multi(flat_idx,sizes):
     """Convert flat value key to multidimensional indices using size array."""
@@ -234,7 +234,8 @@ def build_trade_json(eu_data):
             world23=partners.get("WORLD",{}).get("2023")
             world24=partners.get("WORLD",{}).get("2024")
 
-            metrics=calculate_metrics(reporter_code,product_code,tw23,tw24,basis)
+            # Market-wide (WORLD) unit value and volume; TW/CN feed shares only.
+            metrics=calculate_metrics(reporter_code,product_code,world23,world24,basis)
 
             # Calculate shares from WORLD baseline
             if world24 and world24.get("VALUE") and world24["VALUE"]>0:

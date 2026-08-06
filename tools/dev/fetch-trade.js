@@ -16,10 +16,10 @@ const TRADE_JSON = path.join(REPO_ROOT, "trade.json");
 const EUROSTAT_BASE =
   "https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data/ds-045409";
 const REPORTERS = ["DE", "NL", "FR"];
-const PRODUCTS = ["82015000", "82013000", "82015000", "82016000"];
+const PRODUCTS = ["82011000", "82013000", "82015000", "82016000"];
 const PARTNERS = ["TW", "CN", "WORLD"];
 const BASIS_MAP = {
-  "82015000": "piece", // has SUPPLEMENTARY_QUANTITY
+  "82011000": "piece", // has SUPPLEMENTARY_QUANTITY
   "82013000": "kg",    // no piece data
   "82015000": "piece", // has SUPPLEMENTARY_QUANTITY
   "82016000": "kg",    // no piece data
@@ -61,119 +61,55 @@ function flatIndexToMulti(flatIdx, sizes) {
  * Fetch all 2023 & 2024 data for DE/NL/FR × TW/CN/WORLD × all products.
  */
 async function fetchEurostatData() {
+  // One request, both years. Cells are read by composing the flat index from
+  // named dimension positions — verified by hand against single-cell queries
+  // (DE/82015000/WORLD/2023: VALUE 30132727, SUP 6944176).
   const data = {};
   const errors = [];
-
-  // Build URL with multiple reporters, partners, products
-  const params = new URLSearchParams({
-    format: "JSON",
-    freq: "A",
-    flow: "1", // import
-  });
-
-  // Add all combinations
-  for (const r of REPORTERS) params.append("reporter", r);
-  for (const p of PARTNERS) params.append("partner", p);
-  for (const prod of PRODUCTS) params.append("product", prod);
-
-  // Fetch both years
-  for (const year of ["2023", "2024"]) {
-    const yearParams = new URLSearchParams(params);
-    yearParams.append("time", year);
-    const url = `${EUROSTAT_BASE}?${yearParams}`;
-
-    try {
-      console.log(`[Eurostat] Fetching ${year}...`);
-      const response = await httpsGet(url);
-
-      const { dimension, id, size, value } = response;
-
-      if (!dimension || !id || !value || !size) {
-        errors.push(`${year}: No data in response`);
-        continue;
-      }
-
-      // Map dimension positions
-      const posMap = {};
-      for (let i = 0; i < id.length; i++) {
-        posMap[id[i]] = i;
-      }
-
-      // Reverse index maps: name -> position
-      const dimMaps = {};
-      for (const dimName of id) {
-        dimMaps[dimName] = {};
-        if (dimension[dimName]?.category?.index) {
-          for (const [name, pos] of Object.entries(
-            dimension[dimName].category.index
-          )) {
-            dimMaps[dimName][pos] = name;
-          }
-        }
-      }
-
-      // Decode each value (flat index -> multidimensional)
-      for (const [flatKey, val] of Object.entries(value)) {
-        const flatIdx = parseInt(flatKey);
-        const indices = flatIndexToMulti(flatIdx, size);
-
-        // Map indices to dimension names
-        const reporter = dimMaps.reporter[indices[posMap.reporter]];
-        const partner = dimMaps.partner[indices[posMap.partner]];
-        const product = dimMaps.product[indices[posMap.product]];
-        const indicator = dimMaps.indicators[indices[posMap.indicators]];
-
-        if (!reporter || !partner || !product || !indicator) continue;
-
-        // Build hierarchical structure
-        if (!data[reporter]) data[reporter] = {};
-        if (!data[reporter][product]) data[reporter][product] = {};
-        if (!data[reporter][product][partner])
-          data[reporter][product][partner] = {};
-        if (!data[reporter][product][partner][year])
-          data[reporter][product][partner][year] = {};
-
-        if (indicator === "VALUE_IN_EUROS") {
-          data[reporter][product][partner][year].VALUE = val;
-        } else if (indicator === "QUANTITY_IN_100KG") {
-          data[reporter][product][partner][year].QTY_100KG = val;
-        } else if (indicator === "SUPPLEMENTARY_QUANTITY") {
-          data[reporter][product][partner][year].SUP = val;
-        }
-      }
-
-      console.log(`[Eurostat] ${year} parsed`);
-    } catch (e) {
-      errors.push(`${year}: ${e.message}`);
-    }
-
-    // Add 1s delay between requests (politeness)
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+  const params = new URLSearchParams({ format: 'JSON', freq: 'A', flow: '1' });
+  for (const r of REPORTERS) params.append('reporter', r);
+  for (const p of PARTNERS) params.append('partner', p);
+  for (const prod of PRODUCTS) params.append('product', prod);
+  params.append('time', '2023');
+  params.append('time', '2024');
+  const url = EUROSTAT_BASE + '?' + params.toString();
+  console.log('[Eurostat] Fetching 2023+2024 in one request...');
+  const j = await httpsGet(url);
+  if (!j || !j.dimension || !j.id || !j.value || !j.size) {
+    errors.push('No data in response');
+    return { data, errors };
   }
-
+  const pos = {}; j.id.forEach((n,i)=>pos[n]=i);
+  const cat = {}; j.id.forEach(n=>cat[n]=j.dimension[n].category.index);
+  function cell(rep,par,prod,ind,time){
+    const c=[]; c[pos.freq]=0; c[pos.flow]=0;
+    c[pos.reporter]=cat.reporter[rep]; c[pos.partner]=cat.partner[par];
+    c[pos.product]=cat.product[prod]; c[pos.indicators]=cat.indicators[ind];
+    c[pos.time]=cat.time[time];
+    if (c.some(v=>v===undefined)) return undefined;
+    let flat=0; for(let i=0;i<j.size.length;i++) flat=flat*j.size[i]+c[i];
+    return j.value[flat];
+  }
+  for (const rep of REPORTERS) for (const prod of PRODUCTS) for (const par of PARTNERS) for (const year of ['2023','2024']) {
+    const V=cell(rep,par,prod,'VALUE_IN_EUROS',year);
+    const Q=cell(rep,par,prod,'QUANTITY_IN_100KG',year);
+    const S=cell(rep,par,prod,'SUPPLEMENTARY_QUANTITY',year);
+    if (V===undefined && Q===undefined && S===undefined) continue;
+    ((((data[rep]??={})[prod]??={})[par]??={})[year]??={});
+    if (V!==undefined) data[rep][prod][par][year].VALUE=V;
+    if (Q!==undefined) data[rep][prod][par][year].QTY_100KG=Q;
+    if (S!==undefined) data[rep][prod][par][year].SUP=S;
+  }
   return { data, errors };
 }
 
-/**
- * UK API exploration: tried to filter OTS by MonthId, CommodityId, CountryId.
- * Status: API returns data but:
- *  - CommodityId in OTS is an internal ID, not CN8 code
- *  - Commodity entity exists but no direct CN8→ID mapping endpoint
- *  - CountryId mapping unclear (no working Countries endpoint)
- *  - MonthId format YYYYMM but no recent 2024 data in OTS
- * Conclusion: insufficient metadata to reliably extract trade flows by commodity.
- * Marking UK as unavailable; would need deeper exploration of Commodity.CommodityId
- * and Country.CountryId values to proceed.
- */
+// UK (HMRC uktradeinfo) is not wired yet: the OTS API needs a CN8-to-
+// CommodityId mapping that has no public lookup endpoint. Until that table
+// exists the UK source reports unavailable and nothing is invented.
 async function fetchUKData() {
-  console.log("[UK] API exploration: insufficient metadata to map CN8 to internal IDs");
-  return { data: {}, errors: ["UK: API metadata mismatch - no reliable CN8→CommodityId mapping"] };
+  return { data: { status: "unavailable" }, errors: [] };
 }
 
-/**
- * Calculate UV (unit value) change and shares.
- * basis: "piece" | "kg"
- */
 function calculateMetrics(reporter, product, data23, data24, basis) {
   const metrics = {
     basis,
@@ -298,11 +234,14 @@ async function buildTradeJSON(euData) {
       const world23 = partners.WORLD?.["2023"] || null;
       const world24 = partners.WORLD?.["2024"] || null;
 
+      // Unit value and volume are MARKET-WIDE (WORLD) — the card says what the
+      // market is paying, not what Taiwan-origin goods cost. TW/CN rows feed
+      // the origin-share columns only.
       const metrics = calculateMetrics(
         reporterCode,
         productCode,
-        tw23, // 2023 (data23 parameter)
-        tw24, // 2024 (data24 parameter)
+        world23,
+        world24,
         basis
       );
 
