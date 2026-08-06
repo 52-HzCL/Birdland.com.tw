@@ -56,6 +56,14 @@
   var FROM_ROOM = { global: 'global', na: 'americas', latam: 'americas', europe: 'europe',
     mea: 'europe', asia: 'global', oceania: 'uk' };
 
+  // Subject line tokens for inquiry categorization and email rule matching.
+  // Each token is machine-readable (unchanged by i18n) and human-readable.
+  var TAGS = {
+    'brief': '[BL-BRF] ',  // AsiaSource Buyer Brief inquiries
+    'cost': '[BL-CST] '    // CostNow cost calculation inquiries
+    // Reserved for future use: [BL-PGM], [BL-CAT]
+  };
+
   function box(region, line) {
     return BOX[(line && BY_LINE[line]) || BY_REGION[region] || 'eur'];
   }
@@ -64,9 +72,15 @@
 
   // Composes and navigates in one step, inside the click. Nothing is stored in
   // the DOM before or after.
-  function open(region, line, subject, body) {
+  function open(region, line, subject, body, tag) {
     var q = [];
-    if (subject) q.push('subject=' + encodeURIComponent(subject));
+    if (subject) {
+      var finalSubject = subject;
+      if (tag && TAGS[tag]) {
+        finalSubject = TAGS[tag] + subject;
+      }
+      q.push('subject=' + encodeURIComponent(finalSubject));
+    }
     if (body) q.push('body=' + encodeURIComponent(body));
     window.location.href = 'mail' + 'to:' + addr(region, line) + (q.length ? '?' + q.join('&') : '');
   }

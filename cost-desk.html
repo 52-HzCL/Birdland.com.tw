@@ -4038,7 +4038,7 @@ function processTile(name){var n=String(name||'').toLowerCase();
     'No quote or order has been submitted. I will add confidential drawings, quantities, prices and specifications only in our normal Birdland email thread.','',
     'Public workspace: https://birdland.com.tw/partner.html#pd-builder'])
    .join('\n');
-  window.blMail.open(region,lineId,'Birdland OEM enquiry — shortlist of '+shortlist.length+' material route'+(shortlist.length===1?'':'s'),body);
+  window.blMail.open(region,lineId,'Birdland OEM enquiry — shortlist of '+shortlist.length+' material route'+(shortlist.length===1?'':'s'),body,'cost');
  }
  if(materials)materials.addEventListener('change',function(e){
   var box=e.target;
@@ -4311,7 +4311,7 @@ var fmt=function(x){return 'US$'+Math.round(x).toLocaleString('en-US');};
    if(room)room.addEventListener('change',syncLabel);
    btn.addEventListener('click',function(){
     var m=btn.__mail||{};
-    window.blMail.open(regionNow(),window.blMail.recall('bl_mr_line',''),m.subject||'Birdland OEM enquiry',m.body||'');
+    window.blMail.open(regionNow(),window.blMail.recall('bl_mr_line',''),m.subject||'Birdland OEM enquiry',m.body||'','cost');
    });
    syncLabel();
   });
