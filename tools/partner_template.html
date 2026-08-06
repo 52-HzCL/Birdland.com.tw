@@ -2158,7 +2158,7 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
     </div>
     <div class="bd-privacy"><span>Public planning only. AsiaSource does not create an order, quotation or account.</span><button id="reset-buyer-desk" type="button">Reset this brief</button></div>
   </section>
-  <nav class="toc" aria-label="AsiaSource sections"><a href="#overview" data-icon="⌂" class="toc-home">Overview</a><a href="#p-alerts" data-icon="▤">Buy Queue</a><a href="#p-offers" data-icon="◇">Product Finder</a><a href="#pd-builder" data-icon="✎">Buyer Brief</a><a href="#p-landed2" data-icon="▦">Workspace</a><a href="#p-mkt" data-icon="◎">Cost &amp; Origin</a><a href="#p-margin" data-icon="$">Retail margin</a><a href="#p-reorder" data-icon="◴">Reorder timing</a><a href="#p-sail" data-icon="≋">Plan a sailing</a><a href="#p-cduty" data-icon="⚖">TW vs CN duty</a><span class="pd-hidden-nav"><a href="#p-brief">Brief detail</a><a href="#p-market">Market detail</a><a href="#p-keynews">Key News</a><a href="#p-regcal">Regulatory Calendar</a><a href="#p-report">Keyword report</a><a href="#p-material">Materials ahead</a><a href="#p-shipping">Shipping ahead</a><a href="#p-season">Buy calendar</a><a href="#p-freight">Freight indexes</a><a href="#p-watch">Watchlist</a><a href="#p-war">Geopolitics</a><a href="#p-tariff">Tariffs</a><a href="#p-news">News</a></span></nav>
+  <nav class="toc" aria-label="AsiaSource sections"><a href="#overview" data-icon="⌂" class="toc-home">Overview</a><a href="#p-alerts" data-icon="▤">Buy Queue</a><a href="#p-offers" data-icon="◇">Product Finder</a><a href="#pd-builder" data-icon="✎">Buyer Brief</a><a href="#p-landed2" data-icon="▦">Workspace</a><a href="#p-mkt" data-icon="◎">Cost &amp; Origin</a><a href="#p-margin" data-icon="$">Retail margin</a><a href="#p-reorder" data-icon="◴">Reorder timing</a><a href="#p-sail" data-icon="≋">Plan a sailing</a><a href="#p-cduty" data-icon="⚖">TW vs CN duty</a><a href="#p-shelf" data-icon="▥">Demand shelf</a><span class="pd-hidden-nav"><a href="#p-brief">Brief detail</a><a href="#p-market">Market detail</a><a href="#p-keynews">Key News</a><a href="#p-regcal">Regulatory Calendar</a><a href="#p-report">Keyword report</a><a href="#p-material">Materials ahead</a><a href="#p-shipping">Shipping ahead</a><a href="#p-season">Buy calendar</a><a href="#p-freight">Freight indexes</a><a href="#p-watch">Watchlist</a><a href="#p-war">Geopolitics</a><a href="#p-tariff">Tariffs</a><a href="#p-news">News</a></span></nav>
   <div id="tab-hint" class="tab-hint"><div class="mac-note"><span class="mn-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span><div class="mn-txt"><b>ASIASOURCE</b><span>Choose a buying action from the menu.</span></div></div></div>
 
   <section class="blk" data-open="1" id="p-brief"><button class="blk-h"><span class="k">BRIEF</span><h2>Today &amp; Tomorrow</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
@@ -2339,6 +2339,62 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
     <div class="cal-grid" id="se_cal"></div>
     <div class="sub" id="se_note" style="margin-top:12px"></div>
   </div></section>
+
+  <style id="p-shelf-style">
+#p-shelf .shelf-fresh{margin:-2px 0 12px;font:var(--fs-small)/1.5 var(--kb-mono);color:var(--kb-faint)}
+#p-shelf .shelf-wrap{width:100%;overflow-x:auto;border:1px solid var(--pd-line);border-radius:var(--kb-radius);background:var(--kb-panel)}
+#p-shelf table.shelf-mx{width:100%;min-width:640px;border-collapse:collapse}
+#p-shelf table.shelf-mx th{font:600 var(--fs-small)/1.2 var(--kb-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--kb-faint);padding:var(--sp-2) var(--sp-3);text-align:center;border-bottom:1px solid var(--pd-line);background:var(--kb-bg)}
+#p-shelf table.shelf-mx th:first-child{text-align:left}
+#p-shelf table.shelf-mx td{border-bottom:1px solid var(--pd-line);padding:0}
+#p-shelf table.shelf-mx tr:last-child td{border-bottom:0}
+#p-shelf .shelf-rowlab{display:flex;align-items:center;gap:var(--sp-2);padding:var(--sp-2) var(--sp-3);min-width:190px}
+#p-shelf .shelf-rowlab .mk{width:26px;height:26px;flex:0 0 auto;color:var(--pd-jade-2)}
+#p-shelf .shelf-rowlab .mk svg{display:block;width:100%;height:100%}
+#p-shelf .shelf-rowlab .hs{display:block;font:600 10px/1.2 var(--kb-mono);letter-spacing:.05em;color:var(--pd-copper)}
+#p-shelf .shelf-rowlab .nm{font:700 var(--fs-body)/1.25 var(--kb-sans);color:var(--kb-ink)}
+#p-shelf .shelf-cell{width:100%;min-height:52px;border:0;background:transparent;cursor:pointer;font:inherit;color:inherit;display:flex;align-items:center;justify-content:center;gap:6px;padding:var(--sp-2);transition:background var(--dur-fast) var(--ease)}
+#p-shelf .shelf-cell:hover:not(:disabled){background:var(--kb-bg)}
+#p-shelf .shelf-cell[aria-selected="true"]{background:var(--pd-copper-soft);box-shadow:inset 0 0 0 2px var(--pd-copper)}
+#p-shelf .shelf-cell:disabled{cursor:default}
+#p-shelf .shelf-cell:focus-visible{outline:2px solid var(--pd-copper);outline-offset:-2px}
+#p-shelf .shelf-cell .dchip{font:700 var(--fs-body)/1 var(--kb-mono)}
+#p-shelf .shelf-cell .pct{font:700 var(--fs-small)/1 var(--kb-mono);font-variant-numeric:tabular-nums}
+#p-shelf .shelf-cell .na{font:700 var(--fs-body)/1 var(--kb-mono);color:var(--kb-faint)}
+#p-shelf .shelf-detail{margin-top:var(--sp-3);border:1px solid var(--pd-line);border-radius:var(--kb-radius);background:var(--kb-panel);padding:var(--sp-3) var(--sp-4)}
+#p-shelf .shelf-detail[hidden]{display:none}
+#p-shelf .shelf-detail-h{font:700 var(--fs-h3)/1.25 var(--ff-serif);color:var(--pd-jade);margin:0 0 var(--sp-2)}
+#p-shelf .shelf-uv{display:flex;align-items:baseline;gap:var(--sp-2);flex-wrap:wrap;margin-bottom:var(--sp-2)}
+#p-shelf .shelf-uv .v{font:700 26px/1 var(--kb-mono)}
+#p-shelf .shelf-uv .u,#p-shelf .shelf-uv .u2{font:var(--fs-small)/1.3 var(--kb-mono);color:var(--kb-faint)}
+#p-shelf .shelf-share{font-size:var(--fs-h3);color:var(--kb-mut);margin:0 0 var(--sp-3)}
+#p-shelf .shelf-share b{color:var(--kb-ink)}
+#p-shelf .shelf-ladder{border:1px solid var(--pd-line);border-radius:var(--r-sm);overflow:hidden;margin-bottom:var(--sp-3)}
+#p-shelf .shelf-lhead{display:flex;justify-content:space-between;gap:var(--sp-2);padding:var(--sp-2) var(--sp-3);background:var(--kb-bg);border-bottom:1px solid var(--pd-line);font:600 var(--fs-small)/1.3 var(--kb-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--kb-faint)}
+#p-shelf .shelf-band{padding:var(--sp-2) var(--sp-3);border-bottom:1px solid var(--pd-line)}
+#p-shelf .shelf-band:last-child{border-bottom:0}
+#p-shelf .shelf-band.here{background:var(--pd-copper-soft)}
+#p-shelf .shelf-band .bt{display:flex;align-items:baseline;gap:var(--sp-2);flex-wrap:wrap}
+#p-shelf .shelf-band .bn{font:700 var(--fs-body)/1.3 var(--kb-sans);color:var(--pd-jade)}
+#p-shelf .shelf-band .drift{margin-left:auto;font:700 var(--fs-small)/1.2 var(--kb-mono);color:var(--pd-copper);letter-spacing:.04em}
+#p-shelf .shelf-band .route{display:flex;gap:var(--sp-2);align-items:baseline;flex-wrap:wrap;margin-top:3px;font-size:var(--fs-h3);color:var(--kb-mut)}
+#p-shelf .shelf-band .route b{color:var(--pd-jade);font-family:var(--kb-mono);font-size:var(--fs-small)}
+#p-shelf .shelf-attrib{display:flex;justify-content:space-between;gap:var(--sp-2);padding:var(--sp-2) var(--sp-3);font:var(--fs-small)/1.4 var(--kb-mono);color:var(--kb-faint);background:var(--kb-bg);border-top:1px solid var(--pd-line)}
+#p-shelf .shelf-src{font:var(--fs-small)/1.5 var(--kb-mono);color:var(--kb-faint);margin:0 0 var(--sp-3)}
+#p-shelf .shelf-src a{color:var(--pd-jade-2);font-weight:700}
+#p-shelf .shelf-acts{display:flex;gap:var(--sp-2);flex-wrap:wrap}
+@media(max-width:640px){#p-shelf .shelf-rowlab{min-width:150px}}
+</style>
+  <section class="blk" data-open="1" id="p-shelf">
+<button class="blk-h"><span class="k">SHELF</span><h2>Demand shelf</h2><span class="ihelp" title="Direction from official EU import statistics (Eurostat Comext) and, where published, UK HMRC data. Routes and price bands are Birdland’s own — the two are never mixed into one number.">i</span><span class="meta" id="shelf-meta"></span><span class="tog"></span></button>
+<div class="blk-b">
+<p class="sub">Your markets, Birdland’s categories, one look. A percentage carries the direction a buyer needs without printing an absolute price for anyone to negotiate against.</p>
+<p class="shelf-fresh" id="shelf-fresh"></p>
+<div class="shelf-wrap"><table class="shelf-mx" id="shelf-mx" aria-label="Category by market, 12-month import unit-value direction"></table></div>
+<div class="legend" id="shelf-legend">12-month change in import unit value, Eurostat Comext (DE/NL/FR) · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design</div>
+<div class="shelf-detail" id="shelf-detail" hidden></div>
+</div>
+</section>
 
   <p class="disc" id="disc"></p>
 </main>
@@ -2845,6 +2901,183 @@ window.BL_DESK='__DESKMODE__';
  }
 }());
 </script>
+<script>
+(function(){
+'use strict';
+var mxEl=document.getElementById('shelf-mx');
+if(!mxEl) return; // Cost Desk: the section was dropped by the block above.
+var freshEl=document.getElementById('shelf-fresh'), metaEl=document.getElementById('shelf-meta'),
+    detailEl=document.getElementById('shelf-detail');
+
+var PRODUCTS=[
+ {cn:'82015000',hs:'8201.50',name:'One-handed pruners',icon:'pruner',
+  bands:[
+   {n:'Premium',route:'SK5 high-carbon',d:'HRC 56\u201360 \u00b7 edge retention'},
+   {n:'Mid',route:'65Mn carbon',d:'HRC 52\u201356 \u00b7 resilient value'},
+   {n:'Entry',route:'420J2 stainless',d:'HRC 50\u201354 \u00b7 corrosion-first'}
+  ]},
+ {cn:'82016000',hs:'8201.60',name:'Two-handed shears',icon:'lopper',
+  bands:[
+   {n:'Premium',route:'SK5 + alloy handle',d:'geared cut \u00b7 light weight'},
+   {n:'Mid',route:'65Mn + steel tube',d:'workhorse spec'},
+   {n:'Entry',route:'65Mn basic',d:'price-point spec'}
+  ]},
+ {cn:'82011000',hs:'8201.10',name:'Spades & shovels',icon:'spade',
+  bands:[
+   {n:'Premium',route:'Boron steel + ash',d:'forged neck \u00b7 FSC handle'},
+   {n:'Mid',route:'Boron steel, powder-coat',d:'pressed, hardened'},
+   {n:'Entry',route:'Carbon steel',d:'stamped, painted'}
+  ]},
+ {cn:'82013000',hs:'8201.30',name:'Hoes, rakes & cultivators',icon:'rake',
+  bands:[
+   {n:'Premium',route:'65Mn + ash handle',d:'full-tang heads'},
+   {n:'Mid',route:'65Mn + epoxy',d:'standard programme'},
+   {n:'Entry',route:'Carbon steel',d:'promotional spec'}
+  ]}
+];
+var MARKETS=[['de','Germany'],['nl','Netherlands'],['fr','France'],['uk','United Kingdom']];
+var ICONS={
+ pruner:'<path d="M11 30 C16 25 20 20 25 14 M14 30 C18 26 22 21 26 17" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/><circle cx="11" cy="12" r="3.4" stroke="currentColor" stroke-width="1.4" fill="none"/><circle cx="18" cy="8" r="3.4" stroke="currentColor" stroke-width="1.4" fill="none"/><path d="M13 15 L20 22 M17 11 L22 16" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/>',
+ lopper:'<path d="M6 30 L17 15 M13 30 L22 17" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M17 15 C20 10 24 7 29 5 M22 17 C24 13 27 10 30 8" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/>',
+ spade:'<path d="M17 3 L17 19" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M13 3 H21" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M10 19 H24 L22 28 C21 30 13 30 12 28 Z" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linejoin="round"/>',
+ rake:'<path d="M17 2 L17 17" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M8 18 H26" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M9.5 18 V28 M13.2 18 V30 M17 18 V31 M20.8 18 V30 M24.5 18 V28" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/>'
+};
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function dir(pct){ if(pct>=6) return 2; if(pct>=1) return 1; if(pct>-1) return 0; return -1; }
+function dclass(d){ return d>=1?'up':(d===0?'flat':'down'); }
+function dword(d){ return d>=2?'rising strongly':d===1?'rising':d===0?'steady':'easing'; }
+function dchip(d){ return d>=2?'\u25b2\u25b2':d===1?'\u25b2':d===0?'\u2014':'\u25bc'; }
+function hereIdx(d){ return d>=1?0:(d===0?1:2); }
+
+var TRADE=null, TRADE_ERR=false;
+
+function cellOf(mkt,cn){
+ if(mkt==='uk') return null; // never published in this feed
+ if(!TRADE||!TRADE.markets||!TRADE.markets[mkt]) return null;
+ var c=TRADE.markets[mkt][cn];
+ if(!c||c.stale) return null;
+ return c;
+}
+
+function renderMatrix(){
+ var h='<thead><tr><th>Category</th>';
+ MARKETS.forEach(function(m){h+='<th>'+esc(m[1])+'</th>';});
+ h+='</tr></thead><tbody>';
+ PRODUCTS.forEach(function(p){
+  h+='<tr><td><span class="shelf-rowlab"><span class="mk"><svg viewBox="0 0 34 34" aria-hidden="true">'+(ICONS[p.icon]||'')+'</svg></span><span><span class="hs">HS '+esc(p.hs)+'</span><span class="nm">'+esc(p.name)+'</span></span></span></td>';
+  MARKETS.forEach(function(m){
+   var mkt=m[0], c=cellOf(mkt,p.cn);
+   if(!c){
+    var why= mkt==='uk' ? 'Not published this edition \u2014 UK trade data is not yet wired into this feed.'
+           : (TRADE_ERR ? 'Trade data unavailable this session.'
+           : (TRADE&&TRADE.markets&&TRADE.markets[mkt]&&TRADE.markets[mkt][p.cn]&&TRADE.markets[mkt][p.cn].stale ? 'Marked stale by the data contract \u2014 see source.' : 'No data for this cell.'));
+    h+='<td><button class="shelf-cell" type="button" disabled aria-label="'+esc(p.name)+' in '+esc(m[1])+', not available" title="'+esc(why)+'"><span class="na">\u2014</span></button></td>';
+    return;
+   }
+   var d=dir(c.uv_change_pct), cls=dclass(d);
+   h+='<td><button class="shelf-cell" type="button" data-cn="'+esc(p.cn)+'" data-mkt="'+esc(mkt)+'" aria-selected="false" aria-label="'+esc(p.name)+' in '+esc(m[1])+', unit value '+(c.uv_change_pct>=0?'up ':'down ')+Math.abs(c.uv_change_pct)+' percent"><span class="dchip '+cls+'">'+dchip(d)+'</span><span class="pct '+cls+'">'+(c.uv_change_pct>0?'+':'')+c.uv_change_pct+'%</span></button></td>';
+  });
+  h+='</tr>';
+ });
+ mxEl.innerHTML=h+'</tbody>';
+}
+
+function verifyUrl(mkt,cn){
+ var q=['format=JSON','freq=A','flow=1','reporter='+mkt.toUpperCase(),'partner=WORLD','partner=TW','partner=CN','product='+cn,'time=2023','time=2024'];
+ return 'https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data/ds-045409?'+q.join('&');
+}
+
+function deskFor(mkt){ return mkt==='uk'?'uk':'europe'; }
+
+var selBtn=null;
+function openCell(btn){
+ var cn=btn.getAttribute('data-cn'), mkt=btn.getAttribute('data-mkt');
+ var p=PRODUCTS.filter(function(x){return x.cn===cn;})[0];
+ var mName=(MARKETS.filter(function(x){return x[0]===mkt;})[0]||[])[1]||mkt;
+ var c=cellOf(mkt,cn);
+ if(!p||!c) return;
+ if(selBtn===btn){ closeDetail(); return; }
+ if(selBtn) selBtn.setAttribute('aria-selected','false');
+ selBtn=btn;
+ btn.setAttribute('aria-selected','true');
+ var d=dir(c.uv_change_pct), cls=dclass(d), hi=hereIdx(d);
+ var period=(TRADE&&TRADE.period)||{previous:'2023',latest:'2024'};
+ var shift=(c.share_tw!=null&&c.share_tw_prev!=null)?(c.share_tw-c.share_tw_prev):null;
+ var url=verifyUrl(mkt,cn);
+ var bands=p.bands.map(function(b,i){
+  return '<div class="shelf-band'+(i===hi?' here':'')+'"><div class="bt"><span class="bn">'+esc(b.n)+'</span>'+(i===hi?'<span class="drift">\u25c4 market drifting here</span>':'')+'</div><div class="route"><b>'+esc(b.route)+'</b><span>'+esc(b.d)+'</span></div></div>';
+ }).join('');
+ detailEl.innerHTML=
+  '<h3 class="shelf-detail-h">'+esc(p.name)+' \u00b7 '+esc(mName)+'</h3>'
+  +'<div class="shelf-uv"><span class="v '+cls+'">'+(c.uv_change_pct>0?'+':'')+c.uv_change_pct+'%</span><span class="u">12-month unit-value change</span><span class="u2">'+(c.basis==='piece'?'\u00b7 per-piece basis':'\u00b7 per-kg basis')+'</span></div>'
+  +'<p class="shelf-share">Taiwan-origin share <b>'+(c.share_tw!=null?c.share_tw+'%':'\u2014')+'</b>'+(shift!=null?' ('+(shift>=0?'+':'')+shift+' pts)':'')+' \u00b7 China '+(c.share_cn!=null?c.share_cn+'%':'\u2014')+'</p>'
+  +'<div class="shelf-ladder"><div class="shelf-lhead"><span>Price band</span><span>Birdland route</span></div>'+bands+'<div class="shelf-attrib"><span>Market position: Eurostat</span><span>Bands &amp; routes: Birdland</span></div></div>'
+  +'<p class="shelf-src"><span>Eurostat Comext</span> \u00b7 CN '+esc(cn)+' \u00b7 '+esc(period.previous)+'\u2192'+esc(period.latest)+' <span>annual \u00b7 next edition with Q-data</span> \u00b7 <a href="'+url+'" target="_blank" rel="noopener" title="Opens the official Eurostat Comext dataset filtered to this reporter and product code">verify at source \u2197</a></p>'
+  +'<div class="shelf-acts"><button type="button" class="tool-btn" id="shelf-mail-go">Bring to enquiry \u2192</button></div>';
+ detailEl.hidden=false;
+ var goBtn=document.getElementById('shelf-mail-go');
+ if(goBtn) goBtn.addEventListener('click',function(){
+  var dw=dword(d);
+  var subject=p.name+' \u00b7 '+mName;
+  var body='Category: '+p.name+' (HS '+p.hs+', CN '+cn+')\n'
+   +'Market: '+mName+'\n'
+   +'Import unit-value direction: '+dw+' ('+(c.uv_change_pct>0?'+':'')+c.uv_change_pct+'%, 12 months, '+(c.basis==='piece'?'per-piece':'per-kg')+' basis)\n'
+   +'Taiwan-origin share: '+(c.share_tw!=null?c.share_tw+'%':'not published')+'\n\n'
+   +'I am looking at this category on the AsiaSource demand shelf and would like to discuss the '+p.bands[hi].route+' route for '+mName+'.';
+  window.blMail.open(deskFor(mkt),'',subject,body,'cat');
+ });
+}
+function closeDetail(){
+ if(selBtn) selBtn.setAttribute('aria-selected','false');
+ selBtn=null; detailEl.hidden=true; detailEl.innerHTML='';
+}
+
+mxEl.addEventListener('click',function(e){
+ var b=e.target.closest('.shelf-cell'); if(!b||b.disabled) return;
+ openCell(b);
+});
+
+function applyDeepLink(){
+ var m=/[?&]cell=([^&]+)/.exec(location.search);
+ if(!m) return;
+ var parts=decodeURIComponent(m[1]).split('|');
+ var cn=parts[0], mkt=parts[1];
+ var btn=mxEl.querySelector('.shelf-cell[data-cn="'+cn+'"][data-mkt="'+mkt+'"]');
+ if(!btn||btn.disabled) return;
+ // The desk is a single-panel router keyed off location.hash (see the
+ // '/* single-panel router */' block further down): only the panel whose
+ // id matches the hash loses .sk-off. A ?cell= link may arrive without
+ // #p-shelf in the hash, so the toc's own #p-shelf entry is clicked —
+ // the same action a reader takes — which runs the router synchronously
+ // and leaves browser history consistent (pushState), before the cell
+ // itself is opened and scrolled to.
+ var tocLink=document.querySelector('.toc a[href="#p-shelf"]');
+ if(tocLink&&location.hash!=='#p-shelf')tocLink.click();
+ openCell(btn);
+ setTimeout(function(){btn.scrollIntoView({behavior:"smooth",block:"center"});},260);
+}
+
+function boot(trade,failed){
+ TRADE=trade; TRADE_ERR=!!failed;
+ renderMatrix();
+ if(metaEl) metaEl.textContent = trade&&trade.generated ? ('as of '+trade.generated.slice(0,10)) : 'unavailable';
+ if(freshEl){
+  if(trade){
+   var period=trade.period||{previous:'2023',latest:'2024'};
+   freshEl.textContent='Source: '+(trade.source&&trade.source.eu||'Eurostat Comext')+' (EU) \u00b7 '+(trade.source&&trade.source.uk||'HMRC uktradeinfo OTS')+' (UK, when published) \u00b7 '+period.previous+'\u2192'+period.latest+' annual \u00b7 updated '+(trade.generated?trade.generated.slice(0,10):'\u2014');
+  } else {
+   freshEl.textContent='Trade data unavailable this session \u2014 every cell below shows as not available.';
+  }
+ }
+ applyDeepLink();
+}
+
+fetch('trade.json',{cache:'no-store'}).then(function(r){ if(!r.ok) throw new Error('trade.json '+r.status); return r.json(); })
+ .then(function(j){ boot(j,false); })
+ .catch(function(){ boot(null,true); });
+}());
+</script>
 <script>(function(){ // boot: live strip · section order · remembered workspace (bd_p_*)
 try{var D=JSON.parse(document.getElementById('outlook-data').textContent);}catch(e){return;}
 var main=document.querySelector('main'),disc=document.getElementById('disc');
@@ -2882,11 +3115,11 @@ if(topAct)h+='<span class="pi lead" data-go="p-brief" style="cursor:pointer"><sp
   ].join('')+'</div></div>';
  })();
 // 2) section order: daily brief & the two money tools first; client-desk duplicates demoted to Reference
-(function(){if(!main||!disc)return;var ORD=['p-brief','p-alerts','p-landed2','p-margin','p-reorder','p-sail','p-cduty','p-mkt','p-market','p-keynews','p-regcal','p-report','p-offers','p-material','p-shipping','p-season','p-war','p-tariff'],REF=['p-freight','p-watch','p-news'];
+(function(){if(!main||!disc)return;var ORD=['p-brief','p-alerts','p-landed2','p-margin','p-reorder','p-sail','p-cduty','p-mkt','p-market','p-keynews','p-regcal','p-report','p-offers','p-material','p-shipping','p-season','p-war','p-tariff','p-shelf'],REF=['p-freight','p-watch','p-news'];
  ORD.concat(REF).forEach(function(id){var s=document.getElementById(id);if(s)main.insertBefore(s,disc);});
  var hd=document.createElement('div');hd.className='refhd';hd.textContent='Reference data — shared with Data Desk';main.insertBefore(hd,document.getElementById(REF[0]));})();
 // 3) honest freshness: static desk-set blocks must not claim the daily stamp
-(function(){[['p-tariff','manual · desk set'],['p-regcal','manual · desk set'],['p-material','curves manual · note daily'],['p-shipping','rates daily · curve manual']].forEach(function(x){var b=document.querySelector('#'+x[0]+' .blk-h .secupd');if(b)b.textContent='⟳ '+x[1];});})();
+(function(){[['p-tariff','manual · desk set'],['p-regcal','manual · desk set'],['p-material','curves manual · note daily'],['p-shipping','rates daily · curve manual'],['p-shelf','Eurostat · annual edition']].forEach(function(x){var b=document.querySelector('#'+x[0]+' .blk-h .secupd');if(b)b.textContent='⟳ '+x[1];});})();
 // 3b) product PDFs are maintained in product-offers.json and opened from view-only links
 // 4) remembered workspace
 var LS={g:function(k){try{return localStorage.getItem('bd_p_'+k);}catch(e){return null;}},s:function(k,v){try{localStorage.setItem('bd_p_'+k,v);}catch(e){}}};
@@ -2894,7 +3127,7 @@ var LS={g:function(k){try{return localStorage.getItem('bd_p_'+k);}catch(e){retur
 // same two keys the desk had already read. blCtx owns that state now, so a
 // second restorer would only be a second chance to disagree.
 // 5) full-scroll accordion: funnel modules open, reference collapsed; remember per-section state
-(function(){var FUN={'p-brief':1,'p-alerts':1,'p-mkt':1,'p-market':1,'p-keynews':1,'p-regcal':1,'p-report':1,'p-offers':1,'p-landed2':1,'p-margin':1,'p-reorder':1,'p-sail':1,'p-calc':1,'p-cduty':1,'p-material':1,'p-shipping':1,'p-season':1,'p-war':1,'p-tariff':1};
+(function(){var FUN={'p-brief':1,'p-alerts':1,'p-mkt':1,'p-market':1,'p-keynews':1,'p-regcal':1,'p-report':1,'p-offers':1,'p-landed2':1,'p-margin':1,'p-reorder':1,'p-sail':1,'p-calc':1,'p-cduty':1,'p-material':1,'p-shipping':1,'p-season':1,'p-war':1,'p-tariff':1,'p-shelf':1};
  var saved=null;try{saved=JSON.parse(LS.g('col')||'null');}catch(e){}
  [].forEach.call(document.querySelectorAll('main .blk'),function(sec){
    var open=!!FUN[sec.id];

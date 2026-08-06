@@ -59,9 +59,10 @@
   // Subject line tokens for inquiry categorization and email rule matching.
   // Each token is machine-readable (unchanged by i18n) and human-readable.
   var TAGS = {
-    'brief': '[BL-BRF] ',  // AsiaSource Buyer Brief inquiries
-    'cost': '[BL-CST] '    // CostNow cost calculation inquiries
-    // Reserved for future use: [BL-PGM], [BL-CAT]
+    'brief': '[BL-BRF] ', // AsiaSource Buyer Brief inquiries
+    'cost': '[BL-CST] ',  // CostNow cost calculation inquiries
+    'cat': '[BL-CAT] '    // Demand shelf category enquiries (AsiaSource)
+    // Reserved for future use: [BL-PGM]
   };
 
   function box(region, line) {
