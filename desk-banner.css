@@ -111,6 +111,17 @@ body{padding-top:0!important}
     grid-column:1/-1;width:100%;justify-content:space-between;gap:8px;
     margin-top:var(--sp-2);padding:8px 0 var(--sp-2);border-top:1px solid var(--line);
   }
+  /* space-between puts the picker wherever the row has room, which at 480px is
+     the right edge and at 390px — once the text-size control wraps — the left.
+     A card right-aligned to the summary therefore ran off the left of the
+     screen on a phone. Anchor it to the row: one position that is on screen at
+     both widths, whichever end the picker ended up at. */
+  .dbar-actions{position:relative}
+  .dbar-actions .bl-language{position:static}
+  .dbar-actions .bl-language[open]>div{
+    left:0;right:auto;top:100%;margin-top:6px;
+    width:min(200px,calc(100vw - 32px));
+  }
 }
 @media print{#desk-banner.dbar,body::before{display:none!important}}
 

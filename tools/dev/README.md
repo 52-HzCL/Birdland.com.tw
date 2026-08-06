@@ -27,6 +27,36 @@ somewhere unusual. Screenshots go to `../shots` next to the repo, or
 | `build-p101.js` | Generates `product-101.html` from `ratings.js` and the three `bp-*.svg` blueprint sprites in this directory. Section numbers derive from `SECTIONS` order. **Run it and diff before committing** — it must reproduce the shipped page byte for byte. |
 | `gen-guide-shots.js` | Recaptures `images/guide/*.webp`. CI has Python, not Playwright, so after any redesign this is a manual re-run or the Guide shows the old site — the exact failure it exists to prevent. |
 
+## Languages
+
+`_langs.js` is the one language list the build tools read: a language exists
+because `i18n/facade.<dir>.json` exists, and it is named the way that file names
+itself. `app-bar.js` and `desk-banner.js` cannot `require()` it, so they carry
+their own copy — and `i18n-build.js` fails if theirs disagrees.
+
+Three kinds of page carry a language control, and they are not interchangeable:
+
+* **facade** (index, about, contact, privacy) — a folder per language, built by
+  `i18n-build.js` from a pairs file.
+* **built static** (product-101) — a folder per language too, but the English
+  page comes from `build-p101.js` and the translations from `i18n-page.js`.
+  Both write the same picker and cluster as `i18n-build.js`, so whichever runs
+  last the bytes match.
+* **run time** (the Guide and the four desks) — one artifact CI rebuilds
+  nightly, translated in the browser from `i18n/app.<lang>.json`. Their picker
+  stores `bl_lang`; it does not change folder.
+
+Every translated page writes `bl_lang` on load, so arriving on `/de/` and then
+tapping into a desk gets you a German desk.
+
+| | |
+|---|---|
+| `i18n-build.js` | Builds the facade editions; refreshes the English pickers and hreflang clusters; and checks what it cannot build — that no page still ships a machine-translation widget, that the two browser pickers list the facade set, and that the ten `app.*.json` dictionaries are aligned key for key. |
+| `i18n-page.js` | `extract` / `build` for big generated pages. The picker is skipped on extract and regenerated on build, so language names never become translation keys. |
+| `i18n-drift.js` | Every translated page carries the SHA-1 of the English source it was made from. `--stamp` after a rebuild; bare to check. |
+| `i18n-harvest.js` | Renders the desks and the Guide at 390×844 **and** 1440×900 and reports which on-screen chrome strings the dictionary has never seen, minus anything that is a value out of `outlook-data.json` or `terminal.json`. |
+| `i18n-accept.js` | Phone acceptance: at 390px, can a thumb reach the picker, are all ten editions **inside the viewport**, and does `innerText` actually come back in the chosen language. Written after the popover shipped opening 121px off the left edge — ten editions present in the DOM, none of them on the phone. |
+
 ## Gates — run these before shipping
 
 | | |

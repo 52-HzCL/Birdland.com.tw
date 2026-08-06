@@ -240,6 +240,19 @@ html.ui-lg #app-bar .ab-status{font-size:12px}
 @media(max-width:680px){
   .ab-in{width:calc(100% - 24px);flex-wrap:wrap;gap:var(--sp-2);padding:var(--sp-2) 0}
   .ab-act{width:100%;margin-left:0;justify-content:flex-start;flex-wrap:wrap;row-gap:8px}
+  /* Once the actions row is its own row the picker sits at the page margin,
+     and a 210px card right-aligned to an 89px summary starts 121px off the
+     left edge of the screen. The popover opened, held its ten editions, and
+     not one of them was on the phone: the reader could reach the control and
+     not the choice. Hang it off the row instead of off the summary — the same
+     move the version card makes two breakpoints up — so it always opens from
+     the page margin, whichever end of the row the picker has drifted to. */
+  .ab-act{position:relative}
+  .ab-act .bl-language{position:static}
+  .ab-act .bl-language[open]>div{
+    left:0;right:auto;top:100%;margin-top:6px;
+    width:min(210px,calc(100vw - 32px));
+  }
   /* The dock is the one control that must not shrink — it is how you leave. */
   .ab-app-ico{width:34px;height:34px}
   .ab-home span{display:none}
