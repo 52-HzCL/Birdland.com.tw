@@ -18,10 +18,22 @@
   // screen and the same ones each desk shows in its title bar, so the tile you
   // tap and the app you arrive in are one object. Team is internal, has no
   // drawing of its own, and keeps the blueprint lock.
+  // Pages now live one folder deep in /de/ and /zh-tw/. Every path in here
+  // is root-relative by convention, so resolve the root once from this
+  // script's own src and prefix everything with it. On root pages BASE is ''.
+  var BASE = (function () {
+    try {
+      var el = document.querySelector('script[src*="terminal.js"]');
+      var u = new URL(el.getAttribute('src'), location.href).href;
+      var root = u.replace(/terminal\.js[^\/]*$/, '');
+      var here = location.href.replace(/[^\/]*$/, '');
+      return root === here ? '' : root;
+    } catch (e) { return ''; }
+  })();
   var ICON = {
-    news: '<img src="images/app-news-tile.png?v=20260805a" width="96" height="96" alt="" decoding="async">',
-    buyer: '<img src="images/app-buyer-tile.png?v=20260805a" width="96" height="96" alt="" decoding="async">',
-    cost: '<img src="images/app-cost-tile.png?v=20260805a" width="96" height="96" alt="" decoding="async">',
+    news: '<img src="' + BASE + 'images/app-news-tile.png?v=20260805a" width="96" height="96" alt="" decoding="async">',
+    buyer: '<img src="' + BASE + 'images/app-buyer-tile.png?v=20260805a" width="96" height="96" alt="" decoding="async">',
+    cost: '<img src="' + BASE + 'images/app-cost-tile.png?v=20260805a" width="96" height="96" alt="" decoding="async">',
     team: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="14" width="18" height="13" rx="2"/><path d="M11 14v-4a5 5 0 0 1 10 0v4"/><path d="M16 19v4"/></svg>',
   };
   var STEPS = [
@@ -51,7 +63,7 @@
   function load() {
     if (DATA) return Promise.resolve(DATA);
     if (LOADING) return LOADING;
-    LOADING = fetch('terminal.json', { cache: 'no-cache' })
+    LOADING = fetch(BASE + 'terminal.json', { cache: 'no-cache' })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function (j) { DATA = j; return j; })
       .catch(function () { DATA = { updated: '', steps: {}, index: [] }; return DATA; });
@@ -73,7 +85,7 @@
   function stepHTML() {
     return STEPS.map(function (st, i) {
       var cell =
-        '<a class="tm-step" href="' + st[2] + '">' +
+        '<a class="tm-step" href="' + BASE + st[2] + '">' +
           '<span class="tm-ico' + (/^<img/.test(ICON[st[3]]) ? ' tm-ico-art' : '') + '">' + ICON[st[3]] + '</span>' +
           '<span class="tm-k">' + st[0] + '</span>' +
           '<span class="tm-name">' + esc(st[1]) + '</span>' +
@@ -113,7 +125,7 @@
           '<em>ESC</em>' +
         '</div>' +
         '<div class="tm-path">' + stepHTML() + '</div>' +
-        '<a class="tm-aside" href="team.html">' +
+        '<a class="tm-aside" href="' + BASE + 'team.html">' +
           '<span class="tm-ico tm-ico-sm">' + ICON.team + '</span>' +
           '<span><span class="tm-name">Team Desk</span><span class="tm-desc">Internal dashboard — not on the buyer\'s path.</span></span>' +
           '<span class="fn">INTERNAL</span>' +
@@ -201,7 +213,7 @@
     var out = '', group = '';
     hits.forEach(function (x, i) {
       if (x.e.t !== group) { group = x.e.t; out += '<div class="tm-sec">' + esc(group) + '</div>'; }
-      out += '<a class="tm-hit' + (i === 0 ? ' on' : '') + '" href="' + esc(x.e.u) + '">' +
+      out += '<a class="tm-hit' + (i === 0 ? ' on' : '') + '" href="' + BASE + esc(x.e.u) + '">' +
         '<span class="tm-tag">' + esc(x.e.t) + '</span>' +
         '<span><b>' + hi(x.e.n, q) + '</b><span class="tm-desc">' + esc(x.e.d) + '</span></span>' +
         '<span class="go">↵ ' + esc(dest(x.e.u)) + '</span></a>';
