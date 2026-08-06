@@ -35,6 +35,73 @@
   // the bar, and on the card the chip opens — three places, one source.
   var VERSION = '3.0';
 
+  // ---- languages ------------------------------------------------------------
+  // The same ten editions the facade pages ship, named the way each names
+  // itself — the "name" field of i18n/facade.<dir>.json, so the desks and the
+  // static pages offer the reader the same list in the same words.
+  //
+  // A facade page switches language by changing folder. The desks cannot: they
+  // are one artifact rebuilt nightly, so they carry a dictionary instead
+  // (i18n.js). The choice is therefore a stored preference rather than a link,
+  // and storing it is what the reload picks up.
+  var LANG_KEY = 'bl_lang';
+  var LANGS = [
+    ['en', 'en', 'English'],
+    ['nl', 'nl', 'Nederlands'],
+    ['de', 'de', 'Deutsch'],
+    ['fr', 'fr', 'Français'],
+    ['es', 'es', 'Español'],
+    ['pt-br', 'pt-BR', 'Português (Brasil)'],
+    ['pl', 'pl', 'Polski'],
+    ['it', 'it', 'Italiano'],
+    ['ja', 'ja', '日本語'],
+    ['zh-tw', 'zh-Hant', '繁體中文']
+  ];
+  function currentLang() {
+    try { return localStorage.getItem(LANG_KEY) || 'en'; } catch (e) { return 'en'; }
+  }
+  // The popover used to hold one <select>, so app-bar.css dressed a <select>.
+  // It holds ten links now. The rule is the facade's own (birdland-visual.css
+  // .bl-language a), and it ships from here rather than from app-bar.css
+  // because the markup it dresses is built here too — a stylesheet cannot go
+  // out of step with a list it never sees.
+  function langStyle() {
+    if (document.getElementById('ab-lang-css')) return;
+    var s = document.createElement('style');
+    s.id = 'ab-lang-css';
+    s.textContent =
+      '.ab-act .bl-language a{display:block;padding:7px 0;color:var(--jade-900);' +
+      'font:600 var(--fs-micro)/1.25 var(--ff-sans);text-decoration:none}' +
+      '.ab-act .bl-language a:hover,.ab-act .bl-language a:focus-visible{color:var(--ab-accent)}' +
+      '.ab-act .bl-language a[aria-current]{font-weight:800}' +
+      '.ab-act .bl-language a[aria-current]::before{content:"\\2713\\00a0"}';
+    document.head.appendChild(s);
+  }
+
+  function langPicker() {
+    langStyle();
+    var now = currentLang();
+    return '<details class="bl-language" data-language-picker><summary>Language</summary><div>' +
+      LANGS.map(function (l) {
+        return '<a href="#" data-bl-lang="' + l[0] + '" lang="' + l[1] + '" hreflang="' + l[1] + '"' +
+          (l[0] === now ? ' aria-current="true"' : '') + '>' + l[2] + '</a>';
+      }).join('') +
+      '</div></details>';
+  }
+  // Delegated, and bound once at module scope: the bar is rebuilt on load, and
+  // a listener per build would fire twice on the second one.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[data-bl-lang]');
+    if (!a) return;
+    e.preventDefault();
+    var pick = a.getAttribute('data-bl-lang');
+    try {
+      if (pick === 'en') localStorage.removeItem(LANG_KEY);
+      else localStorage.setItem(LANG_KEY, pick);
+    } catch (err) { /* private mode: the choice cannot be kept, so do not pretend */ }
+    location.reload();
+  });
+
   var ICON_V = '20260805a';
   function tile(key, cls) {
     return '<img class="' + cls + '" src="images/app-' + key + '-tile.png?v=' + ICON_V +
@@ -235,10 +302,7 @@
         // these two are the app's own vitals and stay at every width.
         chips() +
         '<div class="ab-act">' +
-          '<details class="bl-language" data-language-picker><summary>Language</summary>' +
-            '<div><select data-translate-select aria-label="Translate this page">' +
-            '<option>Choose language&hellip;</option></select>' +
-            '<small>Opens Google Translate in a new tab. No selection is stored.</small></div></details>' +
+          langPicker() +
           // The switch: the apps themselves, sitting in a well. No menu to
           // open — three icons are shorter to read than the word "Desks" and
           // one click closer than a dropdown.

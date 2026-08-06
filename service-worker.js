@@ -1,7 +1,7 @@
 // Bumped with every deploy that changes core assets: `activate` deletes every
 // cache whose key is not the current one, which is what evicts the previous
 // runtime cache. Without it a returning visitor keeps the old CSS for a load.
-const VERSION = "birdland-desks-v35";
+const VERSION = "birdland-desks-v36";
 const CORE_CACHE = `${VERSION}-core`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const CORE_ASSETS = [
@@ -25,6 +25,20 @@ const CORE_ASSETS = [
   // is the only page that still wants them.
   "./app-bar.css",
   "./app-bar.js",
+  // The desks translate at run time from a dictionary per language, so the
+  // runtime and all ten dictionaries are core: a desk installed in German
+  // must not come back in English the first time it opens offline.
+  "./i18n.js",
+  "./i18n/app.en.json",
+  "./i18n/app.nl.json",
+  "./i18n/app.de.json",
+  "./i18n/app.fr.json",
+  "./i18n/app.es.json",
+  "./i18n/app.pt-br.json",
+  "./i18n/app.pl.json",
+  "./i18n/app.it.json",
+  "./i18n/app.ja.json",
+  "./i18n/app.zh-tw.json",
   "./terminal.css",
   "./terminal.js",
   "./terminal.json",

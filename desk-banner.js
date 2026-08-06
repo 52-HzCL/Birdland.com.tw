@@ -44,6 +44,62 @@
 
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
+  // The ten editions, named as they name themselves — the same list app-bar.js
+  // puts in the desks, taken from the "name" field of i18n/facade.<dir>.json.
+  // Guide is a built artifact like the desks, so it switches language by
+  // storing a preference for i18n.js rather than by changing folder.
+  var LANG_KEY = 'bl_lang';
+  var LANGS = [
+    ['en', 'en', 'English'],
+    ['nl', 'nl', 'Nederlands'],
+    ['de', 'de', 'Deutsch'],
+    ['fr', 'fr', 'Français'],
+    ['es', 'es', 'Español'],
+    ['pt-br', 'pt-BR', 'Português (Brasil)'],
+    ['pl', 'pl', 'Polski'],
+    ['it', 'it', 'Italiano'],
+    ['ja', 'ja', '日本語'],
+    ['zh-tw', 'zh-Hant', '繁體中文']
+  ];
+  // desk-banner.css dresses a <select> in this popover, because a <select> is
+  // what used to be in it. Ten links need the facade's link rule instead, and
+  // it ships beside the markup it dresses.
+  function langStyle() {
+    if (document.getElementById('dbar-lang-css')) return;
+    var s = document.createElement('style');
+    s.id = 'dbar-lang-css';
+    s.textContent =
+      '#desk-banner .bl-language a{display:block;padding:7px 0;color:var(--jade-900);' +
+      'font:600 var(--fs-micro)/1.25 var(--ff-sans);text-decoration:none}' +
+      '#desk-banner .bl-language a:hover,#desk-banner .bl-language a:focus-visible{color:var(--copper-600)}' +
+      '#desk-banner .bl-language a[aria-current]{font-weight:800}' +
+      '#desk-banner .bl-language a[aria-current]::before{content:"\\2713\\00a0"}';
+    document.head.appendChild(s);
+  }
+
+  function langPicker() {
+    langStyle();
+    var now;
+    try { now = localStorage.getItem(LANG_KEY) || 'en'; } catch (e) { now = 'en'; }
+    return '<details class="bl-language" data-language-picker><summary>Language</summary><div>' +
+      LANGS.map(function (l) {
+        return '<a href="#" data-bl-lang="' + l[0] + '" lang="' + l[1] + '" hreflang="' + l[1] + '"' +
+          (l[0] === now ? ' aria-current="true"' : '') + '>' + l[2] + '</a>';
+      }).join('') +
+      '</div></details>';
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[data-bl-lang]');
+    if (!a) return;
+    e.preventDefault();
+    var pick = a.getAttribute('data-bl-lang');
+    try {
+      if (pick === 'en') localStorage.removeItem(LANG_KEY);
+      else localStorage.setItem(LANG_KEY, pick);
+    } catch (err) {}
+    location.reload();
+  });
+
   function build() {
     if (document.getElementById('desk-banner')) return;
     DUPES.forEach(function (sel) {
@@ -77,10 +133,7 @@
             // here without any per-page wiring.
             '<span class="bl-status-online" data-hq-status>Birdland Office <b data-hq-label>Resting</b></span>' +
             '<span class="bl-status-time" data-taipei-time>--:-- Taipei</span>' +
-            '<details class="bl-language" data-language-picker><summary>Language</summary>' +
-              '<div><select data-translate-select aria-label="Translate this page">' +
-              '<option>Choose language&hellip;</option></select>' +
-              '<small>Opens Google Translate in a new tab. No selection is stored.</small></div></details>' +
+            langPicker() +
           '</div>' +
         '</div>' +
       '</div>';
