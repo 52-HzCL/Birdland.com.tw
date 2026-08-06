@@ -131,8 +131,19 @@ def match_bracket(src, start):
 
 PAIR = re.compile(r"\['((?:[^'\\]|\\.)*)','((?:[^'\\]|\\.)*)'\]")
 PART = [(m.start(), m.group(1)) for m in re.finditer(r"\{name:'((?:[^'\\]|\\.)*)'", partner)]
+FAM = [(m.start(), m.group(1)) for m in re.finditer(r"label:'((?:[^'\\]|\\.)*)'", partner)]
 
 
+# AsiaSource now offers several models per family (see partner_template.html's
+# families table), and a part like "Upper blade" repeats near-identically
+# across every model that carries it — same material, same route, same
+# family. Indexing each model's copy separately would print the same material
+# five or six times over for one family. The description is therefore
+# family + part, never the model: two entries collapse into one whenever they
+# share a family and a part, which is exactly the case a model repeats. A
+# process has no meaningful part context at all (it sits at the model level,
+# after the last part in the source text, which is an accident of array
+# order, not a fact about the process) so its description is the family alone.
 def harvest(kind, key, url):
     n = 0
     for m in re.finditer(re.escape(key) + r":\[", partner):
@@ -147,8 +158,15 @@ def harvest(kind, key, url):
                 part = nm
             else:
                 break
+        family = ""
+        for at, nm in FAM:
+            if at < m.start():
+                family = nm
+            else:
+                break
+        desc = (family + " · " + part if part else family) if kind == "MATERIAL" else family
         for name, note in PAIR.findall(block):
-            add(kind, name, (part + " · " if part else "") + note,
+            add(kind, name, desc,
                 url.replace("#", "?q=" + urllib.parse.quote(name) + "#"))
             n += 1
     return n

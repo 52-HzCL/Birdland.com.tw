@@ -115,6 +115,17 @@ function harvest(kind, key, url) {
   const partMarks = [];
   while ((m = partRe.exec(partner))) partMarks.push({ at: m.index, part: m[1] });
 
+  // AsiaSource now offers several models per family (see partner_template.html's
+  // families table), and a part like "Upper blade" repeats near-identically
+  // across every model that carries it — same material, same route, same
+  // family. Indexing each model's copy separately would print the same
+  // material five or six times over for one family. The description is
+  // therefore family + part, never the model: two entries collapse into one
+  // whenever they share a family and a part, which is exactly the case a
+  // model repeats. A process has no meaningful part context at all (it sits
+  // at the model level, after the last part in the source text, which is an
+  // accident of array order, not a fact about the process) so its
+  // description is the family alone.
   const kre = new RegExp(key + ':\\[', 'g');
   while ((m = kre.exec(partner))) {
     const end = matchBracket(partner, m.index + key.length + 1);
@@ -123,8 +134,9 @@ function harvest(kind, key, url) {
     const before = m.index;
     family = (marks.filter(x => x.at < before).pop() || {}).family || '';
     part = (partMarks.filter(x => x.at < before).pop() || {}).part || '';
+    const desc = kind === 'MATERIAL' ? [family, part].filter(Boolean).join(' · ') : family;
     pairs(block).forEach(p => {
-      add(kind, p[0], (part ? part + ' · ' : '') + p[1], url.replace('#', '?q=' + encodeURIComponent(p[0]) + '#'));
+      add(kind, p[0], desc, url.replace('#', '?q=' + encodeURIComponent(p[0]) + '#'));
       n++;
     });
   }

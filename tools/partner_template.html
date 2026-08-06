@@ -1156,7 +1156,7 @@ body.theme-light .bd-mast .tool-btn:hover,body.theme-light .bd-mast .tool-btn:fo
 .bd-work-head h1{margin:0;font:400 calc(clamp(22px,3vw,32px) * var(--ui-scale))/1.04 var(--ff-serif);letter-spacing:.10em;color:var(--kb-jade-950,var(--jade-900))}
 .bd-work-head p{margin:8px 0 0;color:var(--kb-ink-500,#5f665f);font-size:var(--fs-small)}
 .bd-updated{font-size:var(--fs-micro);letter-spacing:.08em;text-transform:uppercase;color:var(--kb-ink-500,#5f665f);white-space:nowrap}
-.bd-work-head{order:0}.bd-family-tabs{order:1}.bd-anatomy{order:2}.bd-part-list{order:3}.bd-options{order:4}.bd-cost-method{order:5}.bd-priority{order:6}.bd-cost-floor{order:7}
+.bd-work-head{order:0}.bd-family-tabs{order:1}.bd-model-tabs{order:2}.bd-anatomy{order:3}.bd-part-list{order:4}.bd-options{order:5}.bd-cost-method{order:6}.bd-priority{order:7}.bd-cost-floor{order:8}
 .bd-cost-floor{margin:0 0 16px;padding:var(--sp-3);border:1px solid rgba(5,55,45,.18);background:rgba(255,255,255,.38)}
 .bd-cost-floor-head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--sp-3);margin-bottom:var(--sp-2)}
 .bd-cost-floor-head h2{margin:0;font:700 var(--fs-small)/1.2 var(--ff-sans);letter-spacing:.07em;text-transform:uppercase;color:var(--pd-jade,var(--jade-900))}
@@ -1179,11 +1179,27 @@ body.theme-light .bd-mast .tool-btn:hover,body.theme-light .bd-mast .tool-btn:fo
 .bd-floor-card footer a{color:var(--pd-jade,var(--jade-900));font-weight:700}
 .bd-floor-read{margin:var(--sp-2) 0 0;padding-left:var(--sp-2);border-left:3px solid var(--pd-copper,#B95D1C);font-size:var(--fs-micro);line-height:1.4;color:var(--kb-ink-700,#353b37)}
 .bd-family-tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:var(--sp-3)}
-.bd-family-tab{padding:var(--sp-2) 8px;border:1px solid rgba(5,55,45,.24);background:rgba(255,255,255,.5);color:var(--kb-jade-900,var(--jade-900));font:700 var(--fs-micro)/1.2 var(--ff-sans);text-transform:uppercase;letter-spacing:.05em;cursor:pointer}
-.bd-family-tab small{display:block;margin-top:var(--sp-1);font:400 var(--fs-micro)/1.2 var(--ff-sans);text-transform:none;letter-spacing:0;color:var(--kb-ink-500,#5f665f)}
-.bd-family-tab.on{border-color:var(--kb-copper-700,#a64b16);box-shadow:inset 0 -3px 0 var(--kb-copper-700,#a64b16);background:#fff}
+/* The model switcher is a second-level chip row under the family tabs — same
+   shape, same tokens, so a buyer reads it as "one more step down", not as a
+   new control language. It shares every rule below with .bd-family-tab
+   rather than repeating them, so the two can never drift apart. */
+.bd-model-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 var(--sp-3)}
+.bd-model-tabs[hidden]{display:none}
+.bd-family-tab,.bd-model-tab{padding:var(--sp-2) 8px;border:1px solid rgba(5,55,45,.24);background:rgba(255,255,255,.5);color:var(--kb-jade-900,var(--jade-900));font:700 var(--fs-micro)/1.2 var(--ff-sans);text-transform:uppercase;letter-spacing:.05em;cursor:pointer}
+.bd-model-tab{flex:0 1 auto}
+.bd-family-tab small,.bd-model-tab small{display:block;margin-top:var(--sp-1);font:400 var(--fs-micro)/1.2 var(--ff-sans);text-transform:none;letter-spacing:0;color:var(--kb-ink-500,#5f665f)}
+.bd-family-tab.on,.bd-model-tab.on{border-color:var(--kb-copper-700,#a64b16);box-shadow:inset 0 -3px 0 var(--kb-copper-700,#a64b16);background:#fff}
 .bd-anatomy{position:relative;border:1px solid rgba(5,55,45,.25);background-color:var(--paper-2);background-image:linear-gradient(rgba(5,55,45,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(5,55,45,.045) 1px,transparent 1px);background-size:22px 22px;overflow:hidden}
 .bd-anatomy img{display:block;width:100%;height:305px;object-fit:contain;mix-blend-mode:multiply}
+/* A model with no anatomy shot gets this instead of an empty photo frame or
+   (worse) another model's picture. display swaps on img[hidden] alone, so
+   there is never a moment with both — or neither — on screen. The [hidden]
+   override has to out-specificity ".bd-anatomy img{display:block}" above, or
+   the browser's built-in "hidden means display:none" loses to it and a
+   broken-image icon shows through anyway. */
+.bd-anatomy img[hidden]{display:none}
+.bd-anatomy-empty{display:none}
+.bd-anatomy img[hidden]+.bd-anatomy-empty{display:flex;align-items:center;justify-content:center;text-align:center;min-height:305px;margin:0;padding:24px;border:1px dashed var(--pd-line);color:var(--pd-muted);font:500 var(--fs-body)/1.55 var(--kb-sans)}
 
 .bd-part-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--sp-2);margin:var(--sp-2) 0 var(--sp-3)}
 .bd-part{display:flex;align-items:center;gap:var(--sp-2);padding:8px;border:1px solid rgba(5,55,45,.18);background:rgba(255,255,255,.54);color:var(--kb-jade-900,var(--jade-900));font-size:var(--fs-micro);line-height:1.2;text-align:left;cursor:pointer}
@@ -1376,7 +1392,7 @@ body.bd-printing>*{display:none!important}body.bd-printing .bd-print-sheet{displ
 @media(max-width:720px){
  .bd-shell{margin:8px 0}.bd-mast{padding:var(--sp-3)}.bd-mast-brand{font-size:var(--fs-h3)}.bd-mast-brand small{font-size:var(--fs-micro)}
  .bd-grid{display:block}.bd-install-card{grid-column:1/-1;display:flex;align-items:center;gap:8px}.bd-install-card small{margin:0}
- .bd-work{padding:var(--sp-3) var(--sp-3)}.bd-work-head{display:block}.bd-updated{display:block;margin-top:8px}.bd-signal-deck .pd-kpis{grid-template-columns:1fr!important}.bd-cost-floor-head{display:block}.bd-cost-floor-head>span{display:block;margin-top:var(--sp-1)}.bd-floor-divider{display:block}.bd-floor-divider span{display:block;margin-top:var(--sp-1);text-align:left}.bd-cost-floor-grid{grid-template-columns:1fr}.bd-family-tabs{grid-template-columns:1fr 1fr}.bd-anatomy img{height:230px}.bd-part-list{grid-template-columns:1fr 1fr}.bd-materials,.bd-processes{grid-template-columns:1fr 1fr}.bd-choice{min-height:122px}.bd-priority-list{grid-template-columns:1fr}.bd-brief{display:block;padding:var(--sp-4) var(--sp-3)}.bd-impact-list{grid-template-columns:1fr}.bd-impact-data{grid-template-columns:1fr}.bd-brief-title{margin-top:0}.bd-bottom{display:block}.bd-references{padding:var(--sp-3) var(--sp-3)}.bd-references .pd-offer-grid{grid-template-columns:1fr}.bd-tools{border-left:0;border-top:1px solid rgba(5,55,45,.18)}.bd-privacy{align-items:flex-start}
+ .bd-work{padding:var(--sp-3) var(--sp-3)}.bd-work-head{display:block}.bd-updated{display:block;margin-top:8px}.bd-signal-deck .pd-kpis{grid-template-columns:1fr!important}.bd-cost-floor-head{display:block}.bd-cost-floor-head>span{display:block;margin-top:var(--sp-1)}.bd-floor-divider{display:block}.bd-floor-divider span{display:block;margin-top:var(--sp-1);text-align:left}.bd-cost-floor-grid{grid-template-columns:1fr}.bd-family-tabs{grid-template-columns:1fr 1fr}.bd-anatomy img{height:230px}.bd-anatomy img[hidden]+.bd-anatomy-empty{min-height:230px}.bd-part-list{grid-template-columns:1fr 1fr}.bd-materials,.bd-processes{grid-template-columns:1fr 1fr}.bd-choice{min-height:122px}.bd-priority-list{grid-template-columns:1fr}.bd-brief{display:block;padding:var(--sp-4) var(--sp-3)}.bd-impact-list{grid-template-columns:1fr}.bd-impact-data{grid-template-columns:1fr}.bd-brief-title{margin-top:0}.bd-bottom{display:block}.bd-references{padding:var(--sp-3) var(--sp-3)}.bd-references .pd-offer-grid{grid-template-columns:1fr}.bd-tools{border-left:0;border-top:1px solid rgba(5,55,45,.18)}.bd-privacy{align-items:flex-start}
 }
 @media(prefers-reduced-motion:reduce){.bd-shell *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 </style>
@@ -1682,7 +1698,7 @@ body,body.theme-light{font-family:var(--kb-sans)!important}
 .bd-floor-value{font:600 var(--fs-h3)/1 var(--bd-serif)}
 .bd-floor-card p,.bd-floor-read{font-size:var(--fs-micro);line-height:1.5}
 .bd-floor-card footer{font:500 var(--fs-micro)/1.4 var(--kb-mono)}
-.bd-family-tab{font:600 var(--fs-micro)/1.3 var(--kb-sans);letter-spacing:.035em}
+.bd-family-tab,.bd-model-tab{font:600 var(--fs-micro)/1.3 var(--kb-sans);letter-spacing:.035em}
 .bd-family-tab small{font:500 var(--fs-micro)/1.35 var(--kb-sans)}
 .bd-option-group h3,.bd-priority h3{
   font:600 var(--fs-micro)/1.35 var(--kb-sans);
@@ -2040,9 +2056,11 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
         </section>
 
         <div class="bd-family-tabs" id="bd-family-tabs" aria-label="Product family"></div>
+        <div class="bd-model-tabs" id="bd-model-tabs" aria-label="Product model"></div>
 
         <div class="bd-anatomy" id="bd-anatomy">
           <img id="bd-anatomy-image" src="images/buyer-anatomy-pruner.webp" alt="Exploded reference anatomy of a bypass pruner">
+          <p class="bd-anatomy-empty">No reference photograph is published for this model yet — the material and process detail below is complete and confirmed.</p>
         </div>
         <div class="bd-part-list" id="bd-part-list" aria-label="Choose a part to review"></div>
 
@@ -2379,6 +2397,8 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
 #p-shelf .shelf-band .drift{margin-left:auto;font:700 var(--fs-small)/1.2 var(--kb-mono);color:var(--pd-copper);letter-spacing:.04em}
 #p-shelf .shelf-band .route{display:flex;gap:var(--sp-2);align-items:baseline;flex-wrap:wrap;margin-top:3px;font-size:var(--fs-h3);color:var(--kb-mut)}
 #p-shelf .shelf-band .route b{color:var(--pd-jade);font-family:var(--kb-mono);font-size:var(--fs-small)}
+#p-shelf .shelf-band .route a{text-decoration:none}
+#p-shelf .shelf-band .route a:hover b,#p-shelf .shelf-band .route a:focus-visible b{text-decoration:underline}
 #p-shelf .shelf-attrib{display:flex;justify-content:space-between;gap:var(--sp-2);padding:var(--sp-2) var(--sp-3);font:var(--fs-small)/1.4 var(--kb-mono);color:var(--kb-faint);background:var(--kb-bg);border-top:1px solid var(--pd-line)}
 #p-shelf .shelf-src{font:var(--fs-small)/1.5 var(--kb-mono);color:var(--kb-faint);margin:0 0 var(--sp-3)}
 #p-shelf .shelf-src a{color:var(--pd-jade-2);font-weight:700}
@@ -2974,6 +2994,22 @@ function hereIdx(d){ return d>=1?0:(d===0?1:2); }
 
 var TRADE=null, TRADE_ERR=false;
 
+// The price-band ladder used to end in plain text — a CN8 code with no way
+// to act on it. window.BL_FAMILIES (the brief builder's own table, published
+// a few script tags below this one) now carries a cn per model, so the first
+// model that shares this cell's code is the one the "route" link opens. Read
+// lazily rather than cached at module load: this function only runs from a
+// click handler, by which time every script tag — including the one that
+// sets window.BL_FAMILIES — has already run.
+function firstModelForCn(cn){
+ var fams=window.BL_FAMILIES||[];
+ for(var i=0;i<fams.length;i++){
+  var models=fams[i].models||[];
+  for(var j=0;j<models.length;j++) if(models[j].cn===cn) return models[j];
+ }
+ return null;
+}
+
 function cellOf(mkt,cn){
  if(mkt==='uk') return null; // never published in this feed
  if(!TRADE||!TRADE.markets||!TRADE.markets[mkt]) return null;
@@ -3039,8 +3075,15 @@ function openCell(btn){
  var period=(TRADE&&TRADE.period)||{previous:'2023',latest:'2024'};
  var shift=(c.share_tw!=null&&c.share_tw_prev!=null)?(c.share_tw-c.share_tw_prev):null;
  var url=verifyUrl(mkt,cn);
+ // Every band under this cell shares one CN8 code, so they share one target:
+ // the first AsiaSource model published under that code. No match (a code
+ // this edition's catalogue does not carry yet) leaves the route as plain
+ // text, same as before this link existed.
+ var routeModel=firstModelForCn(cn);
+ var routeHref=routeModel?('partner.html?q='+encodeURIComponent(routeModel.name)+'#pd-builder'):null;
  var bands=p.bands.map(function(b,i){
-  return '<div class="shelf-band'+(i===hi?' here':'')+'"><div class="bt"><span class="bn">'+esc(b.n)+'</span>'+(i===hi?'<span class="drift">\u25c4 market drifting here</span>':'')+'</div><div class="route"><b>'+esc(b.route)+'</b><span>'+esc(b.d)+'</span></div></div>';
+  var routeHtml=routeHref?'<a href="'+esc(routeHref)+'" title="Open this route on the AsiaSource buyer brief"><b>'+esc(b.route)+' \u2192</b></a>':'<b>'+esc(b.route)+'</b>';
+  return '<div class="shelf-band'+(i===hi?' here':'')+'"><div class="bt"><span class="bn">'+esc(b.n)+'</span>'+(i===hi?'<span class="drift">\u25c4 market drifting here</span>':'')+'</div><div class="route">'+routeHtml+'<span>'+esc(b.d)+'</span></div></div>';
  }).join('');
  detailEl.innerHTML=
   '<h3 class="shelf-detail-h">'+esc(p.name)+' \u00b7 '+esc(mName)+'</h3>'
@@ -3942,82 +3985,200 @@ bentofy('p-season',[],[],[]);
     guard that stops the brief builder itself moved to just after it. */
  var deskData={};try{deskData=JSON.parse(document.getElementById('outlook-data').textContent)||{};}catch(e){}
  var families=[
-  {key:'cutting',label:'Cutting tools',sub:'Pruners · shears · loppers',model:'Bypass pruner',image:'images/buyer-anatomy-pruner.webp',alt:'Horizontal exploded reference anatomy of a bypass pruner',note:'Cutting platform · representative construction',
-   parts:[
-    {name:'Upper blade',materials:[['SK5 high-carbon steel','HRC 56–60 · high edge retention'],['65Mn carbon steel','HRC 52–56 · resilient value route'],['420J2 stainless steel','HRC 50–54 · corrosion-first route'],['S50C carbon steel','HRC 50–55 · balanced route']]},
-    {name:'Lower blade',materials:[['S50C medium-carbon steel','HRC 45–50 · strength and value'],['420J2 stainless steel','HRC 46–52 · wet-use route'],['SK5 carbon steel','HRC 50–56 · higher wear control']]},
-    {name:'Pivot set',materials:[['40Cr alloy steel','Induction-hardened wear surface'],['304 stainless steel','Corrosion-control route'],['Zinc-plated carbon steel','Commercial value route'],['Black-oxide alloy steel','Low-glare wear route']]},
-    {name:'Spring',materials:[['65Mn spring steel','Heat-treated cycle-life route'],['SUS304 spring wire','Wet-use corrosion route'],['Music wire','High-cycle compact route']]},
-    {name:'Handle frame',materials:[['6061 forged aluminium','Lower weight · anodised option'],['Stamped SPCC steel','Rigid cost-controlled route'],['Zinc die casting','Dense premium-feel route'],['PA6-GF30 nylon','Glass-filled moulded route'],['Hot-forged steel','Single-piece high-load route']]},
-    {name:'Grip',materials:[['PP + TPR overmould','Rigid core with soft control'],['TPR sleeve','Soft-touch replaceable grip'],['PVC dip coating','Simple durable finish'],['EVA foam','Low-density comfort option'],['PA6 nylon','Hard engineering grip']]},
-    {name:'Lock',materials:[['304 stainless steel','Corrosion-resistant retention'],['Zinc-plated stamped steel','Value retention route'],['PA66-GF polymer','Low-mass moulded route']]},
-    {name:'Fasteners',materials:[['304 stainless steel','Wet-use corrosion route'],['Zinc-plated carbon steel','Standard protection'],['Black-oxide alloy steel','Wear-focused route'],['Trivalent-chrome plated steel','Chrome-VI-free finish route'],['Dacromet coating','Chrome-VI-free · high salt-spray route']]}
-   ],
-   processes:[['Forming route','Forging or stamping by load case'],['Heat treatment','Grade-specific hardness validation'],['Blade grinding','Edge geometry and consistency'],['Surface finish','Plating, passivation or powder coat']]},
-  {key:'digging',label:'Digging tools',sub:'Trowels · spades · shovels',model:'One-hand garden trowel',image:'images/buyer-anatomy-hand-trowel-v5.webp',alt:'Horizontal assembled and exploded anatomy of a one-hand ergonomic garden trowel',note:'US / Netherlands retail archetype · 30–35 cm one-hand trowel',
-   parts:[
-    {name:'Blade & full tang',materials:[['420 stainless steel','HRC 38–44 · corrosion-first route'],['S50C carbon steel','HRC 35–42 · proven value route'],['Boron steel','HRC 38–45 · lower-mass strength route'],['Forged aluminium','Lightweight display route']]},
-    {name:'Reinforced neck',materials:[['420 stainless steel','One-piece blade-and-tang route'],['Forged carbon steel','Higher-load route'],['Cast aluminium','Lower-weight route'],['Zinc-plated steel','Commercial protection route']]},
-    {name:'Handle core',materials:[['Impact polypropylene','Rigid moulded structure'],['PA6-GF30 nylon','Higher-load moulded route'],['FSC ash hardwood','Traditional timber route'],['Recycled-content PP','Verified-content option']]},
-    {name:'Soft grip sleeve',materials:[['TPR overmould','Soft hand-contact surface'],['TPE overmould','Recyclability-oriented route'],['PVC sleeve','Replaceable value route'],['EVA foam','Low-density comfort route']]},
-    {name:'Hanging-hole cap',materials:[['Impact polypropylene','Integrated retail hanging route'],['PA6 nylon','Higher-wear route'],['TPR elastomer','Soft end protection'],['Recycled-content PP','Verified-content option']]},
-    {name:'Retaining pin',materials:[['Zinc-plated carbon steel','Standard protection'],['304 stainless steel','Wet-soil route'],['Trivalent-plated steel','Chrome-VI-free route']]},
-    {name:'Blade finish',materials:[['Satin polish','Easy-clean stainless route'],['Powder coating','Colour and corrosion layer'],['E-coat + powder coat','Two-stage carbon-steel route'],['Clear lacquer','Metal-visible finish'],['Dacromet coating','Chrome-VI-free · high salt-spray route']]},
-    {name:'Ground edge',materials:[['Machine-ground stainless','Repeatable retail edge'],['Induction-hardened carbon steel','Higher-wear route'],['Rolled edge','Lower-cost route'],['Hand-finished forged edge','Premium route']]}
-   ],
-   processes:[['Blade forming','Deep-draw or forge by material route'],['Tang & handle assembly','Core retention and alignment'],['Heat treatment','Strength and toughness window'],['Bend & pull testing','Blade, tang and grip verification']]},
-  {key:'soil',label:'Soil care',sub:'Rakes · hoes · cultivators',model:'Direct-mount Dutch garden rake',image:'images/buyer-anatomy-rake-direct-v4.webp',alt:'Horizontal assembled and exploded anatomy of a direct-mount Dutch ash-handle garden rake',note:'Direct-mount reference · head socket installs on the handle without an adapter',
-   parts:[
-    {name:'Head bar',materials:[['Forged carbon steel','Dutch professional route'],['Stamped carbon steel','Commercial strength route'],['420 stainless steel','Corrosion-first route'],['Ductile cast iron','Rigid cast-head route'],['Impact polypropylene','Moulded leaf-rake head route']]},
-    {name:'14-tine set',materials:[['S50C hardened steel','HRC 38–45 · bend resistance'],['65Mn spring steel','HRC 42–48 · resilient route'],['420 stainless steel','HRC 36–42 · wet-soil route'],['Zinc-plated spring steel','Springy fan tines · adjustable-width route'],['Split bamboo','Traditional natural leaf-rake route'],['Impact polypropylene','Moulded fan tines · lightweight route']]},
-    {name:'Integral head socket',materials:[['Forged carbon steel','Head mounts directly to handle'],['Zinc-plated steel','Protected commercial joint'],['Powder-coated steel','Colour-matched route'],['Ductile cast iron','Rigid socket route']]},
-    {name:'Ash handle',materials:[['FSC ash hardwood','Dutch trade benchmark route'],['FSC eucalyptus hardwood','Dense value route'],['Fibreglass composite','Moisture-stable route'],['6061 aluminium tube','Lightweight route'],['Powder-coated steel tube','Rigid value route'],['Bamboo pole','Light natural leaf-rake route']]},
-    {name:'Retaining pin',materials:[['Zinc-plated steel','Standard protection'],['304 stainless steel','Wet-use route'],['Trivalent-plated steel','Chrome-VI-free route']]},
-    {name:'Head finish',materials:[['Powder coating','Corrosion and colour'],['E-coating','Base corrosion layer'],['Trivalent zinc plating','Chrome-VI-free finish'],['Black oxide + oil','Low-glare steel finish'],['Dacromet coating','Chrome-VI-free · high salt-spray route']]},
-    {name:'Handle finish',materials:[['Water-based clear coat','Lower-solvent timber route'],['Natural oil finish','Repairable timber route'],['PU clear coat','Higher moisture barrier'],['Uncoated sanded ash','Traditional dry-use route']]}
-   ],
-   processes:[['Head forming','One-piece 14-tine geometry control'],['Socket assembly','Ferrule alignment and retention'],['Hardness control','Tine bend and recovery window'],['Coating & pull test','Coverage and handle retention']]},
-  {key:'watering',label:'Garden irrigation',sub:'Automatic lawn sprinklers',model:'Oscillating garden sprinkler',image:'images/buyer-anatomy-sprinkler.webp',alt:'Horizontal exploded reference anatomy of an automatic oscillating garden sprinkler',note:'Garden irrigation platform · representative construction',
-   parts:[
-    {name:'Spray tube',materials:[['304 stainless steel','Corrosion and straightness'],['6061 aluminium','Anodised lower-weight route'],['PA12 engineering polymer','Moulded corrosion-free route'],['Hard-anodised aluminium','Wear and corrosion layer']]},
-    {name:'Jet nozzles',materials:[['Brass','Wear and spray control'],['POM acetal','Low-friction value route'],['TPR elastomer','Anti-scale flexible jets'],['PA66 nylon','Rigid moulded route']]},
-    {name:'Gearbox housing',materials:[['PA6-GF30 nylon','Strength and dimensional control'],['ABS polymer','Surface and impact balance'],['Impact polypropylene','General-use route'],['Zinc die casting','Rigid premium housing']]},
-    {name:'Water turbine',materials:[['POM acetal','Low-friction drive'],['PA66-GF nylon','Higher-load route'],['Impact PP','Commercial value route']]},
-    {name:'Inlet filter',materials:[['304 stainless mesh','Reusable filtration'],['PA nylon mesh','Corrosion-free route'],['PP moulded screen','Value route']]},
-    {name:'Hose connector',materials:[['Brass','Wear-resistant premium route'],['ABS polymer','Lightweight route'],['PA6-GF nylon','Thread-strength route'],['Aluminium alloy','Machined lightweight route']]},
-    {name:'Seal set',materials:[['EPDM','Outdoor water compatibility'],['NBR','General sealing route'],['Silicone rubber','Wide-temperature route'],['TPE','Moulded recyclable-potential route']]},
-    {name:'Base frame',materials:[['Powder-coated steel','Stable metal platform'],['Impact polypropylene','Corrosion-free lightweight route'],['Die-cast aluminium','Rigid premium route'],['Recycled-content PP','Verified-content option']]},
-   ],
-   processes:[['Polymer moulding','Resin and thread consistency'],['Drive-cycle testing','Oscillation range and repeatability'],['Pressure & leak test','Connector and seal integrity'],['Coverage test','Spray width and distribution uniformity']]},
-  {key:'packaging',label:'Packaging & retail',sub:'Cards · shells · fibre ties',model:'Garden-tool retail pack system',image:'images/buyer-anatomy-packaging.webp',alt:'Horizontal exploded reference anatomy of a garden hand-tool retail packaging system',note:'Packaging platform · certification and recycled-content claims confirmed per programme',
-   parts:[
-    {name:'Display card',materials:[['FSC recycled paperboard','Verified fibre and print route'],['Unbleached kraft board','Lower-ink natural route'],['Bagasse fibre board','Agricultural-fibre option'],['Solid bleached board','High-print-quality route']]},
-    {name:'Clear shell',materials:[['rPET blister','Verified recycled-content route'],['PET blister','High-clarity standard route'],['PP clamshell','Mono-polymer option'],['Cellulose film window','Market-specific fibre route']]},
-    {name:'Tie & restraint',materials:[['Jute or hemp cord','Natural-fibre route'],['Cotton twine','Soft natural restraint'],['Paper twist tie','Fibre-forward route'],['rPET restraint strap','Verified recycled-content route'],['Recycled-content PP tie','Lightweight polymer route']]},
-    {name:'Protective tray',materials:[['Moulded pulp','Fibre cushioning route'],['Die-cut corrugated insert','Flat-pack fibre route'],['rPET formed tray','Clear recycled-content route'],['Honeycomb paperboard','Higher-load paper route']]},
-    {name:'Inner carton',materials:[['Recycled corrugated board','Standard protective route'],['Solid fibreboard','Compact retail route'],['Honeycomb board','Higher compression route'],['Grass-fibre paperboard','Regional low-tree-fibre option']]},
-    {name:'Master carton',materials:[['Recycled corrugated kraft','ECT/BCT set by load case'],['Virgin-kraft liner board','Humidity-strength route'],['Water-resistant coated board','Wet-chain option'],['Reduced-basis-weight board','Material-efficiency route']]},
-    {name:'Label & print',materials:[['Recycled paper label','Fibre-forward route'],['Direct water-based ink','No separate label route'],['Soy/vegetable ink system','Printer-qualified option'],['Wash-off adhesive label','Recycling-compatible option']]},
-    {name:'Protective wrap',materials:[['Recycled tissue paper','Abrasion-control route'],['Glassine paper','Smooth fibre barrier'],['Cellulose-based film','Market-specific clear option'],['Recycled-content LDPE','Verified-content moisture route']]},
-   ],
-   processes:[['Structural conversion','Die-cut, score and fold control'],['Shell forming','Thermoform gauge and seal fit'],['Print & adhesive','Ink, coating and bond compatibility'],['Transit validation','Hang, drop and carton compression tests']]}
+  {key:'cutting',label:'Cutting tools',sub:'Pruners · shears · loppers',
+   models:[
+    {name:'Bypass pruner',cn:'82015000',image:'images/buyer-anatomy-pruner.webp',alt:'Horizontal exploded reference anatomy of a bypass pruner',note:'Cutting platform · representative construction',
+     parts:[
+      {name:'Upper blade',materials:[['SK5 high-carbon steel','HRC 56–60 · high edge retention'],['65Mn carbon steel','HRC 52–56 · resilient value route'],['420J2 stainless steel','HRC 50–54 · corrosion-first route'],['S50C carbon steel','HRC 50–55 · balanced route']]},
+      {name:'Lower blade',materials:[['S50C medium-carbon steel','HRC 45–50 · strength and value'],['420J2 stainless steel','HRC 46–52 · wet-use route'],['SK5 carbon steel','HRC 50–56 · higher wear control']]},
+      {name:'Pivot set',materials:[['40Cr alloy steel','Induction-hardened wear surface'],['304 stainless steel','Corrosion-control route'],['Zinc-plated carbon steel','Commercial value route'],['Black-oxide alloy steel','Low-glare wear route']]},
+      {name:'Spring',materials:[['65Mn spring steel','Heat-treated cycle-life route'],['SUS304 spring wire','Wet-use corrosion route'],['Music wire','High-cycle compact route']]},
+      {name:'Handle frame',materials:[['6061 forged aluminium','Lower weight · anodised option'],['Stamped SPCC steel','Rigid cost-controlled route'],['Zinc die casting','Dense premium-feel route'],['PA6-GF30 nylon','Glass-filled moulded route'],['Hot-forged steel','Single-piece high-load route']]},
+      {name:'Grip',materials:[['PP + TPR overmould','Rigid core with soft control'],['TPR sleeve','Soft-touch replaceable grip'],['PVC dip coating','Simple durable finish'],['EVA foam','Low-density comfort option'],['PA6 nylon','Hard engineering grip']]},
+      {name:'Lock',materials:[['304 stainless steel','Corrosion-resistant retention'],['Zinc-plated stamped steel','Value retention route'],['PA66-GF polymer','Low-mass moulded route']]},
+      {name:'Fasteners',materials:[['304 stainless steel','Wet-use corrosion route'],['Zinc-plated carbon steel','Standard protection'],['Black-oxide alloy steel','Wear-focused route'],['Trivalent-chrome plated steel','Chrome-VI-free finish route'],['Dacromet coating','Chrome-VI-free · high salt-spray route']]}
+     ],
+     processes:[['Forming route','Forging or stamping by load case'],['Heat treatment','Grade-specific hardness validation'],['Blade grinding','Edge geometry and consistency'],['Surface finish','Plating, passivation or powder coat']]},
+    {name:'Anvil pruner',cn:'82015000',note:'Anvil cutting platform · representative construction, confirmed per programme',
+     parts:[
+      {name:'Upper blade',materials:[['SK5 high-carbon steel','HRC 56–60 · high edge retention'],['65Mn carbon steel','HRC 52–56 · resilient value route'],['420J2 stainless steel','HRC 50–54 · corrosion-first route'],['S50C carbon steel','HRC 50–55 · balanced route']]},
+      {name:'Lower blade',materials:[['S50C medium-carbon steel','HRC 45–50 · anvil-block strength and value'],['420J2 stainless steel','HRC 46–52 · anvil-block wet-use route'],['SK5 carbon steel','HRC 50–56 · anvil-block wear control']]},
+      {name:'Pivot set',materials:[['40Cr alloy steel','Induction-hardened wear surface'],['304 stainless steel','Corrosion-control route'],['Zinc-plated carbon steel','Commercial value route'],['Black-oxide alloy steel','Low-glare wear route']]},
+      {name:'Spring',materials:[['65Mn spring steel','Heat-treated cycle-life route'],['SUS304 spring wire','Wet-use corrosion route'],['Music wire','High-cycle compact route']]},
+      {name:'Handle frame',materials:[['6061 forged aluminium','Lower weight · anodised option'],['Stamped SPCC steel','Rigid cost-controlled route'],['Zinc die casting','Dense premium-feel route'],['PA6-GF30 nylon','Glass-filled moulded route'],['Hot-forged steel','Single-piece high-load route']]},
+      {name:'Grip',materials:[['PP + TPR overmould','Rigid core with soft control'],['TPR sleeve','Soft-touch replaceable grip'],['PVC dip coating','Simple durable finish'],['EVA foam','Low-density comfort option'],['PA6 nylon','Hard engineering grip']]},
+      {name:'Lock',materials:[['304 stainless steel','Corrosion-resistant retention'],['Zinc-plated stamped steel','Value retention route'],['PA66-GF polymer','Low-mass moulded route']]},
+      {name:'Fasteners',materials:[['304 stainless steel','Wet-use corrosion route'],['Zinc-plated carbon steel','Standard protection'],['Black-oxide alloy steel','Wear-focused route'],['Trivalent-chrome plated steel','Chrome-VI-free finish route'],['Dacromet coating','Chrome-VI-free · high salt-spray route']]}
+     ],
+     processes:[['Forming route','Forging or stamping by load case'],['Heat treatment','Grade-specific hardness validation'],['Blade grinding','Edge geometry and consistency'],['Surface finish','Plating, passivation or powder coat']]},
+    {name:'Bypass lopper',cn:'82016000',note:'Two-hand bypass cutting platform · representative construction, confirmed per programme',
+     parts:[
+      {name:'Upper blade',materials:[['SK5 high-carbon steel','HRC 56–60 · high edge retention'],['65Mn carbon steel','HRC 52–56 · resilient value route'],['420J2 stainless steel','HRC 50–54 · corrosion-first route'],['S50C carbon steel','HRC 50–55 · balanced route']]},
+      {name:'Lower blade',materials:[['S50C medium-carbon steel','HRC 45–50 · strength and value'],['420J2 stainless steel','HRC 46–52 · wet-use route'],['SK5 carbon steel','HRC 50–56 · higher wear control']]},
+      {name:'Pivot set',materials:[['40Cr alloy steel','Induction-hardened wear surface'],['304 stainless steel','Corrosion-control route'],['Zinc-plated carbon steel','Commercial value route'],['Black-oxide alloy steel','Low-glare wear route']]},
+      {name:'Handle frame',materials:[['6061 aluminium tube','Lightweight route'],['Powder-coated steel tube','Rigid value route'],['Fibreglass composite','Moisture-stable route'],['Bamboo pole','Light natural handle route']]},
+      {name:'Grip',materials:[['PP + TPR overmould','Rigid core with soft control'],['TPR sleeve','Soft-touch replaceable grip'],['PVC dip coating','Simple durable finish'],['EVA foam','Low-density comfort option'],['PA6 nylon','Hard engineering grip']]},
+      {name:'Fasteners',materials:[['304 stainless steel','Wet-use corrosion route'],['Zinc-plated carbon steel','Standard protection'],['Black-oxide alloy steel','Wear-focused route'],['Trivalent-chrome plated steel','Chrome-VI-free finish route'],['Dacromet coating','Chrome-VI-free · high salt-spray route']]}
+     ],
+     processes:[['Forming route','Forging or stamping by load case'],['Heat treatment','Grade-specific hardness validation'],['Blade grinding','Edge geometry and consistency'],['Surface finish','Plating, passivation or powder coat']]},
+    {name:'Anvil lopper',cn:'82016000',note:'Two-hand anvil cutting platform · representative construction, confirmed per programme',
+     parts:[
+      {name:'Upper blade',materials:[['SK5 high-carbon steel','HRC 56–60 · high edge retention'],['65Mn carbon steel','HRC 52–56 · resilient value route'],['420J2 stainless steel','HRC 50–54 · corrosion-first route'],['S50C carbon steel','HRC 50–55 · balanced route']]},
+      {name:'Lower blade',materials:[['S50C medium-carbon steel','HRC 45–50 · strength and value'],['420J2 stainless steel','HRC 46–52 · wet-use route'],['SK5 carbon steel','HRC 50–56 · higher wear control']]},
+      {name:'Pivot set',materials:[['40Cr alloy steel','Induction-hardened wear surface'],['304 stainless steel','Corrosion-control route'],['Zinc-plated carbon steel','Commercial value route'],['Black-oxide alloy steel','Low-glare wear route']]},
+      {name:'Handle frame',materials:[['6061 aluminium tube','Lightweight route'],['Powder-coated steel tube','Rigid value route'],['Fibreglass composite','Moisture-stable route'],['Bamboo pole','Light natural handle route']]},
+      {name:'Grip',materials:[['PP + TPR overmould','Rigid core with soft control'],['TPR sleeve','Soft-touch replaceable grip'],['PVC dip coating','Simple durable finish'],['EVA foam','Low-density comfort option'],['PA6 nylon','Hard engineering grip']]},
+      {name:'Fasteners',materials:[['304 stainless steel','Wet-use corrosion route'],['Zinc-plated carbon steel','Standard protection'],['Black-oxide alloy steel','Wear-focused route'],['Trivalent-chrome plated steel','Chrome-VI-free finish route'],['Dacromet coating','Chrome-VI-free · high salt-spray route']]}
+     ],
+     processes:[['Forming route','Forging or stamping by load case'],['Heat treatment','Grade-specific hardness validation'],['Blade grinding','Edge geometry and consistency'],['Surface finish','Plating, passivation or powder coat']]},
+    {name:'Hedge shear',cn:'82016000',note:'Two-hand hedge cutting platform · representative construction, confirmed per programme',
+     parts:[
+      {name:'Upper blade',materials:[['SK5 high-carbon steel','HRC 56–60 · high edge retention'],['65Mn carbon steel','HRC 52–56 · resilient value route'],['420J2 stainless steel','HRC 50–54 · corrosion-first route'],['S50C carbon steel','HRC 50–55 · balanced route']]},
+      {name:'Lower blade',materials:[['S50C medium-carbon steel','HRC 45–50 · strength and value'],['420J2 stainless steel','HRC 46–52 · wet-use route'],['SK5 carbon steel','HRC 50–56 · higher wear control']]},
+      {name:'Pivot set',materials:[['40Cr alloy steel','Induction-hardened wear surface'],['304 stainless steel','Corrosion-control route'],['Zinc-plated carbon steel','Commercial value route'],['Black-oxide alloy steel','Low-glare wear route']]},
+      {name:'Handle frame',materials:[['6061 aluminium tube','Lightweight route'],['Powder-coated steel tube','Rigid value route'],['Fibreglass composite','Moisture-stable route'],['Bamboo pole','Light natural handle route']]},
+      {name:'Grip',materials:[['PP + TPR overmould','Rigid core with soft control'],['TPR sleeve','Soft-touch replaceable grip'],['PVC dip coating','Simple durable finish'],['EVA foam','Low-density comfort option'],['PA6 nylon','Hard engineering grip']]},
+      {name:'Fasteners',materials:[['304 stainless steel','Wet-use corrosion route'],['Zinc-plated carbon steel','Standard protection'],['Black-oxide alloy steel','Wear-focused route'],['Trivalent-chrome plated steel','Chrome-VI-free finish route'],['Dacromet coating','Chrome-VI-free · high salt-spray route']]}
+     ],
+     processes:[['Forming route','Forging or stamping by load case'],['Heat treatment','Grade-specific hardness validation'],['Blade grinding','Edge geometry and consistency'],['Surface finish','Plating, passivation or powder coat']]},
+    {name:'Telescopic lopper',cn:'82016000',note:'Extendable two-hand cutting platform · representative construction, confirmed per programme',
+     parts:[
+      {name:'Upper blade',materials:[['SK5 high-carbon steel','HRC 56–60 · high edge retention'],['65Mn carbon steel','HRC 52–56 · resilient value route'],['420J2 stainless steel','HRC 50–54 · corrosion-first route'],['S50C carbon steel','HRC 50–55 · balanced route']]},
+      {name:'Lower blade',materials:[['S50C medium-carbon steel','HRC 45–50 · strength and value'],['420J2 stainless steel','HRC 46–52 · wet-use route'],['SK5 carbon steel','HRC 50–56 · higher wear control']]},
+      {name:'Pivot set',materials:[['40Cr alloy steel','Induction-hardened wear surface'],['304 stainless steel','Corrosion-control route'],['Zinc-plated carbon steel','Commercial value route'],['Black-oxide alloy steel','Low-glare wear route']]},
+      {name:'Handle frame',materials:[['6061 aluminium tube','Lightweight route'],['Powder-coated steel tube','Rigid value route'],['Fibreglass composite','Moisture-stable route'],['Bamboo pole','Light natural handle route']]},
+      {name:'Grip',materials:[['PP + TPR overmould','Rigid core with soft control'],['TPR sleeve','Soft-touch replaceable grip'],['PVC dip coating','Simple durable finish'],['EVA foam','Low-density comfort option'],['PA6 nylon','Hard engineering grip']]},
+      {name:'Lock',materials:[['304 stainless steel','Corrosion-resistant extension-lock retention'],['Zinc-plated stamped steel','Value extension-lock route'],['PA66-GF polymer','Low-mass moulded extension-lock route']]},
+      {name:'Fasteners',materials:[['304 stainless steel','Wet-use corrosion route'],['Zinc-plated carbon steel','Standard protection'],['Black-oxide alloy steel','Wear-focused route'],['Trivalent-chrome plated steel','Chrome-VI-free finish route'],['Dacromet coating','Chrome-VI-free · high salt-spray route']]}
+     ],
+     processes:[['Forming route','Forging or stamping by load case'],['Heat treatment','Grade-specific hardness validation'],['Blade grinding','Edge geometry and consistency'],['Surface finish','Plating, passivation or powder coat']]}
+   ]},
+  {key:'digging',label:'Digging tools',sub:'Trowels · spades · shovels',
+   models:[
+    {name:'One-hand garden trowel',cn:'82011000',image:'images/buyer-anatomy-hand-trowel-v5.webp',alt:'Horizontal assembled and exploded anatomy of a one-hand ergonomic garden trowel',note:'US / Netherlands retail archetype · 30–35 cm one-hand trowel',
+     parts:[
+      {name:'Blade & full tang',materials:[['420 stainless steel','HRC 38–44 · corrosion-first route'],['S50C carbon steel','HRC 35–42 · proven value route'],['Boron steel','HRC 38–45 · lower-mass strength route'],['Forged aluminium','Lightweight display route']]},
+      {name:'Reinforced neck',materials:[['420 stainless steel','One-piece blade-and-tang route'],['Forged carbon steel','Higher-load route'],['Cast aluminium','Lower-weight route'],['Zinc-plated steel','Commercial protection route']]},
+      {name:'Handle core',materials:[['Impact polypropylene','Rigid moulded structure'],['PA6-GF30 nylon','Higher-load moulded route'],['FSC ash hardwood','Traditional timber route'],['Recycled-content PP','Verified-content option']]},
+      {name:'Soft grip sleeve',materials:[['TPR overmould','Soft hand-contact surface'],['TPE overmould','Recyclability-oriented route'],['PVC sleeve','Replaceable value route'],['EVA foam','Low-density comfort route']]},
+      {name:'Hanging-hole cap',materials:[['Impact polypropylene','Integrated retail hanging route'],['PA6 nylon','Higher-wear route'],['TPR elastomer','Soft end protection'],['Recycled-content PP','Verified-content option']]},
+      {name:'Retaining pin',materials:[['Zinc-plated carbon steel','Standard protection'],['304 stainless steel','Wet-soil route'],['Trivalent-plated steel','Chrome-VI-free route']]},
+      {name:'Blade finish',materials:[['Satin polish','Easy-clean stainless route'],['Powder coating','Colour and corrosion layer'],['E-coat + powder coat','Two-stage carbon-steel route'],['Clear lacquer','Metal-visible finish'],['Dacromet coating','Chrome-VI-free · high salt-spray route']]},
+      {name:'Ground edge',materials:[['Machine-ground stainless','Repeatable retail edge'],['Induction-hardened carbon steel','Higher-wear route'],['Rolled edge','Lower-cost route'],['Hand-finished forged edge','Premium route']]}
+     ],
+     processes:[['Blade forming','Deep-draw or forge by material route'],['Tang & handle assembly','Core retention and alignment'],['Heat treatment','Strength and toughness window'],['Bend & pull testing','Blade, tang and grip verification']]},
+    {name:'Border spade',cn:'82011000',note:'Digging platform · representative construction, confirmed per programme',
+     parts:[
+      {name:'Blade & full tang',materials:[['420 stainless steel','HRC 38–44 · corrosion-first route'],['S50C carbon steel','HRC 35–42 · proven value route'],['Boron steel','HRC 38–45 · lower-mass strength route'],['Forged aluminium','Lightweight display route']]},
+      {name:'Reinforced neck',materials:[['420 stainless steel','One-piece blade-and-tang route'],['Forged carbon steel','Higher-load route'],['Cast aluminium','Lower-weight route'],['Zinc-plated steel','Commercial protection route']]},
+      {name:'Ash handle',materials:[['FSC ash hardwood','Dutch trade benchmark route'],['FSC eucalyptus hardwood','Dense value route'],['Fibreglass composite','Moisture-stable route'],['6061 aluminium tube','Lightweight route']]},
+      {name:'Grip',materials:[['PP + TPR overmould','Rigid core with soft control'],['TPR sleeve','Soft-touch replaceable grip'],['PVC dip coating','Simple durable finish'],['EVA foam','Low-density comfort option'],['PA6 nylon','Hard engineering grip']]},
+      {name:'Head finish',materials:[['Powder coating','Corrosion and colour'],['E-coating','Base corrosion layer'],['Trivalent zinc plating','Chrome-VI-free finish'],['Black oxide + oil','Low-glare steel finish'],['Dacromet coating','Chrome-VI-free · high salt-spray route']]},
+      {name:'Fasteners',materials:[['304 stainless steel','Wet-use corrosion route'],['Zinc-plated carbon steel','Standard protection'],['Black-oxide alloy steel','Wear-focused route'],['Trivalent-chrome plated steel','Chrome-VI-free finish route'],['Dacromet coating','Chrome-VI-free · high salt-spray route']]}
+     ],
+     processes:[['Blade forming','Deep-draw or forge by material route'],['Tang & handle assembly','Core retention and alignment'],['Heat treatment','Strength and toughness window'],['Bend & pull testing','Blade, tang and grip verification']]},
+    {name:'Digging fork',cn:'82011000',note:'Digging platform · representative construction, confirmed per programme',
+     parts:[
+      {name:'Head bar',materials:[['Forged carbon steel','Dutch professional route'],['Stamped carbon steel','Commercial strength route'],['420 stainless steel','Corrosion-first route'],['Ductile cast iron','Rigid cast-head route']]},
+      {name:'Integral head socket',materials:[['Forged carbon steel','Head mounts directly to handle'],['Zinc-plated steel','Protected commercial joint'],['Powder-coated steel','Colour-matched route'],['Ductile cast iron','Rigid socket route']]},
+      {name:'Ash handle',materials:[['FSC ash hardwood','Dutch trade benchmark route'],['FSC eucalyptus hardwood','Dense value route'],['Fibreglass composite','Moisture-stable route'],['6061 aluminium tube','Lightweight route']]},
+      {name:'Grip',materials:[['PP + TPR overmould','Rigid core with soft control'],['TPR sleeve','Soft-touch replaceable grip'],['PVC dip coating','Simple durable finish'],['EVA foam','Low-density comfort option'],['PA6 nylon','Hard engineering grip']]},
+      {name:'Head finish',materials:[['Powder coating','Corrosion and colour'],['E-coating','Base corrosion layer'],['Trivalent zinc plating','Chrome-VI-free finish'],['Black oxide + oil','Low-glare steel finish'],['Dacromet coating','Chrome-VI-free · high salt-spray route']]}
+     ],
+     processes:[['Blade forming','Deep-draw or forge by material route'],['Tang & handle assembly','Core retention and alignment'],['Heat treatment','Strength and toughness window'],['Bend & pull testing','Blade, tang and grip verification']]}
+   ]},
+  {key:'soil',label:'Soil care',sub:'Rakes · hoes · cultivators',
+   models:[
+    {name:'Direct-mount Dutch garden rake',cn:'82013000',image:'images/buyer-anatomy-rake-direct-v4.webp',alt:'Horizontal assembled and exploded anatomy of a direct-mount Dutch ash-handle garden rake',note:'Direct-mount reference · head socket installs on the handle without an adapter',
+     parts:[
+      {name:'Head bar',materials:[['Forged carbon steel','Dutch professional route'],['Stamped carbon steel','Commercial strength route'],['420 stainless steel','Corrosion-first route'],['Ductile cast iron','Rigid cast-head route'],['Impact polypropylene','Moulded leaf-rake head route']]},
+      {name:'14-tine set',materials:[['S50C hardened steel','HRC 38–45 · bend resistance'],['65Mn spring steel','HRC 42–48 · resilient route'],['420 stainless steel','HRC 36–42 · wet-soil route'],['Zinc-plated spring steel','Springy fan tines · adjustable-width route'],['Split bamboo','Traditional natural leaf-rake route'],['Impact polypropylene','Moulded fan tines · lightweight route']]},
+      {name:'Integral head socket',materials:[['Forged carbon steel','Head mounts directly to handle'],['Zinc-plated steel','Protected commercial joint'],['Powder-coated steel','Colour-matched route'],['Ductile cast iron','Rigid socket route']]},
+      {name:'Ash handle',materials:[['FSC ash hardwood','Dutch trade benchmark route'],['FSC eucalyptus hardwood','Dense value route'],['Fibreglass composite','Moisture-stable route'],['6061 aluminium tube','Lightweight route'],['Powder-coated steel tube','Rigid value route'],['Bamboo pole','Light natural leaf-rake route']]},
+      {name:'Retaining pin',materials:[['Zinc-plated steel','Standard protection'],['304 stainless steel','Wet-use route'],['Trivalent-plated steel','Chrome-VI-free route']]},
+      {name:'Head finish',materials:[['Powder coating','Corrosion and colour'],['E-coating','Base corrosion layer'],['Trivalent zinc plating','Chrome-VI-free finish'],['Black oxide + oil','Low-glare steel finish'],['Dacromet coating','Chrome-VI-free · high salt-spray route']]},
+      {name:'Handle finish',materials:[['Water-based clear coat','Lower-solvent timber route'],['Natural oil finish','Repairable timber route'],['PU clear coat','Higher moisture barrier'],['Uncoated sanded ash','Traditional dry-use route']]}
+     ],
+     processes:[['Head forming','One-piece 14-tine geometry control'],['Socket assembly','Ferrule alignment and retention'],['Hardness control','Tine bend and recovery window'],['Coating & pull test','Coverage and handle retention']]},
+    {name:'Bow rake',cn:'82013000',note:'Soil-care platform · representative construction, confirmed per programme',
+     parts:[
+      {name:'Head bar',materials:[['Forged carbon steel','Dutch professional route'],['Stamped carbon steel','Commercial strength route'],['420 stainless steel','Corrosion-first route'],['Ductile cast iron','Rigid cast-head route']]},
+      {name:'Integral head socket',materials:[['Forged carbon steel','Head mounts directly to handle'],['Zinc-plated steel','Protected commercial joint'],['Powder-coated steel','Colour-matched route'],['Ductile cast iron','Rigid socket route']]},
+      {name:'Ash handle',materials:[['FSC ash hardwood','Dutch trade benchmark route'],['FSC eucalyptus hardwood','Dense value route'],['Fibreglass composite','Moisture-stable route'],['Bamboo pole','Light natural leaf-rake route']]},
+      {name:'Head finish',materials:[['Powder coating','Corrosion and colour'],['E-coating','Base corrosion layer'],['Trivalent zinc plating','Chrome-VI-free finish'],['Black oxide + oil','Low-glare steel finish'],['Dacromet coating','Chrome-VI-free · high salt-spray route']]},
+      {name:'Handle finish',materials:[['Water-based clear coat','Lower-solvent timber route'],['Natural oil finish','Repairable timber route'],['PU clear coat','Higher moisture barrier'],['Uncoated sanded ash','Traditional dry-use route']]}
+     ],
+     processes:[['Head forming','One-piece 14-tine geometry control'],['Socket assembly','Ferrule alignment and retention'],['Hardness control','Tine bend and recovery window'],['Coating & pull test','Coverage and handle retention']]},
+    {name:'Dutch hoe',cn:'82013000',note:'Soil-care platform · representative construction, confirmed per programme',
+     parts:[
+      {name:'Ground edge',materials:[['Machine-ground stainless','Repeatable retail edge'],['Induction-hardened carbon steel','Higher-wear route'],['Rolled edge','Lower-cost route'],['Hand-finished forged edge','Premium route']]},
+      {name:'Integral head socket',materials:[['Forged carbon steel','Head mounts directly to handle'],['Zinc-plated steel','Protected commercial joint'],['Powder-coated steel','Colour-matched route'],['Ductile cast iron','Rigid socket route']]},
+      {name:'Ash handle',materials:[['FSC ash hardwood','Dutch trade benchmark route'],['FSC eucalyptus hardwood','Dense value route'],['Fibreglass composite','Moisture-stable route'],['6061 aluminium tube','Lightweight route']]},
+      {name:'Head finish',materials:[['Powder coating','Corrosion and colour'],['E-coating','Base corrosion layer'],['Trivalent zinc plating','Chrome-VI-free finish'],['Black oxide + oil','Low-glare steel finish'],['Dacromet coating','Chrome-VI-free · high salt-spray route']]},
+      {name:'Handle finish',materials:[['Water-based clear coat','Lower-solvent timber route'],['Natural oil finish','Repairable timber route'],['PU clear coat','Higher moisture barrier'],['Uncoated sanded ash','Traditional dry-use route']]}
+     ],
+     processes:[['Head forming','One-piece 14-tine geometry control'],['Socket assembly','Ferrule alignment and retention'],['Hardness control','Tine bend and recovery window'],['Coating & pull test','Coverage and handle retention']]},
+    {name:'Hand cultivator',cn:'82013000',note:'Soil-care platform · representative construction, confirmed per programme',
+     parts:[
+      {name:'Head bar',materials:[['Forged carbon steel','Dutch professional route'],['Stamped carbon steel','Commercial strength route'],['420 stainless steel','Corrosion-first route'],['Ductile cast iron','Rigid cast-head route'],['Impact polypropylene','Moulded lightweight head route']]},
+      {name:'Reinforced neck',materials:[['420 stainless steel','One-piece neck-to-handle route'],['Forged carbon steel','Higher-load route'],['Cast aluminium','Lower-weight route'],['Zinc-plated steel','Commercial protection route']]},
+      {name:'Handle core',materials:[['Impact polypropylene','Rigid moulded structure'],['PA6-GF30 nylon','Higher-load moulded route'],['FSC ash hardwood','Traditional timber route'],['Recycled-content PP','Verified-content option']]},
+      {name:'Soft grip sleeve',materials:[['TPR overmould','Soft hand-contact surface'],['TPE overmould','Recyclability-oriented route'],['PVC sleeve','Replaceable value route'],['EVA foam','Low-density comfort route']]},
+      {name:'Head finish',materials:[['Powder coating','Corrosion and colour'],['E-coating','Base corrosion layer'],['Trivalent zinc plating','Chrome-VI-free finish'],['Black oxide + oil','Low-glare steel finish'],['Dacromet coating','Chrome-VI-free · high salt-spray route']]}
+     ],
+     processes:[['Head forming','One-piece 14-tine geometry control'],['Socket assembly','Ferrule alignment and retention'],['Hardness control','Tine bend and recovery window'],['Coating & pull test','Coverage and handle retention']]}
+   ]},
+  {key:'watering',label:'Garden irrigation',sub:'Automatic lawn sprinklers',
+   models:[
+    {name:'Oscillating garden sprinkler',image:'images/buyer-anatomy-sprinkler.webp',alt:'Horizontal exploded reference anatomy of an automatic oscillating garden sprinkler',note:'Garden irrigation platform · representative construction',
+     parts:[
+      {name:'Spray tube',materials:[['304 stainless steel','Corrosion and straightness'],['6061 aluminium','Anodised lower-weight route'],['PA12 engineering polymer','Moulded corrosion-free route'],['Hard-anodised aluminium','Wear and corrosion layer']]},
+      {name:'Jet nozzles',materials:[['Brass','Wear and spray control'],['POM acetal','Low-friction value route'],['TPR elastomer','Anti-scale flexible jets'],['PA66 nylon','Rigid moulded route']]},
+      {name:'Gearbox housing',materials:[['PA6-GF30 nylon','Strength and dimensional control'],['ABS polymer','Surface and impact balance'],['Impact polypropylene','General-use route'],['Zinc die casting','Rigid premium housing']]},
+      {name:'Water turbine',materials:[['POM acetal','Low-friction drive'],['PA66-GF nylon','Higher-load route'],['Impact PP','Commercial value route']]},
+      {name:'Inlet filter',materials:[['304 stainless mesh','Reusable filtration'],['PA nylon mesh','Corrosion-free route'],['PP moulded screen','Value route']]},
+      {name:'Hose connector',materials:[['Brass','Wear-resistant premium route'],['ABS polymer','Lightweight route'],['PA6-GF nylon','Thread-strength route'],['Aluminium alloy','Machined lightweight route']]},
+      {name:'Seal set',materials:[['EPDM','Outdoor water compatibility'],['NBR','General sealing route'],['Silicone rubber','Wide-temperature route'],['TPE','Moulded recyclable-potential route']]},
+      {name:'Base frame',materials:[['Powder-coated steel','Stable metal platform'],['Impact polypropylene','Corrosion-free lightweight route'],['Die-cast aluminium','Rigid premium route'],['Recycled-content PP','Verified-content option']]}
+     ],
+     processes:[['Polymer moulding','Resin and thread consistency'],['Drive-cycle testing','Oscillation range and repeatability'],['Pressure & leak test','Connector and seal integrity'],['Coverage test','Spray width and distribution uniformity']]}
+   ]},
+  {key:'packaging',label:'Packaging & retail',sub:'Cards · shells · fibre ties',
+   models:[
+    {name:'Garden-tool retail pack system',image:'images/buyer-anatomy-packaging.webp',alt:'Horizontal exploded reference anatomy of a garden hand-tool retail packaging system',note:'Packaging platform · certification and recycled-content claims confirmed per programme',
+     parts:[
+      {name:'Display card',materials:[['FSC recycled paperboard','Verified fibre and print route'],['Unbleached kraft board','Lower-ink natural route'],['Bagasse fibre board','Agricultural-fibre option'],['Solid bleached board','High-print-quality route']]},
+      {name:'Clear shell',materials:[['rPET blister','Verified recycled-content route'],['PET blister','High-clarity standard route'],['PP clamshell','Mono-polymer option'],['Cellulose film window','Market-specific fibre route']]},
+      {name:'Tie & restraint',materials:[['Jute or hemp cord','Natural-fibre route'],['Cotton twine','Soft natural restraint'],['Paper twist tie','Fibre-forward route'],['rPET restraint strap','Verified recycled-content route'],['Recycled-content PP tie','Lightweight polymer route']]},
+      {name:'Protective tray',materials:[['Moulded pulp','Fibre cushioning route'],['Die-cut corrugated insert','Flat-pack fibre route'],['rPET formed tray','Clear recycled-content route'],['Honeycomb paperboard','Higher-load paper route']]},
+      {name:'Inner carton',materials:[['Recycled corrugated board','Standard protective route'],['Solid fibreboard','Compact retail route'],['Honeycomb board','Higher compression route'],['Grass-fibre paperboard','Regional low-tree-fibre option']]},
+      {name:'Master carton',materials:[['Recycled corrugated kraft','ECT/BCT set by load case'],['Virgin-kraft liner board','Humidity-strength route'],['Water-resistant coated board','Wet-chain option'],['Reduced-basis-weight board','Material-efficiency route']]},
+      {name:'Label & print',materials:[['Recycled paper label','Fibre-forward route'],['Direct water-based ink','No separate label route'],['Soy/vegetable ink system','Printer-qualified option'],['Wash-off adhesive label','Recycling-compatible option']]},
+      {name:'Protective wrap',materials:[['Recycled tissue paper','Abrasion-control route'],['Glassine paper','Smooth fibre barrier'],['Cellulose-based film','Market-specific clear option'],['Recycled-content LDPE','Verified-content moisture route']]}
+     ],
+     processes:[['Structural conversion','Die-cut, score and fold control'],['Shell forming','Thermoform gauge and seal fit'],['Print & adhesive','Ink, coating and bond compatibility'],['Transit validation','Hang, drop and carton compression tests']]}
+   ]}
  ];
  /* Published flat, in the same shape tools/dev/gen-terminal.js harvests out of
     this file, so terminal.json and the in-page palette are the same index read
     two ways rather than two lists that can disagree. */
  window.BL_FAMILIES=families;
  if(!root||!email||!destination)return;
- var state={family:0,part:0,material:0,process:0,priority:'Cost stability'};
- var familyTabs=document.getElementById('bd-family-tabs'),partList=document.getElementById('bd-part-list'),materials=document.getElementById('bd-materials'),processes=document.getElementById('bd-processes');
+ var state={family:0,model:0,part:0,material:0,process:0,priority:'Cost stability'};
+ var familyTabs=document.getElementById('bd-family-tabs'),modelTabs=document.getElementById('bd-model-tabs'),partList=document.getElementById('bd-part-list'),materials=document.getElementById('bd-materials'),processes=document.getElementById('bd-processes');
  var image=document.getElementById('bd-anatomy-image');
  var publicItems=[];
  function esc(x){return String(x||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
  function line(x){return String(x||'').replace(/[\r\n]+/g,' ').trim();}
  function activeFamily(){return families[state.family];}
- function activePart(){return activeFamily().parts[state.part];}
+ /* A model that has just been switched to by family change may not exist at
+    the previous model index (families carry different counts), so this reads
+    defensively rather than trusting state.model to already be in range. */
+ function activeModelObj(){var f=activeFamily(),list=f.models||[];return list[state.model]||list[0];}
+ function activePart(){return activeModelObj().parts[state.part];}
  function activeMaterial(){return activePart().materials[state.material];}
- function activeProcess(){return activeFamily().processes[state.process];}
- function activeModel(){return activeFamily().model;}
+ function activeProcess(){return activeModelObj().processes[state.process];}
+ function activeModel(){return activeModelObj().name;}
  function setText(id,value){var el=document.getElementById(id);if(el)el.textContent=value;}
  function lastDistinctChange(points){
   if(!Array.isArray(points)||points.length<2)return null;
@@ -4387,13 +4548,28 @@ function processTile(name){var n=String(name||'').toLowerCase();
  slLoad();
 
  function render(){
-  var f=activeFamily(),part=activePart(),material=activeMaterial(),process=activeProcess(),materialMove=materialMetric(material[0]),processMove=processMetric(process);
+  var f=activeFamily(),mdl=activeModelObj(),part=activePart(),material=activeMaterial(),process=activeProcess(),materialMove=materialMetric(material[0]),processMove=processMetric(process);
   familyTabs.innerHTML=families.map(function(item,i){return '<button type="button" class="bd-family-tab '+(i===state.family?'on':'')+'" data-family="'+i+'" aria-pressed="'+(i===state.family?'true':'false')+'">'+esc(item.label)+'<small>'+esc(item.sub)+'</small></button>';}).join('');
-  image.src=f.image;image.alt=f.alt;
-  partList.innerHTML=f.parts.map(function(item,i){return '<button type="button" class="bd-part '+(i===state.part?'on':'')+'" data-part="'+i+'" aria-pressed="'+(i===state.part?'true':'false')+'"><b>'+(i+1)+'</b><span>'+esc(item.name)+'</span></button>';}).join('');
+  /* One family, one model, was the whole story until this catalogue grew a
+     second and third route per platform. The chip row that used to be a
+     single reference photo caption is now a model switcher — hidden when a
+     family still carries only one model, so cutting/digging/soil grow a
+     picker while watering and packaging read exactly as before. */
+  if(modelTabs){
+   var fmodels=f.models||[];
+   modelTabs.hidden=fmodels.length<2;
+   modelTabs.innerHTML=fmodels.map(function(item,i){return '<button type="button" class="bd-model-tab '+(i===state.model?'on':'')+'" data-model="'+i+'" aria-pressed="'+(i===state.model?'true':'false')+'">'+esc(item.name)+'</button>';}).join('');
+  }
+  /* Only the platform's reference model was ever photographed. A new model
+     with no anatomy shot must not borrow another model's picture — that would
+     misrepresent its construction — so the frame swaps for a plain notice
+     instead of an <img> with the wrong src, and stays empty rather than
+     stretched or cropped. */
+  if(mdl.image){image.src=mdl.image;image.alt=mdl.alt||'';image.hidden=false;}else{image.removeAttribute('src');image.hidden=true;}
+  partList.innerHTML=mdl.parts.map(function(item,i){return '<button type="button" class="bd-part '+(i===state.part?'on':'')+'" data-part="'+i+'" aria-pressed="'+(i===state.part?'true':'false')+'"><b>'+(i+1)+'</b><span>'+esc(item.name)+'</span></button>';}).join('');
   materials.innerHTML=part.materials.map(function(item,i){var m=materialMetric(item[0]);return matTools(part.name,item,i)+'<button type="button" class="bd-choice bd-material-choice '+(i===state.material?'on':'')+'" data-material="'+i+'" aria-pressed="'+(i===state.material?'true':'false')+'"><span class="bd-choice-top"><span class="bd-choice-visual"><i class="bd-swatch bd-swatch-'+swatchKind(item[0])+'" aria-hidden="true"></i><em class="bd-delta '+deltaClass(m)+'">'+deltaText(m)+'</em></span><span class="bd-choice-head"><b>'+esc(item[0])+'</b><small>'+esc(metricLabel(m))+'</small></span></span><span class="bd-choice-purpose">'+esc(item[1])+'</span></button></div>';}).join('');
   syncCompareBar();renderShortlist();
-  processes.innerHTML=f.processes.map(function(item,i){var m=processMetric(item);return '<button type="button" class="bd-choice bd-process-choice '+(i===state.process?'on':'')+'" data-process="'+i+'" aria-pressed="'+(i===state.process?'true':'false')+'"><span class="bd-choice-top"><span class="bd-choice-visual">'+'<i class="bd-swatch bd-swatch-process" aria-hidden="true"><img src="images/desk/'+processTile(item[0])+'.webp" alt="" loading="lazy" decoding="async"></i>'+'<em class="bd-delta '+deltaClass(m)+'">'+deltaText(m)+'</em></span><span class="bd-choice-head"><b>'+esc(item[0])+'</b><small>'+esc(metricLabel(m))+'</small></span></span><span class="bd-choice-purpose">'+esc(item[1])+'</span></button>';}).join('');
+  processes.innerHTML=mdl.processes.map(function(item,i){var m=processMetric(item);return '<button type="button" class="bd-choice bd-process-choice '+(i===state.process?'on':'')+'" data-process="'+i+'" aria-pressed="'+(i===state.process?'true':'false')+'"><span class="bd-choice-top"><span class="bd-choice-visual">'+'<i class="bd-swatch bd-swatch-process" aria-hidden="true"><img src="images/desk/'+processTile(item[0])+'.webp" alt="" loading="lazy" decoding="async"></i>'+'<em class="bd-delta '+deltaClass(m)+'">'+deltaText(m)+'</em></span><span class="bd-choice-head"><b>'+esc(item[0])+'</b><small>'+esc(metricLabel(m))+'</small></span></span><span class="bd-choice-purpose">'+esc(item[1])+'</span></button>';}).join('');
   setText('bd-cost-method','Cost movement uses the current public input proxy against its prior reference point. Modelled cards are directional planning signals; process cards show a driver, not a supplier quotation. Edition '+line(deskData.updated||'status unavailable')+'.');
   setText('bb-summary-family',f.label);setText('bb-summary-model',activeModel());setText('bb-summary-part',part.name);setText('bb-summary-material',material[0]);setText('bb-summary-material-move',deltaText(materialMove)+' · '+metricLabel(materialMove));setText('bb-summary-process',process[0]);setText('bb-summary-process-move',deltaText(processMove)+' · '+metricLabel(processMove));setText('bb-summary-priority',state.priority);
   var sku=skuImpact(f,part,material,process),cost=costImpact(materialMove,processMove,material,process),freight=representativeFreight(destination.value),signal=currentDeskSignal(material,process,destination.value),market=marketImpact(f,destination.value),next=priorityImpact(state.priority);
@@ -4431,13 +4607,14 @@ function processTile(name){var n=String(name||'').toLowerCase();
   if(b.hasAttribute('data-drop')){var di=Number(b.getAttribute('data-drop'));if(di>-1&&di<shortlist.length){shortlist.splice(di,1);slSave();render();}return;}
   if(b.id==='bd-shortlist-draft'){draftEnquiry();return;}
   if(b.id==='bd-compare-open'){openCompare();return;}
-  if(b.hasAttribute('data-family')){state.family=Number(b.getAttribute('data-family'));state.part=0;state.material=0;state.process=0;compare=[];render();return;}
+  if(b.hasAttribute('data-family')){state.family=Number(b.getAttribute('data-family'));state.model=0;state.part=0;state.material=0;state.process=0;compare=[];render();return;}
+  if(b.hasAttribute('data-model')){state.model=Number(b.getAttribute('data-model'));state.part=0;state.material=0;state.process=0;compare=[];render();return;}
   if(b.hasAttribute('data-part')){state.part=Number(b.getAttribute('data-part'));state.material=0;compare=[];render();return;}
   if(b.hasAttribute('data-material')){state.material=Number(b.getAttribute('data-material'));render();return;}
   if(b.hasAttribute('data-process')){state.process=Number(b.getAttribute('data-process'));render();return;}
   if(b.hasAttribute('data-priority')){state.priority=b.getAttribute('data-priority');[].forEach.call(document.querySelectorAll('[data-priority]'),function(x){var on=x===b;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on?'true':'false');});render();return;}
   if(b.hasAttribute('data-go')){var id=b.getAttribute('data-go'),a=document.querySelector('.toc > a[href="#'+id+'"]');if(a)a.click();return;}
-  if(b.id==='reset-buyer-desk'){state={family:0,part:0,material:0,process:0,priority:'Cost stability'};compare=[];destination.selectedIndex=0;[].forEach.call(document.querySelectorAll('[data-priority]'),function(x,i){x.classList.toggle('on',i===0);x.setAttribute('aria-pressed',i===0?'true':'false');});render();}
+  if(b.id==='reset-buyer-desk'){state={family:0,model:0,part:0,material:0,process:0,priority:'Cost stability'};compare=[];destination.selectedIndex=0;[].forEach.call(document.querySelectorAll('[data-priority]'),function(x,i){x.classList.toggle('on',i===0);x.setAttribute('aria-pressed',i===0?'true':'false');});render();}
  });
  destination.addEventListener('change',render);
  var feed=window.BirdlandProductFeed;
@@ -4445,25 +4622,40 @@ function processTile(name){var n=String(name||'').toLowerCase();
 
  /* The Terminal search sends people here with ?q=<material or process>, so the
     builder opens on the thing they searched for rather than on whatever was
-    selected last. Anything that does not match is ignored — a stale link should
-    land on a working page, not an error. */
+    selected last. The Demand shelf's price-band ladder sends people here with
+    ?q=<model name> instead, so a model-name match is checked first — a
+    material and a model never share a string, but checking models first
+    means a future coincidence resolves to the more specific link. Anything
+    that does not match is ignored — a stale link should land on a working
+    page, not an error. */
  (function(){
   var q="";try{q=decodeURIComponent((location.search.match(/[?&]q=([^&]*)/)||[])[1]||"");}catch(e){}
   if(!q)return;
   var want=q.toLowerCase();
   for(var fi=0;fi<families.length;fi++){
-   var fam=families[fi];
-   for(var pi=0;pi<(fam.parts||[]).length;pi++){
-    var part=fam.parts[pi];
-    for(var mi=0;mi<(part.materials||[]).length;mi++){
-     if(String(part.materials[mi][0]).toLowerCase()===want){
-      state.family=fi;state.part=pi;state.material=mi;state.process=0;render();return;
-     }
+   var fam=families[fi],famModels=fam.models||[];
+   for(var di=0;di<famModels.length;di++){
+    if(String(famModels[di].name).toLowerCase()===want){
+     state.family=fi;state.model=di;state.part=0;state.material=0;state.process=0;render();return;
     }
    }
-   for(var qi=0;qi<(fam.processes||[]).length;qi++){
-    if(String(fam.processes[qi][0]).toLowerCase()===want){
-     state.family=fi;state.part=0;state.material=0;state.process=qi;render();return;
+  }
+  for(var fi2=0;fi2<families.length;fi2++){
+   var fam2=families[fi2],famModels2=fam2.models||[];
+   for(var di2=0;di2<famModels2.length;di2++){
+    var mdl2=famModels2[di2];
+    for(var pi=0;pi<(mdl2.parts||[]).length;pi++){
+     var part=mdl2.parts[pi];
+     for(var mi=0;mi<(part.materials||[]).length;mi++){
+      if(String(part.materials[mi][0]).toLowerCase()===want){
+       state.family=fi2;state.model=di2;state.part=pi;state.material=mi;state.process=0;render();return;
+      }
+     }
+    }
+    for(var qi=0;qi<(mdl2.processes||[]).length;qi++){
+     if(String(mdl2.processes[qi][0]).toLowerCase()===want){
+      state.family=fi2;state.model=di2;state.part=0;state.material=0;state.process=qi;render();return;
+     }
     }
    }
   }
@@ -4781,12 +4973,14 @@ var fmt=function(x){return 'US$'+Math.round(x).toLocaleString('en-US');};
      the other. */
   var fams=window.BL_FAMILIES||[],seen={};
   fams.forEach(function(f){
-   (f.parts||[]).forEach(function(p){
+   (f.models||[]).forEach(function(mdl){
+   (mdl.parts||[]).forEach(function(p){
     (p.materials||[]).forEach(function(m){
      var name=String(m&&m[0]||'');
      if(!name||seen[name])return;seen[name]=1;
      index.push({t:'MATERIAL',n:name,d:(f.label?f.label+' · ':'')+(p.name||''),q:name});
     });
+   });
    });
   });
   if(!index.length)return;
