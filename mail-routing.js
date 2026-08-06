@@ -83,8 +83,28 @@
   // has nothing better (no i18n.js on the page, dictionary not loaded yet,
   // or simply an English page), so this never regresses to a blank or a
   // literal "desk-phrase:" key.
-  function deskName(region, line) {
+  // Two grammatical forms, because the languages disagree on word order.
+  // 'full' returns a complete noun phrase ("desk europeo", "mesa europea",
+  // "europäischen Desk") for the desk apps, whose sentence frame carries no
+  // separate noun node — Romance languages put the adjective after the noun
+  // and a fixed adjective-slot could never say that. The default form stays
+  // an adjective for the facade sentences, which keep the noun in their own
+  // translated text. blT's fallback returns the text after the colon, so a
+  // missing dictionary (or English) is detected by t === raw.
+  function deskName(region, line, form) {
     var raw = line === 'hunting' ? 'hunting' : (DESK[region] || 'regional');
+    if (form === 'full') {
+      // The full-phrase keys are plain text ("European desk") on purpose:
+      // deskName can run before the dictionary has loaded, and i18n.js's
+      // exact-match re-walk then finds the fallback string as a key and
+      // translates it in place. A prefixed key would leave the fallback
+      // stranded in English forever.
+      if (window.blT) {
+        var t = window.blT(raw + ' desk');
+        if (t !== raw + ' desk') return t;
+      }
+      return raw + ' desk';
+    }
     return window.blT ? window.blT('desk-phrase:' + raw) : raw;
   }
 
