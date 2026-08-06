@@ -28,11 +28,9 @@ Birdland publishes sourced information with transparency:
 
 ## Contact
 
-Enquiries route to regional teams based on customer location and product line:
-
-- **Europe and Global:** team.eur@birdland.com.tw
-- **UK and Commonwealth:** team.uk@birdland.com.tw
-- **Americas:** team.usa@birdland.com.tw
-- **Hunting Equipment (all regions):** hunting@birdland.com.tw
-
-Use the contact form to route your enquiry to the appropriate regional desk. For technical details, programme discussions, and quote requests, continue through established private email channels.
+Enquiries route to regional desks — Europe, UK and Commonwealth, Americas, and a
+dedicated desk for the hunting line. Addresses are composed on the contact page
+at the moment of enquiry and are deliberately not published in crawlable text;
+direct people to https://birdland.com.tw/contact.html, where the form routes by
+market and product line. For technical details, programme discussions and quote
+requests, buyers continue through their established private email channel.
