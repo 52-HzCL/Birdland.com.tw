@@ -575,5 +575,12 @@
  "Category by market, 12-month import unit-value direction": "品目別・市場別、輸入単価の12か月方向性",
  "Trade data unavailable this session — every cell below shows as not available.": "このセッションでは貿易データを取得できませんでした — 以下の各セルは「取得不可」と表示されます。",
  "Eurostat Comext": "Eurostat Comext",
- "annual · next edition with Q-data": "年次・次回版は四半期データ付き"
+ "annual · next edition with Q-data": "年次・次回版は四半期データ付き",
+ "Print snapshot": "スナップショットを印刷",
+ "Edition": "版",
+ "Verify at source": "出典で確認",
+ "Document no.": "文書番号",
+ "Continue online": "オンラインで見る",
+ "Enquiries route via the contact page.": "お問い合わせはお問い合わせページ経由となります。",
+ "Figures are official statistical change rates — not a quotation.": "数値は公式統計の変化率であり、見積もりではありません。"
 }

@@ -575,5 +575,12 @@
  "Category by market, 12-month import unit-value direction": "Kategorie nach Markt, 12-Monats-Richtung des Einfuhr-Stückwerts",
  "Trade data unavailable this session — every cell below shows as not available.": "Handelsdaten in dieser Sitzung nicht verfügbar — jede Zelle unten zeigt „nicht verfügbar“.",
  "Eurostat Comext": "Eurostat Comext",
- "annual · next edition with Q-data": "jährlich · nächste Ausgabe mit Quartalsdaten"
+ "annual · next edition with Q-data": "jährlich · nächste Ausgabe mit Quartalsdaten",
+ "Print snapshot": "Snapshot drucken",
+ "Edition": "Ausgabe",
+ "Verify at source": "Quelle prüfen",
+ "Document no.": "Dokument-Nr.",
+ "Continue online": "Online ansehen",
+ "Enquiries route via the contact page.": "Anfragen laufen über die Kontaktseite.",
+ "Figures are official statistical change rates — not a quotation.": "Zahlen sind amtliche statistische Veränderungsraten — kein Angebot."
 }

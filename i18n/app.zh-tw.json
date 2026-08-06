@@ -575,5 +575,12 @@
  "Category by market, 12-month import unit-value direction": "依品類與市場劃分，進口單價 12 個月變動方向",
  "Trade data unavailable this session — every cell below shows as not available.": "此工作階段無法取得貿易資料 — 以下每個儲存格都會顯示「無法取得」。",
  "Eurostat Comext": "Eurostat Comext",
- "annual · next edition with Q-data": "年度・下一版將含季資料"
+ "annual · next edition with Q-data": "年度・下一版將含季資料",
+ "Print snapshot": "列印快照",
+ "Edition": "版次",
+ "Verify at source": "至來源查證",
+ "Document no.": "文件編號",
+ "Continue online": "線上查看",
+ "Enquiries route via the contact page.": "詢價請經聯絡頁面轉達。",
+ "Figures are official statistical change rates — not a quotation.": "數字為官方統計之變化率,非報價。"
 }
