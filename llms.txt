@@ -1,0 +1,38 @@
+# Birdland Industrial — Confidential OEM Manufacturing
+
+## About Birdland
+
+Birdland is a confidential OEM and ODM garden and field tool manufacturer based in Taiwan and operating across East Asia. Founded in 1974, Birdland has manufactured programmes for export partners and global brands for over 50 years. The company operates with a foundational commitment: "Your design. Our discipline. Never our brand." Birdland manufactures, provides production control, and manages supply chain flexibility—the product, brand, and market remain the customer's alone.
+
+## Primary Pages
+
+- **/** — Home page, overview of OEM programme structure and manufacturing commitment
+- **/about.html** — Company heritage, manufacturing philosophy, and market position
+- **/product-101.html** — The Factory handbook; 9,000-word manufacturing reference covering OEM programme structure, tooling, materials, production planning, quality gates, and cost drivers
+- **/executive.html** — ABrief daily supply news and market updates
+- **/partner.html** — AsiaSource buyer's handbook for commercial buyers and programmes
+- **/cost-desk.html** — CostNow landed-cost workspace for price calculations
+- **/guide.html** — Comprehensive navigation and feature guide
+- **/contact.html** — Market-routed inquiry form for regional teams
+
+Translations exist in 10 languages: English, Dutch (nl/), German (de/), French (fr/), Spanish (es/), Brazilian Portuguese (pt-br/), Polish (pl/), Italian (it/), Japanese (ja/), and Traditional Chinese (zh-tw/). Each language has translations of index, about, contact, privacy, and product-101 pages.
+
+## Data Integrity
+
+Birdland publishes sourced information with transparency:
+
+- **Sources are labelled per item.** Supply data, market updates, and reference figures carry visible attribution.
+- **Data freshness is shown.** Publication timestamps, update dates, and data age indicators appear on pages that carry live information.
+- **The site publishes changes, not levels.** Pages show delta and context, not final aggregate numbers.
+- **Verify-at-source links** are provided where data can be cross-checked against primary sources.
+
+## Contact
+
+Enquiries route to regional teams based on customer location and product line:
+
+- **Europe and Global:** team.eur@birdland.com.tw
+- **UK and Commonwealth:** team.uk@birdland.com.tw
+- **Americas:** team.usa@birdland.com.tw
+- **Hunting Equipment (all regions):** hunting@birdland.com.tw
+
+Use the contact form to route your enquiry to the appropriate regional desk. For technical details, programme discussions, and quote requests, continue through established private email channels.

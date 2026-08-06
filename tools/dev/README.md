@@ -26,6 +26,7 @@ somewhere unusual. Screenshots go to `../shots` next to the repo, or
 | `gen-terminal.js` | Builds `terminal.json` (live values + search index) from `outlook-data.json` and the desk templates. Node twin of `tools/build_terminal.py`. |
 | `build-p101.js` | Generates `product-101.html` from `ratings.js` and the three `bp-*.svg` blueprint sprites in this directory. Section numbers derive from `SECTIONS` order. **Run it and diff before committing** — it must reproduce the shipped page byte for byte. |
 | `gen-guide-shots.js` | Recaptures `images/guide/*.webp`. CI has Python, not Playwright, so after any redesign this is a manual re-run or the Guide shows the old site — the exact failure it exists to prevent. |
+| `build-sitemap.js` | Generates `sitemap.xml` from all HTML files in root and language folders (nl/, de/, fr/, es/, pt-br/, pl/, it/, ja/, zh-tw/), excluding pages with `noindex` meta tag or filenames containing "vault"/"encrypt". Run when pages are added or removed. |
 
 ## Languages
 
