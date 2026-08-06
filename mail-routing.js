@@ -68,7 +68,25 @@
     return BOX[(line && BY_LINE[line]) || BY_REGION[region] || 'eur'];
   }
   function addr(region, line) { return box(region, line) + AT + DOM; }
-  function deskName(region, line) { return line === 'hunting' ? 'hunting' : (DESK[region] || 'regional'); }
+  // The name is written straight into the page (contact.html's "Goes to the
+  // ___ desk", AsiaSource/CostNow's brief-toolbar "Email this brief to the
+  // ___ desk", ABrief's edition strip "to the ___ desk") wherever the reader
+  // is mid-sentence in their own language, so the word has to come out
+  // already translated.
+  // i18n.js's exact-match sweep can't be trusted with the raw English here:
+  // "UK & Commonwealth" and "Americas" are *also* the nominative labels on
+  // the region picker, and a language that inflects (Polish genitive,
+  // German weak-adjective) needs a different form in a sentence than it
+  // does standing alone in a <select>. A "desk-phrase:" key keeps this
+  // word's dictionary entry from ever being read — or overwritten — by
+  // that other lookup. blT itself falls back to the English word when it
+  // has nothing better (no i18n.js on the page, dictionary not loaded yet,
+  // or simply an English page), so this never regresses to a blank or a
+  // literal "desk-phrase:" key.
+  function deskName(region, line) {
+    var raw = line === 'hunting' ? 'hunting' : (DESK[region] || 'regional');
+    return window.blT ? window.blT('desk-phrase:' + raw) : raw;
+  }
 
   // Composes and navigates in one step, inside the click. Nothing is stored in
   // the DOM before or after.

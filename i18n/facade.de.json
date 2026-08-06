@@ -84,7 +84,7 @@
     ["<label>Product line<select", "<label>Produktlinie<select"],
     ["aria-label=\"Product line\"", "aria-label=\"Produktlinie\""],
     [">Open an OEM email</button>", ">OEM-E-Mail öffnen</button>"],
-    ["Goes to the <b id=\"mr-desk\">regional</b> desk.", "Geht an den Desk <b id=\"mr-desk\">regional</b>."],
+    ["Goes to the <b id=\"mr-desk\">regional</b> desk.", "Geht an den <b id=\"mr-desk\">regional</b> Desk."],
     [">Show the address</button>", ">Adresse anzeigen</button>"],
     ["alt=\"A composite portrait of Birdland: pencil sketches of press tools and a blueprint panel of garden tools across the top, the office staff seated in front of the production floor in work uniform, and along the bottom one order followed from inspection and boxing through palletising and the forklift to the container ship.\"", "alt=\"Ein zusammengesetztes Porträt von Birdland: oben Bleistiftskizzen von Presswerkzeugen und eine Blaupausen-Tafel mit Gartenwerkzeugen, davor das Büroteam in Arbeitsuniform vor der Produktionshalle, und unten ein Auftrag auf seinem Weg von Prüfung und Verpackung über Palettierung und Gabelstapler bis zum Containerschiff.\""],
     ["The people behind the programme.<br>Confidential work in private correspondence.", "Die Menschen hinter dem Programm.<br>Vertrauliche Arbeit in privater Korrespondenz."],

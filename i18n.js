@@ -33,6 +33,21 @@
 
   var KEY = 'bl_lang';
 
+  // Namespaced lookups (mail-routing.js's desk labels, so far) need a way to
+  // ask "is there a translation for this" without joining the exact-match
+  // sweep below — a shared key would let a menu-option word and a phrase
+  // word fight over one case/form. DICT is declared here, ahead of the
+  // early returns, so blT is live on every page regardless of which path
+  // this file takes; a caller who asks before the dictionary has loaded (or
+  // on an English page, where DICT never loads) gets the text back exactly
+  // as given, with any "namespace:" prefix stripped — never the raw key.
+  var DICT = null;
+  window.blT = function (key) {
+    if (DICT && typeof DICT[key] === 'string') return DICT[key];
+    var i = key.indexOf(':');
+    return i === -1 ? key : key.slice(i + 1);
+  };
+
   var lang;
   try { lang = localStorage.getItem(KEY); } catch (e) { lang = null; }
   if (!lang || lang === 'en') return;
@@ -51,7 +66,6 @@
     } catch (e) { return ''; }
   })();
 
-  var DICT = null;
   // A node is walked once. The desks re-render whole panels rather than editing
   // text in place, so the nodes that come back are new nodes; the ones that
   // stayed do not need a second look.

@@ -72,8 +72,18 @@ for (const L of LANGS) {
     // Arriving here is choosing this language; the desks read it from there.
     s = sub(s, /<head>/, '<head>\n  ' + handoff(L.dir), 1, L.dir + '/' + page + ' language handoff');
     s = sub(s, /<details class="bl-language"[\s\S]*?<\/details>/, picker(page, L.dir), 1, L.dir + '/' + page + ' picker');
+    // contact.html writes its desk name straight into the page at runtime
+    // (mail-routing.js's deskName), so only the translated copies need
+    // i18n.js there to translate that one word through the desk-phrase:
+    // dictionary. The English root deliberately never loads it, for the
+    // same reason it never gets a language handoff above: an English page
+    // has no business reading a stored language preference.
+    if (page === 'contact.html') {
+      s = sub(s, /(<script defer src="mail-routing\.js[^"]*"><\/script>)/,
+        '<script defer src="i18n.js?v=20260806a"></script>$1', 1, L.dir + '/' + page + ' i18n.js injection');
+    }
     // one folder deep: assets and EN-only pages step up
-    s = s.replace(/(href="|src=")(tokens\.css|text-size\.js|terminal\.css|terminal\.js|birdland-visual\.css|terminal-status\.js|context\.js|mail-routing\.js|favicon\.svg|images\/|product-101\.html|guide\.html|executive\.html)/g, '$1../$2');
+    s = s.replace(/(href="|src=")(tokens\.css|text-size\.js|terminal\.css|terminal\.js|birdland-visual\.css|terminal-status\.js|context\.js|mail-routing\.js|i18n\.js|favicon\.svg|images\/|product-101\.html|guide\.html|executive\.html)/g, '$1../$2');
     s = s.replace("navigator.serviceWorker.register('service-worker.js')", "navigator.serviceWorker.register('../service-worker.js')");
     // hreflang cluster: EN pages already carry the full set; keep it as-is.
     // translated-from note
