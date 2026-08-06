@@ -3005,9 +3005,21 @@ function renderMatrix(){
  mxEl.innerHTML=h+'</tbody>';
 }
 
+// On screen a reader follows a link; on paper a reader retypes one, and a
+// sceptical buyer who retypes 200 characters of REST query lands on raw JSON.
+// So the screen gets the API call the figures actually came from, and the
+// printed sheet gets Eurostat's own browsable table for the same dataset plus
+// the query stated in words — short enough to type, and it opens something a
+// person can read.
 function verifyUrl(mkt,cn){
  var q=['format=JSON','freq=A','flow=1','reporter='+mkt.toUpperCase(),'partner=WORLD','partner=TW','partner=CN','product='+cn,'time=2023','time=2024'];
  return 'https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data/ds-045409?'+q.join('&');
+}
+function verifyUrlPrint(){
+ return 'ec.europa.eu/eurostat/databrowser/view/DS-045409/default/table';
+}
+function verifyQueryWords(mkt,cn){
+ return 'reporter ' + mkt.toUpperCase() + ' · product ' + cn + ' · imports · 2023 and 2024';
 }
 
 function deskFor(mkt){ return mkt==='uk'?'uk':'europe'; }
@@ -3090,7 +3102,7 @@ function printSnapshot(p,c,mkt,mName,cn,hi,d,cls,period,url,shift){
   +'<div class="ds-row"><span>'+esc(t('Taiwan-origin share'))+'</span><b>'+(c.share_tw!=null?c.share_tw+'%':'\u2014')+(shift!=null?' ('+(shift>=0?'+':'')+shift+' pts)':'')+'</b></div>'
   +'<div class="ds-row"><span>'+esc(t('China'))+'</span><b>'+(c.share_cn!=null?c.share_cn+'%':'\u2014')+'</b></div>'
   +'<div class="ds-ladder"><div class="ds-lhead"><span>'+esc(t('Price band'))+'</span><span>'+esc(t('Birdland route'))+'</span></div>'+bandsHtml+'</div>'
-  +'<p class="ds-src">'+esc(t('Eurostat Comext'))+' \u00b7 CN '+esc(cn)+' \u00b7 '+esc(period.previous)+'\u2192'+esc(period.latest)+' \u00b7 '+esc(t('Verify at source'))+': '+esc(url)+'</p>'
+  +'<p class="ds-src">'+esc(t('Eurostat Comext'))+' \u00b7 CN '+esc(cn)+' \u00b7 '+esc(period.previous)+'\u2192'+esc(period.latest)+' \u00b7 '+esc(t('Verify at source'))+': '+esc(verifyUrlPrint())+' \u00b7 '+esc(verifyQueryWords(mkt,cn))+'</p>'
   +'<p class="ds-foot">'+esc(t('Document no.'))+' '+docNo(now)+' \u00b7 '+esc(t('Continue online'))+': '+esc(deepLink)+'</p>'
   +'<p class="ds-desk">'+esc(t('Enquiries route via the contact page.'))+'</p>'
   +'<p class="ds-disc">'+esc(t('Figures are official statistical change rates \u2014 not a quotation.'))+'</p>';
