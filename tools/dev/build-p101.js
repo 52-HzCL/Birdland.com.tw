@@ -7,6 +7,11 @@ const fs = require('fs');
 const path = require('path');
 const SCRATCH = __dirname;
 const RATE = require(path.join(SCRATCH, 'ratings.js'));
+// The Factory ships in ten editions, so it carries the facade's own picker and
+// hreflang cluster rather than a control of its own. Both come from the shared
+// list, and i18n-build.js writes the identical markup into this page — either
+// tool can run last and the bytes are the same.
+const { picker, cluster } = require(path.join(SCRATCH, '_langs.js'));
 
 // The sprite files hold bare <symbol> elements, so they MUST be re-wrapped in a
 // real <svg>. A <symbol> parsed outside an <svg> lands in the XHTML namespace
@@ -640,7 +645,7 @@ const HEADER = `  <a class="bl-skip" href="#main">Skip to content</a>
         <button type="button" class="tm-chip" data-terminal aria-haspopup="dialog" aria-expanded="false"><i aria-hidden="true"></i>Terminal</button>
         <a href="contact.html">Contact</a>
       </nav>
-      <div class="bl-header-actions"><div class="bl-status" aria-label="Birdland system status"><span class="bl-status-online" data-hq-status>Birdland Office <b data-hq-label>Resting</b></span><span class="bl-status-time" data-taipei-time>--:-- Taipei</span><details class="bl-language" data-language-picker><summary>Language</summary><div><select data-translate-select aria-label="Translate this page"><option>Choose language…</option></select><small>Opens Google Translate in a new tab. No selection is stored.</small></div></details></div></div>
+      <div class="bl-header-actions"><div class="bl-status" aria-label="Birdland system status"><span class="bl-status-online" data-hq-status>Birdland Office <b data-hq-label>Resting</b></span><span class="bl-status-time" data-taipei-time>--:-- Taipei</span>${picker('product-101.html', null)}</div></div>
     </div>
   </header>`;
 
@@ -654,6 +659,7 @@ const html = `<!doctype html>
   <title>Factory | Garden Hand-Tool Manufacturing Reference</title>
   <meta name="description" content="A reference article on garden hand-tool manufacturing: the Taiwan works since 1974, seven production gates, nine material families, eleven packaging formats and the four blocks of landed cost — each rated for how common and how costly it is in European and North American DIY retail.">
   <link rel="stylesheet" href="birdland-visual.css?v=20260731j"><script defer src="terminal-status.js?v=20260730d"></script>
+  ${cluster('product-101.html')}
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
 <body>
