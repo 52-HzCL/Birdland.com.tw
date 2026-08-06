@@ -25,6 +25,13 @@ const TARGETS = {
     '.bd-sharebar', '.bd-share-label', '.bd-share-btn', '.bd-brief-actions', '.bd-mail-to',
     // the rail's own wordmark and desk switch, both now in the shared header
     '.pr-brand', '.pr-brand-mark', '.pr-brand-word', '.pr-mode-switch', '.pr-mode-3',
+    // The Google Translate widget and every shell built around it: the topbar
+    // box, the rail popover that adopted it, and the classes Google's own
+    // script would have applied. The script was never loaded, so none of this
+    // ever matched an element; language is the app bar's picker now.
+    '#google_translate_element', '.gt-on', '.language-box',
+    '.goog-te-banner-frame', '.goog-te-gadget', '.goog-te-combo',
+    '.pr-lang', '.pr-lang-btn', '.pr-lang-chev', '.pr-lang-pop', '.pr-lang-note',
   ]),
   // The banner's News/Buyer/Cost switch — the Terminal panel is the switch now.
   'desk-banner.css': tokens(['.dbar-switch']),

@@ -134,7 +134,13 @@ is the two rules that matter most; the doc has the rest.
 
 - "My Orders" PO tracker (boss: not needed)
 - Threshold/target-value price alerts (Share tool is manual multi-select only)
-- Hand-translated 6-language dictionary (Google Translate widget only)
+- The Google Translate widget, in every shape it took: the header `<select>`,
+  the topbar `.language-box`, the AsiaSource rail popover and the "Translate
+  this report" control. The script behind them was never loaded, so none of it
+  ever translated anything. **This entry replaces the opposite instruction that
+  stood here until 2026-08-06** — the site now ships a hand-translated ten-
+  language edition (`i18n/`, `tools/dev/i18n-build.js`), and that is the only
+  language mechanism. Do not reintroduce a machine-translation widget.
 - BirdBot fake iMessage chat
 - Any claim that a report is "AI-generated" when it's rule-based — reports are
   composed client-side from tracked data, zero API calls, and must say so honestly.

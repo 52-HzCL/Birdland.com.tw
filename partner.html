@@ -97,7 +97,7 @@
  .news a.item{display:block;border:1px solid var(--line);border-radius:6px;padding:var(--sp-3) var(--sp-3);margin-bottom:var(--sp-2)}
  .news a.item:hover{border-color:var(--gold);background:var(--card)}
  .news .dt{font-family:var(--mono);font-size:var(--fs-body);color:var(--gold)}.news .ti{display:block;font-size:var(--fs-h2);font-weight:700;color:#fff;margin:var(--sp-1) 0 4px}.news .bl{font-size:var(--fs-h3);color:var(--mut)}
- #google_translate_element{display:none}.goog-te-banner-frame{display:none!important}
+ 
 
  /* ===== WSJ-on-old-system light skin (locked on) ===== */
  body.theme-light{background:#FFFFFF;color:#1A1D20}
@@ -527,24 +527,24 @@
  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto!important}}
 
 /* rail Google-Translate control: pill button -> popover */
-#p-rail .pr-lang{margin-bottom:var(--sp-3);position:relative}
-#p-rail>.pr-lang{margin:var(--sp-3) var(--sp-2) 0}
-#p-rail .pr-lang-btn{display:flex;align-items:center;gap:8px;width:100%;background:var(--kb-panel);border:1px solid var(--kb-line);border-radius:10px;padding:var(--sp-2) var(--sp-2);font-family:var(--kb-sans);font-size:var(--fs-h3);font-weight:600;color:var(--kb-ink);cursor:pointer;transition:border-color .15s ease,box-shadow .15s ease}
-#p-rail .pr-lang-btn:hover{border-color:var(--kb-line2)}
-#p-rail .pr-lang-btn:focus-visible{outline:none;border-color:var(--kb-accent);box-shadow:0 0 0 3px var(--kb-accent-soft)}
-#p-rail .pr-lang-btn[aria-expanded="true"]{border-color:var(--kb-accent);box-shadow:0 0 0 3px var(--kb-accent-soft)}
-#p-rail .pr-lang-btn svg{width:16px;height:16px;flex:0 0 16px;fill:none;stroke:var(--kb-mut);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-#p-rail .pr-lang-btn span{flex:1;text-align:left}
-#p-rail .pr-lang-chev{width:7px;height:7px;flex:0 0 7px;border-right:1.6px solid var(--kb-faint);border-bottom:1.6px solid var(--kb-faint);transform:rotate(45deg);transition:transform .15s ease;margin-top:-2px}
-#p-rail .pr-lang-btn[aria-expanded="true"] .pr-lang-chev{transform:rotate(-135deg);margin-top:var(--sp-1)}
-#p-rail .pr-lang-pop{position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:40;background:var(--kb-panel);border:1px solid var(--kb-line);border-radius:10px;box-shadow:0 8px 24px rgba(20,27,44,.12);padding:var(--sp-2);animation:prLangIn .14s cubic-bezier(.22,.8,.28,1)}
+
+
+
+
+
+
+
+
+
+
+
 @keyframes prLangIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
-#p-rail .pr-lang-pop #google_translate_element{display:block}
-#p-rail .pr-lang-pop .goog-te-gadget{font-family:var(--kb-sans)!important;font-size:0!important;color:var(--kb-faint)!important;line-height:0}
-#p-rail .pr-lang-pop .goog-te-combo{width:100%!important;font-family:var(--kb-sans)!important;font-size:var(--fs-h3)!important;font-weight:600!important;color:var(--kb-ink)!important;background:var(--kb-bg)!important;border:1px solid var(--kb-line)!important;border-radius:var(--r-md)!important;padding:8px var(--sp-2)!important;margin:0!important;cursor:pointer}
-#p-rail .pr-lang-pop .goog-te-gadget>span{display:none!important}
-#p-rail .pr-lang-note{font-size:var(--fs-small);color:var(--kb-faint);margin-top:var(--sp-2);line-height:1.3}
-@media(prefers-reduced-motion:reduce){#p-rail .pr-lang-pop{animation:none}}
+
+
+
+
+
+
 /* ===== bento content grid: 1 large + 1 medium + 2 small, per feature ===== */
 .bento{display:grid;grid-template-columns:1.7fr 1fr;grid-template-rows:auto auto;gap:16px;align-items:start}
 .bento.bento-2{grid-template-columns:1fr;grid-template-rows:auto}
@@ -568,15 +568,15 @@
 body,body.dark,body.theme-light{background:var(--kb-bg)!important;color:var(--kb-ink)!important;font-family:var(--kb-sans)!important;letter-spacing:0!important}
 body::after{display:none!important}
 .lights,.hled,.bb-bar .bb-led,.gbar .gd,.tpk-led,.sysled,.thm-sun,.thm-moon,.ln-dot,.fxlive .dot,.botbar .d{display:none!important}
-#google_translate_element{display:none!important}
-#google_translate_element.gt-on{display:block!important;margin-right:var(--sp-2)}
-#google_translate_element.gt-on .goog-te-gadget{font-family:var(--kb-sans)!important;font-size:var(--fs-body)!important;color:var(--kb-faint)!important}
-#google_translate_element.gt-on .goog-te-combo{font-family:var(--kb-sans)!important;border:1px solid var(--kb-line)!important;border-radius:var(--r-sm)!important;padding:4px var(--sp-2)!important;background:var(--kb-panel)!important;color:var(--kb-ink)!important}
-.language-box{display:flex;align-items:center;gap:8px;margin-left:4px;padding-left:var(--sp-2);border-left:1px solid var(--kb-line);color:var(--kb-mut)}
-.language-box span{display:block;font:700 var(--fs-micro) var(--kb-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--pd-jade)}
-.language-box small{display:block;margin-top:var(--sp-1);font:600 var(--fs-micro) var(--kb-sans);color:var(--kb-faint);white-space:nowrap}
-.language-box #google_translate_element.gt-on{margin-right:0}
-.language-box #google_translate_element.gt-on .goog-te-combo{max-width:150px;padding:var(--sp-1) var(--sp-2)!important;border-radius:var(--r-md)!important}
+
+
+
+
+
+
+
+
+
 ::selection{background:var(--kb-accent);color:#fff}
 
 .sq-mk,.sqmk,.glogo{background:var(--kb-accent)!important;box-shadow:none!important}
@@ -1098,7 +1098,7 @@ body.theme-light #dash{
 .bd-swatch{position:relative;overflow:hidden}
 .bd-swatch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .bd-swatch-process{background:var(--kb-line2,#2a3340)}
-</style><style>.language-box details{position:relative}.language-box summary{cursor:pointer;font-weight:700;list-style:none}.language-box summary::-webkit-details-marker{display:none}.language-box details[open]{position:absolute;right:0;top:0;z-index:120;min-width:172px;padding:var(--sp-2);background:var(--kb-panel);border:1px solid var(--kb-line);border-radius:var(--r-md)}.language-box a,.language-box small{display:block;margin:var(--sp-1) 0;color:var(--kb-ink);text-decoration:none}.language-box small{font-size:var(--fs-micro);line-height:1.35;color:var(--kb-muted)}#p-material,#p-shipping,#p-freight,#p-watch,#p-war,#p-tariff,#p-market,#p-keynews,#p-regcal,#p-report,#p-news{display:none!important}</style>  <!-- Not deferred: the desk's tools are inline body scripts, which run before
+</style><style>#p-material,#p-shipping,#p-freight,#p-watch,#p-war,#p-tariff,#p-market,#p-keynews,#p-regcal,#p-report,#p-news{display:none!important}</style>  <!-- Not deferred: the desk's tools are inline body scripts, which run before
        any deferred script does. blCtx has no DOM dependency, so loading it
        eagerly is what lets those tools read the context at all. -->
   <script src="context.js?v=20260731d"></script><script defer src="mail-routing.js?v=20260731c"></script>
@@ -1134,7 +1134,7 @@ body.theme-light #dash{
   body.theme-light .toc a{border-radius:999px;color:#31564b!important;font-weight:700}
   body.theme-light .toc a:hover,body.theme-light .toc a:focus-visible,body.theme-light .toc a.on{background:var(--jade-700)!important;color:#fffdf8!important}
   body.theme-light .blk{border-color:#d8cfc1!important;border-radius:var(--r-md)!important;background:#fffdf8!important;box-shadow:0 8px 22px rgba(49,56,48,.05)}
-  @media(max-width:680px){body.theme-light .hero{padding:var(--sp-4) var(--sp-3)}body.theme-light .pd-title{font-size:var(--fs-display)}body.theme-light .tb{padding:0 var(--sp-3)}body.theme-light .tb-right .sysgrp,body.theme-light .tb-right .tpk,body.theme-light .tb-right .tpk-hol,body.theme-light .tb-right .language-box,body.theme-light .tb-right>.back{display:none!important}}
+  @media(max-width:680px){body.theme-light .hero{padding:var(--sp-4) var(--sp-3)}body.theme-light .pd-title{font-size:var(--fs-display)}body.theme-light .tb{padding:0 var(--sp-3)}body.theme-light .tb-right .sysgrp,body.theme-light .tb-right .tpk,body.theme-light .tb-right .tpk-hol,body.theme-light .tb-right>.back{display:none!important}}
   @media(prefers-reduced-motion:reduce){body.theme-light *{scroll-behavior:auto!important;animation-duration:var(--dur-fast)!important}}
 /* AsiaSource 2026 — public procurement decision console */
 .bd-shell{margin:var(--sp-3) 0 24px;border:1px solid rgba(5,55,45,.22);background:var(--kb-paper,var(--paper-2));box-shadow:0 18px 48px rgba(4,45,37,.08);overflow:hidden}
@@ -1802,7 +1802,7 @@ body.theme-light .tb-left .brand{padding-right:var(--sp-3);border-right:1px soli
 body.theme-light .tb-left .brand .vip{font:600 var(--fs-micro)/1 var(--kb-mono);letter-spacing:.1em}
 body.theme-light .tb-left .back{color:var(--pd-muted)!important;font:600 var(--fs-micro)/1.2 var(--kb-mono)!important;letter-spacing:.07em!important}
 body.theme-light .tb-right{display:flex!important;min-width:0;margin-left:auto;gap:var(--sp-2)!important;align-items:center!important;justify-content:flex-end}
-body.theme-light .topbar .sysgrp,body.theme-light .topbar .tpk,body.theme-light .topbar .tpk-hol,body.theme-light .topbar .language-box,body.theme-light .topbar a.back{display:inline-flex!important;align-items:center;min-height:34px;margin:0!important;padding:0 var(--sp-2)!important;border:1px solid var(--pd-line)!important;border-radius:var(--r-md)!important;background:rgba(255,255,255,.58)!important;color:var(--pd-jade)!important;box-shadow:0 1px 0 rgba(255,255,255,.8) inset!important;font:600 var(--fs-micro)/1.2 var(--kb-sans)!important;letter-spacing:.02em!important;white-space:nowrap}
+body.theme-light .topbar .sysgrp,body.theme-light .topbar .tpk,body.theme-light .topbar .tpk-hol,body.theme-light .topbar a.back{display:inline-flex!important;align-items:center;min-height:34px;margin:0!important;padding:0 var(--sp-2)!important;border:1px solid var(--pd-line)!important;border-radius:var(--r-md)!important;background:rgba(255,255,255,.58)!important;color:var(--pd-jade)!important;box-shadow:0 1px 0 rgba(255,255,255,.8) inset!important;font:600 var(--fs-micro)/1.2 var(--kb-sans)!important;letter-spacing:.02em!important;white-space:nowrap}
 body.theme-light .topbar .sysgrp::before{width:6px;height:6px;margin-right:var(--sp-1);background:#6b9e5c;box-shadow:0 0 0 3px rgba(107,158,92,.12)}
 body.theme-light .topbar .sysgrp b{color:inherit!important;font:600 var(--fs-micro)/1.2 var(--kb-sans)!important}
 body.theme-light .topbar .sys-hq{gap:var(--sp-2)!important;padding-right:0!important}
@@ -1814,7 +1814,7 @@ body.theme-light .topbar .sys-time{min-height:32px;padding:0 var(--sp-2);border-
 body.theme-light .topbar .sys-time #tpkTime{color:var(--pd-jade)!important;font:600 var(--fs-body)/1 var(--kb-mono)!important;letter-spacing:-.05em}
 body.theme-light .topbar .tpk-hol{max-width:245px;overflow:hidden;text-overflow:ellipsis;color:var(--pd-muted)!important;font:500 var(--fs-micro)/1.2 var(--kb-sans)!important}
 body.theme-light .topbar .tpk-hol .hol{color:inherit!important}
-body.theme-light .topbar .language-box{position:relative;display:block!important;min-height:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;color:var(--pd-muted)!important}
+
 body.theme-light .topbar .top-language-btn{display:inline-flex;align-items:center;gap:var(--sp-2);min-height:34px;padding:0 var(--sp-2);border:1px solid var(--pd-line);border-radius:var(--r-md);background:rgba(255,255,255,.58);box-shadow:0 1px 0 rgba(255,255,255,.8) inset;color:var(--pd-jade);font:600 var(--fs-micro)/1.2 var(--kb-sans);letter-spacing:.02em;white-space:nowrap;cursor:pointer}
 body.theme-light .topbar .top-language-btn:hover,body.theme-light .topbar .top-language-btn:focus-visible,body.theme-light .topbar .top-language-btn[aria-expanded="true"]{border-color:rgba(5,55,45,.42);background:#fff;outline:none}
 body.theme-light .topbar .top-language-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.7}
@@ -1825,7 +1825,7 @@ body.theme-light .topbar .top-language-links{display:grid;grid-template-columns:
 body.theme-light .topbar .top-language-pop a{display:flex!important;align-items:center;min-height:30px!important;padding:0 8px!important;border:1px solid var(--pd-line)!important;border-radius:6px!important;background:#fff!important;color:var(--pd-jade)!important;font:600 var(--fs-micro)/1 var(--kb-sans)!important;letter-spacing:0!important;text-decoration:none!important}
 body.theme-light .topbar .top-language-pop a:hover,body.theme-light .topbar .top-language-pop a:focus-visible{border-color:var(--pd-jade)!important;background:var(--jade-100)!important;outline:none}
 body.theme-light .topbar .top-language-pop small{display:block;margin-top:var(--sp-2);color:var(--pd-muted);font:500 var(--fs-micro)/1.35 var(--kb-sans)}
-body.theme-light .topbar .language-box #google_translate_element{display:none!important}
+
 body.theme-light .topbar a.back:last-child{gap:var(--sp-1);border-color:rgba(5,55,45,.28)!important;color:var(--pd-jade)!important;font:600 var(--fs-micro)/1.2 var(--kb-mono)!important}
 body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back:last-child:focus-visible{background:var(--pd-jade)!important;color:#fff!important;outline:none}
 
@@ -1836,7 +1836,7 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
 
   .bd-shell .bd-work-head h1{font-size:var(--fs-h1)!important}
   .landed-tool-nav{padding:var(--sp-3)}.landed-workspace{gap:var(--sp-3);padding:var(--sp-3)}.landed-input-panel,.landed-summary{padding:var(--sp-3)}.landed-panel-head h3,.landed-summary h3{font-size:var(--fs-h3)}.landed-form{grid-template-columns:1fr 1fr!important}.landed-form>div:first-child{grid-column:1/-1}.landed-hero-result{grid-template-columns:1fr}.landed-tool .bclegend{grid-template-columns:1fr}.landed-tool .bcrow.tot b{font-size:var(--fs-body)}
-  :root{--buyer-status-height:54px}body.theme-light .topbar .tb{min-height:var(--buyer-status-height)!important;padding:0 var(--sp-3)!important;gap:var(--sp-2);overflow-x:auto;scrollbar-width:none}body.theme-light .topbar .tb::-webkit-scrollbar{display:none}body.theme-light .tb-left{display:none!important}body.theme-light .tb-right{margin:0!important;justify-content:flex-start;gap:var(--sp-2)!important}body.theme-light .topbar .sysgrp,body.theme-light .topbar .tpk,body.theme-light .topbar .tpk-hol,body.theme-light .topbar .language-box,body.theme-light .topbar a.back{min-height:32px!important;flex:0 0 auto}body.theme-light .topbar .tpk-hol{display:none!important}body.theme-light .topbar .sys-time{padding:0 var(--sp-2)}.topbar .tb-right>.back:last-child{display:none!important}body.theme-light .topbar .top-language-btn{min-height:32px}.topbar .top-language-pop{position:fixed!important;top:calc(var(--buyer-status-height) - 2px)!important;right:12px!important;width:min(258px,calc(100vw - 24px))!important}
+  :root{--buyer-status-height:54px}body.theme-light .topbar .tb{min-height:var(--buyer-status-height)!important;padding:0 var(--sp-3)!important;gap:var(--sp-2);overflow-x:auto;scrollbar-width:none}body.theme-light .topbar .tb::-webkit-scrollbar{display:none}body.theme-light .tb-left{display:none!important}body.theme-light .tb-right{margin:0!important;justify-content:flex-start;gap:var(--sp-2)!important}body.theme-light .topbar .sysgrp,body.theme-light .topbar .tpk,body.theme-light .topbar .tpk-hol,body.theme-light .topbar a.back{min-height:32px!important;flex:0 0 auto}body.theme-light .topbar .tpk-hol{display:none!important}body.theme-light .topbar .sys-time{padding:0 var(--sp-2)}.topbar .tb-right>.back:last-child{display:none!important}body.theme-light .topbar .top-language-btn{min-height:32px}.topbar .top-language-pop{position:fixed!important;top:calc(var(--buyer-status-height) - 2px)!important;right:12px!important;width:min(258px,calc(100vw - 24px))!important}
 }
 /* ===== Buying Tools · stage A: quiet inputs, loud answer ===== */
 .calc{display:flex;flex-wrap:wrap;gap:0 var(--sp-5);margin:0 0 var(--sp-3);padding:var(--sp-3) var(--sp-3);background:var(--kb-panel);border:1px solid var(--kb-line);border-radius:10px}
@@ -1990,7 +1990,7 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
 
 <div class="topbar"><div class="wrap tb">
   <div class="tb-left"><a class="brand" href="index.html"><span class="vip">BUYER</span> DESK<span class="sep">|</span><span class="iq">Birdland</span></a></div>
-  <div class="tb-right"><span class="sysgrp sys-api" title="Status comes from the configured source feeds."><span class="api-ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="w3" d="M3.7 10.2A11.5 11.5 0 0 1 20.3 10.2"/><path class="w2" d="M6.3 12.9A8 8 0 0 1 17.7 12.9"/><path class="w1" d="M8.9 15.6A4.3 4.3 0 0 1 15.1 15.6"/><circle cx="12" cy="18.6" r="1.5" fill="currentColor" stroke="none"/></svg></span>Source&nbsp;API</span><span class="sysgrp sys-token" title="AI narrative status; this is not a usage or billing meter."><span class="tokmeter"><i></i><i></i><i></i><i></i></span><b>AI&nbsp;Narrative</b></span><span class="tpk sys-hq" id="tpk" data-hq-status title="Taiwan office hours: Mon-Fri 09:00-17:30 (GMT+8)"><b>Birdland Office&nbsp;<span id="tpkSt" data-hq-label>—</span></b><span class="tpk-time sys-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v4.7l3 1.8"/></svg><span id="tpkTime" data-taipei-time>--:-- Taipei</span></span></span><span class="tpk-hol" id="tpkHol"></span><div class="language-box" aria-label="Language translation"><div><span>Language</span><small>Google Translate</small></div><div id="google_translate_element"></div></div><a class="back" href="index.html"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>birdland.com.tw</a></div>
+  <div class="tb-right"><span class="sysgrp sys-api" title="Status comes from the configured source feeds."><span class="api-ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="w3" d="M3.7 10.2A11.5 11.5 0 0 1 20.3 10.2"/><path class="w2" d="M6.3 12.9A8 8 0 0 1 17.7 12.9"/><path class="w1" d="M8.9 15.6A4.3 4.3 0 0 1 15.1 15.6"/><circle cx="12" cy="18.6" r="1.5" fill="currentColor" stroke="none"/></svg></span>Source&nbsp;API</span><span class="sysgrp sys-token" title="AI narrative status; this is not a usage or billing meter."><span class="tokmeter"><i></i><i></i><i></i><i></i></span><b>AI&nbsp;Narrative</b></span><span class="tpk sys-hq" id="tpk" data-hq-status title="Taiwan office hours: Mon-Fri 09:00-17:30 (GMT+8)"><b>Birdland Office&nbsp;<span id="tpkSt" data-hq-label>—</span></b><span class="tpk-time sys-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v4.7l3 1.8"/></svg><span id="tpkTime" data-taipei-time>--:-- Taipei</span></span></span><span class="tpk-hol" id="tpkHol"></span><a class="back" href="index.html"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>birdland.com.tw</a></div>
 </div></div>
 <main class="wrap">
   <section class="bd-shell" id="overview" aria-labelledby="bd-title">
@@ -2301,12 +2301,6 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
     </div>
     <div id="rp_out"></div>
     <div class="send-row" id="rp_send" style="display:none">
-      <select id="rp_lang" title="Translate this report">
-        <option value="">Translate to&hellip;</option>
-        <option value="zh-TW">中文(繁體)</option><option value="ja">日本語</option><option value="ko">한국어</option>
-        <option value="de">Deutsch</option><option value="fr">Français</option><option value="es">Español</option>
-        <option value="it">Italiano</option><option value="nl">Nederlands</option><option value="pl">Polski</option>
-      </select>
       <input id="rp_email" type="hidden" value="">
       <button class="tool-btn tool-btn-ghost" id="rp_copy" type="button">&#128203; Copy</button>
       <button class="tool-btn" id="rp_mail" type="button" title="Writes in an AI-style article format from your own tracked data — no API calls, no token cost, nothing sent anywhere until you hit send.">&#9993; AI Email Draft</button>
@@ -2416,8 +2410,6 @@ if(rcl){var tl=D.timeline||{};var items=(tl.items||[]).slice();
   var rcm=document.getElementById('rc-meta');if(rcm)rcm.textContent=items.filter(function(i){return i.date>=todayISO;}).length+' upcoming';
 }
 var sel=document.getElementById('region'),roomSel=document.getElementById('room'),roomMeta=document.getElementById('room-meta'),chips=document.getElementById('room-chips'),roomSummary=document.getElementById('room-summary'),content=document.getElementById('content'),regionLabel=document.getElementById('region-label');
-var LANG={us:'en',nl:'nl',ca:'en',de:'de',fr:'fr',it:'it',pl:'pl',uk:'en',au:'en',es:'es',eu:'en',me:'en',sa:'es',global:'en'};
-function setLang(code){try{var lg=LANG[code]||'en';var c=document.querySelector('#google_translate_element select, select.goog-te-combo');if(c){c.value=lg;c.dispatchEvent(new Event('change'));}}catch(e){}}
 var ROOMS=[
   {id:'global',label:'Global',markets:['global'],fallback:'global',intro:'Start here when you want the shortest read on what changed globally, what looks steady and what deserves a second click today.'},
   {id:'na',label:'North America',markets:['us','ca'],fallback:'us',intro:'Tariffs, origin stacking and steel traceability decide this room more than spot input moves.'},
@@ -2465,7 +2457,6 @@ function render(code){
   r.regulation.forEach(function(it){h+='<div class="card"><h4>'+it.t+'</h4><p>'+it.b+'</p></div>';});
   h+='<div class="dh c">▸ Supply &amp; cost backdrop</div><div class="supplyb"><p>'+r.supply+'</p></div><div class="view"><div class="vh">◆ Birdland’s view</div><p>'+r.view+'</p></div>';
   if(content)content.innerHTML=h;
-  setLang(code);
 }
 function fillMarkets(room){
   if(!sel)return;
@@ -3003,7 +2994,6 @@ function mailtoDraft(to,subject,body){var href='mailto:'+encodeURIComponent(to||
 function copyText(text,btn){function done(ok){if(!btn)return;var old=btn.textContent;btn.textContent=ok?'Copied ✓':'Copy failed';setTimeout(function(){btn.textContent=old;},1600);}
  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true);},function(){done(false);});}
  else{var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done(true);}catch(e){done(false);}document.body.removeChild(ta);}}
-function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&tl='+encodeURIComponent(lang)+'&text='+encodeURIComponent(text)+'&op=translate';}
 
 /* ---- 1b) Supply Brief + return state ---- */
 (function(){
@@ -3182,7 +3172,7 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
 })();
 
 /* ---- 6) Keyword report ---- */
-(function(){var topics=$('rp_topics'),kw=$('rp_kw'),gen=$('rp_gen'),out=$('rp_out'),sendRow=$('rp_send'),copyBtn=$('rp_copy'),mail=$('rp_mail'),langSel=$('rp_lang');if(!topics||!gen||!out)return;
+(function(){var topics=$('rp_topics'),kw=$('rp_kw'),gen=$('rp_gen'),out=$('rp_out'),sendRow=$('rp_send'),copyBtn=$('rp_copy'),mail=$('rp_mail');if(!topics||!gen||!out)return;
  /* Area 1 — every indicator tracked on this desk (not a curated subset), one topic at a time */
  var TOPIC_TERMS={},TOPIC_ORDER=[];
  function addTopic(label){if(!label||TOPIC_TERMS[label])return;TOPIC_TERMS[label]=[label];TOPIC_ORDER.push(label);}
@@ -3321,7 +3311,6 @@ function translateUrl(lang,text){return 'https://translate.google.com/?sl=auto&t
    [].forEach.call(topics.parentNode.querySelectorAll('.rp-chip'),function(x){x.classList.remove('on');});selectedChips={};runReport([v],[v]);});
  if(copyBtn)copyBtn.addEventListener('click',function(){copyText(lastReport,copyBtn);});
  if(mail)mail.addEventListener('click',function(){mailtoDraft($('rp_email').value.trim(),'Birdland AsiaSource — Keyword report',lastReport);});
- if(langSel)langSel.addEventListener('change',function(){var lang=langSel.value;if(!lang||!lastReport)return;window.open(translateUrl(lang,lastReport),'_blank');langSel.value='';});
 })();
 })();</script>
 <script>(function(){/* single-panel router — Stripe-app behaviour: one feature at a time */
@@ -3627,32 +3616,6 @@ bentofy('p-season',[],[],[]);
   var card=grid.querySelector('.bd-install-card');if(!card)return;
   grid.appendChild(card);
 }());
-})();</script>
-<script>(function(){/* language: single Google-Translate control, relocated into the left rail as a button + popover */
- var rail=document.getElementById('p-rail');var gEl=document.getElementById('google_translate_element');
- if(!rail||!gEl)return;
- gEl.classList.add('gt-on');
- if(gEl.closest('.language-box'))return;
- var wrap=document.createElement('div');wrap.className='pr-lang';
- var btn=document.createElement('button');btn.type='button';btn.className='pr-lang-btn';btn.setAttribute('aria-expanded','false');btn.setAttribute('aria-haspopup','true');
- btn.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.6 2.5 2.6 14.5 0 17c-2.6-2.5-2.6-14.5 0-17z"/></svg><span>Language</span><i class="pr-lang-chev"></i>';
- var pop=document.createElement('div');pop.className='pr-lang-pop';pop.hidden=true;
- var note=document.createElement('div');note.className='pr-lang-note';note.textContent='Loading translator…';
- pop.appendChild(gEl);pop.appendChild(note);
- wrap.appendChild(btn);wrap.appendChild(pop);
- rail.appendChild(wrap);
- function closePop(){pop.hidden=true;btn.setAttribute('aria-expanded','false');document.removeEventListener('click',onOutside);}
- function openPop(){pop.hidden=false;btn.setAttribute('aria-expanded','true');setTimeout(function(){document.addEventListener('click',onOutside);},0);}
- function onOutside(e){if(!wrap.contains(e.target))closePop();}
- btn.addEventListener('click',function(e){e.stopPropagation();if(pop.hidden)openPop();else closePop();});
- document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!pop.hidden)closePop();});
- var tries=0;
-var poll=setInterval(function(){
-  tries++;
-  var combo=gEl.querySelector('select.goog-te-combo');
-  if(combo){note.style.display='none';clearInterval(poll);}
-  else if(tries>20){note.textContent='Translator unavailable (blocked by network/ad-blocker)';clearInterval(poll);}
-},500);
 })();</script>
 <script>(function(){/* AsiaSource: public choices stay in this tab; email opens a reviewable draft */
  var root=document.getElementById('overview'),email=document.getElementById('bb-email'),pdf=document.getElementById('bb-pdf'),destination=document.getElementById('bb-destination');

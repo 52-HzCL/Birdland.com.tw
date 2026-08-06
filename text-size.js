@@ -46,9 +46,10 @@
 
   function build() {
     if (document.querySelector('.bl-textsize')) return;      // already placed
-    // Most headers carry the language picker, so that is the anchor. The
-    // Buyer and Cost desks run their own topbar with a Google Translate box
-    // instead, so their right cluster is named here as the fallback host.
+    // Most headers carry the language picker, so that is the anchor. On the
+    // pages whose picker is built by script — the desks and the Guide — there
+    // is no picker yet at DOMContentLoaded, so the fallback hosts are named
+    // here and the second pass on load finds the real anchor.
     var anchor = document.querySelector('[data-language-picker]');
     var host = anchor ? anchor.parentNode
       : document.querySelector('.bl-header-actions,.dbar-actions,.bl-status,.topbar .tb-right');

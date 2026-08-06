@@ -133,10 +133,12 @@
   // styled by class, so they arrive dressed.
   var ADOPT = '.sysgrp,#source-state,[data-hq-status],[data-taipei-time],#tstamp';
   var ADOPT_ACT = '.thm';
-  // The dead Google Translate shell goes: nothing on this site ever loaded
-  // the Google script, so that control has never done anything. The loose
-  // back-links go too — this bar is the way back now.
-  var DROP = '.language-box,.tpk-hol,a.back,[data-language-picker]';
+  // Any language control outside this bar goes. The templates no longer ship
+  // one — the dead Google Translate shell was taken out of all four of them —
+  // but a page served from an old service-worker cache still can, and two
+  // pickers is worse than the one that does nothing. The loose back-links go
+  // too: this bar is the way back now.
+  var DROP = '.tpk-hol,a.back,[data-language-picker]';
 
   // ---- the launch screen ----------------------------------------------------
   // An app you tap should answer immediately, even before it has anything to
