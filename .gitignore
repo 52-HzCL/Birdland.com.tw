@@ -3,3 +3,7 @@ __pycache__/
 *.pyc
 .env
 .DS_Store
+
+# Dev screenshots live beside the repo, never inside it: this is a public
+# Pages site and anything committed here is served at birdland.com.tw.
+shots/
