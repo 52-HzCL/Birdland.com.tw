@@ -15,7 +15,7 @@ const TRADE_JSON = path.join(REPO_ROOT, "trade.json");
 
 const EUROSTAT_BASE =
   "https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data/ds-045409";
-const REPORTERS = ["DE", "NL", "FR"];
+const REPORTERS = ["DE", "NL", "FR", "ES", "PL", "IT"];
 const PRODUCTS = ["82011000", "82013000", "82015000", "82016000"];
 const BASIS_MAP = {
   "82011000": "piece", // has SUPPLEMENTARY_QUANTITY
@@ -365,7 +365,9 @@ async function buildTradeJSON(euData) {
     markets: {},
   };
 
-  const reporterMap = { DE: "de", NL: "nl", FR: "fr" };
+  // Market keys are the reporter code lowercased; adding a reporter above is
+  // the only edit a new Eurostat market needs.
+  const reporterMap = Object.fromEntries(REPORTERS.map(r => [r, r.toLowerCase()]));
   let staleCount = 0;
   let totalCount = 0;
 

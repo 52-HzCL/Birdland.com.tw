@@ -518,7 +518,6 @@
  "Demand shelf": "Vraagschap",
  "Direction from official EU import statistics (Eurostat Comext) and, where published, UK HMRC data. Routes and price bands are Birdland’s own — the two are never mixed into one number.": "Richting op basis van officiële EU-invoerstatistieken (Eurostat Comext) en, waar gepubliceerd, Britse HMRC-gegevens. Routes en prijsbanden zijn van Birdland zelf — de twee worden nooit tot één getal samengevoegd.",
  "Your markets, Birdland’s categories, one look. A percentage carries the direction a buyer needs without printing an absolute price for anyone to negotiate against.": "Uw markten, Birdlands categorieën, in één oogopslag. Een percentage geeft de richting die een inkoper nodig heeft, zonder een absolute prijs te noemen waartegen kan worden onderhandeld.",
- "12-month change in import unit value, Eurostat Comext (DE/NL/FR) · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design": "12-maands wijziging van de invoereenheidswaarde, Eurostat Comext (DE/NL/FR) · per stuk waar de douane stuks registreert, elders per kg · hier worden bewust geen absolute prijzen gepubliceerd",
  "Category": "Categorie",
  "Germany": "Duitsland",
  "Netherlands": "Nederland",
@@ -592,5 +591,9 @@
  "Taiwan-origin supply prices in the upper third of this market": "Taiwan-origin supply prices in the upper third of this market",
  "Taiwan-origin supply prices in the middle third of this market": "Taiwan-origin supply prices in the middle third of this market",
  "Taiwan-origin supply prices in the lower third of this market": "Taiwan-origin supply prices in the lower third of this market",
- "bands: value-weighted thirds of source-country unit values": "bands: value-weighted thirds of source-country unit values"
+ "bands: value-weighted thirds of source-country unit values": "bands: value-weighted thirds of source-country unit values",
+ "12-month change in import unit value, Eurostat Comext · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design": "12-maands wijziging van de invoereenheidswaarde, Eurostat Comext · per stuk waar de douane stuks registreert, elders per kg · hier worden bewust geen absolute prijzen gepubliceerd",
+ "Spain": "Spanje",
+ "Italy": "Italië",
+ "Poland": "Polen"
 }

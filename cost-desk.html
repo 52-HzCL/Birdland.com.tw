@@ -2441,7 +2441,7 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
 <p class="sub">Your markets, Birdland’s categories, one look. A percentage carries the direction a buyer needs without printing an absolute price for anyone to negotiate against.</p>
 <p class="shelf-fresh" id="shelf-fresh"></p>
 <div class="shelf-wrap"><table class="shelf-mx" id="shelf-mx" aria-label="Category by market, 12-month import unit-value direction"></table></div>
-<div class="legend" id="shelf-legend">12-month change in import unit value, Eurostat Comext (DE/NL/FR) · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design</div>
+<div class="legend" id="shelf-legend">12-month change in import unit value, Eurostat Comext · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design</div>
 <div class="shelf-detail" id="shelf-detail" hidden></div>
 </div>
 </section>
@@ -2985,7 +2985,12 @@ var PRODUCTS=[
    {n:'Entry',route:'Carbon steel',d:'promotional spec'}
   ]}
 ];
-var MARKETS=[['de','Germany'],['nl','Netherlands'],['fr','France'],['uk','United Kingdom']];
+// The markets the site publishes an edition for. UK sits in the list without
+// data: Eurostat stopped covering it after Brexit and the HMRC series needs a
+// CN8-to-CommodityId table that has no public lookup, so its column says so
+// rather than quietly disappearing — a buyer who reads English should see
+// their market named and told it is not published yet.
+var MARKETS=[['de','Germany'],['nl','Netherlands'],['fr','France'],['es','Spain'],['it','Italy'],['pl','Poland'],['uk','United Kingdom']];
 var ICONS={
  pruner:'<path d="M11 30 C16 25 20 20 25 14 M14 30 C18 26 22 21 26 17" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/><circle cx="11" cy="12" r="3.4" stroke="currentColor" stroke-width="1.4" fill="none"/><circle cx="18" cy="8" r="3.4" stroke="currentColor" stroke-width="1.4" fill="none"/><path d="M13 15 L20 22 M17 11 L22 16" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/>',
  lopper:'<path d="M6 30 L17 15 M13 30 L22 17" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M17 15 C20 10 24 7 29 5 M22 17 C24 13 27 10 30 8" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/>',

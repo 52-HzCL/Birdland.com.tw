@@ -11,7 +11,7 @@ HERE=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TRADE_PATH=os.path.join(HERE,"trade.json")
 
 EUROSTAT_BASE="https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data/ds-045409"
-REPORTERS=["DE","NL","FR"]
+REPORTERS=["DE","NL","FR","ES","PL","IT"]
 PRODUCTS=["82011000","82013000","82015000","82016000"]
 BASIS_MAP={"82011000":"piece","82013000":"kg","82015000":"piece","82016000":"kg"}
 
@@ -369,7 +369,7 @@ def build_trade_json(eu_data):
         "markets":{}
     }
 
-    reporter_map={"DE":"de","NL":"nl","FR":"fr"}
+    reporter_map={r:r.lower() for r in REPORTERS}
     stale_count=0
     total_count=0
 

@@ -518,7 +518,6 @@
  "Demand shelf": "需要棚",
  "Direction from official EU import statistics (Eurostat Comext) and, where published, UK HMRC data. Routes and price bands are Birdland’s own — the two are never mixed into one number.": "方向性は、EUの公式輸入統計（Eurostat Comext）および公開されている場合は英国HMRCのデータに基づきます。ルートと価格帯はBirdland独自のものです — この二つが一つの数字に混ざることは決してありません。",
  "Your markets, Birdland’s categories, one look. A percentage carries the direction a buyer needs without printing an absolute price for anyone to negotiate against.": "貴社の市場とBirdlandのカテゴリーが、一目でわかります。パーセンテージは、誰かがそれを根拠に交渉できるような絶対価格を示すことなく、バイヤーに必要な方向性だけを伝えます。",
- "12-month change in import unit value, Eurostat Comext (DE/NL/FR) · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design": "輸入単価の12か月変動、Eurostat Comext（DE/NL/FR）・税関が個数で集計する品目は個数ベース、それ以外は重量ベース・ここでは意図的に絶対価格を公開していません",
  "Category": "品目",
  "Germany": "ドイツ",
  "Netherlands": "オランダ",
@@ -592,5 +591,9 @@
  "Taiwan-origin supply prices in the upper third of this market": "Taiwan-origin supply prices in the upper third of this market",
  "Taiwan-origin supply prices in the middle third of this market": "Taiwan-origin supply prices in the middle third of this market",
  "Taiwan-origin supply prices in the lower third of this market": "Taiwan-origin supply prices in the lower third of this market",
- "bands: value-weighted thirds of source-country unit values": "bands: value-weighted thirds of source-country unit values"
+ "bands: value-weighted thirds of source-country unit values": "bands: value-weighted thirds of source-country unit values",
+ "12-month change in import unit value, Eurostat Comext · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design": "輸入単価の12か月変動、Eurostat Comext・税関が個数で集計する品目は個数ベース、それ以外は重量ベース・ここでは意図的に絶対価格を公開していません",
+ "Spain": "スペイン",
+ "Italy": "イタリア",
+ "Poland": "ポーランド"
 }

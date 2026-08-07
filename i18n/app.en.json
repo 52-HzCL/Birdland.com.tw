@@ -517,7 +517,7 @@
  "Demand shelf",
  "Direction from official EU import statistics (Eurostat Comext) and, where published, UK HMRC data. Routes and price bands are Birdland’s own — the two are never mixed into one number.",
  "Your markets, Birdland’s categories, one look. A percentage carries the direction a buyer needs without printing an absolute price for anyone to negotiate against.",
- "12-month change in import unit value, Eurostat Comext (DE/NL/FR) · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design",
+ "12-month change in import unit value, Eurostat Comext · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design",
  "Category",
  "Germany",
  "Netherlands",
@@ -591,5 +591,8 @@
  "Taiwan-origin supply prices in the upper third of this market",
  "Taiwan-origin supply prices in the middle third of this market",
  "Taiwan-origin supply prices in the lower third of this market",
- "bands: value-weighted thirds of source-country unit values"
+ "bands: value-weighted thirds of source-country unit values",
+ "Spain",
+ "Italy",
+ "Poland"
 ]

@@ -518,7 +518,6 @@
  "Demand shelf": "Nachfrageregal",
  "Direction from official EU import statistics (Eurostat Comext) and, where published, UK HMRC data. Routes and price bands are Birdland’s own — the two are never mixed into one number.": "Richtung aus offiziellen EU-Einfuhrstatistiken (Eurostat Comext) und, sofern veröffentlicht, britischen HMRC-Daten. Routen und Preisbänder stammen von Birdland selbst — die beiden werden nie zu einer Zahl vermischt.",
  "Your markets, Birdland’s categories, one look. A percentage carries the direction a buyer needs without printing an absolute price for anyone to negotiate against.": "Ihre Märkte, Birdlands Kategorien, ein Blick. Eine Prozentzahl liefert die Richtung, die ein Einkäufer braucht, ohne einen absoluten Preis zu nennen, gegen den irgendjemand verhandeln könnte.",
- "12-month change in import unit value, Eurostat Comext (DE/NL/FR) · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design": "12-Monats-Änderung des Einfuhr-Stückwerts, Eurostat Comext (DE/NL/FR) · auf Stückbasis, wo der Zoll Stückzahlen erfasst, sonst auf Kilobasis · hier werden bewusst keine absoluten Preise veröffentlicht",
  "Category": "Kategorie",
  "Germany": "Deutschland",
  "Netherlands": "Niederlande",
@@ -592,5 +591,9 @@
  "Taiwan-origin supply prices in the upper third of this market": "Taiwan-origin supply prices in the upper third of this market",
  "Taiwan-origin supply prices in the middle third of this market": "Taiwan-origin supply prices in the middle third of this market",
  "Taiwan-origin supply prices in the lower third of this market": "Taiwan-origin supply prices in the lower third of this market",
- "bands: value-weighted thirds of source-country unit values": "bands: value-weighted thirds of source-country unit values"
+ "bands: value-weighted thirds of source-country unit values": "bands: value-weighted thirds of source-country unit values",
+ "12-month change in import unit value, Eurostat Comext · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design": "12-Monats-Änderung des Einfuhr-Stückwerts, Eurostat Comext · auf Stückbasis, wo der Zoll Stückzahlen erfasst, sonst auf Kilobasis · hier werden bewusst keine absoluten Preise veröffentlicht",
+ "Spain": "Spanien",
+ "Italy": "Italien",
+ "Poland": "Polen"
 }

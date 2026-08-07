@@ -518,7 +518,6 @@
  "Demand shelf": "Scaffale della domanda",
  "Direction from official EU import statistics (Eurostat Comext) and, where published, UK HMRC data. Routes and price bands are Birdland’s own — the two are never mixed into one number.": "Direzione basata sulle statistiche ufficiali di importazione UE (Eurostat Comext) e, ove pubblicati, sui dati HMRC del Regno Unito. I percorsi e le fasce di prezzo sono propri di Birdland — i due non vengono mai fusi in un unico numero.",
  "Your markets, Birdland’s categories, one look. A percentage carries the direction a buyer needs without printing an absolute price for anyone to negotiate against.": "I Suoi mercati, le categorie di Birdland, in un solo colpo d’occhio. Una percentuale fornisce la direzione di cui un acquirente ha bisogno, senza indicare un prezzo assoluto contro cui negoziare.",
- "12-month change in import unit value, Eurostat Comext (DE/NL/FR) · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design": "Variazione a 12 mesi del valore unitario all’importazione, Eurostat Comext (DE/NL/FR) · per pezzo dove la dogana rileva i pezzi, per kg altrove · qui non vengono pubblicati prezzi assoluti, per scelta",
  "Category": "Categoria",
  "Germany": "Germania",
  "Netherlands": "Paesi Bassi",
@@ -592,5 +591,9 @@
  "Taiwan-origin supply prices in the upper third of this market": "Taiwan-origin supply prices in the upper third of this market",
  "Taiwan-origin supply prices in the middle third of this market": "Taiwan-origin supply prices in the middle third of this market",
  "Taiwan-origin supply prices in the lower third of this market": "Taiwan-origin supply prices in the lower third of this market",
- "bands: value-weighted thirds of source-country unit values": "bands: value-weighted thirds of source-country unit values"
+ "bands: value-weighted thirds of source-country unit values": "bands: value-weighted thirds of source-country unit values",
+ "12-month change in import unit value, Eurostat Comext · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design": "Variazione a 12 mesi del valore unitario all’importazione, Eurostat Comext · per pezzo dove la dogana rileva i pezzi, per kg altrove · qui non vengono pubblicati prezzi assoluti, per scelta",
+ "Spain": "Spagna",
+ "Italy": "Italia",
+ "Poland": "Polonia"
 }
