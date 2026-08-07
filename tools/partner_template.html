@@ -1167,6 +1167,14 @@ body.theme-light .bd-mast .tool-btn:hover,body.theme-light .bd-mast .tool-btn:fo
 .bd-signal-deck .pd-kpi{min-height:0;padding:var(--sp-2)!important;border:1px solid rgba(5,55,45,.17)!important;border-left:3px solid var(--pd-jade,var(--jade-900))!important;border-radius:0!important;background:rgba(255,255,255,.68)!important;box-shadow:none!important}
 .bd-signal-deck .pd-kpi.warn{border-left-color:var(--pd-copper,#B95D1C)!important}
 .bd-signal-deck .pd-kpi-title{font-size:var(--fs-micro)!important}.bd-signal-deck .pd-kpi-call{font-size:var(--fs-micro)!important}.bd-signal-deck .pd-kpi-viz{margin:var(--sp-2) 0 4px!important}.bd-signal-deck .pd-kpi-icon{width:28px!important;height:28px!important;flex-basis:28px!important;font-size:var(--fs-small)!important}.bd-signal-deck .pd-spark{height:25px!important}.bd-signal-deck .pd-kpi-meta{font-size:var(--fs-micro)!important}.bd-signal-deck .pd-kpi-action{margin-top:var(--sp-2);font-size:var(--fs-micro)!important;line-height:1.35!important}
+/* The desk is a single-panel router and the rail is hidden while the overview
+   is showing, so a panel with no entrance on the overview cannot be reached at
+   all from a cold visit. The shelf shipped that way; this is its way in. */
+.bd-shelf-cta{display:flex;justify-content:space-between;gap:var(--sp-3);align-items:baseline;flex-wrap:wrap;margin:0 0 var(--sp-3);padding:var(--sp-2) var(--sp-2);border:1px solid rgba(5,55,45,.2);border-left:3px solid var(--pd-copper,#B95D1C);background:rgba(255,255,255,.55);color:var(--kb-ink-500,#5f665f);font-size:var(--fs-micro);text-decoration:none;cursor:pointer}
+.bd-shelf-cta:hover,.bd-shelf-cta:focus-visible{border-color:var(--kb-copper-700,#a64b16);border-left-color:var(--kb-copper-700,#a64b16);background:#fff}
+.bd-shelf-cta b{color:var(--pd-jade,var(--jade-900));font:700 var(--fs-micro) var(--ff-sans);letter-spacing:.09em;text-transform:uppercase}
+.bd-shelf-cta span{flex:1 1 240px;text-align:right}
+.bd-shelf-cta span::after{content:" \2192"}
 .bd-floor-divider{display:flex;justify-content:space-between;gap:var(--sp-3);align-items:baseline;margin:0 0 8px;color:var(--kb-ink-500,#5f665f)}
 .bd-floor-divider b{color:var(--pd-jade,var(--jade-900));font:700 var(--fs-micro) var(--ff-sans);letter-spacing:.09em;text-transform:uppercase}.bd-floor-divider span{font-size:var(--fs-micro);text-align:right}
 .bd-cost-floor-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -1381,8 +1389,12 @@ body.bd-printing>*{display:none!important}body.bd-printing .bd-print-sheet{displ
 .bd-references .pd-offer-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 .bd-tools{padding:var(--sp-4) var(--sp-4);border-left:1px solid rgba(5,55,45,.18)}
 .bd-tool-links{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-2);margin-top:var(--sp-2)}
-.bd-tool-links button{min-height:42px;padding:var(--sp-2);border:1px solid rgba(5,55,45,.2);background:rgba(255,255,255,.55);color:var(--kb-jade-900,var(--jade-900));font:700 var(--fs-micro)/1.25 var(--ff-sans);text-align:left;cursor:pointer}
-.bd-tool-links button:hover,.bd-tool-links button:focus-visible{border-color:var(--kb-copper-700,#a64b16);background:#fff}
+.bd-tool-links button,.bd-tool-links a{display:flex;align-items:center;min-height:42px;padding:var(--sp-2);border:1px solid rgba(5,55,45,.2);background:rgba(255,255,255,.55);color:var(--kb-jade-900,var(--jade-900));font:700 var(--fs-micro)/1.25 var(--ff-sans);text-align:left;text-decoration:none;cursor:pointer}
+.bd-tool-links button:hover,.bd-tool-links button:focus-visible,.bd-tool-links a:hover,.bd-tool-links a:focus-visible{border-color:var(--kb-copper-700,#a64b16);background:#fff}
+/* The five calculators moved to CostNow when the desks split; these buttons
+   stayed behind pointing at panels that are no longer on this page, so they
+   did nothing at all. They are cross-desk links now — the arrow says so. */
+.bd-tool-links a.x::after{content:" \2192";margin-left:auto;padding-left:8px;color:var(--kb-copper-700,#a64b16)}
 .bd-privacy{display:flex;justify-content:space-between;gap:var(--sp-3);align-items:center;padding:var(--sp-2) var(--sp-3);border-top:1px solid rgba(5,55,45,.16);font-size:var(--fs-micro);color:var(--kb-ink-500,#5f665f)}
 .bd-privacy button{border:0;background:transparent;color:var(--kb-jade-800,#175348);font:700 var(--fs-micro) var(--ff-sans);text-decoration:underline;cursor:pointer}
 @media(max-width:1050px){
@@ -1396,7 +1408,7 @@ body.bd-printing>*{display:none!important}body.bd-printing .bd-print-sheet{displ
 @media(max-width:720px){
  .bd-shell{margin:8px 0}.bd-mast{padding:var(--sp-3)}.bd-mast-brand{font-size:var(--fs-h3)}.bd-mast-brand small{font-size:var(--fs-micro)}
  .bd-grid{display:block}.bd-install-card{grid-column:1/-1;display:flex;align-items:center;gap:8px}.bd-install-card small{margin:0}
- .bd-work{padding:var(--sp-3) var(--sp-3)}.bd-work-head{display:block}.bd-updated{display:block;margin-top:8px}.bd-signal-deck .pd-kpis{grid-template-columns:1fr!important}.bd-cost-floor-head{display:block}.bd-cost-floor-head>span{display:block;margin-top:var(--sp-1)}.bd-floor-divider{display:block}.bd-floor-divider span{display:block;margin-top:var(--sp-1);text-align:left}.bd-cost-floor-grid{grid-template-columns:1fr}.bd-family-tabs{grid-template-columns:1fr 1fr}.bd-anatomy img{height:230px}.bd-part-list{grid-template-columns:1fr 1fr}.bd-materials,.bd-processes{grid-template-columns:1fr 1fr}.bd-choice{min-height:122px}.bd-priority-list{grid-template-columns:1fr}.bd-brief{display:block;padding:var(--sp-4) var(--sp-3)}.bd-impact-list{grid-template-columns:1fr}.bd-impact-data{grid-template-columns:1fr}.bd-brief-title{margin-top:0}.bd-bottom{display:block}.bd-references{padding:var(--sp-3) var(--sp-3)}.bd-references .pd-offer-grid{grid-template-columns:1fr}.bd-tools{border-left:0;border-top:1px solid rgba(5,55,45,.18)}.bd-privacy{align-items:flex-start}
+ .bd-work{padding:var(--sp-3) var(--sp-3)}.bd-work-head{display:block}.bd-updated{display:block;margin-top:8px}.bd-signal-deck .pd-kpis{grid-template-columns:1fr!important}.bd-cost-floor-head{display:block}.bd-cost-floor-head>span{display:block;margin-top:var(--sp-1)}.bd-floor-divider{display:block}.bd-floor-divider span{display:block;margin-top:var(--sp-1);text-align:left}.bd-shelf-cta{display:block}.bd-shelf-cta span{display:block;margin-top:var(--sp-1);text-align:left}.bd-cost-floor-grid{grid-template-columns:1fr}.bd-family-tabs{grid-template-columns:1fr 1fr}.bd-anatomy img{height:230px}.bd-part-list{grid-template-columns:1fr 1fr}.bd-materials,.bd-processes{grid-template-columns:1fr 1fr}.bd-choice{min-height:122px}.bd-priority-list{grid-template-columns:1fr}.bd-brief{display:block;padding:var(--sp-4) var(--sp-3)}.bd-impact-list{grid-template-columns:1fr}.bd-impact-data{grid-template-columns:1fr}.bd-brief-title{margin-top:0}.bd-bottom{display:block}.bd-references{padding:var(--sp-3) var(--sp-3)}.bd-references .pd-offer-grid{grid-template-columns:1fr}.bd-tools{border-left:0;border-top:1px solid rgba(5,55,45,.18)}.bd-privacy{align-items:flex-start}
 }
 @media(prefers-reduced-motion:reduce){.bd-shell *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 </style>
@@ -1773,7 +1785,7 @@ body,body.theme-light{font-family:var(--kb-sans)!important}
 .bd-route-node{font-size:var(--fs-micro);line-height:1.4}
 .bd-references h2,.bd-tools h2{font:600 var(--fs-h2)/1.15 var(--bd-serif)}
 .bd-references p,.bd-tools p{font-size:var(--fs-micro);line-height:1.45}
-.bd-tool-links button{font:600 var(--fs-micro)/1.35 var(--kb-sans)}
+.bd-tool-links button,.bd-tool-links a{font:600 var(--fs-micro)/1.35 var(--kb-sans)}
 .bd-privacy{font-size:var(--fs-micro);line-height:1.45}
 .bd-privacy button{font:600 var(--fs-micro)/1.3 var(--kb-sans)}
 
@@ -2033,6 +2045,7 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
         <section class="bd-cost-floor" aria-labelledby="bd-cost-floor-title">
           <div class="bd-cost-floor-head"><div><h2 id="bd-cost-floor-title">Cost &amp; risk floor</h2><p>Today’s buying signals and the Taiwan / China cost drivers behind a finished OEM quote.</p></div><span>Source-aware · buyer cost view</span></div>
           <div class="bd-signal-deck" aria-label="Today’s buying signals"><div class="pd-kpis" id="pd-kpis"></div></div>
+          <a class="bd-shelf-cta" href="#p-shelf" data-go="p-shelf"><b>Demand shelf</b><span>See where your market sits in the latest full year of customs data — direction only, never a price</span></a>
           <div class="bd-floor-divider"><b>Underlying cost floor</b><span>Public labour and carrying-cost benchmarks · not an automatic quote formula</span></div>
           <div class="bd-cost-floor-grid">
             <article class="bd-floor-card">
@@ -2176,7 +2189,7 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
         <div class="bd-references-head"><div><h2 id="bd-references-title">Public product references</h2><p>Current PDF links supplied through Birdland's public product feed.</p></div><span class="bd-updated" id="pd-product-updated">published PDF shelf</span></div>
         <div class="pd-offer-grid" id="pd-offer-grid"></div>
       </section>
-      <aside class="bd-tools"><h2>Buying tools</h2><p>Use your own figures. Inputs remain in this browser session.</p><div class="bd-tool-links"><button type="button" data-go="p-landed2">Workspace</button><button type="button" data-go="p-margin">Retail margin</button><button type="button" data-go="p-reorder">Reorder timing</button><button type="button" data-go="p-sail">Plan a sailing</button><button type="button" data-go="p-cduty">TW vs CN duty</button></div></aside>
+      <aside class="bd-tools"><h2>Buying tools</h2><p>Use your own figures. Inputs remain in this browser session.</p><div class="bd-tool-links"><button type="button" data-go="p-shelf">Demand shelf</button><button type="button" data-go="p-alerts">Buy Queue</button><button type="button" data-go="p-mkt">Cost &amp; Origin</button><a class="x" href="cost-desk.html#p-landed2">Workspace</a><a class="x" href="cost-desk.html#p-margin">Retail margin</a><a class="x" href="cost-desk.html#p-reorder">Reorder timing</a><a class="x" href="cost-desk.html#p-sail">Plan a sailing</a><a class="x" href="cost-desk.html#p-cduty">TW vs CN duty</a></div></aside>
     </div>
     <div class="bd-privacy"><span>Public planning only. AsiaSource does not create an order, quotation or account.</span><button id="reset-buyer-desk" type="button">Reset this brief</button></div>
   </section>
@@ -5137,7 +5150,8 @@ var fmt=function(x){return 'US$'+Math.round(x).toLocaleString('en-US');};
   "p-calc":[["My landed cost","p-landed2"],["Retail margin","p-margin"]],
   "p-cduty":[["My landed cost","p-landed2"],["Cost &amp; Origin","p-mkt"]],
   "p-sail":[["Reorder timing","p-reorder"],["Cost &amp; Origin","p-mkt"]],
-  "p-reorder":[["Plan a sailing","p-sail"],["Buy Queue","p-alerts"]]
+  "p-reorder":[["Plan a sailing","p-sail"],["Buy Queue","p-alerts"]],
+  "p-shelf":[["My landed cost","p-landed2"],["Cost &amp; Origin","p-mkt"]]
  };
  function addLinks(){
   Object.keys(P101).forEach(function(id){
