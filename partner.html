@@ -3041,7 +3041,16 @@ function hereIdx(bandMarket){
  return -1;
 }
 
-var TRADE=null, TRADE_ERR=false;
+var TRADE=null, TRADE_ERR=false, TRADE_PREP=false;
+// TRADE_PREP: trade.json advanced to schema 2 (the full-coverage/tiered
+// rebuild — see tools/dev/fetch-trade.js) before this page's own reader was
+// rewritten to consume it. Rather than let the schema-1 field reads below
+// silently return undefined and print a wall of dashes with a misleading
+// "no data" tooltip, an explicit schema check routes here instead: same
+// graceful shape as TRADE_ERR (no crash, every cell disabled) but with an
+// honest "edition in preparation" message. The v2-aware reader is a
+// separate, later change; this is only the not-crash guard for it landing
+// first.
 
 // The price-band ladder used to end in plain text — a CN8 code with no way
 // to act on it. window.BL_FAMILIES (the brief builder's own table, published
@@ -3078,8 +3087,9 @@ function renderMatrixInto(tableEl,markets){
    var mkt=m[0], c=cellOf(mkt,p.cn);
    if(!c){
     var why= mkt==='uk' ? 'Not published this edition \u2014 UK trade data is not yet wired into this feed.'
+           : (TRADE_PREP ? 'Edition in preparation \u2014 this feed is being rebuilt for a wider set of markets.'
            : (TRADE_ERR ? 'Trade data unavailable this session.'
-           : (TRADE&&TRADE.markets&&TRADE.markets[mkt]&&TRADE.markets[mkt][p.cn]&&TRADE.markets[mkt][p.cn].stale ? 'Marked stale by the data contract \u2014 see source.' : 'No data for this cell.'));
+           : (TRADE&&TRADE.markets&&TRADE.markets[mkt]&&TRADE.markets[mkt][p.cn]&&TRADE.markets[mkt][p.cn].stale ? 'Marked stale by the data contract \u2014 see source.' : 'No data for this cell.')));
     h+='<td><button class="shelf-cell" type="button" disabled aria-label="'+esc(p.name)+' in '+esc(m[1])+', not available" title="'+esc(why)+'"><span class="na">\u2014</span></button></td>';
     return;
    }
@@ -3329,9 +3339,11 @@ function applyDeepLink(){
 function boot(trade,failed){
  TRADE=trade; TRADE_ERR=!!failed;
  renderMatrix();
- if(metaEl) metaEl.textContent = trade&&trade.generated ? ('as of '+trade.generated.slice(0,10)) : 'unavailable';
+ if(metaEl) metaEl.textContent = TRADE_PREP ? 'edition in preparation' : (trade&&trade.generated ? ('as of '+trade.generated.slice(0,10)) : 'unavailable');
  if(freshEl){
-  if(trade){
+  if(TRADE_PREP){
+   freshEl.textContent='Edition in preparation \u2014 this feed is being rebuilt for a wider set of markets. Every cell below shows as not available until it is ready.';
+  } else if(trade){
    var period=trade.period||{previous:'2023',latest:'2024'};
    freshEl.textContent='Source: '+(trade.source&&trade.source.eu||'Eurostat Comext')+' (EU) \u00b7 '+(trade.source&&trade.source.comtrade?'UN Comtrade (US/JP/IL/AU)':'\u2014')+' \u00b7 '+(trade.source&&trade.source.uk||'HMRC uktradeinfo OTS')+' (UK, when published) \u00b7 '+period.previous+'\u2192'+period.latest+' annual \u00b7 updated '+(trade.generated?trade.generated.slice(0,10):'\u2014');
   } else {
@@ -3353,7 +3365,17 @@ function boot(trade,failed){
 }
 
 fetch('trade.json',{cache:'no-store'}).then(function(r){ if(!r.ok) throw new Error('trade.json '+r.status); return r.json(); })
- .then(function(j){ boot(j,false); })
+ .then(function(j){
+  // schema 1 is what every field read below (trade.period, trade.markets[mkt]
+  // [cn], .band, .share_tw, ...) is shaped for. A newer schema (see
+  // tools/dev/fetch-trade.js's full-coverage/tiered rewrite) nests cells
+  // under markets[mkt].cells and drops several v1-only fields, so reading it
+  // with this code wouldn't crash (every lookup just misses and the cell
+  // renders "no data") but it would misreport *why* — this page has not been
+  // rewritten for v2 yet, not the data. TRADE_PREP names that honestly.
+  if(j&&j.schema&&j.schema!==1){ TRADE_PREP=true; boot(null,false); return; }
+  boot(j,false);
+ })
  .catch(function(){ boot(null,true); });
 }());
 </script>

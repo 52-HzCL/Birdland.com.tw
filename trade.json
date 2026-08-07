@@ -1,629 +1,3184 @@
 {
-  "schema": 1,
-  "generated": "2026-08-07T01:48:36.267Z",
-  "period": {
-    "latest": "2024",
-    "previous": "2023"
+  "schema": 2,
+  "edition": "2026-Q3",
+  "generated": "2026-08-07T02:59:35.046Z",
+  "shard_state": {
+    "cursor": 9,
+    "completed_pct": 13,
+    "quarter": "2026-Q3"
   },
-  "source": {
+  "sources": {
     "eu": "Eurostat Comext DS-045409",
-    "uk": "HMRC uktradeinfo OTS",
-    "comtrade": "UN Comtrade (public preview API) — Taiwan-origin reported by the UN as 'Other Asia, nes'"
+    "world": "UN Comtrade (HS6)",
+    "uk": "unavailable"
   },
   "markets": {
     "de": {
-      "82011000": {
-        "basis": "piece",
-        "uv_change_pct": -29.9,
-        "vol_change_pct": 48.8,
-        "share_tw": 4,
-        "share_tw_prev": 13,
-        "share_cn": 46,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "upper",
-          "tw": "upper",
-          "moved": "up",
-          "to_next_pct": 13
-        }
-      },
-      "82013000": {
-        "basis": "kg",
-        "uv_change_pct": -8.1,
-        "vol_change_pct": 30.8,
-        "share_tw": 3,
-        "share_tw_prev": 2,
-        "share_cn": 29,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "mid",
-          "tw": "mid",
-          "moved": "flat",
-          "to_next_pct": 23
-        }
-      },
-      "82015000": {
-        "basis": "piece",
-        "uv_change_pct": -14.7,
-        "vol_change_pct": 27.6,
-        "share_tw": 9,
-        "share_tw_prev": 10,
-        "share_cn": 23,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "mid",
-          "tw": "mid",
-          "moved": "flat",
-          "to_next_pct": 16
-        }
-      },
-      "82016000": {
-        "basis": "kg",
-        "uv_change_pct": -8,
-        "vol_change_pct": 26.2,
-        "share_tw": 20,
-        "share_tw_prev": 16,
-        "share_cn": 26,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "mid",
-          "tw": "mid",
-          "moved": "up",
-          "to_next_pct": 5
+      "n": "Germany",
+      "tier": 1,
+      "src": "eurostat",
+      "cells": {
+        "82011000": {
+          "basis": "piece",
+          "uv_change_pct": -29.9,
+          "vol_change_pct": 48.8,
+          "share_tw": 4,
+          "share_tw_prev": 13,
+          "share_cn": 46,
+          "stale": false,
+          "band": {
+            "market": "upper",
+            "tw": "upper",
+            "moved": "up",
+            "to_next_pct": 13
+          }
+        },
+        "82013000": {
+          "basis": "kg",
+          "uv_change_pct": -8.1,
+          "vol_change_pct": 30.8,
+          "share_tw": 3,
+          "share_tw_prev": 2,
+          "share_cn": 29,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "flat",
+            "to_next_pct": 23
+          }
+        },
+        "82015000": {
+          "basis": "piece",
+          "uv_change_pct": -14.7,
+          "vol_change_pct": 27.6,
+          "share_tw": 9,
+          "share_tw_prev": 10,
+          "share_cn": 23,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "flat",
+            "to_next_pct": 16
+          }
+        },
+        "82016000": {
+          "basis": "kg",
+          "uv_change_pct": -8,
+          "vol_change_pct": 26.2,
+          "share_tw": 20,
+          "share_tw_prev": 16,
+          "share_cn": 26,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "up",
+            "to_next_pct": 5
+          }
         }
       }
     },
     "nl": {
-      "82011000": {
-        "basis": "piece",
-        "uv_change_pct": 7.9,
-        "vol_change_pct": 37.5,
-        "share_tw": 1,
-        "share_tw_prev": 1,
-        "share_cn": 20,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "lower",
-          "tw": null,
-          "moved": "flat",
-          "to_next_pct": 77
-        }
-      },
-      "82013000": {
-        "basis": "kg",
-        "uv_change_pct": -9.6,
-        "vol_change_pct": 37,
-        "share_tw": 2,
-        "share_tw_prev": 2,
-        "share_cn": 33,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "mid",
-          "tw": "mid",
-          "moved": "up",
-          "to_next_pct": 44
-        }
-      },
-      "82015000": {
-        "basis": "piece",
-        "uv_change_pct": -16.7,
-        "vol_change_pct": 38.4,
-        "share_tw": 6,
-        "share_tw_prev": 6,
-        "share_cn": 38,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "mid",
-          "tw": "mid",
-          "moved": "flat",
-          "to_next_pct": 43
-        }
-      },
-      "82016000": {
-        "basis": "kg",
-        "uv_change_pct": -23.7,
-        "vol_change_pct": 70.1,
-        "share_tw": 2,
-        "share_tw_prev": 2,
-        "share_cn": 31,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "lower",
-          "tw": null,
-          "moved": "flat",
-          "to_next_pct": 26
+      "n": "Netherlands",
+      "tier": 1,
+      "src": "eurostat",
+      "cells": {
+        "82011000": {
+          "basis": "piece",
+          "uv_change_pct": 7.9,
+          "vol_change_pct": 37.5,
+          "share_tw": 1,
+          "share_tw_prev": 1,
+          "share_cn": 20,
+          "stale": false,
+          "band": {
+            "market": "lower",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 77
+          }
+        },
+        "82013000": {
+          "basis": "kg",
+          "uv_change_pct": -9.6,
+          "vol_change_pct": 37,
+          "share_tw": 2,
+          "share_tw_prev": 2,
+          "share_cn": 33,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "up",
+            "to_next_pct": 44
+          }
+        },
+        "82015000": {
+          "basis": "piece",
+          "uv_change_pct": -16.7,
+          "vol_change_pct": 38.4,
+          "share_tw": 6,
+          "share_tw_prev": 6,
+          "share_cn": 38,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "flat",
+            "to_next_pct": 43
+          }
+        },
+        "82016000": {
+          "basis": "kg",
+          "uv_change_pct": -23.7,
+          "vol_change_pct": 70.1,
+          "share_tw": 2,
+          "share_tw_prev": 2,
+          "share_cn": 31,
+          "stale": false,
+          "band": {
+            "market": "lower",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 26
+          }
         }
       }
     },
     "fr": {
-      "82011000": {
-        "basis": "piece",
-        "uv_change_pct": -13.3,
-        "vol_change_pct": 49.8,
-        "share_tw": 0,
-        "share_tw_prev": 1,
-        "share_cn": 38,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "mid",
-          "tw": null,
-          "moved": "flat",
-          "to_next_pct": 0
-        }
-      },
-      "82013000": {
-        "basis": "kg",
-        "uv_change_pct": -2,
-        "vol_change_pct": -15.2,
-        "share_tw": 3,
-        "share_tw_prev": 1,
-        "share_cn": 32,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "mid",
-          "tw": "mid",
-          "moved": "flat",
-          "to_next_pct": 38
-        }
-      },
-      "82015000": {
-        "basis": "piece",
-        "uv_change_pct": 20.6,
-        "vol_change_pct": -16.1,
-        "share_tw": 5,
-        "share_tw_prev": 6,
-        "share_cn": 12,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "mid",
-          "tw": "mid",
-          "moved": "flat",
-          "to_next_pct": 11
-        }
-      },
-      "82016000": {
-        "basis": "kg",
-        "uv_change_pct": 2.7,
-        "vol_change_pct": 0.5,
-        "share_tw": 6,
-        "share_tw_prev": 7,
-        "share_cn": 11,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "mid",
-          "tw": "mid",
-          "moved": "flat",
-          "to_next_pct": 16
+      "n": "France",
+      "tier": 1,
+      "src": "eurostat",
+      "cells": {
+        "82011000": {
+          "basis": "piece",
+          "uv_change_pct": -13.3,
+          "vol_change_pct": 49.8,
+          "share_tw": 0,
+          "share_tw_prev": 1,
+          "share_cn": 38,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 0
+          }
+        },
+        "82013000": {
+          "basis": "kg",
+          "uv_change_pct": -2,
+          "vol_change_pct": -15.2,
+          "share_tw": 3,
+          "share_tw_prev": 1,
+          "share_cn": 32,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "flat",
+            "to_next_pct": 38
+          }
+        },
+        "82015000": {
+          "basis": "piece",
+          "uv_change_pct": 20.6,
+          "vol_change_pct": -16.1,
+          "share_tw": 5,
+          "share_tw_prev": 6,
+          "share_cn": 12,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "flat",
+            "to_next_pct": 11
+          }
+        },
+        "82016000": {
+          "basis": "kg",
+          "uv_change_pct": 2.7,
+          "vol_change_pct": 0.5,
+          "share_tw": 6,
+          "share_tw_prev": 7,
+          "share_cn": 11,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "flat",
+            "to_next_pct": 16
+          }
         }
       }
     },
     "es": {
-      "82011000": {
-        "basis": "piece",
-        "uv_change_pct": -6.1,
-        "vol_change_pct": 25.6,
-        "share_tw": 1,
-        "share_tw_prev": 1,
-        "share_cn": 74,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "upper",
-          "tw": null,
-          "moved": "up",
-          "to_next_pct": 12
-        }
-      },
-      "82013000": {
-        "basis": "kg",
-        "uv_change_pct": 21,
-        "vol_change_pct": -52.5,
-        "share_tw": 5,
-        "share_tw_prev": 2,
-        "share_cn": 36,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "mid",
-          "tw": "mid",
-          "moved": "flat",
-          "to_next_pct": 35
-        }
-      },
-      "82015000": {
-        "basis": "piece",
-        "uv_change_pct": -4.6,
-        "vol_change_pct": -17.5,
-        "share_tw": 18,
-        "share_tw_prev": 16,
-        "share_cn": 18,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "lower",
-          "tw": "mid",
-          "moved": "flat",
-          "to_next_pct": 4
-        }
-      },
-      "82016000": {
-        "basis": "kg",
-        "uv_change_pct": 34.4,
-        "vol_change_pct": -57.5,
-        "share_tw": 7,
-        "share_tw_prev": 4,
-        "share_cn": 19,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "lower",
-          "tw": "lower",
-          "moved": "down",
-          "to_next_pct": 32
+      "n": "Spain",
+      "tier": 1,
+      "src": "eurostat",
+      "cells": {
+        "82011000": {
+          "basis": "piece",
+          "uv_change_pct": -6.1,
+          "vol_change_pct": 25.6,
+          "share_tw": 1,
+          "share_tw_prev": 1,
+          "share_cn": 74,
+          "stale": false,
+          "band": {
+            "market": "upper",
+            "tw": null,
+            "moved": "up",
+            "to_next_pct": 12
+          }
+        },
+        "82013000": {
+          "basis": "kg",
+          "uv_change_pct": 21,
+          "vol_change_pct": -52.5,
+          "share_tw": 5,
+          "share_tw_prev": 2,
+          "share_cn": 36,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "flat",
+            "to_next_pct": 35
+          }
+        },
+        "82015000": {
+          "basis": "piece",
+          "uv_change_pct": -4.6,
+          "vol_change_pct": -17.5,
+          "share_tw": 18,
+          "share_tw_prev": 16,
+          "share_cn": 18,
+          "stale": false,
+          "band": {
+            "market": "lower",
+            "tw": "mid",
+            "moved": "flat",
+            "to_next_pct": 4
+          }
+        },
+        "82016000": {
+          "basis": "kg",
+          "uv_change_pct": 34.4,
+          "vol_change_pct": -57.5,
+          "share_tw": 7,
+          "share_tw_prev": 4,
+          "share_cn": 19,
+          "stale": false,
+          "band": {
+            "market": "lower",
+            "tw": "lower",
+            "moved": "down",
+            "to_next_pct": 32
+          }
         }
       }
     },
     "pl": {
-      "82011000": {
-        "basis": "piece",
-        "uv_change_pct": -45,
-        "vol_change_pct": 24.4,
-        "share_tw": 1,
-        "share_tw_prev": 0,
-        "share_cn": 64,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "upper",
-          "tw": null,
-          "moved": "up",
-          "to_next_pct": 4
-        }
-      },
-      "82013000": {
-        "basis": "kg",
-        "uv_change_pct": -13.1,
-        "vol_change_pct": 0.4,
-        "share_tw": 1,
-        "share_tw_prev": 2,
-        "share_cn": 43,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "mid",
-          "tw": null,
-          "moved": "up",
-          "to_next_pct": 35
-        }
-      },
-      "82015000": {
-        "basis": "piece",
-        "uv_change_pct": -31.8,
-        "vol_change_pct": 59.9,
-        "share_tw": 3,
-        "share_tw_prev": 9,
-        "share_cn": 33,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "mid",
-          "tw": "upper",
-          "moved": "flat",
-          "to_next_pct": 32
-        }
-      },
-      "82016000": {
-        "basis": "kg",
-        "uv_change_pct": -26.5,
-        "vol_change_pct": 43.2,
-        "share_tw": 4,
-        "share_tw_prev": 5,
-        "share_cn": 35,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "mid",
-          "tw": "upper",
-          "moved": "up",
-          "to_next_pct": 30
+      "n": "Poland",
+      "tier": 1,
+      "src": "eurostat",
+      "cells": {
+        "82011000": {
+          "basis": "piece",
+          "uv_change_pct": -45,
+          "vol_change_pct": 24.4,
+          "share_tw": 1,
+          "share_tw_prev": 0,
+          "share_cn": 64,
+          "stale": false,
+          "band": {
+            "market": "upper",
+            "tw": null,
+            "moved": "up",
+            "to_next_pct": 4
+          }
+        },
+        "82013000": {
+          "basis": "kg",
+          "uv_change_pct": -13.1,
+          "vol_change_pct": 0.4,
+          "share_tw": 1,
+          "share_tw_prev": 2,
+          "share_cn": 43,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": null,
+            "moved": "up",
+            "to_next_pct": 35
+          }
+        },
+        "82015000": {
+          "basis": "piece",
+          "uv_change_pct": -31.8,
+          "vol_change_pct": 59.9,
+          "share_tw": 3,
+          "share_tw_prev": 9,
+          "share_cn": 33,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "upper",
+            "moved": "flat",
+            "to_next_pct": 32
+          }
+        },
+        "82016000": {
+          "basis": "kg",
+          "uv_change_pct": -26.5,
+          "vol_change_pct": 43.2,
+          "share_tw": 4,
+          "share_tw_prev": 5,
+          "share_cn": 35,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "upper",
+            "moved": "up",
+            "to_next_pct": 30
+          }
         }
       }
     },
     "it": {
-      "82011000": {
-        "basis": "piece",
-        "uv_change_pct": -7.2,
-        "vol_change_pct": 22.1,
-        "share_tw": 1,
-        "share_tw_prev": 1,
-        "share_cn": 43,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "mid",
-          "tw": null,
-          "moved": "flat",
-          "to_next_pct": 30
-        }
-      },
-      "82013000": {
-        "basis": "kg",
-        "uv_change_pct": -34.3,
-        "vol_change_pct": 10,
-        "share_tw": 6,
-        "share_tw_prev": 4,
-        "share_cn": 51,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "mid",
-          "tw": "mid",
-          "moved": "up",
-          "to_next_pct": 31
-        }
-      },
-      "82015000": {
-        "basis": "piece",
-        "uv_change_pct": -20.8,
-        "vol_change_pct": 19.5,
-        "share_tw": 15,
-        "share_tw_prev": 14,
-        "share_cn": 14,
-        "stale": false,
-        "src": "eurostat",
-        "band": {
-          "market": "mid",
-          "tw": "mid",
-          "moved": "flat",
-          "to_next_pct": 5
-        }
-      },
-      "82016000": {
-        "basis": "kg",
-        "uv_change_pct": 86.6,
-        "vol_change_pct": -53.4,
-        "share_tw": 12,
-        "share_tw_prev": 10,
-        "share_cn": 20,
-        "stale": true,
-        "src": "eurostat",
-        "band": {
-          "market": "mid",
-          "tw": "mid",
-          "moved": "up",
-          "to_next_pct": 21
+      "n": "Italy",
+      "tier": 1,
+      "src": "eurostat",
+      "cells": {
+        "82011000": {
+          "basis": "piece",
+          "uv_change_pct": -7.2,
+          "vol_change_pct": 22.1,
+          "share_tw": 1,
+          "share_tw_prev": 1,
+          "share_cn": 43,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 30
+          }
+        },
+        "82013000": {
+          "basis": "kg",
+          "uv_change_pct": -34.3,
+          "vol_change_pct": 10,
+          "share_tw": 6,
+          "share_tw_prev": 4,
+          "share_cn": 51,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "up",
+            "to_next_pct": 31
+          }
+        },
+        "82015000": {
+          "basis": "piece",
+          "uv_change_pct": -20.8,
+          "vol_change_pct": 19.5,
+          "share_tw": 15,
+          "share_tw_prev": 14,
+          "share_cn": 14,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "flat",
+            "to_next_pct": 5
+          }
+        },
+        "82016000": {
+          "basis": "kg",
+          "uv_change_pct": 86.6,
+          "vol_change_pct": -53.4,
+          "share_tw": 12,
+          "share_tw_prev": 10,
+          "share_cn": 20,
+          "stale": true,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "up",
+            "to_next_pct": 21
+          }
         }
       }
     },
-    "us": {
-      "82011000": {
-        "basis": "piece",
-        "uv_change_pct": -4.3,
-        "vol_change_pct": 27.7,
-        "share_tw": 2,
-        "share_tw_prev": 3,
-        "share_cn": 46,
-        "stale": false,
-        "src": "comtrade",
-        "band": {
-          "market": "mid",
-          "tw": "upper",
-          "moved": "flat",
-          "to_next_pct": 19
+    "ao": {
+      "n": "Angola",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "basis": "kg",
+          "uv_change_pct": -5.9,
+          "vol_change_pct": -46.3,
+          "share_tw": null,
+          "share_tw_prev": null,
+          "share_cn": 85,
+          "stale": false,
+          "band": {
+            "market": "upper",
+            "tw": null,
+            "moved": null,
+            "to_next_pct": 11
+          }
+        },
+        "820130": {
+          "basis": "kg",
+          "uv_change_pct": -14.1,
+          "vol_change_pct": 3.8,
+          "share_tw": null,
+          "share_tw_prev": null,
+          "share_cn": 89,
+          "stale": false,
+          "band": null
+        },
+        "820150": {
+          "basis": "kg",
+          "uv_change_pct": -43.5,
+          "vol_change_pct": -58.1,
+          "share_tw": null,
+          "share_tw_prev": 0,
+          "share_cn": 62,
+          "stale": false,
+          "band": {
+            "market": "upper",
+            "tw": null,
+            "moved": null,
+            "to_next_pct": 15
+          }
+        },
+        "820160": {
+          "basis": "kg",
+          "uv_change_pct": -23.3,
+          "vol_change_pct": -28,
+          "share_tw": null,
+          "share_tw_prev": null,
+          "share_cn": 27,
+          "stale": false,
+          "band": {
+            "market": "lower",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 9
+          }
         }
-      },
-      "82013000": {
-        "basis": "piece",
-        "uv_change_pct": -4.7,
-        "vol_change_pct": 28.3,
-        "share_tw": 5,
-        "share_tw_prev": 7,
-        "share_cn": 32,
-        "stale": false,
-        "src": "comtrade",
-        "band": {
-          "market": "mid",
-          "tw": "lower",
-          "moved": "flat",
-          "to_next_pct": 17
-        }
-      },
-      "82015000": {
-        "basis": "piece",
-        "uv_change_pct": -7.2,
-        "vol_change_pct": 15,
-        "share_tw": 27,
-        "share_tw_prev": 31,
-        "share_cn": 29,
-        "stale": false,
-        "src": "comtrade",
-        "band": {
-          "market": "mid",
-          "tw": "mid",
-          "moved": "flat",
-          "to_next_pct": 34
-        }
-      },
-      "82016000": {
-        "basis": "kg",
-        "uv_change_pct": null,
-        "vol_change_pct": null,
-        "share_tw": null,
-        "share_tw_prev": null,
-        "share_cn": null,
-        "stale": true,
-        "src": "comtrade",
-        "band": null
       }
     },
-    "jp": {
-      "82011000": {
-        "basis": "kg",
-        "uv_change_pct": -11.4,
-        "vol_change_pct": -29.9,
-        "share_tw": 3,
-        "share_tw_prev": 4,
-        "share_cn": 95,
-        "stale": false,
-        "src": "comtrade",
-        "band": null
-      },
-      "82013000": {
-        "basis": "kg",
-        "uv_change_pct": 1.9,
-        "vol_change_pct": -16.2,
-        "share_tw": 9,
-        "share_tw_prev": 7,
-        "share_cn": 88,
-        "stale": false,
-        "src": "comtrade",
-        "band": null
-      },
-      "82015000": {
-        "basis": "kg",
-        "uv_change_pct": -3.5,
-        "vol_change_pct": -1.5,
-        "share_tw": 48,
-        "share_tw_prev": 53,
-        "share_cn": 34,
-        "stale": false,
-        "src": "comtrade",
-        "band": null
-      },
-      "82016000": {
-        "basis": "kg",
-        "uv_change_pct": -3.1,
-        "vol_change_pct": 4.9,
-        "share_tw": 31,
-        "share_tw_prev": 38,
-        "share_cn": 62,
-        "stale": false,
-        "src": "comtrade",
-        "band": null
+    "ar": {
+      "n": "Argentina",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "basis": "kg",
+          "uv_change_pct": -9.4,
+          "vol_change_pct": 84.4,
+          "share_tw": 0,
+          "share_tw_prev": 0,
+          "share_cn": 51,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 23
+          }
+        },
+        "820130": {
+          "basis": "kg",
+          "uv_change_pct": 19.7,
+          "vol_change_pct": -19.2,
+          "share_tw": null,
+          "share_tw_prev": null,
+          "share_cn": 29,
+          "stale": false,
+          "band": {
+            "market": "lower",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 7
+          }
+        },
+        "820150": {
+          "basis": "kg",
+          "uv_change_pct": -9.6,
+          "vol_change_pct": -40,
+          "share_tw": 2,
+          "share_tw_prev": 12,
+          "share_cn": 45,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 39
+          },
+          "note": "world cross-check diverged >5% from Comtrade's reported total; used summed sources"
+        },
+        "820160": {
+          "basis": "kg",
+          "uv_change_pct": -1.3,
+          "vol_change_pct": -21.8,
+          "share_tw": 10,
+          "share_tw_prev": 11,
+          "share_cn": 45,
+          "stale": false,
+          "band": {
+            "market": "upper",
+            "tw": "upper",
+            "moved": "up",
+            "to_next_pct": 16
+          }
+        }
       }
     },
-    "il": {
-      "82011000": {
-        "basis": "piece",
-        "uv_change_pct": null,
-        "vol_change_pct": null,
-        "share_tw": 3,
-        "share_tw_prev": 0,
-        "share_cn": 59,
-        "stale": true,
-        "src": "comtrade",
-        "band": {
-          "market": "mid",
-          "tw": "lower",
-          "moved": null,
-          "to_next_pct": 21
-        }
-      },
-      "82013000": {
-        "basis": "piece",
-        "uv_change_pct": null,
-        "vol_change_pct": null,
-        "share_tw": 12,
-        "share_tw_prev": 9,
-        "share_cn": 45,
-        "stale": true,
-        "src": "comtrade",
-        "band": {
-          "market": "mid",
-          "tw": "mid",
-          "moved": null,
-          "to_next_pct": 33
-        }
-      },
-      "82015000": {
-        "basis": "piece",
-        "uv_change_pct": null,
-        "vol_change_pct": null,
-        "share_tw": 42,
-        "share_tw_prev": 35,
-        "share_cn": 15,
-        "stale": true,
-        "src": "comtrade",
-        "band": {
-          "market": "lower",
-          "tw": "lower",
-          "moved": null,
-          "to_next_pct": 15
-        }
-      },
-      "82016000": {
-        "basis": "piece",
-        "uv_change_pct": null,
-        "vol_change_pct": null,
-        "share_tw": 41,
-        "share_tw_prev": null,
-        "share_cn": 10,
-        "stale": true,
-        "src": "comtrade",
-        "band": {
-          "market": "mid",
-          "tw": "lower",
-          "moved": null,
-          "to_next_pct": 33
+    "at": {
+      "n": "Austria",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "basis": "kg",
+          "uv_change_pct": -20.2,
+          "vol_change_pct": 68.4,
+          "share_tw": 9,
+          "share_tw_prev": 14,
+          "share_cn": 44,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "upper",
+            "moved": "flat",
+            "to_next_pct": 2
+          }
+        },
+        "820130": {
+          "basis": "kg",
+          "uv_change_pct": 3.4,
+          "vol_change_pct": 7.2,
+          "share_tw": 3,
+          "share_tw_prev": 2,
+          "share_cn": 31,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "flat",
+            "to_next_pct": 6
+          }
+        },
+        "820150": {
+          "basis": "kg",
+          "uv_change_pct": 7.1,
+          "vol_change_pct": -2.6,
+          "share_tw": 6,
+          "share_tw_prev": 4,
+          "share_cn": 40,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "flat",
+            "to_next_pct": 45
+          }
+        },
+        "820160": {
+          "basis": "kg",
+          "uv_change_pct": 27.6,
+          "vol_change_pct": -34,
+          "share_tw": 8,
+          "share_tw_prev": 6,
+          "share_cn": 33,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "flat",
+            "to_next_pct": 47
+          }
         }
       }
     },
     "au": {
-      "82011000": {
-        "basis": "kg",
-        "uv_change_pct": null,
-        "vol_change_pct": null,
-        "share_tw": 0,
-        "share_tw_prev": null,
-        "share_cn": 95,
-        "stale": true,
-        "src": "comtrade",
-        "band": null
-      },
-      "82013000": {
-        "basis": "kg",
-        "uv_change_pct": 1259.8,
-        "vol_change_pct": -92.6,
-        "share_tw": 0,
-        "share_tw_prev": 0,
-        "share_cn": 90,
-        "stale": true,
-        "src": "comtrade",
-        "band": null
-      },
-      "82015000": {
-        "basis": "kg",
-        "uv_change_pct": null,
-        "vol_change_pct": null,
-        "share_tw": null,
-        "share_tw_prev": 8,
-        "share_cn": null,
-        "stale": true,
-        "src": "comtrade",
-        "band": null
-      },
-      "82016000": {
-        "basis": "kg",
-        "uv_change_pct": null,
-        "vol_change_pct": null,
-        "share_tw": null,
-        "share_tw_prev": 7,
-        "share_cn": null,
-        "stale": true,
-        "src": "comtrade",
-        "band": null
+      "n": "Australia",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "basis": "kg",
+          "uv_change_pct": 5991.6,
+          "vol_change_pct": -98.6,
+          "share_tw": 0,
+          "share_tw_prev": 0,
+          "share_cn": 95,
+          "stale": true,
+          "band": null
+        },
+        "820130": {
+          "basis": "kg",
+          "uv_change_pct": 1259.8,
+          "vol_change_pct": -92.6,
+          "share_tw": 0,
+          "share_tw_prev": 0,
+          "share_cn": 90,
+          "stale": true,
+          "band": null
+        },
+        "820150": {
+          "basis": "kg",
+          "uv_change_pct": 1681.9,
+          "vol_change_pct": -93.3,
+          "share_tw": 9,
+          "share_tw_prev": 8,
+          "share_cn": 64,
+          "stale": true,
+          "band": null
+        },
+        "820160": {
+          "basis": "kg",
+          "uv_change_pct": -39.8,
+          "vol_change_pct": 104.9,
+          "share_tw": 6,
+          "share_tw_prev": 7,
+          "share_cn": 66,
+          "stale": false,
+          "band": null
+        }
+      }
+    },
+    "be": {
+      "n": "Belgium",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "basis": "piece",
+          "uv_change_pct": 2.9,
+          "vol_change_pct": 15.9,
+          "share_tw": 0,
+          "share_tw_prev": 0,
+          "share_cn": 14,
+          "stale": false,
+          "band": {
+            "market": "lower",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 17
+          }
+        },
+        "820130": {
+          "basis": "kg",
+          "uv_change_pct": -16.3,
+          "vol_change_pct": 24.1,
+          "share_tw": 0,
+          "share_tw_prev": 2,
+          "share_cn": 26,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": null,
+            "moved": "down",
+            "to_next_pct": 1
+          }
+        },
+        "820150": {
+          "basis": "piece",
+          "uv_change_pct": -14.3,
+          "vol_change_pct": 26.4,
+          "share_tw": 2,
+          "share_tw_prev": 5,
+          "share_cn": 7,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "flat",
+            "to_next_pct": 38
+          }
+        },
+        "820160": {
+          "basis": "kg",
+          "uv_change_pct": -13.8,
+          "vol_change_pct": 33.6,
+          "share_tw": 6,
+          "share_tw_prev": 5,
+          "share_cn": 14,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "flat",
+            "to_next_pct": 22
+          }
+        }
+      }
+    },
+    "bg": {
+      "n": "Bulgaria",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "basis": "piece",
+          "uv_change_pct": -13.6,
+          "vol_change_pct": 34.7,
+          "share_tw": 0,
+          "share_tw_prev": null,
+          "share_cn": 64,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 3
+          }
+        },
+        "820130": {
+          "basis": "kg",
+          "uv_change_pct": 6,
+          "vol_change_pct": 17.8,
+          "share_tw": 0,
+          "share_tw_prev": 0,
+          "share_cn": 43,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 38
+          }
+        },
+        "820150": {
+          "basis": "piece",
+          "uv_change_pct": -27.4,
+          "vol_change_pct": 45.6,
+          "share_tw": 2,
+          "share_tw_prev": 1,
+          "share_cn": 48,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 10
+          }
+        },
+        "820160": {
+          "basis": "kg",
+          "uv_change_pct": -6.6,
+          "vol_change_pct": -26.3,
+          "share_tw": 3,
+          "share_tw_prev": 0,
+          "share_cn": 49,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "upper",
+            "moved": "flat",
+            "to_next_pct": 35
+          }
+        }
+      }
+    },
+    "br": {
+      "n": "Brazil",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "basis": "kg",
+          "uv_change_pct": -10.1,
+          "vol_change_pct": 20,
+          "share_tw": 0,
+          "share_tw_prev": 2,
+          "share_cn": 97,
+          "stale": false,
+          "band": null
+        },
+        "820130": {
+          "basis": "kg",
+          "uv_change_pct": -18.5,
+          "vol_change_pct": 62.9,
+          "share_tw": 14,
+          "share_tw_prev": 32,
+          "share_cn": 85,
+          "stale": false,
+          "band": null
+        },
+        "820150": {
+          "basis": "kg",
+          "uv_change_pct": -12.4,
+          "vol_change_pct": 56.9,
+          "share_tw": 47,
+          "share_tw_prev": 47,
+          "share_cn": 37,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "flat",
+            "to_next_pct": 41
+          }
+        },
+        "820160": {
+          "basis": "kg",
+          "uv_change_pct": -4,
+          "vol_change_pct": 29.8,
+          "share_tw": 13,
+          "share_tw_prev": 17,
+          "share_cn": 53,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "upper",
+            "moved": "down",
+            "to_next_pct": 4
+          }
+        }
+      }
+    },
+    "ch": {
+      "n": "Switzerland",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "basis": "kg",
+          "uv_change_pct": 10.9,
+          "vol_change_pct": 6.6,
+          "share_tw": 6,
+          "share_tw_prev": 14,
+          "share_cn": 23,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "upper",
+            "moved": "flat",
+            "to_next_pct": 5
+          }
+        },
+        "820130": {
+          "basis": "kg",
+          "uv_change_pct": 8.1,
+          "vol_change_pct": -29,
+          "share_tw": 2,
+          "share_tw_prev": 1,
+          "share_cn": 35,
+          "stale": false,
+          "band": {
+            "market": "lower",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 43
+          },
+          "note": "world cross-check diverged >5% from Comtrade's reported total; used summed sources"
+        },
+        "820150": {
+          "basis": "kg",
+          "uv_change_pct": -15.6,
+          "vol_change_pct": -24,
+          "share_tw": 39,
+          "share_tw_prev": 19,
+          "share_cn": 40,
+          "stale": false,
+          "band": {
+            "market": "upper",
+            "tw": "mid",
+            "moved": null,
+            "to_next_pct": 5
+          },
+          "note": "world cross-check diverged >5% from Comtrade's reported total; used summed sources"
+        },
+        "820160": {
+          "basis": "kg",
+          "uv_change_pct": 33.1,
+          "vol_change_pct": -10.7,
+          "share_tw": 24,
+          "share_tw_prev": 41,
+          "share_cn": 36,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "up",
+            "to_next_pct": 33
+          },
+          "note": "world cross-check diverged >5% from Comtrade's reported total; used summed sources"
+        }
+      }
+    },
+    "cl": {
+      "n": "Chile",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "cn": {
+      "n": "China",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "co": {
+      "n": "Colombia",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "cr": {
+      "n": "Costa Rica",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "cz": {
+      "n": "Czechia",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "dk": {
+      "n": "Denmark",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "do": {
+      "n": "Dominican Rep.",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "dz": {
+      "n": "Algeria",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "ec": {
+      "n": "Ecuador",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "ee": {
+      "n": "Estonia",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "eg": {
+      "n": "Egypt",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "fi": {
+      "n": "Finland",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "gb": {
+      "n": "United Kingdom",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "gh": {
+      "n": "Ghana",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "gr": {
+      "n": "Greece",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "gt": {
+      "n": "Guatemala",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "hn": {
+      "n": "Honduras",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "hr": {
+      "n": "Croatia",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "hu": {
+      "n": "Hungary",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "ie": {
+      "n": "Ireland",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "il": {
+      "n": "Israel",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "in": {
+      "n": "India",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "jp": {
+      "n": "Japan",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "ke": {
+      "n": "Kenya",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "kr": {
+      "n": "Rep. of Korea",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "kz": {
+      "n": "Kazakhstan",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "lt": {
+      "n": "Lithuania",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "lv": {
+      "n": "Latvia",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "ma": {
+      "n": "Morocco",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "mm": {
+      "n": "Myanmar",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "my": {
+      "n": "Malaysia",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "mz": {
+      "n": "Mozambique",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "ni": {
+      "n": "Nicaragua",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "no": {
+      "n": "Norway",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "nz": {
+      "n": "New Zealand",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "pa": {
+      "n": "Panama",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "pe": {
+      "n": "Peru",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "ph": {
+      "n": "Philippines",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "pt": {
+      "n": "Portugal",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "ro": {
+      "n": "Romania",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "rs": {
+      "n": "Serbia",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "sa": {
+      "n": "Saudi Arabia",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "se": {
+      "n": "Sweden",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "si": {
+      "n": "Slovenia",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "sk": {
+      "n": "Slovakia",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "th": {
+      "n": "Thailand",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "tr": {
+      "n": "Türkiye",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "tz": {
+      "n": "United Rep. of Tanzania",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "ua": {
+      "n": "Ukraine",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "ug": {
+      "n": "Uganda",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "us": {
+      "n": "USA",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "uz": {
+      "n": "Uzbekistan",
+      "tier": 1,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "ag": {
+      "n": "Antigua and Barbuda",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "al": {
+      "n": "Albania",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "am": {
+      "n": "Armenia",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "az": {
+      "n": "Azerbaijan",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "ba": {
+      "n": "Bosnia Herzegovina",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "bb": {
+      "n": "Barbados",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "bf": {
+      "n": "Burkina Faso",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "bh": {
+      "n": "Bahrain",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "bj": {
+      "n": "Benin",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "bn": {
+      "n": "Brunei Darussalam",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "bo": {
+      "n": "Bolivia (Plurinational State of)",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "bs": {
+      "n": "Bahamas",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "bz": {
+      "n": "Belize",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "cf": {
+      "n": "Central African Rep.",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "ci": {
+      "n": "Côte d'Ivoire",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "cv": {
+      "n": "Cabo Verde",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "cy": {
+      "n": "Cyprus",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "fj": {
+      "n": "Fiji",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "gd": {
+      "n": "Grenada",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "ge": {
+      "n": "Georgia",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "gm": {
+      "n": "Gambia",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "gy": {
+      "n": "Guyana",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "hk": {
+      "n": "China, Hong Kong SAR",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "id": {
+      "n": "Indonesia",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "is": {
+      "n": "Iceland",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "jm": {
+      "n": "Jamaica",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "jo": {
+      "n": "Jordan",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "kg": {
+      "n": "Kyrgyzstan",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "kh": {
+      "n": "Cambodia",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "kw": {
+      "n": "Kuwait",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "ky": {
+      "n": "Cayman Isds",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "lb": {
+      "n": "Lebanon",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "lk": {
+      "n": "Sri Lanka",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "ls": {
+      "n": "Lesotho",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "lu": {
+      "n": "Luxembourg",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "md": {
+      "n": "Rep. of Moldova",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "me": {
+      "n": "Montenegro",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "mg": {
+      "n": "Madagascar",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "mk": {
+      "n": "North Macedonia",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "mo": {
+      "n": "China, Macao SAR",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "mr": {
+      "n": "Mauritania",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "ms": {
+      "n": "Montserrat",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "mt": {
+      "n": "Malta",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "mu": {
+      "n": "Mauritius",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "mv": {
+      "n": "Maldives",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "mw": {
+      "n": "Malawi",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "na": {
+      "n": "Namibia",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "ne": {
+      "n": "Niger",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "ng": {
+      "n": "Nigeria",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "om": {
+      "n": "Oman",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "pf": {
+      "n": "French Polynesia",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "pk": {
+      "n": "Pakistan",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "py": {
+      "n": "Paraguay",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "qa": {
+      "n": "Qatar",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "sc": {
+      "n": "Seychelles",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "sg": {
+      "n": "Singapore",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "sn": {
+      "n": "Senegal",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "sr": {
+      "n": "Suriname",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "sv": {
+      "n": "El Salvador",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "tg": {
+      "n": "Togo",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "tn": {
+      "n": "Tunisia",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "tt": {
+      "n": "Trinidad and Tobago",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "uy": {
+      "n": "Uruguay",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "ws": {
+      "n": "Samoa",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "ye": {
+      "n": "Yemen",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "zm": {
+      "n": "Zambia",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
+      }
+    },
+    "zw": {
+      "n": "Zimbabwe",
+      "tier": 2,
+      "src": "comtrade",
+      "cells": {
+        "820110": {
+          "stale": true
+        },
+        "820130": {
+          "stale": true
+        },
+        "820150": {
+          "stale": true
+        },
+        "820160": {
+          "stale": true
+        }
       }
     }
   }

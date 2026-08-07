@@ -37,6 +37,10 @@ jobs:
           echo "::endgroup::"
           if [ $rc -ne 0 ]; then echo "JSON validation FAILED — aborting, will not push."; exit 1; fi
           exit 0
+      - name: Demand shelf trade data (one shard)
+        continue-on-error: true
+        run: |
+          python3 tools/fetch_trade.py --shard
       - name: Commit & push if changed
         run: |
           git config user.name "Birdland News Bot"
