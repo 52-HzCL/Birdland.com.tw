@@ -577,7 +577,8 @@ body::after{display:none!important}
   function loadFX(){ if(typeof fetch!=='function')return;
     fetch('https://open.er-api.com/v6/latest/USD').then(function(r){return r.json();}).then(function(d){
       if(!d||!d.rates)return;var r=d.rates,b=(T.fx_baseline||{});
-      function set(id,v,bid,bv){document.getElementById(id).textContent=v.toFixed(id==='fx-twdjpy'||id==='fx-usdtwd'?(id==='fx-twdjpy'?3:3):4);if(bv)chgEl(bid,(v-bv)/bv*100);}
+      // (a set(id,v,bid,bv) helper used to live here; the four rates below were
+      // written out by hand instead and it was never called.)
       var usdtwd=r.TWD, cnytwd=r.TWD/r.CNY, twdjpy=r.JPY/r.TWD, cnyusd=1/r.CNY;
       var bU=b.TWD, bC=b.TWD/b.CNY, bJ=b.JPY/b.TWD, bN=1/b.CNY;
       window.__usdtwd=usdtwd;window.__fx={usdtwd:usdtwd,cnytwd:cnytwd,twdjpy:twdjpy};document.getElementById('fx-usdtwd').textContent=usdtwd.toFixed(3); chgEl('chg-usdtwd',bU?(usdtwd-bU)/bU*100:0);

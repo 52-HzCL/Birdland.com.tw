@@ -97,21 +97,36 @@ jobs:
             }
           }
 
+          // These pairs must match tools/build_news.py exactly — it is the thing
+          // this gate exists to police. Two changes had been made to the build
+          // without this list following them, so the gate failed on every PR:
+          // news_template.html builds guide.html (news.html is now a
+          // hand-written redirect stub and is deliberately NOT generated), and
+          // partner_template.html renders TWICE with a __DESKMODE__ token that
+          // has to be substituted before the outputs can be compared.
           const pairs = [
-            ['tools/news_template.html', 'news.html'],
-            ['tools/partner_template.html', 'partner.html'],
-            ['tools/team_template.html', 'team.html'],
-            ['tools/executive_template.html', 'executive.html']
+            ['tools/news_template.html', 'guide.html', {}],
+            ['tools/partner_template.html', 'partner.html', { __DESKMODE__: 'buyer' }],
+            ['tools/partner_template.html', 'cost-desk.html', { __DESKMODE__: 'cost' }],
+            ['tools/team_template.html', 'team.html', {}],
+            ['tools/executive_template.html', 'executive.html', {}]
           ];
           const buildDir = fs.mkdtempSync(path.join(os.tmpdir(), 'birdland-build-'));
-          for (const [template, output] of pairs) {
+          for (const [template, output, extra] of pairs) {
             const templateText = read(template);
             const tokenCount = templateText.split('__DATA__').length - 1;
             if (tokenCount !== 1) failures.push(`${template} must contain exactly one __DATA__ token`);
-            const expected = templateText.split('__DATA__').join(dataText);
+            let expected = templateText.split('__DATA__').join(dataText);
+            for (const [token, value] of Object.entries(extra)) {
+              expected = expected.split(token).join(value);
+            }
             fs.writeFileSync(path.join(buildDir, output), expected, 'utf8');
             if (expected !== read(output)) failures.push(`${output} is not rebuilt from ${template}`);
-            if (read(output).includes('__DATA__')) failures.push(`${output} contains unresolved __DATA__`);
+            // A token that survives into the output ships to the reader as
+            // literal text, and __DESKMODE__ surviving also breaks the split.
+            for (const token of ['__DATA__', '__DESKMODE__']) {
+              if (read(output).includes(token)) failures.push(`${output} contains unresolved ${token}`);
+            }
           }
 
           const textFiles = [

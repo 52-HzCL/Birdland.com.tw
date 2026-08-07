@@ -17,10 +17,15 @@
 // Team Desk is deliberately excluded. It is the internal surface and is not
 // part of the News / Buyer / Cost rotation.
 (function () {
-  // Guide is not a desk — it is the site's manual, filed under About — but it
-  // still needs the same header as everything else, so it is listed here with
-  // no entry in the desk switch below.
-  var PAGES = { 'guide.html': 'guide', 'executive.html': 'news', 'partner.html': 'buyer', 'cost-desk.html': 'cost' };
+  // Guide is the only page left that loads this script. The desks each grew
+  // their own title bar (app-bar.js) when they became apps and stopped loading
+  // it — see service-worker.js, which keeps the file cached for Guide alone.
+  // Their entries lived on here for a while afterwards, still carrying the
+  // names those desks had before they were renamed ("Daily Supply News",
+  // "Buyer Desk", "Cost Desk"), which is worse than not being here at all: a
+  // branch nothing reaches cannot be caught being wrong. A page that loads the
+  // stylesheet but is not in this map reclaims the reserved height below.
+  var PAGES = { 'guide.html': 'guide' };
   var file = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
   if (!file) file = 'index.html';
   // The preview server serves extensionless URLs, so /cost-desk has to resolve too.
@@ -31,7 +36,7 @@
   // that loads the stylesheet but gets no banner must reclaim that space.
   if (!here) { document.documentElement.className += ' dbar-none'; return; }
 
-  var EYEBROW = { guide: 'Guide', news: 'Daily Supply News', buyer: 'Buyer Desk', cost: 'Cost Desk' };
+  var EYEBROW = { guide: 'Guide' };
 
   // Whatever else on the page is a top strip. .shell-header is Overview's own
   // header, which this one now replaces outright rather than sitting above.

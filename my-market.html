@@ -244,6 +244,11 @@ var DISPLAY_NAME={us:'United States',kr:'South Korea','do':'Dominican Republic',
 // actually carries, so a family added to the feed later (the roadmap names
 // scissors and hand saws) shows up with a generated fallback label rather
 // than being silently dropped.
+// These display names are the SECOND copy of this knowledge. The first is the
+// PRODUCTS array in tools/partner_template.html, which names the same HS codes
+// for AsiaSource and CostNow. Nothing checks that the two agree, so renaming a
+// family means editing both — and the fallback below means a mismatch shows up
+// as a wrong label rather than as an error.
 var FAM_NAME={'820150':'One-handed pruners','820160':'Two-handed shears','820110':'Spades & shovels','820130':'Hoes, rakes & cultivators'};
 var FAM_SHORT={'820150':'PRUNERS','820160':'SHEARS','820110':'SPADES','820130':'HOES & RAKES'};
 var FAM_CANON=['820150','820160','820110','820130'];

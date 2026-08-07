@@ -6,7 +6,7 @@ the panel first opens, and once at idle for the staleness dot. Everything in it
 is derived from files that already exist, so it cannot drift from what the
 desks show.
 
-Kept in step with scratchpad/gen-terminal.js, which is the version used for
+Kept in step with tools/dev/gen-terminal.js, which is the version used for
 local verification on a machine without Python.
 """
 import json, os, re, urllib.parse

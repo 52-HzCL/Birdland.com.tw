@@ -27,3 +27,20 @@ JOBS.forEach(([, out]) => {
   if (fs.existsSync(f) && fs.readFileSync(f, 'utf8').includes('__DESKMODE__'))
     console.log('WARNING: unsubstituted __DESKMODE__ in', out);
 });
+
+// build_news.py does not stop at the pages: it then runs build_terminal.py,
+// because terminal.json's search index is harvested FROM these templates and
+// goes stale the moment they change. This replica skipped that step, so a
+// local build produced pages and a search index that disagreed — the exact
+// "verified locally is not what CI ships" gap the twin exists to close.
+// (build_feeds.py, the third step, has no Node twin and no local consumer.)
+try {
+  require('child_process').execFileSync(
+    process.execPath, [path.join(__dirname, 'gen-terminal.js')],
+    { cwd: REPO, stdio: 'inherit' }
+  );
+} catch (e) {
+  // Non-fatal, exactly as in build_news.py: a stale search index is a
+  // navigation nicety, and killing the page build over it is the wrong trade.
+  console.log('WARNING: gen-terminal.js failed — terminal.json not refreshed');
+}

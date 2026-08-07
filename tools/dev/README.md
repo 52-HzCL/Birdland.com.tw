@@ -27,6 +27,8 @@ somewhere unusual. Screenshots go to `../shots` next to the repo, or
 | `build-p101.js` | Generates `product-101.html` from `ratings.js` and the three `bp-*.svg` blueprint sprites in this directory. Section numbers derive from `SECTIONS` order. **Run it and diff before committing** — it must reproduce the shipped page byte for byte. |
 | `gen-guide-shots.js` | Recaptures `images/guide/*.webp`. CI has Python, not Playwright, so after any redesign this is a manual re-run or the Guide shows the old site — the exact failure it exists to prevent. |
 | `build-sitemap.js` | Generates `sitemap.xml` from all HTML files in root and language folders (nl/, de/, fr/, es/, pt-br/, pl/, it/, ja/, zh-tw/), excluding pages with `noindex` meta tag or filenames containing "vault"/"encrypt". Run when pages are added or removed. |
+| `fetch-trade.js` | Node twin of `tools/fetch_trade.py`, the quarterly customs fetcher behind `trade.json` (Eurostat Comext + UN Comtrade, sharded across runs). CI runs the Python; this is the only way to read or exercise that logic on a machine without one. The two must stay behaviourally identical. |
+| `verify-material-vocab.js` | Checks that AsiaSource's material and process vocabulary still matches what `gen-terminal.js` harvests into the search index — a renamed material silently drops out of Terminal search otherwise. |
 
 ## Languages
 
