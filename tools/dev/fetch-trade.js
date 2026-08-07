@@ -53,6 +53,7 @@ const BAND_EXCLUDE_PARTNERS = new Set([
 const BAND_MIN_SOURCES = 5;   // fewer valid countries than this: band is null, not guessed
 const BAND_MIN_SHARE = 0.005; // <0.5% of WORLD value: re-export/rounding noise, dropped
 const BAND_TOP_N = 20;        // top 15-20 sources by import value, per the brief
+const BAND_MIN_TW_SHARE = 0.02; // publishing where Taiwan prices needs a real share, not a consignment
 
 function httpsGet(url) {
   return new Promise((resolve, reject) => {
@@ -221,7 +222,18 @@ function computeBand(partners24, partners23, world24, world23, tw24, basis) {
   if (!market24) return null; // fail-closed: no market position, no band object
 
   const market23 = bandOf(worldUV23, terciles23);
-  const tw = bandOf(twUV24, terciles24);
+
+  // Where Taiwan-origin supply prices is a claim the site publishes in a
+  // sentence, so it needs a heavier burden of proof than a metric does. A
+  // source under BAND_MIN_TW_SHARE of the market may be one atypical
+  // consignment — spares, samples, a mixed load — and its unit value says
+  // nothing dependable about where Taiwanese supply competes. Worse, such a
+  // share rounds to 0% or 1% in the line printed directly above, so the page
+  // would claim a positioning for an origin it had just called invisible.
+  // Below the bar the positioning is simply not published.
+  const twShare = (tw24 && tw24.VALUE && world24 && world24.VALUE)
+    ? tw24.VALUE / world24.VALUE : 0;
+  const tw = twShare >= BAND_MIN_TW_SHARE ? bandOf(twUV24, terciles24) : null;
 
   let moved = null;
   if (market23) {

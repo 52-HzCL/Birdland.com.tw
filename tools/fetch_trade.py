@@ -44,6 +44,7 @@ BAND_EXCLUDE_PARTNERS={
 }
 BAND_MIN_SOURCES=5    # fewer valid countries than this: band is null, not guessed
 BAND_MIN_SHARE=0.005  # <0.5% of WORLD value: re-export/rounding noise, dropped
+BAND_MIN_TW_SHARE=0.02  # see fetch-trade.js: a positioning claim needs a real share
 BAND_TOP_N=20         # top 15-20 sources by import value, per the brief
 
 def flat_index_to_multi(flat_idx,sizes):
@@ -301,7 +302,18 @@ def compute_band(partners24,partners23,world24,world23,tw24,basis):
         return None  # fail-closed: no market position, no band object
 
     market23=band_of(world_uv23,terciles23)
-    tw=band_of(tw_uv24,terciles24)
+
+    # Where Taiwan-origin supply prices is a claim the site publishes in a
+    # sentence, so it needs a heavier burden of proof than a metric does. A
+    # source under BAND_MIN_TW_SHARE of the market may be one atypical
+    # consignment, and its unit value says nothing dependable about where
+    # Taiwanese supply competes. Such a share also rounds to 0% or 1% in the
+    # line printed directly above, so the page would claim a positioning for
+    # an origin it had just called invisible. Below the bar: not published.
+    tw_share=0.0
+    if tw24 and tw24.get("VALUE") and world24 and world24.get("VALUE"):
+        tw_share=tw24["VALUE"]/world24["VALUE"]
+    tw=band_of(tw_uv24,terciles24) if tw_share>=BAND_MIN_TW_SHARE else None
 
     moved=None
     if market23:

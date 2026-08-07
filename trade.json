@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated": "2026-08-07T00:48:35.075Z",
+  "generated": "2026-08-07T01:05:48.762Z",
   "period": {
     "latest": "2024",
     "previous": "2023"
@@ -83,7 +83,7 @@
         "stale": false,
         "band": {
           "market": "lower",
-          "tw": "lower",
+          "tw": null,
           "moved": "flat",
           "to_next_pct": 77
         }
@@ -128,7 +128,7 @@
         "stale": false,
         "band": {
           "market": "lower",
-          "tw": "lower",
+          "tw": null,
           "moved": "flat",
           "to_next_pct": 26
         }
@@ -145,7 +145,7 @@
         "stale": false,
         "band": {
           "market": "mid",
-          "tw": "upper",
+          "tw": null,
           "moved": "flat",
           "to_next_pct": 0
         }
