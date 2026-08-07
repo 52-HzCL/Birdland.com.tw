@@ -2398,7 +2398,9 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
 #p-shelf .shelf-band.here{background:var(--pd-copper-soft)}
 #p-shelf .shelf-band .bt{display:flex;align-items:baseline;gap:var(--sp-2);flex-wrap:wrap}
 #p-shelf .shelf-band .bn{font:700 var(--fs-body)/1.3 var(--kb-sans);color:var(--pd-jade)}
-#p-shelf .shelf-band .drift{margin-left:auto;font:700 var(--fs-small)/1.2 var(--kb-mono);color:var(--pd-copper);letter-spacing:.04em}
+#p-shelf .shelf-band .drift-wrap{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;align-items:baseline}
+#p-shelf .shelf-band .drift{font:700 var(--fs-small)/1.2 var(--kb-mono);color:var(--pd-copper);letter-spacing:.04em}
+#p-shelf .shelf-band .drift-moved{font:600 var(--fs-small)/1.2 var(--kb-mono);color:var(--pd-copper);opacity:.75}
 #p-shelf .shelf-band .route{display:flex;gap:var(--sp-2);align-items:baseline;flex-wrap:wrap;margin-top:3px;font-size:var(--fs-h3);color:var(--kb-mut)}
 #p-shelf .shelf-band .route b{color:var(--pd-jade);font-family:var(--kb-mono);font-size:var(--fs-small)}
 #p-shelf .shelf-band .route a{text-decoration:none}
@@ -2406,6 +2408,7 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
 #p-shelf .shelf-attrib{display:flex;justify-content:space-between;gap:var(--sp-2);padding:var(--sp-2) var(--sp-3);font:var(--fs-small)/1.4 var(--kb-mono);color:var(--kb-faint);background:var(--kb-bg);border-top:1px solid var(--pd-line)}
 #p-shelf .shelf-src{font:var(--fs-small)/1.5 var(--kb-mono);color:var(--kb-faint);margin:0 0 var(--sp-3)}
 #p-shelf .shelf-src a{color:var(--pd-jade-2);font-weight:700}
+#p-shelf .shelf-tw-pos{font-size:var(--fs-h3);color:var(--kb-mut);margin:0 0 var(--sp-3)}
 #p-shelf .shelf-acts{display:flex;gap:var(--sp-2);flex-wrap:wrap}
 @media(max-width:640px){#p-shelf .shelf-rowlab{min-width:150px}}
 #ds-sheet{display:none}
@@ -2428,6 +2431,7 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
   #ds-sheet .ds-bt{display:flex;justify-content:space-between;gap:8px;font-weight:700}
   #ds-sheet .ds-route{display:flex;gap:8px;flex-wrap:wrap;font-size:11px;color:#333;margin-top:2px}
   #ds-sheet .ds-src,#ds-sheet .ds-foot,#ds-sheet .ds-desk{margin:8px 0 0;font:10px ui-monospace,monospace;color:#333;word-break:break-all}
+  #ds-sheet .ds-tw-pos{margin:6px 0 0;font:11px ui-monospace,monospace;color:#333}
   #ds-sheet .ds-disc{margin-top:10px;padding-top:8px;border-top:1px solid #111;font:10px ui-monospace,monospace;color:#555}
 }
 </style>
@@ -2994,7 +2998,19 @@ function dir(pct){ if(pct>=6) return 2; if(pct>=1) return 1; if(pct>-1) return 0
 function dclass(d){ return d>=1?'up':(d===0?'flat':'down'); }
 function dword(d){ return d>=2?'rising strongly':d===1?'rising':d===0?'steady':'easing'; }
 function dchip(d){ return d>=2?'\u25b2\u25b2':d===1?'\u25b2':d===0?'\u2014':'\u25bc'; }
-function hereIdx(d){ return d>=1?0:(d===0?1:2); }
+// Which price-band row is "where the market sits", from the value-weighted
+// tercile trade.json now carries (c.band.market: upper/mid/lower) rather
+// than guessed from the direction of a single-year change. -1 means "don't
+// highlight anything" — trade.json's fail-closed answer for a cell with too
+// few source countries to place a market position (c.band is null), and the
+// only correct thing to do with a null is show nothing, not fall back to a
+// guess.
+function hereIdx(bandMarket){
+ if(bandMarket==='upper') return 0;
+ if(bandMarket==='mid') return 1;
+ if(bandMarket==='lower') return 2;
+ return -1;
+}
 
 var TRADE=null, TRADE_ERR=false;
 
@@ -3075,7 +3091,13 @@ function openCell(btn){
  if(selBtn) selBtn.setAttribute('aria-selected','false');
  selBtn=btn;
  btn.setAttribute('aria-selected','true');
- var d=dir(c.uv_change_pct), cls=dclass(d), hi=hereIdx(d);
+ var d=dir(c.uv_change_pct), cls=dclass(d);
+ // hi is the value-weighted-tercile row (c.band.market), not a guess from
+ // this year's direction: -1 when trade.json couldn't place a market
+ // position for this cell (too few source countries), in which case no row
+ // gets highlighted and bandForMail stays null below.
+ var hi=hereIdx(c.band&&c.band.market);
+ var bandForMail=hi>=0?p.bands[hi]:null;
  var period=(TRADE&&TRADE.period)||{previous:'2023',latest:'2024'};
  var shift=(c.share_tw!=null&&c.share_tw_prev!=null)?(c.share_tw-c.share_tw_prev):null;
  var url=verifyUrl(mkt,cn);
@@ -3087,14 +3109,30 @@ function openCell(btn){
  var routeHref=routeModel?('partner.html?q='+encodeURIComponent(routeModel.name)+'#pd-builder'):null;
  var bands=p.bands.map(function(b,i){
   var routeHtml=routeHref?'<a href="'+esc(routeHref)+'" title="Open this route on the AsiaSource buyer brief"><b>'+esc(b.route)+' \u2192</b></a>':'<b>'+esc(b.route)+'</b>';
-  return '<div class="shelf-band'+(i===hi?' here':'')+'"><div class="bt"><span class="bn">'+esc(b.n)+'</span>'+(i===hi?'<span class="drift">\u25c4 market drifting here</span>':'')+'</div><div class="route">'+routeHtml+'<span>'+esc(b.d)+'</span></div></div>';
+  var hereHtml='';
+  if(i===hi){
+   hereHtml='<span class="drift-wrap"><span class="drift">'+esc('\u25c4 market sits here')+'</span>';
+   if(c.band&&c.band.moved&&c.band.moved!=='flat'){
+    hereHtml+='<span class="drift-moved">'+esc(c.band.moved==='up'?'moved up this edition':'moved down this edition')+'</span>';
+   }
+   hereHtml+='</span>';
+  }
+  return '<div class="shelf-band'+(i===hi?' here':'')+'"><div class="bt"><span class="bn">'+esc(b.n)+'</span>'+hereHtml+'</div><div class="route">'+routeHtml+'<span>'+esc(b.d)+'</span></div></div>';
  }).join('');
+ var twPosHtml='';
+ if(c.band&&c.band.tw){
+  var twPosText=c.band.tw==='upper'?'Taiwan-origin supply prices in the upper third of this market'
+   :c.band.tw==='mid'?'Taiwan-origin supply prices in the middle third of this market'
+   :'Taiwan-origin supply prices in the lower third of this market';
+  twPosHtml='<p class="shelf-tw-pos">'+esc(twPosText)+'</p>';
+ }
  detailEl.innerHTML=
   '<h3 class="shelf-detail-h">'+esc(p.name)+' \u00b7 '+esc(mName)+'</h3>'
   +'<div class="shelf-uv"><span class="v '+cls+'">'+(c.uv_change_pct>0?'+':'')+c.uv_change_pct+'%</span><span class="u">12-month unit-value change</span><span class="u2">'+(c.basis==='piece'?'\u00b7 per-piece basis':'\u00b7 per-kg basis')+'</span></div>'
   +'<p class="shelf-share">Taiwan-origin share <b>'+(c.share_tw!=null?c.share_tw+'%':'\u2014')+'</b>'+(shift!=null?' ('+(shift>=0?'+':'')+shift+' pts)':'')+' \u00b7 China '+(c.share_cn!=null?c.share_cn+'%':'\u2014')+'</p>'
+  +twPosHtml
   +'<div class="shelf-ladder"><div class="shelf-lhead"><span>Price band</span><span>Birdland route</span></div>'+bands+'<div class="shelf-attrib"><span>Market position: Eurostat</span><span>Bands &amp; routes: Birdland</span></div></div>'
-  +'<p class="shelf-src"><span>Eurostat Comext</span> \u00b7 CN '+esc(cn)+' \u00b7 '+esc(period.previous)+'\u2192'+esc(period.latest)+' <span>annual \u00b7 next edition with Q-data</span> \u00b7 <a href="'+url+'" target="_blank" rel="noopener" title="Opens the official Eurostat Comext dataset filtered to this reporter and product code">verify at source \u2197</a></p>'
+  +'<p class="shelf-src"><span>Eurostat Comext</span> \u00b7 CN '+esc(cn)+' \u00b7 '+esc(period.previous)+'\u2192'+esc(period.latest)+' <span>annual \u00b7 next edition with Q-data</span> \u00b7 <span>'+esc('bands: value-weighted thirds of source-country unit values')+'</span> \u00b7 <a href="'+url+'" target="_blank" rel="noopener" title="Opens the official Eurostat Comext dataset filtered to this reporter and product code">verify at source \u2197</a></p>'
   +'<div class="shelf-acts"><button type="button" class="tool-btn" id="shelf-mail-go">Bring to enquiry \u2192</button><button type="button" class="tool-btn" id="shelf-print-go">Print snapshot</button></div>';
  detailEl.hidden=false;
  var goBtn=document.getElementById('shelf-mail-go');
@@ -3105,7 +3143,7 @@ function openCell(btn){
    +'Market: '+mName+'\n'
    +'Import unit-value direction: '+dw+' ('+(c.uv_change_pct>0?'+':'')+c.uv_change_pct+'%, 12 months, '+(c.basis==='piece'?'per-piece':'per-kg')+' basis)\n'
    +'Taiwan-origin share: '+(c.share_tw!=null?c.share_tw+'%':'not published')+'\n\n'
-   +'I am looking at this category on the AsiaSource demand shelf and would like to discuss the '+p.bands[hi].route+' route for '+mName+'.';
+   +'I am looking at this category on the AsiaSource demand shelf'+(bandForMail?' and would like to discuss the '+bandForMail.route+' route for '+mName+'.':' for '+mName+'.');
   window.blMail.open(deskFor(mkt),'',subject,body,'cat');
  });
  var printBtn=document.getElementById('shelf-print-go');
@@ -3137,8 +3175,22 @@ function printSnapshot(p,c,mkt,mName,cn,hi,d,cls,period,url,shift){
  var deepLink='birdland.com.tw/partner.html?cell='+cn+'|'+mkt;
  var generated=(TRADE&&TRADE.generated)?TRADE.generated.slice(0,10):'\u2014';
  var bandsHtml=p.bands.map(function(b,i){
-  return '<div class="ds-band'+(i===hi?' here':'')+'"><div class="ds-bt"><span>'+esc(t(b.n))+'</span>'+(i===hi?'<span>'+esc(t('\u25c4 market drifting here'))+'</span>':'')+'</div><div class="ds-route"><b>'+esc(t(b.route))+'</b><span>'+esc(t(b.d))+'</span></div></div>';
+  var hereTxt='';
+  if(i===hi){
+   hereTxt=t('\u25c4 market sits here');
+   if(c.band&&c.band.moved&&c.band.moved!=='flat'){
+    hereTxt+=' \u00b7 '+t(c.band.moved==='up'?'moved up this edition':'moved down this edition');
+   }
+  }
+  return '<div class="ds-band'+(i===hi?' here':'')+'"><div class="ds-bt"><span>'+esc(t(b.n))+'</span>'+(hereTxt?'<span>'+esc(hereTxt)+'</span>':'')+'</div><div class="ds-route"><b>'+esc(t(b.route))+'</b><span>'+esc(t(b.d))+'</span></div></div>';
  }).join('');
+ var twPosPrintHtml='';
+ if(c.band&&c.band.tw){
+  var twPosPrintText=c.band.tw==='upper'?'Taiwan-origin supply prices in the upper third of this market'
+   :c.band.tw==='mid'?'Taiwan-origin supply prices in the middle third of this market'
+   :'Taiwan-origin supply prices in the lower third of this market';
+  twPosPrintHtml='<p class="ds-tw-pos">'+esc(t(twPosPrintText))+'</p>';
+ }
  var sheet=document.getElementById('ds-sheet');
  if(!sheet){ sheet=document.createElement('div'); sheet.id='ds-sheet'; document.body.appendChild(sheet); }
  sheet.innerHTML=
@@ -3148,8 +3200,9 @@ function printSnapshot(p,c,mkt,mName,cn,hi,d,cls,period,url,shift){
   +'<div class="ds-uv"><span class="ds-dir">'+dchip(d)+' '+(c.uv_change_pct>0?'+':'')+c.uv_change_pct+'%</span><span>'+esc(t('12-month unit-value change'))+' '+esc(t(c.basis==='piece'?'\u00b7 per-piece basis':'\u00b7 per-kg basis'))+'</span></div>'
   +'<div class="ds-row"><span>'+esc(t('Taiwan-origin share'))+'</span><b>'+(c.share_tw!=null?c.share_tw+'%':'\u2014')+(shift!=null?' ('+(shift>=0?'+':'')+shift+' pts)':'')+'</b></div>'
   +'<div class="ds-row"><span>'+esc(t('China'))+'</span><b>'+(c.share_cn!=null?c.share_cn+'%':'\u2014')+'</b></div>'
+  +twPosPrintHtml
   +'<div class="ds-ladder"><div class="ds-lhead"><span>'+esc(t('Price band'))+'</span><span>'+esc(t('Birdland route'))+'</span></div>'+bandsHtml+'</div>'
-  +'<p class="ds-src">'+esc(t('Eurostat Comext'))+' \u00b7 CN '+esc(cn)+' \u00b7 '+esc(period.previous)+'\u2192'+esc(period.latest)+' \u00b7 '+esc(t('Verify at source'))+': '+esc(verifyUrlPrint())+' \u00b7 '+esc(verifyQueryWords(mkt,cn))+'</p>'
+  +'<p class="ds-src">'+esc(t('Eurostat Comext'))+' \u00b7 CN '+esc(cn)+' \u00b7 '+esc(period.previous)+'\u2192'+esc(period.latest)+' \u00b7 '+esc(t('Verify at source'))+': '+esc(verifyUrlPrint())+' \u00b7 '+esc(verifyQueryWords(mkt,cn))+' \u00b7 '+esc(t('bands: value-weighted thirds of source-country unit values'))+'</p>'
   +'<p class="ds-foot">'+esc(t('Document no.'))+' '+docNo(now)+' \u00b7 '+esc(t('Continue online'))+': '+esc(deepLink)+'</p>'
   +'<p class="ds-desk">'+esc(t('Enquiries route via the contact page.'))+'</p>'
   +'<p class="ds-disc">'+esc(t('Figures are official statistical change rates \u2014 not a quotation.'))+'</p>';

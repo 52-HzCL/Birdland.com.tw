@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated": "2026-08-06T16:38:17.961Z",
+  "generated": "2026-08-07T00:48:35.075Z",
   "period": {
     "latest": "2024",
     "previous": "2023"
@@ -18,7 +18,13 @@
         "share_tw": 4,
         "share_tw_prev": 13,
         "share_cn": 46,
-        "stale": false
+        "stale": false,
+        "band": {
+          "market": "upper",
+          "tw": "upper",
+          "moved": "up",
+          "to_next_pct": 13
+        }
       },
       "82013000": {
         "basis": "kg",
@@ -27,7 +33,13 @@
         "share_tw": 3,
         "share_tw_prev": 2,
         "share_cn": 29,
-        "stale": false
+        "stale": false,
+        "band": {
+          "market": "mid",
+          "tw": "mid",
+          "moved": "flat",
+          "to_next_pct": 23
+        }
       },
       "82015000": {
         "basis": "piece",
@@ -36,7 +48,13 @@
         "share_tw": 9,
         "share_tw_prev": 10,
         "share_cn": 23,
-        "stale": false
+        "stale": false,
+        "band": {
+          "market": "mid",
+          "tw": "mid",
+          "moved": "flat",
+          "to_next_pct": 16
+        }
       },
       "82016000": {
         "basis": "kg",
@@ -45,7 +63,13 @@
         "share_tw": 20,
         "share_tw_prev": 16,
         "share_cn": 26,
-        "stale": false
+        "stale": false,
+        "band": {
+          "market": "mid",
+          "tw": "mid",
+          "moved": "up",
+          "to_next_pct": 5
+        }
       }
     },
     "nl": {
@@ -56,7 +80,13 @@
         "share_tw": 1,
         "share_tw_prev": 1,
         "share_cn": 20,
-        "stale": false
+        "stale": false,
+        "band": {
+          "market": "lower",
+          "tw": "lower",
+          "moved": "flat",
+          "to_next_pct": 77
+        }
       },
       "82013000": {
         "basis": "kg",
@@ -65,7 +95,13 @@
         "share_tw": 2,
         "share_tw_prev": 2,
         "share_cn": 33,
-        "stale": false
+        "stale": false,
+        "band": {
+          "market": "mid",
+          "tw": "mid",
+          "moved": "up",
+          "to_next_pct": 44
+        }
       },
       "82015000": {
         "basis": "piece",
@@ -74,7 +110,13 @@
         "share_tw": 6,
         "share_tw_prev": 6,
         "share_cn": 38,
-        "stale": false
+        "stale": false,
+        "band": {
+          "market": "mid",
+          "tw": "mid",
+          "moved": "flat",
+          "to_next_pct": 43
+        }
       },
       "82016000": {
         "basis": "kg",
@@ -83,7 +125,13 @@
         "share_tw": 2,
         "share_tw_prev": 2,
         "share_cn": 31,
-        "stale": false
+        "stale": false,
+        "band": {
+          "market": "lower",
+          "tw": "lower",
+          "moved": "flat",
+          "to_next_pct": 26
+        }
       }
     },
     "fr": {
@@ -94,7 +142,13 @@
         "share_tw": 0,
         "share_tw_prev": 1,
         "share_cn": 38,
-        "stale": false
+        "stale": false,
+        "band": {
+          "market": "mid",
+          "tw": "upper",
+          "moved": "flat",
+          "to_next_pct": 0
+        }
       },
       "82013000": {
         "basis": "kg",
@@ -103,7 +157,13 @@
         "share_tw": 3,
         "share_tw_prev": 1,
         "share_cn": 32,
-        "stale": false
+        "stale": false,
+        "band": {
+          "market": "mid",
+          "tw": "mid",
+          "moved": "flat",
+          "to_next_pct": 38
+        }
       },
       "82015000": {
         "basis": "piece",
@@ -112,7 +172,13 @@
         "share_tw": 5,
         "share_tw_prev": 6,
         "share_cn": 12,
-        "stale": false
+        "stale": false,
+        "band": {
+          "market": "mid",
+          "tw": "mid",
+          "moved": "flat",
+          "to_next_pct": 11
+        }
       },
       "82016000": {
         "basis": "kg",
@@ -121,7 +187,13 @@
         "share_tw": 6,
         "share_tw_prev": 7,
         "share_cn": 11,
-        "stale": false
+        "stale": false,
+        "band": {
+          "market": "mid",
+          "tw": "mid",
+          "moved": "flat",
+          "to_next_pct": 16
+        }
       }
     }
   }

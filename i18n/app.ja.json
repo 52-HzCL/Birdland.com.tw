@@ -585,5 +585,12 @@
  "Figures are official statistical change rates — not a quotation.": "数値は公式統計の変化率であり、見積もりではありません。",
  "Product model": "製品モデル",
  "No reference photograph is published for this model yet — the material and process detail below is complete and confirmed.": "このモデルの参考写真は現在未公開ですが、以下の材料・工程の詳細情報は完備しており、確定済みです。",
- "Open this route on the AsiaSource buyer brief": "このルートを AsiaSource の買い手ブリーフで開く"
+ "Open this route on the AsiaSource buyer brief": "このルートを AsiaSource の買い手ブリーフで開く",
+ "◄ market sits here": "◄ market sits here",
+ "moved up this edition": "moved up this edition",
+ "moved down this edition": "moved down this edition",
+ "Taiwan-origin supply prices in the upper third of this market": "Taiwan-origin supply prices in the upper third of this market",
+ "Taiwan-origin supply prices in the middle third of this market": "Taiwan-origin supply prices in the middle third of this market",
+ "Taiwan-origin supply prices in the lower third of this market": "Taiwan-origin supply prices in the lower third of this market",
+ "bands: value-weighted thirds of source-country unit values": "bands: value-weighted thirds of source-country unit values"
 }
