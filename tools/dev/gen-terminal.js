@@ -65,9 +65,10 @@ function add(t, n, d, u) {
   index.push({ t, n, d, u });
 }
 
-// The four surfaces and the six tools, by hand: they are the destinations, not
-// data, and a wrong one here is worse than a missing one.
+// The surfaces and the tools, by hand: they are the destinations, not data,
+// and a wrong one here is worse than a missing one.
 [['ABrief', "Today's steel, resin, freight and policy signals", 'executive.html'],
+ ['My Market', 'Which way your import market is moving, and the markets next to it', 'my-market.html'],
  ['AsiaSource', 'Product families, materials, processes, buyer brief', 'partner.html'],
  ['CostNow', 'Landed cost, margin, sailing, duty comparison', 'cost-desk.html'],
  ['Team Desk', 'Internal dashboard', 'team.html'],

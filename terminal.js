@@ -1,4 +1,4 @@
-// The Terminal — the four desks, as a path rather than a list.
+// The Terminal — the apps, as a path rather than a list.
 //
 // Bound to any [data-terminal] trigger, so the hand-written header and the one
 // desk-banner.js injects share a single panel. Everything it shows comes from
@@ -34,15 +34,22 @@
     news: '<img src="' + BASE + 'images/app-news-tile.png?v=20260805a" width="96" height="96" alt="" decoding="async">',
     buyer: '<img src="' + BASE + 'images/app-buyer-tile.png?v=20260805a" width="96" height="96" alt="" decoding="async">',
     cost: '<img src="' + BASE + 'images/app-cost-tile.png?v=20260805a" width="96" height="96" alt="" decoding="async">',
+    market: '<img src="' + BASE + 'images/app-market-tile.png?v=20260805a" width="96" height="96" alt="" decoding="async">',
     team: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="14" width="18" height="13" rx="2"/><path d="M11 14v-4a5 5 0 0 1 10 0v4"/><path d="M16 19v4"/></svg>',
   };
+  // Four questions in the order a buyer actually asks them. The key is the
+  // question, the name is the app that answers it, and the line under it is one
+  // short sentence — no clause lists. A menu that has to be read twice is a
+  // menu that has already lost to the back button.
   var STEPS = [
     ['WHAT CHANGED', 'ABrief', 'executive.html', 'news',
-      'Steel, resin, freight and policy — what moved since your last order.'],
+      'What moved since your last order.'],
+    ["WHERE IT'S GOING", 'My Market', 'my-market.html', 'market',
+      'Your market, and the ones next door.'],
     ['WHAT YOU NEED', 'AsiaSource', 'partner.html', 'buyer',
-      'Product family, part, material and process route, and the brief that comes out of it.'],
+      'The part, the material, the process.'],
     ['WHAT IT COSTS', 'CostNow', 'cost-desk.html', 'cost',
-      'Landed cost, retail margin, reorder timing, sailing and duty by origin.'],
+      'Landed cost, margin, reorder timing.'],
   ];
 
   function esc(s) {
@@ -229,6 +236,7 @@
     var f = String(u).split('?')[0].split('#')[0];
     return ({
       'executive.html': 'ABRIEF', 'partner.html': 'ASIASOURCE', 'cost-desk.html': 'COSTNOW',
+      'my-market.html': 'MY MARKET',
       'team.html': 'TEAM DESK', 'guide.html': 'GUIDE', 'product-101.html': 'FACTORY',
       'about.html': 'ABOUT', 'contact.html': 'CONTACT',
     })[f] || f.replace('.html', '').toUpperCase();

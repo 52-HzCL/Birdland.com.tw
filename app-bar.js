@@ -19,21 +19,27 @@
 (function () {
   'use strict';
 
-  // The three public desks carry their own drawn icon — the same picture the
+  // The four public desks carry their own drawn icon — the same picture the
   // browser puts on the home screen when one is installed, so the switch in
   // the bar and the icon on the phone are the same object. The Team Desk is
   // internal, has no icon of its own, and stays off the switch; it is reached
   // from the Terminal, which is where the internal doors live.
+  //
+  // desc is the one line that says what the app is FOR: the switch's tooltip
+  // and the launch screen's subtitle read from here. The Terminal's menu says
+  // the same thing in its own words — it is answering a question there, not
+  // labelling a tile — and terminal.js owns that copy.
   var APPS = [
-    { key: 'news',  file: 'executive.html', name: 'ABrief', desc: 'supply news, every morning' },
-    { key: 'buyer', file: 'partner.html',   name: 'AsiaSource',        desc: "the buyer's handbook" },
-    { key: 'cost',  file: 'cost-desk.html', name: 'CostNow',         desc: 'landed cost & margin' }
+    { key: 'news',   file: 'executive.html', name: 'ABrief',     desc: 'supply news, every morning' },
+    { key: 'buyer',  file: 'partner.html',   name: 'AsiaSource', desc: "the buyer's handbook" },
+    { key: 'cost',   file: 'cost-desk.html', name: 'CostNow',    desc: 'landed cost & margin' },
+    { key: 'market', file: 'my-market.html', name: 'My Market',  desc: 'which way your market is moving' }
   ];
   var TEAM = { key: 'team', file: 'team.html', name: 'Team Desk', desc: 'Internal' };
 
   // One number for the whole suite. It is on the launch screen, on the chip in
   // the bar, and on the card the chip opens — three places, one source.
-  var VERSION = '3.0';
+  var VERSION = '3.1';
 
   // ---- languages ------------------------------------------------------------
   // The same ten editions the facade pages ship, named the way each names
@@ -164,11 +170,18 @@
     el.className = 'ab-splash';
     el.dataset.app = here.key;
     el.setAttribute('aria-hidden', 'true');
+    // Name, then what the app is for, then the build. The middle line is the
+    // one that earns the beat: an app that says what it does while it loads
+    // has introduced itself before the first pixel of content arrives.
     el.innerHTML =
       '<div class="ab-splash-in">' +
         (here === TEAM ? lock('ab-splash-ico ab-splash-ico-line') : tile(here.key, 'ab-splash-ico')) +
         '<b>' + here.name + '</b>' +
+        '<em>' + here.desc + '</em>' +
         '<small>v' + VERSION + ' &middot; Birdland</small>' +
+        // Fills for the life of the splash, in the app's own colour. It is the
+        // difference between a screen that is waiting and one that is working.
+        '<i class="ab-splash-bar" aria-hidden="true"></i>' +
       '</div>';
     document.body.appendChild(el);
 
@@ -241,9 +254,9 @@
   // Short enough to read standing up. Three lines is a release note; ten is a
   // changelog, and a changelog belongs on a page, not in a popover.
   var NOTES = [
-    'New names: ABrief, AsiaSource, CostNow',
-    'One workspace on CostNow — enter your shipment once',
-    'Faster start: instant app launch screens'
+    'New app: My Market — where your market is moving',
+    'Customs data now covers scissors and hand saws',
+    'AsiaSource is the handbook again; the market screens moved out'
   ];
 
   function chips() {

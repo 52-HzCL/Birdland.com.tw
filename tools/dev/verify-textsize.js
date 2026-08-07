@@ -8,7 +8,7 @@ const sharp = require('sharp');
 const { CHROME, BASE, SHOTS } = require('./_env');
 
 const PAGES = ['index.html', 'about.html', 'contact.html', 'privacy.html', 'product-101.html',
-  'guide.html', 'partner.html', 'cost-desk.html', 'team.html', 'executive.html'];
+  'guide.html', 'partner.html', 'cost-desk.html', 'my-market.html', 'team.html', 'executive.html'];
 
 const measure = () => ({
   present: !!document.querySelector('.bl-textsize'),

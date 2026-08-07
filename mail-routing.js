@@ -61,7 +61,8 @@
   var TAGS = {
     'brief': '[BL-BRF] ', // AsiaSource Buyer Brief inquiries
     'cost': '[BL-CST] ',  // CostNow cost calculation inquiries
-    'cat': '[BL-CAT] '    // Demand shelf category enquiries (AsiaSource)
+    'cat': '[BL-CAT] ',   // Category enquiries — was the AsiaSource demand shelf
+    'mkt': '[BL-MKT] '    // My Market: a buyer asking about a market's direction
     // Reserved for future use: [BL-PGM]
   };
 

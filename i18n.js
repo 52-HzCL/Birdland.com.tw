@@ -75,12 +75,26 @@
   var SKIP = { SCRIPT: 1, STYLE: 1, CODE: 1, TEXTAREA: 1, NOSCRIPT: 1, TITLE: 1, PRE: 1 };
   var ATTRS = ['alt', 'title', 'aria-label', 'placeholder'];
 
+  // A product name split across elements is the one thing exact-match cannot
+  // survive: My Market's title is "My <i>Market</i>", which reaches this walker
+  // as two nodes, and "Market" on its own is a real dictionary key used as a
+  // column heading elsewhere — so the German page called the app "My Markt".
+  // translate="no" is the standard HTML opt-out, so marking the name also stops
+  // the browser's own page translator from doing the same thing.
+  function optedOut(el) {
+    for (var n = el; n && n.nodeType === 1; n = n.parentNode) {
+      if (n.getAttribute && n.getAttribute('translate') === 'no') return true;
+    }
+    return false;
+  }
+
   function translateText() {
     var walker = document.createTreeWalker(document.documentElement, NodeFilter.SHOW_TEXT, {
       acceptNode: function (n) {
         if (seenText.has(n)) return NodeFilter.FILTER_REJECT;
         var p = n.parentNode;
         if (!p || SKIP[p.nodeName]) return NodeFilter.FILTER_REJECT;
+        if (optedOut(p)) return NodeFilter.FILTER_REJECT;
         return NodeFilter.FILTER_ACCEPT;
       }
     });

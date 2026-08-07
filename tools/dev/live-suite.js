@@ -21,7 +21,7 @@ const ok = (m) => console.log('  ✓ ' + m);
   // 1 — every page loads, no 4xx on subresources
   console.log('① 逐頁載入');
   for (const f of ['', 'about.html', 'guide.html', 'product-101.html', 'executive.html',
-    'partner.html', 'cost-desk.html', 'team.html', 'contact.html', 'privacy.html', 'news.html']) {
+    'partner.html', 'cost-desk.html', 'my-market.html', 'team.html', 'contact.html', 'privacy.html', 'news.html']) {
     const missing = [];
     const h = r => { if (r.status() >= 400) missing.push(r.status() + ' ' + r.url().replace(BASE, '')); };
     p.on('response', h);

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-  <link rel="stylesheet" href="tokens.css?v=20260804a"><script src="text-size.js?v=20260804a"></script><link rel="stylesheet" href="app-bar.css?v=20260805c"><script defer src="app-bar.js?v=20260805c"></script><script defer src="i18n.js?v=20260806a"></script>
+  <link rel="stylesheet" href="tokens.css?v=20260804a"><script src="text-size.js?v=20260804a"></script><link rel="stylesheet" href="app-bar.css?v=20260807a"><script defer src="app-bar.js?v=20260807a"></script><script defer src="i18n.js?v=20260807a"></script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#073F35"><meta name="description" content="AsiaSource is Birdland's public procurement workspace for product routes, buying decisions and OEM enquiry preparation.">
 <title>Birdland AsiaSource</title><meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1098,10 +1098,10 @@ body.theme-light #dash{
 .bd-swatch{position:relative;overflow:hidden}
 .bd-swatch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .bd-swatch-process{background:var(--kb-line2,#2a3340)}
-</style><style>#p-material,#p-shipping,#p-freight,#p-watch,#p-war,#p-tariff,#p-market,#p-keynews,#p-regcal,#p-report,#p-news{display:none!important}</style>  <!-- Not deferred: the desk's tools are inline body scripts, which run before
+</style>  <!-- Not deferred: the desk's tools are inline body scripts, which run before
        any deferred script does. blCtx has no DOM dependency, so loading it
        eagerly is what lets those tools read the context at all. -->
-  <script src="context.js?v=20260731d"></script><script defer src="mail-routing.js?v=20260731c"></script>
+  <script src="context.js?v=20260731d"></script><script defer src="mail-routing.js?v=20260807a"></script>
 <script defer src="terminal-status.js?v=20260730d"></script>
 </head><body class="theme-light desk-buyer">
 <style>
@@ -1167,14 +1167,16 @@ body.theme-light .bd-mast .tool-btn:hover,body.theme-light .bd-mast .tool-btn:fo
 .bd-signal-deck .pd-kpi{min-height:0;padding:var(--sp-2)!important;border:1px solid rgba(5,55,45,.17)!important;border-left:3px solid var(--pd-jade,var(--jade-900))!important;border-radius:0!important;background:rgba(255,255,255,.68)!important;box-shadow:none!important}
 .bd-signal-deck .pd-kpi.warn{border-left-color:var(--pd-copper,#B95D1C)!important}
 .bd-signal-deck .pd-kpi-title{font-size:var(--fs-micro)!important}.bd-signal-deck .pd-kpi-call{font-size:var(--fs-micro)!important}.bd-signal-deck .pd-kpi-viz{margin:var(--sp-2) 0 4px!important}.bd-signal-deck .pd-kpi-icon{width:28px!important;height:28px!important;flex-basis:28px!important;font-size:var(--fs-small)!important}.bd-signal-deck .pd-spark{height:25px!important}.bd-signal-deck .pd-kpi-meta{font-size:var(--fs-micro)!important}.bd-signal-deck .pd-kpi-action{margin-top:var(--sp-2);font-size:var(--fs-micro)!important;line-height:1.35!important}
-/* The desk is a single-panel router and the rail is hidden while the overview
-   is showing, so a panel with no entrance on the overview cannot be reached at
-   all from a cold visit. The shelf shipped that way; this is its way in. */
-.bd-shelf-cta{display:flex;justify-content:space-between;gap:var(--sp-3);align-items:baseline;flex-wrap:wrap;margin:0 0 var(--sp-3);padding:var(--sp-2) var(--sp-2);border:1px solid rgba(5,55,45,.2);border-left:3px solid var(--pd-copper,#B95D1C);background:rgba(255,255,255,.55);color:var(--kb-ink-500,#5f665f);font-size:var(--fs-micro);text-decoration:none;cursor:pointer}
-.bd-shelf-cta:hover,.bd-shelf-cta:focus-visible{border-color:var(--kb-copper-700,#a64b16);border-left-color:var(--kb-copper-700,#a64b16);background:#fff}
-.bd-shelf-cta b{color:var(--pd-jade,var(--jade-900));font:700 var(--fs-micro) var(--ff-sans);letter-spacing:.09em;text-transform:uppercase}
-.bd-shelf-cta span{flex:1 1 240px;text-align:right}
-.bd-shelf-cta span::after{content:" \2192"}
+/* AsiaSource is a single-page app with no address bar to leave a trail, so a
+   sibling app it wants a buyer to reach needs its own doorway drawn right on
+   the overview — a plain #anchor link would just be swallowed by the in-page
+   router. This card is that doorway; it was first built for the demand
+   shelf, then repointed at My Market once the shelf became that app. */
+.bd-app-cta{display:flex;justify-content:space-between;gap:var(--sp-3);align-items:baseline;flex-wrap:wrap;margin:0 0 var(--sp-3);padding:var(--sp-2) var(--sp-2);border:1px solid rgba(5,55,45,.2);border-left:3px solid var(--pd-copper,#B95D1C);background:rgba(255,255,255,.55);color:var(--kb-ink-500,#5f665f);font-size:var(--fs-micro);text-decoration:none;cursor:pointer}
+.bd-app-cta:hover,.bd-app-cta:focus-visible{border-color:var(--kb-copper-700,#a64b16);border-left-color:var(--kb-copper-700,#a64b16);background:#fff}
+.bd-app-cta b{color:var(--pd-jade,var(--jade-900));font:700 var(--fs-micro) var(--ff-sans);letter-spacing:.09em;text-transform:uppercase}
+.bd-app-cta span{flex:1 1 240px;text-align:right}
+.bd-app-cta span::after{content:" \2192"}
 .bd-floor-divider{display:flex;justify-content:space-between;gap:var(--sp-3);align-items:baseline;margin:0 0 8px;color:var(--kb-ink-500,#5f665f)}
 .bd-floor-divider b{color:var(--pd-jade,var(--jade-900));font:700 var(--fs-micro) var(--ff-sans);letter-spacing:.09em;text-transform:uppercase}.bd-floor-divider span{font-size:var(--fs-micro);text-align:right}
 .bd-cost-floor-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -1408,7 +1410,7 @@ body.bd-printing>*{display:none!important}body.bd-printing .bd-print-sheet{displ
 @media(max-width:720px){
  .bd-shell{margin:8px 0}.bd-mast{padding:var(--sp-3)}.bd-mast-brand{font-size:var(--fs-h3)}.bd-mast-brand small{font-size:var(--fs-micro)}
  .bd-grid{display:block}.bd-install-card{grid-column:1/-1;display:flex;align-items:center;gap:8px}.bd-install-card small{margin:0}
- .bd-work{padding:var(--sp-3) var(--sp-3)}.bd-work-head{display:block}.bd-updated{display:block;margin-top:8px}.bd-signal-deck .pd-kpis{grid-template-columns:1fr!important}.bd-cost-floor-head{display:block}.bd-cost-floor-head>span{display:block;margin-top:var(--sp-1)}.bd-floor-divider{display:block}.bd-floor-divider span{display:block;margin-top:var(--sp-1);text-align:left}.bd-shelf-cta{display:block}.bd-shelf-cta span{display:block;margin-top:var(--sp-1);text-align:left}.bd-cost-floor-grid{grid-template-columns:1fr}.bd-family-tabs{grid-template-columns:1fr 1fr}.bd-anatomy img{height:230px}.bd-part-list{grid-template-columns:1fr 1fr}.bd-materials,.bd-processes{grid-template-columns:1fr 1fr}.bd-choice{min-height:122px}.bd-priority-list{grid-template-columns:1fr}.bd-brief{display:block;padding:var(--sp-4) var(--sp-3)}.bd-impact-list{grid-template-columns:1fr}.bd-impact-data{grid-template-columns:1fr}.bd-brief-title{margin-top:0}.bd-bottom{display:block}.bd-references{padding:var(--sp-3) var(--sp-3)}.bd-references .pd-offer-grid{grid-template-columns:1fr}.bd-tools{border-left:0;border-top:1px solid rgba(5,55,45,.18)}.bd-privacy{align-items:flex-start}
+ .bd-work{padding:var(--sp-3) var(--sp-3)}.bd-work-head{display:block}.bd-updated{display:block;margin-top:8px}.bd-signal-deck .pd-kpis{grid-template-columns:1fr!important}.bd-cost-floor-head{display:block}.bd-cost-floor-head>span{display:block;margin-top:var(--sp-1)}.bd-floor-divider{display:block}.bd-floor-divider span{display:block;margin-top:var(--sp-1);text-align:left}.bd-app-cta{display:block}.bd-app-cta span{display:block;margin-top:var(--sp-1);text-align:left}.bd-cost-floor-grid{grid-template-columns:1fr}.bd-family-tabs{grid-template-columns:1fr 1fr}.bd-anatomy img{height:230px}.bd-part-list{grid-template-columns:1fr 1fr}.bd-materials,.bd-processes{grid-template-columns:1fr 1fr}.bd-choice{min-height:122px}.bd-priority-list{grid-template-columns:1fr}.bd-brief{display:block;padding:var(--sp-4) var(--sp-3)}.bd-impact-list{grid-template-columns:1fr}.bd-impact-data{grid-template-columns:1fr}.bd-brief-title{margin-top:0}.bd-bottom{display:block}.bd-references{padding:var(--sp-3) var(--sp-3)}.bd-references .pd-offer-grid{grid-template-columns:1fr}.bd-tools{border-left:0;border-top:1px solid rgba(5,55,45,.18)}.bd-privacy{align-items:flex-start}
 }
 @media(prefers-reduced-motion:reduce){.bd-shell *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 </style>
@@ -2045,7 +2047,7 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
         <section class="bd-cost-floor" aria-labelledby="bd-cost-floor-title">
           <div class="bd-cost-floor-head"><div><h2 id="bd-cost-floor-title">Cost &amp; risk floor</h2><p>Today’s buying signals and the Taiwan / China cost drivers behind a finished OEM quote.</p></div><span>Source-aware · buyer cost view</span></div>
           <div class="bd-signal-deck" aria-label="Today’s buying signals"><div class="pd-kpis" id="pd-kpis"></div></div>
-          <a class="bd-shelf-cta" href="#p-shelf" data-go="p-shelf"><b>Demand shelf</b><span>See where your market sits in the latest full year of customs data — direction only, never a price</span></a>
+          <a class="bd-app-cta" href="my-market.html"><b>My Market</b><span>See which way your market is moving, and how the markets next to it compare — direction only, never a price</span></a>
           <div class="bd-floor-divider"><b>Underlying cost floor</b><span>Public labour and carrying-cost benchmarks · not an automatic quote formula</span></div>
           <div class="bd-cost-floor-grid">
             <article class="bd-floor-card">
@@ -2189,20 +2191,12 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
         <div class="bd-references-head"><div><h2 id="bd-references-title">Public product references</h2><p>Current PDF links supplied through Birdland's public product feed.</p></div><span class="bd-updated" id="pd-product-updated">published PDF shelf</span></div>
         <div class="pd-offer-grid" id="pd-offer-grid"></div>
       </section>
-      <aside class="bd-tools"><h2>Buying tools</h2><p>Use your own figures. Inputs remain in this browser session.</p><div class="bd-tool-links"><button type="button" data-go="p-shelf">Demand shelf</button><button type="button" data-go="p-alerts">Buy Queue</button><button type="button" data-go="p-mkt">Cost &amp; Origin</button><a class="x" href="cost-desk.html#p-landed2">Workspace</a><a class="x" href="cost-desk.html#p-margin">Retail margin</a><a class="x" href="cost-desk.html#p-reorder">Reorder timing</a><a class="x" href="cost-desk.html#p-sail">Plan a sailing</a><a class="x" href="cost-desk.html#p-cduty">TW vs CN duty</a></div></aside>
+      <aside class="bd-tools"><h2>Buying tools</h2><p>Use your own figures. Inputs remain in this browser session.</p><div class="bd-tool-links"><button type="button" data-go="p-alerts">Buy Queue</button><button type="button" data-go="p-mkt">Cost &amp; Origin</button><a class="x" href="cost-desk.html#p-landed2">Workspace</a><a class="x" href="cost-desk.html#p-margin">Retail margin</a><a class="x" href="cost-desk.html#p-reorder">Reorder timing</a><a class="x" href="cost-desk.html#p-sail">Plan a sailing</a><a class="x" href="cost-desk.html#p-cduty">TW vs CN duty</a><a class="x" href="my-market.html">My Market</a></div></aside>
     </div>
     <div class="bd-privacy"><span>Public planning only. AsiaSource does not create an order, quotation or account.</span><button id="reset-buyer-desk" type="button">Reset this brief</button></div>
   </section>
-  <nav class="toc" aria-label="AsiaSource sections"><a href="#overview" data-icon="⌂" class="toc-home">Overview</a><a href="#p-alerts" data-icon="▤">Buy Queue</a><a href="#p-offers" data-icon="◇">Product Finder</a><a href="#pd-builder" data-icon="✎">Buyer Brief</a><a href="#p-landed2" data-icon="▦">Workspace</a><a href="#p-mkt" data-icon="◎">Cost &amp; Origin</a><a href="#p-margin" data-icon="$">Retail margin</a><a href="#p-reorder" data-icon="◴">Reorder timing</a><a href="#p-sail" data-icon="≋">Plan a sailing</a><a href="#p-cduty" data-icon="⚖">TW vs CN duty</a><a href="#p-shelf" data-icon="▥">Demand shelf</a><span class="pd-hidden-nav"><a href="#p-brief">Brief detail</a><a href="#p-market">Market detail</a><a href="#p-keynews">Key News</a><a href="#p-regcal">Regulatory Calendar</a><a href="#p-report">Keyword report</a><a href="#p-material">Materials ahead</a><a href="#p-shipping">Shipping ahead</a><a href="#p-season">Buy calendar</a><a href="#p-freight">Freight indexes</a><a href="#p-watch">Watchlist</a><a href="#p-war">Geopolitics</a><a href="#p-tariff">Tariffs</a><a href="#p-news">News</a></span></nav>
+  <nav class="toc" aria-label="AsiaSource sections"><a href="#overview" data-icon="⌂" class="toc-home">Overview</a><a href="#p-alerts" data-icon="▤">Buy Queue</a><a href="#p-offers" data-icon="◇">Product Finder</a><a href="#pd-builder" data-icon="✎">Buyer Brief</a><a href="#p-landed2" data-icon="▦">Workspace</a><a href="#p-mkt" data-icon="◎">Cost &amp; Origin</a><a href="#p-margin" data-icon="$">Retail margin</a><a href="#p-reorder" data-icon="◴">Reorder timing</a><a href="#p-sail" data-icon="≋">Plan a sailing</a><a href="#p-cduty" data-icon="⚖">TW vs CN duty</a></nav>
   <div id="tab-hint" class="tab-hint"><div class="mac-note"><span class="mn-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span><div class="mn-txt"><b>ASIASOURCE</b><span>Choose a buying action from the menu.</span></div></div></div>
-
-  <section class="blk" data-open="1" id="p-brief"><button class="blk-h"><span class="k">BRIEF</span><h2>Today &amp; Tomorrow</h2><span class="ihelp" title="The desk's prioritised actions for the period — what to lock, book or prepare now.">i</span><span class="meta" id="pb-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="pb-sum" id="pb-sum"></div><div id="pb-actions"></div></div></section>
-
-  <section class="blk" data-open="0" id="p-material"><button class="blk-h"><span class="k">MATL</span><h2>Material prices ahead</h2><span class="ihelp" title="Key input materials, rebased to 100 = now, over the forecast horizon. Rising = cost pressure ahead. Hover a point for the index.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="matl-note"></div><div class="svgwrap"><svg id="matl" class="chart" viewBox="0 0 720 280" role="img" aria-label="Material forecast"></svg></div><div class="legend" id="matl-legend"></div><div class="fc-acc">Desk-set direction only. No forecast hit-rate is claimed; confirm material cover with Birdland before acting.</div></div></section>
-
-  <section class="blk" data-open="0" id="p-shipping"><button class="blk-h"><span class="k">SHIP</span><h2>Shipping prices ahead</h2><span class="ihelp" title="Live spot rates per lane, refreshed daily, above an indicative forecast curve (US$/FEU). The curve shows direction; the table shows what shipping actually costs today.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="ship-live-note"></div><div class="svgwrap"><table class="wl" id="ship-live-tbl"></table></div><div class="sub" id="ship-note"></div><div class="svgwrap" id="ship-chartwrap"><svg id="ship" class="chart" viewBox="0 0 720 280" role="img" aria-label="Shipping forecast"></svg></div><div class="legend" id="ship-legend"></div><div class="fc-acc">Desk-set curve direction only; it may differ from current spot rates. No forecast hit-rate is claimed. Confirm space and pricing with Birdland or your carrier.</div></div></section>
-
-  <section class="blk" data-open="0" id="p-freight"><button class="blk-h"><span class="k">FREIGHT</span><h2>Shipping price indexes</h2><span class="ihelp" title="FRED ocean-freight cost & shipment indices (monthly, official, free) plus BDI/container as indicative; tap a source link for the latest official figure.">i</span><span class="meta" id="p-fr-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="p-fr-note"></div><div class="svgwrap"><table class="wl" id="p-freight-tbl"></table></div><div class="fr-src">Official sources ↗ <a href="https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/world-container-index-assessed-by-drewry" target="_blank" rel="noopener">Drewry WCI</a> · <a href="https://fbx.freightos.com/" target="_blank" rel="noopener">Freightos FBX</a> · <a href="https://www.balticexchange.com/en/data-services/market-information0/dry-services.html" target="_blank" rel="noopener">Baltic Exchange (BDI)</a></div></div></section>
 
   <section class="blk landed-tool" data-open="0" id="p-landed2"><button class="blk-h"><span class="k">WORKSPACE</span><h2>Cost workspace — your shipment, priced</h2><span class="ihelp" title="We deliver FOB at the origin port; everything after that is yours. Pick your country to prefill duty & import tax, then see CIF, duty, VAT/GST, fees and total landed cost per unit.">i</span><span class="tog"></span></button><div class="blk-b">
     <section class="landed-input-panel" aria-labelledby="landed-setup-title">
@@ -2256,29 +2250,13 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
     <div class="sailcards" id="s_cards"></div>
   </div></section>
 
-  <section class="blk" data-open="0" id="p-watch"><button class="blk-h"><span class="k">WATCH</span><h2>All indicators</h2><span class="ihelp" title="Every indicator this desk tracks for garden-tool sourcing, grouped by category: raw materials, freight & logistics, currency, macro & financial, and trade & tariffs.">i</span><span class="meta" id="p-wl-meta"></span><span class="tog"></span></button><div class="blk-b"><div class="sub">Every indicator this desk tracks, grouped by category — raw materials, freight, currency, macro and trade.</div><div id="p-watch-cats"></div></div></section>
-
   <section class="blk" data-open="0" id="p-cduty"><button class="blk-h"><span class="k">DUTY</span><h2>Cost comparison — TW vs CN origin</h2><span class="ihelp" title="Estimate import duty by destination and origin. Switching origin (Taiwan vs China) shows the tariff stacking you avoid. Illustrative — confirm HS with your broker.">i</span><span class="tog"></span></button><div class="blk-b">
     <div class="calc"><div><label for="pcDest">Destination</label><select id="pcDest"></select></div><div><label for="pcOrigin">Country of origin</label><select id="pcOrigin"><option value="TW">Taiwan</option><option value="CN">China</option></select></div><div><label for="pcVal">Shipment value (US$)</label><input id="pcVal" type="number" value="10000" min="0" step="100"></div></div>
     <div class="calc-out" id="pcalcOut"></div><div class="sub" id="pcalc-note" style="margin-top:12px"></div></div></section>
 
-    <section class="blk" data-open="0" id="p-tariff"><button class="blk-h"><span class="k">TARIFF</span><h2>Tariff news</h2><span class="ihelp" title="Recent and pending tariff/duty changes by market. Hover a row for context.">i</span><span class="tog"></span></button><div class="blk-b"><div class="svgwrap"><table class="tm" id="tariffmon"></table></div></div></section>
-
-  <section class="blk" data-open="0" id="p-war"><button class="blk-h"><span class="k">WAR</span><h2>Risk monitor — war &amp; politics</h2><span class="ihelp" title="How active conflicts/tensions are pressuring your supply chain (0–100). Hover a bar for what it affects.">i</span><span class="tog"></span></button><div class="blk-b"><div class="sub" id="war-note"></div><div class="war" id="war"></div></div></section>
-
   <section class="blk" data-open="0" id="p-mkt"><button class="blk-h"><span class="k">ORIGIN</span><h2>Origin &amp; Destination Decision</h2><span class="ihelp" title="Compare the sourcing and destination context behind a buying decision. Each region translates policy, lead-time and supply information into a next move.">i</span><span class="meta" id="room-meta">pick a region</span><span class="tog"></span></button><div class="blk-b"><div class="ctl"><div><label for="room">Commercial region</label><select id="room" class="mkt" aria-label="Choose commercial region"></select></div><div><label for="region" id="region-label">Focus market</label><select id="region" class="mkt" aria-label="Choose market"></select></div></div><div class="room-chips" id="room-chips"></div><div class="room-summary" id="room-summary" aria-live="polite"></div><div id="content" aria-live="polite"></div></div></section>
 
-  <section class="blk" data-open="0" id="p-market"><button class="blk-h"><span class="k">MARKET</span><h2>Capital &amp; Market Pulse</h2><span class="ihelp" title="A market-context view for procurement leaders: rates, inflation, currency and risk signals translated into landed-cost and inventory decisions. Not investment advice.">i</span><span class="meta" id="mp-meta">market context</span><span class="tog"></span></button><div class="blk-b">
-    <div class="sub">A concise view of the international market signals that can change your buying power, financing cost and order timing. Use the full-market links for research; this desk translates the movement back into procurement decisions.</div>
-    <div class="market-grid" id="mp-grid"></div>
-    <div class="market-read" id="mp-read" aria-live="polite"></div>
-    <div class="market-impact" id="mp-impact"></div>
-    <div class="market-disclaimer">Market context only — not investment, trading or financial advice. Values may be delayed; always check the labelled source before making a financial decision.</div>
-  </div></section>
-
   <section class="blk" data-open="0" id="p-offers"><button class="blk-h"><span class="k">PRODUCTS</span><h2>Product &amp; Offer Finder</h2><span class="ihelp" title="Birdland-published product catalogues and offer PDFs. Every card opens the maintained view-only OneDrive or SharePoint file in a new tab.">i</span><span class="meta" id="offer-meta">published PDFs</span><span class="tog"></span></button><div class="blk-b"><div class="sub">Open Birdland's latest customer-facing catalogues and product information. Links are view-only documents; opening one does not place an order or send an enquiry.</div><div class="offer-grid" id="offer-grid"></div></div></section>
-
-  <section class="blk" data-open="0" id="p-news"><button class="blk-h"><span class="k">NEWS</span><h2>Birdland news</h2><span class="ihelp" title="Company updates posted by the Birdland team.">i</span><span class="meta">updates</span><span class="tog"></span></button><div class="blk-b"><div class="news" id="newslist"></div></div></section>
 
   <section class="blk" data-open="0" id="p-alerts"><button class="blk-h"><span class="k">QUEUE</span><h2>Today's Buy Queue</h2><span class="ihelp" title="The buying actions that deserve review now, plus a browser-saved return state so your next visit starts with what changed.">i</span><span class="meta" id="sb-meta"></span><span class="tog"></span></button><div class="blk-b">
     <div class="sub">A concise queue of the buying decisions that deserve attention now, with a remembered comeback state for this browser.</div>
@@ -2318,31 +2296,6 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
     <div class="rp-preview" id="shr_preview"></div>
   </div></section>
 
-  <section class="blk" data-open="0" id="p-keynews"><button class="blk-h"><span class="k">KEY NEWS</span><h2>Key News</h2><span class="ihelp" title="Free, keyless headlines refreshed daily: tariffs across major markets, ocean-freight/shipping rates, and China &amp; Taiwan production and raw-materials news.">i</span><span class="meta" id="kn-meta"></span><span class="tog"></span></button><div class="blk-b">
-    <div class="sub">Refreshed daily from free public sources — tariffs across major markets, shipping/freight rates, and China &amp; Taiwan production and raw-materials news.</div>
-    <div class="news" id="keynewslist"></div>
-  </div></section>
-
-  <section class="blk" data-open="0" id="p-regcal"><button class="blk-h"><span class="k">REG CAL</span><h2>Regulatory calendar</h2><span class="ihelp" title="Tariff, carbon-border and compliance deadlines that affect landed cost, plus trade-show dates — desk-maintained, not a daily feed.">i</span><span class="meta" id="rc-meta"></span><span class="tog"></span></button><div class="blk-b">
-    <div class="sub">Deadlines and events that change landed cost or documentation requirements. Past dates stay for reference; upcoming ones are sorted by how soon they land.</div>
-    <div class="news" id="regcallist"></div>
-  </div></section>
-
-  <section class="blk" data-open="0" id="p-report"><button class="blk-h"><span class="k">REPORT</span><h2>Keyword report</h2><span class="ihelp" title="Pick one indicator, or one Key-News keyword, or type your own; the desk writes a full-sentence briefing article for that one topic, at no token/API cost.">i</span><span class="tog"></span></button><div class="blk-b">
-    <div class="sub">Not a quick forward — a written briefing. Tick as many topics as you like below — any indicators tracked on this desk, or keywords trending in today's Key News — and the desk composes one fluent, article-style summary from the underlying data — zero AI/API cost, just your data written out in full sentences.</div>
-    <div class="rp-topics" id="rp_topics"></div>
-    <div class="calc" style="grid-template-columns:1fr auto;align-items:end">
-      <div><label>Or search a keyword</label><input id="rp_kw" placeholder="e.g. steel, EU, freight"></div>
-      <div><button class="tool-btn" id="rp_gen" type="button">Generate report</button></div>
-    </div>
-    <div id="rp_out"></div>
-    <div class="send-row" id="rp_send" style="display:none">
-      <input id="rp_email" type="hidden" value="">
-      <button class="tool-btn tool-btn-ghost" id="rp_copy" type="button">&#128203; Copy</button>
-      <button class="tool-btn" id="rp_mail" type="button" title="Writes in an AI-style article format from your own tracked data — no API calls, no token cost, nothing sent anywhere until you hit send.">&#9993; AI Email Draft</button>
-    </div>
-  </div></section>
-
   <section class="blk" data-open="0" id="p-margin"><button class="blk-h"><span class="k">MARGIN</span><h2>Retail margin planner</h2><span class="ihelp" title="Price for your shelves: enter landed cost and target margin to get suggested retail, markup and gross profit per order.">i</span><span class="tog"></span></button><div class="blk-b">
     <div class="sub">Price for your shelves — turn a landed cost into a retail price at your target margin.</div>
     <div class="calc">
@@ -2366,130 +2319,14 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
     <div class="calc-out" id="ro_out"></div>
   </div></section>
 
-  <section class="blk" data-open="0" id="p-season"><button class="blk-h"><span class="k">CALENDAR</span><h2>Seasonal buy windows</h2><span class="ihelp" title="Garden-tool demand peaks in spring. This backs out the order window so stock lands ahead of the season, using your lead time and transit.">i</span><span class="tog"></span></button><div class="blk-b">
-    <div class="sub">Garden tools sell in spring — order early enough that stock lands before the rush. Set your total lead time to shift the window.</div>
-    <div class="calc" style="grid-template-columns:1fr 1fr">
-      <div><label>Total lead time (weeks)</label><input id="se_lead" type="number" value="11" step="1"></div>
-      <div><label>Peak market</label><select id="se_hemi"><option value="n">Northern (EU / US / JP)</option><option value="s">Southern (AU / NZ)</option></select></div>
-    </div>
-    <div class="cal-grid" id="se_cal"></div>
-    <div class="sub" id="se_note" style="margin-top:12px"></div>
-  </div></section>
-
-  <style id="p-shelf-style">
-#p-shelf .shelf-fresh{margin:-2px 0 12px;font:var(--fs-small)/1.5 var(--kb-mono);color:var(--kb-faint)}
-#p-shelf .shelf-rule{margin:0 0 var(--sp-3);font:var(--fs-small)/1.5 var(--kb-mono);color:var(--kb-faint)}
-#p-shelf .shelf-picker{margin-bottom:var(--sp-3);display:flex;flex-direction:column;gap:var(--sp-2)}
-#p-shelf .shelf-picker-row{display:flex;gap:var(--sp-2);flex-wrap:wrap;align-items:flex-end}
-#p-shelf .shelf-picker-row[hidden]{display:none}
-#p-shelf .shelf-picker-field{display:flex;flex-direction:column;gap:4px;flex:1 1 240px;min-width:200px}
-#p-shelf .shelf-picker-field label{font:600 var(--fs-small)/1.2 var(--kb-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--kb-faint)}
-#p-shelf .shelf-picker-field input[type=search]{padding:var(--sp-2);border:1px solid var(--pd-line);border-radius:var(--r-sm);background:var(--kb-panel);color:var(--kb-ink);font:var(--fs-body)/1.3 var(--kb-sans)}
-#p-shelf .shelf-picker-field select.mkt{width:100%;margin-top:4px;padding:var(--sp-2);border:1px solid var(--pd-line);border-radius:var(--r-sm);background:var(--kb-panel);color:var(--kb-ink);font:var(--fs-body)/1.3 var(--kb-sans)}
-#p-shelf .shelf-empty{padding:var(--sp-4);text-align:center;color:var(--kb-faint);font:var(--fs-body)/1.5 var(--kb-sans);border:1px dashed var(--pd-line);border-radius:var(--kb-radius)}
-#p-shelf .shelf-empty[hidden]{display:none}
-#p-shelf .shelf-cards{display:grid;grid-template-columns:1fr;gap:var(--sp-4)}
-#p-shelf .shelf-cards.is-compare{grid-template-columns:1fr 1fr}
-@media(max-width:860px){#p-shelf .shelf-cards.is-compare{grid-template-columns:1fr}}
-#p-shelf .shelf-card{border:1px solid var(--pd-line);border-radius:var(--kb-radius);background:var(--kb-bg);padding:var(--sp-3);min-width:0}
-#p-shelf .shelf-card-h{display:flex;align-items:baseline;justify-content:space-between;gap:var(--sp-2);margin-bottom:var(--sp-2);flex-wrap:wrap}
-/* .tool-btn was written for <button>; as an <a> it stays display:inline, so its
-   16px padding overflowed the line box and sat on top of the first HS code. */
-#p-shelf .shelf-cost-it{display:inline-flex;align-items:center;margin-bottom:var(--sp-2);text-decoration:none}
-#p-shelf .shelf-card-h h4{margin:0;font:700 var(--fs-h3)/1.3 var(--ff-serif);color:var(--pd-jade)}
-#p-shelf .shelf-card-tier{font:600 var(--fs-small)/1.2 var(--kb-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--kb-faint)}
-#p-shelf .shelf-card-cats{display:flex;flex-direction:column;gap:var(--sp-3)}
-#p-shelf .shelf-cat-h{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-#p-shelf .shelf-cat-h .mk{width:22px;height:22px;flex:0 0 auto;color:var(--pd-jade-2)}
-#p-shelf .shelf-cat-h .mk svg{display:block;width:100%;height:100%}
-#p-shelf .shelf-cat-h .hs{display:block;font:600 10px/1.2 var(--kb-mono);letter-spacing:.05em;color:var(--pd-copper)}
-#p-shelf .shelf-cat-h .nm{font:700 var(--fs-body)/1.25 var(--kb-sans);color:var(--kb-ink)}
-#p-shelf .shelf-pending{padding:var(--sp-2) 0 0;font:var(--fs-small)/1.5 var(--kb-mono);color:var(--kb-faint)}
-#p-shelf .shelf-pending b{color:var(--pd-copper)}
-#p-shelf .shelf-tier2-note{font:var(--fs-small)/1.5 var(--kb-sans);color:var(--kb-mut);font-style:italic;margin:4px 0 var(--sp-2)}
-#p-shelf .shelf-detail{border-top:1px solid var(--pd-line);padding-top:var(--sp-3)}
-#p-shelf .shelf-card-cats .shelf-detail:first-child{border-top:0;padding-top:0}
-#p-shelf .shelf-detail-h{font:700 var(--fs-h3)/1.25 var(--ff-serif);color:var(--pd-jade);margin:0 0 var(--sp-2)}
-#p-shelf .shelf-uv{display:flex;align-items:baseline;gap:var(--sp-2);flex-wrap:wrap;margin-bottom:var(--sp-2)}
-#p-shelf .shelf-uv .v{font:700 26px/1 var(--kb-mono)}
-#p-shelf .shelf-uv .u,#p-shelf .shelf-uv .u2{font:var(--fs-small)/1.3 var(--kb-mono);color:var(--kb-faint)}
-#p-shelf .shelf-share{font-size:var(--fs-h3);color:var(--kb-mut);margin:0 0 var(--sp-3)}
-#p-shelf .shelf-share b{color:var(--kb-ink)}
-#p-shelf .shelf-ladder{border:1px solid var(--pd-line);border-radius:var(--r-sm);overflow:hidden;margin-bottom:var(--sp-3)}
-#p-shelf .shelf-lhead{display:flex;justify-content:space-between;gap:var(--sp-2);padding:var(--sp-2) var(--sp-3);background:var(--kb-bg);border-bottom:1px solid var(--pd-line);font:600 var(--fs-small)/1.3 var(--kb-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--kb-faint)}
-#p-shelf .shelf-band{padding:var(--sp-2) var(--sp-3);border-bottom:1px solid var(--pd-line)}
-#p-shelf .shelf-band:last-child{border-bottom:0}
-#p-shelf .shelf-band.here{background:var(--pd-copper-soft)}
-#p-shelf .shelf-band .bt{display:flex;align-items:baseline;gap:var(--sp-2);flex-wrap:wrap}
-#p-shelf .shelf-band .bn{font:700 var(--fs-body)/1.3 var(--kb-sans);color:var(--pd-jade)}
-#p-shelf .shelf-band .drift-wrap{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;align-items:baseline}
-#p-shelf .shelf-band .drift{font:700 var(--fs-small)/1.2 var(--kb-mono);color:var(--pd-copper);letter-spacing:.04em}
-#p-shelf .shelf-band .drift-moved{font:600 var(--fs-small)/1.2 var(--kb-mono);color:var(--pd-copper);opacity:.75}
-#p-shelf .shelf-band .route{display:flex;gap:var(--sp-2);align-items:baseline;flex-wrap:wrap;margin-top:3px;font-size:var(--fs-h3);color:var(--kb-mut)}
-#p-shelf .shelf-band .route b{color:var(--pd-jade);font-family:var(--kb-mono);font-size:var(--fs-small)}
-#p-shelf .shelf-band .route a{text-decoration:none}
-#p-shelf .shelf-band .route a:hover b,#p-shelf .shelf-band .route a:focus-visible b{text-decoration:underline}
-#p-shelf .shelf-attrib{display:flex;justify-content:space-between;gap:var(--sp-2);padding:var(--sp-2) var(--sp-3);font:var(--fs-small)/1.4 var(--kb-mono);color:var(--kb-faint);background:var(--kb-bg);border-top:1px solid var(--pd-line)}
-#p-shelf .shelf-src{font:var(--fs-small)/1.5 var(--kb-mono);color:var(--kb-faint);margin:0 0 var(--sp-3)}
-#p-shelf .shelf-src a{color:var(--pd-jade-2);font-weight:700}
-#p-shelf .shelf-tw-pos{font-size:var(--fs-h3);color:var(--kb-mut);margin:0 0 var(--sp-3)}
-#p-shelf .shelf-acts{display:flex;gap:var(--sp-2);flex-wrap:wrap}
+  <style>
+/* This block used to be id="p-shelf-style" and carried the demand shelf's own
+   CSS. The shelf moved out to My Market; only these two unrelated rules —
+   the Cost Desk's #bc_co "market signal" line — were sharing the tag. */
 .landed-note.bc-signal{margin-top:6px}
 .landed-note.bc-signal a{color:var(--pd-jade-2);font-weight:700;text-decoration:none}
 .landed-note.bc-signal a:hover,.landed-note.bc-signal a:focus-visible{text-decoration:underline}
-#ds-sheet{display:none}
-@media print{
-  @page{size:A4;margin:14mm}
-  body.ds-printing main,body.ds-printing header,body.ds-printing aside,body.ds-printing nav,body.ds-printing footer,body.ds-printing #app-bar{display:none!important}
-  body.ds-printing #ds-sheet{display:block!important;font:12px/1.5 Georgia,serif;color:#111;max-width:680px;margin:0 auto}
-  #ds-sheet .ds-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid #111;padding-bottom:8px;margin-bottom:12px}
-  #ds-sheet .ds-head b{font:700 15px Georgia,serif;letter-spacing:.03em}
-  #ds-sheet .ds-head span{font:11px ui-monospace,monospace}
-  #ds-sheet .ds-title{margin:0 0 10px;font:700 19px Georgia,serif}
-  #ds-sheet .ds-row{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #ddd;padding:4px 0;font:12px ui-monospace,monospace}
-  #ds-sheet .ds-uv{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid #ddd;padding:6px 0 8px;font:12px ui-monospace,monospace}
-  #ds-sheet .ds-dir{font:700 18px ui-monospace,monospace;white-space:nowrap}
-  #ds-sheet .ds-ladder{margin:12px 0;border:1px solid #111}
-  #ds-sheet .ds-lhead{display:flex;justify-content:space-between;padding:3px 8px;border-bottom:1px solid #111;font:700 10px ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em}
-  #ds-sheet .ds-band{padding:5px 8px;border-bottom:1px solid #ddd}
-  #ds-sheet .ds-band:last-child{border-bottom:0}
-  #ds-sheet .ds-band.here{border-left:4px solid #111;padding-left:6px}
-  #ds-sheet .ds-bt{display:flex;justify-content:space-between;gap:8px;font-weight:700}
-  #ds-sheet .ds-route{display:flex;gap:8px;flex-wrap:wrap;font-size:11px;color:#333;margin-top:2px}
-  #ds-sheet .ds-src,#ds-sheet .ds-foot,#ds-sheet .ds-desk{margin:8px 0 0;font:10px ui-monospace,monospace;color:#333;word-break:break-all}
-  #ds-sheet .ds-tw-pos{margin:6px 0 0;font:11px ui-monospace,monospace;color:#333}
-  #ds-sheet .ds-disc{margin-top:10px;padding-top:8px;border-top:1px solid #111;font:10px ui-monospace,monospace;color:#555}
-}
 </style>
-  <section class="blk" data-open="1" id="p-shelf">
-<button class="blk-h"><span class="k">SHELF</span><h2>Demand shelf</h2><span class="ihelp" title="Direction from official government import statistics — Eurostat for the EU, UN Comtrade for every other market. Price bands, shares and routes are Birdland’s own — the two are never mixed into one number.">i</span><span class="meta" id="shelf-meta"></span><span class="tog"></span></button>
-<div class="blk-b">
-<p class="sub">Your markets, Birdland’s categories, one look. A percentage carries the direction a buyer needs without printing an absolute price for anyone to negotiate against.</p>
-<p class="shelf-rule" id="shelf-rule">The market list is the full set of destinations with an import record for this product family in UN Comtrade or Eurostat — inclusion is decided by public trade statistics, not by Birdland.</p>
-<p class="shelf-fresh" id="shelf-fresh"></p>
-<div class="shelf-picker" id="shelf-picker">
-<div class="shelf-picker-row">
-<div class="shelf-picker-field">
-<label for="shelf-mkt-search">Search markets</label>
-<input type="search" id="shelf-mkt-search" autocomplete="off" placeholder="Search markets">
-<select id="shelf-mkt-select" class="mkt" aria-label="Choose a market"><option value="">—</option><optgroup label="Priority markets" id="shelf-og-t1"></optgroup><optgroup label="All markets" id="shelf-og-t2"></optgroup></select>
-</div>
-<button type="button" id="shelf-compare-add" class="tool-btn">Compare</button>
-</div>
-<div class="shelf-picker-row shelf-picker-row-b" id="shelf-picker-b" hidden>
-<div class="shelf-picker-field">
-<label for="shelf-mkt-search-b">Search markets</label>
-<input type="search" id="shelf-mkt-search-b" autocomplete="off" placeholder="Search markets">
-<select id="shelf-mkt-select-b" class="mkt" aria-label="Choose a second market to compare"><option value="">—</option><optgroup label="Priority markets" id="shelf-og-t1-b"></optgroup><optgroup label="All markets" id="shelf-og-t2-b"></optgroup></select>
-</div>
-<button type="button" id="shelf-compare-remove" class="tool-btn">Remove</button>
-</div>
-</div>
-<div class="shelf-empty" id="shelf-empty">Choose a market to see its shelf.</div>
-<div class="shelf-cards" id="shelf-cards"></div>
-<div class="legend" id="shelf-legend">12-month change in import unit value · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design</div>
-</div>
-</section>
 
   <p class="disc" id="disc"></p>
 </main>
@@ -2973,7 +2810,7 @@ if(ai){var aiState=sourceState('gemini',norm(workflow.state));ai.classList.add('
    cheaper mistake to make and the easy one to reverse. */
 window.BL_DESK='buyer';
 (function(){
- var TOOLS=['p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty'];
+ var TOOLS=['p-landed2','p-margin','p-reorder','p-sail','p-cduty'];
  /* p-mkt belongs to both pages. It is the Origin & Destination panel — cost
     content in its own right — and it owns the #room and #region selects the
     whole context system reads. Dropping it took the buying context off the Cost
@@ -3019,27 +2856,16 @@ window.BL_DESK='buyer';
 <script>
 (function(){
 'use strict';
-var cardsEl=document.getElementById('shelf-cards');
-var isBuyer=!!cardsEl;
+// The demand shelf that used to share this IIFE moved out to My Market;
+// only the Cost Desk market-signal wiring below is left of it. landedSel
+// and bcSignalEl are both #p-landed2 elements, so this whole script is a
+// no-op on any page that does not carry the Cost Desk landed-cost calculator.
 var landedSel=document.getElementById('bc_co'); // Cost Desk only
-if(!isBuyer && !landedSel) return; // neither surface is on this page
-
-var ruleEl=document.getElementById('shelf-rule'), freshEl=document.getElementById('shelf-fresh'),
-    metaEl=document.getElementById('shelf-meta'), emptyEl=document.getElementById('shelf-empty'),
-    searchA=document.getElementById('shelf-mkt-search'), selA=document.getElementById('shelf-mkt-select'),
-    ogT1A=document.getElementById('shelf-og-t1'), ogT2A=document.getElementById('shelf-og-t2'),
-    compareAddBtn=document.getElementById('shelf-compare-add'),
-    pickerB=document.getElementById('shelf-picker-b'),
-    searchB=document.getElementById('shelf-mkt-search-b'), selB=document.getElementById('shelf-mkt-select-b'),
-    ogT1B=document.getElementById('shelf-og-t1-b'), ogT2B=document.getElementById('shelf-og-t2-b'),
-    compareRemoveBtn=document.getElementById('shelf-compare-remove'),
-    bcSignalEl=document.getElementById('bc-signal');
+if(!landedSel) return;
+var bcSignalEl=document.getElementById('bc-signal');
 
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 function t(s){ return window.blT ? window.blT(s) : s; }
-function pad2(n){ return (n<10?'0':'')+n; }
-function docNo(now){ return 'BL-DS-'+now.getFullYear()+pad2(now.getMonth()+1)+pad2(now.getDate())+'-'+pad2(now.getHours())+pad2(now.getMinutes()); }
-
 var PRODUCTS=[
  {cn:'82015000',hs:'8201.50',name:'One-handed pruners',icon:'pruner',
   bands:[
@@ -3066,35 +2892,8 @@ var PRODUCTS=[
    {n:'Entry',route:'Carbon steel',d:'promotional spec'}
   ]}
 ];
-var ICONS={
- pruner:'<path d="M11 30 C16 25 20 20 25 14 M14 30 C18 26 22 21 26 17" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/><circle cx="11" cy="12" r="3.4" stroke="currentColor" stroke-width="1.4" fill="none"/><circle cx="18" cy="8" r="3.4" stroke="currentColor" stroke-width="1.4" fill="none"/><path d="M13 15 L20 22 M17 11 L22 16" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/>',
- lopper:'<path d="M6 30 L17 15 M13 30 L22 17" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M17 15 C20 10 24 7 29 5 M22 17 C24 13 27 10 30 8" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/>',
- spade:'<path d="M17 3 L17 19" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M13 3 H21" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M10 19 H24 L22 28 C21 30 13 30 12 28 Z" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linejoin="round"/>',
- rake:'<path d="M17 2 L17 17" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M8 18 H26" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M9.5 18 V28 M13.2 18 V30 M17 18 V31 M20.8 18 V30 M24.5 18 V28" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/>'
-};
-
 function dir(pct){ if(pct>=6) return 2; if(pct>=1) return 1; if(pct>-1) return 0; return -1; }
 function dclass(d){ return d>=1?'up':(d===0?'flat':'down'); }
-function dword(d){ return d>=2?'rising strongly':d===1?'rising':d===0?'steady':'easing'; }
-function dchip(d){ return d>=2?'▲▲':d===1?'▲':d===0?'—':'▼'; }
-function hereIdx(bandMarket){
- if(bandMarket==='upper') return 0;
- if(bandMarket==='mid') return 1;
- if(bandMarket==='lower') return 2;
- return -1;
-}
-
-var TW_NES_NOTE='Taiwan-origin trade is reported by the UN as ‘Other Asia, nes’ — the UN does not use the name ‘Taiwan’ for trade-partner statistics.';
-
-function firstModelForCn(cn){
- var fams=window.BL_FAMILIES||[];
- for(var i=0;i<fams.length;i++){
-  var models=fams[i].models||[];
-  for(var j=0;j<models.length;j++) if(models[j].cn===cn) return models[j];
- }
- return null;
-}
-
 // ---- Market roster ----
 // Every name comes from trade.json's own `.n` field — which market appears
 // at all is a mechanical function of public trade statistics, decided by
@@ -3106,25 +2905,16 @@ var DISPLAY_NAME={us:'United States',kr:'South Korea','do':'Dominican Republic',
  tz:'Tanzania',hk:'Hong Kong',mo:'Macao',bo:'Bolivia',ky:'Cayman Islands',
  cf:'Central African Republic',ba:'Bosnia and Herzegovina',md:'Moldova'};
 
-// Comtrade reporterCode per market (iso2 -> UN M49 numeric code), needed to
-// build the on-screen "verify at source" link for every non-Eurostat
-// market. Generated from tools/dev/fetch-trade.js's own REPORTER_MAP,
-// filtered to the 133 markets trade.json actually carries.
-var REPORTER_CODE={"ag":28,"al":8,"am":51,"ao":24,"ar":32,"at":40,"au":36,"az":31,"ba":70,"bb":52,"be":56,"bf":854,"bg":100,"bh":48,"bj":204,"bn":96,"bo":68,"br":76,"bs":44,"bz":84,"cf":140,"ch":757,"ci":384,"cl":152,"cn":156,"co":170,"cr":188,"cv":132,"cy":196,"cz":203,"de":276,"dk":208,"do":214,"dz":12,"ec":218,"ee":233,"eg":818,"es":724,"fi":246,"fj":242,"fr":251,"gb":826,"gd":308,"ge":268,"gh":288,"gm":270,"gr":300,"gt":320,"gy":328,"hk":344,"hn":340,"hr":191,"hu":348,"id":360,"ie":372,"il":376,"in":699,"is":352,"it":380,"jm":388,"jo":400,"jp":392,"ke":404,"kg":417,"kh":116,"kr":410,"kw":414,"ky":136,"kz":398,"lb":422,"lk":144,"ls":426,"lt":440,"lu":442,"lv":428,"ma":504,"md":498,"me":499,"mg":450,"mk":807,"mm":104,"mo":446,"mr":478,"ms":500,"mt":470,"mu":480,"mv":462,"mw":454,"my":458,"mz":508,"na":516,"ne":562,"ng":566,"ni":558,"nl":528,"no":579,"nz":554,"om":512,"pa":591,"pe":604,"pf":258,"ph":608,"pk":586,"pl":616,"pt":620,"py":600,"qa":634,"ro":642,"rs":688,"sa":682,"sc":690,"se":752,"sg":702,"si":705,"sk":703,"sn":686,"sr":740,"sv":222,"tg":768,"th":764,"tn":788,"tr":792,"tt":780,"tz":834,"ua":804,"ug":800,"us":842,"uy":858,"uz":860,"ws":882,"ye":887,"zm":894,"zw":716};
-
-// UK stays exactly as it has always been on this shelf: Eurostat dropped
-// coverage after Brexit and HMRC's series has no public CN8 lookup (see
-// tools/dev/fetch-trade.js's header comment). trade.json now happens to
-// carry a Comtrade-sourced 'gb' row like any other mechanically-qualifying
-// reporter, but deciding whether that feed is trustworthy enough to show
-// is out of scope for this migration — so 'gb' is the one deliberate
-// exception: listed, selectable, always rendered as not published, same
-// as the fixed matrix always showed it.
+// UK is excluded from this signal for the same reason it was always
+// excluded from the demand shelf before that moved to My Market: Eurostat
+// dropped coverage after Brexit and HMRC's series has no public CN8 lookup
+// (see tools/dev/fetch-trade.js's header comment). trade.json carries a
+// Comtrade-sourced 'gb' row like any other mechanically-qualifying reporter,
+// but whether that feed is trustworthy enough to show here is out of scope
+// for this migration, so 'gb' stays treated as not published.
 var UK_ISO='gb';
 
 var TRADE=null, MARKETS=[], MARKET_BY_ISO={};
-var selMktA=null, selMktB=null, compareOn=false;
-
 function marketName(iso,rawName){ return DISPLAY_NAME[iso]||rawName; }
 
 function buildMarkets(trade){
@@ -3154,317 +2944,19 @@ function firstPublished(mkt){
  return null;
 }
 
-function verifyUrl(mkt,cn){
- if(mkt.src==='comtrade'){
-  var hs6=cn.slice(0,6), rc=REPORTER_CODE[mkt.iso];
-  var q=['reporterCode='+(rc||''),'period=2024','cmdCode='+hs6,'flowCode=M'];
-  return 'https://comtradeapi.un.org/public/v1/preview/C/A/HS?'+q.join('&');
- }
- var q=['format=JSON','freq=A','flow=1','reporter='+mkt.iso.toUpperCase(),'partner=WORLD','partner=TW','partner=CN','product='+cn,'time=2023','time=2024'];
- return 'https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data/ds-045409?'+q.join('&');
-}
-function verifyUrlPrint(mkt){ return mkt.src==='comtrade' ? 'comtradeplus.un.org' : 'ec.europa.eu/eurostat/databrowser/view/DS-045409/default/table'; }
-function verifyQueryWords(mkt,cn){
- if(mkt.src==='comtrade') return 'reporter '+mkt.iso.toUpperCase()+' · commodity '+cn.slice(0,6)+' · imports · 2023 and 2024';
- return 'reporter '+mkt.iso.toUpperCase()+' · product '+cn+' · imports · 2023 and 2024';
-}
-
-// us -> Americas desk; every Eurostat market -> Europe desk (existing,
-// already-translated regions); everything else Comtrade-sourced -> the
-// desk's Global fallback. Generalised from the old four-market special
-// case now that the shelf covers the full mechanical roster.
-function deskFor(mkt){ if(mkt.iso===UK_ISO) return 'uk'; if(mkt.iso==='us') return 'americas'; if(mkt.src==='comtrade') return 'global'; return 'europe'; }
-
-// bd_bc_co is the destination-country key CostNow's own landed-cost
-// calculator already reads and writes (see cost-desk.html's #bc_co change
-// handler) — the shelf writes the exact same key so both apps agree on one
-// answer. blCtx.set({market:...}) was tried here first, but blCtx's market
-// field is shared with the unrelated #p-mkt "Origin & Destination" panel,
-// whose own room/market taxonomy does not know most of these 133 iso2
-// codes and silently reverts anything it does not recognise back to its
-// room fallback — which stays harmless for bd_bc_co (persist() only ever
-// sets it, never clears it) but is a confusing side effect to trigger on
-// purpose. Writing bd_bc_co directly is the same fallback CostNow's own
-// destination select already uses for Japan/New Zealand today, and is
-// unaffected by the p-mkt panel either way.
-function rememberDestination(iso){
- try{ localStorage.setItem('bd_bc_co', iso); }catch(e){}
-}
-function recalledDestination(){
- try{
-  var d=(window.blCtx && window.blCtx.destCountry()) || localStorage.getItem('bd_bc_co');
-  return d||null;
- }catch(e){ return null; }
-}
-
-// ---- market picker: search + tiered <optgroup> ----
-function fillSelect(og1,og2){
- og1.innerHTML=''; og2.innerHTML='';
- MARKETS.forEach(function(m){
-  var o=document.createElement('option');
-  o.value=m.iso; o.textContent=m.name;
-  (m.tier===1?og1:og2).appendChild(o);
- });
-}
-function wireSearch(input,og1,og2){
- input.addEventListener('input',function(){
-  var q=input.value.trim().toLowerCase();
-  [og1,og2].forEach(function(og){
-   var any=false;
-   [].forEach.call(og.children,function(o){
-    var hit=!q||o.textContent.toLowerCase().indexOf(q)>=0;
-    o.hidden=!hit; if(hit)any=true;
-   });
-   og.hidden=!any;
-  });
- });
-}
-
-function renderCards(){
- if(!cardsEl) return;
- var have=[selMktA]; if(compareOn&&selMktB) have.push(selMktB);
- have=have.filter(Boolean);
- if(!have.length){ emptyEl.hidden=false; cardsEl.innerHTML=''; cardsEl.classList.remove('is-compare'); return; }
- emptyEl.hidden=true;
- cardsEl.classList.toggle('is-compare', have.length>1);
- cardsEl.innerHTML=have.map(cardHtml).join('');
-}
-
-function shardBadge(){
- var pct=(TRADE&&TRADE.shard_state&&typeof TRADE.shard_state.completed_pct==='number')?TRADE.shard_state.completed_pct:null;
- var label=esc(t('Accumulating this quarter'));
- if(pct==null) return '<p class="shelf-pending"><b>'+label+'</b></p>';
- return '<p class="shelf-pending"><b>'+label+'</b> · '+pct+'% '+esc(t('complete'))+'</p>';
-}
-
-function catHeader(p){
- return '<div class="shelf-cat-h"><span class="mk"><svg viewBox="0 0 34 34" aria-hidden="true">'+(ICONS[p.icon]||'')+'</svg></span><span><span class="hs">HS '+esc(p.hs)+'</span><span class="nm">'+esc(p.name)+'</span></span></div>';
-}
-
-function actsHtml(mkt,p,c){
- return '<div class="shelf-acts">'
-  +'<button type="button" class="tool-btn" data-act="mail" data-mkt="'+esc(mkt.iso)+'" data-cn="'+esc(p.cn)+'">'+esc(t('Bring to enquiry →'))+'</button>'
-  +'<button type="button" class="tool-btn" data-act="print" data-mkt="'+esc(mkt.iso)+'" data-cn="'+esc(p.cn)+'">'+esc(t('Print snapshot'))+'</button>'
-  +'</div>';
-}
-
-function catCellHtml(mkt,p){
- if(mkt.iso===UK_ISO){
-  return '<div class="shelf-detail">'+catHeader(p)+'<p class="shelf-pending">'+esc(t('Not published this edition — UK trade data is not yet wired into this feed.'))+'</p></div>';
- }
- var c=cellOf(mkt,p.cn);
- if(!c){
-  return '<div class="shelf-detail">'+catHeader(p)+shardBadge()+'</div>';
- }
- var d=dir(c.uv_change_pct), cls=dclass(d);
- var uvHtml='<div class="shelf-uv"><span class="v '+cls+'">'+dchip(d)+' '+(c.uv_change_pct>0?'+':'')+c.uv_change_pct+'%</span><span class="u">'+esc(t('12-month unit-value change'))+'</span><span class="u2">'+esc(t(c.basis==='piece'?'· per-piece basis':'· per-kg basis'))+'</span></div>';
-
- if(mkt.tier===2){
-  var srcLabel2=mkt.src==='comtrade'?'UN Comtrade':'Eurostat Comext';
-  var url2=verifyUrl(mkt,p.cn);
-  var verifyTitle2=mkt.src==='comtrade'?'Opens the official UN Comtrade dataset filtered to this reporter and product code':'Opens the official Eurostat Comext dataset filtered to this reporter and product code';
-  var twNes2=(mkt.src==='comtrade')?'<p class="shelf-tw-pos">'+esc(t(TW_NES_NOTE))+'</p>':'';
-  return '<div class="shelf-detail">'+catHeader(p)+uvHtml
-   +'<p class="shelf-tier2-note">'+esc(t('Detailed source-country analysis publishes once import volume is large enough to support it — this market shows direction only for now.'))+'</p>'
-   +twNes2
-   +'<p class="shelf-src"><span>'+esc(t(srcLabel2))+'</span> · HS '+esc(p.cn.slice(0,6))+' · '+esc(t('Edition'))+' '+esc((TRADE&&TRADE.edition)||'')+' · <a href="'+esc(url2)+'" target="_blank" rel="noopener" title="'+esc(t(verifyTitle2))+'">'+esc(t('verify at source ↗'))+'</a></p>'
-   +actsHtml(mkt,p,c)+'</div>';
- }
-
- // tier 1: share, band ladder (only when trade.json placed one), route link
- var hi=hereIdx(c.band&&c.band.market);
- var bands='';
- if(c.band){
-  var routeModel=firstModelForCn(p.cn);
-  var routeHref=routeModel?('partner.html?q='+encodeURIComponent(routeModel.name)+'#pd-builder'):null;
-  bands=p.bands.map(function(b,i){
-   var routeHtml=routeHref?'<a href="'+esc(routeHref)+'" title="Open this route on the AsiaSource buyer brief"><b>'+esc(t(b.route))+' →</b></a>':'<b>'+esc(t(b.route))+'</b>';
-   var hereHtml='';
-   if(i===hi){
-    hereHtml='<span class="drift-wrap"><span class="drift">'+esc(t('◄ market sits here'))+'</span>';
-    if(c.band.moved&&c.band.moved!=='flat') hereHtml+='<span class="drift-moved">'+esc(t(c.band.moved==='up'?'moved up this edition':'moved down this edition'))+'</span>';
-    hereHtml+='</span>';
-   }
-   return '<div class="shelf-band'+(i===hi?' here':'')+'"><div class="bt"><span class="bn">'+esc(t(b.n))+'</span>'+hereHtml+'</div><div class="route">'+routeHtml+'<span>'+esc(t(b.d))+'</span></div></div>';
-  }).join('');
- }
- var shift=(c.share_tw!=null&&c.share_tw_prev!=null)?(c.share_tw-c.share_tw_prev):null;
- var shareHtml='<p class="shelf-share">'+esc(t('Taiwan-origin share'))+' <b>'+(c.share_tw!=null?c.share_tw+'%':'—')+'</b>'+(shift!=null?' ('+(shift>=0?'+':'')+shift+' pts)':'')+' · '+esc(t('China'))+' '+(c.share_cn!=null?c.share_cn+'%':'—')+'</p>';
- var twPosHtml='';
- if(c.band&&c.band.tw){
-  var twPosText=c.band.tw==='upper'?'Taiwan-origin supply prices in the upper third of this market'
-   :c.band.tw==='mid'?'Taiwan-origin supply prices in the middle third of this market'
-   :'Taiwan-origin supply prices in the lower third of this market';
-  twPosHtml='<p class="shelf-tw-pos">'+esc(t(twPosText))+'</p>';
- }
- var twNesHtml=(mkt.src==='comtrade')?'<p class="shelf-tw-pos">'+esc(t(TW_NES_NOTE))+'</p>':'';
- var srcLabel=mkt.src==='comtrade'?'UN Comtrade':'Eurostat Comext';
- var codeLabel=mkt.src==='comtrade'?('HS '+esc(p.cn.slice(0,6))):('CN '+esc(p.cn));
- var verifyTitle=mkt.src==='comtrade'?'Opens the official UN Comtrade dataset filtered to this reporter and product code':'Opens the official Eurostat Comext dataset filtered to this reporter and product code';
- var marketPosLabel=mkt.src==='comtrade'?'Market position: UN Comtrade':'Market position: Eurostat';
- var url=verifyUrl(mkt,p.cn);
- var ladderHtml=c.band
-  ?('<div class="shelf-ladder"><div class="shelf-lhead"><span>'+esc(t('Price band'))+'</span><span>'+esc(t('Birdland route'))+'</span></div>'+bands+'<div class="shelf-attrib"><span>'+esc(t(marketPosLabel))+'</span><span>'+esc(t('Bands & routes: Birdland'))+'</span></div></div>')
-  :'';
- return '<div class="shelf-detail">'+catHeader(p)+uvHtml+shareHtml+twPosHtml+twNesHtml+ladderHtml
-  +'<p class="shelf-src"><span>'+esc(t(srcLabel))+'</span> · '+codeLabel+' · '+esc(t('Edition'))+' '+esc((TRADE&&TRADE.edition)||'')+(c.band?(' · <span>'+esc(t('bands: value-weighted thirds of source-country unit values'))+'</span>'):'')+' · <a href="'+esc(url)+'" target="_blank" rel="noopener" title="'+esc(t(verifyTitle))+'">'+esc(t('verify at source ↗'))+'</a></p>'
-  +actsHtml(mkt,p,c)+'</div>';
-}
-
-function cardHtml(mkt){
- var tierLabel=mkt.iso===UK_ISO?'':(mkt.tier===1?t('Priority markets'):t('All markets'));
- var note=(mkt.tier===2 && mkt.iso!==UK_ISO) ? '<p class="shelf-tier2-note">'+esc(t('Secondary markets are shown in English only, to keep this list readable.'))+'</p>' : '';
- var costHref='cost-desk.html?dest='+encodeURIComponent(mkt.iso)+'&destName='+encodeURIComponent(mkt.name)+'#p-landed2';
- return '<article class="shelf-card" data-mkt="'+esc(mkt.iso)+'">'
-  +'<div class="shelf-card-h"><h4>'+esc(mkt.name)+'</h4><span class="shelf-card-tier">'+esc(tierLabel)+'</span></div>'
-  +note
-  +'<a class="tool-btn shelf-cost-it" href="'+esc(costHref)+'">'+esc(t('Cost it'))+' →</a>'
-  +'<div class="shelf-card-cats">'+PRODUCTS.map(function(p){ return catCellHtml(mkt,p); }).join('')+'</div>'
-  +'</article>';
-}
-
-function printSnapshot(mkt,p,c){
- var now=new Date();
- var deepLink='birdland.com.tw/partner.html?cell='+p.cn+'|'+mkt.iso;
- var generated=(TRADE&&TRADE.generated)?TRADE.generated.slice(0,10):'—';
- var d=dir(c.uv_change_pct), cls=dclass(d), hi=hereIdx(c.band&&c.band.market);
- var shift=(c.share_tw!=null&&c.share_tw_prev!=null)?(c.share_tw-c.share_tw_prev):null;
- var bandsHtml=p.bands.map(function(b,i){
-  var hereTxt='';
-  if(i===hi){
-   hereTxt=t('◄ market sits here');
-   if(c.band&&c.band.moved&&c.band.moved!=='flat') hereTxt+=' · '+t(c.band.moved==='up'?'moved up this edition':'moved down this edition');
-  }
-  return '<div class="ds-band'+(i===hi?' here':'')+'"><div class="ds-bt"><span>'+esc(t(b.n))+'</span>'+(hereTxt?'<span>'+esc(hereTxt)+'</span>':'')+'</div><div class="ds-route"><b>'+esc(t(b.route))+'</b><span>'+esc(t(b.d))+'</span></div></div>';
- }).join('');
- var twPosPrintHtml='';
- if(c.band&&c.band.tw){
-  var twPosPrintText=c.band.tw==='upper'?'Taiwan-origin supply prices in the upper third of this market'
-   :c.band.tw==='mid'?'Taiwan-origin supply prices in the middle third of this market'
-   :'Taiwan-origin supply prices in the lower third of this market';
-  twPosPrintHtml='<p class="ds-tw-pos">'+esc(t(twPosPrintText))+'</p>';
- }
- var twNesPrintHtml=(mkt.src==='comtrade')?'<p class="ds-tw-pos">'+esc(t(TW_NES_NOTE))+'</p>':'';
- var srcLabelPrint=mkt.src==='comtrade'?'UN Comtrade':'Eurostat Comext';
- var codeLabelPrint=mkt.src==='comtrade'?('HS '+esc(p.cn.slice(0,6))):('CN '+esc(p.cn));
- var sheet=document.getElementById('ds-sheet');
- if(!sheet){ sheet=document.createElement('div'); sheet.id='ds-sheet'; document.body.appendChild(sheet); }
- sheet.innerHTML=
-  '<div class="ds-head"><b>BIRDLAND · ASIASOURCE DEMAND SHELF</b><span>'+esc(t('Edition'))+' '+esc((TRADE&&TRADE.edition)||generated)+'</span></div>'
-  +'<h1 class="ds-title">'+esc(t(p.name))+' · HS '+esc(p.hs)+'</h1>'
-  +'<div class="ds-row"><span>'+esc(t('Destination market'))+'</span><b>'+esc(t(mkt.name))+'</b></div>'
-  +'<div class="ds-uv"><span class="ds-dir">'+dchip(d)+' '+(c.uv_change_pct>0?'+':'')+c.uv_change_pct+'%</span><span>'+esc(t('12-month unit-value change'))+' '+esc(t(c.basis==='piece'?'· per-piece basis':'· per-kg basis'))+'</span></div>'
-  +'<div class="ds-row"><span>'+esc(t('Taiwan-origin share'))+'</span><b>'+(c.share_tw!=null?c.share_tw+'%':'—')+(shift!=null?' ('+(shift>=0?'+':'')+shift+' pts)':'')+'</b></div>'
-  +'<div class="ds-row"><span>'+esc(t('China'))+'</span><b>'+(c.share_cn!=null?c.share_cn+'%':'—')+'</b></div>'
-  +twPosPrintHtml+twNesPrintHtml
-  +(c.band?('<div class="ds-ladder"><div class="ds-lhead"><span>'+esc(t('Price band'))+'</span><span>'+esc(t('Birdland route'))+'</span></div>'+bandsHtml+'</div>'):'')
-  +'<p class="ds-src">'+esc(t(srcLabelPrint))+' · '+codeLabelPrint+' · '+esc(t('Edition'))+' '+esc((TRADE&&TRADE.edition)||'')+' · '+esc(t('Verify at source'))+': '+esc(verifyUrlPrint(mkt))+' · '+esc(verifyQueryWords(mkt,p.cn))+(c.band?(' · '+esc(t('bands: value-weighted thirds of source-country unit values'))):'')+'</p>'
-  +'<p class="ds-foot">'+esc(t('Document no.'))+' '+docNo(now)+' · '+esc(t('Continue online'))+': '+esc(deepLink)+'</p>'
-  +'<p class="ds-desk">'+esc(t('Enquiries route via the contact page.'))+'</p>'
-  +'<p class="ds-disc">'+esc(t('Figures are official statistical change rates — not a quotation.'))+'</p>';
- document.body.classList.add('ds-printing');
- var done=function(){ document.body.classList.remove('ds-printing'); window.removeEventListener('afterprint',done); };
- window.addEventListener('afterprint',done); setTimeout(done,4000);
- window.print();
-}
-
-function onCardsClick(e){
- var costBtn=e.target.closest('.shelf-cost-it');
- if(costBtn) return; // plain link navigation
- var b=e.target.closest('[data-act]'); if(!b) return;
- var iso=b.getAttribute('data-mkt'), cn=b.getAttribute('data-cn');
- var mkt=MARKET_BY_ISO[iso]; if(!mkt) return;
- var p=PRODUCTS.filter(function(x){return x.cn===cn;})[0]; if(!p) return;
- var c=cellOf(mkt,cn); if(!c) return;
- var act=b.getAttribute('data-act');
- if(act==='mail'){
-  var d=dir(c.uv_change_pct), dw=dword(d);
-  var hi=hereIdx(c.band&&c.band.market), bandForMail=hi>=0?p.bands[hi]:null;
-  var subject=p.name+' · '+mkt.name;
-  var body='Category: '+p.name+' (HS '+p.hs+', CN '+cn+')\n'
-   +'Market: '+mkt.name+'\n'
-   +'Import unit-value direction: '+dw+' ('+(c.uv_change_pct>0?'+':'')+c.uv_change_pct+'%, 12 months, '+(c.basis==='piece'?'per-piece':'per-kg')+' basis)\n'
-   +'Taiwan-origin share: '+(c.share_tw!=null?c.share_tw+'%':'not published')+'\n\n'
-   +'I am looking at this category on the AsiaSource demand shelf'+(bandForMail?' and would like to discuss the '+bandForMail.route+' route for '+mkt.name+'.':' for '+mkt.name+'.');
-  if(window.blMail) window.blMail.open(deskFor(mkt),'',subject,body,'cat');
- }else if(act==='print'){
-  printSnapshot(mkt,p,c);
- }
-}
-if(cardsEl) cardsEl.addEventListener('click',onCardsClick);
-
-// ---- selection wiring ----
-function applySelection(which,iso){
- var mkt=iso?MARKET_BY_ISO[iso]:null;
- if(which==='a'){ selMktA=mkt; if(mkt) rememberDestination(mkt.iso); }
- else { selMktB=mkt; }
- renderCards();
-}
-if(selA) selA.addEventListener('change',function(){ applySelection('a', selA.value||null); });
-if(selB) selB.addEventListener('change',function(){ applySelection('b', selB.value||null); });
-if(searchA&&ogT1A&&ogT2A) wireSearch(searchA,ogT1A,ogT2A);
-if(searchB&&ogT1B&&ogT2B) wireSearch(searchB,ogT1B,ogT2B);
-if(compareAddBtn) compareAddBtn.addEventListener('click',function(){
- compareOn=true;
- pickerB.hidden=false;
- compareAddBtn.hidden=true;
- renderCards();
-});
-if(compareRemoveBtn) compareRemoveBtn.addEventListener('click',function(){
- compareOn=false; selMktB=null; if(selB)selB.value='';
- pickerB.hidden=true;
- if(compareAddBtn) compareAddBtn.hidden=false;
- renderCards();
-});
-
-function applyDeepLink(){
- var m=/[?&]cell=([^&]+)/.exec(location.search);
- if(!m) return;
- var parts=decodeURIComponent(m[1]).split('|');
- var cn=parts[0], iso=parts[1];
- var mkt=MARKET_BY_ISO[iso];
- var tocLink=document.querySelector('.toc a[href="#p-shelf"]');
- if(tocLink&&location.hash!=='#p-shelf')tocLink.click();
- if(!mkt) return; // stale/unknown link (e.g. the old fixed 'uk' slug) — land on the section, select nothing
- if(selA){ selA.value=mkt.iso; applySelection('a',mkt.iso); }
- setTimeout(function(){
-  var card=cardsEl&&cardsEl.querySelector('.shelf-card[data-mkt="'+mkt.iso+'"]');
-  var target=card&&card.querySelector('.shelf-cat-h .hs');
-  var block=target&&target.closest('.shelf-detail');
-  (block||card||cardsEl).scrollIntoView({behavior:'smooth',block:'center'});
- },260);
-}
-
 function boot(trade,failed){
  TRADE=trade;
  MARKETS=buildMarkets(trade);
- if(isBuyer){
-  fillSelect(ogT1A,ogT2A);
-  if(ogT1B&&ogT2B) fillSelect(ogT1B,ogT2B);
-  if(metaEl) metaEl.textContent = trade ? ('as of '+(trade.generated?trade.generated.slice(0,10):'—')) : 'unavailable';
-  if(freshEl){
-   if(trade){
-    var srcs=trade.sources||{};
-    freshEl.textContent='Source: '+(srcs.eu||'Eurostat Comext')+' (EU) · '+(srcs.world||'UN Comtrade')+' (every other market) · edition '+(trade.edition||'—')+' · updated '+(trade.generated?trade.generated.slice(0,10):'—');
-   } else {
-    freshEl.textContent='Trade data unavailable this session — choose a market once the feed is back.';
-   }
-  }
-  var savedIso=recalledDestination();
-  if(savedIso && MARKET_BY_ISO[savedIso] && savedIso!==UK_ISO){
-   if(selA) selA.value=savedIso;
-   selMktA=MARKET_BY_ISO[savedIso];
-  }
-  renderCards();
-  applyDeepLink();
- }
  wireCostDeskSignal();
 }
 
 // ---- Cost Desk: "Market signal" line beside the destination select ----
-// CostNow already asks for a destination in #p-landed2; when the shelf has
-// published data for that same market, this is the one line that sends a
-// Cost Desk buyer back to it. Reads TRADE directly (loaded above) rather
+// CostNow already asks for a destination in #p-landed2; when the customs feed
+// has published data for that same market, this is the one line that hands a
+// Cost Desk buyer across to My Market, opened on that exact cell. It used to
+// point at the demand shelf inside AsiaSource; the shelf became its own app,
+// and the ?cell=<code>|<iso> format came with it unchanged.
+// Reads TRADE directly (loaded above) rather
 // than a second fetch, and listens on #bc_co independently of the landed-
 // cost calculator's own script — the two are unrelated concerns sharing
 // one element.
@@ -3477,9 +2969,9 @@ function wireCostDeskSignal(){
   var hit=firstPublished(mkt);
   if(!hit){ bcSignalEl.hidden=true; bcSignalEl.innerHTML=''; return; }
   var d=dir(hit.c.uv_change_pct), cls=dclass(d);
-  var href='partner.html?cell='+hit.p.cn+'|'+mkt.iso;
+  var href='my-market.html?cell='+hit.p.cn+'|'+mkt.iso;
   bcSignalEl.hidden=false;
-  bcSignalEl.innerHTML=esc(t('Market signal'))+': '+esc(t('unit value'))+' <b class="'+cls+'">'+(hit.c.uv_change_pct>0?'+':'')+hit.c.uv_change_pct+'%</b> '+esc(t('this year'))+' · <a href="'+esc(href)+'">'+esc(t('Demand shelf'))+' →</a>';
+  bcSignalEl.innerHTML=esc(t('Market signal'))+': '+esc(t('unit value'))+' <b class="'+cls+'">'+(hit.c.uv_change_pct>0?'+':'')+hit.c.uv_change_pct+'%</b> '+esc(t('this year'))+' · <a href="'+esc(href)+'">'+esc(t('My Market'))+' →</a>';
  }
  landedSel.addEventListener('change',show);
  if(window.blCtx) window.blCtx.on(show);
@@ -3530,12 +3022,16 @@ if(topAct)h+='<span class="pi lead" data-go="p-brief" style="cursor:pointer"><sp
     '<span class="fresh-badge manual">Tariff monitor · manual</span>'
   ].join('')+'</div></div>';
  })();
-// 2) section order: daily brief & the two money tools first; client-desk duplicates demoted to Reference
-(function(){if(!main||!disc)return;var ORD=['p-brief','p-alerts','p-landed2','p-margin','p-reorder','p-sail','p-cduty','p-mkt','p-market','p-keynews','p-regcal','p-report','p-offers','p-material','p-shipping','p-season','p-war','p-tariff','p-shelf'],REF=['p-freight','p-watch','p-news'];
- ORD.concat(REF).forEach(function(id){var s=document.getElementById(id);if(s)main.insertBefore(s,disc);});
- var hd=document.createElement('div');hd.className='refhd';hd.textContent='Reference data — shared with Data Desk';main.insertBefore(hd,document.getElementById(REF[0]));})();
-// 3) honest freshness: static desk-set blocks must not claim the daily stamp
-(function(){[['p-tariff','manual · desk set'],['p-regcal','manual · desk set'],['p-material','curves manual · note daily'],['p-shipping','rates daily · curve manual'],['p-shelf','Eurostat + Comtrade · annual edition']].forEach(function(x){var b=document.querySelector('#'+x[0]+' .blk-h .secupd');if(b)b.textContent='⟳ '+x[1];});})();
+// 2) section order: daily brief & the two money tools first
+(function(){if(!main||!disc)return;var ORD=['p-alerts','p-landed2','p-margin','p-reorder','p-sail','p-cduty','p-mkt','p-offers'];
+ /* This used to run ORD.concat(REF) — REF was ['p-freight','p-watch','p-news'],
+    the client-desk duplicates that got demoted below a "Reference data —
+    shared with Data Desk" divider. All three, and the ten other desk-set
+    panels this reorder also carried (p-brief, p-market, p-keynews, p-regcal,
+    p-report, p-material, p-shipping, p-season, p-war, p-tariff), were retired
+    outright rather than reference material, so there is nothing left to
+    divide from and the divider went with them. */
+ ORD.forEach(function(id){var s=document.getElementById(id);if(s)main.insertBefore(s,disc);});})();
 // 3b) product PDFs are maintained in product-offers.json and opened from view-only links
 // 4) remembered workspace
 var LS={g:function(k){try{return localStorage.getItem('bd_p_'+k);}catch(e){return null;}},s:function(k,v){try{localStorage.setItem('bd_p_'+k,v);}catch(e){}}};
@@ -3543,7 +3039,7 @@ var LS={g:function(k){try{return localStorage.getItem('bd_p_'+k);}catch(e){retur
 // same two keys the desk had already read. blCtx owns that state now, so a
 // second restorer would only be a second chance to disagree.
 // 5) full-scroll accordion: funnel modules open, reference collapsed; remember per-section state
-(function(){var FUN={'p-brief':1,'p-alerts':1,'p-mkt':1,'p-market':1,'p-keynews':1,'p-regcal':1,'p-report':1,'p-offers':1,'p-landed2':1,'p-margin':1,'p-reorder':1,'p-sail':1,'p-calc':1,'p-cduty':1,'p-material':1,'p-shipping':1,'p-season':1,'p-war':1,'p-tariff':1,'p-shelf':1};
+(function(){var FUN={'p-alerts':1,'p-mkt':1,'p-offers':1,'p-landed2':1,'p-margin':1,'p-reorder':1,'p-sail':1,'p-cduty':1};
  var saved=null;try{saved=JSON.parse(LS.g('col')||'null');}catch(e){}
  [].forEach.call(document.querySelectorAll('main .blk'),function(sec){
    var open=!!FUN[sec.id];
@@ -3559,7 +3055,7 @@ var LS={g:function(k){try{return localStorage.getItem('bd_p_'+k);}catch(e){retur
  var rail=document.createElement('aside');rail.id='p-rail';rail.setAttribute('aria-label','AsiaSource navigation');
  var tocEl=document.querySelector('.toc');
  if(tocEl){
-   var TOOL_IDS=['p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty'];
+   var TOOL_IDS=['p-landed2','p-margin','p-reorder','p-sail','p-cduty'];
    [].forEach.call(tocEl.children,function(node){if(node.tagName==='A'){var id=(node.getAttribute('href')||'').slice(1);node.setAttribute('data-mode',TOOL_IDS.indexOf(id)>=0?'tools':'information');}});
    /* There used to be a .pr-grp heading above each group, reading "Information"
       or "Tools". The mode switch directly above it already says which of the
@@ -4031,7 +3527,7 @@ var D={},P={};try{D=JSON.parse(document.getElementById('outlook-data').textConte
  grid.innerHTML=defs.length?defs.map(function(def){var x=by[def.key],unit=x&&x.unit?(' '+x.unit):'',n=chg(x),s=state(x,def.role),delta=n==null?'updated':((n>0?'+':'')+n.toFixed(1)+'% · '+def.hint);return '<article class="market-card '+s+'"><div class="market-k"><span>'+esc(def.label)+'</span><span class="market-source">'+esc(def.source)+'</span></div><div class="market-v">'+esc(fmt(x.value)+unit)+'</div><div class="market-chg '+s+'">'+esc(delta)+'</div>'+spark(x.spark)+'</article>';}).join(''):'<div class="pd-offer-empty">No connected macro or FX series is available in this edition.</div>';var gold=by.GOLD,oil=by.BRENT,yld=by['US 10Y'],dxy=by.DXY,usdtwd=by['USD/TWD'];var oilTxt=oil&&oil.value?'Brent at '+fmt(oil.value)+' '+(oil.unit||''):'energy prices';var yieldTxt=yld&&yld.value?('US 10Y at '+fmt(yld.value)+'%'):'US funding rates';var fxTxt=usdtwd&&usdtwd.value?('USD/TWD at '+fmt(usdtwd.value)):(dxy&&dxy.value?('the dollar index at '+fmt(dxy.value)):'currency conditions');read.innerHTML='<b>Buyer read:</b> '+esc(oilTxt)+' keeps freight, resin and fuel-linked inputs on the watchlist; '+esc(yieldTxt)+' is the financing signal for inventory; and '+esc(fxTxt)+' helps frame Taiwan-origin pricing. Gold is shown as a risk-sentiment signal, not a tool-cost forecast. <a class="offer-cta" href="https://www.google.com/finance/" target="_blank" rel="noopener">Open full market research ↗</a>';
  impact.innerHTML='<div class="impact-head">What the move can mean for your buying plan</div><table><tbody><tr><td>Rates &amp; funding</td><td>Rising sovereign yields can make financed inventory more expensive. Keep excess stock intentional and revisit payment terms on long lead-time orders.</td></tr><tr><td>Inflation &amp; demand</td><td>CPI belongs here once the official series is connected; use it to frame retail demand and margin pressure, never as a standalone buying trigger.</td></tr><tr><td>Currency</td><td>USD/TWD and USD/CNY changes can shift the relative landed-cost picture between Taiwan and China origin. Compare origin before locking a quote.</td></tr><tr><td>Risk &amp; energy</td><td>Gold, Brent and volatility are context signals. If risk and energy rise together, secure critical freight and fuel-linked inputs earlier.</td></tr></tbody></table>';})();
 function txt(sel,body){var e=body.querySelector(sel);return e?e.textContent.trim():'';}
-var TOOLSET={'p-margin':1,'p-reorder':1,'p-sail':1,'p-calc':1,'p-cduty':1,'p-report':1};
+var TOOLSET={'p-margin':1,'p-reorder':1,'p-sail':1,'p-cduty':1};
 function bentofy(id,lgSel,mdSel,smFns,mdSynth){
   var sec=document.getElementById(id);if(!sec)return;
   var body=sec.querySelector('.blk-b');if(!body)return;
@@ -4082,7 +3578,6 @@ var SHELL_COPY={
  'p-margin':['Margin setup','Set your cost and your target','Retail outcome','What it earns at the shelf'],
  'p-reorder':['Stock setup','Describe the run you are holding','Timing outcome','When to place the order'],
  'p-sail':['Sailing setup','Choose the route and your readiness','Booking outcome','The sailings that still fit'],
- 'p-calc':['Quick setup','The three numbers that move it most','Quick outcome','A first-pass landed cost'],
  'p-cduty':['Origin setup','Set the shipment and the origin','Origin outcome','Taiwan against China, landed']
 };
 function toolShell(id,outSel,smFns){
@@ -4178,13 +3673,6 @@ bentofy('p-freight',['.svgwrap'],['.fr-src'],[
   function(b){var t=b.querySelector('table');var n=t?t.querySelectorAll('tr').length:0;return {k:'Indices tracked',v:n?(n+' rows'):'No data today'};},
   function(){return {k:'Cadence',v:'Monthly, official'};}
 ]);
-toolShell('p-calc',['.svgwrap','.legend'],[
-  /* #lc-out is the whole sentence — unit price, then order total. In a bento
-     tile that was fine; at hero size it wrapped to three lines and repeated the
-     figure printed directly underneath it. The headline takes the unit price. */
-  function(b){var t=txt('#lc-out',b)||'',m=/US\$[0-9.,]+/.exec(t);return {k:'Landed cost / unit',v:m?m[0]:(t||'—')};},
-  function(b){var q=b.querySelector('#qc_qty');return {k:'Quantity',v:q?Number(q.value).toLocaleString():'—'};}
-]);
 (function(){var sec=document.getElementById('p-landed2');if(!sec)return;var body=sec.querySelector('.blk-b'),nav=body&&body.querySelector('.landed-tool-nav'),input=body&&body.querySelector('.landed-input-panel'),summary=body&&body.querySelector('.landed-summary');if(!body||!nav||!input||!summary)return;var workspace=document.createElement('div');workspace.className='landed-workspace';workspace.appendChild(input);workspace.appendChild(summary);body.innerHTML='';body.appendChild(nav);body.appendChild(workspace);})();
 toolShell('p-sail',['#s_cards'],[
   function(b){return {k:'Options shown',v:b.querySelectorAll('.sailcard').length+' sailings'};},
@@ -4244,7 +3732,7 @@ bentofy('p-season',[],[],[]);
    the rail. Every tool gets it now, marked to the one you are on. */
 (function(){
   var src=document.querySelector('#p-landed2 .landed-tool-nav');if(!src)return;
-  ['p-margin','p-reorder','p-sail','p-calc','p-cduty'].forEach(function(id){
+  ['p-margin','p-reorder','p-sail','p-cduty'].forEach(function(id){
     var body=document.querySelector('#'+id+' .blk-b');
     if(!body||body.querySelector('.landed-tool-nav'))return;
     var nav=src.cloneNode(true);
@@ -4912,12 +4400,14 @@ function processTile(name){var n=String(name||'').toLowerCase();
 
  /* The Terminal search sends people here with ?q=<material or process>, so the
     builder opens on the thing they searched for rather than on whatever was
-    selected last. The Demand shelf's price-band ladder sends people here with
-    ?q=<model name> instead, so a model-name match is checked first — a
-    material and a model never share a string, but checking models first
-    means a future coincidence resolves to the more specific link. Anything
-    that does not match is ignored — a stale link should land on a working
-    page, not an error. */
+    selected last. A model-name match is checked BEFORE a material match: the
+    demand shelf's price-band ladder used to send ?q=<model name> here, and
+    although the shelf has moved out to My Market, links of that shape are
+    still out there in old mail and old bookmarks. A material and a model never
+    share a string, so the order only decides a future coincidence, and it
+    decides it in favour of the more specific link. Anything that does not
+    match is ignored — a stale link should land on a working page, not an
+    error, which is exactly what those old links now depend on. */
  (function(){
   var q="";try{q=decodeURIComponent((location.search.match(/[?&]q=([^&]*)/)||[])[1]||"");}catch(e){}
   if(!q)return;
@@ -5077,7 +4567,7 @@ var fmt=function(x){return 'US$'+Math.round(x).toLocaleString('en-US');};
 <script>(function(){var disc=document.getElementById('disc');if(disc)disc.textContent='BIRDLAND ASIASOURCE · PUBLIC BUYING INFORMATION. Forecasts, duty and impact figures are indicative planning guides — not legal, customs or trade advice. Confirm with your customs broker or counsel before acting.';if(window.BL_DESK==='cost')disc.textContent='BIRDLAND COSTNOW · PUBLIC COST PLANNING. Duty, tax and impact figures are indicative planning guides — not legal, customs or trade advice. Confirm with your customs broker or counsel before acting.';})();</script>
 <script>(function(){var r=document.querySelector('.pd-room-panel .pd-panel-head h2'),m=document.querySelector('.pd-market-panel .pd-panel-head h2'),s=document.querySelector('.pd-market-panel .pd-panel-head span');if(r)r.textContent='Origin & Route Decision';if(m)m.textContent='Cost & Timing Signals';if(s)s.textContent='buyer action view';})();</script>
 <script>(function(){
-  var toolIds=['p-landed2','p-margin','p-reorder','p-sail','p-calc','p-cduty'];
+  var toolIds=['p-landed2','p-margin','p-reorder','p-sail','p-cduty'];
   var brief=document.getElementById('bd-brief');
   if(brief)brief.setAttribute('data-share-print-target','buyer-brief');
   toolIds.forEach(function(id){
@@ -5137,7 +4627,6 @@ var fmt=function(x){return 'US$'+Math.round(x).toLocaleString('en-US');};
  var P101={
   "p-landed2":["s-cost","Cost structure — the four blocks"],
   "p-margin":["s-cost","Cost structure — what sits behind a landed cost"],
-  "p-calc":["s-cost","Cost structure — the four blocks"],
   "p-cduty":["s-oem","OEM routes — origin, tooling and who owns it"],
   "p-sail":["s-pack","Packaging — cube decides freight, not weight"],
   "p-reorder":["s-route","Production route — the seven gates ahead of a delivery"]
@@ -5150,11 +4639,9 @@ var fmt=function(x){return 'US$'+Math.round(x).toLocaleString('en-US');};
  var NEXT={
   "p-landed2":[["Retail margin","p-margin"],["TW vs CN duty","p-cduty"]],
   "p-margin":[["My landed cost","p-landed2"],["Product Finder","p-offers"]],
-  "p-calc":[["My landed cost","p-landed2"],["Retail margin","p-margin"]],
   "p-cduty":[["My landed cost","p-landed2"],["Cost &amp; Origin","p-mkt"]],
   "p-sail":[["Reorder timing","p-reorder"],["Cost &amp; Origin","p-mkt"]],
-  "p-reorder":[["Plan a sailing","p-sail"],["Buy Queue","p-alerts"]],
-  "p-shelf":[["My landed cost","p-landed2"],["Cost &amp; Origin","p-mkt"]]
+  "p-reorder":[["Plan a sailing","p-sail"],["Buy Queue","p-alerts"]]
  };
  function addLinks(){
   Object.keys(P101).forEach(function(id){

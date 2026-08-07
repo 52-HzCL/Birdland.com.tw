@@ -1,0 +1,15 @@
+{
+  "name": "Birdland My Market",
+  "short_name": "My Market",
+  "description": "My Market — where Taiwan- and China-origin supply is moving in your import market, and how it compares with the markets around you.",
+  "start_url": "./my-market.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0A0C0F",
+  "theme_color": "#6D4A86",
+  "icons": [
+    {"src": "./images/app-market-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "./images/app-market-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "./images/app-market-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}

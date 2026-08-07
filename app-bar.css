@@ -21,6 +21,11 @@ html.ab-ready body{padding-top:0!important}
 #app-bar.ab[data-app="news"]{--ab-accent:#1B5C9B}
 #app-bar.ab[data-app="buyer"]{--ab-accent:#A95324}
 #app-bar.ab[data-app="cost"]{--ab-accent:#146A4C}
+/* My Market colours its own numbers red and green by the sign of the change,
+   the way a Western market screen does. Its chrome therefore cannot be red or
+   green without saying something it does not mean — hence plum, which is the
+   one strong hue the other three apps have not taken. */
+#app-bar.ab[data-app="market"]{--ab-accent:#6D4A86}
 #app-bar.ab[data-app="team"]{--ab-accent:#465561}
 /* A hairline of the app's colour along the top: enough to tell the apps
    apart at a glance, not enough to become a coloured bar. */
@@ -52,6 +57,12 @@ html.ab-ready body{padding-top:0!important}
   display:flex;align-items:center;gap:var(--sp-2);min-width:0;flex:1 1 auto;
   overflow:hidden;
   color:var(--ink-500);font:500 var(--fs-micro)/1 var(--ff-mono);white-space:nowrap;
+  /* These chips belong to the desk, not to this bar, and there can be three of
+     them: on a narrow laptop the last one is cut off mid-word, which reads as
+     a broken layout rather than as a row that ran out of room. The fade says
+     "there is more here" the way a scrolling list does. */
+  -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent);
+  mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent);
 }
 .ab-status>*{flex:0 0 auto}
 .ab-status [data-hq-label]{font-weight:700;color:var(--ink-700)}
@@ -197,6 +208,49 @@ button.ab-ver:focus-visible{outline:2px solid var(--ab-accent);outline-offset:2p
   .ab-app:hover,.ab-app:active{transform:none}
 }
 
+/* ---- My Market is a dark app ----
+   The other three desks are paper. This one is a dark screen, and a paper
+   title bar on top of it reads as another site's chrome bolted on — plus the
+   launch screen would flash white before a black page, which is the one moment
+   the reader is watching most closely.
+   The bar is built entirely out of tokens, so re-pointing the tokens ON THE BAR
+   re-skins every part of it, popovers included, without a second copy of the
+   rules. Scoped to this one app deliberately: these names are shared with the
+   whole site, and shadowing them any wider would repaint the other three. */
+#app-bar.ab[data-app="market"],
+.ab-splash[data-app="market"]{
+  --paper:#0C0F13;
+  --card:#12171D;
+  --line:#1D232B;
+  --line-soft:#171D24;
+  --ink-900:#DEE4E8;
+  --ink-700:#B6C0C8;
+  --ink-500:#8A96A0;
+  --jade-900:#E7ECF0;   /* the "ink" the controls and the app name are set in */
+  --jade-700:#4FB98A;   /* the freshness dot still has to read as go */
+  --flat:#8A96A0;
+}
+/* The well and the icon plates are drawn with a dark-green alpha, which is
+   invisible against a dark ground. On this app they are a light alpha, and the
+   shadows go black instead of jade. */
+#app-bar.ab[data-app="market"] .ab-dock{
+  background:rgba(255,255,255,.05);
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.45);
+}
+#app-bar.ab[data-app="market"] .ab-app-ico{
+  border-color:rgba(255,255,255,.14);
+  box-shadow:0 1px 2px rgba(0,0,0,.5);
+}
+#app-bar.ab[data-app="market"] .ab-app:hover .ab-app-ico{box-shadow:0 5px 12px rgba(0,0,0,.6)}
+#app-bar.ab[data-app="market"] .ab-ico{box-shadow:0 1px 2px rgba(0,0,0,.5)}
+#app-bar.ab[data-app="market"] .ab-whats,
+#app-bar.ab[data-app="market"] .ab-act .bl-language[open]>div{box-shadow:0 16px 42px rgba(0,0,0,.55)}
+.ab-splash[data-app="market"] .ab-splash-ico{box-shadow:0 10px 30px rgba(0,0,0,.55)}
+.ab-splash[data-app="market"] .ab-splash-bar{background:rgba(255,255,255,.14)}
+/* These two are literal greys rather than tokens, so they need saying twice. */
+.ab-splash[data-app="market"] .ab-splash-in em{color:#8A96A0}
+.ab-splash[data-app="market"] .ab-splash-in small{color:#6E7A84}
+
 /* ---- the text-size control, injected by text-size.js after the picker ---- */
 .ab-act .bl-textsize{margin-left:0}
 
@@ -207,6 +261,21 @@ html.ui-lg #app-bar .ab-status{font-size:12px}
 
 @media(max-width:900px){
   .ab-status{display:none}          /* the desks repeat their own status below */
+  /* Between roughly 760 and 870 the row was already ~33px wider than the space
+     it had, and the fourth app tile added another 41px on top — the controls
+     ran off the end of the bar, and on a page with no other wide content that
+     came out as horizontal scroll on the whole document.
+     The word "Birdland" beside the home glyph is what pays for it: at this
+     width the glyph is unambiguous, and the word stays in the accessible name
+     rather than being deleted, so a screen reader still announces the link in
+     full. The rest comes from closing the gaps a little. */
+  .ab-home span{
+    position:absolute;width:1px;height:1px;margin:-1px;padding:0;
+    overflow:hidden;clip-path:inset(50%);white-space:nowrap;
+  }
+  .ab-home{padding-left:var(--sp-2);padding-right:var(--sp-2)}
+  .ab-in{gap:var(--sp-2)}
+  .ab-act{gap:6px}
   /* The bar cannot rely on the 700px collapse alone: between 700 and 900 the
      dock, home and both new chips already exceed a tablet row, so the
      freshness stamp folds to its dot here, not at phone width. */
@@ -278,6 +347,7 @@ html.ui-lg #app-bar .ab-status{font-size:12px}
 .ab-splash[data-app="news"]{--ab-accent:#1B5C9B}
 .ab-splash[data-app="buyer"]{--ab-accent:#A95324}
 .ab-splash[data-app="cost"]{--ab-accent:#146A4C}
+.ab-splash[data-app="market"]{--ab-accent:#6D4A86}
 .ab-splash[data-app="team"]{--ab-accent:#465561}
 .ab-splash-in{
   display:flex;flex-direction:column;align-items:center;gap:var(--sp-3);
@@ -293,7 +363,42 @@ html.ui-lg #app-bar .ab-status{font-size:12px}
   display:block;padding-bottom:10px;border-bottom:3px solid var(--ab-accent);
   color:var(--jade-900);font:700 clamp(20px,4vw,26px)/1 var(--ff-sans);letter-spacing:.02em;
 }
+/* The one line that says what the app is for. Same sentence as the switch's
+   tooltip and the Terminal's menu — see APPS[].desc in app-bar.js. */
+.ab-splash-in em{
+  display:block;max-width:30ch;margin-top:calc(var(--sp-2) * -1);
+  color:#5D6B66;font:500 var(--fs-small)/1.35 var(--ff-sans);font-style:normal;
+  text-wrap:balance;
+}
 .ab-splash-in small{
   color:#7A8480;font:500 var(--fs-micro)/1 var(--ff-mono);letter-spacing:.10em;
+}
+/* Runs for exactly as long as the splash's own ceiling (1.5s in app-bar.js),
+   so it reads as the app opening rather than as a fake loading bar: when it
+   reaches the end, the screen is already going. */
+.ab-splash-bar{
+  display:block;position:relative;overflow:hidden;
+  width:140px;height:2px;border-radius:2px;background:rgba(7,60,51,.12);
+}
+.ab-splash-bar::after{
+  content:"";position:absolute;top:0;bottom:0;left:0;width:0;
+  border-radius:2px;background:var(--ab-accent);
+  animation:ab-fill 1.5s cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes ab-fill{from{width:0}to{width:100%}}
+/* The icon arrives a beat before its name, the name before the line under it.
+   Three frames, not an animation reel. */
+.ab-splash-ico{animation:ab-rise .45s cubic-bezier(.2,.8,.2,1) both}
+.ab-splash-in b{animation:ab-rise .45s .07s cubic-bezier(.2,.8,.2,1) both}
+.ab-splash-in em{animation:ab-rise .45s .14s cubic-bezier(.2,.8,.2,1) both}
+@keyframes ab-rise{
+  from{opacity:0;transform:translateY(9px) scale(.96)}
+  to{opacity:1;transform:none}
+}
+/* app-bar.js already declines to build the splash under reduced motion; this
+   is the belt to that braces, for a cached page that predates the check. */
+@media (prefers-reduced-motion:reduce){
+  .ab-splash-ico,.ab-splash-in b,.ab-splash-in em,.ab-splash-bar::after{animation:none}
+  .ab-splash-bar::after{width:100%}
 }
 @media print{.ab-splash{display:none!important}}

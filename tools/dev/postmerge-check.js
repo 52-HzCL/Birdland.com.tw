@@ -3,7 +3,7 @@
 'use strict';
 const { chromium } = require('playwright-core');
 const { CHROME, BASE } = require('./_env');
-const PAGES = ['index.html','about.html','guide.html','executive.html','partner.html','cost-desk.html','product-101.html','contact.html','privacy.html','news.html'];
+const PAGES = ['index.html','about.html','guide.html','executive.html','partner.html','cost-desk.html','my-market.html','product-101.html','contact.html','privacy.html','news.html'];
 (async () => {
   const browser = await chromium.launch({ executablePath: CHROME });
   let fail = 0;

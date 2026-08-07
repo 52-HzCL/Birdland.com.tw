@@ -30,7 +30,9 @@ const { ORDER, HREFLANG, LANGS, cluster, picker, handoff } = require('./_langs')
 const PAGES = ['index.html', 'about.html', 'contact.html', 'privacy.html'];
 const BUILT_PAGES = ['product-101.html'];
 // Built nightly from tools/*_template.html; their pickers are JS.
-const RUNTIME_PAGES = ['guide.html', 'executive.html', 'partner.html', 'cost-desk.html', 'team.html'];
+// my-market.html is hand-written rather than built from a template, but it
+// translates the same way the built desks do — at run time, from a dictionary.
+const RUNTIME_PAGES = ['guide.html', 'executive.html', 'partner.html', 'cost-desk.html', 'my-market.html', 'team.html'];
 const RUNTIME_PICKERS = ['app-bar.js', 'desk-banner.js'];
 
 if (!LANGS.length) { console.error('no facade.<dir>.json files'); process.exit(1); }

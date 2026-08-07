@@ -18,7 +18,7 @@ const path = require('path');
 const { chromium } = require('playwright-core');
 const { CHROME, BASE, REPO } = require('./_env');
 
-const PAGES = ['executive.html', 'partner.html', 'cost-desk.html', 'team.html', 'guide.html'];
+const PAGES = ['executive.html', 'partner.html', 'cost-desk.html', 'my-market.html', 'team.html', 'guide.html'];
 
 // ---- what counts as data -----------------------------------------------------
 // Both feeds are read whole and flattened to their string leaves. A candidate
@@ -30,7 +30,15 @@ function leaves(v, out) {
   return out;
 }
 const DATA = new Set();
-for (const f of ['outlook-data.json', 'terminal.json']) {
+// trade.json joined the list when My Market shipped: its 133 market names and
+// its edition label render straight onto the page, and a market name is the
+// same word in every edition — the desks have always shown them untranslated
+// on purpose. Without this they arrive here as 133 phantom "missing keys".
+// NOTE this cannot catch My Market's COMPOSED sentences ("… unit values fell
+// 45% in Poland"), which are assembled in JS from parts and exist in no file.
+// Those must never be keyed whole; translate the fragments the sentence engine
+// joins, and leave the assembled string out of the dictionary.
+for (const f of ['outlook-data.json', 'terminal.json', 'trade.json']) {
   const p = path.join(REPO, f);
   if (fs.existsSync(p)) leaves(JSON.parse(fs.readFileSync(p, 'utf8')), DATA);
 }

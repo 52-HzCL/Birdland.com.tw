@@ -56,12 +56,14 @@ const EUROSTAT_BASE =
   "https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data/ds-045409";
 const REPORTERS = ["DE", "NL", "FR", "ES", "PL", "IT"];
 const EUROSTAT_NAMES = { DE: "Germany", NL: "Netherlands", FR: "France", ES: "Spain", PL: "Poland", IT: "Italy" };
-const PRODUCTS = ["82011000", "82013000", "82015000", "82016000"];
+const PRODUCTS = ["82011000", "82013000", "82015000", "82016000", "82130000", "82021000"];
 const BASIS_MAP = {
   "82011000": "piece", // has SUPPLEMENTARY_QUANTITY
   "82013000": "kg",    // no piece data
   "82015000": "piece", // has SUPPLEMENTARY_QUANTITY
   "82016000": "kg",    // no piece data
+  "82130000": "kg",    // no piece data (verified live, 2026-08 — see tools/dev/_tmp-probe.js run)
+  "82021000": "kg",    // no piece data (verified live, 2026-08 — see tools/dev/_tmp-probe.js run)
 };
 // UN Comtrade only resolves to HS6 (Eurostat resolves to the finer CN8), so
 // every Comtrade-sourced market's cells are keyed by hs6, not cn8 — see
@@ -139,7 +141,7 @@ COMTRADE_NES_CODES.forEach((c) => BAND_EXCLUDE_PARTNERS.add(c));
 // Tier decision. This IS the privacy design — see the module doc comment.
 // TIER1_MIN_USD is the entire rule for "full detail vs rate-of-change only";
 // there is no per-country list anywhere else in this file that overrides it.
-const TIER1_MIN_USD = 2000000; // combined latest-year import value, all 4 HS6 families
+const TIER1_MIN_USD = 2000000; // combined latest-year import value, all 6 HS6 families
 // How many tier-2 markets one shard batch refreshes. Tier-2 cells are cheap
 // (World row only, no partner breakdown — see computeComtradeTier2Cells) but
 // still processed in batches, one batch per shard run, for the same "small,
@@ -218,6 +220,24 @@ function fetchComtradeOne(reporterCode, hs6, year) {
     flowCode: "M",
   });
   return comtradeGet(COMTRADE_BASE + "?" + params.toString());
+}
+
+/**
+ * The UN Comtrade preview API silently caps a response at 500 rows — it
+ * does NOT set a truncated flag anywhere in the payload, so the only signal
+ * available is "did this response come back with (near) exactly the cap."
+ * Every single-request Comtrade fetch in this file (one HS6 code per
+ * request — see fetchComtradeOne and fetchWorldDiscoveryYear, neither of
+ * which ever combines multiple HS6 codes into one cmdCode) is checked
+ * against this before its rows are trusted for metrics. A hit means the
+ * response is incomplete in an unknown way, so nothing computed from it can
+ * be trusted — see the call sites, which mark every cell the response feeds
+ * as stale:true with null metrics rather than publish a number derived from
+ * a partial row set.
+ */
+const COMTRADE_ROW_CAP = 500;
+function comtradeHitRowCap(json) {
+  return !!(json && Array.isArray(json.data) && json.data.length >= COMTRADE_ROW_CAP);
 }
 
 /**
@@ -340,22 +360,38 @@ function discoveryRowsForYear(json) {
 }
 
 /**
- * All 4 HS6 families' all-reporter World rows for one year: 4 requests,
+ * All 6 HS6 families' all-reporter World rows for one year: 6 requests,
  * >=1.1s apart, regardless of how many reporters end up mattering to the
  * caller — discovery and every tier-2 batch shard call this once per year
  * they need and then just read the reporters they care about out of it.
+ * Each request is already scoped to exactly one HS6 code (cmdCode never
+ * carries more than one) — going from 4 to 6 families only adds more
+ * requests, it does not change any single request's row count — but each
+ * request still covers every reporter worldwide (up to 223), so the
+ * 500-row cap (see comtradeHitRowCap) is checked per request regardless.
+ * A capped (hs6, year) is recorded in cappedHs6 and its byHs6[hs6] entry is
+ * left empty rather than populated from a response that can't be trusted —
+ * callers (buildRoster, computeComtradeTier2Cells) must consult cappedHs6
+ * before treating an empty/absent reporter as "genuinely zero import."
  */
 async function fetchWorldDiscoveryYear(year) {
   const byHs6 = {};
+  const cappedHs6 = new Set();
   for (const hs6 of PRODUCTS_HS6) {
     await sleepMs(1100);
     const params = new URLSearchParams({ reporterCode: "", period: year, cmdCode: hs6, flowCode: "M", partnerCode: "0", partner2Code: "0" });
     const json = await comtradeGet(COMTRADE_BASE + "?" + params.toString());
     if (json && json.error) throw new Error(`discovery ${hs6}/${year}: ${json.error}`);
+    if (comtradeHitRowCap(json)) {
+      console.warn(`[comtrade] 500-row cap hit for ${hs6}/${year} discovery (all-reporter World query) — treating as no data this year`);
+      cappedHs6.add(hs6);
+      byHs6[hs6] = {};
+      continue;
+    }
     byHs6[hs6] = discoveryRowsForYear(json);
     console.log(`[discovery] ${hs6}/${year}: ${Object.keys(byHs6[hs6]).length} reporters`);
   }
-  return byHs6;
+  return { byHs6, cappedHs6 };
 }
 
 /**
@@ -365,9 +401,12 @@ async function fetchWorldDiscoveryYear(year) {
  * excluded here by iso (Eurostat already covers them, at finer CN8 detail —
  * a source-precedence rule, not a market judgment) so they never appear
  * twice. Every other reporter with a REPORTER_MAP entry and any nonzero
- * value across the 4 families lands in tier1 or tier2 by TIER1_MIN_USD
- * alone. Reporters with literally no data in any of the 4 families are
- * absent — not excluded by choice, just nothing to publish.
+ * value across the 6 families lands in tier1 or tier2 by TIER1_MIN_USD
+ * alone. Reporters with literally no data in any of the 6 families are
+ * absent — not excluded by choice, just nothing to publish. (A family whose
+ * discovery response hit the 500-row cap contributes nothing to `totals`
+ * either — see fetchWorldDiscoveryYear's cappedHs6 — which understates
+ * rather than fabricates a reporter's combined value.)
  */
 function buildRoster(disc24) {
   const totals = {}; // reporterCode -> summed VALUE across the 4 hs6
@@ -572,6 +611,7 @@ function calculateMetrics(reporter, product, data23, data24, basis) {
     share_tw: null,
     share_tw_prev: null,
     share_cn: null,
+    share_cn_prev: null,
     stale: false,
   };
 
@@ -638,6 +678,21 @@ function validateMetrics(metrics) {
     }
   }
 
+  // share_tw_prev + share_cn_prev <= 100 and each in [0,100] — exactly
+  // parallel to the share_tw/share_cn check above, for the prior year.
+  if (metrics.share_tw_prev !== null && metrics.share_cn_prev !== null) {
+    if (
+      metrics.share_tw_prev + metrics.share_cn_prev > 100 ||
+      metrics.share_tw_prev < 0 ||
+      metrics.share_tw_prev > 100 ||
+      metrics.share_cn_prev < 0 ||
+      metrics.share_cn_prev > 100
+    ) {
+      metrics.stale = true;
+      return true;
+    }
+  }
+
   // |uv_change_pct| <= 50
   if (
     metrics.uv_change_pct !== null &&
@@ -683,6 +738,9 @@ function computeEurostatCells(euData) {
       if (world23 && world23.VALUE && world23.VALUE > 0 && tw23 && tw23.VALUE) {
         metrics.share_tw_prev = Math.round((tw23.VALUE / world23.VALUE) * 100);
       }
+      if (world23 && world23.VALUE && world23.VALUE > 0 && cn23 && cn23.VALUE) {
+        metrics.share_cn_prev = Math.round((cn23.VALUE / world23.VALUE) * 100);
+      }
 
       // Price-band: value-weighted thirds of every source country's unit
       // value. `partners` here already carries every partner code this pull
@@ -708,27 +766,37 @@ function computeEurostatCells(euData) {
 }
 
 /**
- * Full-detail cells for ONE tier-1 Comtrade market: 4 products x 2 years =
- * 8 requests, >=1.1s apart, via the single-reporter endpoint (partner
+ * Full-detail cells for ONE tier-1 Comtrade market: 6 products x 2 years =
+ * 12 requests, >=1.1s apart, via the single-reporter endpoint (partner
  * breakdown, self-summed World, decideComtradeBasis, computeBand — all
  * unchanged from before this rewrite, just parameterized per-market instead
  * of looping a fixed 4-country list). Cell keys are hs6 (Comtrade's own
- * resolution) — see PRODUCTS_HS6.
+ * resolution) — see PRODUCTS_HS6. Each request is already scoped to one
+ * HS6 code, but a single reporter can still return >=500 partner rows (see
+ * comtradeHitRowCap) — a hit on either year discards the whole cell rather
+ * than compute a uv_change_pct that mixes one trustworthy year with one
+ * truncated one.
  */
 async function computeComtradeTier1Cells(iso, reporterCode) {
   const cells = {};
   for (const hs6 of PRODUCTS_HS6) {
     const perYear = {};
+    let capped = false;
     for (const year of COMTRADE_YEARS) {
       await sleepMs(1100);
       const json = await fetchComtradeOne(reporterCode, hs6, year);
       if (json && json.error) throw new Error(`${iso}/${hs6}/${year}: ${json.error}`);
+      if (comtradeHitRowCap(json)) {
+        console.warn(`[comtrade] 500-row cap hit for ${hs6} batch ${iso}/${year} — cells marked stale`);
+        capped = true;
+        continue;
+      }
       perYear[year] = comtradeRowsForYear(json);
       console.log(`[Comtrade tier1] ${iso}/${hs6}/${year}: ${Object.keys(perYear[year].partners).length} source rows`);
     }
     const y24 = perYear["2024"], y23 = perYear["2023"];
-    if (!y24 && !y23) {
-      cells[hs6] = { basis: "kg", uv_change_pct: null, vol_change_pct: null, share_tw: null, share_tw_prev: null, share_cn: null, stale: true, band: null };
+    if (capped || (!y24 && !y23)) {
+      cells[hs6] = { basis: "kg", uv_change_pct: null, vol_change_pct: null, share_tw: null, share_tw_prev: null, share_cn: null, share_cn_prev: null, stale: true, band: null };
       continue;
     }
     // Basis decided from the latest year available (falls back to 2023 if
@@ -744,6 +812,7 @@ async function computeComtradeTier1Cells(iso, reporterCode) {
     const tw24 = y24 ? (y24.partners[TW_CODE] || null) : null;
     const tw23 = y23 ? (y23.partners[TW_CODE] || null) : null;
     const cn24 = y24 ? (y24.partners[CN_CODE] || null) : null;
+    const cn23 = y23 ? (y23.partners[CN_CODE] || null) : null;
 
     const metrics = calculateMetrics(iso, hs6, world23, world24, basis);
 
@@ -753,6 +822,9 @@ async function computeComtradeTier1Cells(iso, reporterCode) {
     }
     if (world23 && world23.VALUE > 0 && tw23 && tw23.VALUE) {
       metrics.share_tw_prev = Math.round((tw23.VALUE / world23.VALUE) * 100);
+    }
+    if (world23 && world23.VALUE > 0 && cn23 && cn23.VALUE) {
+      metrics.share_cn_prev = Math.round((cn23.VALUE / world23.VALUE) * 100);
     }
 
     const partners24 = y24 ? { ...y24.partners, WORLD: world24 } : {};
@@ -779,21 +851,33 @@ async function computeComtradeTier1Cells(iso, reporterCode) {
 }
 
 /**
- * Rate-of-change-only cells for a BATCH of tier-2 markets: 4 products x 2
- * years = 8 all-reporter World-discovery requests TOTAL for the whole batch
+ * Rate-of-change-only cells for a BATCH of tier-2 markets: 6 products x 2
+ * years = 12 all-reporter World-discovery requests TOTAL for the whole batch
  * (not per market — see fetchWorldDiscoveryYear), then every market in
  * `isos` just reads its own reporter's World row out of that. No partner
  * breakdown is ever fetched for tier 2, so band and share are structurally
  * absent — the tier-2 contract is exactly {basis, uv_change_pct, stale}.
+ * If a given hs6's discovery response hit the 500-row cap in either year
+ * (fetchWorldDiscoveryYear's cappedHs6), every market in this batch gets a
+ * stale null cell for that hs6 instead of a rate computed from a response
+ * that might be missing this very reporter's row.
  */
 async function computeComtradeTier2Cells(isos, isoToCode) {
-  const disc23 = await fetchWorldDiscoveryYear("2023");
-  const disc24 = await fetchWorldDiscoveryYear("2024");
+  const { byHs6: disc23, cappedHs6: capped23 } = await fetchWorldDiscoveryYear("2023");
+  const { byHs6: disc24, cappedHs6: capped24 } = await fetchWorldDiscoveryYear("2024");
+  const cappedAny = new Set([...capped23, ...capped24]);
+  for (const hs6 of cappedAny) {
+    console.warn(`[comtrade] 500-row cap hit for ${hs6} batch ${isos.join(",")} — cells marked stale`);
+  }
   const out = {};
   for (const iso of isos) {
     const code = isoToCode[iso];
     const cells = {};
     for (const hs6 of PRODUCTS_HS6) {
+      if (cappedAny.has(hs6)) {
+        cells[hs6] = { basis: "kg", uv_change_pct: null, stale: true };
+        continue;
+      }
       const w24row = code ? (disc24[hs6][code] || null) : null;
       const w23row = code ? (disc23[hs6][code] || null) : null;
       const basis = (w24row && w24row.altQtyUnitCode === 5 && (w24row.SUP || 0) > 0) ? "piece"
@@ -833,6 +917,20 @@ function buildMarketsSkeleton(roster) {
   return markets;
 }
 
+// Tier-1 Comtrade markets are fetched in roughly-commercial-importance
+// order rather than alphabetically, so if a season only gets partway
+// through tier 1 before the quarter rolls over, the markets that matter
+// most have already been refreshed this cycle. Missing-from-list isos sort
+// after every ranked one (ties among themselves broken alphabetically, same
+// as ranked ties) — see the indexOf/Infinity handling in buildWorkUnits.
+// Because shard_state.cursor is just an index into buildWorkUnits' output,
+// rebuilt fresh every run and never itself persisted (see that function's
+// doc comment), changing this order mid-season simply reshuffles which
+// markets land at which cursor position: some get re-fetched sooner than
+// their last run, none are permanently skipped. That is an acceptable,
+// intended side effect of editing IMPORTANCE.
+const IMPORTANCE = ["us", "jp", "gb", "ca", "ch", "au", "kr", "il", "mx", "za", "no", "se", "tr", "sa", "ae", "sg", "nz", "cl", "br", "ar", "co", "pe"];
+
 /**
  * shard_state.cursor indexes into THIS array, rebuilt fresh every run from
  * whatever markets/tier/src trade.json's skeleton already carries — the
@@ -841,8 +939,10 @@ function buildMarketsSkeleton(roster) {
  * function of that roster or two runs would disagree about what "unit 7"
  * means. Order: one unit for all of Eurostat (already a single cheap
  * request for all six countries — no reason to split it), then one unit per
- * discovered tier-1 Comtrade market (alphabetical by iso), then tier-2
- * markets chunked into TIER2_BATCH_SIZE-sized batches (alphabetical by iso).
+ * discovered tier-1 Comtrade market (commercial-importance order — see
+ * IMPORTANCE above — ties broken alphabetically by iso), then tier-2
+ * markets chunked into TIER2_BATCH_SIZE-sized batches (alphabetical by iso,
+ * unchanged).
  */
 function buildWorkUnits(markets) {
   const units = [{ type: "eurostat_all" }];
@@ -853,7 +953,13 @@ function buildWorkUnits(markets) {
     if (m.tier === 1) t1.push(iso);
     else if (m.tier === 2) t2.push(iso);
   }
-  t1.sort(); t2.sort();
+  t1.sort((a, b) => {
+    const ra = IMPORTANCE.indexOf(a); const rb = IMPORTANCE.indexOf(b);
+    const ia = ra === -1 ? Infinity : ra; const ib = rb === -1 ? Infinity : rb;
+    if (ia !== ib) return ia - ib;
+    return a < b ? -1 : a > b ? 1 : 0;
+  });
+  t2.sort();
   for (const iso of t1) units.push({ type: "comtrade_tier1", iso });
   for (let i = 0; i < t2.length; i += TIER2_BATCH_SIZE) units.push({ type: "comtrade_tier2_batch", isos: t2.slice(i, i + TIER2_BATCH_SIZE) });
   return units;
@@ -896,7 +1002,7 @@ function writeTradeJSON(trade) {
 
 /**
  * Season-opening discovery: one all-reporter World query (latest year only —
- * tier is a roster decision, not a metric) across the 4 HS6 families, then
+ * tier is a roster decision, not a metric) across the 6 HS6 families, then
  * the mechanical tier split (buildRoster). Writes ONLY the markets skeleton
  * (n/tier/src, cells all {stale:true}) — no numbers from this pull are ever
  * carried into a published cell; every cell gets its real value later, from
@@ -905,8 +1011,8 @@ function writeTradeJSON(trade) {
  * fresh as the day they were fetched instead of the day the season opened.
  */
 async function runDiscovery() {
-  console.log("[discovery] all-reporter World query, latest year, 4 HS6 families (tier decision only)...");
-  const disc24 = await fetchWorldDiscoveryYear("2024");
+  console.log("[discovery] all-reporter World query, latest year, 6 HS6 families (tier decision only)...");
+  const { byHs6: disc24 } = await fetchWorldDiscoveryYear("2024");
   const roster = buildRoster(disc24);
   const markets = buildMarketsSkeleton(roster);
   console.log(`[discovery] tier1: ${REPORTERS.length} eurostat + ${roster.tier1.length} comtrade = ${REPORTERS.length + roster.tier1.length}; tier2: ${roster.tier2.length}`);

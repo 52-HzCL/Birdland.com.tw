@@ -20,6 +20,7 @@ const PAGES = [
   ['executive.html', 'ABrief'],
   ['partner.html', 'AsiaSource'],
   ['cost-desk.html', 'CostNow'],
+  ['my-market.html', 'My Market'],
   ['team.html', 'Team Desk'],
   ['contact.html', 'Contact'],
   ['privacy.html', 'Privacy'],

@@ -85,6 +85,7 @@ def add(t, n, d, u):
 
 for n, d, u in [
     ("ABrief", "Today's steel, resin, freight and policy signals", "executive.html"),
+    ("My Market", "Which way your import market is moving, and the markets next to it", "my-market.html"),
     ("AsiaSource", "Product families, materials, processes, buyer brief", "partner.html"),
     ("CostNow", "Landed cost, margin, sailing, duty comparison", "cost-desk.html"),
     ("Team Desk", "Internal dashboard", "team.html"),

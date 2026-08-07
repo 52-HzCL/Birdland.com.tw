@@ -12,6 +12,7 @@ Birdland is a confidential OEM and ODM garden and field tool manufacturer based 
 - **/executive.html** — ABrief daily supply news and market updates
 - **/partner.html** — AsiaSource buyer's handbook for commercial buyers and programmes
 - **/cost-desk.html** — CostNow landed-cost workspace for price calculations
+- **/my-market.html** — My Market; direction of Taiwanese and Chinese supply in a buyer's own market and the markets next to it, from published customs statistics. Rates of change and import shares only — no prices.
 - **/guide.html** — Comprehensive navigation and feature guide
 - **/contact.html** — Market-routed inquiry form for regional teams
 

@@ -24,6 +24,7 @@ const SHOTS = [
   ['about.html', 'about', 1180],
   ['product-101.html', 'factory', 1180],
   ['executive.html', 'news', 1180],
+  ['my-market.html', 'market', 1180],
   ['partner.html', 'buyer', 1180],
   ['cost-desk.html#p-landed2', 'cost', 1180],
   ['contact.html', 'contact', 1180],
