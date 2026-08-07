@@ -595,5 +595,18 @@
  "12-month change in import unit value, Eurostat Comext · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design": "12-miesięczna zmiana wartości jednostkowej importu, Eurostat Comext · za sztukę tam, gdzie cło ewidencjonuje sztuki, w pozostałych przypadkach za kg · celowo nie publikujemy tu cen bezwzględnych",
  "Spain": "Hiszpania",
  "Italy": "Włochy",
- "Poland": "Polska"
+ "Poland": "Polska",
+ "United States": "Stany Zjednoczone",
+ "Japan": "Japonia",
+ "Israel": "Izrael",
+ "Australia": "Australia",
+ "UN Comtrade": "UN Comtrade",
+ "annual": "rocznie",
+ "European Union · Eurostat Comext": "Unia Europejska · Eurostat Comext",
+ "Other markets · UN Comtrade": "Pozostałe rynki · UN Comtrade",
+ "12-month change in import unit value · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design": "12-miesięczna zmiana wartości jednostkowej importu · za sztukę tam, gdzie cło ewidencjonuje sztuki, w pozostałych przypadkach za kg · celowo nie publikujemy tu cen bezwzględnych",
+ "Direction from official government import statistics — for the EU, Eurostat Comext; for the United States, Japan, Israel and Australia, UN Comtrade. Routes and price bands are Birdland’s own — the two are never mixed into one number.": "Kierunek na podstawie oficjalnych rządowych statystyk importu — dla UE Eurostat Comext, dla Stanów Zjednoczonych, Japonii, Izraela i Australii UN Comtrade. Marszruty i pasma cenowe pochodzą od Birdland — obu nigdy nie łączy się w jedną liczbę.",
+ "Opens the official UN Comtrade dataset filtered to this reporter and product code": "Otwiera oficjalny zbiór danych UN Comtrade, przefiltrowany dla tego kraju sprawozdającego i kodu produktu",
+ "Market position: UN Comtrade": "Pozycja rynkowa: UN Comtrade",
+ "Taiwan-origin trade is reported by the UN as ‘Other Asia, nes’ — the UN does not use the name ‘Taiwan’ for trade-partner statistics.": "Handel pochodzący z Tajwanu jest raportowany przez ONZ jako „Other Asia, nes” — ONZ nie używa nazwy „Tajwan” w statystykach partnerów handlowych."
 }

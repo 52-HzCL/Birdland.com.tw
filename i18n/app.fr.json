@@ -595,5 +595,18 @@
  "12-month change in import unit value, Eurostat Comext · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design": "Variation à 12 mois de la valeur unitaire à l’importation, Eurostat Comext · par pièce là où la douane relève des pièces, par kg ailleurs · aucun prix absolu n’est publié ici, à dessein",
  "Spain": "Espagne",
  "Italy": "Italie",
- "Poland": "Pologne"
+ "Poland": "Pologne",
+ "United States": "États-Unis",
+ "Japan": "Japon",
+ "Israel": "Israël",
+ "Australia": "Australie",
+ "UN Comtrade": "UN Comtrade",
+ "annual": "annuel",
+ "European Union · Eurostat Comext": "Union européenne · Eurostat Comext",
+ "Other markets · UN Comtrade": "Autres marchés · UN Comtrade",
+ "12-month change in import unit value · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design": "Variation à 12 mois de la valeur unitaire à l’importation · par pièce là où la douane relève des pièces, par kg ailleurs · aucun prix absolu n’est publié ici, à dessein",
+ "Direction from official government import statistics — for the EU, Eurostat Comext; for the United States, Japan, Israel and Australia, UN Comtrade. Routes and price bands are Birdland’s own — the two are never mixed into one number.": "Direction issue de statistiques officielles d’importation gouvernementales — pour l’UE, Eurostat Comext ; pour les États-Unis, le Japon, Israël et l’Australie, UN Comtrade. Les filières et les gammes de prix sont propres à Birdland — les deux ne sont jamais mélangées en un seul chiffre.",
+ "Opens the official UN Comtrade dataset filtered to this reporter and product code": "Ouvre le jeu de données officiel UN Comtrade, filtré sur ce pays déclarant et ce code produit",
+ "Market position: UN Comtrade": "Position de marché : UN Comtrade",
+ "Taiwan-origin trade is reported by the UN as ‘Other Asia, nes’ — the UN does not use the name ‘Taiwan’ for trade-partner statistics.": "Le commerce d’origine taïwanaise est déclaré par l’ONU sous le libellé « Other Asia, nes » — l’ONU n’utilise pas le nom « Taïwan » dans ses statistiques de partenaires commerciaux."
 }

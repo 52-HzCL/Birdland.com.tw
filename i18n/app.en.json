@@ -594,5 +594,18 @@
  "bands: value-weighted thirds of source-country unit values",
  "Spain",
  "Italy",
- "Poland"
+ "Poland",
+ "United States",
+ "Japan",
+ "Israel",
+ "Australia",
+ "UN Comtrade",
+ "annual",
+ "European Union · Eurostat Comext",
+ "Other markets · UN Comtrade",
+ "12-month change in import unit value · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design",
+ "Direction from official government import statistics — for the EU, Eurostat Comext; for the United States, Japan, Israel and Australia, UN Comtrade. Routes and price bands are Birdland’s own — the two are never mixed into one number.",
+ "Opens the official UN Comtrade dataset filtered to this reporter and product code",
+ "Market position: UN Comtrade",
+ "Taiwan-origin trade is reported by the UN as ‘Other Asia, nes’ — the UN does not use the name ‘Taiwan’ for trade-partner statistics."
 ]

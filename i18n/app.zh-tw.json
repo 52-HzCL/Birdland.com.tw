@@ -595,5 +595,18 @@
  "12-month change in import unit value, Eurostat Comext · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design": "進口單價 12 個月變動，Eurostat Comext・海關以件數統計者以件計價，其餘以公斤計價・此處刻意不公布絕對價格",
  "Spain": "西班牙",
  "Italy": "義大利",
- "Poland": "波蘭"
+ "Poland": "波蘭",
+ "United States": "美國",
+ "Japan": "日本",
+ "Israel": "以色列",
+ "Australia": "澳洲",
+ "UN Comtrade": "UN Comtrade",
+ "annual": "年度",
+ "European Union · Eurostat Comext": "歐盟・Eurostat Comext",
+ "Other markets · UN Comtrade": "其他市場・UN Comtrade",
+ "12-month change in import unit value · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design": "進口單價 12 個月變動・以件計價者以件為準,其餘以公斤計價・此處刻意不公布絕對價格",
+ "Direction from official government import statistics — for the EU, Eurostat Comext; for the United States, Japan, Israel and Australia, UN Comtrade. Routes and price bands are Birdland’s own — the two are never mixed into one number.": "方向來自各國政府官方進口統計 — 歐盟採用 Eurostat Comext,美國、日本、以色列與澳洲則採用 UN Comtrade。路線與價格帶是 Birdland 自有的資訊 — 兩者絕不會混成同一個數字。",
+ "Opens the official UN Comtrade dataset filtered to this reporter and product code": "開啟 UN Comtrade 官方資料集，已篩選至此申報國與商品代碼",
+ "Market position: UN Comtrade": "市場位置：UN Comtrade",
+ "Taiwan-origin trade is reported by the UN as ‘Other Asia, nes’ — the UN does not use the name ‘Taiwan’ for trade-partner statistics.": "台灣產地貿易在聯合國統計中列為「Other Asia, nes」— 聯合國的貿易夥伴統計並未使用「台灣」這個名稱。"
 }

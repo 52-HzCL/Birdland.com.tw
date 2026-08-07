@@ -47,6 +47,26 @@ BAND_MIN_SHARE=0.005  # <0.5% of WORLD value: re-export/rounding noise, dropped
 BAND_MIN_TW_SHARE=0.02  # see fetch-trade.js: a positioning claim needs a real share
 BAND_TOP_N=20         # top 15-20 sources by import value, per the brief
 
+# ---------------------------------------------------------------------------
+# UN Comtrade (US/JP/IL/AU) — mirrors tools/dev/fetch-trade.js's Comtrade
+# section line for line. See that file for the full commentary; kept short
+# here per this file's own style.
+COMTRADE_BASE="https://comtradeapi.un.org/public/v1/preview/C/A/HS"
+COMTRADE_REPORTERS=[("us",842),("jp",392),("il",376),("au",36)]
+COMTRADE_YEARS=["2023","2024"]
+TW_CODE="490"  # "Other Asia, nes" — the UN's placeholder for Taiwan (One-China nomenclature)
+CN_CODE="156"
+
+# Regional catch-alls / non-trade categories to exclude from the source-country
+# sum and the tercile sample — the Comtrade equivalent of BAND_EXCLUDE_PARTNERS's
+# Eurostat EXT_EU/INT_EA rows. Pulled from https://comtradeapi.un.org/files/v1/
+# app/reference/partnerAreas.json (live, 2026-08-07): every entry whose label
+# ends ", nes" plus Bunkers/Free Zones/Special Categories/Neutral Zone.
+# Deliberately excludes 490 "Other Asia, nes" from this list — see fetch-trade.js.
+COMTRADE_NES_CODES=["472","899","837","471","129","221","697","492","838","473","536","637","290","527","577","568","636","839","879"]
+for _c in COMTRADE_NES_CODES:
+    BAND_EXCLUDE_PARTNERS.add(_c)
+
 def flat_index_to_multi(flat_idx,sizes):
     """Convert flat value key to multidimensional indices using size array."""
     indices=[]
@@ -163,6 +183,152 @@ def fetch_uk_data():
     """
     print("[UK] API exploration: insufficient metadata to map CN8 to internal IDs")
     return {},["UK: API metadata mismatch - no reliable CN8→CommodityId mapping"]
+
+def fetch_comtrade_one(reporter_code,hs6,year):
+    """One (reporter, product, year) request. The preview endpoint rejects a
+    multi-period query ("Maximum number of periods for preview is 1",
+    verified live), so this is called once per year, not once per reporter."""
+    params=urllib.parse.urlencode([("reporterCode",str(reporter_code)),("period",year),("cmdCode",hs6),("flowCode","M")])
+    return https_get(COMTRADE_BASE+"?"+params)
+
+def comtrade_rows_for_year(json_resp):
+    """One Comtrade response -> {partner_code_str: {VALUE,QTY_100KG,SUP}} for
+    one year, in the exact row shape unit_price_for/compute_terciles/
+    compute_band already consume from Eurostat.
+
+    De-dup root cause (verified live, 2026-08-07 — corrects the brief's
+    working theory): the preview endpoint returns one row per partner PER
+    TRANSPORT MODE (motCode), plus a motCode=0 "TOTAL - all modes" row that
+    already sums them. Not partner2Code, which was 0 on every row seen
+    across all four reporters. Filtering to motCode==0 keeps exactly one row
+    per partner and IS the de-dup rule. See fetch-trade.js for the AU
+    820150/2023 worked example that pinned this down."""
+    rows=(json_resp or {}).get("data") or []
+    totals=[r for r in rows if r.get("motCode")==0]
+    partners={}
+    world_row_api=None
+    for r in totals:
+        if r.get("partnerCode")==0:
+            world_row_api=r
+            continue
+        code=str(r.get("partnerCode"))
+        alt_qty=r.get("altQty") or 0
+        sup=alt_qty if (r.get("altQtyUnitCode")==5 and alt_qty>0) else 0
+        partners[code]={"VALUE":r.get("cifvalue") or 0,"QTY_100KG":(r.get("netWgt") or 0)/100,"SUP":sup}
+    return partners,world_row_api
+
+def decide_comtrade_basis(partners,world_row_api):
+    """piece when the API's own World row's altQtyUnitCode flag (only the
+    flag — never its cifvalue, which is never trusted) says piece, OR when a
+    majority of source countries report pieces. Decided once per
+    (reporter, product) from the latest year available."""
+    world_piece=bool(world_row_api and world_row_api.get("altQtyUnitCode")==5 and (world_row_api.get("altQty") or 0)>0)
+    rows=[r for code,r in partners.items() if code not in BAND_EXCLUDE_PARTNERS]
+    with_pieces=len([r for r in rows if r["SUP"]>0])
+    majority_piece=len(rows)>0 and with_pieces/len(rows)>0.5
+    return "piece" if (world_piece or majority_piece) else "kg"
+
+def build_comtrade_world(partners,world_row_api,basis):
+    """World is never read from the API's partnerCode=0 row — rebuilt here by
+    summing the qualifying (non-aggregate) partner rows, per the brief's
+    fail-closed policy. Returns the self-computed WORLD row plus a
+    cross-check verdict against the API's row (report/note only, never the
+    metric itself)."""
+    rows=[r for code,r in partners.items() if code not in BAND_EXCLUDE_PARTNERS]
+    value=sum(r["VALUE"] for r in rows)
+    qty_100kg=sum(r["QTY_100KG"] for r in rows)
+    sup=sum(r["SUP"] for r in rows) if basis=="piece" else 0
+    world={"VALUE":value,"QTY_100KG":qty_100kg,"SUP":sup}
+    api_value=world_row_api.get("cifvalue") if world_row_api else None
+    cross_check="no-api-row"
+    if api_value and api_value>0 and value>0:
+        ratio=abs(value-api_value)/api_value
+        cross_check="ok" if ratio<0.05 else "diverged"
+    return {"world":world,"crossCheck":cross_check,"apiValue":api_value,"ownSum":value}
+
+def fetch_comtrade_data():
+    """Every (reporter, product, year) Comtrade cell the shelf needs. Returns
+    (data, errors, cross_checks): data[iso][cn8][year] = {partners, world_row_api}."""
+    data={}
+    errors=[]
+    cross_checks=[]
+    for iso,reporter_code in COMTRADE_REPORTERS:
+        data[iso]={}
+        for cn8 in PRODUCTS:
+            hs6=cn8[:6]
+            per_year={}
+            for year in COMTRADE_YEARS:
+                time.sleep(1.1)  # politeness: >=1s between requests, every request
+                try:
+                    j=fetch_comtrade_one(reporter_code,hs6,year)
+                    if j and j.get("error"):
+                        errors.append(f"{iso}/{cn8}/{year}: {j['error']}")
+                        continue
+                    partners,world_row_api=comtrade_rows_for_year(j)
+                    per_year[year]={"partners":partners,"world_row_api":world_row_api}
+                    print(f"[Comtrade] {iso}/{hs6}/{year}: {len(partners)} source rows")
+                except Exception as e:
+                    errors.append(f"{iso}/{cn8}/{year}: {e}")
+            data[iso][cn8]=per_year
+    return data,errors,cross_checks
+
+def build_comtrade_markets(comtrade_data,cross_checks):
+    """Aggregate fetch_comtrade_data()'s output into trade.markets entries,
+    reusing compute_band/calculate_metrics/validate_metrics exactly as the
+    Eurostat path does."""
+    markets={}
+    for iso,_ in COMTRADE_REPORTERS:
+        markets[iso]={}
+        by_product=comtrade_data.get(iso,{})
+        for cn8 in PRODUCTS:
+            per_year=by_product.get(cn8,{})
+            y24=per_year.get("2024")
+            y23=per_year.get("2023")
+            if not y24 and not y23:
+                markets[iso][cn8]={"basis":"kg","uv_change_pct":None,"vol_change_pct":None,"share_tw":None,"share_tw_prev":None,"share_cn":None,"stale":True,"band":None,"src":"comtrade"}
+                continue
+
+            basis_src=y24 or y23
+            basis=decide_comtrade_basis(basis_src["partners"],basis_src["world_row_api"])
+
+            w24=build_comtrade_world(y24["partners"],y24["world_row_api"],basis) if y24 else None
+            w23=build_comtrade_world(y23["partners"],y23["world_row_api"],basis) if y23 else None
+            if w24: cross_checks.append({"iso":iso,"cn8":cn8,"year":"2024",**w24,"verdict":w24["crossCheck"]})
+            if w23: cross_checks.append({"iso":iso,"cn8":cn8,"year":"2023",**w23,"verdict":w23["crossCheck"]})
+
+            world24=w24["world"] if w24 else None
+            world23=w23["world"] if w23 else None
+            tw24=y24["partners"].get(TW_CODE) if y24 else None
+            tw23=y23["partners"].get(TW_CODE) if y23 else None
+            cn24=y24["partners"].get(CN_CODE) if y24 else None
+
+            metrics=calculate_metrics(iso,cn8,world23,world24,basis)
+            metrics["src"]="comtrade"
+
+            if world24 and world24["VALUE"]>0:
+                if tw24 and tw24["VALUE"]:
+                    metrics["share_tw"]=round((tw24["VALUE"]/world24["VALUE"])*100)
+                if cn24 and cn24["VALUE"]:
+                    metrics["share_cn"]=round((cn24["VALUE"]/world24["VALUE"])*100)
+            if world23 and world23["VALUE"]>0 and tw23 and tw23["VALUE"]:
+                metrics["share_tw_prev"]=round((tw23["VALUE"]/world23["VALUE"])*100)
+
+            partners24=dict(y24["partners"]) if y24 else {}
+            if y24: partners24["WORLD"]=world24
+            partners23=dict(y23["partners"]) if y23 else {}
+            if y23: partners23["WORLD"]=world23
+            metrics["band"]=compute_band(partners24,partners23,world24,world23,tw24,basis)
+
+            if w24 and w24["crossCheck"]=="diverged":
+                metrics["note"]="world cross-check diverged >5% from Comtrade's reported total; used summed sources"
+
+            validate_metrics(metrics)
+            markets[iso][cn8]=metrics
+            band=metrics["band"]
+            print(f"[metrics] {iso}/{cn8} (comtrade): stale={metrics['stale']}, basis={basis}, uv={metrics['uv_change_pct']}, share_tw={metrics['share_tw']}, "
+                  f"band={band['market'] if band else None}, band.tw={band['tw'] if band else None}, moved={band['moved'] if band else None}, "
+                  f"world_cross_check={w24['crossCheck'] if w24 else 'n/a'}")
+    return markets
 
 def calculate_metrics(reporter,product,data23,data24,basis):
     """Calculate UV change and shares."""
@@ -355,7 +521,7 @@ def validate_metrics(metrics):
 
     return False
 
-def build_trade_json(eu_data):
+def build_trade_json(eu_data,comtrade_markets):
     """Aggregate Eurostat data into trade.json structure."""
     utc_now=datetime.datetime.utcnow().replace(microsecond=0).isoformat()+"Z"
     trade={
@@ -364,7 +530,8 @@ def build_trade_json(eu_data):
         "period":{"latest":"2024","previous":"2023"},
         "source":{
             "eu":"Eurostat Comext DS-045409",
-            "uk":"HMRC uktradeinfo OTS"
+            "uk":"HMRC uktradeinfo OTS",
+            "comtrade":"UN Comtrade (public preview API) — Taiwan-origin reported by the UN as 'Other Asia, nes'"
         },
         "markets":{}
     }
@@ -394,6 +561,7 @@ def build_trade_json(eu_data):
 
             # Market-wide (WORLD) unit value and volume; TW/CN feed shares only.
             metrics=calculate_metrics(reporter_code,product_code,world23,world24,basis)
+            metrics["src"]="eurostat"
 
             # Calculate shares from WORLD baseline
             if world24 and world24.get("VALUE") and world24["VALUE"]>0:
@@ -427,6 +595,17 @@ def build_trade_json(eu_data):
             print(f"[metrics] {reporter_code}/{product_code}: stale={metrics['stale']}, uv={metrics['uv_change_pct']}, share_tw={metrics['share_tw']}, "
                   f"band={band['market'] if band else None}, band.tw={band['tw'] if band else None}, moved={band['moved'] if band else None}")
 
+    # Comtrade markets were already built (metrics computed, validated) by
+    # build_comtrade_markets — merged in here rather than recomputed, but
+    # still counted into the same fail-closed stale ratio as one data
+    # contract covering the whole file, not two.
+    for iso,products in (comtrade_markets or {}).items():
+        trade["markets"][iso]=products
+        for metrics in products.values():
+            total_count+=1
+            if metrics["stale"]:
+                stale_count+=1
+
     # Fail-closed: if >50% stale, don't overwrite
     if total_count>0:
         stale_ratio=stale_count/total_count
@@ -443,12 +622,23 @@ def main():
         eu_data,eu_errors=fetch_eurostat_data()
         uk_data,uk_errors=fetch_uk_data()
 
+        print("[fetch_trade] Fetching UN Comtrade (US/JP/IL/AU) — 32 requests, >=1.1s apart...")
+        comtrade_data,comtrade_errors,cross_checks=fetch_comtrade_data()
+        comtrade_markets=build_comtrade_markets(comtrade_data,cross_checks)
+
         if eu_errors:
             print("[Eurostat] Errors:",eu_errors)
         if uk_errors:
             print("[UK] Errors:",uk_errors)
+        if comtrade_errors:
+            print("[Comtrade] Errors:",comtrade_errors)
 
-        trade=build_trade_json(eu_data)
+        print("[Comtrade] World cross-check (self-summed source countries vs Comtrade's own reported World row):")
+        for c in cross_checks:
+            ratio="n/a" if not c.get("apiValue") else f"{c['ownSum']/c['apiValue']:.3f}"
+            print(f"  {c['iso']}/{c['cn8']}/{c['year']}: verdict={c['verdict']} own_sum_vs_api_ratio={ratio}")
+
+        trade=build_trade_json(eu_data,comtrade_markets)
 
         if not trade:
             print("[fail-closed] Trade data contract violated; keeping existing file")

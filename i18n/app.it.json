@@ -595,5 +595,18 @@
  "12-month change in import unit value, Eurostat Comext · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design": "Variazione a 12 mesi del valore unitario all’importazione, Eurostat Comext · per pezzo dove la dogana rileva i pezzi, per kg altrove · qui non vengono pubblicati prezzi assoluti, per scelta",
  "Spain": "Spagna",
  "Italy": "Italia",
- "Poland": "Polonia"
+ "Poland": "Polonia",
+ "United States": "Stati Uniti",
+ "Japan": "Giappone",
+ "Israel": "Israele",
+ "Australia": "Australia",
+ "UN Comtrade": "UN Comtrade",
+ "annual": "annuale",
+ "European Union · Eurostat Comext": "Unione Europea · Eurostat Comext",
+ "Other markets · UN Comtrade": "Altri mercati · UN Comtrade",
+ "12-month change in import unit value · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design": "Variazione a 12 mesi del valore unitario all’importazione · per pezzo dove la dogana rileva i pezzi, per kg altrove · qui non vengono pubblicati prezzi assoluti, per scelta",
+ "Direction from official government import statistics — for the EU, Eurostat Comext; for the United States, Japan, Israel and Australia, UN Comtrade. Routes and price bands are Birdland’s own — the two are never mixed into one number.": "Direzione basata su statistiche ufficiali di importazione governative — per l’UE, Eurostat Comext; per Stati Uniti, Giappone, Israele e Australia, UN Comtrade. I percorsi e le fasce di prezzo sono propri di Birdland — i due non vengono mai fusi in un unico numero.",
+ "Opens the official UN Comtrade dataset filtered to this reporter and product code": "Apre il set di dati ufficiale UN Comtrade, filtrato per questo paese dichiarante e codice prodotto",
+ "Market position: UN Comtrade": "Posizione di mercato: UN Comtrade",
+ "Taiwan-origin trade is reported by the UN as ‘Other Asia, nes’ — the UN does not use the name ‘Taiwan’ for trade-partner statistics.": "Il commercio di origine taiwanese è registrato dall’ONU come «Other Asia, nes» — l’ONU non utilizza il nome «Taiwan» nelle proprie statistiche sui partner commerciali."
 }

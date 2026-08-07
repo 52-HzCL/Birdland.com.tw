@@ -55,6 +55,250 @@ const BAND_MIN_SHARE = 0.005; // <0.5% of WORLD value: re-export/rounding noise,
 const BAND_TOP_N = 20;        // top 15-20 sources by import value, per the brief
 const BAND_MIN_TW_SHARE = 0.02; // publishing where Taiwan prices needs a real share, not a consignment
 
+// ---------------------------------------------------------------------------
+// UN Comtrade (US/JP/IL/AU) — a second source feeding the same trade.json,
+// reusing every function above (computeTerciles/bandOf/computeBand/
+// calculateMetrics/validateMetrics) unchanged. The only new work is getting
+// Comtrade's response shape into the {VALUE, QTY_100KG, SUP} row shape those
+// functions already expect from Eurostat — see comtradeRowsForYear below.
+//
+// Free preview endpoint, no key, one (reporter, product, year) per request —
+// the endpoint rejects a multi-period query ("Maximum number of periods for
+// preview is 1", verified live), so 4 reporters x 4 products x 2 years = 32
+// sequential requests, >=1.1s apart.
+const COMTRADE_BASE = "https://comtradeapi.un.org/public/v1/preview/C/A/HS";
+const COMTRADE_REPORTERS = [
+  ["us", 842], // USA
+  ["jp", 392], // Japan
+  ["il", 376], // Israel
+  ["au", 36],  // Australia
+];
+const COMTRADE_YEARS = ["2023", "2024"];
+const TW_CODE = "490"; // "Other Asia, nes" — see note on COMTRADE_NES_CODES
+const CN_CODE = "156";
+
+// UN Comtrade partner codes that are regional catch-alls or non-trade
+// categories ("Bunkers", "Free Zones", "Special Categories, "X, nes"), not
+// real source countries — the Comtrade equivalent of BAND_EXCLUDE_PARTNERS's
+// Eurostat EXT_EU/INT_EA rows, and merged into that same Set so
+// computeTerciles/computeBand need no changes to exclude them too. List
+// pulled from https://comtradeapi.un.org/files/v1/app/reference/
+// partnerAreas.json (live, 2026-08-07): every entry whose label ends ", nes"
+// plus Bunkers/Free Zones/Special Categories/Neutral Zone.
+//
+// Deliberately does NOT include 490 "Other Asia, nes": live pulls confirm
+// that is the UN's placeholder for Taiwan under One-China nomenclature (the
+// UN does not carry "Taiwan" as a reporter/partner name), not a genuine
+// regional aggregate — real Taiwan-origin trade lands there and must stay in
+// both the source-country sum and the tercile sample. Every cell that shows
+// a Taiwan-origin share sourced from Comtrade carries a reader-facing note
+// saying so (see the "Other Asia, nes" i18n string wired into the shelf UI).
+const COMTRADE_NES_CODES = [
+  "472", "899", "837", "471", "129", "221", "697", "492",
+  "838", "473", "536", "637", "290", "527", "577", "568", "636", "839", "879",
+];
+COMTRADE_NES_CODES.forEach((c) => BAND_EXCLUDE_PARTNERS.add(c));
+
+function sleepMs(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function fetchComtradeOne(reporterCode, hs6, year) {
+  const params = new URLSearchParams({
+    reporterCode: String(reporterCode),
+    period: year,
+    cmdCode: hs6,
+    flowCode: "M",
+  });
+  return httpsGet(COMTRADE_BASE + "?" + params.toString());
+}
+
+/**
+ * Turn one Comtrade response into {partnerCodeString: {VALUE, QTY_100KG,
+ * SUP}} for one (reporter, product, year) — the exact row shape
+ * unitPriceFor/computeTerciles/computeBand already consume from Eurostat, so
+ * they run unchanged. Also returns the API's own partnerCode=0 row, kept
+ * only as a cross-check (see buildComtradeWorld) and never trusted directly.
+ *
+ * De-dup root cause (verified live, 2026-08-07 — this corrects the brief's
+ * working theory): the preview endpoint returns one row per partner PER
+ * TRANSPORT MODE (motCode), plus a motCode=0 "TOTAL - all modes" row that
+ * already sums them. That is what looked like "the same partner twice with
+ * different amounts" (a country split across sea+air) and "twice with the
+ * same amount" (a country that shipped by only one mode, so its total
+ * equals its one breakdown row) — not partner2Code, which was 0 on every
+ * row seen across all four reporters. Example that pinned this down: AU
+ * 2023 820150 partner 156 (China) motCode=0 cifvalue 3775794.129 equals
+ * motCode=1000 (74330.889) + motCode=2100 (3701463.24) to the cent.
+ * Filtering to motCode===0 keeps exactly one row per partner and IS the
+ * de-dup rule.
+ */
+function comtradeRowsForYear(json) {
+  const rows = (json && Array.isArray(json.data)) ? json.data : [];
+  const totals = rows.filter((r) => r.motCode === 0);
+  const partners = {};
+  let worldRowApi = null;
+  for (const r of totals) {
+    if (r.partnerCode === 0) { worldRowApi = r; continue; } // World: rebuilt below, never trusted directly
+    const code = String(r.partnerCode);
+    const sup = (r.altQtyUnitCode === 5 && r.altQty > 0) ? r.altQty : 0;
+    partners[code] = { VALUE: r.cifvalue || 0, QTY_100KG: (r.netWgt || 0) / 100, SUP: sup };
+  }
+  return { partners, worldRowApi };
+}
+
+/**
+ * Basis decision, per the brief: piece when the API's own World row (its
+ * altQtyUnitCode flag only — not its cifvalue, which is never trusted; a
+ * unit-code flag on an aggregate row isn't the aggregation the brief warned
+ * against) says piece, OR when a majority of source countries report
+ * pieces. Decided once per (reporter, product) from the latest year
+ * available, the same "static per product" spirit as Eurostat's BASIS_MAP
+ * (which is why this function takes one year's partners, not both).
+ */
+function decideComtradeBasis(partners, worldRowApi) {
+  const worldPiece = !!(worldRowApi && worldRowApi.altQtyUnitCode === 5 && worldRowApi.altQty > 0);
+  const rows = Object.keys(partners)
+    .filter((code) => !BAND_EXCLUDE_PARTNERS.has(code))
+    .map((code) => partners[code]);
+  const withPieces = rows.filter((r) => r.SUP > 0).length;
+  const majorityPiece = rows.length > 0 && withPieces / rows.length > 0.5;
+  return (worldPiece || majorityPiece) ? "piece" : "kg";
+}
+
+/**
+ * World is never read from the API's partnerCode=0 row — rebuilt here by
+ * summing the qualifying (non-aggregate) partner rows, per the brief's
+ * fail-closed policy: AU's own recon found a case where the reported World
+ * diverged wildly from this sum. Returns the self-computed WORLD row in the
+ * same shape as any other partner row, plus a cross-check verdict against
+ * the API's row (kept for the console report and an optional trade.json
+ * note — never for the metric itself).
+ */
+function buildComtradeWorld(partners, worldRowApi, basis) {
+  const rows = Object.keys(partners)
+    .filter((code) => !BAND_EXCLUDE_PARTNERS.has(code))
+    .map((code) => partners[code]);
+  const VALUE = rows.reduce((s, r) => s + r.VALUE, 0);
+  const QTY_100KG = rows.reduce((s, r) => s + r.QTY_100KG, 0);
+  const SUP = basis === "piece" ? rows.reduce((s, r) => s + r.SUP, 0) : 0;
+  const world = { VALUE, QTY_100KG, SUP };
+  let crossCheck = "no-api-row";
+  if (worldRowApi && worldRowApi.cifvalue > 0 && VALUE > 0) {
+    const ratio = Math.abs(VALUE - worldRowApi.cifvalue) / worldRowApi.cifvalue;
+    crossCheck = ratio < 0.05 ? "ok" : "diverged";
+  }
+  return { world, crossCheck, apiValue: worldRowApi ? worldRowApi.cifvalue : null, ownSum: VALUE };
+}
+
+/**
+ * Fetch every (reporter, product, year) Comtrade cell the shelf needs.
+ * Returns { data, errors, crossChecks } where data[isoLower][cn8][year] =
+ * {partners (source countries only, WORLD not yet inserted), worldRowApi}
+ * and crossChecks is a flat log of the buildComtradeWorld verdicts for the
+ * final report.
+ */
+async function fetchComtradeData() {
+  const data = {};
+  const errors = [];
+  const crossChecks = [];
+  for (const [iso, reporterCode] of COMTRADE_REPORTERS) {
+    for (const cn8 of PRODUCTS) {
+      const hs6 = cn8.slice(0, 6);
+      const perYear = {};
+      for (const year of COMTRADE_YEARS) {
+        await sleepMs(1100); // politeness: >=1s between requests, every request, not just after the first
+        try {
+          const json = await fetchComtradeOne(reporterCode, hs6, year);
+          if (json && json.error) {
+            errors.push(`${iso}/${cn8}/${year}: ${json.error}`);
+            continue;
+          }
+          perYear[year] = comtradeRowsForYear(json);
+          console.log(`[Comtrade] ${iso}/${hs6}/${year}: ${Object.keys(perYear[year].partners).length} source rows`);
+        } catch (e) {
+          errors.push(`${iso}/${cn8}/${year}: ${e.message}`);
+        }
+      }
+      ((data[iso] ??= {})[cn8] = perYear);
+    }
+  }
+  return { data, errors, crossChecks };
+}
+
+/**
+ * Aggregate fetchComtradeData()'s output into trade.markets entries, reusing
+ * calculateMetrics/computeBand/validateMetrics exactly as the Eurostat path
+ * does — the only Comtrade-specific work already happened above (dedup,
+ * basis, self-summed World). crossChecks is appended to for the console
+ * report.
+ */
+function buildComtradeMarkets(comtradeData, crossChecks) {
+  const markets = {};
+  for (const [iso] of COMTRADE_REPORTERS) {
+    markets[iso] = {};
+    const byProduct = comtradeData[iso] || {};
+    for (const cn8 of PRODUCTS) {
+      const perYear = byProduct[cn8] || {};
+      const y24 = perYear["2024"], y23 = perYear["2023"];
+      if (!y24 && !y23) {
+        markets[iso][cn8] = { basis: "kg", uv_change_pct: null, vol_change_pct: null, share_tw: null, share_tw_prev: null, share_cn: null, stale: true, band: null, src: "comtrade" };
+        continue;
+      }
+      // Basis decided from the latest year available (falls back to 2023 if
+      // 2024's request failed), then applied to both years for a like-for-like uv_change_pct.
+      const basisSrc = y24 || y23;
+      const basis = decideComtradeBasis(basisSrc.partners, basisSrc.worldRowApi);
+
+      const w24 = y24 ? buildComtradeWorld(y24.partners, y24.worldRowApi, basis) : null;
+      const w23 = y23 ? buildComtradeWorld(y23.partners, y23.worldRowApi, basis) : null;
+      if (w24) crossChecks.push({ iso, cn8, year: "2024", ...w24, verdict: w24.crossCheck });
+      if (w23) crossChecks.push({ iso, cn8, year: "2023", ...w23, verdict: w23.crossCheck });
+
+      const world24 = w24 ? w24.world : null;
+      const world23 = w23 ? w23.world : null;
+      const tw24 = y24 ? (y24.partners[TW_CODE] || null) : null;
+      const tw23 = y23 ? (y23.partners[TW_CODE] || null) : null;
+      const cn24 = y24 ? (y24.partners[CN_CODE] || null) : null;
+
+      const metrics = calculateMetrics(iso, cn8, world23, world24, basis);
+      metrics.src = "comtrade";
+
+      if (world24 && world24.VALUE > 0) {
+        if (tw24 && tw24.VALUE) metrics.share_tw = Math.round((tw24.VALUE / world24.VALUE) * 100);
+        if (cn24 && cn24.VALUE) metrics.share_cn = Math.round((cn24.VALUE / world24.VALUE) * 100);
+      }
+      if (world23 && world23.VALUE > 0 && tw23 && tw23.VALUE) {
+        metrics.share_tw_prev = Math.round((tw23.VALUE / world23.VALUE) * 100);
+      }
+
+      // partners24/partners23 for the tercile need WORLD inserted under the
+      // literal key "WORLD" (already in BAND_EXCLUDE_PARTNERS) so computeBand
+      // can read it the same way it reads Eurostat's partners.WORLD.
+      const partners24 = y24 ? { ...y24.partners, WORLD: world24 } : {};
+      const partners23 = y23 ? { ...y23.partners, WORLD: world23 } : {};
+      metrics.band = computeBand(partners24, partners23, world24, world23, tw24, basis);
+
+      // Fail-closed note, not a UI string: recorded only when the self-summed
+      // World diverged >5% from Comtrade's own reported World row, so the
+      // discrepancy is auditable in the file without ever showing an
+      // absolute price. The metric itself already used the self-sum either way.
+      if (w24 && w24.crossCheck === "diverged") {
+        metrics.note = "world cross-check diverged >5% from Comtrade's reported total; used summed sources";
+      }
+
+      validateMetrics(metrics);
+      markets[iso][cn8] = metrics;
+      console.log(
+        `[metrics] ${iso}/${cn8} (comtrade): stale=${metrics.stale}, basis=${basis}, uv=${metrics.uv_change_pct}, share_tw=${metrics.share_tw}, ` +
+        `band=${metrics.band ? metrics.band.market : null}, band.tw=${metrics.band ? metrics.band.tw : null}, moved=${metrics.band ? metrics.band.moved : null}, ` +
+        `world_cross_check=${w24 ? w24.crossCheck : "n/a"}`
+      );
+    }
+  }
+  return markets;
+}
+
 function httpsGet(url) {
   return new Promise((resolve, reject) => {
     https.get(url, { timeout: 30000 }, (res) => {
@@ -352,7 +596,7 @@ function validateMetrics(metrics) {
 /**
  * Aggregate Eurostat data into trade.json structure.
  */
-async function buildTradeJSON(euData) {
+async function buildTradeJSON(euData, comtradeMarkets) {
   const now = new Date().toISOString();
   const trade = {
     schema: 1,
@@ -361,6 +605,7 @@ async function buildTradeJSON(euData) {
     source: {
       eu: "Eurostat Comext DS-045409",
       uk: "HMRC uktradeinfo OTS",
+      comtrade: "UN Comtrade (public preview API) — Taiwan-origin reported by the UN as 'Other Asia, nes'",
     },
     markets: {},
   };
@@ -399,6 +644,7 @@ async function buildTradeJSON(euData) {
         world24,
         basis
       );
+      metrics.src = "eurostat";
 
       // Calculate shares from WORLD baseline
       if (world24 && world24.VALUE && world24.VALUE > 0) {
@@ -441,6 +687,18 @@ async function buildTradeJSON(euData) {
     }
   }
 
+  // Comtrade markets were already built (metrics computed, validated) by
+  // buildComtradeMarkets — merged in here rather than recomputed, but still
+  // counted into the same fail-closed stale ratio as one data contract
+  // covering the whole file, not two.
+  for (const [iso, products] of Object.entries(comtradeMarkets || {})) {
+    trade.markets[iso] = products;
+    for (const metrics of Object.values(products)) {
+      totalCount++;
+      if (metrics.stale) staleCount++;
+    }
+  }
+
   // Fail-closed: if >50% stale, don't overwrite existing file
   const staleRatio = staleCount / totalCount;
   if (staleRatio > 0.5) {
@@ -463,14 +721,28 @@ async function main() {
     const { data: euData, errors: euErrors } = await fetchEurostatData();
     const { data: ukData, errors: ukErrors } = await fetchUKData();
 
+    console.log("[fetch-trade] Fetching UN Comtrade (US/JP/IL/AU) — 32 requests, >=1.1s apart...");
+    const { data: comtradeData, errors: comtradeErrors, crossChecks } = await fetchComtradeData();
+    const comtradeMarkets = buildComtradeMarkets(comtradeData, crossChecks);
+
     if (euErrors.length > 0) {
       console.warn("[Eurostat] Errors:", euErrors);
     }
     if (ukErrors.length > 0) {
       console.warn("[UK] Errors:", ukErrors);
     }
+    if (comtradeErrors.length > 0) {
+      console.warn("[Comtrade] Errors:", comtradeErrors);
+    }
 
-    const trade = await buildTradeJSON(euData);
+    console.log("[Comtrade] World cross-check (self-summed source countries vs Comtrade's own reported World row):");
+    for (const c of crossChecks) {
+      console.log(
+        `  ${c.iso}/${c.cn8}/${c.year}: verdict=${c.verdict} own_sum_vs_api_ratio=${c.apiValue ? (c.ownSum / c.apiValue).toFixed(3) : "n/a"}`
+      );
+    }
+
+    const trade = await buildTradeJSON(euData, comtradeMarkets);
 
     if (!trade) {
       console.error("[fail-closed] Trade data contract violated; keeping existing file");

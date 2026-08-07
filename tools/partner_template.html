@@ -2364,6 +2364,10 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
 
   <style id="p-shelf-style">
 #p-shelf .shelf-fresh{margin:-2px 0 12px;font:var(--fs-small)/1.5 var(--kb-mono);color:var(--kb-faint)}
+#p-shelf .shelf-block{margin-bottom:var(--sp-4)}
+#p-shelf .shelf-block:last-of-type{margin-bottom:0}
+#p-shelf .shelf-block-h{margin:0 0 2px;font:700 var(--fs-h3)/1.3 var(--kb-sans);color:var(--pd-jade)}
+#p-shelf .shelf-block-meta{margin:0 0 var(--sp-2);font:var(--fs-small)/1.5 var(--kb-mono);color:var(--kb-faint)}
 #p-shelf .shelf-wrap{width:100%;overflow-x:auto;border:1px solid var(--pd-line);border-radius:var(--kb-radius);background:var(--kb-panel)}
 #p-shelf table.shelf-mx{width:100%;min-width:640px;border-collapse:collapse}
 #p-shelf table.shelf-mx th{font:600 var(--fs-small)/1.2 var(--kb-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--kb-faint);padding:var(--sp-2) var(--sp-3);text-align:center;border-bottom:1px solid var(--pd-line);background:var(--kb-bg)}
@@ -2436,12 +2440,21 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
 }
 </style>
   <section class="blk" data-open="1" id="p-shelf">
-<button class="blk-h"><span class="k">SHELF</span><h2>Demand shelf</h2><span class="ihelp" title="Direction from official EU import statistics (Eurostat Comext) and, where published, UK HMRC data. Routes and price bands are Birdland’s own — the two are never mixed into one number.">i</span><span class="meta" id="shelf-meta"></span><span class="tog"></span></button>
+<button class="blk-h"><span class="k">SHELF</span><h2>Demand shelf</h2><span class="ihelp" title="Direction from official government import statistics — for the EU, Eurostat Comext; for the United States, Japan, Israel and Australia, UN Comtrade. Routes and price bands are Birdland’s own — the two are never mixed into one number.">i</span><span class="meta" id="shelf-meta"></span><span class="tog"></span></button>
 <div class="blk-b">
 <p class="sub">Your markets, Birdland’s categories, one look. A percentage carries the direction a buyer needs without printing an absolute price for anyone to negotiate against.</p>
 <p class="shelf-fresh" id="shelf-fresh"></p>
-<div class="shelf-wrap"><table class="shelf-mx" id="shelf-mx" aria-label="Category by market, 12-month import unit-value direction"></table></div>
-<div class="legend" id="shelf-legend">12-month change in import unit value, Eurostat Comext · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design</div>
+<div class="shelf-block" id="shelf-block-eu">
+<h3 class="shelf-block-h">European Union · Eurostat Comext</h3>
+<p class="shelf-block-meta" id="shelf-block-eu-meta"></p>
+<div class="shelf-wrap"><table class="shelf-mx" id="shelf-mx-eu" aria-label="Category by EU market, 12-month import unit-value direction"></table></div>
+</div>
+<div class="shelf-block" id="shelf-block-comtrade">
+<h3 class="shelf-block-h">Other markets · UN Comtrade</h3>
+<p class="shelf-block-meta" id="shelf-block-comtrade-meta"></p>
+<div class="shelf-wrap"><table class="shelf-mx" id="shelf-mx-comtrade" aria-label="Category by market, 12-month import unit-value direction"></table></div>
+</div>
+<div class="legend" id="shelf-legend">12-month change in import unit value · per-piece basis where customs collect pieces, per-kg elsewhere · no absolute prices are published here, by design</div>
 <div class="shelf-detail" id="shelf-detail" hidden></div>
 </div>
 </section>
@@ -2954,10 +2967,11 @@ window.BL_DESK='__DESKMODE__';
 <script>
 (function(){
 'use strict';
-var mxEl=document.getElementById('shelf-mx');
-if(!mxEl) return; // Cost Desk: the section was dropped by the block above.
+var mxElEu=document.getElementById('shelf-mx-eu'), mxElComtrade=document.getElementById('shelf-mx-comtrade');
+if(!mxElEu||!mxElComtrade) return; // Cost Desk: the section was dropped by the block above.
 var freshEl=document.getElementById('shelf-fresh'), metaEl=document.getElementById('shelf-meta'),
-    detailEl=document.getElementById('shelf-detail');
+    detailEl=document.getElementById('shelf-detail'),
+    euMetaEl=document.getElementById('shelf-block-eu-meta'), comtradeMetaEl=document.getElementById('shelf-block-comtrade-meta');
 
 var PRODUCTS=[
  {cn:'82015000',hs:'8201.50',name:'One-handed pruners',icon:'pruner',
@@ -2985,12 +2999,22 @@ var PRODUCTS=[
    {n:'Entry',route:'Carbon steel',d:'promotional spec'}
   ]}
 ];
-// The markets the site publishes an edition for. UK sits in the list without
+// The markets the site publishes an edition for, split into the two blocks
+// the matrix now renders as: EU markets carried by Eurostat Comext, and the
+// non-EU markets carried by UN Comtrade. UK sits in the EU list without
 // data: Eurostat stopped covering it after Brexit and the HMRC series needs a
 // CN8-to-CommodityId table that has no public lookup, so its column says so
 // rather than quietly disappearing — a buyer who reads English should see
 // their market named and told it is not published yet.
-var MARKETS=[['de','Germany'],['nl','Netherlands'],['fr','France'],['es','Spain'],['it','Italy'],['pl','Poland'],['uk','United Kingdom']];
+//
+// The two blocks are never merged into one array: their sourcing, vintage
+// and (for Comtrade) the "Other Asia, nes" Taiwan caveat differ enough that
+// a reader needs to see which table a cell came from, not just which
+// column — see the two <table id="shelf-mx-eu"|"shelf-mx-comtrade"> blocks
+// and their separate source lines in the HTML above.
+var MARKETS_EU=[['de','Germany'],['nl','Netherlands'],['fr','France'],['es','Spain'],['it','Italy'],['pl','Poland'],['uk','United Kingdom']];
+var MARKETS_COMTRADE=[['us','United States'],['jp','Japan'],['il','Israel'],['au','Australia']];
+var MARKETS=MARKETS_EU.concat(MARKETS_COMTRADE);
 var ICONS={
  pruner:'<path d="M11 30 C16 25 20 20 25 14 M14 30 C18 26 22 21 26 17" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/><circle cx="11" cy="12" r="3.4" stroke="currentColor" stroke-width="1.4" fill="none"/><circle cx="18" cy="8" r="3.4" stroke="currentColor" stroke-width="1.4" fill="none"/><path d="M13 15 L20 22 M17 11 L22 16" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/>',
  lopper:'<path d="M6 30 L17 15 M13 30 L22 17" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M17 15 C20 10 24 7 29 5 M22 17 C24 13 27 10 30 8" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/>',
@@ -3043,13 +3067,14 @@ function cellOf(mkt,cn){
  return c;
 }
 
-function renderMatrix(){
+function renderMatrixInto(tableEl,markets){
+ if(!tableEl) return;
  var h='<thead><tr><th>Category</th>';
- MARKETS.forEach(function(m){h+='<th>'+esc(m[1])+'</th>';});
+ markets.forEach(function(m){h+='<th>'+esc(m[1])+'</th>';});
  h+='</tr></thead><tbody>';
  PRODUCTS.forEach(function(p){
   h+='<tr><td><span class="shelf-rowlab"><span class="mk"><svg viewBox="0 0 34 34" aria-hidden="true">'+(ICONS[p.icon]||'')+'</svg></span><span><span class="hs">HS '+esc(p.hs)+'</span><span class="nm">'+esc(p.name)+'</span></span></span></td>';
-  MARKETS.forEach(function(m){
+  markets.forEach(function(m){
    var mkt=m[0], c=cellOf(mkt,p.cn);
    if(!c){
     var why= mkt==='uk' ? 'Not published this edition \u2014 UK trade data is not yet wired into this feed.'
@@ -3063,7 +3088,11 @@ function renderMatrix(){
   });
   h+='</tr>';
  });
- mxEl.innerHTML=h+'</tbody>';
+ tableEl.innerHTML=h+'</tbody>';
+}
+function renderMatrix(){
+ renderMatrixInto(mxElEu,MARKETS_EU);
+ renderMatrixInto(mxElComtrade,MARKETS_COMTRADE);
 }
 
 // On screen a reader follows a link; on paper a reader retypes one, and a
@@ -3072,18 +3101,51 @@ function renderMatrix(){
 // printed sheet gets Eurostat's own browsable table for the same dataset plus
 // the query stated in words — short enough to type, and it opens something a
 // person can read.
+// UN Comtrade reporter codes for the four non-EU markets — the same mapping
+// tools/dev/fetch-trade.js fetches with (US 842, JP 392, IL 376, AU 36) —
+// duplicated here only so the on-screen "verify at source" link can be built
+// without asking trade.json to carry codes that never change per edition.
+var COMTRADE_REPORTER_CODE={us:842,jp:392,il:376,au:36};
+
+function isComtrade(mkt){ return !!COMTRADE_REPORTER_CODE[mkt]; }
+
+// The UN does not carry "Taiwan" as a reporter/partner name (One-China
+// nomenclature); every Comtrade cell's Taiwan-origin figure is actually the
+// UN's "Other Asia, nes" partner code 490 — verified live against
+// https://comtradeapi.un.org/files/v1/app/reference/partnerAreas.json. This
+// exact string is a dictionary key (i18n/app.en.json) translated into all
+// nine editions, not composed from smaller pieces, so it reads as one
+// sentence in every language.
+var TW_NES_NOTE='Taiwan-origin trade is reported by the UN as ‘Other Asia, nes’ — the UN does not use the name ‘Taiwan’ for trade-partner statistics.';
+
 function verifyUrl(mkt,cn){
+ if(isComtrade(mkt)){
+  // The actual API call the on-screen figures came from — same pattern as
+  // the Eurostat branch below: the live query, not a browsable UI, because
+  // this link is clicked, not retyped.
+  var hs6=cn.slice(0,6);
+  var q=['reporterCode='+COMTRADE_REPORTER_CODE[mkt],'period=2024','cmdCode='+hs6,'flowCode=M'];
+  return 'https://comtradeapi.un.org/public/v1/preview/C/A/HS?'+q.join('&');
+ }
  var q=['format=JSON','freq=A','flow=1','reporter='+mkt.toUpperCase(),'partner=WORLD','partner=TW','partner=CN','product='+cn,'time=2023','time=2024'];
  return 'https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data/ds-045409?'+q.join('&');
 }
-function verifyUrlPrint(){
- return 'ec.europa.eu/eurostat/databrowser/view/DS-045409/default/table';
+function verifyUrlPrint(mkt){
+ // A retyped 200-character API query is nobody's idea of verification on
+ // paper, so the printed sheet gets a browsable landing page instead — same
+ // trade-off the Eurostat branch already makes for its own databrowser link.
+ return isComtrade(mkt) ? 'comtradeplus.un.org' : 'ec.europa.eu/eurostat/databrowser/view/DS-045409/default/table';
 }
 function verifyQueryWords(mkt,cn){
+ if(isComtrade(mkt)) return 'reporter ' + mkt.toUpperCase() + ' · commodity ' + cn.slice(0,6) + ' · imports · 2023 and 2024';
  return 'reporter ' + mkt.toUpperCase() + ' · product ' + cn + ' · imports · 2023 and 2024';
 }
 
-function deskFor(mkt){ return mkt==='uk'?'uk':'europe'; }
+// US routes to its own desk; the EU markets keep the existing "europe" desk;
+// the remaining Comtrade markets (JP/IL/AU) have no dedicated desk, so they
+// fall back to "global" — an existing, already-translated mail-routing.js
+// region, not a new one invented for this feature.
+function deskFor(mkt){ if(mkt==='uk') return 'uk'; if(mkt==='us') return 'americas'; if(isComtrade(mkt)) return 'global'; return 'europe'; }
 
 var selBtn=null;
 function openCell(btn){
@@ -3131,13 +3193,24 @@ function openCell(btn){
    :'Taiwan-origin supply prices in the lower third of this market';
   twPosHtml='<p class="shelf-tw-pos">'+esc(twPosText)+'</p>';
  }
+ // Every "Taiwan-origin" figure sourced from Comtrade is actually the UN's
+ // "Other Asia, nes" partner code (see TW_NES_NOTE above cellOf) \u2014 a diplomatic
+ // labeling quirk, not a data gap, but a reader has no way to know that
+ // without being told, so every Comtrade cell carries the note regardless of
+ // whether a band.tw position was established.
+ var twNesHtml=(c.src==='comtrade')?'<p class="shelf-tw-pos">'+esc(TW_NES_NOTE)+'</p>':'';
+ var srcLabel=c.src==='comtrade'?'UN Comtrade':'Eurostat Comext';
+ var codeLabel=c.src==='comtrade'?('HS '+esc(cn.slice(0,6))):('CN '+esc(cn));
+ var vintageHtml=c.src==='comtrade'?'<span>annual</span>':'<span>annual \u00b7 next edition with Q-data</span>';
+ var verifyTitle=c.src==='comtrade'?'Opens the official UN Comtrade dataset filtered to this reporter and product code':'Opens the official Eurostat Comext dataset filtered to this reporter and product code';
+ var marketPosLabel=c.src==='comtrade'?'Market position: UN Comtrade':'Market position: Eurostat';
  detailEl.innerHTML=
   '<h3 class="shelf-detail-h">'+esc(p.name)+' \u00b7 '+esc(mName)+'</h3>'
   +'<div class="shelf-uv"><span class="v '+cls+'">'+(c.uv_change_pct>0?'+':'')+c.uv_change_pct+'%</span><span class="u">12-month unit-value change</span><span class="u2">'+(c.basis==='piece'?'\u00b7 per-piece basis':'\u00b7 per-kg basis')+'</span></div>'
   +'<p class="shelf-share">Taiwan-origin share <b>'+(c.share_tw!=null?c.share_tw+'%':'\u2014')+'</b>'+(shift!=null?' ('+(shift>=0?'+':'')+shift+' pts)':'')+' \u00b7 China '+(c.share_cn!=null?c.share_cn+'%':'\u2014')+'</p>'
-  +twPosHtml
-  +'<div class="shelf-ladder"><div class="shelf-lhead"><span>Price band</span><span>Birdland route</span></div>'+bands+'<div class="shelf-attrib"><span>Market position: Eurostat</span><span>Bands &amp; routes: Birdland</span></div></div>'
-  +'<p class="shelf-src"><span>Eurostat Comext</span> \u00b7 CN '+esc(cn)+' \u00b7 '+esc(period.previous)+'\u2192'+esc(period.latest)+' <span>annual \u00b7 next edition with Q-data</span> \u00b7 <span>'+esc('bands: value-weighted thirds of source-country unit values')+'</span> \u00b7 <a href="'+url+'" target="_blank" rel="noopener" title="Opens the official Eurostat Comext dataset filtered to this reporter and product code">verify at source \u2197</a></p>'
+  +twPosHtml+twNesHtml
+  +'<div class="shelf-ladder"><div class="shelf-lhead"><span>Price band</span><span>Birdland route</span></div>'+bands+'<div class="shelf-attrib"><span>'+esc(marketPosLabel)+'</span><span>Bands &amp; routes: Birdland</span></div></div>'
+  +'<p class="shelf-src"><span>'+esc(srcLabel)+'</span> \u00b7 '+codeLabel+' \u00b7 '+esc(period.previous)+'\u2192'+esc(period.latest)+' '+vintageHtml+' \u00b7 <span>'+esc('bands: value-weighted thirds of source-country unit values')+'</span> \u00b7 <a href="'+url+'" target="_blank" rel="noopener" title="'+esc(verifyTitle)+'">verify at source \u2197</a></p>'
   +'<div class="shelf-acts"><button type="button" class="tool-btn" id="shelf-mail-go">Bring to enquiry \u2192</button><button type="button" class="tool-btn" id="shelf-print-go">Print snapshot</button></div>';
  detailEl.hidden=false;
  var goBtn=document.getElementById('shelf-mail-go');
@@ -3196,6 +3269,10 @@ function printSnapshot(p,c,mkt,mName,cn,hi,d,cls,period,url,shift){
    :'Taiwan-origin supply prices in the lower third of this market';
   twPosPrintHtml='<p class="ds-tw-pos">'+esc(t(twPosPrintText))+'</p>';
  }
+ // Same "Other Asia, nes" caveat as the on-screen panel \u2014 see TW_NES_NOTE.
+ var twNesPrintHtml=(c.src==='comtrade')?'<p class="ds-tw-pos">'+esc(t(TW_NES_NOTE))+'</p>':'';
+ var srcLabelPrint=c.src==='comtrade'?'UN Comtrade':'Eurostat Comext';
+ var codeLabelPrint=c.src==='comtrade'?('HS '+esc(cn.slice(0,6))):('CN '+esc(cn));
  var sheet=document.getElementById('ds-sheet');
  if(!sheet){ sheet=document.createElement('div'); sheet.id='ds-sheet'; document.body.appendChild(sheet); }
  sheet.innerHTML=
@@ -3205,9 +3282,9 @@ function printSnapshot(p,c,mkt,mName,cn,hi,d,cls,period,url,shift){
   +'<div class="ds-uv"><span class="ds-dir">'+dchip(d)+' '+(c.uv_change_pct>0?'+':'')+c.uv_change_pct+'%</span><span>'+esc(t('12-month unit-value change'))+' '+esc(t(c.basis==='piece'?'\u00b7 per-piece basis':'\u00b7 per-kg basis'))+'</span></div>'
   +'<div class="ds-row"><span>'+esc(t('Taiwan-origin share'))+'</span><b>'+(c.share_tw!=null?c.share_tw+'%':'\u2014')+(shift!=null?' ('+(shift>=0?'+':'')+shift+' pts)':'')+'</b></div>'
   +'<div class="ds-row"><span>'+esc(t('China'))+'</span><b>'+(c.share_cn!=null?c.share_cn+'%':'\u2014')+'</b></div>'
-  +twPosPrintHtml
+  +twPosPrintHtml+twNesPrintHtml
   +'<div class="ds-ladder"><div class="ds-lhead"><span>'+esc(t('Price band'))+'</span><span>'+esc(t('Birdland route'))+'</span></div>'+bandsHtml+'</div>'
-  +'<p class="ds-src">'+esc(t('Eurostat Comext'))+' \u00b7 CN '+esc(cn)+' \u00b7 '+esc(period.previous)+'\u2192'+esc(period.latest)+' \u00b7 '+esc(t('Verify at source'))+': '+esc(verifyUrlPrint())+' \u00b7 '+esc(verifyQueryWords(mkt,cn))+' \u00b7 '+esc(t('bands: value-weighted thirds of source-country unit values'))+'</p>'
+  +'<p class="ds-src">'+esc(t(srcLabelPrint))+' \u00b7 '+codeLabelPrint+' \u00b7 '+esc(period.previous)+'\u2192'+esc(period.latest)+' \u00b7 '+esc(t('Verify at source'))+': '+esc(verifyUrlPrint(mkt))+' \u00b7 '+esc(verifyQueryWords(mkt,cn))+' \u00b7 '+esc(t('bands: value-weighted thirds of source-country unit values'))+'</p>'
   +'<p class="ds-foot">'+esc(t('Document no.'))+' '+docNo(now)+' \u00b7 '+esc(t('Continue online'))+': '+esc(deepLink)+'</p>'
   +'<p class="ds-desk">'+esc(t('Enquiries route via the contact page.'))+'</p>'
   +'<p class="ds-disc">'+esc(t('Figures are official statistical change rates \u2014 not a quotation.'))+'</p>';
@@ -3221,17 +3298,20 @@ function closeDetail(){
  selBtn=null; detailEl.hidden=true; detailEl.innerHTML='';
 }
 
-mxEl.addEventListener('click',function(e){
+function onShelfClick(e){
  var b=e.target.closest('.shelf-cell'); if(!b||b.disabled) return;
  openCell(b);
-});
+}
+mxElEu.addEventListener('click',onShelfClick);
+mxElComtrade.addEventListener('click',onShelfClick);
 
 function applyDeepLink(){
  var m=/[?&]cell=([^&]+)/.exec(location.search);
  if(!m) return;
  var parts=decodeURIComponent(m[1]).split('|');
  var cn=parts[0], mkt=parts[1];
- var btn=mxEl.querySelector('.shelf-cell[data-cn="'+cn+'"][data-mkt="'+mkt+'"]');
+ var btn=(mxElEu.querySelector('.shelf-cell[data-cn="'+cn+'"][data-mkt="'+mkt+'"]'))
+   ||(mxElComtrade.querySelector('.shelf-cell[data-cn="'+cn+'"][data-mkt="'+mkt+'"]'));
  if(!btn||btn.disabled) return;
  // The desk is a single-panel router keyed off location.hash (see the
  // '/* single-panel router */' block further down): only the panel whose
@@ -3253,11 +3333,22 @@ function boot(trade,failed){
  if(freshEl){
   if(trade){
    var period=trade.period||{previous:'2023',latest:'2024'};
-   freshEl.textContent='Source: '+(trade.source&&trade.source.eu||'Eurostat Comext')+' (EU) \u00b7 '+(trade.source&&trade.source.uk||'HMRC uktradeinfo OTS')+' (UK, when published) \u00b7 '+period.previous+'\u2192'+period.latest+' annual \u00b7 updated '+(trade.generated?trade.generated.slice(0,10):'\u2014');
+   freshEl.textContent='Source: '+(trade.source&&trade.source.eu||'Eurostat Comext')+' (EU) \u00b7 '+(trade.source&&trade.source.comtrade?'UN Comtrade (US/JP/IL/AU)':'\u2014')+' \u00b7 '+(trade.source&&trade.source.uk||'HMRC uktradeinfo OTS')+' (UK, when published) \u00b7 '+period.previous+'\u2192'+period.latest+' annual \u00b7 updated '+(trade.generated?trade.generated.slice(0,10):'\u2014');
   } else {
    freshEl.textContent='Trade data unavailable this session \u2014 every cell below shows as not available.';
   }
  }
+ // Each block states its own source and vintage \u2014 the two feeds have
+ // different lag, basis-detection and (for Comtrade) the "Other Asia, nes"
+ // caveat, so a reader must be able to tell which table a figure came from
+ // without opening a cell.
+ var period2=(trade&&trade.period)||{previous:'2023',latest:'2024'};
+ if(euMetaEl) euMetaEl.innerHTML=trade
+  ? '<span>Eurostat Comext</span> \u00b7 '+esc(period2.previous)+'\u2192'+esc(period2.latest)+' <span>annual \u00b7 next edition with Q-data</span>'
+  : '';
+ if(comtradeMetaEl) comtradeMetaEl.innerHTML=trade
+  ? '<span>UN Comtrade</span> \u00b7 '+esc(period2.previous)+'\u2192'+esc(period2.latest)+' <span>annual</span> \u00b7 <span>'+esc(TW_NES_NOTE)+'</span>'
+  : '';
  applyDeepLink();
 }
 
@@ -3307,7 +3398,7 @@ if(topAct)h+='<span class="pi lead" data-go="p-brief" style="cursor:pointer"><sp
  ORD.concat(REF).forEach(function(id){var s=document.getElementById(id);if(s)main.insertBefore(s,disc);});
  var hd=document.createElement('div');hd.className='refhd';hd.textContent='Reference data — shared with Data Desk';main.insertBefore(hd,document.getElementById(REF[0]));})();
 // 3) honest freshness: static desk-set blocks must not claim the daily stamp
-(function(){[['p-tariff','manual · desk set'],['p-regcal','manual · desk set'],['p-material','curves manual · note daily'],['p-shipping','rates daily · curve manual'],['p-shelf','Eurostat · annual edition']].forEach(function(x){var b=document.querySelector('#'+x[0]+' .blk-h .secupd');if(b)b.textContent='⟳ '+x[1];});})();
+(function(){[['p-tariff','manual · desk set'],['p-regcal','manual · desk set'],['p-material','curves manual · note daily'],['p-shipping','rates daily · curve manual'],['p-shelf','Eurostat + Comtrade · annual edition']].forEach(function(x){var b=document.querySelector('#'+x[0]+' .blk-h .secupd');if(b)b.textContent='⟳ '+x[1];});})();
 // 3b) product PDFs are maintained in product-offers.json and opened from view-only links
 // 4) remembered workspace
 var LS={g:function(k){try{return localStorage.getItem('bd_p_'+k);}catch(e){return null;}},s:function(k,v){try{localStorage.setItem('bd_p_'+k,v);}catch(e){}}};
