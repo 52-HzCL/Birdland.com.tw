@@ -40,9 +40,9 @@
     { "page": "my-market.html", "build": "hand-authored, runtime i18n via i18n.js", "priority": "medium", "state2Status": "pending", "note": "classify()/collectFamilies() had a real bug fixed earlier this session; regression-check priority." },
     { "page": "birdland-intro.html", "build": "orphaned bundler artifact", "priority": "medium", "state2Status": "pending", "note": "Deletion already committed on i18n/my-market-composed-sentences, unpushed. This audit should confirm current state matches ISSUES.md I-2, not re-propose the same fix." },
     { "page": "privacy.html", "build": "hand-authored", "priority": "low", "state2Status": "pending" },
-    { "page": "news.html", "build": "hand-written redirect stub -> guide.html (per pr-validation.yml comment)", "priority": "low", "state2Status": "pending", "note": "verify redirect target + canonical only, no deep test needed" },
-    { "page": "manufacturing.html", "build": "hand-written redirect stub -> product-101.html", "priority": "low", "state2Status": "pending", "note": "verify redirect target + canonical only" },
-    { "page": "why-birdland.html", "build": "hand-written redirect stub -> about.html#pure-play", "priority": "low", "state2Status": "pending", "note": "verify redirect target + canonical only" }
+    { "page": "news.html", "build": "hand-written redirect stub -> guide.html (per pr-validation.yml comment)", "priority": "low", "state2Status": "completed", "note": "Lightweight check, 5/5 pass. Redirect fires correctly, canonical correct, favicon present. 1 P2: shares the Disallow+noindex double-block SEO anti-pattern (folded into SEO-2)." },
+    { "page": "manufacturing.html", "build": "hand-written redirect stub -> product-101.html", "priority": "low", "state2Status": "completed", "note": "Lightweight check, 5/5 pass (favicon absence already known from about.html audit, independently reconfirmed). Correct single-signal SEO pattern (noindex only, not in robots.txt Disallow)." },
+    { "page": "why-birdland.html", "build": "hand-written redirect stub -> about.html#pure-play", "priority": "low", "state2Status": "completed", "note": "Lightweight check, 5/5 pass (favicon absence already known, independently reconfirmed). Explicitly verified the #pure-play anchor is NOT affected by the translated-about.html id='brand' bug (D29-D31) since this stub always targets the English root about.html, which already has the correct id -- no per-language variant of this stub exists." }
   ],
 
   "languageEditions": {
@@ -58,12 +58,12 @@
   },
 
   "state2Queue": {
-    "notStarted": ["product-101.html", "birdland-intro.html", "privacy.html"],
+    "notStarted": ["product-101.html"],
     "inProgress": {
-      "my-market.html": "dispatched to Sonnet subagent, A-E, awaiting completion notification as of this write",
-      "news.html+manufacturing.html+why-birdland.html": "dispatched together to one Sonnet subagent (all three are redirect stubs needing only canonical/target verification per ORCHESTRATION.md's low-priority guidance, not full six-dimension treatment)"
+      "my-market.html": "dispatched to Sonnet subagent, A-E, awaiting completion notification as of this write (elevated regression risk -- recent Demand Shelf rewrite)",
+      "birdland-intro.html+privacy.html": "dispatched together to one Sonnet subagent. privacy.html specifically asked to verify whether it's ALSO affected by the facade Factory-link bug (D29-D31) -- it shares the same i18n-build.js pipeline as the 3 confirmed-affected pages but wasn't explicitly tested there."
     },
-    "completed": ["index.html", "contact.html", "partner.html", "cost-desk.html", "team.html", "executive.html", "about.html", "guide.html"],
+    "completed": ["index.html", "contact.html", "partner.html", "cost-desk.html", "team.html", "executive.html", "about.html", "guide.html", "news.html", "manufacturing.html", "why-birdland.html"],
     "note": "product-101.html still deliberately deferred -- PR #1 remains open/draft with no recent pushes, but draft status itself means content isn't final; keep deferring until it merges or the user marks it ready for review, then audit last among the high-priority pages. DECISIONS.md D20 confirmed-bug watch counter: 2/3, unchanged through team.html and executive.html (both found structurally-identical candidates but neither produced a live failure). Separate 'fragile but currently working' counter: 2 (team.html's text-size/app-bar/i18n chain; executive.html's edstrip/app-bar near-miss, which is more fragile since it's saved by an easily-removable CSS rule rather than a spec guarantee -- see CLEANUP.md's new 'do not remove' list, R1)."
   },
 

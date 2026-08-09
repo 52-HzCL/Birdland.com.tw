@@ -227,6 +227,20 @@ partner.html/cost-desk.html 這兩頁確認有替代的指令面板搜尋(`.pd-o
 375px 零橫向溢出;`P.shipping`→`lineChart` 崩潰風險經確認不可重現(機制已不存在)。
 **Console:僅同一個沙盒憑證問題,零其他錯誤,兩頁、兩種寬度、約 25 次導覽測試全部確認。**
 
+## news.html / manufacturing.html / why-birdland.html(輕量檢查,三個 redirect stub)
+
+依 ORCHESTRATION.md 的指示只做輕量檢查(redirect 目的地正確、canonical 正確),非完整
+六象限。三頁 5/5 項檢查全過:0 秒 meta refresh 皆正確落地(`news.html→guide.html`、
+`manufacturing.html→product-101.html`、`why-birdland.html→about.html#pure-play`,含
+即時驗證錨點確實存在);canonical 皆正確(`why-birdland.html` 的 canonical 正確地不含
+`#pure-play` 片段,符合慣例,非缺陷);robots meta 皆存在且合理。獨立重新驗證 favicon
+發現(`manufacturing.html`/`why-birdland.html` 缺 icon tag,`news.html` 有)與 about.html
+稽核的記錄一致。**特別驗證了「這三個 stub 有沒有語言版本、`why-birdland.html` 落地的
+`#pure-play` 會不會踩到翻譯版本那個潛伏的 id 地雷」——確認三者都是純英文、無語言資料夾,
+`why-birdland.html` 恆定指向英文 `about.html`(已修好的那個),不受站台級發現段落提到的
+翻譯版本 id 問題影響。** 新增一筆 P2:`news.html` 也有 SEO-2 的 Disallow+noindex 雙重設定
+（已併入上方 SEO-2 記錄,非獨立議題)。**Console:三頁皆僅沙盒字型問題,零其他錯誤。**
+
 ## guide.html 逐項發現(0 P0/P1,第二個乾淨的頁面)
 
 **P2(4 項,全新)**:`site-shell.css:5` 也獨立遮蔽 `--line`(又一個與 tokens.css 原值不同
@@ -394,7 +408,7 @@ index specifics 節、`SUMMARY.md` 的 hero 文案宣稱)。裁決:**可改,非�
 | # | 檢查項 | 結果 | 嚴重度 |
 |---|---|---|---|
 | SEO-1 | `sitemap.xml`(51 個 `<url>`)是否需要內嵌 hreflang alternate | **非問題,已確認正確。** 真正的 hreflang 機制是 `tools/dev/_langs.js` 的 `cluster()` 產生的每頁 `<head>` `<link rel="alternate" hreflang="...">` 標籤,不是 sitemap 層級。實測 `index.html`:11 個 hreflang 標籤(en + 9 語言 + x-default),與 9 個語言資料夾完全對應。 | — |
-| SEO-2 | `robots.txt`(`Disallow: /partner.html /team.html /news.html /birdland-intro.html`)與各頁 `<meta name="robots">` 的一致性 | **新發現。** `cost-desk.html`/`executive.html` 都有 `noindex` meta,但**沒有**列在 `robots.txt` 的 Disallow 裡;`partner.html`/`team.html` 則是兩者都有(`robots.txt` Disallow **加上** `noindex` meta)。這是已知的 SEO 反模式:同一頁面若被 `robots.txt` Disallow,爬蟲根本不會抓取該頁,因此永遠看不到頁面裡的 `noindex` 指示——反而可能讓純網址(無摘要)被索引。`cost-desk.html`/`executive.html`(只有 noindex meta,無 Disallow)才是比較安全的做法;`partner.html`/`team.html` 的雙重設定才是值得重新考慮的一方。 | **P2**(不緊急,SEO 邊際風險,非功能性 bug,列入 STATE 3 彙整不遺漏即可) |
+| SEO-2 | `robots.txt`(`Disallow: /partner.html /team.html /news.html /birdland-intro.html`)與各頁 `<meta name="robots">` 的一致性 | **新發現,範圍已擴大至 `news.html`(redirect stub 稽核補充驗證)。** `cost-desk.html`/`executive.html` 都有 `noindex` meta,但**沒有**列在 `robots.txt` 的 Disallow 裡;`partner.html`/`team.html`/`news.html` 則是三者都有(`robots.txt` Disallow **加上** `noindex,follow` meta)。這是已知的 SEO 反模式:同一頁面若被 `robots.txt` Disallow,爬蟲根本不會抓取該頁,因此永遠看不到頁面裡的 `noindex` 指示——反而可能讓純網址(無摘要)被索引。`cost-desk.html`/`executive.html`(只有 noindex meta,無 Disallow)才是比較安全的做法;`partner.html`/`team.html`/`news.html` 的雙重設定才是值得重新考慮的一方。`manufacturing.html`/`why-birdland.html` 兩個 redirect stub 確認是正確的單一訊號模式(只有 noindex meta,不在 Disallow 裡)。 | **P2**(不緊急,SEO 邊際風險,非功能性 bug,列入 STATE 3 彙整不遺漏即可) |
 
 ## 架構問題清單(Opus 裁決版,持續更新)
 
