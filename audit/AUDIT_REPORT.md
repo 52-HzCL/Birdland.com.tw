@@ -31,7 +31,9 @@
 
 **這不是某一頁的獨立 bug,是 i18n 建置管線本身的問題,影響 `index/about/contact/privacy`
 四個 facade 頁 × 9 個語言 = 36 個檔案,加上 `product-101.html` 自己 10 個語言版本反方向
-也受影響。** 在稽核 about.html 時發現,已用 Playwright 即時點擊多個語言版本驗證,非只讀碼。
+也受影響。** 在稽核 about.html 時發現,已用 Playwright 即時點擊多個語言版本驗證,非只讀碼;
+`privacy.html` 稽核時再次直接即時點擊驗證(裁決 D36),**四個 facade 頁現在全部是直接證據
+確認,沒有推論成分**。
 
 **兩個必須一起修的耦合 bug(裁決 D30,合併呈現)**:
 
@@ -90,6 +92,13 @@ Factory」這條路徑——這正是這個 bug 發生的地方。兩頁的結�
 存在真實遺失風險。若你想保留這批工作,請明確說「把 `i18n/my-market-composed-sentences`
 也 push」。
 
+**新證據(裁決 D38,稽核 my-market.html 時發現)強化這個風險的緊急性**:那個分支不只是
+「有價值的舊工作」,它還修好了**兩個現在正活在 main 上、客戶會直接看到的分析結論錯誤**——
+`my-market.html` 的「Around」表格對全部 133 個市場都顯示兩個永遠空白的欄位(死碼判斷邏輯
+缺一個有效性檢查),以及台灣原產地佔比明顯下滑的 8 筆真實資料,被錯誤分類顯示成「本期穩定」
+而不是「下滑中」——德國(預設錨點市場,新訪客第一眼就看到)的鏟子類目前正顯示這個錯誤。
+這兩個 bug 的修復都已經寫好、驗證過,就在那個未推送的分支上。
+
 ---
 
 ## 總覽
@@ -97,8 +106,8 @@ Factory」這條路徑——這正是這個 bug 發生的地方。兩頁的結�
 | 類別 | 數量 |
 |---|---|
 | 新發現 P0 | 1(`teamdesk.*` 資料管線靜默凍結,見報告最上方) |
-| 新發現 P1 | 7(1 個已修復的文件訂正、1 個 NEEDS HUMAN 設計取捨、1 組跨頁 facade i18n 導覽 bug(2 個耦合子項合併計 1)、4 個真實功能/內容 bug——依鐵律 2 全部只留建議,不由稽核迴圈修改站台程式碼) |
-| 新發現 P2 | 18(SEO-2、index.html 字級差異、contact.html×2、partner/cost-desk×6、team.html×2、about.html×2、guide.html×4,其中 6 項已收錄 CLEANUP.md C6-C11) |
+| 新發現 P1 | 13(1 個已修復的文件訂正、1 個 NEEDS HUMAN 設計取捨、1 組跨頁 facade i18n 導覽 bug(合併計 1)、10 個真實功能/內容 bug(含 my-market.html 6 項,其中 2 項的修復已存在於未推送分支)——依鐵律 2 全部只留建議,不由稽核迴圈修改站台程式碼) |
+| 新發現 P2 | 20(SEO-2、index.html 字級差異、contact.html×2、partner/cost-desk×6、team.html×2、about.html×2、guide.html×4、my-market.html×2,其中 6 項已收錄 CLEANUP.md C6-C11) |
 | 已知議題(承接自前 4 輪稽核) | 12 項,詳見 `AUDIT_STATE.json` 的 `knownIssues`(7 開放/待覆核、5 已關閉) |
 | 本次啟動前 recon 已直接處理 | 2 項(見下) |
 
@@ -226,6 +235,80 @@ partner.html/cost-desk.html 這兩頁確認有替代的指令面板搜尋(`.pd-o
 的 `chg` 修正在三處獨立實作皆一致套用;色彩語意(漲=紅=壞、buyer-cost 語意)兩頁一致;
 375px 零橫向溢出;`P.shipping`→`lineChart` 崩潰風險經確認不可重現(機制已不存在)。
 **Console:僅同一個沙盒憑證問題,零其他錯誤,兩頁、兩種寬度、約 25 次導覽測試全部確認。**
+
+## my-market.html 逐項發現(bug 密度最高的一頁,4 新 P1 + 2 個確認仍活著的已知議題 + 2 P2)
+
+**已知議題重新確認,仍未修復(修復方案在無法碰的 `i18n/my-market-composed-sentences` 分支
+上,已強化上方風險提醒)**:「Around」表格的兩個死欄位(`collectFamilies()` 沒檢查資料
+有效性,只要 HS 代碼在 `trade.json` 出現過就列入,即使只在沙烏地/土耳其兩個市場有佔位資料)
+對全部 133 個市場恆常顯示空白;`classify()` 沒有「台灣佔比明顯下滑」的分類桶,8 筆真實
+下滑資料(德國/波蘭/阿根廷/奧地利/巴西/瑞士)被歸類成「本期穩定」,與同一張卡片自己的
+文字敘述矛盾——德國鏟子類的例子最明顯(13%→4%,標題卻寫「穩定」)。
+
+**P1-3(新發現)**:文字放大對本頁內容完全無效——全站唯一一頁,`verify-textsize.js` 已
+確認。根因是 `my-market.html` 整份內嵌樣式表(約 48 條 `font:` 宣告)全部寫死 px,從未
+接上 `--fs-*`/`--ui-scale` token 系統(其他三個桌面 app 都有接)。**裁決(D40)**:建議
+掛回 token 系統而非隱藏控制項——`app-bar.css` 自己的註解已表明「閱讀用表格該放大」的
+設計意圖,本頁的 Brief 長篇閱讀視圖正是最需要這個功能的地方。
+
+**P1-4(新發現)**:Demand shelf 模糊搜尋完全沒有排序,系統性誤配——輸入「usa」導到
+Austria、輸入「Oman」導到 Dominican Republic,含重音字元的市場(土耳其、象牙海岸)搜尋
+零命中。系統性抽查:3 字母前綴誤配率 42%(56/133)、4 字母 21%(28/133)。**裁決(D41)**:
+建議前綴優先排序 + 沿用既有 `DISPLAY_NAME` 模式的別名表 + 重音摺疊,依此優先順序疊加。
+
+**P1-5(新發現,兩個根因耦合)**:「在 CostNow 估算」轉交功能對約 92% 的市場(133 個中
+只有 11 個在 CostNow 固定關稅表裡)失效——(a)本頁的轉交按鈕沒有送出
+`partner_template.html` 自己文件化、明確為此設計的 `?dest=` 查詢參數,導致落到 CostNow
+自己的 fallback,靜默顯示德國關稅當作使用者選的市場的關稅;(b)即使市場真的在那 11 個
+裡,`context.js` 的 `persist()` 無條件覆寫機制(**與 contact.html 的 D15 同一根因,獨立
+透過不同頁面組合再次發作**)可能讓選擇被更舊的、無關的桌面 app 瀏覽紀錄蓋掉。**裁決
+(D39)**:D15 的修復建議(讓 `persist()` 有變更偵測)不變,但已標記為現在有兩個獨立
+頁面組合受害,修復時務必兩者都驗證。
+
+**P1-6(新發現)**:資料載入失敗時的 `boot(null)` 容錯路徑本身會拋出未捕捉例外
+(`Cannot read properties of undefined (reading 'cells')`),讓原本設計的優雅降級完全
+失效,使用者看到的是永久空白、無任何錯誤說明的頁面。三種獨立觸發路徑(斷網/500/schema
+不符)皆重現。修法明確且低歧義(guard 空 `MKT` 的 fallback,渲染誠實的「本期資料載入
+失敗」訊息),已列入建議但不由稽核迴圈執行。
+
+**P2(2 項)**:reload 後只保留釘選市場清單,不記得最後瀏覽到哪個市場(退回清單第一個);
+i18n 混合語言已即時重現(德文模式下部分分類標題仍是英文,是既有翻譯範圍缺口,非新根因,
+待 `i18n/my-market-composed-sentences` 分支的翻譯工作補齊)。
+
+**通過(A-E,含大量即時驗證)**:51 個市場(涵蓋兩種資料來源、兩個資料層級)全面掃描零
+console 錯誤;`[data-app="market"]` 隔離正確,不洩漏也不被洩漏;`translate="no"` 對
+「My Market」的保護仍然有效;`mail-routing.js` 的詢價路徑正確使用 `blCtx` API(不像
+CostNow 轉交路徑繞過它);壞掉的 `?cell=` 參數與資料缺口的 fallback 邏輯正確;375px 零
+溢出;本頁無 Terminal chip 也無替代品(比照 D22 的逐桌記錄慣例)。**Console:僅刻意注入
+的測試案例,其餘全部乾淨。**
+
+**D20/D33/D42 追蹤**:確認 bug 計數不受影響(P1-5b 雖與 D15 同根因,但 D15 本身已計入
+既有 P1 清單,不是 D20 的 script-載入順序類)。新增一個獨立追蹤軸線(D42):`app-bar.js`
+的「My Market」文字節點目前靠標記結構巧合(沒被拆成兩個節點)才安全,不是明確保護——
+與 D20(script 時序)、D33(單元件邏輯不足)性質不同,另計,目前 1 例。
+
+## privacy.html 逐項發現(P1 見上方站台級發現,已直接確認影響此頁,此處只記其餘)
+
+除了站台級 Factory 連結 bug(已直接即時點擊驗證,見上方段落更新)之外,**這是目前最乾淨的
+一頁**:10 語言完整支援(11 個 hreflang 標籤、語言選單 10 項、9 翻譯版本逐一驗證 HTTP 200 +
+正確 `lang` 屬性 + 正確翻譯標題)、純靜態不消費 `outlook-data.json`、`snap-color.js`/
+`snap-space.js`/`snap-type.js` 三個工具全部 0 筆偏移、375px 零溢出、SEO 訊號單一且正確
+(無 noindex、不在 Disallow)。`verify-textsize.js` 通過。i18n-drift.js 判 STALE 純屬已知
+的 D19 雜訊(全站 45/45 皆 STALE,非本頁特有)。**Console:僅沙盒憑證問題,9 個語言版本
+逐一確認同樣乾淨。**
+
+## birdland-intro.html(已知孤兒頁,現況重新確認,機制細節有訂正但不影響刪除決定)
+
+**已知議題確認,但機制描述需要修正(裁決 D35,不動 `ISSUES.md`——見理由)**:`ISSUES.md`
+I-2 說「三張圖用裸 UUID 引用,404 因此而來」,但即時測試顯示實際機制不同:頁面內嵌一個
+bundler loader,把 8 個(不是 3 個)UUID 在客戶端解碼成 `blob:` URL,這條路徑本身沒有
+404;每次真正發生的 404 是 favicon——loader 用 `documentElement.replaceWith()` 整個替換
+`&lt;head&gt;`,把原本正確的 icon link 也一起換掉。**這個修正不改變任何決策**:頁面已在
+另一個這個稽核迴圈碰不到的分支上決定刪除,訂正 `ISSUES.md` 的機制描述不會讓任何未來 agent
+做出不同的行為,故不動文件,只在此記錄供人參考。另外發現 loader 會即時從 `unpkg.com` 載入
+未快取的 React/ReactDOM(無離線備援),但此環境的失敗訊號跟其他頁面已知的沙盒憑證問題同源,
+無法從這個沙盒確認是否為生產環境的真實風險——純資訊性記錄,頁面即將刪除,不追查。**Console:
+2 個沙盒憑證問題 + 1 個真實 favicon 404(不同於其他頁面的沙盒憑證雜訊,這個是真的)。**
 
 ## news.html / manufacturing.html / why-birdland.html(輕量檢查,三個 redirect stub)
 
@@ -408,7 +491,7 @@ index specifics 節、`SUMMARY.md` 的 hero 文案宣稱)。裁決:**可改,非�
 | # | 檢查項 | 結果 | 嚴重度 |
 |---|---|---|---|
 | SEO-1 | `sitemap.xml`(51 個 `<url>`)是否需要內嵌 hreflang alternate | **非問題,已確認正確。** 真正的 hreflang 機制是 `tools/dev/_langs.js` 的 `cluster()` 產生的每頁 `<head>` `<link rel="alternate" hreflang="...">` 標籤,不是 sitemap 層級。實測 `index.html`:11 個 hreflang 標籤(en + 9 語言 + x-default),與 9 個語言資料夾完全對應。 | — |
-| SEO-2 | `robots.txt`(`Disallow: /partner.html /team.html /news.html /birdland-intro.html`)與各頁 `<meta name="robots">` 的一致性 | **新發現,範圍已擴大至 `news.html`(redirect stub 稽核補充驗證)。** `cost-desk.html`/`executive.html` 都有 `noindex` meta,但**沒有**列在 `robots.txt` 的 Disallow 裡;`partner.html`/`team.html`/`news.html` 則是三者都有(`robots.txt` Disallow **加上** `noindex,follow` meta)。這是已知的 SEO 反模式:同一頁面若被 `robots.txt` Disallow,爬蟲根本不會抓取該頁,因此永遠看不到頁面裡的 `noindex` 指示——反而可能讓純網址(無摘要)被索引。`cost-desk.html`/`executive.html`(只有 noindex meta,無 Disallow)才是比較安全的做法;`partner.html`/`team.html`/`news.html` 的雙重設定才是值得重新考慮的一方。`manufacturing.html`/`why-birdland.html` 兩個 redirect stub 確認是正確的單一訊號模式(只有 noindex meta,不在 Disallow 裡)。 | **P2**(不緊急,SEO 邊際風險,非功能性 bug,列入 STATE 3 彙整不遺漏即可) |
+| SEO-2 | `robots.txt`(`Disallow: /partner.html /team.html /news.html /birdland-intro.html`)與各頁 `<meta name="robots">` 的一致性 | **新發現,範圍已擴大至 `news.html`(redirect stub 稽核補充驗證)。** `cost-desk.html`/`executive.html` 都有 `noindex` meta,但**沒有**列在 `robots.txt` 的 Disallow 裡;`partner.html`/`team.html`/`news.html`/`birdland-intro.html` 則是四者都有(`robots.txt` Disallow **加上** `noindex,follow` meta)。這是已知的 SEO 反模式:同一頁面若被 `robots.txt` Disallow,爬蟲根本不會抓取該頁,因此永遠看不到頁面裡的 `noindex` 指示——反而可能讓純網址(無摘要)被索引。`cost-desk.html`/`executive.html`(只有 noindex meta,無 Disallow)才是比較安全的做法;`partner.html`/`team.html`/`news.html` 的雙重設定才是值得重新考慮的一方。`manufacturing.html`/`why-birdland.html` 兩個 redirect stub 確認是正確的單一訊號模式(只有 noindex meta,不在 Disallow 裡)。 | **P2**(不緊急,SEO 邊際風險,非功能性 bug,列入 STATE 3 彙整不遺漏即可) |
 
 ## 架構問題清單(Opus 裁決版,持續更新)
 
