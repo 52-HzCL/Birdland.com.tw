@@ -1,7 +1,29 @@
 # Birdland.com.tw — Zero-Touch 全站稽核報告
 
-> 狀態:**進行中**(STATE 1 完成,STATE 2 尚未開始逐頁掃描)。本檔會隨 `/loop` 每輪執行
+> 狀態:**進行中**(STATE 2 逐頁稽核中,5/15 頁完成)。本檔會隨 `/loop` 每輪執行
 > 持續更新,不是一次性產出。啟動分支:`audit/zero-touch-review`,基準 commit `fbe1d0e`。
+
+---
+
+## 🔴 P0(置頂,鐵律 5:P0 發現即置頂)
+
+**`teamdesk.*`(team.html 的 AI 生成客戶供應鏈建議、原物料動向等內容)已連續靜默凍結
+8-9 天,現在正在發生,任何監控/CI 都偵測不到。**
+
+- **根因**:`tools/gen_news_gemini.py:223-230` 合併 Gemini 每日回應時,若當天回應沒有
+  (或回傳空的)`teamdesk` 子物件,五個欄位(`usdtwd_view`/`materials`/`regnews`/
+  `advice`/`updated`)全部靜默沿用前一天舊值——且這條路徑印出的是「成功」訊息,不是例外
+  分支,`status.sources` 也沒有 `teamdesk` 專屬的健康狀態可以暴露。
+- **證據**:逐一比對 `outlook-data.json` 過去 12 個每日 commit,`teamdesk.updated` 卡在
+  `01 Aug 2026` 整整 8 天(而頂層 `updated` 與確定性欄位 `teamdesk.materials2.updated`
+  都正常每日前進);往前追查還發現過一次 4 天的凍結(07-25→07-30)——不是單一僥倖事件。
+- **為什麼是 P0,不是 P1**(裁決 D21):與這次稽核找到的其他 P1 不同,這個問題**不需要
+  任何特定使用者行為觸發**,凍結期間的每一次頁面瀏覽都無條件受影響,而且受影響內容是
+  設計上直接「複製給客戶」的文字(`team.html:547` 的「📋 複製給客戶」按鈕)——業務人員
+  可能在毫無警覺下把過期一週以上的建議送給真實客戶。渲染層本身誠實顯示了舊時間戳,問題
+  完全在上游資料管線,不由稽核迴圈修改(`tools/gen_news_gemini.py` 是站台程式碼)。
+- **建議修法方向**:比照頂層 `status.sources` 的模式,給 `teamdesk` 合併結果也記錄一個
+  新鮮度狀態(`current`/`delayed`),`new_td` 缺漏或空白時明確標記,而非靜默視為成功。
 
 ---
 
@@ -27,9 +49,11 @@
 
 | 類別 | 數量 |
 |---|---|
-| 新發現 P0 | 0 |
+| 新發現 P0 | 1(`teamdesk.*` 資料管線靜默凍結,見報告最上方) |
 | 新發現 P1 | 6(1 個已修復的文件訂正、1 個 NEEDS HUMAN 設計取捨、4 個真實功能/內容 bug——依鐵律 2 全部只留建議,不由稽核迴圈修改站台程式碼) |
-| 新發現 P2 | 10(SEO-2、index.html 字級差異、contact.html×2、partner/cost-desk×6,其中 3 項已收錄 CLEANUP.md C6-C8) |
+| 新發現 P2 | 12(SEO-2、index.html 字級差異、contact.html×2、partner/cost-desk×6、team.html×2,其中 4 項已收錄 CLEANUP.md C6-C9) |
+| 已知議題(承接自前 4 輪稽核) | 12 項,詳見 `AUDIT_STATE.json` 的 `knownIssues`(7 開放/待覆核、5 已關閉) |
+| 本次啟動前 recon 已直接處理 | 2 項(見下) |
 
 **P1 快速索引**(全部細節見下方逐頁段落):
 1. Hero `[data-ink-main]` opacity 設計取捨(index.html,NEEDS HUMAN,D9)
@@ -38,8 +62,6 @@
 4. contact.html 9 語言 desk 名稱競態(D16,真實 bug,建議修法已記錄)
 5. cost-desk.html 品牌重命名漏三處(建議修法已記錄)
 6. partner.html 分享功能靜態資料誠實標示不足(D14,真實內容問題,建議修法已記錄)
-| 已知議題(承接自前 4 輪稽核) | 12 項,詳見 `AUDIT_STATE.json` 的 `knownIssues`(7 開放/待覆核、5 已關閉) |
-| 本次啟動前 recon 已直接處理 | 2 項(見下) |
 
 ## 本次啟動前 recon 已直接處理的項目
 
@@ -63,8 +85,10 @@
 
 ## STATE 2 進度
 
-- **已完成(A-F 全部跑完):`index.html`、`contact.html`、`partner.html`、`cost-desk.html`**。
-- 其餘 11 頁尚未開始。`product-101.html` 刻意延後(PR #1 正在改動中)。
+- **已完成(A-F 全部跑完):`index.html`、`contact.html`、`partner.html`、`cost-desk.html`、
+  `team.html`**。
+- `executive.html` 進行中(已派工)。其餘 9 頁尚未開始。`product-101.html` 刻意延後
+  (PR #1 正在改動中)。
 
 ## contact.html 逐項發現(全站真正的轉換點)
 
@@ -141,14 +165,46 @@ I-7 已加註(沿用該檔自己的「加註不刪除」慣例):遮蔽的元件�
 嚴重度,webmanifest 本身仍正確連結);`?q=` deep-link 只有 partner.html 支援,cost-desk.html
 by design 沒有(搜尋面板已正確處理跨桌導向,不是遺漏);Terminal chip 在四個閘門桌面全部
 不存在(`desk-banner.js` 提供,但四個桌面模板都不載入 `desk-banner.css`/`.js`)——確認
-`SUMMARY.md`「Still open」提到的 Team Desk 沒有 Terminal 面板其實不是 Team 專屬,四桌皆然,
-但四桌都有替代的指令面板搜尋(`.pd-omni-btn`),功能上不缺。
+`SUMMARY.md`「Still open」提到的 Team Desk 沒有 Terminal 面板其實不是 Team 專屬,四桌皆然。
+partner.html/cost-desk.html 這兩頁確認有替代的指令面板搜尋(`.pd-omni-btn`)。**訂正
+(D22)**:先前這裡誤寫成「四桌都有」——team.html 稽核後確認全站 grep `.pd-omni-btn`
+零命中,team.html **沒有**任何 Terminal 替代品;executive.html 待驗證,不應假設對稱。
 
 **通過(A-E,13 項)**:單面板 router 不變式(任一時刻恰好一個面板可見)在全部導覽項目、
 兩種寬度、reload、上一頁下皆正確;`?q=420J2...#pd-builder` 深連結正確;重複 spark 尾端點
 的 `chg` 修正在三處獨立實作皆一致套用;色彩語意(漲=紅=壞、buyer-cost 語意)兩頁一致;
 375px 零橫向溢出;`P.shipping`→`lineChart` 崩潰風險經確認不可重現(機制已不存在)。
 **Console:僅同一個沙盒憑證問題,零其他錯誤,兩頁、兩種寬度、約 25 次導覽測試全部確認。**
+
+## team.html 逐項發現
+
+**P0**:見報告最上方,不重複。
+
+**已知議題現況更新**:I-1(PIN 明文比對、View Source 可破解)現場重新驗證仍然為真,
+且更精確——連 PIN **比對邏輯本身**也是明文可讀,不只是內容外洩(依 ISSUES.md 慣例不
+重複寫出實際 PIN 字串)。四種閘門情境(繞過/reload/上一頁/全新 session)全部行為正確。
+`docs/DATA-SCHEMA.md` 的 `teamdesk.*` 欄位參考缺 `shipping`/`fx_forecast` 兩個實際大量
+使用的欄位(裁決 D25:不主動訂正——該文件已自我免責聲明「有機成長,請以 JSON 為準」,
+不是誤導性錯誤,優先度低於其他文件落差)。
+
+**P2(2 項,新發現)**:`team_template.html:10-11` 引入的 `--pos`/`--neg` 語意色彩命名
+(比照 I-7 的 token 遮蔽模式,但用新名字而非沿用既有名字)**從未真正生效**——同檔案下方
+複製自 partner_template.html 的 `!important` Kubera-skin 覆蓋層永遠贏過它,最終渲染色
+其實正確符合全站 BUYER-COST 語意(漲=紅=壞)。問題在於：未來工程師只看
+`:10-53` 這段命名會誤判方向相反,已收錄 CLEANUP.md(見下)。另一項:報價試算機
+`#qo_fx` 的正負號顏色提示(`fe.style.color=...`)被 `.kv b{color:...!important}`
+規則靜默蓋掉,數字本身正確,只是輔助色彩失效。
+
+**通過(A-E,含四種 PIN 閘門情境、build 逐位元組核對零落差、色彩語意最終渲染正確、375px
+零溢出)**。**Console:僅同一沙盒憑證問題(這次打在 Google Fonts 與 open.er-api.com 兩個
+端點,同一根因),零其他錯誤。**
+
+**F(架構)**:team.html 的單面板路由不支援 reload/上一頁狀態持久化、無深連結,與
+partner.html 的同類路由能力不對等——**裁決(D23):接受為合理簡化,不列入待修清單**,
+內部營運工具與對外形象儀表板本來就該有不同工程投入。另發現一個結構上與 D20 相同(script
+載入順序無顯式協定)的第三個實例(`text-size.js`/`app-bar.js`/`i18n.js` 的協調鏈),但
+**目前實測運作正常、無伴隨失效**——**裁決(D24):不觸發 D20 升級門檻**(門檻文字明講
+「bug」,不是「結構相似的脆弱模式」),另開「脆弱但正常」的獨立追蹤,目前計數 1。
 
 ### index.html 逐項發現
 
@@ -236,7 +292,7 @@ index specifics 節、`SUMMARY.md` 的 hero 文案宣稱)。裁決:**可改,非�
 
 ## P0 清單
 
-_(截至目前 4 頁完成,零 P0 發現。)_
+**1 項,見報告最上方「🔴 P0」區塊**(`teamdesk.*` 資料管線靜默凍結,team.html)。
 
 ## 快速勝利清單
 

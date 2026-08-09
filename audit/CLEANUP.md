@@ -21,6 +21,7 @@
 |---|---|---|---|
 | C6 | `tools/partner_template.html` 11 個 `bentofy()` 呼叫指向已「retired outright」(模板自己的註解語言)的 section id:`p-brief`(:3370)、`p-material`(:3374)、`p-shipping`(:3378)、`p-freight`(:3382)、`p-war`(:3395)、`p-tariff`(:3399,含讀取死資料 `P.tariffmon` 的 `mdSynth` 回呼)、`p-news`(:3409)、`p-keynews`(:3411)、`p-regcal`(:3412)、`p-report`(:3416)、`p-season`(:3425) | **A**(引用分析證明可刪——`bentofy()` 自己在 `document.getElementById(id)` 為 null 時直接 return,現場 DOM 逐一確認這些 id 全部不存在) | STATE 2 partner.html+cost-desk.html 稽核報告 |
 | C7 | `.wl`/`.tm` 表格 class 的完整 CSS 定義(`tools/partner_template.html:76-79,133,172,190,465-468,672-677`,含 up/down/flat 色彩映射)但整個模板只有 1 個 `&lt;table&gt;`,且不用這兩個 class | **A**(live DOM 確認 `document.querySelectorAll('.wl').length===0` 且 `.tm` 同樣為 0,無 JS 動態掛載路徑) | 同上 |
+| C9 | `tools/team_template.html:10-11` 引入 `--pos`/`--neg` 語意色彩命名(意圖跟 I-7 一樣遮蔽 token,但用新名字),但同檔案下方複製自 partner_template.html 的 `!important` Kubera-skin 覆蓋層(`:293` 一帶)永遠贏過它,現場計算 computed color 確認最終渲染從未真正採用 `--pos`/`--neg` 的值 | **A**(現場驗證 CSS 層疊順序,`!important` 規則的存在與生效範圍可直接從 computed style 反推,非推測) | STATE 2 team.html 稽核報告。建議:移除這組死碼宣告,或若要保留給未來用,至少改名成不暗示語意方向的中性名字(目前 `--pos` 綁的其實是「漲/壞」,跟名字暗示的方向相反,對未來維護者是陷阱) |
 | C8 | 舊手風琴式收合 UI 殘留:`.blk-h .tog,.blk-h .lights{display:none!important}` 的 CSS 覆蓋規則、加上一個永遠打不到的 bubble-phase `.toc a` click handler(`tools/partner_template.html:2609-2612`,單面板 router 的 capture-phase handler 會先 `stopPropagation()`) | **A**(對應的 JS `window.__bo` 邏輯本身正確,只是視覺上被 CSS 藏起來、且有一段 handler 永遠執行不到——可刪的是死路徑本身,不是收合功能) | 同上 |
 
 ## 待掃描(STATE 5 尚未執行)
