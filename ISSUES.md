@@ -39,26 +39,28 @@ were installed outside the repo and undeclared, so a fresh clone could run
 none of the gates and reproduce no measurement. CI installs no node
 dependencies, so nothing in the pipeline is affected.
 
-**I-6 · `tools/build_terminal.py` has never been executed.**
-There is no Python on the development machine, so the CI version of the
-Terminal index build is untested; only the Node twin
-(`tools/dev/gen-terminal.js`) has been run. It is invoked non-fatally, so a
-failure costs the panel its live values and its search, not the daily news.
-Watch the first CI run after this merges.
+**I-6 · ~~`tools/build_terminal.py` has never been executed~~ — CLOSED.**
+Executed 2026-08-09 on Python 3.11: it runs, and its `terminal.json` is
+byte-identical to the shipped file. The worry is retired. What the run
+surfaced instead is the opposite problem: the Node twin
+(`tools/dev/gen-terminal.js`) had drifted from the Python — different number
+formatting in `steps` ("1,187" where CI writes "1,187.0") and diverging
+`index` entries — so a local `build.js` run silently produced a search index
+the next CI run would overwrite. The Node side is being brought back in step
+with the Python, which is the authority because CI runs it.
 
-**I-7 · The two desks shadow four palette token names.**
-`body.theme-light` in `partner_template.html` redefines `--down`, `--up`,
-`--flat` and `--line` for the desks' own data colours. Anything shared that
-reads those names renders differently on `partner.html` and `cost-desk.html`
-than on the other pages — `desk-banner.css` uses `var(--line)` six times and
-`var(--flat)` twice, so the shared header's hairlines are cool grey there and
-warm everywhere else.
-
-The Terminal dot was hit by this and is fixed (it reads `--jade-700` directly,
-with a comment saying why). The header hairlines are left alone: the difference
-is small, it is the state you reviewed in the Phase 4 screenshots, and renaming
-the desks' four variables is a change worth making deliberately rather than in
-the last minutes before a deploy.
+**I-7 · ~~The two desks shadow four palette token names~~ — CLOSED, stale.**
+The finding described `desk-banner.css` reading `var(--line)` inside the two
+desks, whose `body.theme-light` redefines it — cool grey hairlines there, warm
+everywhere else. Measured again 2026-08-09: the situation no longer exists.
+`partner.html` and `cost-desk.html` stopped loading `desk-banner.css` when
+they became apps (the same migration whose dead branches the 2026-08-07 sweep
+removed from `desk-banner.js`); the one page still loading it is `guide.html`,
+where `--line` resolves to `site-shell.css`'s value on every load — one page,
+one appearance, nothing shadowed. A fix was written, measured and withdrawn:
+it changed guide.html's hairlines and repaired nothing. The Terminal-dot
+precedent (read an unshadowed name directly, with a comment saying why) is
+still the right pattern if a shared component ever moves into the desks again.
 
 ## Closed during the audit
 
