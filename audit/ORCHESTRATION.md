@@ -31,7 +31,7 @@ Birdland.com.tw **完全不是這種站**:
     修復已經寫在本機分支 `i18n/my-market-composed-sentences`,只是還沒 push,見下方
     「已知但不動」清單)
   - 本次啟動前的即時 recon(見 `DECISIONS.md` 開頭已裁決項)
-  
+
   STATE 1 第一步就是把這四份讀進「已知議題登記表」,STATE 2 掃到重複項目只需標記
   「已知,狀態:X」,不必重新走 P0/P1/P2 判定;只有這四份沒蓋到的才是新發現。
 - 已有大量現成工具鏈專門做這類驗證(`tools/dev/*.js`)——**優先重用,不要重寫**:
@@ -148,7 +148,7 @@ Opus 裁決寫入 `DECISIONS.md`,格式:`|議題|裁決|理由|`,Sonnet 之後�
   `i18n.js` 走訪 DOM、精確字串比對 `app.<lang>.json` 替換——**只翻譯固定文案**,
   `outlook-data.json`/`terminal.json` 來的動態內容(價格、材料代號、港口名)在所有語言都
   保持原文。
-  
+
 語言版本不當獨立頁面重跑 A-D 全套,而是併入 STATE 2 的 E 類(一致性)與獨立的 i18n
 drift 檢查(見下方 C 類)。
 
