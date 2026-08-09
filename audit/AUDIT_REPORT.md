@@ -1,7 +1,8 @@
 # Birdland.com.tw — Zero-Touch 全站稽核報告
 
-> 狀態:**進行中**(STATE 2 逐頁稽核中,5/15 頁完成)。本檔會隨 `/loop` 每輪執行
-> 持續更新,不是一次性產出。啟動分支:`audit/zero-touch-review`,基準 commit `fbe1d0e`。
+> 狀態:**進行中**(STATE 2 完成 14/15 頁,`product-101.html` 因 PR #1 延後;STATE 3
+> 跨頁彙整已完成,見下方對應段落)。本檔會隨 `/loop` 每輪執行持續更新,不是一次性產出。
+> 啟動分支:`audit/zero-touch-review`,基準 commit `fbe1d0e`。
 
 ---
 
@@ -493,18 +494,38 @@ index specifics 節、`SUMMARY.md` 的 hero 文案宣稱)。裁決:**可改,非�
 | SEO-1 | `sitemap.xml`(51 個 `<url>`)是否需要內嵌 hreflang alternate | **非問題,已確認正確。** 真正的 hreflang 機制是 `tools/dev/_langs.js` 的 `cluster()` 產生的每頁 `<head>` `<link rel="alternate" hreflang="...">` 標籤,不是 sitemap 層級。實測 `index.html`:11 個 hreflang 標籤(en + 9 語言 + x-default),與 9 個語言資料夾完全對應。 | — |
 | SEO-2 | `robots.txt`(`Disallow: /partner.html /team.html /news.html /birdland-intro.html`)與各頁 `<meta name="robots">` 的一致性 | **新發現,範圍已擴大至 `news.html`(redirect stub 稽核補充驗證)。** `cost-desk.html`/`executive.html` 都有 `noindex` meta,但**沒有**列在 `robots.txt` 的 Disallow 裡;`partner.html`/`team.html`/`news.html`/`birdland-intro.html` 則是四者都有(`robots.txt` Disallow **加上** `noindex,follow` meta)。這是已知的 SEO 反模式:同一頁面若被 `robots.txt` Disallow,爬蟲根本不會抓取該頁,因此永遠看不到頁面裡的 `noindex` 指示——反而可能讓純網址(無摘要)被索引。`cost-desk.html`/`executive.html`(只有 noindex meta,無 Disallow)才是比較安全的做法;`partner.html`/`team.html`/`news.html` 的雙重設定才是值得重新考慮的一方。`manufacturing.html`/`why-birdland.html` 兩個 redirect stub 確認是正確的單一訊號模式(只有 noindex meta,不在 Disallow 裡)。 | **P2**(不緊急,SEO 邊際風險,非功能性 bug,列入 STATE 3 彙整不遺漏即可) |
 
-## 架構問題清單(Opus 裁決版,持續更新)
+## 架構問題清單(STATE 3 最終版——取代之前散落各頁的暫定判斷)
 
-| 議題 | 裁決 | 標註 |
+| 議題 | 最終裁決 | 標註 |
 |---|---|---|
-| terminal.json 全站無 CI 新鮮度守門(`build.js` 明講失敗是 non-fatal) | 建議在 `pr-validation.yml` 仿照 calendars/feeds 模式加一道 `build+diff` 關卡 | **必改**(建議,待人核准後執行,不由稽核迴圈直接改 CI) |
-| `AGENTS.md`「Pages & build system」節與原始碼事實不符(news.html 現況是 redirect stub,非 BUILT ARTIFACT) | 訂正,見下方「本迴圈已完成的文件訂正」 | 已在稽核分支處理 |
-| 四種頁面建構哲學並存(樣板替換/結構化陣列/執行期 i18n/純手寫) | 初步判斷:各自服務的頁面性質不同(合理),STATE 3 彙整時重新確認 | 可改(初步) |
-| GLOSSARY.md「Fixed translations」表僅 de/zh-Hant 兩欄,服務 10 語言 | 待 Opus 於 STATE 2/E 正式裁決是否補齊 | 待裁決 |
-| 「commit message 講清楚了,但對應說明文件沒跟著更新」模式,累計已抓到 5 次(`AGENTS.md` 三節、`ISSUES.md` I-7、`SUMMARY.md` hero 文案宣稱) | 正常的文件熵,不建議新增流程負擔(如 doc-currency CI 檢查),稽核迴圈定期抓漏已是足夠機制——但累計次數持續在報告,供人自行判斷是否某個時間點該重新考慮 | 可改(非必改) |
-| contact.html 兩個真實 P1(D15+D16)根因都可歸因於「多個獨立載入的 script 之間無顯式初始化協定」(DECISIONS.md D20) | WATCH,非必改——設下明確升級門檻:下一頁若又發現第三個同根因獨立案例,升級為必改並提出集中式初始化協定設計。目前計數 2/3 | 可改(WATCH,有具體升級條件) |
+| terminal.json 全站無 CI 新鮮度守門(`build.js` 明講失敗是 non-fatal),本次稽核已抓到一個真實案例(PR #1) | 建議在 `pr-validation.yml` 仿照 calendars/feeds 模式加一道 `build+diff` 關卡 | **必改**(建議,待人核准後執行,不由稽核迴圈直接改 CI) |
+| **I-7/token 遮蔽問題,4 個獨立資料點後的最終建議(D43)** | 移除 `partner_template.html`/`team_template.html`/`site-shell.css` 各自的遮蔽區塊,收斂回已經在 executive.html/my-market.html 正確運作的 `tokens.css` 原值 | 可改,本次稽核信心最高的具體建議之一 |
+| 四種頁面建構哲學並存(樣板替換/結構化陣列/執行期 i18n/純手寫) | 最終判斷:各自服務的頁面性質不同,合理,不建議收斂 | 可改(初步判斷維持) |
+| GLOSSARY.md「Fixed translations」表僅 de/zh-Hant 兩欄,服務 10 語言(D46) | 該補齊(屬文件修正例外範圍),但提取工作量較大,本輪未執行,列入 STATE 4 建議清單供下一輪或人執行 | 可改,待執行 |
+| 「commit message 講清楚了,但對應說明文件沒跟著更新」模式,累計 6+ 次獨立實例(`AGENTS.md`×3、`ISSUES.md`×1、`ORCHESTRATION.md`×1)(D45) | 不建議新增流程負擔,但在 STATE 4 總覽明確點出這個數字,供人自行判斷要不要在下次大改版後主動安排文件校對 | 可改(非必改),數字已定案 |
+| 三條「脆弱但正常」追蹤軸線,14 頁測完後的最終計數(D44):script 時序(D20/D24/D27)2/3、`text-size.js` 錨點偵測(D33)2 例、markup 結構巧合(D42)1 例 | 全部維持可改,無一達到升級門檻 | 可改(WATCH,已是最終數字,不會再累積——STATE 2 已結束) |
 | cost-desk.html 品牌重命名散落在個別字串字面值,導致漏改 3 處(AsiaSource 殘留) | 建議集中成以 `BL_DESK`/`isCost` 為 key 的桌面顯示名稱查找表,避免未來新增桌面模式重蹈覆轍 | 可改,中價值,不緊急 |
-| `tools/partner_template.html` 累積大量迭代淘汰後的死碼(11 個死 `bentofy()` 呼叫、未使用的 `.wl`/`.tm` 樣式、死手風琴 handler)——已收錄 CLEANUP.md C6-C8 | 正常的迭代殘留,STATE 5 統一處理,不是架構級警訊 | 可改(STATE 5 例行清理) |
+| `tools/partner_template.html`/`tools/news_template.html` 累積大量迭代淘汰後的死碼(合計 C6-C11,約 6 個候選) | 正常的迭代殘留,STATE 5 統一處理,不是架構級警訊 | 可改(STATE 5 例行清理) |
+| `feeds/*.xml` 的 build-vs-commit 漂移檢查(D47) | **已驗證,零漂移,非問題**——跟 `calendars/*.ics` 不同,`build_feeds.py` 重新產生零 diff | 已解決,非架構問題 |
+
+## STATE 3 總結
+
+STATE 2(逐頁稽核)14/15 完成,`product-101.html` 因 PR #1 仍是安靜的 draft 再次確認延後
+（見下方「已知範圍缺口」)。跨頁彙整後沒有發現任何需要緊急處理的新架構級問題——本次稽核
+最重要的三個發現(P0 的 team.html 資料管線、站台級的 facade Factory 連結 bug、
+my-market.html 的高密度功能性 bug)在各自的段落已有完整記錄,STATE 3 的角色是把「散落
+各頁的觀察」收斂成上表的最終建議,不是發現新東西。SEO 檢查(SEO-1/SEO-2)已在 STATE 2
+過程中提前完成,`feeds/*.xml` 漂移檢查(D47)在本節補上,`sitemap.xml` 覆蓋範圍已在多頁
+稽核中逐一交叉確認(51 個 URL,正確排除 noindex 頁面與 redirect stub)。
+
+## 已知範圍缺口(誠實記錄,不是遺漏)
+
+- **`product-101.html` 完整六象限稽核**:因 PR #1(`factory/qc-and-troubleshooting`)仍是
+  draft,刻意延後。其導覽反方向 bug 已透過 about.html 的稽核提前記錄(D31,見上方站台級
+  發現段落),但完整的 A-F 六象限分析(功能/資料流/一致性/架構)尚未進行。PR #1 合併或
+  轉為 ready-for-review 後應優先補做。
+- **PAT 一鍵上傳截圖轉錄流程的端到端測試**:需要真實 PIN/vault,AI 無法測試(這是站台
+  本身文件裡明講的已知限制,非本次稽核的範圍缺口,列於此純粹是完整性記錄)。
 
 ## 本迴圈已完成的文件訂正
 
