@@ -2,7 +2,7 @@
   "version": 1,
   "lastUpdated": "2026-08-09",
   "currentState": "STATE_2_AUDIT_LOOP",
-  "stateNote": "STATE 0 done. STATE 1 fully done: known-issues registry populated, page inventory classified, all 'needsVerification' items resolved (see languageEditions.needsVerification below -- now answered, not open). STATE 2 started: index.html's A-E dimensions dispatched to a Sonnet-tier subagent (running, result pending as of this write -- see state2Queue.inProgress). Dimension F (architecture) for index.html is deferred until that agent's findings return, since F synthesis needs A-E inputs. Next loop iteration should: (a) if the dispatched agent's findings have arrived, fold them into AUDIT_REPORT.md, do the F-dimension judgment, mark index.html complete, move to the next queue item; (b) if not yet arrived, either wait for the notification or dispatch the next page's audit in parallel rather than blocking.",
+  "stateNote": "STATE 0/1 done. STATE 2: index.html fully complete (A-F). contact.html and partner.html+cost-desk.html (dispatched jointly, shared template) are in progress with Sonnet subagents as of this write. Next loop iteration should: (a) if either agent's findings have arrived, fold them into AUDIT_REPORT.md the same way index.html's were (see that section for the format), do the Opus F-dimension judgment for each page, mark complete in state2Queue/pageInventory, dispatch the next not-started page(s); (b) if not arrived yet, dispatch further not-started pages rather than blocking idle. product-101.html is deliberately deferred (see state2Queue.note) while PR #1 actively changes it.",
   "modelSplit": { "judge": "opus", "executor": "sonnet" },
 
   "knownIssuesSources": ["audit-report.md (2026-06-29)", "ISSUES.md", "SUMMARY.md + UX-REVIEW.md (ux-refine, confirmed merged into main)"],
@@ -27,11 +27,11 @@
   ],
 
   "pageInventory": [
-    { "page": "index.html", "build": "hand-authored", "priority": "high", "state2Status": "pending" },
+    { "page": "index.html", "build": "hand-authored", "priority": "high", "state2Status": "completed", "note": "A-F all done. 1 P1 NEEDS-HUMAN (hero opacity design tradeoff, DECISIONS.md D9), 1 P1 fixed (AGENTS.md doc staleness, D8), 2 P2 (font-size count +1 vs SUMMARY.md not chased per D10; see also SEO-2 in AUDIT_REPORT.md). 12 dimensions passed clean. Full detail in AUDIT_REPORT.md." },
     { "page": "product-101.html", "build": "structured-array (build-p101.js + GATES/MATERIALS/PACKS/ECO/COST/SECTIONS + ratings.js)", "priority": "high", "state2Status": "pending", "note": "PR #1 (factory/qc-and-troubleshooting) is independently expanding this page right now — cross-reference, don't duplicate fixes." },
-    { "page": "contact.html", "build": "hand-authored", "priority": "high", "state2Status": "pending", "note": "Real conversion point is mail-routing.js-driven mailto routing, not a <form>. No <form>/action=/mailto:/method= literal in the HTML — verified by grep." },
-    { "page": "partner.html", "build": "template (partner_template.html, __DESKMODE__=buyer)", "priority": "high", "state2Status": "pending" },
-    { "page": "cost-desk.html", "build": "template (partner_template.html, __DESKMODE__=cost)", "priority": "high", "state2Status": "pending" },
+    { "page": "contact.html", "build": "hand-authored", "priority": "high", "state2Status": "in_progress", "note": "Real conversion point is mail-routing.js-driven mailto routing, not a <form>. No <form>/action=/mailto:/method= literal in the HTML — verified by grep. Dispatched to Sonnet subagent." },
+    { "page": "partner.html", "build": "template (partner_template.html, __DESKMODE__=buyer)", "priority": "high", "state2Status": "in_progress", "note": "Dispatched jointly with cost-desk.html to one subagent." },
+    { "page": "cost-desk.html", "build": "template (partner_template.html, __DESKMODE__=cost)", "priority": "high", "state2Status": "in_progress", "note": "Dispatched jointly with partner.html to one subagent." },
     { "page": "team.html", "build": "template (team_template.html)", "priority": "high", "state2Status": "pending" },
     { "page": "executive.html", "build": "template (executive_template.html)", "priority": "high", "state2Status": "pending" },
     { "page": "guide.html", "build": "template (news_template.html) -- NOTE: AGENTS.md says news.html is built from this; that's stale, see DECISIONS.md D5", "priority": "high", "state2Status": "pending" },
@@ -57,9 +57,13 @@
   },
 
   "state2Queue": {
-    "notStarted": ["product-101.html", "contact.html", "partner.html", "cost-desk.html", "team.html", "executive.html", "guide.html", "about.html", "my-market.html", "birdland-intro.html", "privacy.html", "news.html", "manufacturing.html", "why-birdland.html"],
-    "inProgress": { "page": "index.html", "dimensionsRequested": ["A", "B", "C", "D", "E"], "dimensionPending": "F (Opus, deferred until A-E results return)", "dispatchedTo": "Sonnet subagent (background, awaiting completion notification as of this write)" },
-    "completed": []
+    "notStarted": ["team.html", "executive.html", "guide.html", "product-101.html", "about.html", "my-market.html", "birdland-intro.html", "privacy.html", "news.html", "manufacturing.html", "why-birdland.html"],
+    "inProgress": {
+      "contact.html": "dispatched to Sonnet subagent, A-E, awaiting completion notification as of this write",
+      "partner.html+cost-desk.html": "dispatched together to one Sonnet subagent (they share partner_template.html, auditing jointly avoids two agents redundantly reading the same ~4500-line template), A-E, awaiting completion notification as of this write"
+    },
+    "completed": ["index.html"],
+    "note": "product-101.html deliberately pushed later in the queue (not dropped) -- PR #1 (factory/qc-and-troubleshooting) is actively expanding it right now; auditing it mid-flux risks reviewing content that's about to change. Will audit once PR #1 looks settled, or sooner if nothing else is left."
   },
 
   "state5CleanupSeeds": ["node_modules/ commit status needs reverification (audit-report.md L2 / ISSUES.md I-5)", "origin/codex/pr-validation stale branch — flag for deletion, do not touch", "I-7 four shadowed palette tokens — check for new collisions since"]

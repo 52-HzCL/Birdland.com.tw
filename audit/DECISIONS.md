@@ -15,6 +15,14 @@
 | D6 | terminal.json 在 Factory PR(#1)新增兩個 section 後沒有跟著重新產生,這類「內容變了、搜尋索引沒跟上」的 bug,要不要在 `pr-validation.yml` 加一道 CI 關卡防止再發生? | **必改,但不由稽核迴圈直接動 CI 設定——寫成正式建議放進 AUDIT_REPORT.md,由人核准後執行。** 技術上很簡單(仿照 calendars/feeds 現有的「build 完 diff」模式,加一步 `node tools/dev/gen-terminal.js && git diff --exit-code -- terminal.json`),但 CI 設定變更影響每一個未來 PR 的合併速度與失敗模式,值得人过目再上線。 | 區分「文件訂正」(低風險,直接做)跟「CI 行為變更」(中風險,只建議)是這個迴圈刻意設的兩檔风险等級,不能混為一談。 |
 | D7 | 本次 recon 已經在 PR #1 上做的事(terminal.json 重生成 commit、CI 失敗根因確認並留言說明)算不算這個稽核迴圈的工作? | **不算,那是 PR #1 自己的維運責任(它是我自己開的 PR,依規範本來就要顧到綠燈),跟這個全新的 Zero-Touch 稽核迴圈是兩件事。** 這裡記錄只是避免稽核迴圈在 STATE 2 掃到同一顆 bug 時又重新「發現」一次、浪費一輪。 | 職責分離:稽核迴圈的職權範圍見 ORCHESTRATION.md 第 0 節「已知但不動」清單。 |
 
+## STATE 2 裁決(index.html,2026-08-09)
+
+| # | 議題 | 裁決 | 理由 |
+|---|---|---|---|
+| D8 | `AGENTS.md`「index.html specifics」整節(foliage-cut、reading-focus 縮放、hamburger 選單)描述的功能全部已在 `6fa66ad`(2026-07-28 全站重建)移除,現況完全是另一套(ink hero + `bl_ink_intro` + 單行可橫向捲動的 `.bl-nav`)。是否套用跟 D5 一樣的訂正待遇? | **要訂正,已直接執行。** 與 D5 同類——原始碼證據(grep 全庫零匹配舊 class/key、git log 追到移除的確切 commit)充分,且風險同樣是零(純文件)。已在 `AGENTS.md` 訂正「index.html specifics」節與第 86 行的 storage namespace 範例。 | 沿用 D5 的判準:文件本身是給未來 agent 的地圖,錯的地圖比錯的程式碼更危險。 |
+| D9 | Hero 三個核心賣點文案(`[data-ink-main]`,"MAKE IT RIGHT"/"KEEP SUPPLY MOVING"/"KEEP IT YOURS")在桌面版(>900px)靜止狀態是 `opacity:0`,只有 hover/click/focus 才顯示——這正是 `5de128e`(2026-07-31)修過的舊缺陷的部分重現,但後續 `7d87c09`(2026-08-03)commit message 明講是刻意的美學取捨(恢復「游標遮罩火把」互動),不是失手回歸。要不要判定為必須修復的 bug? | **NEEDS HUMAN(非技術對錯,是設計取捨)——不視為必須修復的 bug,不由稽核迴圈或 Opus 代為決定要不要復原這個設計決策。** 列為 P1 級 UX 發現寫入報告,並附上一個備選方案(`.bl-ink-marker` 已經用過的做法——給 `[data-ink-main]` 一個非零低基礎透明度如 0.32,而非完全 0)供人參考,但不預設哪個選項「贏」。緩解因素:`<h1>` 標語本身在所有寬度都維持可見(不像 `5de128e` 修復前);每個 session 有一次自動輪播閃現;行動版(<900px)完全不受影響(強制永遠可見)。 | `7d87c09` 是後於 `5de128e` 的、有完整理由記錄的刻意決策,不是「沒注意到就退步了」。這類「兩個都是深思熟慮但互相衝突的設計決定該聽誰的」屬於商業/美學判斷,不是可以憑程式碼正確性裁定對錯的技術問題,符合本檔第 2 節 NEEDS HUMAN 例外的精神(雖然它不是 audit-report.md 原本列出的那幾項,但屬於同一類)。**同時**:`SUMMARY.md`「Now: ...propositions that are simply on」這句話對目前 main 已經不準——但 `SUMMARY.md` 依 D1 是歷史紀錄檔,不在這次文件訂正範圍內,只在報告內註明「此處敘述已被後續 commit 推翻,SUMMARY.md 未跟著更新」,不去改 SUMMARY.md 本身。 |
+| D10 | index.html 桌面版實測 11 種相異字級,`SUMMARY.md` 原文聲稱是「10」——是真的退步還是量測方法不同? | **不追查,列為 P2/資訊性註記即可,不判定為 bug。** 差距只有 1、且執行代理已誠實說明沒有可比對的原始量測腳本(`snap-type.js` 其實是不同用途的工具)、`7d87c09` 確實改動過 hero 結構,兩種解釋都合理但都無法在合理成本內證實。11 這個絕對值本身遠低於改版前的 80 種,不構成品質疑慮。 | 不是每個不確定的小落差都值得深挖——這次的判斷是「金額/正確性無虞時,承認不確定比硬給一個答案更誠實」。 |
+
 ## 待裁決(STATE 2 執行中若遇到,直接沿用上面同類裁決的精神;新議題才追加列於此)
 
-_(尚無——迴圈尚未進入 STATE 2)_
+_(下一頁的稽核若出現新議題,追加於此)_
