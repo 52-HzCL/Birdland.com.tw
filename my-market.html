@@ -70,9 +70,14 @@
 
 .mm .dsk .mychips{display:flex;gap:6px;align-items:center;flex-wrap:wrap;padding:10px 12px 0}
 .mm .dsk .mychips .lab{font:600 9px/1 var(--mono);letter-spacing:.13em;color:var(--tx3);margin-right:4px}
+.mm .dsk .mych-wrap{display:inline-flex}
+.mm .dsk .mych-wrap .mych{border-right:0}
 .mm .dsk .mych{appearance:none;border:1px solid var(--edge2);background:none;color:var(--tx2);
   font:640 10.5px/1 var(--sans);padding:6px 10px;cursor:pointer}
 .mm .dsk .mych.on{background:var(--tx);border-color:var(--tx);color:#0A0C0F}
+.mm .dsk .mych-x{appearance:none;border:1px solid var(--edge2);background:none;color:var(--tx3);
+  font:640 11px/1 var(--mono);padding:6px 8px;cursor:pointer}
+.mm .dsk .mych-x:hover,.mm .dsk .mych-x:focus-visible{color:var(--red);border-color:var(--red)}
 .mm .dsk .sech{margin:14px 12px 6px;font:600 9px/1 var(--mono);letter-spacing:.14em;color:var(--tx3)}
 .mm .dsk .empty-note{margin:10px 12px;font:500 11.5px/1.5 var(--sans);color:var(--tx3)}
 .mm .dsk .fams{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 12px}
@@ -317,7 +322,15 @@ function buildMarkets(trade){
 }
 function collectFamilies(mkt){
  var seen={};
- Object.keys(mkt).forEach(function(iso){ Object.keys(mkt[iso].cells).forEach(function(k){seen[k]=true;}); });
+ // A family code only counts as "in this edition" if some market actually
+ // has real data for it — merely having the key is not enough. Turkey's feed
+ // has always carried two extra category codes (820210/821300) whose every
+ // field is null and stale:true; keying on presence alone put "HS 820210" /
+ // "HS 821300" columns, permanently reading "not in edition", on EVERY
+ // market's Around table — Italy's, France's, none of which have anything to
+ // do with Turkey. cellValid() is the same gate every other renderer in this
+ // file already uses to decide whether a cell is real.
+ Object.keys(mkt).forEach(function(iso){ Object.keys(mkt[iso].cells).forEach(function(k){if(cellValid(mkt[iso].cells[k]))seen[k]=true;}); });
  var known=FAM_CANON.filter(function(k){return seen[k];});
  var rest=Object.keys(seen).filter(function(k){return known.indexOf(k)<0;}).sort();
  return known.concat(rest);
@@ -334,16 +347,27 @@ function delta(c){return (c.share_tw!=null&&c.share_tw_prev!=null)?(c.share_tw-c
 // "say nothing about the China-side change" rather than a zero.
 function cnd(c){return (c.share_cn!=null&&c.share_cn_prev!=null)?(c.share_cn-c.share_cn_prev):null;}
 
+// share_cn_prev exists on almost no cell in a typical edition, so cnd() is
+// null for nearly everything and "window"/"push" rarely fire — that's an
+// honest data-shape limit, not a bug. What WAS a bug: a market losing
+// Taiwan-origin share by 5-18 points had no bucket of its own, so it fell
+// through to "steady" — the same grid heading a market with no movement at
+// all gets — while its own detail rail (why(), below) already had language
+// for exactly this case ("Worth a route conversation before the next
+// season") at the same d<=-5 threshold. classify() now uses that threshold
+// too, so the grid and the rail never disagree about the same cell.
 function classify(c){
  var d=delta(c), cd=cnd(c);
  if(cd!==null&&(cd>=8||(cd>=3&&d!==null&&d<0))) return "push";
  if(d!==null&&d>=3) return "tw";
  if(cd!==null&&cd<=-3) return "window";
+ if(d!==null&&d<=-5) return "decline";
  return "steady";
 }
 var GROUPS=[["tw","TAIWAN-ORIGIN SUPPLY IS ADVANCING IN YOUR MARKET"],
  ["window","CHINA-ORIGIN SHARE IS RECEDING — A WINDOW"],
  ["push","A CHINA PRICE PUSH IS UNDER WAY"],
+ ["decline","TAIWAN-ORIGIN SHARE IS SLIPPING HERE"],
  ["steady","STEADY THIS EDITION"]];
 
 // When the verb already carries the direction, the number must not carry it
@@ -419,11 +443,19 @@ function pinCurrent(){
 
 // ---- desk: my market ---------------------------------------------------
 function myMarket(){
- var m=MKT[st.anchor], grouped={tw:[],window:[],push:[],steady:[]};
+ var m=MKT[st.anchor], grouped={tw:[],window:[],push:[],decline:[],steady:[]};
  FAM_LIST.forEach(function(f){var c=m.cells[f]; if(cellValid(c)) grouped[classify(c)].push(f);});
  var any=FAM_LIST.some(function(f){return cellValid(m.cells[f]);});
+ // st.mine only ever grew before this: pinCurrent() appends on every search,
+ // nothing ever removed a market short of pushing 12 others past it out the
+ // FIFO end (loadMine()). A casual lookup stuck permanently, with no way to
+ // deliberately drop one. The × below is additive — it doesn't touch when a
+ // market gets pinned, only gives a way to un-pin it — and is withheld on the
+ // last remaining market so the desk can never be left with no anchor to fall
+ // back to (mirrors loadMine()'s own "always at least one seed" rule).
  var h='<div class="mychips"><span class="lab">YOUR MARKETS</span>'+st.mine.map(function(k){
-  return '<button type="button" class="mych'+(k===st.anchor?" on":"")+'" data-a="'+esc(k)+'">'+esc(MKT[k].name)+"</button>";
+  return '<span class="mych-wrap"><button type="button" class="mych'+(k===st.anchor?" on":"")+'" data-a="'+esc(k)+'">'+esc(t(MKT[k].name))+"</button>"
+   +(st.mine.length>1?'<button type="button" class="mych-x" data-x="'+esc(k)+'" title="'+esc(t("Remove"))+'" aria-label="'+esc(t("Remove"))+" "+esc(t(MKT[k].name))+'">×</button>':"")+"</span>";
  }).join("")+"</div>";
  if(!any){
   h+='<p class="empty-note">'+fill("No categories published for {market} yet this edition — the daily feed is accumulating them. Try another market above or with the search on the right.",{market:esc(t(m.name))})+"</p>";
@@ -433,7 +465,7 @@ function myMarket(){
    return '<h5 class="sech">'+esc(g[1])+'</h5><div class="fams">'+fs.map(function(f){
     var c=m.cells[f];
     return '<button type="button" class="fcard'+(st.sel===f?" sel":"")+'" data-f="'+esc(f)+'">'
-     +'<div class="fh"><span>'+esc(famName(f))+'</span><b style="color:'+heat(c.uv_change_pct)+'">'+glyph(c.uv_change_pct)+" "+Math.abs(c.uv_change_pct)+"%</b></div>"
+     +'<div class="fh"><span>'+esc(famT(f))+'</span><b style="color:'+heat(c.uv_change_pct)+'">'+glyph(c.uv_change_pct)+" "+Math.abs(c.uv_change_pct)+"%</b></div>"
      +'<div class="fl">'+fmtShare(t("Taiwan"),c.share_tw,delta(c))+"</div>"
      +'<div class="fl">'+fmtShare(t("China"),c.share_cn,cnd(c))+"</div></button>";
    }).join("")+"</div>";
@@ -446,6 +478,16 @@ function myMarket(){
  [].forEach.call(document.querySelectorAll("#myMarket .mych"),function(b){
   b.addEventListener("click",function(){setAnchor(b.getAttribute("data-a"),false);});
  });
+ [].forEach.call(document.querySelectorAll("#myMarket .mych-x"),function(b){
+  b.addEventListener("click",function(e){e.stopPropagation();unpinMarket(b.getAttribute("data-x"));});
+ });
+}
+function unpinMarket(k){
+ var i=st.mine.indexOf(k);
+ if(i<0||st.mine.length<=1)return;
+ st.mine.splice(i,1);saveMine();
+ if(st.anchor===k)setAnchor(st.mine[0],false);else myMarket();
+ if(st.view==="brief")renderBrief();
 }
 
 function around(){
@@ -461,7 +503,7 @@ function around(){
  var a=MKT[st.anchor];
  var rows=[st.anchor].concat(ns).map(function(k){
   var m=MKT[k], me=(k===st.anchor);
-  return "<tr"+(me?' class="me"':"")+'><td><button type="button" class="aname" data-a="'+esc(k)+'">'+esc(m.name)
+  return "<tr"+(me?' class="me"':"")+'><td><button type="button" class="aname" data-a="'+esc(k)+'">'+esc(t(m.name))
    +"<em>"+(me?t("YOUR MARKET"):(m.src==="comtrade"?"UN Comtrade":"Eurostat"))+"</em></button></td>"
    +FAM_LIST.map(function(f){
     var c=m.cells[f];
@@ -521,7 +563,7 @@ function setAnchor(k,fromSearch){
 
 function rail(){
  var m=MKT[st.anchor], c=m.cells[st.sel];
- var h='<div><h4>'+esc(m.name)+"</h4><div class=\"sub\">"+esc(famName(st.sel).toUpperCase())+" · "+(m.src==="comtrade"?"UN Comtrade":"Eurostat")+"</div></div>";
+ var h='<div><h4>'+esc(t(m.name))+"</h4><div class=\"sub\">"+esc(famT(st.sel).toUpperCase())+" · "+(m.src==="comtrade"?"UN Comtrade":"Eurostat")+"</div></div>";
  if(!cellValid(c)){
   h+='<p style="font:500 12px/1.6 var(--sans);color:var(--tx2)">'+fill("Not published for {market} this edition — the daily feed is accumulating this category. Pick a market from Your Markets or the search above.",{market:esc(t(m.name))})+"</p>";
   document.getElementById("drail").innerHTML=h;
@@ -619,7 +661,7 @@ function briefLead(){
 function briefChips(){
  var vis=st.mine.slice(0,5), rest=st.mine.length-vis.length;
  var h='<span class="lab">Your markets</span>'+vis.map(function(k){
-  return '<button type="button" class="chip on" data-a="'+esc(k)+'">'+esc(MKT[k].name)+"</button>";
+  return '<button type="button" class="chip on" data-a="'+esc(k)+'">'+esc(t(MKT[k].name))+"</button>";
  }).join("");
  if(rest>0) h+='<span class="chip">'+fill("+ {n} more",{n:rest})+"</span>";
  h+='<span class="src">follows your Desk pins · ★</span>';
@@ -642,12 +684,12 @@ function briefChapters(){
    var tw=c.share_tw, cn=c.share_cn;
    var bars='<div class="chbars"><div class="chbar"><i style="width:'+(tw||0)+'%"></i></div><span>'+t("Taiwan")+" "+(tw==null?"—":tw+"%")+"</span>"
     +'<div class="chbar"><i style="width:'+(cn||0)+'%"></i></div><span>'+t("China")+" "+(cn==null?"—":cn+"%")+"</span></div>";
-   return '<a class="chrow" href="'+esc(href)+'" data-cell="'+esc(f)+'|'+esc(iso)+'"><b>'+esc(famName(f))+"</b> "
+   return '<a class="chrow" href="'+esc(href)+'" data-cell="'+esc(f)+'|'+esc(iso)+'"><b>'+esc(famT(f))+"</b> "
     +'<span class="chuv" style="color:'+heat(c.uv_change_pct)+'">'+glyph(c.uv_change_pct)+" "+pct(c.uv_change_pct)+"</span>"
     +"<p>"+why(c)+"</p>"+bars+"</a>";
   }).join("");
   if(!rows) return "";
-  return '<div class="chapter"><h3>'+esc(m.name)+"</h3>"+rows+"</div>";
+  return '<div class="chapter"><h3>'+esc(t(m.name))+"</h3>"+rows+"</div>";
  }).join("");
  var el=document.getElementById("briefChapters");
  if(!html){

@@ -2333,7 +2333,17 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
 
 <script type="application/json" id="outlook-data">__DATA__</script>
 <script>(function(){try{var D=JSON.parse(document.getElementById('outlook-data').textContent);var U=D.updated||'',frU=(D.freight&&D.freight.updated)||U,nwU=(D.news&&D.news[0]&&D.news[0].date)||U;
-[].forEach.call(document.querySelectorAll('.blk-h'),function(h){var sec=(h.querySelector('h2')||{}).textContent||'';var dt=/Freight/i.test(sec)?frU:(/News/i.test(sec)?nwU:U);var tog=h.querySelector('.tog');var b=document.createElement('span');b.className='secupd';b.textContent='\u27f3 '+dt;if(tog)h.insertBefore(b,tog);else h.appendChild(b);});}catch(e){}})();</script>
+[].forEach.call(document.querySelectorAll('.blk-h'),function(h){var sec=(h.querySelector('h2')||{}).textContent||'';
+ /* Product & Offer Finder already carries its own honest freshness label \u2014
+    #offer-meta reads product-offers.json's own `updated` field, a hand-curated
+    feed that has nothing to do with the daily D.updated stamp. Before this
+    check, every section got today's D.updated by default unless its title
+    matched Freight/News, so the Finder showed two disagreeing dates in one
+    header: its real "published 2026-07-24" next to a false "today". Skip it
+    here rather than route it to a different date \u2014 it already has the right
+    one, stamped by the code that renders #offer-grid. */
+ if(/Product\s*&\s*Offer Finder/i.test(sec))return;
+ var dt=/Freight/i.test(sec)?frU:(/News/i.test(sec)?nwU:U);var tog=h.querySelector('.tog');var b=document.createElement('span');b.className='secupd';b.textContent='\u27f3 '+dt;if(tog)h.insertBefore(b,tog);else h.appendChild(b);});}catch(e){}})();</script>
 <script>(function(){var D;try{D=JSON.parse(document.getElementById('outlook-data').textContent);}catch(e){return;}
 var R=D.regions||{},order=D.order||[];
 function fxItem(sym,val,chg){var cls=chg>0?'up':(chg<0?'down':'flat'),ar=chg>0?'▲':(chg<0?'▼':'■');return '<span class="ti"><span style="color:#10B981">●</span><span class="s">'+sym+'</span><span class="v">'+val+'</span><span class="'+cls+'">'+ar+(chg>0?'+':'')+chg.toFixed(1)+'%</span></span>';}
@@ -2493,7 +2503,12 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
    if(qsDest&&CO[qsDest])syncDest(qsDest);
   }}
  function applyCo(){var c=CO[sel.value];$('bc_duty').value=c[1];$('bc_tax').value=c[2];$('bc_taxL').textContent=(c[3]||'Import tax')+' %';$('bc_note').textContent=c[5];}
- function landed(){if(!sel)return;var c=CO[sel.value],fob=n('bc_fob'),qty=n('bc_qty'),frt=n('bc_frt'),insR=n('bc_ins')/100,duty=n('bc_duty')/100,tax=n('bc_tax')/100;
+ // A negative FOB/qty/freight isn't a real shipment (no crash, no NaN, but a
+ // negative total sat next to an "+0.0% vs FOB" uplift badge that special-cased
+ // fob>0 rather than computing the real, sign-flipped delta — the badge was
+ // wrong, not the arithmetic). Floor at 0 here, matching the margin/discount
+ // clamps already used elsewhere on this page (Math.min(95,Math.max(0,...))).
+ function landed(){if(!sel)return;var c=CO[sel.value],fob=Math.max(0,n('bc_fob')),qty=Math.max(0,n('bc_qty')),frt=Math.max(0,n('bc_frt')),insR=n('bc_ins')/100,duty=n('bc_duty')/100,tax=n('bc_tax')/100;
    var ins=(fob+frt)*insR,cif=fob+frt+ins,custVal=c[4]==='fob'?fob:cif,dutyAmt=custVal*duty,taxAmt;
    if(sel.value==='us'){var mpf=Math.min(615,Math.max(31,fob*0.003464)),hmf=fob*0.00125;taxAmt=mpf+hmf;}else{taxAmt=(cif+dutyAmt)*tax;}
    var fees=n('bc_brk')+n('bc_inl')+n('bc_oth');
@@ -2586,11 +2601,26 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
        for(i=0;i<ks.length;i++)if(want&&ks[i].toLowerCase().indexOf(want.split(' ')[0])===0)return ks[i];
        return null;}
      function pct(dd,o){var p=dd.mfn||0;(dd.addons||[]).forEach(function(a){if(a.optional)return;if(a.origin==='ANY'||a.origin===o)p+=a.pct;});return p;}
+     // The workspace's own Duty field (above, in the CO-table script block —
+     // a separate <script> tag, so it cannot be called into from here) starts
+     // out pre-filled from a fixed per-destination estimate that has nothing
+     // to do with T.destinations. For a destination this MAP resolves, the two
+     // numbers silently disagreed: US showed $0 duty in the landed-cost total
+     // while this very card showed $2,000 (4% MFN) two rows down, same $50,000
+     // shipment. Re-point #bc_duty at this panel's number — once per
+     // destination change, not every keystroke, tracked via lastDestKey, so a
+     // deliberate manual rate for a specific HS code (same destination)
+     // survives every other field on the page changing. Assumes Taiwan origin,
+     // matching the workspace's own assumption (it has no origin picker of its
+     // own — a Birdland quote is Taiwan-origin by definition).
+     var lastDestKey=null;
      function draw(){var co=document.getElementById('bc_co'),fobEl=document.getElementById('bc_fob');if(!co||!fobEl)return;
        var v=parseFloat(fobEl.value)||0,k=keyFor(co.value),tw=document.getElementById('ws_tw'),cn=document.getElementById('ws_cn'),note=document.getElementById('ws_dnote');
-       if(!k){tw.textContent='—';cn.textContent='—';note.textContent='no tariff data for this destination';out.innerHTML='';return;}
+       if(!k){lastDestKey=null;tw.textContent='—';cn.textContent='—';note.textContent='no tariff data for this destination';out.innerHTML='';return;}
        var dd=T.destinations[k],pTW=pct(dd,'TW'),pCN=pct(dd,'CN'),aTW=v*pTW/100,aCN=v*pCN/100;
        window.__wsDuty={tw:aTW,cn:aCN};
+       if(k!==lastDestKey){lastDestKey=k;var dutyEl=document.getElementById('bc_duty');
+         if(dutyEl&&Math.abs((parseFloat(dutyEl.value)||0)-pTW)>0.05){dutyEl.value=pTW.toFixed(1);dutyEl.dispatchEvent(new Event('input',{bubbles:true}));}}
        var fm=function(x){return 'US$'+Math.round(x).toLocaleString('en-US');};tw.textContent=fm(aTW);cn.textContent=fm(aCN);
        note.textContent=aCN>aTW?('Taiwan origin saves '+fm(aCN-aTW)):'same duty either origin';
        out.innerHTML='<div class="bcrow"><span>'+k+' · Taiwan origin</span><b>'+pTW.toFixed(1)+'% · '+fm(aTW)+'</b></div>'+
@@ -4152,12 +4182,22 @@ var fmt=function(x){return 'US$'+Math.round(x).toLocaleString('en-US');};
 /* 1 · today's lane rate under the freight input */
 (function(){var el=$('ws_frt_live'),co=$('bc_co'),frt=$('bc_frt');if(!el||!co||!frt)return;
  var lanes=(D.shipping&&D.shipping.lanes)||[];
- var WANT={us:'N. America',ca:'N. America',de:'N. Europe',nl:'N. Europe',fr:'N. Europe',pl:'N. Europe',uk:'N. Europe',es:'Mediterranean',au:'Australia',nz:'Australia',jp:'Japan'};
- function lane(){var w=WANT[co.value];if(!w)return null;for(var i=0;i<lanes.length;i++){if(String(lanes[i].lane||'').indexOf(w)>=0)return lanes[i];}return null;}
- function paint(){var l=lane();if(!l||!l.rate){el.hidden=true;el.textContent='';return;}
+ // 'N. America' never matches D.shipping.lanes' real names ("Asia → US West
+ // Coast" / "Asia → US East Coast") — there is no combined-continent lane —
+ // so this convenience line silently never appeared for the US, the single
+ // destination most exposed to tariff stacking. 'ca' is left matching nothing:
+ // there genuinely is no Canada-specific (or N.-America) lane in the feed, so
+ // hiding is the honest degrade, same as AU/JP correctly do below when no
+ // lane exists for them either.
+ var WANT={us:'US',ca:'N. America',de:'N. Europe',nl:'N. Europe',fr:'N. Europe',pl:'N. Europe',uk:'N. Europe',es:'Mediterranean',au:'Australia',nz:'Australia',jp:'Japan'};
+ // The US has two real lanes (West/East Coast) with genuinely different
+ // rates — picking one silently would hide the other's number rather than
+ // reveal it, so show every match, not just the first.
+ function lanesFor(){var w=WANT[co.value];if(!w)return [];return lanes.filter(function(l){return String(l.lane||'').indexOf(w)>=0&&l.rate;});}
+ function paint(){var ls=lanesFor();if(!ls.length){el.hidden=true;el.textContent='';return;}
   el.hidden=false;
-  el.innerHTML='Today '+l.lane+': US$'+Number(l.rate).toLocaleString('en-US')+'/FEU'+(l.transit?' · '+l.transit:'')+' <button type="button" class="ws-use">Use ×1 FEU</button>';
-  el.querySelector('.ws-use').addEventListener('click',function(){frt.value=l.rate;frt.dispatchEvent(new Event('input',{bubbles:true}));});}
+  el.innerHTML=ls.map(function(l){return 'Today '+l.lane+': US$'+Number(l.rate).toLocaleString('en-US')+'/FEU'+(l.transit?' · '+l.transit:'')+' <button type="button" class="ws-use" data-rate="'+l.rate+'">Use ×1 FEU</button>';}).join('<br>');
+  [].forEach.call(el.querySelectorAll('.ws-use'),function(b){b.addEventListener('click',function(){frt.value=b.getAttribute('data-rate');frt.dispatchEvent(new Event('input',{bubbles:true}));});});}
  co.addEventListener('change',function(){setTimeout(paint,0);});paint();})();
 /* 2 · scenario A: pin the current shipment, read deltas as you retune */
 (function(){var btn=$('ws_pinA'),out=$('ws_dA');if(!btn||!out)return;
