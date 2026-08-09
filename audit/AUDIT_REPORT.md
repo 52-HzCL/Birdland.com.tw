@@ -27,9 +27,9 @@
 
 | 類別 | 數量 |
 |---|---|
-| 新發現 P0 | 0(STATE 2 尚未開始) |
+| 新發現 P0 | 0 |
 | 新發現 P1 | 0 |
-| 新發現 P2 | 0 |
+| 新發現 P2 | 1(SEO-2,robots.txt/noindex meta 不一致,見下) |
 | 已知議題(承接自前 4 輪稽核) | 12 項,詳見 `AUDIT_STATE.json` 的 `knownIssues`(7 開放/待覆核、5 已關閉) |
 | 本次啟動前 recon 已直接處理 | 2 項(見下) |
 
@@ -52,6 +52,20 @@
    (依「pre-existing failure 只講一次」protocol)。**STATE 2/C 必須檢查 `feeds/*.xml`
    是否有同類漂移**——兩者用完全相同的 CI 關卡模式(build 完 `git diff --exit-code`),
    目前尚未驗證 feeds 是否也中招。
+
+## STATE 2 進度
+
+- **`index.html`**:A-E 五個象限已派工給 Sonnet 執行代理(背景執行,結果尚未返回,見
+  `AUDIT_STATE.json` 的 `state2Queue.inProgress`)。F 象限(架構,Opus 主責)待 A-E 結果
+  回來後才做,因為 F 的判斷需要 A-E 的具體觀察當輸入,不是憑空判斷。
+- 其餘 14 頁尚未開始。
+
+## SEO 檢查(提前完成 2 項,原排在 STATE 3,因為順手已查到就先記)
+
+| # | 檢查項 | 結果 | 嚴重度 |
+|---|---|---|---|
+| SEO-1 | `sitemap.xml`(51 個 `<url>`)是否需要內嵌 hreflang alternate | **非問題,已確認正確。** 真正的 hreflang 機制是 `tools/dev/_langs.js` 的 `cluster()` 產生的每頁 `<head>` `<link rel="alternate" hreflang="...">` 標籤,不是 sitemap 層級。實測 `index.html`:11 個 hreflang 標籤(en + 9 語言 + x-default),與 9 個語言資料夾完全對應。 | — |
+| SEO-2 | `robots.txt`(`Disallow: /partner.html /team.html /news.html /birdland-intro.html`)與各頁 `<meta name="robots">` 的一致性 | **新發現。** `cost-desk.html`/`executive.html` 都有 `noindex` meta,但**沒有**列在 `robots.txt` 的 Disallow 裡;`partner.html`/`team.html` 則是兩者都有(`robots.txt` Disallow **加上** `noindex` meta)。這是已知的 SEO 反模式:同一頁面若被 `robots.txt` Disallow,爬蟲根本不會抓取該頁,因此永遠看不到頁面裡的 `noindex` 指示——反而可能讓純網址(無摘要)被索引。`cost-desk.html`/`executive.html`(只有 noindex meta,無 Disallow)才是比較安全的做法;`partner.html`/`team.html` 的雙重設定才是值得重新考慮的一方。 | **P2**(不緊急,SEO 邊際風險,非功能性 bug,列入 STATE 3 彙整不遺漏即可) |
 
 ## 架構問題清單(Opus 裁決版,持續更新)
 
