@@ -176,6 +176,31 @@ partner.html/cost-desk.html 這兩頁確認有替代的指令面板搜尋(`.pd-o
 375px 零橫向溢出;`P.shipping`→`lineChart` 崩潰風險經確認不可重現(機制已不存在)。
 **Console:僅同一個沙盒憑證問題,零其他錯誤,兩頁、兩種寬度、約 25 次導覽測試全部確認。**
 
+## executive.html 逐項發現(ABrief 桌,本頁乾淨,零 P0/P1)
+
+**這是目前唯一一頁零 P0、零 P1 的稽核結果**——四桌功能稽核當初修過的三個相關 bug 類別
+(重複新聞去重、政策動作不匹配、非 schema source_tier)在此頁都重新驗證為「仍然修復」或
+「不適用」(duty 模型分歧是 cost-desk.html 專屬,此頁沒有相關程式碼)。`D.partner.*` 誤讀
+陷阱在此頁**結構上不可能發生**(全檔案零 `D.partner`/`P.` 相關字串,不只是行為上沒犯,
+是根本沒有機會犯)。重複 spark 尾端 `chg` 修正兩處獨立實作皆正確套用且逐筆核對數字正確。
+
+**P2(3 項)**:D17「Europe」缺字典鍵確認也影響此頁(同一套 `mail-routing.js` 機制,裁決
+不變,列為既有議題擴大範圍,非新議題)。`mail-routing.js:62` 的 `TAGS.brief` 註解只提到
+AsiaSource,沒提到 executive.html 也用同一個 tag(純註解落差,不影響功能)。**新發現一種
+先前沒遇過的類型(裁決 D27)**:`daily-journal.css:22-23` 的 `.top{position:relative}`
+規則表面上看像多餘的重複宣告,實際上是防止 D20 那類 race 真的發作的關鍵——已加入
+`CLEANUP.md` 的「反向清單」明確標記不可移除。
+
+**F(架構,重要新資訊,裁決 D28)**:I-7/`app-bar.css` 的 token 遮蔽問題現在有三頁實測
+數據:executive.html 未遮蔽、正確渲染 tokens.css 原值;partner.html 與 cost-desk.html
+各自遮蔽成不同值,連兩者互相都對不上。**建議修法方向精化**:不是「挑一個新共用值」,是
+「移除 partner/team 模板各自的遮蔽,回歸已經在 executive.html/my-market.html 上驗證正確
+的 tokens.css 原值」。
+
+**D20/D24/D27 追蹤**:確認 bug 計數維持 2/3(執行代理特別用執行順序埋點 + 人工延遲兩種
+方式主動尋找第三個案例,兩個最像的候選都沒有產生真實失效)。「脆弱但正常」次要計數器
+新增一項(此頁的 edstrip/app-bar 近似案例),目前計數 2。
+
 ## team.html 逐項發現
 
 **P0**:見報告最上方,不重複。
