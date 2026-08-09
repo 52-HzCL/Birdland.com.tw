@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "lastUpdated": "2026-08-09",
+  "currentState": "STATE_1_DISCOVERY",
+  "stateNote": "STATE 0 done (files created on branch audit/zero-touch-review off main@fbe1d0e). STATE 1's first pass (known-issues registry + page inventory + priority) was drafted during the recon that produced this file — see ORCHESTRATION.md sections 0 and STATE 1. Next loop iteration should: (a) verify the a few open facts flagged 'needsVerification' below, (b) then begin STATE 2 on the high-priority queue in order.",
+  "modelSplit": { "judge": "opus", "executor": "sonnet" },
+
+  "knownIssuesSources": ["audit-report.md (2026-06-29)", "ISSUES.md", "SUMMARY.md + UX-REVIEW.md (ux-refine, confirmed merged into main)"],
+  "knownIssues": [
+    { "id": "I-0", "source": "ISSUES.md", "status": "closed", "note": "renderDecisionVisuals null-innerHTML on news.html — fixed in Phase 3." },
+    { "id": "I-1", "source": "ISSUES.md", "status": "fix_exists_unpushed", "note": "Team Desk PIN gate is client-side only (View Source defeats it). Documentation fix committed on local branch i18n/my-market-composed-sentences, not yet pushed. Real fix would be a hosting/auth change — out of scope for a doc note." },
+    { "id": "I-2", "source": "ISSUES.md", "status": "fix_exists_unpushed", "note": "birdland-intro.html orphaned + broken (bare-UUID image refs, 404s). Deletion committed on i18n/my-market-composed-sentences, not yet pushed. Still present on main as of this audit branch's base commit." },
+    { "id": "I-3", "source": "ISSUES.md", "status": "closed", "note": "Intermittent 404 on index.html — was missing favicon.ico, fixed in 552e8c0." },
+    { "id": "I-4", "source": "ISSUES.md", "status": "open", "note": "Six webfont families across two blocking Google Fonts requests on partner.html/cost-desk.html. Self-hosting/preloading decision is a build/hosting call, listed as out of brief scope originally." },
+    { "id": "I-5", "source": "ISSUES.md", "status": "closed", "note": "jsdom moved to devDependencies; playwright-core/sharp declared. CI installs no node deps so unaffected." },
+    { "id": "I-6", "source": "ISSUES.md", "status": "open_needs_reverify", "note": "tools/build_terminal.py (the CI/Python path) has never been executed locally — only the Node twin gen-terminal.js has real test coverage. Watch first real CI run. STATE 2/C should check whether this is still true." },
+    { "id": "I-7", "source": "ISSUES.md", "status": "open", "note": "partner_template.html's body.theme-light shadows --down/--up/--flat/--line; desk-banner.css's hairlines render differently on partner/cost-desk vs elsewhere. Deliberately left alone as a considered change, not urgent." },
+    { "id": "S1-S2", "source": "audit-report.md", "status": "needs_human", "note": "partner.html/team.html PIN gates are decorative (plaintext passwords in client JS); content is fully public via View Source regardless of the gate. Whether this matters is a business call (is the content actually confidential?), not a technical one. Not to be decided by this loop." },
+    { "id": "L2", "source": "audit-report.md", "status": "needs_reverify", "note": "node_modules/ was committed (26MB, unused jsdom). I-5 suggests partial cleanup since (jsdom reclassified). STATE 5 should confirm node_modules itself is actually gitignored now, not just the dependency reclassified." },
+    { "id": "UXREVIEW-open-1", "source": "SUMMARY.md 'Still open'", "status": "open", "note": "Team Desk has no shared header (excluded from banner by instruction); Terminal panel does not appear on it." },
+    { "id": "UXREVIEW-open-2", "source": "SUMMARY.md 'Still open'", "status": "open_needs_reverify", "note": "Guide's screenshots (tools/dev/gen-guide-shots.js) are a manual re-run; CI has Python not Playwright. Any redesign since needs a recapture or the Guide shows a stale site." }
+  ],
+
+  "seedFindingsAlreadyActioned": [
+    { "what": "terminal.json was stale after PR #1 added two new product-101.html TOC sections (s-qc, s-fix) — gen-terminal.js scrapes the live TOC and hadn't been re-run.", "action": "Regenerated and pushed to factory/qc-and-troubleshooting (commit 35657ff), verified via verify-material-vocab.js (0 uncoined names) and verify-desks.js (29/29 pass). This is PR #1's own responsibility, not this loop's — recorded here only so STATE 2 doesn't rediscover it as new." },
+    { "what": "calendars/*.ics (all 7 files) drift from tools/build_calendars.js's current output — UID suffix format change (@birdland.com.tw -> .birdland-public-calendar) plus LF->CRLF line endings.", "action": "Confirmed reproducing on main@fbe1d0e (unrelated to any in-flight PR). Noted once on PR #1's thread per pre-existing-failure protocol. STATE 2/C must check feeds/*.xml for the same class of drift — NOT yet verified either way." }
+  ],
+
+  "pageInventory": [
+    { "page": "index.html", "build": "hand-authored", "priority": "high", "state2Status": "pending" },
+    { "page": "product-101.html", "build": "structured-array (build-p101.js + GATES/MATERIALS/PACKS/ECO/COST/SECTIONS + ratings.js)", "priority": "high", "state2Status": "pending", "note": "PR #1 (factory/qc-and-troubleshooting) is independently expanding this page right now — cross-reference, don't duplicate fixes." },
+    { "page": "contact.html", "build": "hand-authored", "priority": "high", "state2Status": "pending", "note": "Real conversion point is mail-routing.js-driven mailto routing, not a <form>. No <form>/action=/mailto:/method= literal in the HTML — verified by grep." },
+    { "page": "partner.html", "build": "template (partner_template.html, __DESKMODE__=buyer)", "priority": "high", "state2Status": "pending" },
+    { "page": "cost-desk.html", "build": "template (partner_template.html, __DESKMODE__=cost)", "priority": "high", "state2Status": "pending" },
+    { "page": "team.html", "build": "template (team_template.html)", "priority": "high", "state2Status": "pending" },
+    { "page": "executive.html", "build": "template (executive_template.html)", "priority": "high", "state2Status": "pending" },
+    { "page": "guide.html", "build": "template (news_template.html) -- NOTE: AGENTS.md says news.html is built from this; that's stale, see DECISIONS.md D5", "priority": "high", "state2Status": "pending" },
+    { "page": "about.html", "build": "hand-authored", "priority": "medium", "state2Status": "pending" },
+    { "page": "my-market.html", "build": "hand-authored, runtime i18n via i18n.js", "priority": "medium", "state2Status": "pending", "note": "classify()/collectFamilies() had a real bug fixed earlier this session; regression-check priority." },
+    { "page": "birdland-intro.html", "build": "orphaned bundler artifact", "priority": "medium", "state2Status": "pending", "note": "Deletion already committed on i18n/my-market-composed-sentences, unpushed. This audit should confirm current state matches ISSUES.md I-2, not re-propose the same fix." },
+    { "page": "privacy.html", "build": "hand-authored", "priority": "low", "state2Status": "pending" },
+    { "page": "news.html", "build": "hand-written redirect stub -> guide.html (per pr-validation.yml comment)", "priority": "low", "state2Status": "pending", "note": "verify redirect target + canonical only, no deep test needed" },
+    { "page": "manufacturing.html", "build": "hand-written redirect stub -> product-101.html", "priority": "low", "state2Status": "pending", "note": "verify redirect target + canonical only" },
+    { "page": "why-birdland.html", "build": "hand-written redirect stub -> about.html#pure-play", "priority": "low", "state2Status": "pending", "note": "verify redirect target + canonical only" }
+  ],
+
+  "languageEditions": {
+    "facade": "index/about/contact/privacy/product-101 etc — full static per-language HTML, content-keyed via i18n-page.js/i18n-build.js, checked via i18n-drift.js not as independent pages",
+    "app": "partner/cost-desk/team/executive/my-market — single English HTML, runtime-translated via i18n.js walking DOM against app.<lang>.json",
+    "editions": ["de", "es", "fr", "it", "ja", "nl", "pl", "pt-br", "zh-tw"],
+    "needsVerification": ["GLOSSARY.md 'Fixed translations' table only has de/zh-Hant columns for 10 shipped languages — gap flagged, not yet Opus-arbitrated on whether to expand.", "robots.txt current existence/content unverified since audit-report.md (2026-06-29) flagged it missing.", "sitemap.xml hreflang coverage vs _langs.js cluster() output unverified."]
+  },
+
+  "state2Queue": {
+    "notStarted": ["index.html", "product-101.html", "contact.html", "partner.html", "cost-desk.html", "team.html", "executive.html", "guide.html", "about.html", "my-market.html", "birdland-intro.html", "privacy.html", "news.html", "manufacturing.html", "why-birdland.html"],
+    "inProgress": null,
+    "completed": []
+  },
+
+  "state5CleanupSeeds": ["node_modules/ commit status needs reverification (audit-report.md L2 / ISSUES.md I-5)", "origin/codex/pr-validation stale branch — flag for deletion, do not touch", "I-7 four shadowed palette tokens — check for new collisions since"]
+}
