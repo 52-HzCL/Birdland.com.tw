@@ -28,8 +28,16 @@
 | 類別 | 數量 |
 |---|---|
 | 新發現 P0 | 0 |
-| 新發現 P1 | 2(1 個 NEEDS HUMAN 設計取捨、1 個已修復的文件訂正,見 index.html 逐項發現) |
-| 新發現 P2 | 2(SEO-2 robots.txt/noindex 不一致;index.html 字級數量差 1,不追查) |
+| 新發現 P1 | 6(1 個已修復的文件訂正、1 個 NEEDS HUMAN 設計取捨、4 個真實功能/內容 bug——依鐵律 2 全部只留建議,不由稽核迴圈修改站台程式碼) |
+| 新發現 P2 | 10(SEO-2、index.html 字級差異、contact.html×2、partner/cost-desk×6,其中 3 項已收錄 CLEANUP.md C6-C8) |
+
+**P1 快速索引**(全部細節見下方逐頁段落):
+1. Hero `[data-ink-main]` opacity 設計取捨(index.html,NEEDS HUMAN,D9)
+2. AGENTS.md 三處文件訂正(index.html + partner/cost-desk,**已修復**,D5/D8/D11/D13)
+3. contact.html region 選擇靜默被覆寫(D15,真實 bug,建議修法已記錄)
+4. contact.html 9 語言 desk 名稱競態(D16,真實 bug,建議修法已記錄)
+5. cost-desk.html 品牌重命名漏三處(建議修法已記錄)
+6. partner.html 分享功能靜態資料誠實標示不足(D14,真實內容問題,建議修法已記錄)
 | 已知議題(承接自前 4 輪稽核) | 12 項,詳見 `AUDIT_STATE.json` 的 `knownIssues`(7 開放/待覆核、5 已關閉) |
 | 本次啟動前 recon 已直接處理 | 2 項(見下) |
 
@@ -55,9 +63,92 @@
 
 ## STATE 2 進度
 
-- **`index.html`:已完成(A-F 全部跑完)。** 詳見下方 P1 清單與「已修復」項目。
-- 其餘 14 頁尚未開始,`product-101.html`/`contact.html` 已派工給 Sonnet 執行代理(見
-  `AUDIT_STATE.json`)。
+- **已完成(A-F 全部跑完):`index.html`、`contact.html`、`partner.html`、`cost-desk.html`**。
+- 其餘 11 頁尚未開始。`product-101.html` 刻意延後(PR #1 正在改動中)。
+
+## contact.html 逐項發現(全站真正的轉換點)
+
+**P1-1(D15,真實功能性 bug,非文件問題)**:訪客在 contact.html 本頁自己選了非預設 region
+(如 UK、Americas),若沒有當場送出、之後才回訪,選擇會被**靜默蓋回 Global**——根因是
+`context.js:82,86` 每次頁面載入都無條件用一個 contact.html 從未寫入的欄位(`room`)反推
+覆寫 `bl_mr_region`,不是只有「.set() 被呼叫時」才觸發。已用 5 組情境 + 完整 mailto 攔截
+實測驗證,唯一「看起來沒事」的情況(從桌面 app 帶 context 進入)只是巧合——覆寫的值剛好
+等於訪客要的值。**裁決(D15)**:根本修法是讓 `context.js` 的初始化期 `persist()` 也比照
+`.set()` 一樣有變更偵測,不是讓 contact.html 反向回饋(該方案已被原設計者的既有註解明確
+排除,因為 4 個路由 region 對 7 個桌面 room 沒有唯一反向映射)。**裁決(D18)**:維持 P1
+不升 P0——需要兩階段情境才觸發,且誤送目的地仍是 Birdland 真實監控的歐洲總桌,不是黑洞。
+不由稽核迴圈修改 `context.js`(共用檔案,影響所有讀 blCtx 的頁面)。
+
+**P1-2(D16,真實功能性 bug)**:9 個非英語版本在「回訪且已記住非預設偏好」情境下,desk
+名稱可能顯示錯誤——`hunting` 產線在全部 9 語言永久卡英文(裸鍵字典裡不存在);
+`Americas`/`UK &amp; Commonwealth` region 在 7 個語言顯示文法錯誤的詞形(如德文用名詞
+「Amerika」而非形容詞「amerikanischen」)。根因是 `i18n.js` 的字典 fetch 是非同步的,
+但 contact.html 在 DOMContentLoaded 當下就同步呼叫 `deskName()`,字典未就緒時回退英文
+裸字,能不能事後被 `translateText()` 二次掃描修正,純屬「裸鍵剛好跟命名空間鍵同形」的巧合
+(對照組 `European` 兩者相同,因此不會露餡)。這個檔案曾為同一類問題修過兩輪
+(`6223819`/`d1a81f6`),但兩次都是手動載入頁面驗證,系統性漏掉「回訪者」這個時序組合。
+**裁決(D16)**:根本修法是讓首次 `sync()` 等字典載入完成才執行,不是逐一補缺字典鍵
+(補鍵治標,新增選項還是會中招同一顆競態)。不由稽核迴圈修改。
+
+**P2**:「Europe」下拉選項在全部 9 語言字典缺漏,恆常顯示英文(裁決 D17:該補,但 i18n
+字典檔不算 ORCHESTRATION.md 的文件修正例外範圍,留給人執行,列入快速勝利清單)。
+`i18n-drift.js` 的 SHA-1 指紋含 `?v=` 快取版本號,導致「只換版本號沒換內容」也判 9 個
+語言版本 STALE,且會在未來每次共用資源版本 bump 時重演(裁決 D19:可改,建議指紋只算
+可翻譯文字內容,不由稽核迴圈修改工具本身)。
+
+**通過(A-E,14 項)**:郵件路由核心映射邏輯(6 組 region×line 組合,含歷史 bug 類別
+「政策動作不匹配」的回歸測試)完全正確,含 hunting 產線的路由覆寫規則;反爬蟲設計(揭露前
+零網址字串洩漏);reveal 後即時更新;導覽/語言選單/麵包屑全部正確;Terminal chip 與
+index.html 行為一致;不消費 `outlook-data.json`;無情境與有情境(桌面 app 帶入)兩種進入
+路徑皆正確;`product-101.html` 確認是中性中繼站(不傳遞也不清空 context);line 欄位不受
+P1-1 影響;導覽殼與設計 token 與 index.html 一致;GLOSSARY 鎖定詞「OEM」正確保留。
+**Console:僅同一個沙盒 Chromium 憑證問題,零其他錯誤,375px 零橫向溢出。**
+
+**F(架構,Opus,見 DECISIONS.md D20)**:此頁兩個 P1 雖症狀不同,根因都可歸因於「多個
+獨立載入的 script(`context.js` 無 defer、`i18n.js` 非同步 fetch、`mail-routing.js` 有
+defer)之間沒有顯式的『準備好了』協定,正確性目前靠 script 標籤屬性的巧合排列」。**暫定
+可改(WATCH),設下明確升級門檻:若下一頁稽核又發現第三個同根因的獨立案例,就要升級為
+必改並提出集中式初始化協定的具體設計。** 目前計數:2/3。
+
+## partner.html + cost-desk.html 逐項發現(共用 partner_template.html,合併稽核)
+
+**P1(cost-desk.html 專屬)**:CostNow 品牌重命名沒做完整——`partner_template.html:2198`
+(`aria-label="AsiaSource sections"`)、`:2933`(`aria-label="AsiaSource navigation"`)、
+`:2955-2956`(選單收合鈕文字硬寫死 `"Open AsiaSource menu"`,預設就會顯示)三處共用外殼
+文字仍寫死「AsiaSource」,即使同檔案幾百行外的 `isCost` 重命名區塊(:2751-2764)已經正確
+處理了標題/麵包屑/徽章/主題色四項。等於一個真實付費客戶工具在自己的導覽列自稱錯了名字。
+**建議修法方向(F,不由稽核迴圈執行)**:重命名邏輯目前散落在個別字串字面值,建議集中成一個
+以 `BL_DESK`/`isCost` 為 key 的桌面顯示名稱查找表,避免未來第三種桌面模式重複同一種
+「漏改幾處」的失誤。
+
+**P1(partner.html 專屬,D14)**:「分享給同事」功能把桌面設定的靜態預測曲線
+(`P.material.series`)用跟即時指數相同的句型帶出(「Steel HRC (blades) is currently
+index 101.2 (-0.6%).」),只有頁尾一句通用免責聲明,無逐項新鮮度標示。這是寄給站外真實
+第三人的內容。**裁決:維持 P1(見上方裁決表 D14),`docs/DATA-SCHEMA.md` 自己把「誠實標示
+靜態資料」列為兩條最重要規則之一,通用免責聲明不能取代逐項標示。**
+
+**已修復(文件訂正)**:`AGENTS.md`「PIN gates bypass in dev」提到的 `bd_partner`
+已失效——partner.html/cost-desk.html 的 PIN 閘門已在 `6fd00c1` 徹底移除(三種方式獨立
+驗證),已訂正文件並同步更新 `AUDIT_STATE.json` 的 `S1-S2` 已知議題(team.html 部分不受
+影響,原判維持)。`AGENTS.md` 描述「`P.shipping` 不能餵進 `lineChart`」的警告已訂正——
+全庫 grep `lineChart` 零匹配,消費該資料的區塊本身已被標記「retired outright」。`ISSUES.md`
+I-7 已加註(沿用該檔自己的「加註不刪除」慣例):遮蔽的元件從 `desk-banner.css`(已不在這
+兩頁載入)變成 `app-bar.css`(現為 5 頁共用),影響面擴大但仍非緊急。
+
+**P2(6 項)**:三項已收錄 `CLEANUP.md`(C6-C8,tier A 死碼:11 個指向已「retired outright」
+區塊的 `bentofy()` 呼叫、完全沒被使用的 `.wl`/`.tm` 表格樣式、視覺上已被 CSS 藏起來且有
+一段永遠打不到的舊手風琴 click handler)。其餘三項:cost-desk.html 沒有安裝提示 UI(低
+嚴重度,webmanifest 本身仍正確連結);`?q=` deep-link 只有 partner.html 支援,cost-desk.html
+by design 沒有(搜尋面板已正確處理跨桌導向,不是遺漏);Terminal chip 在四個閘門桌面全部
+不存在(`desk-banner.js` 提供,但四個桌面模板都不載入 `desk-banner.css`/`.js`)——確認
+`SUMMARY.md`「Still open」提到的 Team Desk 沒有 Terminal 面板其實不是 Team 專屬,四桌皆然,
+但四桌都有替代的指令面板搜尋(`.pd-omni-btn`),功能上不缺。
+
+**通過(A-E,13 項)**:單面板 router 不變式(任一時刻恰好一個面板可見)在全部導覽項目、
+兩種寬度、reload、上一頁下皆正確;`?q=420J2...#pd-builder` 深連結正確;重複 spark 尾端點
+的 `chg` 修正在三處獨立實作皆一致套用;色彩語意(漲=紅=壞、buyer-cost 語意)兩頁一致;
+375px 零橫向溢出;`P.shipping`→`lineChart` 崩潰風險經確認不可重現(機制已不存在)。
+**Console:僅同一個沙盒憑證問題,零其他錯誤,兩頁、兩種寬度、約 25 次導覽測試全部確認。**
 
 ### index.html 逐項發現
 
@@ -122,7 +213,10 @@ index specifics 節、`SUMMARY.md` 的 hero 文案宣稱)。裁決:**可改,非�
 | `AGENTS.md`「Pages & build system」節與原始碼事實不符(news.html 現況是 redirect stub,非 BUILT ARTIFACT) | 訂正,見下方「本迴圈已完成的文件訂正」 | 已在稽核分支處理 |
 | 四種頁面建構哲學並存(樣板替換/結構化陣列/執行期 i18n/純手寫) | 初步判斷:各自服務的頁面性質不同(合理),STATE 3 彙整時重新確認 | 可改(初步) |
 | GLOSSARY.md「Fixed translations」表僅 de/zh-Hant 兩欄,服務 10 語言 | 待 Opus 於 STATE 2/E 正式裁決是否補齊 | 待裁決 |
-| 「commit message 講清楚了,但對應說明文件沒跟著更新」模式,這次稽核已抓到三次(`AGENTS.md` 建置系統節、`AGENTS.md` index specifics 節、`SUMMARY.md` hero 文案宣稱) | 正常的文件熵,不建議新增流程負擔(如 doc-currency CI 檢查),稽核迴圈定期抓漏已是足夠機制 | 可改(非必改) |
+| 「commit message 講清楚了,但對應說明文件沒跟著更新」模式,累計已抓到 5 次(`AGENTS.md` 三節、`ISSUES.md` I-7、`SUMMARY.md` hero 文案宣稱) | 正常的文件熵,不建議新增流程負擔(如 doc-currency CI 檢查),稽核迴圈定期抓漏已是足夠機制——但累計次數持續在報告,供人自行判斷是否某個時間點該重新考慮 | 可改(非必改) |
+| contact.html 兩個真實 P1(D15+D16)根因都可歸因於「多個獨立載入的 script 之間無顯式初始化協定」(DECISIONS.md D20) | WATCH,非必改——設下明確升級門檻:下一頁若又發現第三個同根因獨立案例,升級為必改並提出集中式初始化協定設計。目前計數 2/3 | 可改(WATCH,有具體升級條件) |
+| cost-desk.html 品牌重命名散落在個別字串字面值,導致漏改 3 處(AsiaSource 殘留) | 建議集中成以 `BL_DESK`/`isCost` 為 key 的桌面顯示名稱查找表,避免未來新增桌面模式重蹈覆轍 | 可改,中價值,不緊急 |
+| `tools/partner_template.html` 累積大量迭代淘汰後的死碼(11 個死 `bentofy()` 呼叫、未使用的 `.wl`/`.tm` 樣式、死手風琴 handler)——已收錄 CLEANUP.md C6-C8 | 正常的迭代殘留,STATE 5 統一處理,不是架構級警訊 | 可改(STATE 5 例行清理) |
 
 ## 本迴圈已完成的文件訂正
 
@@ -132,18 +226,29 @@ index specifics 節、`SUMMARY.md` 的 hero 文案宣稱)。裁決:**可改,非�
 2. `AGENTS.md`「index.html specifics」節 + storage namespace 範例(D8):訂正為 ink
    hero/`bl_ink_intro`/單行可橫向捲動導覽列的現況,移除已不存在的 foliage-cut/
    reading-focus 縮放/hamburger 選單描述。
+3. `AGENTS.md`「PIN gates bypass in dev」(D11):訂正為只有 team.html 還有真實閘門,
+   partner.html/cost-desk.html 的閘門已在 `6fd00c1` 移除;`executive.html` 從來就沒有
+   `bd_executive` 閘門可以繞過(獨立 grep 驗證)。連帶更新 `AUDIT_STATE.json` 的 `S1-S2`。
+4. `AGENTS.md`「`P.shipping`... `lineChart`」警告(D13):移除已不存在的機制描述
+   (全庫零匹配 `lineChart`,消費該資料的區塊已被標記「retired outright」)。
+5. `ISSUES.md` I-7(D12):加註(沿用該檔自己的慣例,不刪原文)遮蔽元件已從
+   `desk-banner.css` 變成 `app-bar.css`,影響面從 2 頁擴大到 5 頁,仍非緊急。
 
 ## P0 清單
 
-_(STATE 2 尚未開始,尚無新發現)_
+_(截至目前 4 頁完成,零 P0 發現。)_
 
 ## 快速勝利清單
 
 - terminal.json 重新產生(已完成,見上,屬 PR #1 範疇)
-- `AGENTS.md` 兩節文件訂正(已完成,見上「本迴圈已完成的文件訂正」)
+- `AGENTS.md`/`ISSUES.md` 五處文件訂正(已完成,見上「本迴圈已完成的文件訂正」)
 - Hero `[data-ink-main]` 若要恢復可見:改一個 CSS 數值(0→0.32 類似 `.bl-ink-marker` 的
   做法),成本極低,但這是 NEEDS HUMAN 的設計取捨,不在稽核迴圈的快速勝利範圍內執行,
   只在此標註「如果人決定要改,這是最小改法」
+- contact.html「Europe」下拉選項缺 9 語言字典鍵(D17):純內容補譯,零邏輯風險,但 i18n
+  內容檔不算 ORCHESTRATION.md 的文件修正例外,留給人執行
+- cost-desk.html 品牌重命名補三處字串(nav/rail aria-label、選單收合鈕文字):同樣是低
+  風險的字串修正,但仍是站台程式碼(HTML/JS 字面值),不由稽核迴圈執行
 
 ## 建議修復順序
 

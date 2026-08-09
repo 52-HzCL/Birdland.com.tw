@@ -63,8 +63,12 @@ is the two rules that matter most; the doc has the rest.
   Always prefer the top-level daily block; use `P.*` only as fallback, and label
   static data honestly (see freshness badges below).
 - Known trap: `P.shipping` is a desk-set forecast CURVE whose levels can sit far
-  below real spot rates; live lane rates live in `D.shipping` (no points[] series —
-  it can never be fed to `lineChart`, it would throw).
+  below real spot rates; live lane rates live in `D.shipping` (no points[] series).
+  _(The section that used to render `P.shipping` was retired outright — see
+  `tools/partner_template.html`'s own "retired outright" comment — and no
+  function named `lineChart` exists anywhere in the repo anymore, corrected
+  2026-08-09 by the Zero-Touch audit after this warning was found to describe
+  a mechanism that no longer exists.)_
 - Known pipeline bug: the last spark-array point is often duplicated, so naive
   `chg` reads 0.0%. Use the existing "walk back past duplicate tail" pattern
   (search `realChg` / `rc(` in partner template) when deriving % change.
@@ -96,9 +100,15 @@ is the two rules that matter most; the doc has the rest.
 - `innerHTML` renderers are INTENTIONAL (static templates, no user input). Do not
   "security-fix" them to textContent — that turns nav markup into visible text.
 - Storage namespaces: partner `bd_p_*`, team `bd_t_*`, executive `bd_e_*`, index `bl_*`
-  (`bl_ink_intro` — see index.html specifics below). PIN gates bypass in dev:
-  `sessionStorage.bd_partner='1'` / `sessionStorage.bd_team='1'` /
-  `sessionStorage.bd_executive='1'`.
+  (`bl_ink_intro` — see index.html specifics below).
+- PIN gate bypass in dev: `sessionStorage.bd_team='1'` for team.html only.
+  _(Corrected 2026-08-09: partner.html and cost-desk.html no longer have a PIN
+  gate at all — deliberately removed in `6fd00c1` ("Actions become icons, and
+  15KB of CSS for markup that is gone", 2026-07-31). Both load fully with no
+  bypass needed; `sessionStorage.bd_partner` does nothing now.
+  `executive.html`'s only `sessionStorage` use is an unrelated dismissible-tip
+  mechanism, not a gate — there never was a `bd_executive` gate to bypass on
+  this page despite what this line used to imply.)_
 
 ## index.html specifics
 

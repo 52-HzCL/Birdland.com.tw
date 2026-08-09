@@ -15,6 +15,14 @@
 | C4 | I-7:`partner_template.html` 的 `body.theme-light` 遮蔽 `--down/--up/--flat/--line` 四個 palette token | B(刻意保留至今,非死碼) | `ISSUES.md` 原文明講「renaming the desks' four variables is a change worth making deliberately rather than in the last minutes before a deploy」——即這是被延後的技術債,不是沒人發現的死碼。STATE 5 只需確認有沒有*新的*共用元件踩到同一個陷阱,不是重新提案解決 I-7 本身。 | `ISSUES.md` I-7 |
 | C5 | `.atlas-*`/`.mat-*`/`.dia-*` 舊 CSS class(SUMMARY.md 記錄為已於 UX 改版中移除) | 待驗證 | `SUMMARY.md`「What was removed」表列為已刪除(15,055 bytes,PIN gate/rake routes 一併清除)。既然 `ux-refine` 已合併進 main(`DECISIONS.md` D1),理論上這些已經不存在——STATE 5 用 `tools/dev/cssprune.js` 實際跑一次確認,不要假設文件說刪了就真的乾淨。 | `SUMMARY.md` |
 
+## STATE 2 順手發現的死碼(partner.html/cost-desk.html 稽核,2026-08-09,證據充分先記錄)
+
+| # | 候選 | 分級 | 證據 |
+|---|---|---|---|
+| C6 | `tools/partner_template.html` 11 個 `bentofy()` 呼叫指向已「retired outright」(模板自己的註解語言)的 section id:`p-brief`(:3370)、`p-material`(:3374)、`p-shipping`(:3378)、`p-freight`(:3382)、`p-war`(:3395)、`p-tariff`(:3399,含讀取死資料 `P.tariffmon` 的 `mdSynth` 回呼)、`p-news`(:3409)、`p-keynews`(:3411)、`p-regcal`(:3412)、`p-report`(:3416)、`p-season`(:3425) | **A**(引用分析證明可刪——`bentofy()` 自己在 `document.getElementById(id)` 為 null 時直接 return,現場 DOM 逐一確認這些 id 全部不存在) | STATE 2 partner.html+cost-desk.html 稽核報告 |
+| C7 | `.wl`/`.tm` 表格 class 的完整 CSS 定義(`tools/partner_template.html:76-79,133,172,190,465-468,672-677`,含 up/down/flat 色彩映射)但整個模板只有 1 個 `&lt;table&gt;`,且不用這兩個 class | **A**(live DOM 確認 `document.querySelectorAll('.wl').length===0` 且 `.tm` 同樣為 0,無 JS 動態掛載路徑) | 同上 |
+| C8 | 舊手風琴式收合 UI 殘留:`.blk-h .tog,.blk-h .lights{display:none!important}` 的 CSS 覆蓋規則、加上一個永遠打不到的 bubble-phase `.toc a` click handler(`tools/partner_template.html:2609-2612`,單面板 router 的 capture-phase handler 會先 `stopPropagation()`) | **A**(對應的 JS `window.__bo` 邏輯本身正確,只是視覺上被 CSS 藏起來、且有一段 handler 永遠執行不到——可刪的是死路徑本身,不是收合功能) | 同上 |
+
 ## 待掃描(STATE 5 尚未執行)
 
 - 版本殘影(`?v=YYYYMMDDx` 查詢字串是否有引用到不存在版本的殘留)
