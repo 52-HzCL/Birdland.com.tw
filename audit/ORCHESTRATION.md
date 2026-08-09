@@ -132,9 +132,9 @@ Opus 裁決寫入 `DECISIONS.md`,格式:`|議題|裁決|理由|`,Sonnet 之後�
 
 | 分類 | 頁面 | 建構方式 |
 |---|---|---|
-| 手寫靜態 | `index.html`, `about.html`, `contact.html`, `privacy.html`, `guide.html` | 直接編輯 |
+| 手寫靜態 | `index.html`, `about.html`, `contact.html`, `privacy.html` | 直接編輯 |
 | 手寫 redirect stub | `news.html`, `manufacturing.html`, `why-birdland.html` | 0 秒 meta refresh 到合併後的目的頁,含 canonical + noindex,follow |
-| `__DATA__` 樣板建置 | `partner.html`(`__DESKMODE__=buyer`)、`cost-desk.html`(`__DESKMODE__=cost`,兩者共用 `partner_template.html`)、`team.html`、`executive.html` | `tools/build_news.py` / Node 攣生 `tools/dev/build.js`;**絕不手改產出頁**,只改對應 `tools/*_template.html` |
+| `__DATA__` 樣板建置 | `guide.html`(`tools/news_template.html`)、`partner.html`(`__DESKMODE__=buyer`)、`cost-desk.html`(`__DESKMODE__=cost`,兩者共用 `partner_template.html`)、`team.html`、`executive.html` | `tools/build_news.py` / Node 攣生 `tools/dev/build.js`;**絕不手改產出頁**,只改對應 `tools/*_template.html`。_(2026-08-09 訂正:本表原把 `guide.html` 誤列在「手寫靜態」,guide.html 稽核發現後修正——`AUDIT_STATE.json` 的 `pageInventory` 一直是對的,只有這份表格寫錯,兩者不一致本身就是一種風險,已對齊。)_ |
 | 結構化陣列建置 | `product-101.html`(Factory) | `tools/dev/build-p101.js` 讀 `GATES/MATERIALS/PACKS/ECO/COST/SECTIONS` + `tools/dev/ratings.js` 查表;目前有獨立進行中的 PR #1 在擴充此頁,稽核發現與它重疊時只記交叉參照,不重複修 |
 | 手寫互動頁 | `my-market.html` | 獨立 JS,`classify()`/`collectFamilies()` 是已知曾有 bug 的區域,列入回歸重點 |
 | 孤兒/待決 | `birdland-intro.html` | ISSUES.md I-2,刪除方案已存在未推送分支,稽核只需確認「現狀仍是孤兒」,不重新提案 |

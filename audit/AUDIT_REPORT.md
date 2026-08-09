@@ -27,6 +27,53 @@
 
 ---
 
+## 🟠 站台級發現(P1,但影響面跨頁,置於顯著位置):Facade 頁的「Factory」導覽在全部 9 語言靜默跳出當前語言
+
+**這不是某一頁的獨立 bug,是 i18n 建置管線本身的問題,影響 `index/about/contact/privacy`
+四個 facade 頁 × 9 個語言 = 36 個檔案,加上 `product-101.html` 自己 10 個語言版本反方向
+也受影響。** 在稽核 about.html 時發現,已用 Playwright 即時點擊多個語言版本驗證,非只讀碼。
+
+**兩個必須一起修的耦合 bug(裁決 D30,合併呈現)**:
+
+1. **正向**:`tools/dev/i18n-build.js:88` 的路徑升級 regex,把 `product-101.html`(現在
+   確實有逐語言版本,`BUILT_PAGES` 陣列自己都承認)誤歸類成跟 `guide.html`/
+   `executive.html`(真正只有英文版)同一類「一律升級到根目錄」的頁面。結果:任何非英語
+   訪客在 `de/about.html`、`de/index.html`、`de/contact.html`、`es/about.html` 等任何
+   facade 頁點擊「Factory」,都會被靜默導到英文版 `product-101.html`,不是 `de/
+   product-101.html`。已對 4 個語言/頁面組合逐一即時點擊驗證,100% 重現。
+2. **反向**:`tools/dev/i18n-page.js:131` 的對應 regex 有同一種問題,方向相反——
+   `product-101.html` 自己 10 個語言版本裡的 About/Contact/Home 連結(甚至標了
+   `aria-current="page"` 的 Factory 自我連結)全部也被拉回英文根目錄。一個訪客只要點過
+   一次「Fabrik」或反向從 Factory 點「Wir」,就會被靜默、永久留在英文,直到自己重新點
+   語言選單。**這部分屬於 `product-101.html` 自己的 STATE 2 分派範圍(目前因 PR #1 延後
+   完整稽核),但證據已經到手,依裁決 D31 先記錄,待該頁完整稽核時確認範圍。**
+3. **潛伏的耦合地雷**:`about.html` 的 `#pure-play` 錨點在英文版已於 `e2c87a8`(2026-08-07)
+   修正為正確 id,但這個 rename 從未傳播到 9 個翻譯版本(仍是舊的 `id="brand"`)——因為
+   i18n-build.js 的翻譯機制是「英文子字串→譯文子字串」的字串取代,`id=` 屬性不是自然語言
+   文字,沒有對應的取代規則。**今天這個問題「碰巧」沒有症狀,正是因為上面的正向 bug 把
+   所有指向 `#pure-play` 的連結都拉去了英文版(剛好是修好的那個)**——這意味著單獨修正向
+   bug、不同時把 `id="brand"→id="pure-play"` 的 rename 補進 9 份翻譯檔案,會讓 e2c87a8
+   原本修的舊症狀在全部非英語版本重新出現。
+
+**為什麼是 P1 不是 P0(裁決 D29,已用於修正本檔的 P0 判準敘述)**:這個 bug 比 D15/D16
+更「無條件」(不需要任何特殊使用者行為序列,任何非英語訪客點一次 Factory 就 100% 中招),
+但訪客看到的仍是**完全正確、完整**的內容,只是語言退化成英文——不是像 D21 那樣客觀錯誤的
+資訊觸及真實第三方。P0 的判準現在明確寫成「無條件成立」**且**「後果涉及客觀錯誤資訊或
+資料遺失/外流」兩者兼具,單有前者不夠格。
+
+**與既有已完成記錄的關係(裁決 D30 附帶說明,非推翻)**:`index.html`/`contact.html` 已完成
+的稽核結論「導覽全部正確」測的是英文版本身與語言切換器本身,沒有測「切換到某語言後再點
+Factory」這條路徑——這正是這個 bug 發生的地方。兩頁的結論本身仍然成立(測過的東西是對的),
+只是**範圍不包含這條路徑**,見下方 index.html/contact.html 段落已補的交叉參照。
+
+**建議修法方向(不由稽核迴圈執行,`tools/dev/i18n-build.js`/`i18n-page.js` 是 build 腳本,
+屬站台程式碼)**:`i18n-build.js:88` 移除 `product-101\.html`;`i18n-page.js:131` 需要知道
+`index/about/contact/privacy` 已經是逐語言檔案不該一律升級;兩者修的同時,必須把 9 份
+`i18n/facade.<lang>.json` 補上 `id="brand"→id="pure-play"` 的 rename,三處一起處理,不要
+分開排期。
+
+---
+
 ## ⚠️ 風險提醒(置頂,勿移到文末)
 
 **本機分支 `i18n/my-market-composed-sentences` 有 4 個獨有 commit 從未 push 到 origin**,
@@ -50,8 +97,8 @@
 | 類別 | 數量 |
 |---|---|
 | 新發現 P0 | 1(`teamdesk.*` 資料管線靜默凍結,見報告最上方) |
-| 新發現 P1 | 6(1 個已修復的文件訂正、1 個 NEEDS HUMAN 設計取捨、4 個真實功能/內容 bug——依鐵律 2 全部只留建議,不由稽核迴圈修改站台程式碼) |
-| 新發現 P2 | 12(SEO-2、index.html 字級差異、contact.html×2、partner/cost-desk×6、team.html×2,其中 4 項已收錄 CLEANUP.md C6-C9) |
+| 新發現 P1 | 7(1 個已修復的文件訂正、1 個 NEEDS HUMAN 設計取捨、1 組跨頁 facade i18n 導覽 bug(2 個耦合子項合併計 1)、4 個真實功能/內容 bug——依鐵律 2 全部只留建議,不由稽核迴圈修改站台程式碼) |
+| 新發現 P2 | 18(SEO-2、index.html 字級差異、contact.html×2、partner/cost-desk×6、team.html×2、about.html×2、guide.html×4,其中 6 項已收錄 CLEANUP.md C6-C11) |
 | 已知議題(承接自前 4 輪稽核) | 12 項,詳見 `AUDIT_STATE.json` 的 `knownIssues`(7 開放/待覆核、5 已關閉) |
 | 本次啟動前 recon 已直接處理 | 2 項(見下) |
 
@@ -120,6 +167,10 @@
 語言版本 STALE,且會在未來每次共用資源版本 bump 時重演(裁決 D19:可改,建議指紋只算
 可翻譯文字內容,不由稽核迴圈修改工具本身)。
 
+> **範圍補註(about.html 稽核後追加,非推翻)**:下方「導覽/語言選單/麵包屑全部正確」測的
+> 是英文版與語言切換器本身,沒有測「切換語言後點 Factory」——該路徑有站台級 bug,見報告上方
+> 「🟠 站台級發現」段落。
+
 **通過(A-E,14 項)**:郵件路由核心映射邏輯(6 組 region×line 組合,含歷史 bug 類別
 「政策動作不匹配」的回歸測試)完全正確,含 hunting 產線的路由覆寫規則;反爬蟲設計(揭露前
 零網址字串洩漏);reveal 後即時更新;導覽/語言選單/麵包屑全部正確;Terminal chip 與
@@ -175,6 +226,61 @@ partner.html/cost-desk.html 這兩頁確認有替代的指令面板搜尋(`.pd-o
 的 `chg` 修正在三處獨立實作皆一致套用;色彩語意(漲=紅=壞、buyer-cost 語意)兩頁一致;
 375px 零橫向溢出;`P.shipping`→`lineChart` 崩潰風險經確認不可重現(機制已不存在)。
 **Console:僅同一個沙盒憑證問題,零其他錯誤,兩頁、兩種寬度、約 25 次導覽測試全部確認。**
+
+## guide.html 逐項發現(0 P0/P1,第二個乾淨的頁面)
+
+**P2(4 項,全新)**:`site-shell.css:5` 也獨立遮蔽 `--line`(又一個與 tokens.css 原值不同
+的第三種寫法),已併入 D28 的 I-7 追蹤證據,不算獨立議題。`tools/news_template.html:16-72`
+約 24 個舊版「OEM control map」相關死 CSS + 2 個未用的 `@keyframes`(已收錄 CLEANUP.md
+C11,含清理陷阱提醒)。**guide.html 內嵌了整份 94KB 的 `outlook-data.json`(頁面總重
+121KB 的 78%),但頁面完全不消費它**——這是套用桌面 app 共用建置管線(`tools/dev/
+build.js` 對所有 `__DATA__` 樣板一律替換)的副作用,`news_template.html` 其實不需要。
+低風險、易修、效益明確,列入快速勝利清單(仍不由稽核迴圈執行,build 腳本屬站台程式碼)。
+`site-shell.js` 的效果永遠被稍後執行的 `desk-banner.js` 蓋掉,已收錄 CLEANUP.md 反向清單
+R2(與 R1 不同性質,見下方 CLEANUP 段落——刪除不會馬上出事,只是拿掉一層備援)。
+
+**已修復(裁決 D32)**:`ORCHESTRATION.md` 自己 STATE 1 的頁面分類表誤把 `guide.html` 列在
+「手寫靜態」,實際是 `tools/news_template.html` 建置產出——已訂正(這是稽核迴圈自己的
+文件,訂正風險比 AGENTS.md 更低)。
+
+**通過(A-E,含 Guide 截圖新鮮度這個本頁專屬的重點檢查)**:重新執行 `gen-guide-shots.js`
+的確切截圖流程,拿當前站台的即時畫面跟已 commit 的截圖逐一比對結構/內容(非像素差異——
+沙盒缺字型會製造大量無意義的像素差),**7 張截圖目前都還沒過時**,即使部分被截圖的頁面
+(尤其 partner.html、My Market)截圖日期之後有大量改動——原因是截圖只拍冷啟動預設畫面,
+新功能都在截圖從未涵蓋的分頁/面板上,所以還沒有「該過時卻沒過時」的情況,但 `SUMMARY.md`
+記錄的這個風險本身依然成立,只是尚未發作,值得持續留意。build 逐位元組核對零落差;
+Terminal/About 選單/語言切換(含動態注入內容的即時翻譯)/文字放大全部正確;D17「Europe」
+缺字典鍵確認不適用此頁(無 region 選單)。**Console:僅沙盒憑證問題,零其他錯誤,375px
+零溢出。**
+
+**D20/D33 追蹤**:確認 bug 計數維持 2/3。發現 `text-size.js` 錨點偵測邏輯的第二個受影響
+頁面(搭配 `desk-banner.js`,team.html 那次搭配的是 `app-bar.js`)——**裁決(D33):不算
+次要計數器的第二次獨立累加,合併成 `text-size.js` 自己的獨立追蹤項**(根因單一、修法
+明確:讓它用 `MutationObserver` 或重試機制等錨點出現,而非一次性雙重嘗試),因為這是
+單一元件的防禦性寫法不夠周全,不是 D20 想追蹤的「完全沒協定、純靠巧合」那種架構級脆弱。
+
+## about.html 逐項發現(P1 見上方「🟠 站台級發現」,此處只記本頁專屬項目)
+
+**P2-1**:`why-birdland.html`(與 `manufacturing.html`,旁證)缺 `&lt;link rel="icon"&gt;`,
+造成每次載入一個瀏覽器預設 `/favicon.ico` 404——這是已關閉議題 I-3 修復時漏掉的兩個檔案
+(該次修復清單有 about/birdland-intro/contact/cost-desk/executive/news,沒有這兩個),
+不算 I-3 重開,是同一輪修復的獨立遺漏。純 console 雜訊,不影響 redirect 正確性。
+
+**P2-2/P2-3(已收錄 CLEANUP.md C10)**:`about.html:19-42` 的 `.bd-numbers`/`.bd-boundary`
+等六組 CSS(舊版「雙欄盾牌」設計殘留,現在的三聯圖版式已不用)在全部 10 語言版本零使用,
+合計約 29KB 死碼;其中一個顏色(`#ece7dc`)与 `--paper-2` 僅差 Δ14,`snap-color.js` 判定
+為同色異寫,此項為 C10 死碼區塊的子項,一併清除即解決。
+
+**通過(A-E,含即時驗證)**:語言選單與 index.html 結構逐字元 diff 完全相同;`#pure-play`
+錨點(英文版)即時驗證正確落地於「Your brand, protected.」真實內容;
+`why-birdland.html→about.html#pure-play` 端到端 redirect 正確;純靜態內容,不消費
+`outlook-data.json`/`terminal.json`;hreflang 11 標籤 9 語言逐一即時查詢確認;GLOSSARY
+鎖定詞「OEM」在英文版與 9 翻譯版本各出現精確 6 次未被誤譯;`snap-space.js`/`snap-type.js`
+0 筆偏移;375px 零溢出。**Console:僅沙盒憑證問題 + 上述 P2-1 的 favicon 404,零其他錯誤。**
+
+**D20 追蹤**:結構性排除(this page 的 header/nav/語言選單全是靜態 HTML,不像桌面 app 由
+`app-bar.js` 動態插入,不存在「A 腳本插入 DOM、B 腳本假設已存在」的競態類別)。維持
+2/3,反向清單無新候選。
 
 ## executive.html 逐項發現(ABrief 桌,本頁乾淨,零 P0/P1)
 
@@ -260,6 +366,10 @@ D10)不追查,差距小且無可比對量測腳本,11 本身遠低於改版前�
 render-blocking(I-4 的同一根因,首頁只觸發 1 個請求/3 字族,比 partner/cost-desk 輕,
 `display=optional` 如 SUMMARY.md 決策 #2 所記)。
 
+> **範圍補註(about.html 稽核後追加,非推翻)**:下方「通過」項目測的是英文版本身的導覽,
+> 沒有測「切換語言後點 Factory」這條路徑——這條路徑有一個站台級 bug,見報告上方「🟠 站台級
+> 發現」段落。
+
 **通過(A-E,共 12 項)**:全站 7 個導覽連結皆可達且行為正確;語言選單 10 語言 + hreflang
 11 標籤與 `_langs.js` 逐一對應;`tm-chip` 是純觸發鈕不是篩選器,Terminal 開關與
 `aria-expanded` 正確;搜尋「420J2」實測(非字串比對)確認 `partner.html?q=...` 正確預選
@@ -330,6 +440,9 @@ index specifics 節、`SUMMARY.md` 的 hero 文案宣稱)。裁決:**可改,非�
   內容檔不算 ORCHESTRATION.md 的文件修正例外,留給人執行
 - cost-desk.html 品牌重命名補三處字串(nav/rail aria-label、選單收合鈕文字):同樣是低
   風險的字串修正,但仍是站台程式碼(HTML/JS 字面值),不由稽核迴圈執行
+- guide.html 內嵌了完全用不到的 94KB `outlook-data.json`(頁面總重 78%):`tools/dev/
+  build.js` 針對 `news_template.html` 這個 job 跳過 `__DATA__` 替換即可,效益明確、風險低,
+  但仍是 build 腳本(站台程式碼),不由稽核迴圈執行
 
 ## 建議修復順序
 
