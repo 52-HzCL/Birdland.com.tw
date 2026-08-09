@@ -169,6 +169,17 @@
       var tag = j['@lang'] || lang;
       delete DICT['@lang'];
       try { document.documentElement.setAttribute('lang', tag); } catch (e) {}
+      // A page that composes a sentence in script — My Market's "unit values
+      // fell 45% in Poland" — cannot be served by the sweep below. It asked
+      // blT for its words while this fetch was still in flight, got the
+      // English back (correctly: there was no dictionary yet), and produced
+      // one text node with a number in it that no later walk can match. The
+      // sweep is not wrong; it simply has nothing to match on.
+      //
+      // So the arrival is announced. A page that builds sentences listens and
+      // draws them again, now that asking has an answer. Pages that only have
+      // text nodes ignore it and are served by the walk exactly as before.
+      try { document.dispatchEvent(new CustomEvent('bl-i18n', { detail: { lang: tag } })); } catch (e) {}
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', start);
       } else start();

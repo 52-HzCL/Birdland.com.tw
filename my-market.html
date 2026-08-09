@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<link rel="stylesheet" href="tokens.css?v=20260804a"><script src="text-size.js?v=20260804a"></script><link rel="stylesheet" href="app-bar.css?v=20260807a"><script defer src="app-bar.js?v=20260807a"></script><script defer src="i18n.js?v=20260807a"></script>
+<link rel="stylesheet" href="tokens.css?v=20260804a"><script src="text-size.js?v=20260804a"></script><link rel="stylesheet" href="app-bar.css?v=20260807a"><script defer src="app-bar.js?v=20260807a"></script><script defer src="i18n.js?v=20260809a"></script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#6D4A86">
 <meta name="description" content="My Market is Birdland's buyer view of Taiwan- and China-origin supply trends in your own import market, compared with the markets around it — direction and share only, never a price.">
 <title>Birdland My Market</title><meta name="robots" content="noindex">
@@ -224,6 +224,25 @@
 // ---- helpers -------------------------------------------------------------
 function esc(s){return String(s).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
 function t(s){return window.blT?window.blT(s):s;}
+// A composed sentence cannot reach i18n.js's exact-match walker: the moment a
+// number is inside it, it is a string no dictionary can hold, and the sweep in
+// i18n.js is deliberately exact-or-nothing so a column heading can never
+// rewrite a word inside a story.
+//
+// So the SKELETON is the key — one whole clause, slots written {like_this} —
+// and the data is substituted after the lookup. Translating the fragments an
+// English sentence happens to split into (" pts. ", " while unit value fell ")
+// would have been the cheaper build and the wrong one: German sends the verb to
+// the end of the clause, Japanese wants its particle after the market name, and
+// Polish inflects the noun by case. None of those word orders can be reached by
+// re-joining English pieces in English order. A whole clause can be re-written
+// freely, which is what the glossary's "sentences may be re-shaped freely;
+// numbers, units and locked terms may not" asks for.
+//
+// Markup lives in the skeleton, data does not: values arrive already escaped
+// (or are numbers), so a market name cannot open a tag. One pass, so a value
+// that happens to contain braces is never re-substituted.
+function fill(k,v){return t(k).replace(/\{(\w+)\}/g,function(m,n){return v[n]!=null?v[n]:m;});}
 function pct(v){return (v>0?"+":"")+v+"%";}
 function heat(v){return v>0?"var(--grn)":(v<0?"var(--red)":"var(--tx2)");}
 function glyph(v){return v>0?"▲":(v<0?"▼":"—");}
@@ -254,6 +273,11 @@ var FAM_SHORT={'820150':'PRUNERS','820160':'SHEARS','820110':'SPADES','820130':'
 var FAM_CANON=['820150','820160','820110','820130'];
 function famKey(code){code=String(code);return code.length>6?code.slice(0,6):code;}
 function famName(k){return FAM_NAME[k]||('HS '+k);}
+// fill() 槽位值是 JS 直接塞的,不會被 i18n.js 的文字節點掃描翻譯,所以要先過 t() 查字典
+function famT(k){return t(famName(k));}
+// 英文句中品類名走小寫("of pruner imports");翻譯後的名詞不能亂改大小寫
+// (德文名詞必須大寫),所以只有查無翻譯(原樣返回)時才 lowercase。
+function famLow(k){var n=famName(k),tr=t(n);return tr===n?n.toLowerCase():tr;}
 function famShort(k){return FAM_SHORT[k]||('HS '+k);}
 function famCode(k){return k.length===6?(k.slice(0,4)+'.'+k.slice(4,6)):k;}
 
@@ -322,16 +346,31 @@ var GROUPS=[["tw","TAIWAN-ORIGIN SUPPLY IS ADVANCING IN YOUR MARKET"],
  ["push","A CHINA PRICE PUSH IS UNDER WAY"],
  ["steady","STEADY THIS EDITION"]];
 
+// When the verb already carries the direction, the number must not carry it
+// again: "unit value fell -14.7%" reads as a double negative, and every branch
+// below only fires on a condition that fixes the sign, so nothing is lost by
+// stripping it. pct() (signed) stays for the neutral labels in rail(), where
+// the number is the only thing saying which way.
+function mag(v){return Math.abs(v)+"%";}
 function why(c){
  var d=delta(c)||0, cd=cnd(c);
- if(c.vol_change_pct>15&&c.uv_change_pct<-5&&d<0) return "Volume rose "+pct(c.vol_change_pct)+" while unit value fell "+pct(c.uv_change_pct)+" and Taiwan-origin share slipped "+Math.abs(d)+" pts. <b>The market grew and someone else took the order"+(cd!==null&&cd>=3?" — China, up "+cd+" pts to "+c.share_cn+"%":"")+".</b>";
- if(cd!==null&&cd>=10) return "China-origin share jumped "+cd+" pts to "+c.share_cn+"% while unit value moved "+pct(c.uv_change_pct)+". <b>A price-led push is under way — quote on total cost, not first price.</b>";
- if(cd!==null&&cd<=-3&&d>=0) return "China-origin share receded "+Math.abs(cd)+" pts to "+c.share_cn+"% while Taiwan held"+(d>0?" and gained "+d+" pts":"")+". <b>Displacement is under way — this is the window to take share.</b>";
- if(c.vol_change_pct>15&&c.uv_change_pct<-5) return "Volume rose "+pct(c.vol_change_pct)+" on a "+pct(c.uv_change_pct)+" fall in unit value, Taiwan share holding at "+(c.share_tw==null?"an unpublished level":c.share_tw+"%")+". <b>Growth is real but it is being bought on price.</b>";
- if(c.uv_change_pct>5&&c.vol_change_pct<0) return "Unit value rose "+pct(c.uv_change_pct)+" while volume eased "+pct(c.vol_change_pct)+". <b>Buyers are trading up, not buying more.</b>";
- if(d>=3) return "Taiwan-origin share gained "+d+" pts to "+c.share_tw+"%. <b>This market is already moving toward Taiwan supply.</b>";
- if(d<=-5) return "Taiwan-origin share fell "+Math.abs(d)+" pts to "+c.share_tw+"%. <b>Worth a route conversation before the next season.</b>";
- return "Direction is within the normal range for this market this edition.";
+ var da=Math.abs(d);
+ if(c.vol_change_pct>15&&c.uv_change_pct<-5&&d<0) return fill(da===1
+   ?"Volume rose {vol} while unit value fell {uv} and Taiwan-origin share slipped {d} pt. <b>The market grew and someone else took the order{china}.</b>"
+   :"Volume rose {vol} while unit value fell {uv} and Taiwan-origin share slipped {d} pts. <b>The market grew and someone else took the order{china}.</b>",
+  {vol:mag(c.vol_change_pct),uv:mag(c.uv_change_pct),d:da,
+   china:(cd!==null&&cd>=3)?fill(" — China, up {cd} pts to {cn}%",{cd:cd,cn:c.share_cn}):""});
+ if(cd!==null&&cd>=10) return fill("China-origin share jumped {cd} pts to {cn}% while unit value moved {uv}. <b>A price-led push is under way — quote on total cost, not first price.</b>",
+  {cd:cd,cn:c.share_cn,uv:pct(c.uv_change_pct)});
+ if(cd!==null&&cd<=-3&&d>=0) return fill("China-origin share receded {cd} pts to {cn}% while Taiwan held{gained}. <b>Displacement is under way — this is the window to take share.</b>",
+  {cd:Math.abs(cd),cn:c.share_cn,gained:d>0?fill(d===1?" and gained {d} pt":" and gained {d} pts",{d:d}):""});
+ if(c.vol_change_pct>15&&c.uv_change_pct<-5) return fill("Volume rose {vol} on a {uv} fall in unit value, Taiwan share holding at {level}. <b>Growth is real but it is being bought on price.</b>",
+  {vol:mag(c.vol_change_pct),uv:mag(c.uv_change_pct),level:c.share_tw==null?t("an unpublished level"):c.share_tw+"%"});
+ if(c.uv_change_pct>5&&c.vol_change_pct<0) return fill("Unit value rose {uv} while volume eased {vol}. <b>Buyers are trading up, not buying more.</b>",
+  {uv:mag(c.uv_change_pct),vol:mag(c.vol_change_pct)});
+ if(d>=3) return fill("Taiwan-origin share gained {d} pts to {tw}%. <b>This market is already moving toward Taiwan supply.</b>",{d:d,tw:c.share_tw});
+ if(d<=-5) return fill("Taiwan-origin share fell {d} pts to {tw}%. <b>Worth a route conversation before the next season.</b>",{d:Math.abs(d),tw:c.share_tw});
+ return t("Direction is within the normal range for this market this edition.");
 }
 function fmtShare(who,v,dv){
  return esc(who)+" "+(v==null?"—":v+"%")+(dv?' <span class="'+(dv>0?"up":"dn")+'">'+(dv>0?"+":"")+dv+"</span>":"");
@@ -387,7 +426,7 @@ function myMarket(){
   return '<button type="button" class="mych'+(k===st.anchor?" on":"")+'" data-a="'+esc(k)+'">'+esc(MKT[k].name)+"</button>";
  }).join("")+"</div>";
  if(!any){
-  h+='<p class="empty-note">No categories published for '+esc(m.name)+' yet this edition — the daily feed is accumulating them. Try another market above or with the search on the right.</p>';
+  h+='<p class="empty-note">'+fill("No categories published for {market} yet this edition — the daily feed is accumulating them. Try another market above or with the search on the right.",{market:esc(t(m.name))})+"</p>";
  }else{
   h+=GROUPS.map(function(g){
    var fs=grouped[g[0]]; if(!fs.length) return "";
@@ -395,8 +434,8 @@ function myMarket(){
     var c=m.cells[f];
     return '<button type="button" class="fcard'+(st.sel===f?" sel":"")+'" data-f="'+esc(f)+'">'
      +'<div class="fh"><span>'+esc(famName(f))+'</span><b style="color:'+heat(c.uv_change_pct)+'">'+glyph(c.uv_change_pct)+" "+Math.abs(c.uv_change_pct)+"%</b></div>"
-     +'<div class="fl">'+fmtShare("Taiwan",c.share_tw,delta(c))+"</div>"
-     +'<div class="fl">'+fmtShare("China",c.share_cn,cnd(c))+"</div></button>";
+     +'<div class="fl">'+fmtShare(t("Taiwan"),c.share_tw,delta(c))+"</div>"
+     +'<div class="fl">'+fmtShare(t("China"),c.share_cn,cnd(c))+"</div></button>";
    }).join("")+"</div>";
   }).join("");
  }
@@ -411,27 +450,27 @@ function myMarket(){
 
 function around(){
  var ns=(NEIGH[st.anchor]||[]).filter(function(k){return MKT[k];});
- document.getElementById("aroundH").textContent="AROUND "+MKT[st.anchor].name.toUpperCase();
+ document.getElementById("aroundH").textContent=fill("AROUND {market}",{market:t(MKT[st.anchor].name).toUpperCase()});
  document.getElementById("nbline").textContent=ns.length
-  ? "compared with "+ns.map(function(k){return MKT[k].name;}).join(" · ")
+  ? fill("compared with {markets}",{markets:ns.map(function(k){return t(MKT[k].name);}).join(" · ")})
   : "";
  if(!ns.length){
-  document.getElementById("aroundWrap").innerHTML='<div class="empty-around">No neighbouring market is in this edition yet — the daily feed is accumulating them.</div>';
+  document.getElementById("aroundWrap").innerHTML='<div class="empty-around">'+t("No neighbouring market is in this edition yet — the daily feed is accumulating them.")+"</div>";
   return;
  }
  var a=MKT[st.anchor];
  var rows=[st.anchor].concat(ns).map(function(k){
   var m=MKT[k], me=(k===st.anchor);
   return "<tr"+(me?' class="me"':"")+'><td><button type="button" class="aname" data-a="'+esc(k)+'">'+esc(m.name)
-   +"<em>"+(me?"YOUR MARKET":(m.src==="comtrade"?"UN Comtrade":"Eurostat"))+"</em></button></td>"
+   +"<em>"+(me?t("YOUR MARKET"):(m.src==="comtrade"?"UN Comtrade":"Eurostat"))+"</em></button></td>"
    +FAM_LIST.map(function(f){
     var c=m.cells[f];
-    if(!cellValid(c)) return '<td><div class="acell" style="color:var(--tx3);font:500 9px/1 var(--mono)">not in edition</div></td>';
+    if(!cellValid(c)) return '<td><div class="acell" style="color:var(--tx3);font:500 9px/1 var(--mono)">'+t("not in edition")+"</div></td>";
     var ca=a.cells[f], dot=(!me&&cellValid(ca)&&((c.uv_change_pct>0)!==(ca.uv_change_pct>0)));
     return '<td><div class="acell">'+(dot?'<span class="dz" title="direction differs from your market"></span>':"")
      +'<b style="color:'+heat(c.uv_change_pct)+'">'+glyph(c.uv_change_pct)+" "+Math.abs(c.uv_change_pct)+"%</b>"
-     +'<span class="fl">'+fmtShare("Taiwan",c.share_tw,null)+"</span>"
-     +'<span class="fl">'+fmtShare("China",c.share_cn,null)+"</span></div></td>";
+     +'<span class="fl">'+fmtShare(t("Taiwan"),c.share_tw,null)+"</span>"
+     +'<span class="fl">'+fmtShare(t("China"),c.share_cn,null)+"</span></div></td>";
    }).join("")+"</tr>";
  }).join("");
  document.getElementById("aroundWrap").innerHTML=
@@ -459,11 +498,13 @@ function insight(ns){
  });
  var el=document.getElementById("insight"); if(!el) return;
  if(behind&&behind.diff>=8){
-  el.innerHTML="Next door in <b>"+esc(MKT[behind.k].name)+"</b>, Taiwan-origin supply is <b>"+behind.nv+"%</b> of "+famName(behind.f).toLowerCase()+" imports — your market buys "+behind.av+"%. <b>The route exists; the question is whose shelf uses it.</b>";
+  el.innerHTML=fill("Next door in <b>{market}</b>, Taiwan-origin supply is <b>{n}%</b> of {family} imports — your market buys {m}%. <b>The route exists; the question is whose shelf uses it.</b>",
+   {market:esc(t(MKT[behind.k].name)),n:behind.nv,family:famLow(behind.f),m:behind.av});
  }else if(ahead&&ahead.diff>=8){
-  el.innerHTML="Your market leads its neighbourhood: <b>"+ahead.av+"%</b> of "+famName(ahead.f).toLowerCase()+" imports are Taiwan-origin, against "+ahead.nv+"% in "+esc(MKT[ahead.k].name)+". <b>Worth defending before the next season.</b>";
+  el.innerHTML=fill("Your market leads its neighbourhood: <b>{n}%</b> of {family} imports are Taiwan-origin, against {m}% in {market}. <b>Worth defending before the next season.</b>",
+   {n:ahead.av,family:famLow(ahead.f),m:ahead.nv,market:esc(t(MKT[ahead.k].name))});
  }else{
-  el.innerHTML="Your market moves with its neighbourhood this edition — no origin gap above 8 points.";
+  el.innerHTML=t("Your market moves with its neighbourhood this edition — no origin gap above 8 points.");
  }
 }
 
@@ -482,16 +523,16 @@ function rail(){
  var m=MKT[st.anchor], c=m.cells[st.sel];
  var h='<div><h4>'+esc(m.name)+"</h4><div class=\"sub\">"+esc(famName(st.sel).toUpperCase())+" · "+(m.src==="comtrade"?"UN Comtrade":"Eurostat")+"</div></div>";
  if(!cellValid(c)){
-  h+='<p style="font:500 12px/1.6 var(--sans);color:var(--tx2)">Not published for '+esc(m.name)+' this edition — the daily feed is accumulating this category. Pick a market from Your Markets or the search above.</p>';
+  h+='<p style="font:500 12px/1.6 var(--sans);color:var(--tx2)">'+fill("Not published for {market} this edition — the daily feed is accumulating this category. Pick a market from Your Markets or the search above.",{market:esc(t(m.name))})+"</p>";
   document.getElementById("drail").innerHTML=h;
   return;
  }
  var d=delta(c), cd=cnd(c);
- h+='<div class="kpi"><b style="color:'+heat(c.uv_change_pct)+'">'+pct(c.uv_change_pct)+"</b><span>12-month unit-value change · "+(c.basis==="piece"?"per-piece":"per-kg")+" basis</span></div>";
+ h+='<div class="kpi"><b style="color:'+heat(c.uv_change_pct)+'">'+pct(c.uv_change_pct)+"</b><span>"+t(c.basis==="piece"?"12-month unit-value change · per-piece basis":"12-month unit-value change · per-kg basis")+"</span></div>";
  h+='<div class="rowline"><span>Import volume</span><b style="color:'+heat(c.vol_change_pct)+'">'+pct(c.vol_change_pct)+"</b></div>";
  h+='<div class="rowline"><span>Taiwan-origin share</span><b>'+(c.share_tw==null?"—":c.share_tw+"%")+(d!==null&&d!==0?' <span class="'+(d>0?"up":"dn")+'">('+(d>0?"+":"")+d+" pts)</span>":"")+"</b></div>";
  h+='<div class="rowline"><span>China-origin share</span><b>'+(c.share_cn==null?"—":c.share_cn+"%")+(cd!==null&&cd!==0?' <span class="'+(cd>0?"up":"dn")+'">('+(cd>0?"+":"")+cd+" pts)</span>":"")+"</b></div>";
- h+='<div class="rowline"><span>Market tier</span><b>'+(c.band&&c.band.market&&TIER_LABEL[c.band.market]?TIER_LABEL[c.band.market]:"too few sources to place")+"</b></div>";
+ h+='<div class="rowline"><span>Market tier</span><b>'+t(c.band&&c.band.market&&TIER_LABEL[c.band.market]?TIER_LABEL[c.band.market]:"too few sources to place")+"</b></div>";
  h+='<div class="why">'+why(c)+"</div>";
  h+='<div class="acts"><button type="button" class="primary" id="actMail">Bring to enquiry →</button><button type="button" id="actCost">Cost it in CostNow</button><button type="button" id="actBrief">Read it in This edition →</button></div>';
  document.getElementById("drail").innerHTML=h;
@@ -542,23 +583,33 @@ function briefLead(){
  var top=computeTop(1)[0];
  if(!top){
   document.getElementById("briefLead").innerHTML=
-   '<div class="lead-main"><span class="kick">The lead signal</span><h2>Not enough data has accumulated yet to choose a lead signal.</h2>'
-   +"<p>Trade statistics for this edition are still loading — check back as the feed accumulates.</p></div>"
-   +'<div class="lead-side"><h5>The edition in five lines</h5><div class="idx"><div><span>Accumulating this quarter</span></div></div></div>';
+   '<div class="lead-main"><span class="kick">The lead signal</span><h2>'+t("Not enough data has accumulated yet to choose a lead signal.")+"</h2>"
+   +"<p>"+t("Trade statistics for this edition are still loading — check back as the feed accumulates.")+"</p></div>"
+   +'<div class="lead-side"><h5>The edition in five lines</h5><div class="idx"><div><span>'+t("Accumulating this quarter")+"</span></div></div></div>";
   return;
  }
  var m=MKT[top.iso], c=top.c, fk=top.f;
- var verb=c.uv_change_pct>0?"rose":(c.uv_change_pct<0?"fell":"held steady");
- var volVerb=c.vol_change_pct>0?"rose":(c.vol_change_pct<0?"fell":"held steady");
- var h2=famName(fk)+" unit values "+verb+" "+Math.abs(c.uv_change_pct)+"% in "+m.name;
- var p="Import volume "+volVerb+" "+pct(c.vol_change_pct)+" over the same twelve months. China-origin share stands at "
-  +(c.share_cn!=null?"<b>"+c.share_cn+"%</b>":"not yet published")+" of "+m.name+"'s "+famName(fk).toLowerCase()
-  +" imports; Taiwan-origin share stands at "+(c.share_tw!=null?"<b>"+c.share_tw+"%</b>":"not yet published")
-  +". The same edition is read across every market below — direction and position only, never a price.";
+ // The verb is part of the clause, not a slot in it. "{family} unit values {verb}
+ // {n}% in {market}" would have been one key instead of three, and would have
+ // forced every language to put a bare English-tense verb exactly where English
+ // puts it — the German past participle belongs at the end of the clause, and
+ // "held steady" carries no number at all. Three whole clauses cost two extra
+ // keys and buy each language its own word order.
+ var h2=fill(c.uv_change_pct>0?"{family} unit values rose {n}% in {market}"
+   :(c.uv_change_pct<0?"{family} unit values fell {n}% in {market}":"{family} unit values held steady in {market}"),
+  {family:famT(fk),n:Math.abs(c.uv_change_pct),market:t(m.name)});
+ var notPub="<b>"+t("not yet published")+"</b>";
+ var p=fill(c.vol_change_pct>0?"Import volume rose {vol} over the same twelve months."
+   :(c.vol_change_pct<0?"Import volume fell {vol} over the same twelve months.":"Import volume held steady over the same twelve months."),
+  {vol:mag(c.vol_change_pct)})
+  +" "+fill("China-origin share stands at {cn} of {market}'s {family} imports; Taiwan-origin share stands at {tw}.",
+   {cn:c.share_cn!=null?"<b>"+c.share_cn+"%</b>":notPub,market:t(m.name),family:famLow(fk),
+    tw:c.share_tw!=null?"<b>"+c.share_tw+"%</b>":notPub})
+  +" "+t("The same edition is read across every market below — direction and position only, never a price.");
  var five=computeTop(5);
  var idx=five.map(function(r){
   var rm=MKT[r.iso];
-  return "<div><span>"+esc(rm.name)+" · "+esc(famName(r.f).toLowerCase())+"</span><b class=\""+(r.c.uv_change_pct>0?"up":"dn")+"\">"+pct(r.c.uv_change_pct)+"</b></div>";
+  return "<div><span>"+esc(t(rm.name))+" · "+esc(famLow(r.f))+"</span><b class=\""+(r.c.uv_change_pct>0?"up":"dn")+"\">"+pct(r.c.uv_change_pct)+"</b></div>";
  }).join("");
  document.getElementById("briefLead").innerHTML=
   '<div class="lead-main"><span class="kick">The lead signal · chosen by the data</span><h2>'+h2+"</h2><p>"+p+"</p></div>"
@@ -570,7 +621,7 @@ function briefChips(){
  var h='<span class="lab">Your markets</span>'+vis.map(function(k){
   return '<button type="button" class="chip on" data-a="'+esc(k)+'">'+esc(MKT[k].name)+"</button>";
  }).join("");
- if(rest>0) h+='<span class="chip">+ '+rest+" more</span>";
+ if(rest>0) h+='<span class="chip">'+fill("+ {n} more",{n:rest})+"</span>";
  h+='<span class="src">follows your Desk pins · ★</span>';
  document.getElementById("briefChips").innerHTML=h;
  [].forEach.call(document.querySelectorAll("#briefChips .chip[data-a]"),function(b){
@@ -589,8 +640,8 @@ function briefChapters(){
    var c=m.cells[f]; if(!cellValid(c)) return "";
    var href="my-market.html?cell="+f+"|"+iso+"#desk";
    var tw=c.share_tw, cn=c.share_cn;
-   var bars='<div class="chbars"><div class="chbar"><i style="width:'+(tw||0)+'%"></i></div><span>Taiwan '+(tw==null?"—":tw+"%")+"</span>"
-    +'<div class="chbar"><i style="width:'+(cn||0)+'%"></i></div><span>China '+(cn==null?"—":cn+"%")+"</span></div>";
+   var bars='<div class="chbars"><div class="chbar"><i style="width:'+(tw||0)+'%"></i></div><span>'+t("Taiwan")+" "+(tw==null?"—":tw+"%")+"</span>"
+    +'<div class="chbar"><i style="width:'+(cn||0)+'%"></i></div><span>'+t("China")+" "+(cn==null?"—":cn+"%")+"</span></div>";
    return '<a class="chrow" href="'+esc(href)+'" data-cell="'+esc(f)+'|'+esc(iso)+'"><b>'+esc(famName(f))+"</b> "
     +'<span class="chuv" style="color:'+heat(c.uv_change_pct)+'">'+glyph(c.uv_change_pct)+" "+pct(c.uv_change_pct)+"</span>"
     +"<p>"+why(c)+"</p>"+bars+"</a>";
@@ -600,7 +651,7 @@ function briefChapters(){
  }).join("");
  var el=document.getElementById("briefChapters");
  if(!html){
-  el.innerHTML='<p class="empty-note">No published category yet for your pinned markets — open the Desk and search a market to pin one.</p>';
+  el.innerHTML='<p class="empty-note">'+t("No published category yet for your pinned markets — open the Desk and search a market to pin one.")+"</p>";
  }else{
   el.innerHTML=html;
  }
@@ -622,10 +673,12 @@ function renderBrief(){
 // ---- view + edition status ------------------------------------------------
 function edLine(){
  var total=Object.keys(MKT).length, live=liveIsos().length;
- document.getElementById("edLine").innerHTML="edition <em>"+esc(TRADE.edition||"—")+"</em> · <em>"+live+"/"+total+"</em> loaded · accumulating daily";
- document.getElementById("edEmLabel").textContent=(TRADE.edition||"")+" · read it";
+ document.getElementById("edLine").innerHTML=fill("edition <em>{ed}</em> · <em>{live}/{total}</em> loaded · accumulating daily",
+  {ed:esc(TRADE.edition||"—"),live:live,total:total});
+ document.getElementById("edEmLabel").textContent=fill("{ed} · read it",{ed:TRADE.edition||""});
  var bv=document.getElementById("briefVol");
- if(bv) bv.innerHTML="GARDEN &amp; FIELD TOOLS<br>EDITION "+esc(TRADE.edition||"")+(TRADE.generated?" · PUBLISHED "+esc(TRADE.generated.slice(0,10)):"");
+ if(bv) bv.innerHTML=fill("GARDEN &amp; FIELD TOOLS<br>EDITION {ed}",{ed:esc(TRADE.edition||"")})
+  +(TRADE.generated?fill(" · PUBLISHED {date}",{date:esc(TRADE.generated.slice(0,10))}):"");
 }
 
 function setView(v,push){
@@ -709,6 +762,23 @@ function boot(trade){
  var initial=forcedView||(hashView==="desk"||hashView==="brief"?hashView:(seen?"desk":"brief"));
  setView(initial,false);
 }
+
+// i18n.js fetches its dictionary, so on a translated edition this page has
+// usually drawn before there is anything to translate with. Its labels are
+// fine either way — those are text nodes, and i18n.js re-walks the document on
+// every mutation. Its composed sentences are not: fill() asked once, while the
+// dictionary was still empty, and baked the English answer into a node with a
+// number in it that no later walk can match.
+//
+// So the panels that hold composed sentences are drawn again when the
+// dictionary lands. Each of these rebuilds its own container from scratch, so
+// running one twice is the same as running it once. Before boot there is
+// nothing to redraw, and boot will then find the dictionary already in place.
+document.addEventListener("bl-i18n",function(){
+ if(!TRADE) return;
+ edLine();myMarket();around();rail();
+ if(st.view==="brief") renderBrief();
+});
 
 fetch("trade.json",{cache:"no-store"}).then(function(r){ if(!r.ok) throw new Error("trade.json "+r.status); return r.json(); })
  .then(function(j){ if(!j||j.schema!==2){ boot(null); return; } boot(j); })
