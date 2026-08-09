@@ -1,7 +1,7 @@
 // Bumped with every deploy that changes core assets: `activate` deletes every
 // cache whose key is not the current one, which is what evicts the previous
 // runtime cache. Without it a returning visitor keeps the old CSS for a load.
-const VERSION = "birdland-desks-v41";
+const VERSION = "birdland-desks-v42";
 const CORE_CACHE = `${VERSION}-core`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const CORE_ASSETS = [
@@ -49,7 +49,6 @@ const CORE_ASSETS = [
   "./birdland-visual.css",
   "./daily-journal.css",
   "./privacy.html",
-  "./birdland-intro.html",
   // One manifest per installable desk. partner-desk stays for anyone who
   // installed AsiaSource before it was renamed.
   "./partner-desk.webmanifest",
