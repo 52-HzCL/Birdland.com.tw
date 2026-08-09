@@ -107,12 +107,12 @@ const GATES = [
     control: 'Preparation, coverage in corners and cure must suit the exposure the tool will actually see.',
     ask: 'What environment and service life will the product face — and for how many hours must it resist it?',
     routes: ['Zinc plating', 'Nickel-chrome plating', 'Dacromet', 'Powder coating', 'Wet paint', 'E-coat', 'Anodising', 'Polishing', 'Sand-blasting', 'Lacquer or oil on wood', 'Heat transfer print', 'Laser marking'] },
-  { id: 'inspection', sym: null, photo: 'pre-shipment-sampling', name: 'Inspection and release',
-    body: 'The last gate is the only one a buyer can audit after the fact. Sampling plan, the tests chosen and the release record are what turn a finished pallet into a defensible commercial hand-off.',
+  { id: 'inspection', sym: 'bp-inspection', photo: 'pre-shipment-sampling', name: 'Inspection and release',
+    body: 'The last gate is the only one a buyer can audit after the fact. It runs in three stages rather than one — a first-off check against the drawing before a run proceeds, checks through the run itself, and a sampling plan against the finished pallet — and the release record from each stage is what turns a shipment into a defensible commercial hand-off rather than a supplier’s word. The three stages are set out in full in the next section, Quality control and testing.',
     enters: 'Finished goods, packaging requirements and agreed checkpoints.',
     control: 'The sampling plan and release criteria have to be agreed before production, not after a rejection.',
     ask: 'What must be verified before release, and who signs it?',
-    routes: ['Hardness sampling', 'Open/close cycle life', 'Salt-spray hours', 'Dimensional AQL', 'Edge & function check', 'Joint pull test', 'Pack drop test', 'Barcode & label check'] }
+    routes: ['First article inspection (FAI)', 'Hardness sampling', 'Open/close cycle life', 'Salt-spray hours', 'Dimensional AQL', 'Edge & function check', 'Joint pull test', 'Pack drop test', 'Barcode & label check', 'In-line SPC checkpoints', 'Third-party inspection (SGS / Bureau Veritas / Intertek)'] }
 ];
 
 const MATERIALS = [
@@ -361,6 +361,50 @@ const SECTIONS = [
         ${LEGEND}
 ${GATES.map(gateHtml(sn)).join('\n')}` },
 
+  { id: 's-qc', title: 'Quality control and testing',
+    subs: [{ id: 's-qc-lab', title: 'In-house testing' },
+           { id: 's-qc-stage', title: 'Inspection stages across a run' },
+           { id: 's-qc-reject', title: 'What a rejected lot triggers' }],
+    take: "The inspection gate names the checks. This section is what runs them, and at which of the three stages a buyer can actually be present.",
+    render: sn => `        <p>The previous gate named the checks a specification can call for. What is missing from a list of check names is where they actually happen — on what equipment, at which point in a run, and what a failure at any of them sets in motion. That is what this section sets out.</p>
+
+        <div class="wk-origin" id="s-qc-lab">
+          <figure><img src="images/thumbs/chairman-inspection.webp" alt="Company leadership checking freshly moulded parts on the injection-moulding floor" loading="lazy" decoding="async"><figcaption>Checked by hand, on the floor</figcaption></figure>
+          <div>
+            <h3><span class="wk-n">${sn}.1</span> In-house testing</h3>
+            <p>A route named at the inspection gate is only as good as what actually runs it. Five of them are run in-house, on the part itself rather than on a certificate for the raw material it was made from:</p>
+            <div class="wk-kv">
+              <div><b>Hardness, on the part itself</b><span>Rockwell testing at the working edge, checked against the band a specification names — not the mill's certificate for the coil, which says what the steel could do before it was formed and hardened, not what it actually did.</span></div>
+              <div><b>Salt-spray, to the hour</b><span>A chamber runs the finished, plated or coated part for the hours a specification names, rather than trusting a plating line's claim for the process alone.</span></div>
+              <div><b>Cycle life, before a customer finds it</b><span>A rig opens and closes a pivot, or flexes a tine, thousands of times to find where a joint loosens or a spring set takes a permanent bend.</span></div>
+              <div><b>Pull and torque, to a number</b><span>The joint pull test named at the inspection gate is run to a specified force, not to a technician's sense of whether a pivot feels tight.</span></div>
+              <div><b>Dimensional gauging, at first article and again mid-run</b><span>Go/no-go gauges built to the drawing — the same gauges named at the <a href="#gate-tooling">tooling gate</a> — catch a die that has started to drift long before a customer's own incoming inspection would.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <h3 id="s-qc-stage"><span class="wk-n">${sn}.2</span> Inspection stages across a run</h3>
+        <p>A single inspection at the end of a run only tells a buyer about the pallets it happened to sample. The three stages below are where the same checks are actually applied, and each is a different opportunity for a buyer to see the work rather than take a report on trust.</p>
+        <div class="p101-scroll">
+          <table class="p101-table">
+            <thead><tr><th scope="col">Stage</th><th scope="col">When</th><th scope="col">What is checked</th><th scope="col">Who can attend</th></tr></thead>
+            <tbody>
+              <tr><td>First article (FAI)</td><td>Before the bulk of a run proceeds</td><td>Every dimension and feature against the approved drawing, on the first pieces off a new or reworked tool</td><td>The buyer or their inspector, by arrangement</td></tr>
+              <tr><td>In-process (DPI)</td><td>At intervals through the run</td><td>A running sample against the critical dimensions and the hardness band, to catch drift before it reaches the pallet</td><td>Usually internal; a buyer's inspector can sit in on a long-running programme</td></tr>
+              <tr><td>Pre-shipment (PSI)</td><td>Against the finished, packed goods</td><td>An AQL sample against the full specification — dimensions, function, finish, hardness and pack</td><td>The buyer's own inspector or a third party (SGS, Bureau Veritas, Intertek), booked ahead of the ship date</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="wk-rule"><b>A supplier who only offers the last of the three is offering a filter, not a control.</b> Pre-shipment inspection catches a bad pallet. It does nothing to stop the next one, because the run that produced it is already finished by the time anyone looks.</p>
+
+        <h3 id="s-qc-reject"><span class="wk-n">${sn}.3</span> What a rejected lot triggers</h3>
+        <dl class="wk-dl">
+          <dt>Containment first</dt><dd>The affected lot is held the moment a check fails. Nothing ships on the expectation that it will probably be fine.</dd>
+          <dt>Root cause, not just a re-sort</dt><dd>A re-sort finds the bad pieces in this lot. Root cause finds out why the die drifted, the bath cooled or the batch was mixed — so the next lot does not carry the same defect.</dd>
+          <dt>Re-inspection before release</dt><dd>The corrected or re-sorted lot goes through the same check that failed it, not a lighter one, before it is released again.</dd>
+        </dl>
+        <p class="wk-ask"><b>Ask any supplier for:</b> which of the three stages they actually run — first article, in-process, pre-shipment, or only the last of the three — whether a buyer's inspector can attend, and what a failed lot triggers, in writing, before the first container rather than after the first rejection.</p>` },
+
   { id: 's-mat', title: 'Material families', subs: MATERIALS.map(m => ({ id: 'mat-' + m.code.toLowerCase(), title: m.name })),
     take: "Nine families. The grade is a trade-off, never an upgrade — every point of hardness is bought with toughness.",
     render: sn => `        <p>A garden tool is rarely one material. These nine families cover a hand-tool programme, and the same nine are tracked as live inputs on the <a href="partner.html">AsiaSource</a>, so a grade discussed here can be checked against this week's price movement.</p>
@@ -607,6 +651,61 @@ ${ECO.map(r => `              <tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td>
         </div>
         <p class="wk-ask"><b>Worth asking early:</b> who owns the tooling, how many sample rounds are free, whether MOQ can be pooled across the range, and how long spare parts are held. Four questions, and the answers tell you most of what a supplier relationship will be like.</p>` },
 
+  { id: 's-fix', title: 'Where a specification usually goes wrong',
+    subs: [{ id: 's-fix-mat', title: 'Materials and heat treatment' },
+           { id: 's-fix-fast', title: 'Joints and fasteners' },
+           { id: 's-fix-pack', title: 'Packaging and compliance' },
+           { id: 's-fix-comm', title: 'Commercial and scheduling' }],
+    take: "Eleven patterns, each traced back to a mechanism set out earlier on this page. A cause a supplier can name before it happens is a cause that gets designed out.",
+    render: sn => `        <p>None of the patterns below is about a named customer &mdash; nothing on this page is. Each is common enough across the trade to have a name, and each traces back to a mechanism already set out earlier on this page: a hardness ceiling instead of a band, a joint that cannot be re-tensioned, a hole punched for the wrong hook. Reading the cause next to the fix is usually enough to tell whether a supplier has seen a pattern before or is meeting it for the first time in your container.</p>
+
+        <h3 id="s-fix-mat"><span class="wk-n">${sn}.1</span> Materials and heat treatment</h3>
+        <div class="p101-scroll">
+          <table class="p101-table">
+            <thead><tr><th scope="col">What a buyer sees</th><th scope="col">Where it actually starts</th><th scope="col">What we do about it</th></tr></thead>
+            <tbody>
+              <tr><td>A batch that passed sampling still cracked in the field</td><td>The specification named a hardness ceiling rather than a band, and the sampled pieces happened to land at the top of it &mdash; exactly where toughness runs out</td><td>Every hardness figure in a Birdland specification is a band with a floor and a ceiling together, for the reasons set out in <a href="#s-fail">How a tool fails</a></td></tr>
+              <tr><td>A &ldquo;stainless upgrade&rdquo; that seemed like a free improvement now dulls faster than the steel it replaced</td><td>A hardenable grade was swapped for one that cannot be hardened to the same level &mdash; corrosion resistance was bought at a cost in edge retention nobody priced</td><td>The trade is quoted and explained, not offered as a free upgrade &mdash; see the stainless-is-a-trade rule in <a href="#s-fail">How a tool fails</a></td></tr>
+              <tr><td>A handle that flexed fine on the sample bends permanently after one hard season</td><td>The aluminium alloy was specified without its temper, or a glass-filled core was chosen for stiffness alone</td><td>Temper and glass loading are specified together with the alloy, as set out in <a href="#s-fail">How a tool fails</a>, not left to a mill's or moulder's default</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="s-fix-fast"><span class="wk-n">${sn}.2</span> Joints and fasteners</h3>
+        <div class="p101-scroll">
+          <table class="p101-table">
+            <thead><tr><th scope="col">What a buyer sees</th><th scope="col">Where it actually starts</th><th scope="col">What we do about it</th></tr></thead>
+            <tbody>
+              <tr><td>A telescopic pole joint that turned freely on day one has seized solid after one coastal season</td><td>A stainless fastener was run directly through an aluminium tube &mdash; a small battery, with the aluminium as the anode</td><td>The fastener is isolated from the aluminium with a nylon bush or a matched coating before it ships, per <a href="#s-fast">Nuts, bolts and the joint</a></td></tr>
+              <tr><td>A pruner that still takes a good edge is now dangerously loose at the pivot, with nothing left to tighten</td><td>The joint was riveted rather than bolted &mdash; cheaper by a few cents, and a decision about the tool's whole service life</td><td>A rivet is specified only where no service is expected of the tool at all; anything sold as repairable gets a re-tensionable joint, as explained in <a href="#s-fast">Nuts, bolts and the joint</a></td></tr>
+              <tr><td>A lock nut that held through the first few sharpenings now backs off on its own</td><td>A nylon insert is a consumable &mdash; it grips by being deformed, and gives up a little grip each time it is removed</td><td>Where a tool is meant to be stripped for sharpening every season, an all-metal prevailing-torque nut is specified instead, per <a href="#s-fast">Nuts, bolts and the joint</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="s-fix-pack"><span class="wk-n">${sn}.3</span> Packaging and compliance</h3>
+        <div class="p101-scroll">
+          <table class="p101-table">
+            <thead><tr><th scope="col">What a buyer sees</th><th scope="col">Where it actually starts</th><th scope="col">What we do about it</th></tr></thead>
+            <tbody>
+              <tr><td>A pack that looked right on the sample is rejected at the retailer's own intake</td><td>The hole was punched for a euro-slot rail and the retailer's fixture is pegboard, or the reverse</td><td>The hook or fixture is confirmed before the die-cut is drawn, as set out in <a href="#s-pack">Packaging</a>, not after</td></tr>
+              <tr><td>A shipment that passed retail inspection arrives damaged after its first month selling online</td><td>The retail pack was reused for parcel shipping without its own drop test &mdash; a retail pack is built to be stacked, a parcel pack to be thrown</td><td>A pack destined for a parcel network is tested against that network's own protocol, separately from its retail brief, per <a href="#s-pack">Packaging</a></td></tr>
+              <tr><td>A certificate presented at the sales meeting does not survive a customs or retailer audit</td><td>The certificate's site address, scope or claim type did not match the plant or product actually shipping</td><td>Site, scope and date are checked against the plant before a claim is made on a pack, as set out in <a href="#s-cert">Certificates and declarations</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="s-fix-comm"><span class="wk-n">${sn}.4</span> Commercial and scheduling</h3>
+        <div class="p101-scroll">
+          <table class="p101-table">
+            <thead><tr><th scope="col">What a buyer sees</th><th scope="col">Where it actually starts</th><th scope="col">What we do about it</th></tr></thead>
+            <tbody>
+              <tr><td>A range that looked viable on paper prices out at twenty-four separate minimums</td><td>MOQ was quoted per line rather than pooled across the range</td><td>A range is quoted, and where possible run, as a pool rather than as separate minimums, per <a href="#s-serve">What a wholesaler expects</a></td></tr>
+              <tr><td>An order placed in what felt like good time still misses its spring ship window</td><td>Garden tools carry one seasonal peak on each side of the equator, and tooling or long-lead material does not compress just because a purchase order arrived late</td><td>Tooling and bulk material for a season are planned ahead of the peak that will sell it, not during it</td></tr>
+            </tbody>
+          </table>
+        </div>` },
+
   { id: 's-cost', title: 'Cost structure', subs: [],
     take: "A landed price is four blocks. Most negotiations move only the first, and the last two are usually larger.",
     render: () => `        <p>A landed price is four blocks, not one number. Most sourcing conversations move only the first; in a hand-tool programme the last two are frequently larger than the saving being negotiated on the first.</p>
@@ -657,7 +756,7 @@ const html = `<!doctype html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Factory | Garden Hand-Tool Manufacturing Reference</title>
-  <meta name="description" content="A reference article on garden hand-tool manufacturing: the Taiwan works since 1974, seven production gates, nine material families, eleven packaging formats and the four blocks of landed cost — each rated for how common and how costly it is in European and North American DIY retail.">
+  <meta name="description" content="A reference article on garden hand-tool manufacturing: the Taiwan works since 1974, seven production gates, in-house quality testing across three inspection stages, nine material families, eleven common specification failures and their fixes, eleven packaging formats and the four blocks of landed cost — each rated for how common and how costly it is in European and North American DIY retail.">
   <link rel="stylesheet" href="birdland-visual.css?v=20260731j"><script defer src="terminal-status.js?v=20260730d"></script>
   ${cluster('product-101.html')}
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -693,6 +792,8 @@ ${tocHtml}
           <dt>Production gates</dt><dd>7</dd>
           <dt>Material families</dt><dd>9</dd>
           <dt>Packaging formats</dt><dd>11</dd>
+          <dt>Inspection stages</dt><dd>3</dd>
+          <dt>Failure patterns indexed</dt><dd>11</dd>
           <dt>Own brand</dt><dd>None, by rule</dd>
         </dl>
       </aside>
