@@ -185,7 +185,7 @@ jobs:
           set -euo pipefail
           preview="$RUNNER_TEMP/birdland-preview"
           mkdir -p "$preview"
-          cp index.html news.html partner.html team.html executive.html privacy.html birdland-intro.html CNAME robots.txt partner-desk.webmanifest executive-desk.webmanifest partner-desk-icon.svg service-worker.js calendar-events.json "$preview/"
+          cp index.html news.html partner.html team.html executive.html privacy.html CNAME robots.txt partner-desk.webmanifest executive-desk.webmanifest partner-desk-icon.svg service-worker.js calendar-events.json "$preview/"
           cp -R images "$preview/images"
           cp -R calendars "$preview/calendars"
           cp -R feeds "$preview/feeds"
