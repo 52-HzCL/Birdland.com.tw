@@ -1,7 +1,7 @@
 // Bumped with every deploy that changes core assets: `activate` deletes every
 // cache whose key is not the current one, which is what evicts the previous
 // runtime cache. Without it a returning visitor keeps the old CSS for a load.
-const VERSION = "birdland-desks-v41";
+const VERSION = "birdland-desks-v42";
 const CORE_CACHE = `${VERSION}-core`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const CORE_ASSETS = [
@@ -83,7 +83,6 @@ const CORE_ASSETS = [
   "./images/thumbs/chairman-inspection.webp",
   "./images/thumbs/assembly-calibration.webp",
   "./images/hero-forged-trowel.webp",
-  "./images/hero-supply-firewall-option-a-dutch-trowel.png",
   "./images/hero-oem-program-production-quality-v2.webp",
   "./images/free-subscription-mailbox-option-a.webp",
   "./images/foundry-engraving.webp",

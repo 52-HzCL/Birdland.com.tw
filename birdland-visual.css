@@ -345,19 +345,13 @@ button{font:inherit}
   color:var(--bl-jade);
   background:rgba(246,242,233,.94);
 }
-.bl-capability-stage-make::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-  opacity:.13;
-  background-image:url("images/hero-supply-firewall-option-a-dutch-trowel.png");
-  background-repeat:no-repeat;
-  background-position:left 55%;
-  background-size:495% auto;
-  mix-blend-mode:multiply;
-}
+/* The watermark this rule painted was a 2.25MB PNG — the second largest file
+   in images/ — and it was the only thing referencing it. No markup anywhere on
+   the site uses .bl-capability-stage, so the picture was downloaded by the
+   service worker on install and shown to nobody. Rule and image both gone.
+   NOTE the rest of the .bl-capability-* family below is dead for the same
+   reason and is still here; removing it belongs with the wider unused-CSS
+   pass, which needs a screenshot gate this one-rule change does not. */
 .bl-capability-stage-make>*{position:relative;z-index:1}
 .bl-capability-stage-move{flex-grow:2;background:rgba(8,43,73,.95)}
 .bl-capability-stage-yours{background:rgba(7,60,51,.96)}
