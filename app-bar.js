@@ -108,7 +108,7 @@
     location.reload();
   });
 
-  var ICON_V = '20260805a';
+  var ICON_V = '20260810a';
   function tile(key, cls) {
     return '<img class="' + cls + '" src="images/app-' + key + '-tile.png?v=' + ICON_V +
       '" width="36" height="36" alt="" decoding="async">';

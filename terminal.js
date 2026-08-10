@@ -31,10 +31,10 @@
     } catch (e) { return ''; }
   })();
   var ICON = {
-    news: '<img src="' + BASE + 'images/app-news-tile.png?v=20260805a" width="96" height="96" alt="" decoding="async">',
-    buyer: '<img src="' + BASE + 'images/app-buyer-tile.png?v=20260805a" width="96" height="96" alt="" decoding="async">',
-    cost: '<img src="' + BASE + 'images/app-cost-tile.png?v=20260805a" width="96" height="96" alt="" decoding="async">',
-    market: '<img src="' + BASE + 'images/app-market-tile.png?v=20260805a" width="96" height="96" alt="" decoding="async">',
+    news: '<img src="' + BASE + 'images/app-news-tile.png?v=20260810a" width="96" height="96" alt="" decoding="async">',
+    buyer: '<img src="' + BASE + 'images/app-buyer-tile.png?v=20260810a" width="96" height="96" alt="" decoding="async">',
+    cost: '<img src="' + BASE + 'images/app-cost-tile.png?v=20260810a" width="96" height="96" alt="" decoding="async">',
+    market: '<img src="' + BASE + 'images/app-market-tile.png?v=20260810a" width="96" height="96" alt="" decoding="async">',
     team: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="14" width="18" height="13" rx="2"/><path d="M11 14v-4a5 5 0 0 1 10 0v4"/><path d="M16 19v4"/></svg>',
   };
   // Four questions in the order a buyer actually asks them. The key is the
