@@ -12,7 +12,21 @@ const fs = require('fs');
 const path = require('path');
 const R = process.argv[2] || require('./_env').REPO;
 
-const data = JSON.parse(fs.readFileSync(path.join(R, 'outlook-data.json'), 'utf8'));
+const outlookRaw = fs.readFileSync(path.join(R, 'outlook-data.json'), 'utf8');
+const data = JSON.parse(outlookRaw);
+
+// JS's JSON.parse collapses 1187.0 and 1187 into the same Number, so once
+// parsed there is no way to tell "this was written as a float" — but Python's
+// json.loads keeps that distinction (float vs int) and "{:,}".format() prints
+// it back out ("1,187.0" vs "1,187"), which is what build_terminal.py (the
+// CI-authoritative version) produces. Recover the original literal per index
+// straight from the source text so num() below can reproduce it exactly.
+const rawValueByShort = {};
+{
+  const re = /"short":\s*"((?:[^"\\]|\\.)*)"\s*,\s*"value":\s*(-?\d+(?:\.\d+)?)/g;
+  let m;
+  while ((m = re.exec(outlookRaw))) rawValueByShort[m[1]] = m[2];
+}
 const partner = fs.readFileSync(path.join(R, 'tools', 'partner_template.html'), 'utf8');
 const factory = fs.readFileSync(path.join(R, 'product-101.html'), 'utf8');
 
@@ -30,13 +44,26 @@ function realChg(ix) {
 }
 const byShort = {};
 (data.indices || []).forEach(x => { if (x && x.short) byShort[x.short] = x; });
-const num = v => Number(v).toLocaleString('en-US');
+// Match Python's "{:,}".format(v): comma-group the integer part but keep the
+// value's own decimal precision as-is (an integer stays "1,187", a float
+// keeps its ".0" — "1,187.0"). `raw`, when given, is the value's original
+// literal text pulled from outlook-data.json (see rawValueByShort above) so
+// a value written as "1187.0" keeps its ".0" instead of collapsing through
+// JS's Number type, which cannot tell 1187.0 from 1187.
+const num = (v, raw) => {
+  const s = raw !== undefined ? raw : String(Number(v) || 0);
+  const neg = s[0] === '-';
+  const body = neg ? s.slice(1) : s;
+  const [intPart, fracPart] = body.split('.');
+  const grouped = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return (neg ? '-' : '') + grouped + (fracPart !== undefined ? '.' + fracPart : '');
+};
 function cell(short, label) {
   const ix = byShort[short];
   if (!ix) return null;
   const c = realChg(ix);
   const dir = c > 0.05 ? 'up' : (c < -0.05 ? 'down' : 'flat');
-  return { text: (label || short) + ' ' + num(ix.value) + (dir === 'up' ? ' ▲' : dir === 'down' ? ' ▼' : ' —'), dir };
+  return { text: (label || short) + ' ' + num(ix.value, rawValueByShort[short]) + (dir === 'up' ? ' ▲' : dir === 'down' ? ' ▼' : ' —'), dir };
 }
 // AsiaSource has no daily price of its own, so it carries the input that
 // moved most today — the same proxies its material cards already show.
@@ -56,6 +83,12 @@ const steps = {
 };
 
 // ── search index ─────────────────────────────────────────────────────────
+// Python's urllib.parse.quote (used by build_terminal.py, the CI-authoritative
+// version) treats '/' as safe by default and leaves it unescaped, unlike
+// encodeURIComponent which escapes it to %2F. Names like "Soy/vegetable ink
+// system" would otherwise diverge in the generated URL.
+const pyQuote = s => encodeURIComponent(s).replace(/%2F/g, '/');
+
 const index = [];
 const seen = new Set();
 function add(t, n, d, u) {
@@ -137,7 +170,7 @@ function harvest(kind, key, url) {
     part = (partMarks.filter(x => x.at < before).pop() || {}).part || '';
     const desc = kind === 'MATERIAL' ? [family, part].filter(Boolean).join(' · ') : family;
     pairs(block).forEach(p => {
-      add(kind, p[0], desc, url.replace('#', '?q=' + encodeURIComponent(p[0]) + '#'));
+      add(kind, p[0], desc, url.replace('#', '?q=' + pyQuote(p[0]) + '#'));
       n++;
     });
   }

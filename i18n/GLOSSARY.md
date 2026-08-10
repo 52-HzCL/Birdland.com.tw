@@ -15,11 +15,17 @@ Materials & grades
 
 Trade & cost terms
 : OEM · FOB · CIF · FEU · TEU · HS (code) · MFN · MPF · HMF · VAT · GST ·
-  ex-works · landed cost*, Section 301
+  ex-works · landed cost*, Section 301 · MOQ
 
 Regulation & certification marks
 : EUDR · CBAM · REACH · FSC · BSCI · PEFC · ISO (with number) · CE · GS ·
   ISPM 15 · EPR · WCI (Drewry World Container Index) · PMI
+
+Inspection & quality terms
+: AQL · FAI (first article inspection) · DPI (in-process inspection) ·
+  PSI (pre-shipment inspection) · SPC (statistical process control) ·
+  SGS · Bureau Veritas · Intertek (third-party inspection houses, proper
+  nouns) · Rockwell / HRC
 
 Market shorthand
 : USD/TWD · DXY · Brent · US 10Y · S&P 500 · STOXX 50 · VIX · HRC steel

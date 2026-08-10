@@ -24,7 +24,6 @@ const PAGES = [
   ['team.html', 'Team Desk'],
   ['contact.html', 'Contact'],
   ['privacy.html', 'Privacy'],
-  ['birdland-intro.html', 'Intro'],
 ];
 
 const VIEWPORTS = [

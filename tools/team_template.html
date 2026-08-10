@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="zh-Hant"><head>
-  <link rel="stylesheet" href="tokens.css?v=20260804a"><script src="text-size.js?v=20260804a"></script><link rel="stylesheet" href="app-bar.css?v=20260807a"><script defer src="app-bar.js?v=20260807a"></script><script defer src="i18n.js?v=20260807a"></script>
+  <link rel="stylesheet" href="tokens.css?v=20260804a"><script src="text-size.js?v=20260804a"></script><link rel="stylesheet" href="app-bar.css?v=20260807a"><script defer src="app-bar.js?v=20260807a"></script><script defer src="i18n.js?v=20260809a"></script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Birdland Team Desk is an internal operating view for the manufacturing team.">
 <title>Birdland Team Desk</title><meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="terminal-strip.css?v=20260803a"><script defer src="terminal-status.js?v=20260730d"></script>
@@ -553,7 +553,26 @@ body::after{display:none!important}
 <script type="application/json" id="outlook-data">__DATA__</script>
 <script>
 (function(){
-  // gate
+  // gate — a speed bump, NOT a security boundary. Read this before putting
+  // anything behind it.
+  //
+  // The whole desk is in the HTML that has already loaded; this gate is an
+  // overlay the function below hides. The passphrase is compared in plain text
+  // three lines down, in a file committed to a PUBLIC repository — anyone who
+  // opens View Source, or the repo, is already past it. It stops a customer who
+  // guessed the URL, and nobody else. That is all it has ever done.
+  //
+  // Which is fine TODAY, because nothing here is worth gating: everything this
+  // page renders comes from outlook-data.json, public in the same repo, and the
+  // cost tools are input forms — the reader types their own numbers and nothing
+  // is stored. The gate protects a layout, not a secret.
+  //
+  // So the rule this comment exists to carry: never put a real supplier price,
+  // a margin, a customer name or any other confidential figure on this page
+  // while it is served from GitHub Pages. When that becomes the thing you want
+  // here, the hosting changes first — a front door that authenticates before it
+  // sends the bytes. Hardening this function cannot get you there: no
+  // client-side check can, because the client already holds the page. ISSUES I-1.
   var gate=document.getElementById('gate'),pin=document.getElementById('tpin'),err=document.getElementById('terr');
   function unlock(){gate.classList.add('hide');try{sessionStorage.setItem('bd_team','1');}catch(e){}}
   function go(){if(pin.value==='ecosteelland'){unlock();}else{err.textContent='PIN 錯誤 · access denied';pin.value='';pin.focus();}}

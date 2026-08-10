@@ -1,12 +1,12 @@
 <!doctype html>
-<!-- i18n-src:8159bd51b5cd5bb4550dd96a9c577255dfc66070 --><html lang="ja"><head>
+<!-- i18n-src:9bfff89e3cd2bf896c9c6f96e5f5f5e3db6a8042 --><html lang="ja"><head>
   <script>try{localStorage.setItem("bl_lang","ja")}catch(e){}</script>
   <link rel="stylesheet" href="../tokens.css?v=20260804a"><script src="../text-size.js?v=20260804a"></script>
-  <link rel="stylesheet" href="../terminal.css?v=20260807a"><script defer="" src="../terminal.js?v=20260807a"></script>
+  <link rel="stylesheet" href="../terminal.css?v=20260803a"><script defer="" src="../terminal.js?v=20260803a"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>工場 | 園芸用手工具の製造リファレンス</title>
-  <meta name="description" content="園芸用手工具の製造についてのリファレンス記事。1974年からの台湾工場、7つの生産ゲート、9つの材料系統、11の包装形態、そして landed cost の4ブロックを、欧州・北米のDIY小売における普及度と相対コストとともに解説します。">
+  <meta name="description" content="園芸用手工具の製造についてのリファレンス記事。1974年からの台湾工場、7つの生産ゲート、3段階の検査にわたる社内品質試験、9つの材料系統、よくある11の仕様上の失敗とその対処、11の包装形態、そして landed cost の4ブロックを、欧州・北米のDIY小売における普及度と相対コストとともに解説します。">
   <link rel="stylesheet" href="../birdland-visual.css?v=20260731j"><script defer="" src="../terminal-status.js?v=20260730d"></script>
   <link rel="alternate" hreflang="en" href="https://birdland.com.tw/product-101.html">
   <link rel="alternate" hreflang="nl" href="https://birdland.com.tw/nl/product-101.html">
@@ -1133,14 +1133,16 @@
         <li><a href="#s-cat">2 カタログ</a></li>
         <li><a href="#s-oem">3 OEMのルート</a><ul><li><a href="#oem-spec">3.1 仕様OEM</a></li><li><a href="#oem-design">3.2 設計OEM</a></li><li><a href="#oem-levers">3.3 各ルートで変えられるもの</a></li><li><a href="#oem-tooling">3.4 金型の取り決め方</a></li></ul></li>
         <li><a href="#s-route">4 生産の工程</a><ul><li><a href="#gate-material">4.1 材料受入</a></li><li><a href="#gate-forming">4.2 成形・加工</a></li><li><a href="#gate-heat">4.3 熱処理</a></li><li><a href="#gate-tooling">4.4 金型・治具</a></li><li><a href="#gate-joining">4.5 接合・組立</a></li><li><a href="#gate-finish">4.6 表面処理</a></li><li><a href="#gate-inspection">4.7 検査・出荷判定</a></li></ul></li>
-        <li><a href="#s-mat">5 材料の系統</a><ul><li><a href="#mat-m1">5.1 刃物鋼・ばね鋼</a></li><li><a href="#mat-m2">5.2 ステンレス鋼</a></li><li><a href="#mat-m3">5.3 めっき・塗装</a></li><li><a href="#mat-m4">5.4 アルミニウム</a></li><li><a href="#mat-m5">5.5 硬質プラスチック</a></li><li><a href="#mat-m6">5.6 グリップと軟質材</a></li><li><a href="#mat-m7">5.7 木材</a></li><li><a href="#mat-m8">5.8 繊維・布材</a></li><li><a href="#mat-m9">5.9 包装用板紙</a></li></ul></li>
-        <li><a href="#s-fail">6 工具はどう壊れるか</a><ul><li><a href="#s-fail-cut">6.1 切る工具</a></li><li><a href="#s-fail-lever">6.2 こじる工具</a></li><li><a href="#s-fail-spring">6.3 たわむ工具</a></li></ul></li>
-        <li><a href="#s-fast">7 ナット・ボルトと結合部</a><ul><li><a href="#s-fast-p">7.1 支点</a></li><li><a href="#s-fast-w">7.2 ワッシャー構成</a></li><li><a href="#s-fast-m">7.3 締結部品の材質</a></li></ul></li>
-        <li><a href="#s-pack">8 包装</a><ul><li><a href="#s-pack-f">8.1 包装形態</a></li><li><a href="#s-pack-d">8.2 陳列と売場での見せ方</a></li><li><a href="#s-pack-r">8.3 什器と陳列ユニット</a></li><li><a href="#s-pack-x">8.4 宅配網は売場ではない</a></li><li><a href="#s-pack-e">8.5 環境負荷の低い選択肢</a></li></ul></li>
-        <li><a href="#s-cert">9 認証と宣言</a><ul><li><a href="#s-cert-t">9.1 各認証が保証する範囲</a></li><li><a href="#s-cert-r">9.2 証明書の読み方</a></li></ul></li>
-        <li><a href="#s-serve">10 卸売業者が求めるもの</a><ul><li><a href="#s-serve-b">10.1 発注の前に</a></li><li><a href="#s-serve-a">10.2 出荷の後に</a></li></ul></li>
-        <li><a href="#s-cost">11 コスト構造</a></li>
-        <li><a href="#s-also">12 関連ページ</a></li>
+        <li><a href="#s-qc">5 品質管理と試験</a><ul><li><a href="#s-qc-lab">5.1 社内試験</a></li><li><a href="#s-qc-stage">5.2 生産を通じた検査の段階</a></li><li><a href="#s-qc-reject">5.3 不合格ロットが動かすもの</a></li></ul></li>
+        <li><a href="#s-mat">6 材料の系統</a><ul><li><a href="#mat-m1">6.1 刃物鋼・ばね鋼</a></li><li><a href="#mat-m2">6.2 ステンレス鋼</a></li><li><a href="#mat-m3">6.3 めっき・塗装</a></li><li><a href="#mat-m4">6.4 アルミニウム</a></li><li><a href="#mat-m5">6.5 硬質プラスチック</a></li><li><a href="#mat-m6">6.6 グリップと軟質材</a></li><li><a href="#mat-m7">6.7 木材</a></li><li><a href="#mat-m8">6.8 繊維・布材</a></li><li><a href="#mat-m9">6.9 包装用板紙</a></li></ul></li>
+        <li><a href="#s-fail">7 工具はどう壊れるか</a><ul><li><a href="#s-fail-cut">7.1 切る工具</a></li><li><a href="#s-fail-lever">7.2 こじる工具</a></li><li><a href="#s-fail-spring">7.3 たわむ工具</a></li></ul></li>
+        <li><a href="#s-fast">8 ナット・ボルトと結合部</a><ul><li><a href="#s-fast-p">8.1 支点</a></li><li><a href="#s-fast-w">8.2 ワッシャー構成</a></li><li><a href="#s-fast-m">8.3 締結部品の材質</a></li></ul></li>
+        <li><a href="#s-pack">9 包装</a><ul><li><a href="#s-pack-f">9.1 包装形態</a></li><li><a href="#s-pack-d">9.2 陳列と売場での見せ方</a></li><li><a href="#s-pack-r">9.3 什器と陳列ユニット</a></li><li><a href="#s-pack-x">9.4 宅配網は売場ではない</a></li><li><a href="#s-pack-e">9.5 環境負荷の低い選択肢</a></li></ul></li>
+        <li><a href="#s-cert">10 認証と宣言</a><ul><li><a href="#s-cert-t">10.1 各認証が保証する範囲</a></li><li><a href="#s-cert-r">10.2 証明書の読み方</a></li></ul></li>
+        <li><a href="#s-serve">11 卸売業者が求めるもの</a><ul><li><a href="#s-serve-b">11.1 発注の前に</a></li><li><a href="#s-serve-a">11.2 出荷の後に</a></li></ul></li>
+        <li><a href="#s-fix">12 仕様はどこで狂うか</a><ul><li><a href="#s-fix-mat">12.1 材料と熱処理</a></li><li><a href="#s-fix-fast">12.2 結合部と締結部品</a></li><li><a href="#s-fix-pack">12.3 包装と適合対応</a></li><li><a href="#s-fix-comm">12.4 取引条件と日程</a></li></ul></li>
+        <li><a href="#s-cost">13 コスト構造</a></li>
+        <li><a href="#s-also">14 関連ページ</a></li>
       </ol>
     </nav>
 
@@ -1163,6 +1165,8 @@
           <dt>生産ゲート</dt><dd>7</dd>
           <dt>材料の系統</dt><dd>9</dd>
           <dt>包装形態</dt><dd>11</dd>
+          <dt>検査の段階</dt><dd>3</dd>
+          <dt>収録した失敗パターン</dt><dd>11</dd>
           <dt>自社ブランド</dt><dd>方針として持ちません</dd>
         </dl>
       </aside>
@@ -1436,20 +1440,21 @@
       </section>
       <section class="wk-entry" id="gate-inspection">
         <h3><span class="wk-n">4.7</span> 検査・出荷判定</h3>
-        <div class="wk-entry-grid wk-nodiagram">
+        <div class="wk-entry-grid">
           <figure class="wk-shot"><img src="../images/thumbs/pre-shipment-sampling.webp" alt="Birdlandの生産現場における検査・出荷判定" loading="lazy" decoding="async"><figcaption>自社工場にて · 台湾</figcaption></figure>
           <div class="wk-entry-copy">
-            <p>最後のゲートは、買い手が事後に監査できる唯一のゲートです。抜取計画、選んだ試験、そして出荷判定の記録が、完成したパレットを説明のつく商取引の引き渡しに変えます。</p>
+            <p>最後のゲートは、買い手が事後に監査できる唯一のゲートです。このゲートは一段ではなく三段で動きます。量産に入る前に図面と照合する初品確認、生産の途中で行う確認、そして完成したパレットに対する抜取計画です。各段階の出荷判定の記録が、出荷を供給者の言葉ではなく、説明のつく商取引の引き渡しに変えます。三つの段階は、次節「品質管理と試験」で詳しく述べます。</p>
             <dl class="wk-dl">
               <dt>入るもの</dt><dd>完成品、包装要件、そして合意された確認点。</dd>
               <dt>管理点</dt><dd>抜取計画と出荷判定基準は、不合格が出た後ではなく、生産前に合意しておく必要があります。</dd>
               <dt>買い手が確認すべきこと</dt><dd>出荷前に検証すべき項目は何で、誰が署名するのか。</dd>
             </dl>
           </div>
-          
+          <figure class="wk-fig"><svg class="wk-bp" viewBox="0 0 200 130" role="img" aria-label="模式図:検査・出荷判定"><use href="#bp-inspection"></use></svg><figcaption>模式図:検査・出荷判定</figcaption></figure>
         </div>
         <div class="wk-rates-wrap"><b class="wk-rates-h">このゲートの選択肢</b><ul class="wk-rates">
             <li class="wk-rates-head"><b>選択肢</b><span>普及度</span><span>相対コスト</span><span>重要な理由</span></li>
+            <li><b>初品検査(FAI)</b><span class="wk-cell"><span class="wk-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>一般的</em><span class="wk-sr">普及度 5段階中4</span></span><span class="wk-cell"><span class="wk-steps" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></span><em>低</em><span class="wk-sr">相対コスト 5段階中1</span></span><span class="wk-rnote">量産に入る前に図面と照合する初品確認。安価で、新規の金型や成形型ではほぼ必ず実施</span></li>
             <li><b>硬度抜取検査</b><span class="wk-cell"><span class="wk-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><em>常用</em><span class="wk-sr">普及度 5段階中3</span></span><span class="wk-cell"><span class="wk-steps" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></span><em>低</em><span class="wk-sr">相対コスト 5段階中1</span></span><span class="wk-rnote">ロット単位で刃の硬さを確認。低コストの日常的な抜取工程</span></li>
             <li><b>開閉耐久試験</b><span class="wk-cell"><span class="wk-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><em>散発</em><span class="wk-sr">普及度 5段階中2</span></span><span class="wk-cell"><span class="wk-steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><em>やや低</em><span class="wk-sr">相対コスト 5段階中2</span></span><span class="wk-rnote">はさみ・高枝切りの支点の耐久試験。追加コストは中程度</span></li>
             <li><b>塩水噴霧時間</b><span class="wk-cell"><span class="wk-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><em>散発</em><span class="wk-sr">普及度 5段階中2</span></span><span class="wk-cell"><span class="wk-steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><em>やや低</em><span class="wk-sr">相対コスト 5段階中2</span></span><span class="wk-rnote">めっき部品の腐食試験。中コストで全SKUには実施しない</span></li>
@@ -1458,17 +1463,62 @@
             <li><b>結合部引張試験</b><span class="wk-cell"><span class="wk-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><em>散発</em><span class="wk-sr">普及度 5段階中2</span></span><span class="wk-cell"><span class="wk-steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><em>やや低</em><span class="wk-sr">相対コスト 5段階中2</span></span><span class="wk-rnote">リベットやボルト結合部の破壊試験。実施は随時、コストは中程度</span></li>
             <li><b>包装落下試験</b><span class="wk-cell"><span class="wk-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><em>常用</em><span class="wk-sr">普及度 5段階中3</span></span><span class="wk-cell"><span class="wk-steps" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></span><em>低</em><span class="wk-sr">相対コスト 5段階中1</span></span><span class="wk-rnote">小売包装の標準的な輸送試験。安価で一般的</span></li>
             <li><b>バーコード・ラベル確認</b><span class="wk-cell"><span class="wk-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><em>全域</em><span class="wk-sr">普及度 5段階中5</span></span><span class="wk-cell"><span class="wk-steps" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></span><em>低</em><span class="wk-sr">相対コスト 5段階中1</span></span><span class="wk-rnote">小売側で必須の適合スキャン。安価で全個体に実施</span></li>
+            <li><b>ライン内SPC確認点</b><span class="wk-cell"><span class="wk-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><em>散発</em><span class="wk-sr">普及度 5段階中2</span></span><span class="wk-cell"><span class="wk-steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><em>やや低</em><span class="wk-sr">相対コスト 5段階中2</span></span><span class="wk-rnote">最後だけでなく生産の途中でも統計的に抜き取る。コストは中程度、長期の案件ほど一般的</span></li>
+            <li><b>第三者検査(SGS / Bureau Veritas / Intertek)</b><span class="wk-cell"><span class="wk-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><em>常用</em><span class="wk-sr">普及度 5段階中3</span></span><span class="wk-cell"><span class="wk-steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><em>やや低</em><span class="wk-sr">相対コスト 5段階中2</span></span><span class="wk-rnote">独立した検査員がAQL検査を手配し報告。コストは中程度、買い手が手配する場合も工場が手配する場合も同程度</span></li>
           </ul></div>
       </section>
       </section>
 
+      <section class="wk-sec" id="s-qc">
+        <h2><span class="wk-n">5</span> 品質管理と試験</h2>
+        <p class="wk-take">検査ゲートは検査の名前を挙げるところです。本節は、それを実際に動かすもの、そして三つの段階のどこに買い手が立ち会えるのかを扱います。</p>
+        <p>前のゲートでは、仕様が求めうる検査の名前を挙げました。検査名の一覧に欠けているのは、それが実際にどこで行われるかです。どの設備で、生産のどの時点で行うのか、そしてそのいずれかで不合格が出たとき何が動き出すのか。本節はそれを示します。</p>
+
+        <div class="wk-origin" id="s-qc-lab">
+          <figure><img src="../images/thumbs/chairman-inspection.webp" alt="射出成形の現場で、成形したばかりの部品を確認する経営陣" loading="lazy" decoding="async"><figcaption>現場で、手で確かめる</figcaption></figure>
+          <div>
+            <h3><span class="wk-n">5.1</span> 社内試験</h3>
+            <p>検査ゲートで名前を挙げた手段は、それを実際に動かすものの水準を超えることはありません。そのうち五つは社内で実施し、素材の証明書ではなく部品そのものを対象とします:</p>
+            <div class="wk-kv">
+              <div><b>硬さは、部品そのもので</b><span>刃先でRockwell試験を行い、仕様が定める帯と照合します。コイル材に対する製鋼メーカーの材料証明書ではありません。証明書が語るのは、成形と焼入れを受ける前の鋼に何ができたかであって、実際に何をしたかではありません。</span></div>
+              <div><b>塩水噴霧は、指定の時間どおりに</b><span>試験槽で、めっきや塗装を終えた完成部品を仕様が定める時間だけ試験します。めっきラインが工程について申告する内容だけを信用することはしません。</span></div>
+              <div><b>繰り返し寿命は、客先が見つける前に</b><span>試験機が支点を何千回も開閉し、あるいは爪をたわませて、結合部が緩む地点や、ばねがへたって戻らなくなる地点を突き止めます。</span></div>
+              <div><b>引張とトルクは、数値で</b><span>検査ゲートで挙げた結合部引張試験は、指定した荷重まで加えて行います。支点が締まっている気がするかどうかという作業者の感覚では行いません。</span></div>
+              <div><b>寸法のゲージ確認は、初品時と生産の途中でもう一度</b><span>図面どおりに製作した通り・止まりゲージ、すなわち <a href="#gate-tooling">金型ゲート</a> で挙げたものと同じゲージが、狂いはじめた金型を、客先自身の受入検査よりはるかに早く捉えます。</span></div>
+            </div>
+          </div>
+        </div>
+
+        <h3 id="s-qc-stage"><span class="wk-n">5.2</span> 生産を通じた検査の段階</h3>
+        <p>生産の最後に一度だけ行う検査は、たまたま抜き取ったパレットについてしか買い手に教えません。以下の三段階は、同じ検査が実際に適用される場所であり、それぞれが、報告書を信用する代わりに買い手が仕事そのものを見る別々の機会です。</p>
+        <div class="p101-scroll">
+          <table class="p101-table">
+            <thead><tr><th scope="col">段階</th><th scope="col">時期</th><th scope="col">確認する内容</th><th scope="col">立ち会える人</th></tr></thead>
+            <tbody>
+              <tr><td>初品(FAI)</td><td>本生産に進む前</td><td>新規または手直しした金型から出た最初の数個について、承認図面に対し全寸法・全特徴を確認</td><td>買い手本人またはその検査員(事前手配による)</td></tr>
+              <tr><td>工程内(DPI)</td><td>生産中、一定の間隔で</td><td>重要寸法と硬度帯について継続的に抜き取り、狂いがパレットに載る前に捉える</td><td>通常は社内で実施。長期の案件では買い手の検査員が同席できる</td></tr>
+              <tr><td>出荷前(PSI)</td><td>包装まで終えた完成品に対して</td><td>仕様の全項目に対するAQL抜取。寸法・機能・仕上げ・硬さ・包装</td><td>買い手自身の検査員または第三者機関(SGS、Bureau Veritas、Intertek)。出荷日に先立って手配</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="wk-rule"><b>三つの段階のうち最後の一つしか用意しない供給者が差し出しているのは、管理ではなくふるいです。</b> 出荷前検査は不良のパレットを捕まえます。しかし次の一枚を止める働きはありません。誰かが見る時点で、それを生んだ生産はすでに終わっているからです。</p>
+
+        <h3 id="s-qc-reject"><span class="wk-n">5.3</span> 不合格ロットが動かすもの</h3>
+        <dl class="wk-dl">
+          <dt>まず封じ込め</dt><dd>検査が不合格となった時点で、当該ロットを止めます。おそらく大丈夫だろうという見込みで出荷することはありません。</dd>
+          <dt>再選別だけでなく、真因まで</dt><dd>再選別は、このロットの中の不良品を見つけます。真因の究明は、なぜ金型が狂ったのか、なぜ処理浴が冷えたのか、なぜロットが混ざったのかを突き止めます。次のロットが同じ欠陥を抱えないようにするためです。</dd>
+          <dt>出荷判定前の再検査</dt><dd>是正または再選別したロットは、再び出荷判定を受ける前に、不合格にしたのと同じ検査を通します。より軽い検査ではありません。</dd>
+        </dl>
+        <p class="wk-ask"><b>供給者に必ず求めるもの:</b> 三つの段階のうち実際にどれを行っているか(初品、工程内、出荷前、それとも最後の一つだけか)、買い手の検査員が立ち会えるかどうか、そして不合格ロットが何を動かすのか。いずれも最初の不合格の後ではなく、最初のコンテナの前に、書面で。</p>
+      </section>
+
       <section class="wk-sec" id="s-mat">
-        <h2><span class="wk-n">5</span> 材料の系統</h2>
+        <h2><span class="wk-n">6</span> 材料の系統</h2>
         <p class="wk-take">9つの系統。グレードは常に取引であって格上げではありません。硬さ1ポイントは、必ず靭性と引き換えです。</p>
         <p>園芸工具が単一材料でできていることはまれです。この9系統で手工具案件はほぼ網羅でき、同じ9系統を実勢価格の入力として追跡しているのが <a href="../partner.html">AsiaSource</a>です。ここで論じたグレードを、今週の価格の動きと照らして確認できます。</p>
         <p class="wk-legend"><b>普及度</b> は、欧州・北米のDIY小売で売られる園芸用手工具に、その選択肢がどれだけ現れるかを示します。 <b>相対コスト</b> は、同じ群の他の選択肢と比べたときの位置であって、価格ではありません。いずれもその販路についての順序的な判断であり、市場データではありません。</p>
       <section class="wk-entry" id="mat-m1">
-        <h3><span class="wk-n">5.1</span> 刃物鋼・ばね鋼</h3>
+        <h3><span class="wk-n">6.1</span> 刃物鋼・ばね鋼</h3>
         <div class="wk-entry-grid wk-nophoto">
           <figure class="wk-photo"><img src="../images/enc/m-steel.webp" alt="刃物鋼・ばね鋼" loading="lazy" decoding="async"><figcaption>刃物鋼・ばね鋼<small>参考ストック写真 · Willians Huerta / Pexels</small></figcaption></figure>
           <div class="wk-entry-copy">
@@ -1486,7 +1536,7 @@
           </ul></div>
       </section>
       <section class="wk-entry" id="mat-m2">
-        <h3><span class="wk-n">5.2</span> ステンレス鋼</h3>
+        <h3><span class="wk-n">6.2</span> ステンレス鋼</h3>
         <div class="wk-entry-grid wk-nophoto">
           <figure class="wk-photo"><img src="../images/enc/m-stainless.webp" alt="ステンレス鋼" loading="lazy" decoding="async"><figcaption>ステンレス鋼<small>参考ストック写真 · Alex Tepetidis / Pexels</small></figcaption></figure>
           <div class="wk-entry-copy">
@@ -1504,7 +1554,7 @@
           </ul></div>
       </section>
       <section class="wk-entry" id="mat-m3">
-        <h3><span class="wk-n">5.3</span> めっき・塗装</h3>
+        <h3><span class="wk-n">6.3</span> めっき・塗装</h3>
         <div class="wk-entry-grid wk-nophoto">
           <figure class="wk-photo"><img src="../images/enc/m-plating.webp" alt="めっき・塗装" loading="lazy" decoding="async"><figcaption>めっき・塗装<small>参考ストック写真 · Ivan Babydov / Pexels</small></figcaption></figure>
           <div class="wk-entry-copy">
@@ -1522,7 +1572,7 @@
           </ul></div>
       </section>
       <section class="wk-entry" id="mat-m4">
-        <h3><span class="wk-n">5.4</span> アルミニウム</h3>
+        <h3><span class="wk-n">6.4</span> アルミニウム</h3>
         <div class="wk-entry-grid wk-nophoto">
           <figure class="wk-photo"><img src="../images/enc/m-aluminium.webp" alt="アルミニウム" loading="lazy" decoding="async"><figcaption>アルミニウム<small>参考ストック写真 · Laura Tancredi / Pexels</small></figcaption></figure>
           <div class="wk-entry-copy">
@@ -1540,7 +1590,7 @@
           </ul></div>
       </section>
       <section class="wk-entry" id="mat-m5">
-        <h3><span class="wk-n">5.5</span> 硬質プラスチック</h3>
+        <h3><span class="wk-n">6.5</span> 硬質プラスチック</h3>
         <div class="wk-entry-grid wk-nophoto">
           <figure class="wk-photo"><img src="../images/enc/m-plastic.webp" alt="硬質プラスチック" loading="lazy" decoding="async"><figcaption>硬質プラスチック<small>参考ストック写真 · Jesus Carlon / Pexels</small></figcaption></figure>
           <div class="wk-entry-copy">
@@ -1558,7 +1608,7 @@
           </ul></div>
       </section>
       <section class="wk-entry" id="mat-m6">
-        <h3><span class="wk-n">5.6</span> グリップと軟質材</h3>
+        <h3><span class="wk-n">6.6</span> グリップと軟質材</h3>
         <div class="wk-entry-grid wk-nophoto">
           <figure class="wk-photo"><img src="../images/enc/m-grip.webp" alt="グリップと軟質材" loading="lazy" decoding="async"><figcaption>グリップと軟質材<small>参考ストック写真 · ERIC MUFASA / Pexels</small></figcaption></figure>
           <div class="wk-entry-copy">
@@ -1576,7 +1626,7 @@
           </ul></div>
       </section>
       <section class="wk-entry" id="mat-m7">
-        <h3><span class="wk-n">5.7</span> 木材</h3>
+        <h3><span class="wk-n">6.7</span> 木材</h3>
         <div class="wk-entry-grid wk-nophoto">
           <figure class="wk-photo"><img src="../images/enc/m-timber.webp" alt="木材" loading="lazy" decoding="async"><figcaption>木材<small>参考ストック写真 · Nishant Aneja / Pexels</small></figcaption></figure>
           <div class="wk-entry-copy">
@@ -1594,7 +1644,7 @@
           </ul></div>
       </section>
       <section class="wk-entry" id="mat-m8">
-        <h3><span class="wk-n">5.8</span> 繊維・布材</h3>
+        <h3><span class="wk-n">6.8</span> 繊維・布材</h3>
         <div class="wk-entry-grid wk-nophoto">
           <figure class="wk-photo"><img src="../images/enc/m-fabric.webp" alt="繊維・布材" loading="lazy" decoding="async"><figcaption>繊維・布材<small>参考ストック写真 · Jonathan Borba / Pexels</small></figcaption></figure>
           <div class="wk-entry-copy">
@@ -1612,7 +1662,7 @@
           </ul></div>
       </section>
       <section class="wk-entry" id="mat-m9">
-        <h3><span class="wk-n">5.9</span> 包装用板紙</h3>
+        <h3><span class="wk-n">6.9</span> 包装用板紙</h3>
         <div class="wk-entry-grid wk-nophoto">
           <figure class="wk-photo"><img src="../images/enc/m-board.webp" alt="包装用板紙" loading="lazy" decoding="async"><figcaption>包装用板紙<small>参考ストック写真 · Simon Potts / Pexels</small></figcaption></figure>
           <div class="wk-entry-copy">
@@ -1632,12 +1682,12 @@
       </section>
 
       <section class="wk-sec" id="s-fail">
-        <h2><span class="wk-n">6</span> 工具はどう壊れるか</h2>
+        <h2><span class="wk-n">7</span> 工具はどう壊れるか</h2>
         <p class="wk-take">硬さは、その工具がどう壊れると想定されるかで決めます。切れなくなるのか、折れるのか、疲労するのか。3つの群、3つの帯、3つの異なる答えです。</p>
         <p>硬さは手工具についてもっとも多く語られ、そしてもっとも多く誤って語られる数値です。品質の点数ではありませんし、硬いほど良いわけでもありません。硬さ1ポイントは必ず靭性と引き換えです。数値を決めるのは、その工具がどう壊れると想定されるかです。</p>
         <p>3つの群、3つの破壊様式、3つの異なる答え。以下の硬度帯はBirdlandが実際に用いているものです。並べて読めば、恣意的な数字には見えなくなります。</p>
 
-        <h3 id="s-fail-cut"><span class="wk-n">6.1</span> 切る工具 — 壊れ方は「切れなくなる」</h3>
+        <h3 id="s-fail-cut"><span class="wk-n">7.1</span> 切る工具 — 壊れ方は「切れなくなる」</h3>
         <p>切れなくなった剪定ばさみは、どこも折れていなくても機能を失っています。切れ味の持続が最優先ですので、この群には社内でもっとも硬い帯を用います。</p>
         <div class="wk-hard">
           <div class="wk-hard-head"><b>部位とグレード</b><span>硬度</span><span>そのルートの狙い</span></div>
@@ -1651,7 +1701,7 @@
         </div>
         <p class="wk-rule"><b>受け刃は、意図して軟らかくしています。</b> 上の表の前半と後半をもう一度ご覧ください。同じSK5でも、切断刃では56–60、それが閉じる相手の刃では50–56と指定しています。硬さの等しい刃どうしは互いに刃こぼれします。軟らかい受け刃が犠牲的に摩耗することで切れ刃が生き残ります。2回研ぎ直した剪定ばさみがまだ切れ、「全体を硬くした」ものに欠けが入るのはこのためです。</p>
 
-        <h3 id="s-fail-lever"><span class="wk-n">6.2</span> こじる工具 — 壊れ方は「折れる」</h3>
+        <h3 id="s-fail-lever"><span class="wk-n">7.2</span> こじる工具 — 壊れ方は「折れる」</h3>
         <p>鋤は石や根、凍った土に当たり、設計者の意図とは無関係にてこ棒として使われます。その破壊様式は切れ味の低下ではなく亀裂ですので、硬さは意図して抑えます。刃は折れる前に曲がるべきだからです。</p>
         <div class="wk-hard">
           <div class="wk-hard-head"><b>部位とグレード</b><span>硬度</span><span>そのルートの狙い</span></div>
@@ -1667,7 +1717,7 @@
           <p>ガラス繊維入りの芯材も同じ考え方で選びます。PA6-GF30が定番の均衡点なのは、それを超えると部品が曲がらずに砕けるようになるためです。一般消費者向け工具では、突然壊れる柄より変形する柄のほうが安全です。またガラスは金型を削るため、充填率を上げると金型寿命が静かに縮みます。この費用は最初の注文ではなく、2回目の注文に現れます。</p>
         </details>
 
-        <h3 id="s-fail-spring"><span class="wk-n">6.3</span> たわむ工具 — 壊れ方は「疲労」</h3>
+        <h3 id="s-fail-spring"><span class="wk-n">7.3</span> たわむ工具 — 壊れ方は「疲労」</h3>
         <p>熊手の爪に切ることは求められず、大きな単発荷重に耐えることもめったに求められません。求められるのは、何千回も曲がって元に戻ることです。重要なのは切れ味ではなく、弾性限度と繰り返し寿命です。</p>
         <div class="wk-hard">
           <div class="wk-hard-head"><b>部位とグレード</b><span>硬度</span><span>そのルートの狙い</span></div>
@@ -1677,7 +1727,7 @@
         </div>
         <p class="wk-rule"><b>曲がったまま戻らない爪は、折れた爪と同じくらい完全に機能を失っています。</b> 65Mnはばね鋼であり、その熱処理は硬さではなく戻りを狙っています。剪定ばさみのばねに同じグレードが使われるのも同じ理由です。</p>
 
-        <h3><span class="wk-n">6.4</span> 数値に込められた3つの原則</h3>
+        <h3><span class="wk-n">7.4</span> 数値に込められた3つの原則</h3>
         <dl class="wk-dl">
           <dt>上限値ではなく、帯で</dt><dd>本ページの数値はすべて範囲です。上限だけを書いた仕様は、工場にその上限を狙わせることになりますが、範囲の上端は脆さが始まる場所です。帯は下限と上限を同時に固定します。</dd>
           <dt>硬くするのは、擦れる場所だけ</dt><dd>40Crの支点部品は、軸受面だけを高周波焼入れし、本体は粘りを残します。芯まで硬くしたピンは摩耗しません。割れます。</dd>
@@ -1688,11 +1738,11 @@
       </section>
 
       <section class="wk-sec" id="s-fast">
-        <h2><span class="wk-n">7</span> ナット・ボルトと結合部</h2>
+        <h2><span class="wk-n">8</span> ナット・ボルトと結合部</h2>
         <p class="wk-take">手工具は刃よりも結合部で壊れることのほうが多いものです。その結合部を締め直して生き返らせられるか、捨てるしかないかを決めるのがナットです。</p>
         <p>本ページのどの工具も、少なくとも2つの部品を留めたものです。刃には仕様が与えられ、締結部品には箱にあるものが充てられます。刃はまだ研げば切れるのに剪定ばさみの寿命が尽きるのはこのためです。支点が緩み、締め直せる箇所がどこにもないのです。</p>
 
-        <h3 id="s-fast-p"><span class="wk-n">7.1</span> 支点が、その工具を直せるかどうかを決める</h3>
+        <h3 id="s-fast-p"><span class="wk-n">8.1</span> 支点が、その工具を直せるかどうかを決める</h3>
         <p>製品寿命を左右する選択は一つです。使い手が結合部を締め直せるか、締め直せないか。</p>
         <div class="p101-scroll">
           <table class="p101-table">
@@ -1708,7 +1758,7 @@
         </div>
         <p class="wk-rule"><b>リベットは価格ではなく、製品寿命についての決定です。</b> 数セントを節約する代わりに、修理も、正しい刃付けへの研ぎ直しも、補修部品の供給も失われます。修理可能と謳って売る工具では、包装では隠しきれない矛盾になります。</p>
 
-        <h3 id="s-fast-w"><span class="wk-n">7.2</span> ワッシャー構成はナット以上の仕事をする</h3>
+        <h3 id="s-fast-w"><span class="wk-n">8.2</span> ワッシャー構成はナット以上の仕事をする</h3>
         <div class="wk-kv">
           <div><b>皿ばねワッシャー</b><span>軸受面が使い込まれて馴染む間も予荷重を保ちます。一季を通じて調整が保たれる剪定ばさみと、2週間で緩むものとの差はここにあります。</span></div>
           <div><b>焼入れ平ワッシャー</b><span>締付け荷重を分散します。これがないとナットがアルミや樹脂の柄に食い込み、どこも壊れていないのに結合部が緩みます。</span></div>
@@ -1716,7 +1766,7 @@
           <div><b>ばね座金</b><span>広く使われていますが横振動には弱く、ユンカー型試験では平ワッシャーとほぼ同じ速さで緩むこともあります。緩み止め機構としてではなく、コスト上の選択として扱ってください。</span></div>
         </div>
 
-        <h3 id="s-fast-m"><span class="wk-n">7.3</span> 締結部品の材質</h3>
+        <h3 id="s-fast-m"><span class="wk-n">8.3</span> 締結部品の材質</h3>
         <div class="p101-scroll">
           <table class="p101-table">
             <thead><tr><th scope="col">選択肢</th><th scope="col">適する用途</th><th scope="col">引き換えになるもの</th></tr></thead>
@@ -1738,11 +1788,11 @@
       </section>
 
       <section class="wk-sec" id="s-pack">
-        <h2><span class="wk-n">8</span> 包装</h2>
+        <h2><span class="wk-n">9</span> 包装</h2>
         <p class="wk-take">案件が仕向地の規制と出会う場所であり、買い手がもっとも交渉せず、もっとも多く支払う費目です。</p>
         <p>包装は、案件が仕向地の規制と出会う場所であり、土壇場の変更がもっとも高くつく場所でもあります。ここでは4つのことが同時に決まります。工具を守る形態、売るための見せ方、運ぶための単位、そして仕向地が求める表示です。</p>
 
-        <h3 id="s-pack-f"><span class="wk-n">8.1</span> 包装形態</h3>
+        <h3 id="s-pack-f"><span class="wk-n">9.1</span> 包装形態</h3>
         <p class="wk-legend"><b>普及度</b> は、欧州・北米のDIY小売で売られる園芸用手工具に、その選択肢がどれだけ現れるかを示します。 <b>相対コスト</b> は、同じ群の他の選択肢と比べたときの位置であって、価格ではありません。いずれもその販路についての順序的な判断であり、市場データではありません。</p>
         <div class="wk-packs">
         <figure class="wk-pack">
@@ -1802,7 +1852,7 @@
         </figure>
         </div>
 
-        <h3 id="s-pack-d"><span class="wk-n">8.2</span> 陳列と売場での見せ方</h3>
+        <h3 id="s-pack-d"><span class="wk-n">9.2</span> 陳列と売場での見せ方</h3>
         <p>形態は工具を守ります。一方、 <i>見せ方</i> は、どう買われるかを決めます。打抜き形状も板紙の坪量も吊り下げ穴も見せ方が決めるため、この2つは同時に仕様化します。</p>
         <div class="p101-scroll">
           <table class="p101-table">
@@ -1821,7 +1871,7 @@
         </div>
         <p class="wk-rule"><b>穴を作図する前に、どのフックに掛けるのかを確認してください。</b> レール式什器、有孔ボード、スラットウォールはそれぞれ異なるフックを使います。合わない穴を打てば、適合していたはずの包装が仕向地での詰め替え作業に変わります。園芸案件で土壇場に起きる包装変更として、これが群を抜いて多いものです。</p>
 
-        <h3 id="s-pack-r"><span class="wk-n">8.3</span> 什器と陳列ユニット</h3>
+        <h3 id="s-pack-r"><span class="wk-n">9.3</span> 什器と陳列ユニット</h3>
         <p>「陳列什器」と呼ばれるものには二種類あります。小売がすでに所有している什器と、貴社が出荷するユニットです。どちらであるかが、費用を誰が負担するのか、そして見積の対象が包装なのか家具なのかを決めます。</p>
         <div class="p101-scroll">
           <table class="p101-table">
@@ -1836,7 +1886,7 @@
           </table>
         </div>
 
-        <h3 id="s-pack-x"><span class="wk-n">8.4</span> 宅配網は売場ではない</h3>
+        <h3 id="s-pack-x"><span class="wk-n">9.4</span> 宅配網は売場ではない</h3>
         <p>小売用の包装は、パレットに積み上げられ、店の照明の下で見栄えするように設計されます。宅配用の包装は、投げられることを前提に設計されます。同じ箱が両方をこなすことはまれで、小売の要件を満たした包装でも、ネット販売の最初の1か月で不合格になることがあります。</p>
         <div class="wk-kv">
           <div><b>外装なしで単体出荷できる</b><span>外装カートンなしで単体輸送に耐える小売包装です。箱1つ、作業1工程、そして大量の緩衝材を省けます。ただしそれは、その包装単体で当該マーケットプレイスの輸送試験に合格した場合に限ります。</span></div>
@@ -1848,7 +1898,7 @@
         </div>
         <p class="wk-note">マーケットプレイスの制度名・基準値・試験手順は変わります。上の行は確認すべき問いの一覧として扱い、それぞれを貴社アカウントの最新の出品者向け・取引先向けマニュアルで確認してください。</p>
 
-        <h3 id="s-pack-e"><span class="wk-n">8.5</span> 環境負荷の低い選択肢</h3>
+        <h3 id="s-pack-e"><span class="wk-n">9.5</span> 環境負荷の低い選択肢</h3>
         <p>従来型の各形態には、環境負荷を下げた代替ルートがあります。採用可否は包装・数量・仕向地によります。市場と売場での見せ方をお知らせいただければ、適合するルートを従来型と並べて見積れます。</p>
         <div class="p101-scroll">
           <table class="p101-table">
@@ -1870,11 +1920,11 @@
       </section>
 
       <section class="wk-sec" id="s-cert">
-        <h2><span class="wk-n">9</span> 認証と宣言</h2>
+        <h2><span class="wk-n">10</span> 認証と宣言</h2>
         <p class="wk-take">証明書とは、事業所・適用範囲・日付についての文書です。この3つをすべて確認してください。別の事業所についての有効な証明書には、何の価値もありません。</p>
         <p>この業界において認証はもはや差別化要因ではなく、参入の前提条件です。供給者を分けるのは、その書類が確認に耐えるかどうかです。購入する製品を含む適用範囲、工場と一致する事業所住所、そしてコンテナが出港する時点でまだ有効な日付。</p>
 
-        <h3 id="s-cert-t"><span class="wk-n">9.1</span> 各認証が保証する範囲</h3>
+        <h3 id="s-cert-t"><span class="wk-n">10.1</span> 各認証が保証する範囲</h3>
         <div class="p101-scroll">
           <table class="p101-table">
             <thead><tr><th scope="col">認証</th><th scope="col">実際に証明していること</th><th scope="col">求める相手</th><th scope="col">書類上で確認すべき点</th></tr></thead>
@@ -1894,7 +1944,7 @@
           </table>
         </div>
 
-        <h3 id="s-cert-r"><span class="wk-n">9.2</span> 証明書の読み方</h3>
+        <h3 id="s-cert-r"><span class="wk-n">10.2</span> 証明書の読み方</h3>
         <dl class="wk-dl">
           <dt>事業所、適用範囲、日付</dt><dd>証明書が貴社の注文に適用されるかは、この3項目で決まります。商社が保有する有効なFSC証明書があっても、工場がロゴを印刷してよいことにはなりません。姉妹工場の社会監査は、貴社のラインを回す工場について何も語りません。</dd>
           <dt>表示に必要なのはロゴではなく連鎖</dt><dd>包装にFSCを表示するには、認証材料の所有権を持つすべての当事者が自らの管理の連鎖番号を持つ必要があります。製紙工場、加工業者、そして包装を組み立てる工場です。連鎖が一つでも欠ければ、紙がどれほど認証済みでも表示はできません。</dd>
@@ -1904,11 +1954,11 @@
       </section>
 
       <section class="wk-sec" id="s-serve">
-        <h2><span class="wk-n">10</span> 卸売業者が求めるもの</h2>
+        <h2><span class="wk-n">11</span> 卸売業者が求めるもの</h2>
         <p class="wk-take">この水準で供給者を分けるものの大半は、工具そのものではありません。金型の所有、試作の規律、書類、そして問題が起きたときの対応です。</p>
         <p>欧州・北米の輸入業者、卸、共同仕入組織、そして彼らと競うアジアの商社は、短い期待事項の一覧に収斂していきます。そのほとんどは製造とは無関係です。初回の商談で実際に話されるのはこの内容ですので、率直に記しておく価値があります。</p>
 
-        <h3 id="s-serve-b"><span class="wk-n">10.1</span> 発注の前に</h3>
+        <h3 id="s-serve-b"><span class="wk-n">11.1</span> 発注の前に</h3>
         <div class="wk-kv">
           <div><b>金型の所有を書面で</b><span>金型を誰が所有し、どこで保管し、移設にいくらかかり、案件が終わったときにどうなるのか。この業界でもっとも高くつく曖昧さです。</span></div>
           <div><b>試作の規律</b><span>何回目から試作が有償になるのか、そして双方が封印した基準見本を保管すること。量産はその見本と照合して判定します。記憶とではありません。</span></div>
@@ -1918,7 +1968,7 @@
           <div><b>混載</b><span>複数の品目、ときに複数の工場を1本のコンテナにまとめること。そして通関業者が読める1通のパッキングリスト。</span></div>
         </div>
 
-        <h3 id="s-serve-a"><span class="wk-n">10.2</span> 出荷の後に</h3>
+        <h3 id="s-serve-a"><span class="wk-n">11.2</span> 出荷の後に</h3>
         <div class="wk-kv">
           <div><b>貨物より先に届く書類</b><span>インボイス、パッキングリスト、原産地証明、そして仕向地が追加で求める書類。書類待ちのコンテナが1日に生む費用は、そのコンテナを止めているパレット1枚の利益を上回ります。</span></div>
           <div><b>年数を明示した補修部品の供給</b><span>刃、ばね、支点部品一式を在庫し値付けしておくこと。修理可能という主張を実体のあるものにするのはこれであり、欧州では要求が強まっています。</span></div>
@@ -1929,8 +1979,61 @@
         <p class="wk-ask"><b>早い段階で確認する価値のあること:</b> 金型を誰が所有するか、試作は何回まで無償か、MOQを品揃え全体でまとめられるか、補修部品を何年保持するか。この4つの問いへの答えで、その供給者との関係がどうなるかはおおむね分かります。</p>
       </section>
 
+      <section class="wk-sec" id="s-fix">
+        <h2><span class="wk-n">12</span> 仕様はどこで狂うか</h2>
+        <p class="wk-take">11のパターン。いずれも本ページで先に述べた仕組みまでたどれます。起きる前に名前を挙げられる原因は、設計の段階で取り除ける原因です。</p>
+        <p>以下のパターンは、特定のお客様についてのものではありません。本ページのどこにもそうした記述はありません。いずれも業界全体で名前が付くほど広く見られるものであり、いずれも本ページで先に述べた仕組みにたどり着きます。帯ではなく上限値だけを書いた硬度、締め直せない結合部、合わないフック向けに打たれた穴です。原因と対処を並べて読めば、その供給者がそのパターンを見たことがあるのか、それとも貴社のコンテナで初めて出会うのかは、たいてい判断できます。</p>
+
+        <h3 id="s-fix-mat"><span class="wk-n">12.1</span> 材料と熱処理</h3>
+        <div class="p101-scroll">
+          <table class="p101-table">
+            <thead><tr><th scope="col">買い手に見えること</th><th scope="col">実際の始まり</th><th scope="col">当社の対処</th></tr></thead>
+            <tbody>
+              <tr><td>抜取検査に合格したロットが、現場で割れた</td><td>仕様が帯ではなく硬度の上限値だけを定めており、抜き取った個体がたまたまその上端に当たっていた。靭性が尽きるのはまさにその位置</td><td>Birdlandの仕様における硬度の数値は、すべて下限と上限をそろえた帯です。その理由を述べているのが <a href="#s-fail">工具はどう壊れるか</a></td></tr>
+              <tr><td>無償の改良に見えた「ステンレスへの格上げ」が、置き換える前の鋼より早く切れなくなる</td><td>焼入れできるグレードが、同じ水準まで硬化できないグレードに置き換えられた。耐食性を買った代金は切れ味の持続で支払われたが、誰もそれを値付けしていなかった</td><td>引き換えの内容は見積りと説明の対象であり、無償の格上げとして差し出すことはしません。「ステンレスは取引である」という原則を述べているのが <a href="#s-fail">工具はどう壊れるか</a></td></tr>
+              <tr><td>見本では問題なくたわんでいた柄が、厳しい一季を過ごして曲がったまま戻らなくなる</td><td>アルミ合金が調質を伴わずに指定された、あるいはガラス繊維入りの芯材が剛性だけを見て選ばれた</td><td>調質とガラス充填率は、合金と併せて指定します。その考え方を示しているのが <a href="#s-fail">工具はどう壊れるか</a>です。製鋼メーカーや成形業者の既定値に委ねることはしません</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="s-fix-fast"><span class="wk-n">12.2</span> 結合部と締結部品</h3>
+        <div class="p101-scroll">
+          <table class="p101-table">
+            <thead><tr><th scope="col">買い手に見えること</th><th scope="col">実際の始まり</th><th scope="col">当社の対処</th></tr></thead>
+            <tbody>
+              <tr><td>初日は軽く回っていた伸縮ポールの結合部が、沿岸で一季を過ごして固着した</td><td>ステンレスの締結部品が、アルミの管を直接貫いていた。アルミを陽極とする小さな電池になる</td><td>締結部品は、出荷前にナイロンブッシュや適合する被膜でアルミから絶縁します。その考え方を示しているのが <a href="#s-fast">ナット・ボルトと結合部</a></td></tr>
+              <tr><td>まだよく切れる剪定ばさみが、支点で危険なほど緩み、締める手立てが残っていない</td><td>結合部がボルトではなくリベットで留められていた。数セント安いが、それは工具の耐用年数すべてについての決定</td><td>リベットを指定するのは、その工具に修理を一切想定しない場合だけです。修理可能と謳って売るものには、締め直せる結合部を与えます。その理由を述べているのが <a href="#s-fast">ナット・ボルトと結合部</a></td></tr>
+              <tr><td>最初の数回の研ぎ直しまでは保っていたロックナットが、ひとりでに緩むようになる</td><td>ナイロンインサートは消耗品。変形することで保持するため、取り外すたびに保持力を少しずつ失う</td><td>毎季分解して研ぐ工具では、代わりに全金属製の緩み止めナットを指定します。その考え方を示しているのが <a href="#s-fast">ナット・ボルトと結合部</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="s-fix-pack"><span class="wk-n">12.3</span> 包装と適合対応</h3>
+        <div class="p101-scroll">
+          <table class="p101-table">
+            <thead><tr><th scope="col">買い手に見えること</th><th scope="col">実際の始まり</th><th scope="col">当社の対処</th></tr></thead>
+            <tbody>
+              <tr><td>見本では問題なく見えた包装が、小売の入荷検品で不合格になる</td><td>穴がユーロスロットのレール向けに打たれていて、小売の什器は有孔ボードだった。あるいはその逆</td><td>フックや什器は、打抜き形状を作図する前に確定します。その考え方を示しているのが <a href="#s-pack">包装</a>です。作図の後ではありません</td></tr>
+              <tr><td>小売向けの検査に合格した出荷が、ネット販売の最初の1か月で破損して届く</td><td>小売用の包装を、独自の落下試験を経ないまま宅配輸送に流用していた。小売用の包装は積み上げられることを前提に、宅配用の包装は投げられることを前提に作られる</td><td>宅配網に向かう包装は、小売向けの要件とは別に、その網が定める試験手順で試験します。その考え方を示しているのが <a href="#s-pack">包装</a></td></tr>
+              <tr><td>商談で提示された証明書が、通関や小売の監査に耐えない</td><td>証明書の事業所住所、適用範囲、または表示の種類が、実際に出荷する工場や製品と一致していなかった</td><td>包装に表示を載せる前に、事業所・適用範囲・日付を工場と照合します。その考え方を示しているのが <a href="#s-cert">認証と宣言</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="s-fix-comm"><span class="wk-n">12.4</span> 取引条件と日程</h3>
+        <div class="p101-scroll">
+          <table class="p101-table">
+            <thead><tr><th scope="col">買い手に見えること</th><th scope="col">実際の始まり</th><th scope="col">当社の対処</th></tr></thead>
+            <tbody>
+              <tr><td>机上では成立していた品揃えが、見積もると24件それぞれのMOQになる</td><td>MOQを品揃え全体でまとめず、品目ごとに提示していた</td><td>品揃えは、個別のMOQではなくまとめた単位で見積り、可能な範囲で生産もまとめます。その考え方を示しているのが <a href="#s-serve">卸売業者が求めるもの</a></td></tr>
+              <tr><td>十分に余裕をもって出したつもりの発注が、それでも春の出荷時期に間に合わない</td><td>園芸工具には赤道の南北それぞれに年1回の繁忙期があり、発注が遅れたからといって金型や長納期材料の所要期間が縮むわけではない</td><td>ある季節向けの金型と量産材料は、その季節が売れる繁忙期の最中ではなく、その前に手配します</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
       <section class="wk-sec" id="s-cost">
-        <h2><span class="wk-n">11</span> コスト構造</h2>
+        <h2><span class="wk-n">13</span> コスト構造</h2>
         <p class="wk-take">landed price は4つのブロックでできています。多くの交渉は最初の1つしか動かしませんが、通常は後ろの2つのほうが大きいものです。</p>
         <p>landed price(荷揚げ後の総コスト)は、1つの数字ではなく4つのブロックでできています。調達の話し合いの多くは最初の1つしか動かしませんが、手工具の案件では、後ろの2つが最初のブロックで交渉している節約額を上回ることがしばしばあります。</p>
         <div class="cost-ladder">
@@ -1943,7 +2046,7 @@
       </section>
 
       <section class="wk-sec" id="s-also">
-        <h2><span class="wk-n">12</span> 関連ページ</h2>
+        <h2><span class="wk-n">14</span> 関連ページ</h2>
         <p class="wk-take">次に読むべきページと、本ページが意図的に載せていないもの。</p>
         <ul class="wk-seealso">
           <li><a href="../partner.html">AsiaSource</a> — 材料・運賃・関税の最新値と、上で触れた landed cost の計算ツール。</li>

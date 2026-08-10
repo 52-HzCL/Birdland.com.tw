@@ -65,7 +65,10 @@ module.exports = {
     "Edge & function check": { pop: 5, cost: 1, note: "Near-universal sharpness and function check before packing; low cost" },
     "Joint pull test": { pop: 2, cost: 2, note: "Destructive test on riveted or bolted joints; occasional, moderate cost" },
     "Pack drop test": { pop: 3, cost: 1, note: "Standard transit test for retail packaging; cheap and common" },
-    "Barcode & label check": { pop: 5, cost: 1, note: "Mandatory retailer compliance scan; cheap, done on every unit" }
+    "Barcode & label check": { pop: 5, cost: 1, note: "Mandatory retailer compliance scan; cheap, done on every unit" },
+    "First article inspection (FAI)": { pop: 4, cost: 1, note: "First-off check against the drawing before a run proceeds; cheap and near-universal on a new tool or a new mould" },
+    "In-line SPC checkpoints": { pop: 2, cost: 2, note: "Statistical sampling during the run itself, not only at the end; moderate cost, more common on longer programmes" },
+    "Third-party inspection (SGS / Bureau Veritas / Intertek)": { pop: 3, cost: 2, note: "An independent inspector books and reports the AQL check; moderate cost, buyer-arranged as often as factory-arranged" }
   },
   materials: {
     "Blade and spring steel": { pop: 5, cost: 3, note: "Core material for every cutting edge; mid-range cost" },
