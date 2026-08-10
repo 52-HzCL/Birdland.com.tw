@@ -1,8 +1,9 @@
 # Birdland.com.tw — Zero-Touch 全站稽核報告
 
 > 狀態:**進行中**(STATE 2 完成 14/15 頁,`product-101.html` 因 PR #1 延後;STATE 3
-> 跨頁彙整已完成,見下方對應段落)。本檔會隨 `/loop` 每輪執行持續更新,不是一次性產出。
-> 啟動分支:`audit/zero-touch-review`,基準 commit `fbe1d0e`。
+> 跨頁彙整已完成;目前 STATE 4 報告潤飾 + STATE 5 清理腳本製作中)。本檔會隨 `/loop`
+> 每輪執行持續更新,不是一次性產出。啟動分支:`audit/zero-touch-review`,基準 commit
+> `fbe1d0e`。
 
 ---
 
@@ -140,12 +141,13 @@ Factory」這條路徑——這正是這個 bug 發生的地方。兩頁的結�
    是否有同類漂移**——兩者用完全相同的 CI 關卡模式(build 完 `git diff --exit-code`),
    目前尚未驗證 feeds 是否也中招。
 
-## STATE 2 進度
+## 逐頁稽核索引(依實際稽核順序,非優先序——用瀏覽器內搜尋頁面標題可快速跳轉)
 
-- **已完成(A-F 全部跑完):`index.html`、`contact.html`、`partner.html`、`cost-desk.html`、
-  `team.html`**。
-- `executive.html` 進行中(已派工)。其餘 9 頁尚未開始。`product-101.html` 刻意延後
-  (PR #1 正在改動中)。
+`contact.html` → `partner.html`+`cost-desk.html` → `my-market.html` → `privacy.html` →
+`birdland-intro.html` → `news.html`/`manufacturing.html`/`why-birdland.html`(輕量) →
+`guide.html` → `about.html` → `executive.html` → `team.html` → `index.html`。
+`product-101.html` 未稽核(見「已知範圍缺口」)。詳細完成狀態與逐項發現摘要見
+`AUDIT_STATE.json` 的 `pageInventory`(機器可讀版本,含每頁的一句話摘要)。
 
 ## contact.html 逐項發現(全站真正的轉換點)
 
@@ -435,7 +437,7 @@ partner.html 的同類路由能力不對等——**裁決(D23):接受為合理�
 **目前實測運作正常、無伴隨失效**——**裁決(D24):不觸發 D20 升級門檻**(門檻文字明講
 「bug」,不是「結構相似的脆弱模式」),另開「脆弱但正常」的獨立追蹤,目前計數 1。
 
-### index.html 逐項發現
+## index.html 逐項發現
 
 **P1-1(NEEDS HUMAN,設計取捨非技術 bug)**:桌面版(>900px)首頁英雄區三句核心賣點文案
 (`[data-ink-main]`,"MAKE IT RIGHT"/"KEEP SUPPLY MOVING"/"KEEP IT YOURS")靜止時
