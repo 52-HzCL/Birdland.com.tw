@@ -78,10 +78,23 @@ Factory」這條路徑——這正是這個 bug 發生的地方。兩頁的結�
 
 ---
 
-## ⚠️ 風險提醒(置頂,勿移到文末)
+## ⚠️ 風險提醒(置頂,勿移到文末)——**已解除,2026-08-10 更新**
 
-**本機分支 `i18n/my-market-composed-sentences` 有 4 個獨有 commit 從未 push 到 origin**,
-內容是真實完成的工作:
+**`i18n/my-market-composed-sentences` 已 push 到 origin,並開了 draft PR #3。** 老闆
+2026-08-10 明講「把該push的都push了」,push 前已確認與 `origin/main` 用 `git merge-tree`
+乾跑零衝突,按原樣 push(未 rebase,保留原始 5 個 commit 的歷史)。原先列在這裡的遺失
+風險(執行環境容器是暫時性的,本機獨有 commit 只存在本地)已解除——內容現在在 origin 上,
+即使容器被回收也不會遺失。
+
+Push 後 CI 在 PR #3 上發現並修好一個這個分支自己造成的 regression:`.github/workflows/
+pr-validation.yml` 的「Package static preview snapshot」步驟仍 `cp` 這個分支剛刪除的
+`birdland-intro.html`,已在 `7f0b84a` 修掉。同一個 CI job 上還有一條**不是這個分支造成**
+的既有失敗(`calendars/*.ics` 的 UID 尾碼格式漂移,`@birdland.com.tw`→
+`.birdland-public-calendar`),已在乾淨的 `origin/main` checkout 上獨立驗證同樣重現——
+確認是 base branch 既有問題,已在 PR #3 留言記錄一次,等 base branch 修好後這條檢查會
+自動變綠(不需要、也不該由這條分支去修一個它沒造成的漂移)。
+
+以下保留原文字,對照 PR #3 實際 diff 用:
 - My Market 九語翻譯(composed sentences 可翻譯化)
 - `gen-terminal.js`(Node)與 `tools/build_terminal.py` 的邏輯一致性修復
 - `ISSUES.md` I-1(Team gate 文件化)/ I-2(`birdland-intro.html` 孤兒頁刪除)的修復
@@ -89,17 +102,11 @@ Factory」這條路徑——這正是這個 bug 發生的地方。兩頁的結�
   duty 模型分歧、運價比對、FOB 下限負值、My Market classify() 分類桶、土耳其佔位字元
   外洩、unpin 功能、翻譯缺漏 6 處)
 
-這批工作目前只存在於這個執行環境的本機 clone。依 `AGENTS.md`「絕不 push 除非老闆這一輪
-明講 push」的鐵律,**這個稽核迴圈不會主動 push 它**——但執行環境的容器是暫時性的,
-存在真實遺失風險。若你想保留這批工作,請明確說「把 `i18n/my-market-composed-sentences`
-也 push」。
-
-**新證據(裁決 D38,稽核 my-market.html 時發現)強化這個風險的緊急性**:那個分支不只是
-「有價值的舊工作」,它還修好了**兩個現在正活在 main 上、客戶會直接看到的分析結論錯誤**——
-`my-market.html` 的「Around」表格對全部 133 個市場都顯示兩個永遠空白的欄位(死碼判斷邏輯
-缺一個有效性檢查),以及台灣原產地佔比明顯下滑的 8 筆真實資料,被錯誤分類顯示成「本期穩定」
-而不是「下滑中」——德國(預設錨點市場,新訪客第一眼就看到)的鏟子類目前正顯示這個錯誤。
-這兩個 bug 的修復都已經寫好、驗證過,就在那個未推送的分支上。
+**裁決 D38(稽核 my-market.html 時發現)當時強化了這個風險的緊急性,現已隨 push 落地**:
+那個分支不只是「有價值的舊工作」,它還修好了兩個當時正活在 main 上、客戶會直接看到的
+分析結論錯誤——`my-market.html` 的「Around」表格對全部 133 個市場都顯示兩個永遠空白的
+欄位(死碼判斷邏輯缺一個有效性檢查),以及台灣原產地佔比明顯下滑的 8 筆真實資料,被錯誤
+分類顯示成「本期穩定」而不是「下滑中」。這兩個 bug 的修復現在都在 PR #3 裡,等合併後上線。
 
 ---
 
@@ -108,13 +115,13 @@ Factory」這條路徑——這正是這個 bug 發生的地方。兩頁的結�
 | 類別 | 數量 |
 |---|---|
 | 新發現 P0 | 1(`teamdesk.*` 資料管線靜默凍結,見報告最上方) |
-| 新發現 P1 | 13(1 個已修復的文件訂正、1 個 NEEDS HUMAN 設計取捨、1 組跨頁 facade i18n 導覽 bug(合併計 1)、10 個真實功能/內容 bug(含 my-market.html 6 項,其中 2 項的修復已存在於未推送分支)——依鐵律 2 全部只留建議,不由稽核迴圈修改站台程式碼) |
+| 新發現 P1 | 13(1 個已修復的文件訂正、1 個原 NEEDS HUMAN 設計取捨(現已裁決 D48:維持現狀)、1 組跨頁 facade i18n 導覽 bug(合併計 1)、10 個真實功能/內容 bug(含 my-market.html 6 項,其中 2 項的修復已隨 PR #3 push)——依鐵律 2 全部只留建議,不由稽核迴圈修改站台程式碼) |
 | 新發現 P2 | 20(SEO-2、index.html 字級差異、contact.html×2、partner/cost-desk×6、team.html×2、about.html×2、guide.html×4、my-market.html×2,其中 6 項已收錄 CLEANUP.md C6-C11) |
 | 已知議題(承接自前 4 輪稽核) | 12 項,詳見 `AUDIT_STATE.json` 的 `knownIssues`(7 開放/待覆核、5 已關閉) |
 | 本次啟動前 recon 已直接處理 | 2 項(見下) |
 
 **P1 快速索引**(全部細節見下方逐頁段落):
-1. Hero `[data-ink-main]` opacity 設計取捨(index.html,NEEDS HUMAN,D9)
+1. Hero `[data-ink-main]` opacity 設計取捨(index.html,原 NEEDS HUMAN,D9→D48 已裁決:維持現狀)
 2. AGENTS.md 三處文件訂正(index.html + partner/cost-desk,**已修復**,D5/D8/D11/D13)
 3. contact.html region 選擇靜默被覆寫(D15,真實 bug,建議修法已記錄)
 4. contact.html 9 語言 desk 名稱競態(D16,真實 bug,建議修法已記錄)
@@ -241,8 +248,8 @@ partner.html/cost-desk.html 這兩頁確認有替代的指令面板搜尋(`.pd-o
 
 ## my-market.html 逐項發現(bug 密度最高的一頁,4 新 P1 + 2 個確認仍活著的已知議題 + 2 P2)
 
-**已知議題重新確認,仍未修復(修復方案在無法碰的 `i18n/my-market-composed-sentences` 分支
-上,已強化上方風險提醒)**:「Around」表格的兩個死欄位(`collectFamilies()` 沒檢查資料
+**已知議題重新確認,修復已在 PR #3 待合併(`i18n/my-market-composed-sentences` 已 push,
+見上方風險提醒的解除更新)**:「Around」表格的兩個死欄位(`collectFamilies()` 沒檢查資料
 有效性,只要 HS 代碼在 `trade.json` 出現過就列入,即使只在沙烏地/土耳其兩個市場有佔位資料)
 對全部 133 個市場恆常顯示空白;`classify()` 沒有「台灣佔比明顯下滑」的分類桶,8 筆真實
 下滑資料(德國/波蘭/阿根廷/奧地利/巴西/瑞士)被歸類成「本期穩定」,與同一張卡片自己的
@@ -439,18 +446,34 @@ partner.html 的同類路由能力不對等——**裁決(D23):接受為合理�
 
 ## index.html 逐項發現
 
-**P1-1(NEEDS HUMAN,設計取捨非技術 bug)**:桌面版(>900px)首頁英雄區三句核心賣點文案
-(`[data-ink-main]`,"MAKE IT RIGHT"/"KEEP SUPPLY MOVING"/"KEEP IT YOURS")靜止時
-`opacity:0`,只有滑鼠 hover/click/focus 對應區塊才顯示——`birdland-visual.css:984`
+**P1-1(已裁決,2026-08-10 更新——不是 bug,維持現狀)**:桌面版(>900px)首頁英雄區三句
+核心賣點文案(`[data-ink-main]`,"MAKE IT RIGHT"/"KEEP SUPPLY MOVING"/"KEEP IT YOURS")
+靜止時 `opacity:0`,只有滑鼠 hover/click/focus 對應區塊才顯示——`birdland-visual.css:984`
 (基礎規則)vs `:998`(`.is-near`/`.is-intro`才變 1)。這是 `5de128e`(2026-07-31,修復
 「三個賣點在有人 hover 進 260px 內之前都是 opacity:0」的舊缺陷)後,`7d87c09`
-(2026-08-03)明確且刻意的美學取捨(commit message 自述是為了恢復「游標遮罩火把」互動),
-不是失手回歸。緩解因素:`<h1>` 標語所有寬度恆常可見(不像修復前);每 session 一次自動
-輪播閃現;行動版(<900px,`birdland-visual.css:1139`)強制永遠可見,完全不受影響。
-**裁決(DECISIONS.md D9)**:不視為必須修復的 bug,不代為決定要不要復原這個設計選擇——
-列在這裡供人參考,備選方案是仿照 `.bl-ink-marker` 已經用過的做法(給非零低基礎透明度如
-0.32,而非完全 0),但不預設答案。`SUMMARY.md`「the three propositions...are simply on」
-一句現在對 main 已經不準,但依 D1 該檔是歷史紀錄不訂正,此處註記即可。
+(2026-08-03)明確且刻意的美學取捨。緩解因素:`<h1>` 標語所有寬度恆常可見(不像修復前);
+每 session 一次自動輪播閃現;行動版(<900px,`birdland-visual.css:1139`)強制永遠可見,
+完全不受影響。
+
+**裁決(DECISIONS.md D9→D48,老闆 2026-08-10 明確把這個判斷交給 Opus 後的最終決定)**:
+**維持現狀,不改 opacity。** 決定性的事實是 `git log` 顯示 `7d87c09` 的作者不是 Claude,
+是 `Jason Liao <executive@birdland.com.tw>`——這不是某次自動化執行時手滑或沒注意到的
+回歸,是老闆本人親手寫的、commit message 逐段說明理由(「一個籠統規則同時撐開三句文案
+也連帶取消了游標遮罩,這個 hero 賴以成立的放射火把效果從 `5de128e` 之後就沒真的出現過,
+拿掉那條規則兩者一起恢復」)、且逐項驗證過(1800ms 時序、hover 只點亮一個、mask 確實
+恢復、375px 無橫向溢出)的設計決定。Opus 的角色是判斷技術對錯,不是拿自己的美學偏好去
+覆寫老闆本人已經測過、想清楚、簽了名的決定——這條不屬於「該不該修的技術問題」,是已經
+拍板的商業/美學選擇,見報告開頭附的備選方案(0→0.32)僅供記錄,不採用。
+
+**額外發現並訂正(D48 的附帶動作,零風險的程式碼註解修正,非站台行為變更)**:
+`birdland-visual.css:1072-1084` 有一段對應 `4d2f0e6`(SUMMARY.md 描述的舊版)的說明性
+註解,寫著「the three propositions inside the art are simply on」——這句話從 `7d87c09`
+之後就與下面的程式碼矛盾(程式碼現在確實是 hover-only)。這是 D9 本來就點名的「SUMMARY.md
+過期」問題的程式碼內版本,但不同於 SUMMARY.md(依 D1 是歷史紀錄檔不訂正),這段是活的 CSS
+檔案裡的當前說明性註解,誤導性直接影響任何未來讀這段程式碼的人(AI 或人類)。已在獨立分支
+`fix/hero-ink-comment` 訂正註解文字使其與 `7d87c09` 之後的現況一致,不改任何選擇器或數值
+(零渲染風險,brace 數量修正前後皆 868/868),已開 draft PR #4。`SUMMARY.md` 本身
+依舊不動(D1 判準不變)。
 
 **P1-2(已修復,文件訂正)**:`AGENTS.md`「index.html specifics」整節(foliage-cut 功能、
 reading-focus 捲動縮放、hamburger 選單)描述的功能已在 `6fa66ad`(2026-07-28 全站重建)
@@ -553,9 +576,9 @@ my-market.html 的高密度功能性 bug)在各自的段落已有完整記錄,ST
 
 - terminal.json 重新產生(已完成,見上,屬 PR #1 範疇)
 - `AGENTS.md`/`ISSUES.md` 五處文件訂正(已完成,見上「本迴圈已完成的文件訂正」)
-- Hero `[data-ink-main]` 若要恢復可見:改一個 CSS 數值(0→0.32 類似 `.bl-ink-marker` 的
-  做法),成本極低,但這是 NEEDS HUMAN 的設計取捨,不在稽核迴圈的快速勝利範圍內執行,
-  只在此標註「如果人決定要改,這是最小改法」
+- Hero `[data-ink-main]` opacity(D9→D48):**已裁決,維持現狀不改**——`7d87c09` 是老闆
+  本人簽名、逐項驗證過的設計決定,不是回歸,見上方 index.html 段落。已訂正一段與此矛盾的
+  過期 CSS 註解(見下方文件訂正清單),不改任何選擇器或數值
 - contact.html「Europe」下拉選項缺 9 語言字典鍵(D17):純內容補譯,零邏輯風險,但 i18n
   內容檔不算 ORCHESTRATION.md 的文件修正例外,留給人執行
 - cost-desk.html 品牌重命名補三處字串(nav/rail aria-label、選單收合鈕文字):同樣是低
@@ -580,7 +603,7 @@ my-market.html 的高密度功能性 bug)在各自的段落已有完整記錄,ST
 ## STATE 6:完工摘要
 
 **四個檔案位置**:`audit/AUDIT_REPORT.md`(本檔,完整發現)、`audit/DECISIONS.md`
-(D1-D47,Opus 逐項裁決與理由)、`audit/AUDIT_STATE.json`(機器可讀狀態+逐頁摘要)、
+(D1-D48,Opus 逐項裁決與理由)、`audit/AUDIT_STATE.json`(機器可讀狀態+逐頁摘要)、
 `audit/CLEANUP.md`(死碼候選+反向清單)+ `audit/cleanup.sh`(可執行清理腳本,唯讀
 生成,人自己決定何時跑)。全部在 `audit/zero-touch-review` 分支,draft PR #2。
 
@@ -596,11 +619,22 @@ my-market.html 的高密度功能性 bug)在各自的段落已有完整記錄,ST
 CSS 選擇器的項目(C7/C9/C10/C11)因本專案自己禁止用 regex/行號剪 CSS,腳本只印手動
 指引,不自動執行——照腳本輸出的步驟走。
 
-**⚠️ 風險提醒(重複一次,不要漏看)**:本機分支 `i18n/my-market-composed-sentences`
-有 4 個獨有 commit 從未推送,其中 2 個已修好本次稽核在 main 上重新確認仍活著的真實
-客戶會看到的錯誤(my-market.html 的死欄位、分類漏桶)。執行環境容器是暫時性的,這批
-工作有真實遺失風險。若要保留,請明確說「把 `i18n/my-market-composed-sentences` 也
-push」。
+**⚠️ 風險提醒——已解除,2026-08-10 更新**:`i18n/my-market-composed-sentences` 已 push,
+draft PR #3 已開並訂閱 CI/review 活動。原本記在這裡的「容器是暫時性的,4 個獨有 commit
+只存在本機」的遺失風險已不成立。
+
+**D9(hero opacity)與 S1-S2(Team Desk 閘門)兩項 NEEDS HUMAN 已裁決,2026-08-10 更新**:
+老闆明講「讓 Opus 去 high 判斷需要判斷的事」後,兩項都已收斂:
+- **D9→D48**:維持現狀不改——`7d87c09` 是老闆本人簽名、逐項驗證過的美學決定,不是回歸,
+  不應被覆寫。附帶訂正一段與現況矛盾的 CSS 註解,獨立分支 `fix/hero-ink-comment`,
+  draft PR #4(零風險,純註解,不改任何選擇器/數值)。
+- **S1-S2(team.html 部分)**:採用 `i18n/my-market-composed-sentences` 分支
+  `ISSUES.md` I-1 已經做好的、更周全的結論(現已在 PR #3 裡)——閘門保護的是版面配置,
+  不是機密內容(頁面靜態只有 366 字,無金額/百分比),不值得為此换 hosting;真正的風險是
+  「ENTER PIN」這個詞給了不存在的保護承諾,已在 `tools/team_template.html` 閘門本身記錄
+  這條規則;現有 passphrase 已公開視為 burned,由老闆決定是否需要換(不是程式碼問題)。
+  這個結論比這個稽核迴圈自己原本準備獨立做的裁決更周全,直接採用,`AUDIT_STATE.json`/
+  `DECISIONS.md` 已同步更新(D49)。
 
 **已知範圍缺口**:`product-101.html` 完整六象限稽核因 PR #1 仍是 draft 而延後——PR #1
 合併或轉為 ready-for-review 後應優先補做完整稽核(目前只有透過 about.html 稽核提前
@@ -609,6 +643,6 @@ push」。
 ---
 
 _本報告由 `/loop` 驅動的 Zero-Touch 稽核迴圈自動維護。STATE 0-6 全部完成
-(2026-08-09)。人類可隨時查看與行動,不需要等待任何進一步的自動化——除了 `product-101.html`
-待 PR #1 解決後的補充稽核,以及是否要 push `i18n/my-market-composed-sentences` 分支,
+(2026-08-09),2026-08-10 追加裁決 D48/D49 收尾兩項 NEEDS HUMAN。人類可隨時查看與行動,
+不需要等待任何進一步的自動化——除了 `product-101.html` 待 PR #1 解決後的補充稽核,
 本報告記錄的其餘一切都已是最終狀態。_
