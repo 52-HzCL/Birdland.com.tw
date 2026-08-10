@@ -1058,6 +1058,20 @@ async function mainShard() {
     return;
   }
 
+  // A family added to PRODUCTS mid-season would otherwise not appear until the
+  // NEXT quarter, because the cell keys are only laid down by discovery and
+  // discovery only runs when the edition changes. Scissors and hand saws were
+  // added in August and would have sat invisible until October.
+  // Adding the missing keys as pending cells costs nothing — each market fills
+  // them on its own next turn through the shard rota, exactly as it fills the
+  // families it already had. Nothing is overwritten: only absent keys are added.
+  for (const m of Object.values(existing.markets)) {
+    if (!m || !m.cells) continue;
+    for (const k of (m.src === "eurostat" ? PRODUCTS : PRODUCTS_HS6)) {
+      if (!(k in m.cells)) m.cells[k] = { stale: true };
+    }
+  }
+
   const units = buildWorkUnits(existing.markets);
   const cursor = existing.shard_state.cursor;
   if (cursor >= units.length) {

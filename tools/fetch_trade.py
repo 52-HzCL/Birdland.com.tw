@@ -841,6 +841,20 @@ def main_shard():
         write_trade_json(trade)
         return
 
+    # A family added to PRODUCTS mid-season would otherwise not appear until the
+    # NEXT quarter, because the cell keys are only laid down by discovery and
+    # discovery only runs when the edition changes. Scissors and hand saws were
+    # added in August and would have sat invisible until October.
+    # Adding the missing keys as pending cells costs nothing -- each market fills
+    # them on its own next turn through the shard rota, exactly as it fills the
+    # families it already had. Nothing is overwritten: only absent keys are added.
+    for m in existing["markets"].values():
+        if not m or not m.get("cells"):
+            continue
+        for k in (PRODUCTS if m.get("src")=="eurostat" else PRODUCTS_HS6):
+            if k not in m["cells"]:
+                m["cells"][k]={"stale":True}
+
     units=build_work_units(existing["markets"])
     cursor=existing["shard_state"]["cursor"]
     if cursor>=len(units):
