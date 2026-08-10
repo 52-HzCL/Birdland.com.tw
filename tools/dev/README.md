@@ -29,6 +29,7 @@ somewhere unusual. Screenshots go to `../shots` next to the repo, or
 | `build-sitemap.js` | Generates `sitemap.xml` from all HTML files in root and language folders (nl/, de/, fr/, es/, pt-br/, pl/, it/, ja/, zh-tw/), excluding pages with `noindex` meta tag or filenames containing "vault"/"encrypt". Run when pages are added or removed. |
 | `fetch-trade.js` | Node twin of `tools/fetch_trade.py`, the quarterly customs fetcher behind `trade.json` (Eurostat Comext + UN Comtrade, sharded across runs). CI runs the Python; this is the only way to read or exercise that logic on a machine without one. The two must stay behaviourally identical. |
 | `verify-material-vocab.js` | Checks that AsiaSource's material and process vocabulary still matches what `gen-terminal.js` harvests into the search index — a renamed material silently drops out of Terminal search otherwise. |
+| `verify-app-list.js` | The four desk apps and the Team Desk are named in five places that cannot import from one another (two browser scripts, one Python file, its Node twin, and `app-bar.js`). This fails if any of them disagrees with `app-bar.js`. Written after `site-shell.js` was found still offering "Buyer Desk" and "Cost Desk" from the site navigation, months after the rename. |
 
 ## Languages
 

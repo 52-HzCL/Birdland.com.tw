@@ -62,8 +62,13 @@ def feed(filename, title, description, items):
     (OUT / filename).write_text("\n".join(rows), encoding="utf-8")
 
 items = [x for x in DATA.get("market_news", []) if isinstance(x, dict) and x.get("title")]
+# One feed, because one feed is the one that is reachable. Three more used to be
+# built here -- taiwan-production, china-production and freight-trade-policy,
+# each a topic slice of these same items -- and no page ever linked any of them,
+# so they were published nightly to an audience with no way to find them.
+# ABrief carries this one twice: a "Subscribe RSS" button in the hero, and a
+# rel="alternate" in the head so feed readers can discover it without being
+# told. If a topic feed is ever wanted again it needs both of those in the same
+# change, or it is just a file sitting on a server.
 feed("daily-supply-news.xml", "Birdland ABrief", "Asia production, export and freight signals for Western buyers.", items)
-feed("taiwan-production.xml", "Birdland Taiwan Production", "Public Taiwan production and export signals.", [x for x in items if x.get("topic") == "taiwan"])
-feed("china-production.xml", "Birdland China Production", "Public China production and export signals.", [x for x in items if x.get("topic") == "china"])
-feed("freight-trade-policy.xml", "Birdland Freight & Trade Policy", "Public freight, tariff and policy signals.", [x for x in items if x.get("topic") in ("shipping", "freight", "tariff")])
-print("built RSS feeds", len(items), "news items")
+print("built RSS feed", len(items), "news items")
