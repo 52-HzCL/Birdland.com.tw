@@ -31,81 +31,81 @@
   background:#07090C;border-bottom:1px solid var(--edge);color:var(--tx)}
 .mm-head .views{display:flex;gap:2px}
 .mm-head .views button{appearance:none;border:1px solid var(--edge2);background:none;color:var(--tx2);
-  font:640 11px/1 var(--sans);padding:8px 13px;cursor:pointer;letter-spacing:.03em;display:flex;align-items:center;gap:7px}
-.mm-head .views button em{font-style:normal;font:600 9px/1 var(--mono);color:var(--tx3);letter-spacing:.06em}
+  font:640 calc(11px * var(--ui-scale))/1 var(--sans);padding:8px 13px;cursor:pointer;letter-spacing:.03em;display:flex;align-items:center;gap:7px}
+.mm-head .views button em{font-style:normal;font:600 calc(9px * var(--ui-scale))/1 var(--mono);color:var(--tx3);letter-spacing:.06em}
 .mm-head .views button[aria-pressed="true"]{background:var(--tx);border-color:var(--tx);color:#0A0C0F}
 .mm-head .views button[aria-pressed="true"] em{color:#4A5058}
-.mm-head .ed{margin-left:auto;font:500 10.5px/1 var(--mono);color:var(--tx3);white-space:nowrap}
+.mm-head .ed{margin-left:auto;font:500 calc(10.5px * var(--ui-scale))/1 var(--mono);color:var(--tx3);white-space:nowrap}
 .mm-head .ed em{font-style:normal;color:var(--tx2)}
 @media (max-width:640px){.mm-head{gap:8px}.mm-head .ed{margin-left:0;width:100%}}
 
 /* ---- desk view ---- */
-.mm .dsk{background:var(--bg);color:var(--tx);font:400 13px/1.5 var(--mono)}
+.mm .dsk{background:var(--bg);color:var(--tx);font:400 calc(13px * var(--ui-scale))/1.5 var(--mono)}
 .mm .dsk .bar2{display:flex;gap:2px;align-items:center;padding:8px 14px;border-bottom:1px solid var(--edge);flex-wrap:wrap}
 .mm .dsk .cmd{flex:0 1 330px;display:flex;align-items:center;gap:8px;border:1px solid var(--edge2);background:#0C0F13;padding:6px 10px}
-.mm .dsk .cmd input{flex:1;border:0;background:none;color:var(--tx);font:500 12px/1 var(--mono);outline:none;min-width:0}
+.mm .dsk .cmd input{flex:1;border:0;background:none;color:var(--tx);font:500 calc(12px * var(--ui-scale))/1 var(--mono);outline:none;min-width:0}
 .mm .dsk .cmd input::placeholder{color:var(--tx3)}
-.mm .dsk .cmd kbd{font:600 10px/1 var(--mono);border:1px solid var(--edge2);padding:2px 5px;color:var(--tx3)}
-.mm .dsk .bar2 .nb{margin-left:auto;font:500 10px/1.4 var(--mono);color:var(--tx3)}
+.mm .dsk .cmd kbd{font:600 calc(10px * var(--ui-scale))/1 var(--mono);border:1px solid var(--edge2);padding:2px 5px;color:var(--tx3)}
+.mm .dsk .bar2 .nb{margin-left:auto;font:500 calc(10px * var(--ui-scale))/1.4 var(--mono);color:var(--tx3)}
 .mm .dsk .body{display:grid;grid-template-columns:1fr 288px}
 .mm .dsk .grid{border-right:1px solid var(--edge);min-width:0}
 .mm .dsk .rail{padding:12px 13px;display:flex;flex-direction:column;gap:10px;background:var(--panel2);
-  color:var(--tx);font:400 13px/1.5 var(--mono)}
-.mm .dsk .rail h4{font:660 15.5px/1.2 var(--sans);letter-spacing:-.02em;margin:0;color:var(--tx)}
-.mm .dsk .rail .sub{font:500 9.5px/1.4 var(--mono);color:var(--tx3);letter-spacing:.06em}
+  color:var(--tx);font:400 calc(13px * var(--ui-scale))/1.5 var(--mono)}
+.mm .dsk .rail h4{font:660 calc(15.5px * var(--ui-scale))/1.2 var(--sans);letter-spacing:-.02em;margin:0;color:var(--tx)}
+.mm .dsk .rail .sub{font:500 calc(9.5px * var(--ui-scale))/1.4 var(--mono);color:var(--tx3);letter-spacing:.06em}
 .mm .dsk .kpi{display:flex;align-items:baseline;gap:8px}
-.mm .dsk .kpi b{font:700 26px/1 var(--mono);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
-.mm .dsk .kpi span{font:500 9.5px/1.35 var(--mono);color:var(--tx3);max-width:130px}
-.mm .dsk .rowline{display:flex;justify-content:space-between;font-size:11.5px;color:var(--tx2);padding:5px 0;border-top:1px solid var(--edge)}
+.mm .dsk .kpi b{font:700 calc(26px * var(--ui-scale))/1 var(--mono);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.mm .dsk .kpi span{font:500 calc(9.5px * var(--ui-scale))/1.35 var(--mono);color:var(--tx3);max-width:130px}
+.mm .dsk .rowline{display:flex;justify-content:space-between;font-size:calc(11.5px * var(--ui-scale));color:var(--tx2);padding:5px 0;border-top:1px solid var(--edge)}
 .mm .dsk .rowline b{color:var(--tx);font-variant-numeric:tabular-nums;font-weight:620}
 .mm .dsk .why{border:1px solid var(--edge2);border-left:3px solid var(--grn);background:#0E1318;padding:8px 10px;
-  font:400 11.5px/1.55 var(--sans);color:var(--tx2)}
+  font:400 calc(11.5px * var(--ui-scale))/1.55 var(--sans);color:var(--tx2)}
 .mm .dsk .why b{color:var(--tx)}
 .mm .dsk .acts{display:flex;flex-direction:column;gap:5px}
 .mm .dsk .acts button{appearance:none;border:1px solid var(--edge2);background:#10151B;color:var(--tx);
-  font:620 11px/1 var(--sans);padding:9px 10px;text-align:left;cursor:pointer}
+  font:620 calc(11px * var(--ui-scale))/1 var(--sans);padding:9px 10px;text-align:left;cursor:pointer}
 .mm .dsk .acts button.primary{background:var(--grn);border-color:var(--grn);color:#0A0C0F}
 .mm .dsk .foot{display:flex;gap:14px;flex-wrap:wrap;padding:8px 14px;border-top:1px solid var(--edge);
-  font:500 10px/1.5 var(--mono);color:var(--tx3)}
+  font:500 calc(10px * var(--ui-scale))/1.5 var(--mono);color:var(--tx3)}
 
 .mm .dsk .mychips{display:flex;gap:6px;align-items:center;flex-wrap:wrap;padding:10px 12px 0}
-.mm .dsk .mychips .lab{font:600 9px/1 var(--mono);letter-spacing:.13em;color:var(--tx3);margin-right:4px}
+.mm .dsk .mychips .lab{font:600 calc(9px * var(--ui-scale))/1 var(--mono);letter-spacing:.13em;color:var(--tx3);margin-right:4px}
 .mm .dsk .mych{appearance:none;border:1px solid var(--edge2);background:none;color:var(--tx2);
-  font:640 10.5px/1 var(--sans);padding:6px 10px;cursor:pointer}
+  font:640 calc(10.5px * var(--ui-scale))/1 var(--sans);padding:6px 10px;cursor:pointer}
 .mm .dsk .mych.on{background:var(--tx);border-color:var(--tx);color:#0A0C0F}
-.mm .dsk .sech{margin:14px 12px 6px;font:600 9px/1 var(--mono);letter-spacing:.14em;color:var(--tx3)}
-.mm .dsk .empty-note{margin:10px 12px;font:500 11.5px/1.5 var(--sans);color:var(--tx3)}
+.mm .dsk .sech{margin:14px 12px 6px;font:600 calc(9px * var(--ui-scale))/1 var(--mono);letter-spacing:.14em;color:var(--tx3)}
+.mm .dsk .empty-note{margin:10px 12px;font:500 calc(11.5px * var(--ui-scale))/1.5 var(--sans);color:var(--tx3)}
 .mm .dsk .fams{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 12px}
 .mm .dsk .fcard{border:1px solid var(--edge);background:var(--panel);padding:8px 10px;cursor:pointer;
   display:flex;flex-direction:column;gap:3px;appearance:none;color:inherit;text-align:left;font:inherit}
 .mm .dsk .fcard:hover{background:#141A21}
 .mm .dsk .fcard.sel{box-shadow:inset 0 0 0 1.5px var(--grn)}
 .mm .dsk .fh{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
-.mm .dsk .fh span{font:640 11.5px/1.2 var(--sans)}
-.mm .dsk .fh b{font:700 12.5px/1 var(--mono);font-variant-numeric:tabular-nums}
-.mm .dsk .fl{font:600 9.5px/1.4 var(--mono);color:var(--tx2)}
+.mm .dsk .fh span{font:640 calc(11.5px * var(--ui-scale))/1.2 var(--sans)}
+.mm .dsk .fh b{font:700 calc(12.5px * var(--ui-scale))/1 var(--mono);font-variant-numeric:tabular-nums}
+.mm .dsk .fl{font:600 calc(9.5px * var(--ui-scale))/1.4 var(--mono);color:var(--tx2)}
 .mm .dsk .fl .up,.mm .dsk .rowline .up{color:var(--grn)}
 .mm .dsk .fl .dn,.mm .dsk .rowline .dn{color:var(--red)}
 
 .mm .around-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:4px 12px 2px}
 .mm .dsk table.around{width:100%;min-width:420px;border-collapse:collapse;
-  color:var(--tx);font:400 12px/1.4 var(--mono);border:1px solid var(--edge)}
-.mm .dsk .around th{font:600 9px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--tx3);
+  color:var(--tx);font:400 calc(12px * var(--ui-scale))/1.4 var(--mono);border:1px solid var(--edge)}
+.mm .dsk .around th{font:600 calc(9px * var(--ui-scale))/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--tx3);
   text-align:center;padding:7px 6px;border-bottom:1px solid var(--edge);background:var(--panel);white-space:nowrap}
 .mm .dsk .around th:first-child{text-align:left}
 .mm .dsk .around td{padding:0;border-bottom:1px solid var(--edge)}
 .mm .dsk tr.me td{background:#141B23}
-.mm .dsk .aname{padding:7px 9px;font:600 11px/1.3 var(--sans);white-space:nowrap;cursor:pointer;
+.mm .dsk .aname{padding:7px 9px;font:600 calc(11px * var(--ui-scale))/1.3 var(--sans);white-space:nowrap;cursor:pointer;
   color:var(--tx);position:sticky;left:0;background:var(--bg);z-index:1;border:0;text-align:left;display:block;width:100%}
 .mm .dsk tr.me .aname{background:#141B23}
-.mm .dsk .aname em{font-style:normal;display:block;font:500 8.5px/1.4 var(--mono);color:var(--tx3);letter-spacing:.07em}
+.mm .dsk .aname em{font-style:normal;display:block;font:500 calc(8.5px * var(--ui-scale))/1.4 var(--mono);color:var(--tx3);letter-spacing:.07em}
 .mm .dsk .acell{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 5px;
   border-left:1px solid var(--edge);position:relative;min-height:54px;justify-content:center;min-width:76px}
-.mm .dsk .acell b{font:700 12px/1 var(--mono);font-variant-numeric:tabular-nums}
-.mm .dsk .acell .fl{font-size:8.5px}
+.mm .dsk .acell b{font:700 calc(12px * var(--ui-scale))/1 var(--mono);font-variant-numeric:tabular-nums}
+.mm .dsk .acell .fl{font-size:calc(8.5px * var(--ui-scale))}
 .mm .dsk .acell .dz{position:absolute;top:4px;right:5px;width:5px;height:5px;border-radius:50%;background:var(--amb)}
 .mm .dsk .insight,.mm .dsk .empty-around{margin:8px 12px 12px;border:1px solid var(--edge2);border-left:3px solid var(--grn);
-  background:#0E1318;padding:8px 10px;font:400 11.5px/1.55 var(--sans);color:var(--tx2)}
+  background:#0E1318;padding:8px 10px;font:400 calc(11.5px * var(--ui-scale))/1.55 var(--sans);color:var(--tx2)}
 .mm .dsk .insight b{color:var(--tx)}
 
 @media (max-width:900px){
@@ -119,46 +119,46 @@
 }
 
 /* ---- brief view: light paper inside a dark app ---- */
-.mm .brf{background:#FAF7F1;color:#191A17;font:400 14px/1.62 var(--serif)}
+.mm .brf{background:#FAF7F1;color:#191A17;font:400 calc(14px * var(--ui-scale))/1.62 var(--serif)}
 .mm .brf .mast{padding:20px 26px 12px;border-bottom:3px double #191A17}
 .mm .brf .mast-row{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
-.mm .brf .mast h1{font:700 28px/1 var(--serif);letter-spacing:-.01em;margin:0;color:#191A17}
+.mm .brf .mast h1{font:700 calc(28px * var(--ui-scale))/1 var(--serif);letter-spacing:-.01em;margin:0;color:#191A17}
 .mm .brf .mast h1 i{font-style:italic;color:#6D4A86}
-.mm .brf .vol{margin-left:auto;font:500 10px/1.5 var(--mono);color:#8B8F86;letter-spacing:.08em;text-align:right}
-.mm .brf .strap{margin-top:6px;font:500 10.5px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:#565A52}
+.mm .brf .vol{margin-left:auto;font:500 calc(10px * var(--ui-scale))/1.5 var(--mono);color:#8B8F86;letter-spacing:.08em;text-align:right}
+.mm .brf .strap{margin-top:6px;font:500 calc(10.5px * var(--ui-scale))/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:#565A52}
 .mm .brf .lead{display:grid;grid-template-columns:1.5fr 1fr;border-bottom:1px solid #191A17}
 .mm .brf .lead-main{padding:18px 26px;border-right:1px solid #D8D4C9;color:#191A17;font-family:var(--serif)}
-.mm .brf .kick{font:600 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:#6D4A86}
-.mm .brf .lead h2{font:700 23px/1.18 var(--serif);letter-spacing:-.01em;margin:8px 0 10px;max-width:26ch;color:#191A17}
-.mm .brf .lead p{font-size:14px;color:#565A52;max-width:58ch;font-family:var(--serif)}
+.mm .brf .kick{font:600 calc(10px * var(--ui-scale))/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:#6D4A86}
+.mm .brf .lead h2{font:700 calc(23px * var(--ui-scale))/1.18 var(--serif);letter-spacing:-.01em;margin:8px 0 10px;max-width:26ch;color:#191A17}
+.mm .brf .lead p{font-size:calc(14px * var(--ui-scale));color:#565A52;max-width:58ch;font-family:var(--serif)}
 .mm .brf .lead p b{color:#191A17}
 .mm .brf .lead-side{padding:18px 22px;display:flex;flex-direction:column;gap:11px}
-.mm .brf .lead-side h5{margin:0;font:600 9.5px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:#8B8F86}
-.mm .brf .idx div{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid #D8D4C9;font-size:12.5px;color:#565A52;font-family:var(--sans)}
-.mm .brf .idx b{font:620 12px/1.4 var(--mono);font-variant-numeric:tabular-nums;color:#191A17}
+.mm .brf .lead-side h5{margin:0;font:600 calc(9.5px * var(--ui-scale))/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:#8B8F86}
+.mm .brf .idx div{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid #D8D4C9;font-size:calc(12.5px * var(--ui-scale));color:#565A52;font-family:var(--sans)}
+.mm .brf .idx b{font:620 calc(12px * var(--ui-scale))/1.4 var(--mono);font-variant-numeric:tabular-nums;color:#191A17}
 .mm .brf .idx b.up{color:#15803D}.mm .brf .idx b.dn{color:#B42318}
 .mm .brf .chiprow{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:11px 26px;border-bottom:1px solid #D8D4C9;
-  font:500 10px/1 var(--mono);color:#565A52}
+  font:500 calc(10px * var(--ui-scale))/1 var(--mono);color:#565A52}
 .mm .brf .chiprow .lab{color:#8B8F86;letter-spacing:.14em;text-transform:uppercase;margin-right:6px}
-.mm .brf .chiprow .chip{border:1px solid #D8D4C9;background:#fff;color:#565A52;font:600 10.5px/1 var(--mono);padding:6px 10px;cursor:pointer;appearance:none}
+.mm .brf .chiprow .chip{border:1px solid #D8D4C9;background:#fff;color:#565A52;font:600 calc(10.5px * var(--ui-scale))/1 var(--mono);padding:6px 10px;cursor:pointer;appearance:none}
 .mm .brf .chiprow .chip.on{background:#191A17;border-color:#191A17;color:#FAF7F1}
-.mm .brf .chiprow .src{margin-left:auto;color:#8B8F86;font:500 9.5px/1.4 var(--mono)}
+.mm .brf .chiprow .src{margin-left:auto;color:#8B8F86;font:500 calc(9.5px * var(--ui-scale))/1.4 var(--mono)}
 .mm .brf .chapters{padding:4px 26px 6px}
 .mm .brf .chapter{padding:14px 0;border-bottom:1px solid #D8D4C9}
 .mm .brf .chapter:last-child{border-bottom:0}
-.mm .brf .chapter h3{font:700 15px/1.3 var(--serif);color:#191A17;margin:0 0 4px}
+.mm .brf .chapter h3{font:700 calc(15px * var(--ui-scale))/1.3 var(--serif);color:#191A17;margin:0 0 4px}
 .mm .brf .chrow{display:block;padding:9px 0 10px;border-top:1px solid #EFEBDF;text-decoration:none;color:inherit}
 .mm .brf .chrow:first-of-type{border-top:0}
-.mm .brf .chrow b{font:700 12.5px/1.3 var(--sans);color:#191A17}
-.mm .brf .chuv{font:700 12px/1 var(--mono);margin-left:6px}
-.mm .brf .chrow p{font-size:12.5px;color:#565A52;margin:5px 0 7px;max-width:62ch;font-family:var(--sans)}
-.mm .brf .chbars{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font:600 10px/1 var(--mono);color:#8B8F86}
+.mm .brf .chrow b{font:700 calc(12.5px * var(--ui-scale))/1.3 var(--sans);color:#191A17}
+.mm .brf .chuv{font:700 calc(12px * var(--ui-scale))/1 var(--mono);margin-left:6px}
+.mm .brf .chrow p{font-size:calc(12.5px * var(--ui-scale));color:#565A52;margin:5px 0 7px;max-width:62ch;font-family:var(--sans)}
+.mm .brf .chbars{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font:600 calc(10px * var(--ui-scale))/1 var(--mono);color:#8B8F86}
 .mm .brf .chbar{width:70px;height:6px;background:#EFEBDF;border-radius:3px;overflow:hidden;flex:0 0 auto}
 .mm .brf .chbar i{display:block;height:100%;background:#8B8F86}
-.mm .brf .empty-note{padding:14px 26px;font-size:13px;color:#8B8F86;font-family:var(--sans)}
+.mm .brf .empty-note{padding:14px 26px;font-size:calc(13px * var(--ui-scale));color:#8B8F86;font-family:var(--sans)}
 .mm .brf .pull{padding:16px 26px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;border-top:1px solid #D8D4C9}
-.mm .brf .pull p{font:italic 400 15px/1.5 var(--serif);color:#565A52;max-width:52ch;margin:0}
-.mm .brf .pull button{appearance:none;border:0;background:#6D4A86;color:#fff;font:640 12px/1 var(--sans);padding:11px 14px;cursor:pointer}
+.mm .brf .pull p{font:italic 400 calc(15px * var(--ui-scale))/1.5 var(--serif);color:#565A52;max-width:52ch;margin:0}
+.mm .brf .pull button{appearance:none;border:0;background:#6D4A86;color:#fff;font:640 calc(12px * var(--ui-scale))/1 var(--sans);padding:11px 14px;cursor:pointer}
 
 @media (max-width:760px){
   .mm .brf .lead{grid-template-columns:1fr}
@@ -203,7 +203,7 @@
 
   <div class="brf" id="briefView" style="display:none">
     <div class="mast">
-      <div class="mast-row"><h1><span translate="no">My <i>Market</i></span> &middot; <span style="font-style:normal;font-size:16px">This edition</span></h1>
+      <div class="mast-row"><h1><span translate="no">My <i>Market</i></span> &middot; <span style="font-style:normal;font-size:calc(16px * var(--ui-scale))">This edition</span></h1>
         <span class="vol" id="briefVol">GARDEN &amp; FIELD TOOLS</span></div>
       <div class="strap">What import statistics say this edition &middot; by Birdland &middot; no prices, by design</div>
     </div>
@@ -224,6 +224,17 @@
 // ---- helpers -------------------------------------------------------------
 function esc(s){return String(s).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
 function t(s){return window.blT?window.blT(s):s;}
+// tf(): translate a TEMPLATE (never a finished sentence), then drop the
+// numbers in. The dictionary key is always the English template with its
+// {name} placeholders still in it, so a translator can move a placeholder
+// anywhere in the sentence — word order is theirs to change, the braces
+// text is not.
+function tf(tmpl,vars){
+ var s=t(tmpl);
+ return s.replace(/\{(\w+)\}/g,function(_,k){
+  return (vars&&Object.prototype.hasOwnProperty.call(vars,k))?vars[k]:"";
+ });
+}
 function pct(v){return (v>0?"+":"")+v+"%";}
 function heat(v){return v>0?"var(--grn)":(v<0?"var(--red)":"var(--tx2)");}
 function glyph(v){return v>0?"▲":(v<0?"▼":"—");}
@@ -322,19 +333,59 @@ var GROUPS=[["tw","TAIWAN-ORIGIN SUPPLY IS ADVANCING IN YOUR MARKET"],
  ["push","A CHINA PRICE PUSH IS UNDER WAY"],
  ["steady","STEADY THIS EDITION"]];
 
+// Each branch is a lead clause (the facts, plain text) plus a bold takeaway
+// clause. The two translate as separate dictionary entries — the takeaway
+// is often the same sentence across more than one branch, so this keeps a
+// translator from having to retranslate it every time the facts around it
+// change. Numbers are substituted after both pieces come back translated.
 function why(c){
  var d=delta(c)||0, cd=cnd(c);
- if(c.vol_change_pct>15&&c.uv_change_pct<-5&&d<0) return "Volume rose "+pct(c.vol_change_pct)+" while unit value fell "+pct(c.uv_change_pct)+" and Taiwan-origin share slipped "+Math.abs(d)+" pts. <b>The market grew and someone else took the order"+(cd!==null&&cd>=3?" — China, up "+cd+" pts to "+c.share_cn+"%":"")+".</b>";
- if(cd!==null&&cd>=10) return "China-origin share jumped "+cd+" pts to "+c.share_cn+"% while unit value moved "+pct(c.uv_change_pct)+". <b>A price-led push is under way — quote on total cost, not first price.</b>";
- if(cd!==null&&cd<=-3&&d>=0) return "China-origin share receded "+Math.abs(cd)+" pts to "+c.share_cn+"% while Taiwan held"+(d>0?" and gained "+d+" pts":"")+". <b>Displacement is under way — this is the window to take share.</b>";
- if(c.vol_change_pct>15&&c.uv_change_pct<-5) return "Volume rose "+pct(c.vol_change_pct)+" on a "+pct(c.uv_change_pct)+" fall in unit value, Taiwan share holding at "+(c.share_tw==null?"an unpublished level":c.share_tw+"%")+". <b>Growth is real but it is being bought on price.</b>";
- if(c.uv_change_pct>5&&c.vol_change_pct<0) return "Unit value rose "+pct(c.uv_change_pct)+" while volume eased "+pct(c.vol_change_pct)+". <b>Buyers are trading up, not buying more.</b>";
- if(d>=3) return "Taiwan-origin share gained "+d+" pts to "+c.share_tw+"%. <b>This market is already moving toward Taiwan supply.</b>";
- if(d<=-5) return "Taiwan-origin share fell "+Math.abs(d)+" pts to "+c.share_tw+"%. <b>Worth a route conversation before the next season.</b>";
- return "Direction is within the normal range for this market this edition.";
+ if(c.vol_change_pct>15&&c.uv_change_pct<-5&&d<0){
+  var lead1=tf("Volume rose {vol} while unit value fell {uv} and Taiwan-origin share slipped {pts} pts.",
+   {vol:pct(c.vol_change_pct),uv:pct(c.uv_change_pct),pts:Math.abs(d)});
+  var tail1=(cd!==null&&cd>=3)
+   ?tf("The market grew and someone else took the order — China, up {cnPts} pts to {cnShare}%.",{cnPts:cd,cnShare:c.share_cn})
+   :t("The market grew and someone else took the order.");
+  return lead1+" <b>"+tail1+"</b>";
+ }
+ if(cd!==null&&cd>=10){
+  var lead2=tf("China-origin share jumped {cnPts} pts to {cnShare}% while unit value moved {uv}.",
+   {cnPts:cd,cnShare:c.share_cn,uv:pct(c.uv_change_pct)});
+  return lead2+" <b>"+t("A price-led push is under way — quote on total cost, not first price.")+"</b>";
+ }
+ if(cd!==null&&cd<=-3&&d>=0){
+  var lead3=(d>0)
+   ?tf("China-origin share receded {cnPts} pts to {cnShare}% while Taiwan held and gained {pts} pts.",{cnPts:Math.abs(cd),cnShare:c.share_cn,pts:d})
+   :tf("China-origin share receded {cnPts} pts to {cnShare}% while Taiwan held.",{cnPts:Math.abs(cd),cnShare:c.share_cn});
+  return lead3+" <b>"+t("Displacement is under way — this is the window to take share.")+"</b>";
+ }
+ if(c.vol_change_pct>15&&c.uv_change_pct<-5){
+  var lead4=(c.share_tw==null)
+   ?tf("Volume rose {vol} on a {uv} fall in unit value, Taiwan share holding at an unpublished level.",{vol:pct(c.vol_change_pct),uv:pct(c.uv_change_pct)})
+   :tf("Volume rose {vol} on a {uv} fall in unit value, Taiwan share holding at {twShare}%.",{vol:pct(c.vol_change_pct),uv:pct(c.uv_change_pct),twShare:c.share_tw});
+  return lead4+" <b>"+t("Growth is real but it is being bought on price.")+"</b>";
+ }
+ if(c.uv_change_pct>5&&c.vol_change_pct<0){
+  var lead5=tf("Unit value rose {uv} while volume eased {vol}.",{uv:pct(c.uv_change_pct),vol:pct(c.vol_change_pct)});
+  return lead5+" <b>"+t("Buyers are trading up, not buying more.")+"</b>";
+ }
+ if(d>=3){
+  var lead6=tf("Taiwan-origin share gained {pts} pts to {twShare}%.",{pts:d,twShare:c.share_tw});
+  return lead6+" <b>"+t("This market is already moving toward Taiwan supply.")+"</b>";
+ }
+ if(d<=-5){
+  var lead7=tf("Taiwan-origin share fell {pts} pts to {twShare}%.",{pts:Math.abs(d),twShare:c.share_tw});
+  return lead7+" <b>"+t("Worth a route conversation before the next season.")+"</b>";
+ }
+ return t("Direction is within the normal range for this market this edition.");
 }
 function fmtShare(who,v,dv){
- return esc(who)+" "+(v==null?"—":v+"%")+(dv?' <span class="'+(dv>0?"up":"dn")+'">'+(dv>0?"+":"")+dv+"</span>":"");
+ return esc(t(who))+" "+(v==null?"—":v+"%")+(dv?' <span class="'+(dv>0?"up":"dn")+'">'+(dv>0?"+":"")+dv+"</span>":"");
+}
+// The "(+N pts)" delta shown after a share value in the rail — its own tiny
+// template since it stands alone, not embedded in a longer sentence.
+function ptsDelta(v){
+ return tf("({pts} pts)",{pts:(v>0?"+":"")+v});
 }
 
 // ---- state -----------------------------------------------------------------
@@ -387,7 +438,7 @@ function myMarket(){
   return '<button type="button" class="mych'+(k===st.anchor?" on":"")+'" data-a="'+esc(k)+'">'+esc(MKT[k].name)+"</button>";
  }).join("")+"</div>";
  if(!any){
-  h+='<p class="empty-note">No categories published for '+esc(m.name)+' yet this edition — the daily feed is accumulating them. Try another market above or with the search on the right.</p>';
+  h+='<p class="empty-note">'+tf("No categories published for {market} yet this edition — the daily feed is accumulating them. Try another market above or with the search on the right.",{market:esc(m.name)})+'</p>';
  }else{
   h+=GROUPS.map(function(g){
    var fs=grouped[g[0]]; if(!fs.length) return "";
@@ -411,12 +462,12 @@ function myMarket(){
 
 function around(){
  var ns=(NEIGH[st.anchor]||[]).filter(function(k){return MKT[k];});
- document.getElementById("aroundH").textContent="AROUND "+MKT[st.anchor].name.toUpperCase();
+ document.getElementById("aroundH").textContent=tf("AROUND {market}",{market:MKT[st.anchor].name.toUpperCase()});
  document.getElementById("nbline").textContent=ns.length
-  ? "compared with "+ns.map(function(k){return MKT[k].name;}).join(" · ")
+  ? tf("compared with {list}",{list:ns.map(function(k){return MKT[k].name;}).join(" · ")})
   : "";
  if(!ns.length){
-  document.getElementById("aroundWrap").innerHTML='<div class="empty-around">No neighbouring market is in this edition yet — the daily feed is accumulating them.</div>';
+  document.getElementById("aroundWrap").innerHTML='<div class="empty-around">'+t("No neighbouring market is in this edition yet — the daily feed is accumulating them.")+'</div>';
   return;
  }
  var a=MKT[st.anchor];
@@ -426,7 +477,7 @@ function around(){
    +"<em>"+(me?"YOUR MARKET":(m.src==="comtrade"?"UN Comtrade":"Eurostat"))+"</em></button></td>"
    +FAM_LIST.map(function(f){
     var c=m.cells[f];
-    if(!cellValid(c)) return '<td><div class="acell" style="color:var(--tx3);font:500 9px/1 var(--mono)">not in edition</div></td>';
+    if(!cellValid(c)) return '<td><div class="acell" style="color:var(--tx3);font:500 calc(9px * var(--ui-scale))/1 var(--mono)">'+t("not in edition")+'</div></td>';
     var ca=a.cells[f], dot=(!me&&cellValid(ca)&&((c.uv_change_pct>0)!==(ca.uv_change_pct>0)));
     return '<td><div class="acell">'+(dot?'<span class="dz" title="direction differs from your market"></span>':"")
      +'<b style="color:'+heat(c.uv_change_pct)+'">'+glyph(c.uv_change_pct)+" "+Math.abs(c.uv_change_pct)+"%</b>"
@@ -459,11 +510,15 @@ function insight(ns){
  });
  var el=document.getElementById("insight"); if(!el) return;
  if(behind&&behind.diff>=8){
-  el.innerHTML="Next door in <b>"+esc(MKT[behind.k].name)+"</b>, Taiwan-origin supply is <b>"+behind.nv+"%</b> of "+famName(behind.f).toLowerCase()+" imports — your market buys "+behind.av+"%. <b>The route exists; the question is whose shelf uses it.</b>";
+  var leadB=tf("Next door in <b>{market}</b>, Taiwan-origin supply is <b>{nv}%</b> of {family} imports — your market buys {av}%.",
+   {market:esc(MKT[behind.k].name),nv:behind.nv,family:esc(t(famName(behind.f))),av:behind.av});
+  el.innerHTML=leadB+" <b>"+t("The route exists; the question is whose shelf uses it.")+"</b>";
  }else if(ahead&&ahead.diff>=8){
-  el.innerHTML="Your market leads its neighbourhood: <b>"+ahead.av+"%</b> of "+famName(ahead.f).toLowerCase()+" imports are Taiwan-origin, against "+ahead.nv+"% in "+esc(MKT[ahead.k].name)+". <b>Worth defending before the next season.</b>";
+  var leadA=tf("Your market leads its neighbourhood: <b>{av}%</b> of {family} imports are Taiwan-origin, against {nv}% in {market}.",
+   {av:ahead.av,family:esc(t(famName(ahead.f))),nv:ahead.nv,market:esc(MKT[ahead.k].name)});
+  el.innerHTML=leadA+" <b>"+t("Worth defending before the next season.")+"</b>";
  }else{
-  el.innerHTML="Your market moves with its neighbourhood this edition — no origin gap above 8 points.";
+  el.innerHTML=t("Your market moves with its neighbourhood this edition — no origin gap above 8 points.");
  }
 }
 
@@ -480,18 +535,18 @@ function setAnchor(k,fromSearch){
 
 function rail(){
  var m=MKT[st.anchor], c=m.cells[st.sel];
- var h='<div><h4>'+esc(m.name)+"</h4><div class=\"sub\">"+esc(famName(st.sel).toUpperCase())+" · "+(m.src==="comtrade"?"UN Comtrade":"Eurostat")+"</div></div>";
+ var h='<div><h4>'+esc(m.name)+"</h4><div class=\"sub\">"+esc(t(famName(st.sel)).toUpperCase())+" · "+(m.src==="comtrade"?"UN Comtrade":"Eurostat")+"</div></div>";
  if(!cellValid(c)){
-  h+='<p style="font:500 12px/1.6 var(--sans);color:var(--tx2)">Not published for '+esc(m.name)+' this edition — the daily feed is accumulating this category. Pick a market from Your Markets or the search above.</p>';
+  h+='<p style="font:500 calc(12px * var(--ui-scale))/1.6 var(--sans);color:var(--tx2)">'+tf("Not published for {market} this edition — the daily feed is accumulating this category. Pick a market from Your Markets or the search above.",{market:esc(m.name)})+'</p>';
   document.getElementById("drail").innerHTML=h;
   return;
  }
  var d=delta(c), cd=cnd(c);
- h+='<div class="kpi"><b style="color:'+heat(c.uv_change_pct)+'">'+pct(c.uv_change_pct)+"</b><span>12-month unit-value change · "+(c.basis==="piece"?"per-piece":"per-kg")+" basis</span></div>";
- h+='<div class="rowline"><span>Import volume</span><b style="color:'+heat(c.vol_change_pct)+'">'+pct(c.vol_change_pct)+"</b></div>";
- h+='<div class="rowline"><span>Taiwan-origin share</span><b>'+(c.share_tw==null?"—":c.share_tw+"%")+(d!==null&&d!==0?' <span class="'+(d>0?"up":"dn")+'">('+(d>0?"+":"")+d+" pts)</span>":"")+"</b></div>";
- h+='<div class="rowline"><span>China-origin share</span><b>'+(c.share_cn==null?"—":c.share_cn+"%")+(cd!==null&&cd!==0?' <span class="'+(cd>0?"up":"dn")+'">('+(cd>0?"+":"")+cd+" pts)</span>":"")+"</b></div>";
- h+='<div class="rowline"><span>Market tier</span><b>'+(c.band&&c.band.market&&TIER_LABEL[c.band.market]?TIER_LABEL[c.band.market]:"too few sources to place")+"</b></div>";
+ h+='<div class="kpi"><b style="color:'+heat(c.uv_change_pct)+'">'+pct(c.uv_change_pct)+"</b><span>"+t("12-month unit-value change")+" "+(c.basis==="piece"?t("· per-piece basis"):t("· per-kg basis"))+"</span></div>";
+ h+='<div class="rowline"><span>'+t("Import volume")+'</span><b style="color:'+heat(c.vol_change_pct)+'">'+pct(c.vol_change_pct)+"</b></div>";
+ h+='<div class="rowline"><span>'+t("Taiwan-origin share")+'</span><b>'+(c.share_tw==null?"—":c.share_tw+"%")+(d!==null&&d!==0?' <span class="'+(d>0?"up":"dn")+'">'+ptsDelta(d)+"</span>":"")+"</b></div>";
+ h+='<div class="rowline"><span>'+t("China-origin share")+'</span><b>'+(c.share_cn==null?"—":c.share_cn+"%")+(cd!==null&&cd!==0?' <span class="'+(cd>0?"up":"dn")+'">'+ptsDelta(cd)+"</span>":"")+"</b></div>";
+ h+='<div class="rowline"><span>'+t("Market tier")+'</span><b>'+(c.band&&c.band.market&&TIER_LABEL[c.band.market]?t(TIER_LABEL[c.band.market]):t("too few sources to place"))+"</b></div>";
  h+='<div class="why">'+why(c)+"</div>";
  h+='<div class="acts"><button type="button" class="primary" id="actMail">Bring to enquiry →</button><button type="button" id="actCost">Cost it in CostNow</button><button type="button" id="actBrief">Read it in This edition →</button></div>';
  document.getElementById("drail").innerHTML=h;
@@ -542,27 +597,40 @@ function briefLead(){
  var top=computeTop(1)[0];
  if(!top){
   document.getElementById("briefLead").innerHTML=
-   '<div class="lead-main"><span class="kick">The lead signal</span><h2>Not enough data has accumulated yet to choose a lead signal.</h2>'
-   +"<p>Trade statistics for this edition are still loading — check back as the feed accumulates.</p></div>"
-   +'<div class="lead-side"><h5>The edition in five lines</h5><div class="idx"><div><span>Accumulating this quarter</span></div></div></div>';
+   '<div class="lead-main"><span class="kick">'+t("The lead signal")+'</span><h2>'+t("Not enough data has accumulated yet to choose a lead signal.")+'</h2>'
+   +"<p>"+t("Trade statistics for this edition are still loading — check back as the feed accumulates.")+"</p></div>"
+   +'<div class="lead-side"><h5>'+t("The edition in five lines")+'</h5><div class="idx"><div><span>'+t("Accumulating this quarter")+'</span></div></div></div>';
   return;
  }
  var m=MKT[top.iso], c=top.c, fk=top.f;
- var verb=c.uv_change_pct>0?"rose":(c.uv_change_pct<0?"fell":"held steady");
- var volVerb=c.vol_change_pct>0?"rose":(c.vol_change_pct<0?"fell":"held steady");
- var h2=famName(fk)+" unit values "+verb+" "+Math.abs(c.uv_change_pct)+"% in "+m.name;
- var p="Import volume "+volVerb+" "+pct(c.vol_change_pct)+" over the same twelve months. China-origin share stands at "
-  +(c.share_cn!=null?"<b>"+c.share_cn+"%</b>":"not yet published")+" of "+m.name+"'s "+famName(fk).toLowerCase()
-  +" imports; Taiwan-origin share stands at "+(c.share_tw!=null?"<b>"+c.share_tw+"%</b>":"not yet published")
-  +". The same edition is read across every market below — direction and position only, never a price.";
+ var famT=t(famName(fk));
+ // Three full templates rather than one template plus a translated "rose /
+ // fell" word: word order around the verb differs enough by language
+ // (German and Japanese both move it) that each shape needs to be its own
+ // sentence, not a sentence with a swapped-in verb.
+ var h2;
+ if(c.uv_change_pct>0) h2=tf("{family} unit values rose {absUv}% in {market}",{family:famT,absUv:Math.abs(c.uv_change_pct),market:m.name});
+ else if(c.uv_change_pct<0) h2=tf("{family} unit values fell {absUv}% in {market}",{family:famT,absUv:Math.abs(c.uv_change_pct),market:m.name});
+ else h2=tf("{family} unit values held steady {absUv}% in {market}",{family:famT,absUv:Math.abs(c.uv_change_pct),market:m.name});
+ var s1;
+ if(c.vol_change_pct>0) s1=tf("Import volume rose {vol} over the same twelve months.",{vol:pct(c.vol_change_pct)});
+ else if(c.vol_change_pct<0) s1=tf("Import volume fell {vol} over the same twelve months.",{vol:pct(c.vol_change_pct)});
+ else s1=tf("Import volume held steady {vol} over the same twelve months.",{vol:pct(c.vol_change_pct)});
+ var cnPub=c.share_cn!=null, twPub=c.share_tw!=null, s2;
+ if(cnPub&&twPub) s2=tf("China-origin share stands at <b>{cnShare}%</b> of {market}'s {family} imports; Taiwan-origin share stands at <b>{twShare}%</b>.",{cnShare:c.share_cn,market:m.name,family:famT,twShare:c.share_tw});
+ else if(cnPub&&!twPub) s2=tf("China-origin share stands at <b>{cnShare}%</b> of {market}'s {family} imports; Taiwan-origin share stands at not yet published.",{cnShare:c.share_cn,market:m.name,family:famT});
+ else if(!cnPub&&twPub) s2=tf("China-origin share stands at not yet published of {market}'s {family} imports; Taiwan-origin share stands at <b>{twShare}%</b>.",{market:m.name,family:famT,twShare:c.share_tw});
+ else s2=tf("China-origin share stands at not yet published of {market}'s {family} imports; Taiwan-origin share stands at not yet published.",{market:m.name,family:famT});
+ var s3=t("The same edition is read across every market below — direction and position only, never a price.");
+ var p=s1+" "+s2+" "+s3;
  var five=computeTop(5);
  var idx=five.map(function(r){
   var rm=MKT[r.iso];
-  return "<div><span>"+esc(rm.name)+" · "+esc(famName(r.f).toLowerCase())+"</span><b class=\""+(r.c.uv_change_pct>0?"up":"dn")+"\">"+pct(r.c.uv_change_pct)+"</b></div>";
+  return "<div><span>"+esc(rm.name)+" · "+esc(t(famName(r.f)))+"</span><b class=\""+(r.c.uv_change_pct>0?"up":"dn")+"\">"+pct(r.c.uv_change_pct)+"</b></div>";
  }).join("");
  document.getElementById("briefLead").innerHTML=
-  '<div class="lead-main"><span class="kick">The lead signal · chosen by the data</span><h2>'+h2+"</h2><p>"+p+"</p></div>"
-  +'<div class="lead-side"><h5>The edition in five lines</h5><div class="idx">'+idx+"</div></div>";
+  '<div class="lead-main"><span class="kick">'+t("The lead signal · chosen by the data")+'</span><h2>'+h2+"</h2><p>"+p+"</p></div>"
+  +'<div class="lead-side"><h5>'+t("The edition in five lines")+'</h5><div class="idx">'+idx+"</div></div>";
 }
 
 function briefChips(){
@@ -570,7 +638,7 @@ function briefChips(){
  var h='<span class="lab">Your markets</span>'+vis.map(function(k){
   return '<button type="button" class="chip on" data-a="'+esc(k)+'">'+esc(MKT[k].name)+"</button>";
  }).join("");
- if(rest>0) h+='<span class="chip">+ '+rest+" more</span>";
+ if(rest>0) h+='<span class="chip">'+tf("+ {rest} more",{rest:rest})+"</span>";
  h+='<span class="src">follows your Desk pins · ★</span>';
  document.getElementById("briefChips").innerHTML=h;
  [].forEach.call(document.querySelectorAll("#briefChips .chip[data-a]"),function(b){
@@ -589,8 +657,8 @@ function briefChapters(){
    var c=m.cells[f]; if(!cellValid(c)) return "";
    var href="my-market.html?cell="+f+"|"+iso+"#desk";
    var tw=c.share_tw, cn=c.share_cn;
-   var bars='<div class="chbars"><div class="chbar"><i style="width:'+(tw||0)+'%"></i></div><span>Taiwan '+(tw==null?"—":tw+"%")+"</span>"
-    +'<div class="chbar"><i style="width:'+(cn||0)+'%"></i></div><span>China '+(cn==null?"—":cn+"%")+"</span></div>";
+   var bars='<div class="chbars"><div class="chbar"><i style="width:'+(tw||0)+'%"></i></div><span>'+esc(t("Taiwan"))+' '+(tw==null?"—":tw+"%")+"</span>"
+    +'<div class="chbar"><i style="width:'+(cn||0)+'%"></i></div><span>'+esc(t("China"))+' '+(cn==null?"—":cn+"%")+"</span></div>";
    return '<a class="chrow" href="'+esc(href)+'" data-cell="'+esc(f)+'|'+esc(iso)+'"><b>'+esc(famName(f))+"</b> "
     +'<span class="chuv" style="color:'+heat(c.uv_change_pct)+'">'+glyph(c.uv_change_pct)+" "+pct(c.uv_change_pct)+"</span>"
     +"<p>"+why(c)+"</p>"+bars+"</a>";
@@ -622,10 +690,11 @@ function renderBrief(){
 // ---- view + edition status ------------------------------------------------
 function edLine(){
  var total=Object.keys(MKT).length, live=liveIsos().length;
- document.getElementById("edLine").innerHTML="edition <em>"+esc(TRADE.edition||"—")+"</em> · <em>"+live+"/"+total+"</em> loaded · accumulating daily";
- document.getElementById("edEmLabel").textContent=(TRADE.edition||"")+" · read it";
+ document.getElementById("edLine").innerHTML=tf("edition <em>{edition}</em> · <em>{live}/{total}</em> loaded · accumulating daily",
+  {edition:esc(TRADE.edition||"—"),live:live,total:total});
+ document.getElementById("edEmLabel").textContent=(TRADE.edition||"")+" · "+t("read it");
  var bv=document.getElementById("briefVol");
- if(bv) bv.innerHTML="GARDEN &amp; FIELD TOOLS<br>EDITION "+esc(TRADE.edition||"")+(TRADE.generated?" · PUBLISHED "+esc(TRADE.generated.slice(0,10)):"");
+ if(bv) bv.innerHTML=esc(t("GARDEN & FIELD TOOLS"))+"<br>"+esc(t("EDITION"))+" "+esc(TRADE.edition||"")+(TRADE.generated?" · "+esc(t("PUBLISHED"))+" "+esc(TRADE.generated.slice(0,10)):"");
 }
 
 function setView(v,push){
@@ -713,6 +782,39 @@ function boot(trade){
 fetch("trade.json",{cache:"no-store"}).then(function(r){ if(!r.ok) throw new Error("trade.json "+r.status); return r.json(); })
  .then(function(j){ if(!j||j.schema!==2){ boot(null); return; } boot(j); })
  .catch(function(){ boot(null); });
+
+// i18n.js fetches the language dictionary itself, in parallel with this
+// script's own trade.json fetch — there is no promise to await, so on a
+// slow connection this app can finish its first render before window.blT
+// has anything to translate with. Unlike a static label (which i18n.js's
+// own DOM sweep can still catch later, from outside, because the label text
+// never changes), a sentence built by tf() has its numbers already baked
+// in by the time it reaches the DOM: once it has rendered in English, no
+// later exact-match sweep can find it.
+//
+// i18n.js gives us one reliable, synchronous signal that its dictionary has
+// arrived: the moment DICT is set, it also rewrites <html lang>, in the same
+// .then() callback, before it does anything else. The page starts as
+// lang="en" (see the <html> tag above), so watching that one attribute for
+// a change — rather than window "load", which has no relationship at all to
+// an in-page fetch() — tells us exactly when to re-run this app's own
+// render. If the dictionary is already in by the time this runs, or the
+// page is genuinely English, there is nothing to catch up on.
+(function () {
+ var stored;
+ try { stored = localStorage.getItem("bl_lang"); } catch (e) { stored = null; }
+ if (!stored || stored === "en") return;
+ if (document.documentElement.lang !== "en") return;
+ var mo = new MutationObserver(function () {
+  if (document.documentElement.lang === "en") return;
+  mo.disconnect();
+  if (!TRADE) return; // boot() hasn't rendered yet — it will see the dictionary itself.
+  edLine();
+  myMarket();around();rail();
+  if (st.view === "brief") renderBrief();
+ });
+ mo.observe(document.documentElement, {attributes:true, attributeFilter:["lang"]});
+}());
 
 if("serviceWorker" in navigator){
  navigator.serviceWorker.register("service-worker.js").catch(function(){});

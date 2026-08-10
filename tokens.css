@@ -92,7 +92,7 @@
 input,select,textarea,button{font-family:inherit}
 
 /* Numbers in tables line up or they are not worth tabulating. */
-.num,.tabular{font-family:var(--ff-mono);font-variant-numeric:tabular-nums;text-align:right}
+.num{font-family:var(--ff-mono);font-variant-numeric:tabular-nums;text-align:right}
 
 /* ===== Reader text size =====
 

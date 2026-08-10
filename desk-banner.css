@@ -46,7 +46,7 @@ body{padding-top:0!important}
   color:var(--ink-900);
 }
 .dbar-inner{
-  width:min(1440px,calc(100% - 56px));min-height:var(--dbar-h);margin:auto;
+  width:min(1760px,calc(100% - 56px));min-height:var(--dbar-h);margin:auto;
   display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:var(--sp-5);
 }
 

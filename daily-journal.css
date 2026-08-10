@@ -314,9 +314,9 @@ dialog{border-radius:0}
    really been laid out, and  makes the browser remember the real one
    afterwards. Print has to opt out or sections outside the viewport render
    blank on paper. */
-.journal main .section{content-visibility:auto;contain-intrinsic-size:auto 620px}
+
 @media print{
-  .journal main .section{content-visibility:visible;contain-intrinsic-size:none}
+  
   /* The reserved heights below exist to stop the live page jumping while
      edition data lands; on paper they are just blank paper. */
   .journal-lead,.journal-risk,.journal-drivers,.hero-actions{min-height:0!important}
