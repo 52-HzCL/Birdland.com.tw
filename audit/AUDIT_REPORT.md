@@ -568,11 +568,47 @@ my-market.html 的高密度功能性 bug)在各自的段落已有完整記錄,ST
 
 1. 共用建置工具鏈(`tools/build_news.py`/`tools/dev/build.js`/`gen-terminal.js`/
    `build_calendars.js`/`build_feeds.py`)的同步性問題——影響面最廣,一次修好惠及所有頁面。
-2. 文件訂正(`AGENTS.md` 等)——零風險,高價值,優先做。
-3. 個別頁面的 A-F 類發現——依 STATE 2 掃描順序(高優先頁面優先)處理。
-4. `CLEANUP.md` 的清理項——最後執行,且只產出 `cleanup.sh` 供人決定。
+2. 文件訂正(`AGENTS.md` 等)——零風險,高價值,優先做(本輪已完成 5 處)。
+3. 個別頁面的 A-F 類發現——依嚴重度處理:P0(team.html 資料管線)最先;站台級 facade
+   導覽 bug 次之(影響面最廣的功能性問題);其餘 P1 依 my-market.html 優先(bug 密度最高)。
+4. `CLEANUP.md` 的清理項——`audit/cleanup.sh` 已產出(STATE 5),人在方便時執行;涉及
+   共用 CSS 選擇器的項目(C7/C9/C10/C11)腳本只給手動指引,不自動剪 CSS(依本專案自己的
+   safety 規則)。
 
 ---
 
-_本報告由 `/loop` 驅動的 Zero-Touch 稽核迴圈自動維護,人類可隨時中途查看,不需要等
-STATE 6 才有內容。_
+## STATE 6:完工摘要
+
+**四個檔案位置**:`audit/AUDIT_REPORT.md`(本檔,完整發現)、`audit/DECISIONS.md`
+(D1-D47,Opus 逐項裁決與理由)、`audit/AUDIT_STATE.json`(機器可讀狀態+逐頁摘要)、
+`audit/CLEANUP.md`(死碼候選+反向清單)+ `audit/cleanup.sh`(可執行清理腳本,唯讀
+生成,人自己決定何時跑)。全部在 `audit/zero-touch-review` 分支,draft PR #2。
+
+**P0 數量:1**——`teamdesk.*` 資料管線靜默凍結(team.html),見報告最上方,現在
+正在發生,建議修法已附。
+
+**必改架構項:terminal.json 全站無 CI 新鮮度守門**——建議在 `pr-validation.yml`
+仿照 calendars/feeds 模式加一道 `build+diff` 關卡(見「架構問題清單」)。其餘架構觀察
+全部是可改(含 token 遮蔽移除、三條脆弱追蹤軸線、文件熵累計),無第二個必改項。
+
+**`cleanup.sh` 使用說明**:`bash audit/cleanup.sh`(唯讀,只印出指引與已確認狀態,
+不會修改任何檔案)。腳本會自動確認 C6(11 個死 `bentofy()` 呼叫)是否還在,其餘涉及
+CSS 選擇器的項目(C7/C9/C10/C11)因本專案自己禁止用 regex/行號剪 CSS,腳本只印手動
+指引,不自動執行——照腳本輸出的步驟走。
+
+**⚠️ 風險提醒(重複一次,不要漏看)**:本機分支 `i18n/my-market-composed-sentences`
+有 4 個獨有 commit 從未推送,其中 2 個已修好本次稽核在 main 上重新確認仍活著的真實
+客戶會看到的錯誤(my-market.html 的死欄位、分類漏桶)。執行環境容器是暫時性的,這批
+工作有真實遺失風險。若要保留,請明確說「把 `i18n/my-market-composed-sentences` 也
+push」。
+
+**已知範圍缺口**:`product-101.html` 完整六象限稽核因 PR #1 仍是 draft 而延後——PR #1
+合併或轉為 ready-for-review 後應優先補做完整稽核(目前只有透過 about.html 稽核提前
+記錄的反方向導覽 bug,見 D31)。
+
+---
+
+_本報告由 `/loop` 驅動的 Zero-Touch 稽核迴圈自動維護。STATE 0-6 全部完成
+(2026-08-09)。人類可隨時查看與行動,不需要等待任何進一步的自動化——除了 `product-101.html`
+待 PR #1 解決後的補充稽核,以及是否要 push `i18n/my-market-composed-sentences` 分支,
+本報告記錄的其餘一切都已是最終狀態。_
