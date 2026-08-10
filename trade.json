@@ -1,10 +1,10 @@
 {
   "schema": 2,
   "edition": "2026-Q3",
-  "generated": "2026-08-09T03:08:33Z",
+  "generated": "2026-08-10T03:17:27Z",
   "shard_state": {
-    "cursor": 12,
-    "completed_pct": 18,
+    "cursor": 13,
+    "completed_pct": 19,
     "quarter": "2026-Q3"
   },
   "sources": {
@@ -77,6 +77,12 @@
             "moved": "up",
             "to_next_pct": 5
           }
+        },
+        "82130000": {
+          "stale": true
+        },
+        "82021000": {
+          "stale": true
         }
       }
     },
@@ -144,6 +150,12 @@
             "moved": "flat",
             "to_next_pct": 26
           }
+        },
+        "82130000": {
+          "stale": true
+        },
+        "82021000": {
+          "stale": true
         }
       }
     },
@@ -211,6 +223,12 @@
             "moved": "flat",
             "to_next_pct": 16
           }
+        },
+        "82130000": {
+          "stale": true
+        },
+        "82021000": {
+          "stale": true
         }
       }
     },
@@ -278,6 +296,12 @@
             "moved": "down",
             "to_next_pct": 32
           }
+        },
+        "82130000": {
+          "stale": true
+        },
+        "82021000": {
+          "stale": true
         }
       }
     },
@@ -345,6 +369,12 @@
             "moved": "up",
             "to_next_pct": 30
           }
+        },
+        "82130000": {
+          "stale": true
+        },
+        "82021000": {
+          "stale": true
         }
       }
     },
@@ -412,6 +442,12 @@
             "moved": "up",
             "to_next_pct": 21
           }
+        },
+        "82130000": {
+          "stale": true
+        },
+        "82021000": {
+          "stale": true
         }
       }
     },
@@ -474,6 +510,12 @@
             "moved": "flat",
             "to_next_pct": 9
           }
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -542,6 +584,12 @@
             "moved": "up",
             "to_next_pct": 16
           }
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -609,6 +657,12 @@
             "moved": "flat",
             "to_next_pct": 47
           }
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -656,6 +710,12 @@
           "share_cn": 66,
           "stale": false,
           "band": null
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -723,6 +783,12 @@
             "moved": "flat",
             "to_next_pct": 22
           }
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -790,6 +856,12 @@
             "moved": "flat",
             "to_next_pct": 35
           }
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -847,6 +919,12 @@
             "moved": "down",
             "to_next_pct": 4
           }
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -917,6 +995,12 @@
             "to_next_pct": 33
           },
           "note": "world cross-check diverged >5% from Comtrade's reported total; used summed sources"
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -984,6 +1068,12 @@
             "moved": "flat",
             "to_next_pct": 38
           }
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1002,6 +1092,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -1022,6 +1118,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1040,6 +1142,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -1060,6 +1168,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1078,6 +1192,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -1098,6 +1218,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1116,6 +1242,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -1136,6 +1268,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1154,6 +1292,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -1174,6 +1318,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1192,6 +1342,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -1212,6 +1368,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1230,6 +1392,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -1250,6 +1418,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1268,6 +1442,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -1288,6 +1468,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1306,6 +1492,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -1326,6 +1518,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1344,6 +1542,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -1364,6 +1568,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1382,6 +1592,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -1402,6 +1618,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1420,6 +1642,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -1440,6 +1668,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1458,6 +1692,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -1478,6 +1718,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1496,6 +1742,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -1516,6 +1768,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1534,6 +1792,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -1554,6 +1818,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1572,6 +1842,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -1592,6 +1868,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1611,6 +1893,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1620,16 +1908,95 @@
       "src": "comtrade",
       "cells": {
         "820110": {
-          "stale": true
+          "basis": "piece",
+          "uv_change_pct": -7,
+          "vol_change_pct": 12.8,
+          "share_tw": 0,
+          "share_tw_prev": 1,
+          "share_cn": 91,
+          "share_cn_prev": 83,
+          "stale": false,
+          "band": {
+            "market": "upper",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 5
+          }
         },
         "820130": {
-          "stale": true
+          "basis": "piece",
+          "uv_change_pct": 11.5,
+          "vol_change_pct": 12.5,
+          "share_tw": 3,
+          "share_tw_prev": 3,
+          "share_cn": 79,
+          "share_cn_prev": 77,
+          "stale": false,
+          "band": {
+            "market": "upper",
+            "tw": "upper",
+            "moved": "flat",
+            "to_next_pct": 7
+          }
         },
         "820150": {
-          "stale": true
+          "basis": "piece",
+          "uv_change_pct": -0.6,
+          "vol_change_pct": 30.5,
+          "share_tw": 12,
+          "share_tw_prev": 12,
+          "share_cn": 29,
+          "share_cn_prev": 28,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "lower",
+            "moved": "flat",
+            "to_next_pct": 31
+          }
         },
         "820160": {
-          "stale": true
+          "basis": "piece",
+          "uv_change_pct": -15,
+          "vol_change_pct": 28.4,
+          "share_tw": 4,
+          "share_tw_prev": 5,
+          "share_cn": 55,
+          "share_cn_prev": 40,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "lower",
+            "moved": "flat",
+            "to_next_pct": 29
+          }
+        },
+        "821300": {
+          "basis": "kg",
+          "uv_change_pct": null,
+          "vol_change_pct": null,
+          "share_tw": 1,
+          "share_tw_prev": 1,
+          "share_cn": 61,
+          "share_cn_prev": 57,
+          "stale": true,
+          "band": null
+        },
+        "820210": {
+          "basis": "piece",
+          "uv_change_pct": -2.7,
+          "vol_change_pct": -1.6,
+          "share_tw": 4,
+          "share_tw_prev": 5,
+          "share_cn": 41,
+          "share_cn_prev": 35,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "flat",
+            "to_next_pct": 1
+          }
         }
       }
     },
@@ -1648,6 +2015,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -1668,6 +2041,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1686,6 +2065,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -1706,6 +2091,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1725,6 +2116,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1743,6 +2140,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -1866,6 +2269,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1884,6 +2293,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -1904,6 +2319,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -1922,6 +2343,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2021,6 +2448,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2039,6 +2472,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2059,6 +2498,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2077,6 +2522,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2097,6 +2548,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2115,6 +2572,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2135,6 +2598,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2153,6 +2622,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2173,6 +2648,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2191,6 +2672,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2211,6 +2698,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2229,6 +2722,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2249,6 +2748,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2267,6 +2772,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2287,6 +2798,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2305,6 +2822,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2325,6 +2848,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2343,6 +2872,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2363,6 +2898,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2381,6 +2922,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2401,6 +2948,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2419,6 +2972,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2439,6 +2998,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2457,6 +3022,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2477,6 +3048,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2495,6 +3072,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2515,6 +3098,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2533,6 +3122,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2553,6 +3148,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2571,6 +3172,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2591,6 +3198,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2609,6 +3222,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2629,6 +3248,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2647,6 +3272,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2667,6 +3298,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2685,6 +3322,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2705,6 +3348,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2723,6 +3372,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2743,6 +3398,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2761,6 +3422,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2781,6 +3448,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2799,6 +3472,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2819,6 +3498,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2837,6 +3522,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2857,6 +3548,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2875,6 +3572,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2895,6 +3598,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2913,6 +3622,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2933,6 +3648,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2951,6 +3672,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -2971,6 +3698,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -2989,6 +3722,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -3009,6 +3748,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -3027,6 +3772,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -3047,6 +3798,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -3065,6 +3822,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -3085,6 +3848,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -3103,6 +3872,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -3123,6 +3898,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -3141,6 +3922,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -3161,6 +3948,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -3179,6 +3972,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -3199,6 +3998,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -3217,6 +4022,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -3237,6 +4048,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -3255,6 +4072,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -3275,6 +4098,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -3293,6 +4122,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -3313,6 +4148,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -3331,6 +4172,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
@@ -3351,6 +4198,12 @@
         },
         "820160": {
           "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
+          "stale": true
         }
       }
     },
@@ -3369,6 +4222,12 @@
           "stale": true
         },
         "820160": {
+          "stale": true
+        },
+        "821300": {
+          "stale": true
+        },
+        "820210": {
           "stale": true
         }
       }
