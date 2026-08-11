@@ -1,10 +1,10 @@
 {
   "schema": 2,
   "edition": "2026-Q3",
-  "generated": "2026-08-10T03:17:27Z",
+  "generated": "2026-08-11T03:09:01Z",
   "shard_state": {
-    "cursor": 13,
-    "completed_pct": 19,
+    "cursor": 14,
+    "completed_pct": 21,
     "quarter": "2026-Q3"
   },
   "sources": {
@@ -1016,6 +1016,7 @@
           "share_tw": 0,
           "share_tw_prev": 0,
           "share_cn": 67,
+          "share_cn_prev": 60,
           "stale": false,
           "band": {
             "market": "upper",
@@ -1031,6 +1032,7 @@
           "share_tw": 1,
           "share_tw_prev": 1,
           "share_cn": 53,
+          "share_cn_prev": 43,
           "stale": false,
           "band": {
             "market": "mid",
@@ -1046,6 +1048,7 @@
           "share_tw": 7,
           "share_tw_prev": 7,
           "share_cn": 46,
+          "share_cn_prev": 39,
           "stale": false,
           "band": {
             "market": "mid",
@@ -1061,6 +1064,7 @@
           "share_tw": 1,
           "share_tw_prev": 1,
           "share_cn": 44,
+          "share_cn_prev": 48,
           "stale": false,
           "band": {
             "market": "mid",
@@ -1070,10 +1074,36 @@
           }
         },
         "821300": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 6.2,
+          "vol_change_pct": -2.4,
+          "share_tw": 2,
+          "share_tw_prev": 3,
+          "share_cn": 79,
+          "share_cn_prev": 83,
+          "stale": false,
+          "band": {
+            "market": "upper",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 19
+          }
         },
         "820210": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -9.9,
+          "vol_change_pct": -15.5,
+          "share_tw": 0,
+          "share_tw_prev": 1,
+          "share_cn": 73,
+          "share_cn_prev": 52,
+          "stale": false,
+          "band": {
+            "market": "upper",
+            "tw": null,
+            "moved": "up",
+            "to_next_pct": 17
+          }
         }
       }
     },
