@@ -169,7 +169,17 @@
   .mm .brf .mast,.mm .brf .lead-main,.mm .brf .lead-side,.mm .brf .chiprow,.mm .brf .chapters,.mm .brf .pull{padding-left:16px;padding-right:16px}
 }
 </style>
+<script>try{if(sessionStorage.getItem("ab-splash-market"))document.documentElement.className+=" ab-seen"}catch(e){}</script>
 </head><body>
+<!-- Launch screen. Ships in the markup so the first painted frame is this app's
+     own colour and icon rather than a bare desk; app-bar.js adopts this node,
+     fills in the name/purpose/build from APPS[], flies the icon to its seat in
+     the title bar and removes it. app-bar.css carries the safety rules for
+     reduced motion, a second visit this session, and a script that never
+     arrives. Do not add the name here -- it would be a sixth copy of the app
+     list. -->
+<div id="ab-splash" class="ab-splash" data-app="market" aria-hidden="true"><div class="ab-splash-in"><img class="ab-splash-ico" src="images/app-market-tile.png" width="88" height="88" alt="" fetchpriority="high"><i class="ab-splash-bar" aria-hidden="true"></i></div></div>
+
 <div class="mm">
   <div class="mm-head">
     <span class="views" role="tablist">

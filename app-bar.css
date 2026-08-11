@@ -402,3 +402,55 @@ html.ui-lg #app-bar .ab-status{font-size:12px}
   .ab-splash-bar::after{width:100%}
 }
 @media print{.ab-splash{display:none!important}}
+
+/* ---- the launch screen, but at the first byte ----
+
+   The rules above dress a sheet that app-bar.js built. app-bar.js is deferred,
+   so it ran AFTER the document had already painted: the reader got a flash of
+   the bare desk, and only then the launch screen dropped on top of it. That is
+   exactly backwards — it read as a web page putting on a costume.
+
+   So the four desk pages now ship the sheet in their own markup, before any
+   script. app-bar.css is render-blocking, so by the time <body> paints these
+   rules are already in force and the first frame is the app's own colour with
+   its own icon. app-bar.js ADOPTS that node rather than building one: it fills
+   in the name, the purpose and the build (the three things it alone knows, from
+   APPS[]), and from there the timing is the same as it ever was.
+
+   Everything below exists because an element in the markup cannot check
+   anything for itself. */
+
+/* 1. Once per session. app-bar.js writes ab-splash-<key> into sessionStorage;
+      a two-line inline script in each desk's <head> reads it back and stamps
+      the root, because by the time a deferred script could do it the sheet has
+      already been on screen for a frame. */
+html.ab-seen .ab-splash{display:none!important}
+
+/* 2. Reduced motion. The JS declined to BUILD the splash in this case, which
+      the markup version cannot do; hiding it is the same answer. */
+@media (prefers-reduced-motion:reduce){.ab-splash{display:none!important}}
+
+/* 3. No script, no adoption, and therefore nothing to take the sheet away —
+      a broken script would have left the desk covered forever. This is the
+      dead man's handle: a zero-length animation that fires at 3s and pins the
+      sheet gone. app-bar.js is finished by ~2.1s in the worst case, so in
+      normal life this never runs. It is deliberately opacity+visibility rather
+      than display, so it cannot fight the transition on the way out. */
+.ab-splash{animation:ab-splash-safety 0s 3s forwards}
+@keyframes ab-splash-safety{to{opacity:0;visibility:hidden;pointer-events:none}}
+
+/* 4. The icon does not fade with the sheet — it flies to the seat it occupies
+      in the title bar, so the reader sees that the icon on the launch screen
+      and the icon in the bar are one object. app-bar.js measures both and
+      writes the transform; this only has to get out of the animation's way,
+      because a CSS animation on transform REPLACES a transform property rather
+      than adding to it. */
+.ab-splash-ico.is-flying{animation:none!important;transition:transform .42s cubic-bezier(.4,0,.2,1),opacity .42s ease}
+
+/* There is deliberately no fifth rule staging the desk's own content behind
+   the sheet. Hiding the body until a script says otherwise means a script that
+   never arrives leaves a blank desk, and the sheet is a full-viewport cover
+   already — the content under it cannot be seen early, so the only thing a
+   staged reveal would buy is a second fade that nobody can distinguish from
+   the sheet's own. The beats that survive are the ones that are visible: the
+   icon flying to its seat, and the sheet lifting off the desk behind it. */

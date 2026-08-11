@@ -156,45 +156,95 @@
   // a fade is the thing the reader asked not to see. And a hard 1.5s ceiling:
   // if the page is slow, the splash is the first thing to give way, never a
   // sheet the reader has to wait out.
+  // The four desk pages ship the sheet in their own markup so that the first
+  // painted frame is already the app (see "the launch screen, but at the first
+  // byte" in app-bar.css). This function therefore ADOPTS whatever it finds and
+  // only builds one from scratch where the markup has none — the Team Desk,
+  // which is not an installable app and has no drawn icon, and any page served
+  // from a service-worker cache that predates the markup change.
   function splash() {
-    if (!document.body || document.getElementById('ab-splash')) return;
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    if (!document.body) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
+      // The markup cannot ask this question for itself. CSS hides the sheet in
+      // this case; take it out of the document too, so nothing is left over it.
+      var pre = document.getElementById('ab-splash');
+      if (pre && pre.parentNode) pre.parentNode.removeChild(pre);
+      return;
+    }
     var seenKey = 'ab-splash-' + here.key;
+    var el = document.getElementById('ab-splash');
+    var seen = false;
     try {
-      if (sessionStorage.getItem(seenKey)) return;
+      seen = !!sessionStorage.getItem(seenKey);
       sessionStorage.setItem(seenKey, '1');
     } catch (e) { /* private mode: show it, do not track it */ }
+    if (seen) {                                  // second visit this session
+      if (el && el.parentNode) el.parentNode.removeChild(el);
+      return;
+    }
 
-    var el = document.createElement('div');
-    el.id = 'ab-splash';
-    el.className = 'ab-splash';
-    el.dataset.app = here.key;
-    el.setAttribute('aria-hidden', 'true');
-    // Name, then what the app is for, then the build. The middle line is the
-    // one that earns the beat: an app that says what it does while it loads
-    // has introduced itself before the first pixel of content arrives.
-    el.innerHTML =
-      '<div class="ab-splash-in">' +
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'ab-splash';
+      el.className = 'ab-splash';
+      el.dataset.app = here.key;
+      el.setAttribute('aria-hidden', 'true');
+      el.innerHTML = '<div class="ab-splash-in">' +
         (here === TEAM ? lock('ab-splash-ico ab-splash-ico-line') : tile(here.key, 'ab-splash-ico')) +
-        '<b>' + here.name + '</b>' +
-        '<em>' + here.desc + '</em>' +
-        '<small>v' + VERSION + ' &middot; Birdland</small>' +
-        // Fills for the life of the splash, in the app's own colour. It is the
-        // difference between a screen that is waiting and one that is working.
-        '<i class="ab-splash-bar" aria-hidden="true"></i>' +
-      '</div>';
-    document.body.appendChild(el);
+        '<i class="ab-splash-bar" aria-hidden="true"></i></div>';
+      document.body.appendChild(el);
+    }
+
+    // Name, then what the app is for, then the build. The markup deliberately
+    // carries none of these: they live in APPS[] and duplicating them into five
+    // HTML files is the drift verify-app-list.js exists to prevent. They arrive
+    // a frame after the icon, which is the beat the launch screen is built on.
+    var box = el.querySelector('.ab-splash-in') || el;
+    var bar = box.querySelector('.ab-splash-bar');
+    if (!box.querySelector('b')) {
+      var txt = document.createElement('div');
+      txt.innerHTML = '<b>' + here.name + '</b><em>' + here.desc + '</em>' +
+        '<small>v' + VERSION + ' &middot; Birdland</small>';
+      while (txt.firstChild) box.insertBefore(txt.firstChild, bar);
+    }
 
     var done = false;
     function drop() {
       if (done) return;
       done = true;
+      fly(el);
       el.className += ' is-out';
       setTimeout(function () { el.parentNode && el.parentNode.removeChild(el); }, 420);
     }
     setTimeout(drop, 1500);                      // the ceiling, always armed
     if (document.readyState === 'complete') setTimeout(drop, 600);
     else window.addEventListener('load', function () { setTimeout(drop, 600); });
+  }
+
+  // The icon does not fade out with the sheet — it goes and sits down in the
+  // title bar. Two icons that turn out to be one icon is the cheapest way to
+  // say "this is an application and it has just started", and it costs one
+  // measurement of each.
+  //
+  // The ab-rise keyframes are still on this element and a CSS animation on
+  // transform REPLACES the property rather than composing with it, so the
+  // animation has to be called off before the transform is written; .is-flying
+  // does that and installs the transition in the same rule.
+  function fly(sheet) {
+    var from = sheet.querySelector('.ab-splash-ico');
+    var to = document.querySelector('#app-bar .ab-ico');
+    if (!from || !to) return;
+    var a = from.getBoundingClientRect(), b = to.getBoundingClientRect();
+    if (!a.width || !b.width) return;
+    // classList, not className: on the Team Desk this element is an <svg>,
+    // whose className is an SVGAnimatedString and cannot be appended to.
+    from.classList.add('is-flying');
+    from.style.transformOrigin = 'top left';
+    // Read back before writing the transform, or the class and the transform
+    // land in the same frame and the transition never starts.
+    void from.offsetWidth;
+    from.style.transform = 'translate(' + (b.left - a.left) + 'px,' + (b.top - a.top) + 'px)' +
+      ' scale(' + (b.width / a.width) + ')';
   }
   splash();
 

@@ -166,8 +166,18 @@
      part of why three sibling feeds could be built nightly for years and
      reach nobody — see tools/build_feeds.py. -->
 <link rel="alternate" type="application/rss+xml" title="Birdland ABrief — daily supply news" href="feeds/daily-supply-news.xml">
+<script>try{if(sessionStorage.getItem("ab-splash-news"))document.documentElement.className+=" ab-seen"}catch(e){}</script>
 </head>
 <body>
+<!-- Launch screen. Ships in the markup so the first painted frame is this app's
+     own colour and icon rather than a bare desk; app-bar.js adopts this node,
+     fills in the name/purpose/build from APPS[], flies the icon to its seat in
+     the title bar and removes it. app-bar.css carries the safety rules for
+     reduced motion, a second visit this session, and a script that never
+     arrives. Do not add the name here -- it would be a sixth copy of the app
+     list. -->
+<div id="ab-splash" class="ab-splash" data-app="news" aria-hidden="true"><div class="ab-splash-in"><img class="ab-splash-ico" src="images/app-news-tile.png" width="88" height="88" alt="" fetchpriority="high"><i class="ab-splash-bar" aria-hidden="true"></i></div></div>
+
   <a class="skip" href="#daily-main">Skip to ABrief</a>
   <header class="top"><div class="topin"><a class="brand" href="index.html">Birdland <small>ABRIEF</small></a><div class="topmeta"><span id="source-state"><i class="dot"></i>Source status</span><span class="hq" data-hq-status>Birdland Office <b data-hq-label>Resting</b></span><span data-taipei-time>--:-- Taipei</span><span class="desk3" aria-label="Desk"><a class="on" aria-current="page" href="executive.html">News</a><a href="partner.html">Buyer</a><a href="cost-desk.html">Cost</a></span></div></div></header>
   <div class="edstrip" id="edstrip"><div class="edstrip-in"><span class="edstrip-chip" id="edstrip-chip">Today’s edition</span><nav class="edstrip-seg" id="edstrip-seg" aria-label="Jump to a section of this edition"></nav></div></div>

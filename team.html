@@ -330,7 +330,17 @@ body::after{display:none!important}
 .sailcard h4,.act .at{font-family:var(--kb-sans)!important;font-weight:700!important;color:var(--kb-ink)!important}
 * {scrollbar-color: #D1D5DB transparent}
 
-</style></head><body><nav class="terminal-strip" aria-label="Birdland Terminal"><span class="strip-label">SaaS Terminal</span><a href="index.html">Home</a><span class="strip-sep">·</span><a href="guide.html">Overview</a><a href="executive.html">ABrief</a><a href="my-market.html">My Market</a><a href="partner.html">AsiaSource</a><a href="cost-desk.html">CostNow</a><a href="team.html">Team Desk</a><span class="strip-sep">·</span><a href="about.html">About</a><a href="product-101.html">Factory</a><a href="contact.html">Contact</a></nav>
+</style><script>try{if(sessionStorage.getItem("ab-splash-team"))document.documentElement.className+=" ab-seen"}catch(e){}</script></head><body>
+<!-- Launch screen. Ships in the markup so the first painted frame is this app's
+     own colour and icon rather than a bare desk; app-bar.js adopts this node,
+     fills in the name/purpose/build from APPS[], flies the icon to its seat in
+     the title bar and removes it. app-bar.css carries the safety rules for
+     reduced motion, a second visit this session, and a script that never
+     arrives. Do not add the name here -- it would be a sixth copy of the app
+     list. The Team Desk has no drawn icon, so it flies the line glyph instead
+     of a tile image (app-bar.js: `here === TEAM ? lock(...) : tile(...)`). -->
+<div id="ab-splash" class="ab-splash" data-app="team" aria-hidden="true"><div class="ab-splash-in"><svg class="ab-splash-ico ab-splash-ico-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 10.5h12a1.5 1.5 0 0 1 1.5 1.5v6A1.5 1.5 0 0 1 18 19.5H6A1.5 1.5 0 0 1 4.5 18v-6A1.5 1.5 0 0 1 6 10.5z"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg><i class="ab-splash-bar" aria-hidden="true"></i></div></div>
+<nav class="terminal-strip" aria-label="Birdland Terminal"><span class="strip-label">SaaS Terminal</span><a href="index.html">Home</a><span class="strip-sep">·</span><a href="guide.html">Overview</a><a href="executive.html">ABrief</a><a href="my-market.html">My Market</a><a href="partner.html">AsiaSource</a><a href="cost-desk.html">CostNow</a><a href="team.html">Team Desk</a><span class="strip-sep">·</span><a href="about.html">About</a><a href="product-101.html">Factory</a><a href="contact.html">Contact</a></nav>
 <div id="gate"><div class="gbox">
   <div class="gk">Internal · Birdland staff only</div>
   <div class="gt">Team Desk</div>

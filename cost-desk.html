@@ -1095,7 +1095,17 @@ body.theme-light #dash{
        eagerly is what lets those tools read the context at all. -->
   <script src="context.js?v=20260731d"></script><script defer src="mail-routing.js?v=20260807a"></script>
 <script defer src="terminal-status.js?v=20260730d"></script>
+<script>try{if(sessionStorage.getItem("ab-splash-cost"))document.documentElement.className+=" ab-seen"}catch(e){}</script>
 </head><body class="theme-light desk-cost">
+<!-- Launch screen. Ships in the markup so the first painted frame is this app's
+     own colour and icon rather than a bare desk; app-bar.js adopts this node,
+     fills in the name/purpose/build from APPS[], flies the icon to its seat in
+     the title bar and removes it. app-bar.css carries the safety rules for
+     reduced motion, a second visit this session, and a script that never
+     arrives. Do not add the name here -- it would be a sixth copy of the app
+     list. -->
+<div id="ab-splash" class="ab-splash" data-app="cost" aria-hidden="true"><div class="ab-splash-in"><img class="ab-splash-ico" src="images/app-cost-tile.png" width="88" height="88" alt="" fetchpriority="high"><i class="ab-splash-bar" aria-hidden="true"></i></div></div>
+
 <style>
   body.theme-light{background:var(--paper-2);color:var(--ink-900)}
   body.theme-light .topbar{background:var(--jade-900);border-bottom:3px solid var(--copper-600);box-shadow:0 8px 24px rgba(19,63,53,.18)}
