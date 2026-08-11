@@ -283,6 +283,29 @@ button.ab-ver:focus-visible{outline:2px solid var(--ab-accent);outline-offset:2p
 html.ui-lg #app-bar .ab-id b,
 html.ui-lg #app-bar .ab-status{font-size:12px}
 
+/* ---- the band where the status strip had no room left ----
+   .ab-status is the only flexible item in this row; everything to its right is
+   fixed width. Between 900px and roughly 1250px what was left for it was under
+   40px, so a three-chip strip rendered as "● S" and then the mask fade — a
+   sliver that reads as a rendering fault rather than as a row that ran out of
+   space. Measured on all five desks: the first chip alone needs 107px on
+   AsiaSource and CostNow, 132px on ABrief and 229px on the Team Desk.
+
+   The strip gets its own row instead of being cut down. Nothing is hidden and
+   nothing is truncated, which is the difference between this and simply moving
+   the existing display:none up a few hundred pixels.
+
+   1600 rather than the 1250 where the sliver stops: the full strip only fits
+   on one line from 1570px (AsiaSource and CostNow, three chips, 573px), so
+   between those two figures the fade was still eating "16:14 Taipei" and
+   cutting "WORKING" in half on a 1440 laptop. These chips are the reason the
+   desks are worth opening; a second row is a cheaper price than a half-word. */
+@media(max-width:1600px){
+  .ab-in{flex-wrap:wrap;row-gap:var(--sp-2)}
+  .ab-status{order:9;flex:1 1 100%;min-width:100%;-webkit-mask-image:none;mask-image:none}
+  /* On its own row the strip has room for all of it, so the fade that said
+     "there is more here" would now be lying. */
+}
 @media(max-width:900px){
   .ab-status{display:none}          /* the desks repeat their own status below */
   /* Between roughly 760 and 870 the row was already ~33px wider than the space

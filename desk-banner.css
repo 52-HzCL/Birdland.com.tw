@@ -47,7 +47,10 @@ body{padding-top:0!important}
 }
 .dbar-inner{
   width:min(1760px,calc(100% - 56px));min-height:var(--dbar-h);margin:auto;
-  display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:var(--sp-5);
+  /* minmax(0,1fr) rather than 1fr: a 1fr track will not shrink below the
+     min-content width of what is inside it, so the nav kept its full width and
+     ran straight over the status strip in the track to its right. */
+  display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;align-items:center;gap:var(--sp-5);
 }
 
 .dbar-wordmark{
@@ -59,7 +62,11 @@ body{padding-top:0!important}
   font:600 var(--fs-micro)/1 var(--ff-mono);letter-spacing:.18em;text-transform:uppercase;
 }
 
-.dbar-nav{display:flex;justify-content:center;align-items:center;gap:var(--sp-5)}
+.dbar-nav{display:flex;justify-content:center;align-items:center;gap:var(--sp-5);min-width:0}
+/* Set on the items, not on .dbar-nav — overflow on the container would clip
+   the About dropdown, which is positioned inside it. */
+.dbar-nav>a,.dbar-nav>.dbar-menu,.dbar-nav>.tm-chip{min-width:0}
+.dbar-nav>a,.dbar-nav summary,.dbar-nav .tm-chip{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .dbar-nav>a,.dbar-nav summary,.dbar-nav .tm-chip{
   padding:var(--sp-5) 0 var(--sp-5);color:var(--ink-900);
   font-size:var(--fs-small);font-weight:600;text-decoration:none;cursor:pointer;
@@ -94,6 +101,19 @@ body{padding-top:0!important}
 
 
 
+/* Guide's banner is the same three-column shape as the home page header and
+   had the same fault: wordmark, nav and the status strip need 1144px together,
+   but the nav only moved to its own row at 680, so from about 700 to 1140 the
+   nav ran over the status strip — "Terminal" and "Contact" printed on top of
+   "Birdland Office Working". The nav takes its own row from here down, the
+   same layout the phone already used. */
+@media(max-width:1200px){
+  .dbar-inner{grid-template-columns:auto auto;gap:var(--sp-3)}
+  .dbar-nav{grid-column:1/-1;order:3;justify-content:flex-start;overflow:auto;gap:var(--sp-4);border-top:1px solid var(--line);scrollbar-width:none}
+  .dbar-nav::-webkit-scrollbar{display:none}
+  .dbar-nav>a,.dbar-nav summary,.dbar-nav .tm-chip{padding:var(--sp-3) 0 var(--sp-2)}
+  .dbar-menu-panel{top:42px;left:0;right:auto}
+}
 @media(max-width:680px){
   /* Same three rows the home page header wraps into at this width. The desk
      switch rides up beside the wordmark rather than taking a fourth row: at

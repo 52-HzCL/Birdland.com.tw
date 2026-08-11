@@ -51,6 +51,7 @@ const stockFig = (id, cap) => {
 // than different colours, carry a word each, and sit under column headings
 // that repeat on every list.
 const rate = name => RATE.routes[name] || RATE.materials[name] || RATE.packs[name] || null;
+const NOTES = require(path.join(SCRATCH, 'rating-notes.js'));
 const POP_WORD = ['', 'Rare', 'Occasional', 'Regular', 'Common', 'Everywhere'];
 const COST_WORD = ['', 'Low', 'Below average', 'Mid', 'Above average', 'High'];
 const marks = (n, kind) => `<span class="wk-${kind}" aria-hidden="true">` +
@@ -58,10 +59,17 @@ const marks = (n, kind) => `<span class="wk-${kind}" aria-hidden="true">` +
 const rateRow = name => {
   const r = rate(name);
   if (!r) return '';
+  // Every rated option carries the two-sentence reading as well. Missing text
+  // is a build failure rather than a blank line: a table where some rows have
+  // the analysis and some do not reads as broken, not as abbreviated.
+  const n = NOTES[name];
+  if (!n || !n.buyer || !n.production) throw new Error(`rating-notes.js has no buyer/production note for "${name}"`);
   return `<li><b>${esc(name)}</b>` +
     `<span class="wk-cell">${marks(r.pop, 'dots')}<em>${POP_WORD[r.pop]}</em><span class="wk-sr">Popularity ${r.pop} of 5</span></span>` +
     `<span class="wk-cell">${marks(r.cost, 'steps')}<em>${COST_WORD[r.cost]}</em><span class="wk-sr">Relative cost ${r.cost} of 5</span></span>` +
-    `<span class="wk-rnote">${esc(r.note)}</span></li>`;
+    `<span class="wk-rnote">${esc(r.note)}</span>` +
+    `<span class="wk-rview"><span class="wk-rv wk-rv-b"><b>Buyer view</b>${esc(n.buyer)}</span>` +
+    `<span class="wk-rv wk-rv-p"><b>Production view</b>${esc(n.production)}</span></span></li>`;
 };
 const rateList = (names, heading) => `<div class="wk-rates-wrap"><b class="wk-rates-h">${esc(heading)}</b><ul class="wk-rates">
             <li class="wk-rates-head"><b>Option</b><span>How common</span><span>Relative cost</span><span>Why it matters</span></li>
@@ -658,7 +666,7 @@ const html = `<!doctype html>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Factory | Garden Hand-Tool Manufacturing Reference</title>
   <meta name="description" content="A reference article on garden hand-tool manufacturing: the Taiwan works since 1974, seven production gates, nine material families, eleven packaging formats and the four blocks of landed cost — each rated for how common and how costly it is in European and North American DIY retail.">
-  <link rel="stylesheet" href="birdland-visual.css?v=20260731j"><script defer src="terminal-status.js?v=20260730d"></script>
+  <link rel="stylesheet" href="birdland-visual.css?v=20260811a"><script defer src="terminal-status.js?v=20260730d"></script>
   ${cluster('product-101.html')}
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
