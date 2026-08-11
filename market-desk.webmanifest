@@ -4,6 +4,7 @@
   "description": "My Market — where Taiwan- and China-origin supply is moving in your import market, and how it compares with the markets around you.",
   "start_url": "./my-market.html",
   "scope": "./",
+  "launch_handler": {"client_mode": "navigate-existing"},
   "display": "standalone",
   "background_color": "#0A0C0F",
   "theme_color": "#6D4A86",

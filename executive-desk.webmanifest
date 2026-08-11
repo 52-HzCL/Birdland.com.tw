@@ -4,6 +4,7 @@
   "description": "ABrief — supply news, every morning. Asia production, export and freight signals for Western buyers.",
   "start_url": "./executive.html",
   "scope": "./",
+  "launch_handler": {"client_mode": "navigate-existing"},
   "display": "standalone",
   "background_color": "#F2EBDD",
   "theme_color": "#221E19",

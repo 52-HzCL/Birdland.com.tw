@@ -4,6 +4,7 @@
   "description": "CostNow — landed cost & margin. Landed cost, retail margin, reorder timing, sailing and duty comparison.",
   "start_url": "./cost-desk.html",
   "scope": "./",
+  "launch_handler": {"client_mode": "navigate-existing"},
   "display": "standalone",
   "background_color": "#EFF4EE",
   "theme_color": "#0A3D2B",

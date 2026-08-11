@@ -11,6 +11,30 @@
    with it or the page opens with 64px of nothing. */
 html.ab-ready body{padding-top:0!important}
 
+/* No rubber-band, no pull-to-refresh chrome. This file is loaded only by the
+   four desk apps and the Team Desk (never the facade pages), so it is safe to
+   set this on the document itself rather than behind an app-bar selector.
+   Inner scrollers that legitimately want their own overscroll containment
+   (AsiaSource's rail, the Guide's sticky TOC on other pages) are unaffected —
+   this only stops the OUTER page from bouncing or handing the gesture to the
+   browser's own refresh/back-navigation. */
+html,body{overscroll-behavior:none}
+
+/* Tapping a control on the mobile web shows a grey highlight box for a beat —
+   correct on a page of links, wrong on a title bar meant to read as an app's
+   own chrome. Cosmetic only; it does not affect focus rings or :active
+   styling, which every button here already has its own rule for. */
+html{-webkit-tap-highlight-color:transparent}
+
+/* The bar itself is chrome, not content: its labels should feel like part of
+   the app frame, not selectable page text. Deliberately scoped to #app-bar
+   ONLY, not to the desks below it — a buyer copying a number out of a
+   landed-cost table or a market's unit-value figure is a real, expected use
+   of this site, and a blanket rule would have taken that away from every
+   desk to fix a title bar. */
+#app-bar.ab{-webkit-user-select:none;user-select:none;cursor:default}
+#app-bar.ab input,#app-bar.ab [contenteditable]{-webkit-user-select:text;user-select:text;cursor:text}
+
 #app-bar.ab{
   --ab-accent:var(--jade-900);
   position:relative;z-index:300;
@@ -454,3 +478,37 @@ html.ab-seen .ab-splash{display:none!important}
    staged reveal would buy is a second fade that nobody can distinguish from
    the sheet's own. The beats that survive are the ones that are visible: the
    icon flying to its seat, and the sheet lifting off the desk behind it. */
+
+/* ---- desk-to-desk transitions ----
+
+   Every dock tile and the Terminal are plain <a href> links: this is five
+   documents, not one router. Cross-document View Transitions get a slide
+   between them for the cost of this rule alone — the browser snapshots the
+   outgoing document, navigates, and animates into the new one; a browser
+   without support just navigates, so there is no feature check to write and
+   nothing to fall back to by hand.
+
+   This file is loaded only by the desk apps and the Team Desk, and the spec
+   requires BOTH the outgoing and incoming document to opt in — so a jump from
+   a desk to a facade page (index.html, about.html, none of which load this
+   file) is correctly never transitioned, with no extra rule needed to say so. */
+@view-transition{navigation:auto}
+
+/* The browser's own default is a cross-fade of the whole page, which reads as
+   a flicker on two documents that mostly agree (same app-bar, same paper).
+   A horizontal slide says "you moved sideways to a sibling app" instead —
+   closer to what tapping another icon on a phone actually looks like. */
+::view-transition-old(root){animation:ab-slide-out .32s cubic-bezier(.4,0,.2,1) both}
+::view-transition-new(root){animation:ab-slide-in .32s cubic-bezier(.4,0,.2,1) both}
+@keyframes ab-slide-out{to{transform:translateX(-3%);opacity:0}}
+@keyframes ab-slide-in{from{transform:translateX(3%);opacity:0}}
+
+/* The spec does not read prefers-reduced-motion on its own — @view-transition
+   still fires, it would just be the transform above running regardless. This
+   is the documented way to keep the navigation (no flash of unstyled content
+   between documents) while removing the motion itself. */
+@media(prefers-reduced-motion:reduce){
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){
+    animation:none!important;
+  }
+}

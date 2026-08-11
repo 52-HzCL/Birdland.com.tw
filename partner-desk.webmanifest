@@ -4,6 +4,7 @@
   "description": "AsiaSource — the buyer's handbook. Product routes, materials and OEM enquiry preparation.",
   "start_url": "./partner.html",
   "scope": "./",
+  "launch_handler": {"client_mode": "navigate-existing"},
   "display": "standalone",
   "background_color": "#F7F5EF",
   "theme_color": "#073F35",
