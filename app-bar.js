@@ -39,7 +39,7 @@
 
   // One number for the whole suite. It is on the launch screen, on the chip in
   // the bar, and on the card the chip opens — three places, one source.
-  var VERSION = '3.1';
+  var VERSION = '3.2';
 
   // ---- languages ------------------------------------------------------------
   // The same ten editions the facade pages ship, named the way each names
@@ -271,6 +271,7 @@
     if (freshState === 'ok') {
       t.textContent = 'Data · ' + freshText;
       chip.title = 'Data edition of ' + freshText;
+      markEdition();
     } else if (freshState === 'off') {
       t.textContent = 'Offline · cached edition';
       chip.title = 'No connection to the data feed; showing the cached edition.';
@@ -278,6 +279,33 @@
       t.textContent = 'Data · …';
       chip.title = 'Checking the data edition…';
     }
+  }
+
+  // ---- the icon badge ---------------------------------------------------
+  // Honest, not simulated: this can only ever run from an open tab, so it can
+  // only ever report an edition that arrived since the LAST open tab checked
+  // — there is no periodicSync and no push subscription pretending otherwise.
+  // Acknowledging immediately on the same load that discovers the new edition
+  // would set and clear the badge in the same synchronous turn, which is to
+  // say never actually show it: the one moment a badge is useful is a glance
+  // at the home screen BEFORE this tab has been read, so acknowledgement
+  // waits for a few seconds of the tab actually being looked at.
+  function markEdition() {
+    if (!('setAppBadge' in navigator)) return;
+    var key = 'bl_edition_ack_' + here.key;
+    var ack; try { ack = localStorage.getItem(key); } catch (e) { return; }
+    if (ack === freshText) return;                 // already the edition this device has read
+    navigator.setAppBadge(1).catch(function () {});
+    var ack_ = function () {
+      if (document.visibilityState !== 'visible') return;
+      clearTimeout(t);
+      try { localStorage.setItem(key, freshText); } catch (e) {}
+      navigator.clearAppBadge().catch(function () {});
+      document.removeEventListener('visibilitychange', onVis);
+    };
+    var onVis = function () { if (document.visibilityState === 'visible') ack_(); };
+    var t = setTimeout(ack_, 4000);
+    document.addEventListener('visibilitychange', onVis);
   }
 
   // Fired once, off to the side. The bar is built whether or not this ever
@@ -304,9 +332,9 @@
   // Short enough to read standing up. Three lines is a release note; ten is a
   // changelog, and a changelog belongs on a page, not in a popover.
   var NOTES = [
-    'New app: My Market — where your market is moving',
-    'Customs data now covers scissors and hand saws',
-    'AsiaSource is the handbook again; the market screens moved out'
+    'CostNow and My Market can now be installed like the other two desks',
+    'Opening a desk now feels like opening an app, not a page',
+    'Switching between desks slides instead of reloading blank'
   ];
 
   function chips() {
@@ -346,7 +374,53 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && !pop.hidden) { open(false); btn.focus(); }
     });
+
+    // Opened once for the reader, not just left for them to find. The chip has
+    // always been clickable; nobody clicks a version number on a page they
+    // did not know had changed. One localStorage key, shared across all five
+    // desks — visiting any one of them the first time after a release is
+    // enough to mark the release seen everywhere.
+    try {
+      var seenKey = 'bl_app_ver_seen';
+      if (localStorage.getItem(seenKey) !== VERSION) {
+        localStorage.setItem(seenKey, VERSION);
+        // Never on a reader's very first visit — there is no "new" to a suite
+        // they have never opened before, and popping a dialog over the launch
+        // screen would be the first thing they ever see this app do.
+        if (localStorage.getItem('bl_app_ver_seen_ever') === '1') open(true);
+        localStorage.setItem('bl_app_ver_seen_ever', '1');
+      }
+    } catch (e) { /* private mode: skip the ceremony, the chip still opens on click */ }
   }
+
+  // ---- an update took over while this tab was already open ------------------
+  // service-worker.js calls skipWaiting() and clients.claim() unconditionally
+  // on activate (see its own header comment), so a long-lived tab can end up
+  // controlled by a DIFFERENT service worker than the one that answered its
+  // first fetch — silently, mid-session. The fix is not to change that: it is
+  // what evicts stale runtime caches promptly. The fix is to say so, once,
+  // rather than let a reader keep working against assets a newer deploy has
+  // already superseded.
+  function wireUpdateToast() {
+    if (!('serviceWorker' in navigator)) return;
+    // A controllerchange ALSO fires the first time this page is ever claimed
+    // (fresh install, no prior controller) — that is not an update, it is the
+    // app arriving. Only a SECOND claim, later in this same page's life, is
+    // one worth a toast.
+    var hadController = !!navigator.serviceWorker.controller;
+    navigator.serviceWorker.addEventListener('controllerchange', function () {
+      if (!hadController) { hadController = true; return; }
+      var el = document.createElement('div');
+      el.className = 'ab-toast';
+      el.setAttribute('role', 'status');
+      el.innerHTML = '<span>An update is ready.</span>' +
+        '<button type="button">Restart</button>';
+      document.body.appendChild(el);
+      requestAnimationFrame(function () { el.className += ' is-in'; });
+      el.querySelector('button').addEventListener('click', function () { location.reload(); });
+    });
+  }
+  wireUpdateToast();
 
   function build() {
     if (document.getElementById('app-bar')) return;
