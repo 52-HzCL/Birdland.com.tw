@@ -94,6 +94,18 @@
       }).join('') +
       '</div></details>';
   }
+  // A real reload, not a re-render — i18n.js's sweep overwrites each text
+  // node's content in place and never keeps the English original, so it can
+  // translate a page once but cannot correctly reverse or re-translate it: a
+  // German→French switch would leave every already-swept node stuck in
+  // German (translateText() skips anything it has already touched), and a
+  // switch back to English has no source text left to restore. Making that
+  // safe in both directions is a rewrite of the sweep's own data model —
+  // track originals per node, or re-fetch and diff — not something to bolt
+  // on here without the same care the rest of that file was built with. What
+  // IS safe to fix here is the RELOAD itself reading as a flash of white
+  // rather than a page changing language: fade out first, reload after.
+  //
   // Delegated, and bound once at module scope: the bar is rebuilt on load, and
   // a listener per build would fire twice on the second one.
   document.addEventListener('click', function (e) {
@@ -105,7 +117,24 @@
       if (pick === 'en') localStorage.removeItem(LANG_KEY);
       else localStorage.setItem(LANG_KEY, pick);
     } catch (err) { /* private mode: the choice cannot be kept, so do not pretend */ }
-    location.reload();
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
+      location.reload();
+      return;
+    }
+    var veil = document.createElement('div');
+    veil.className = 'ab-lang-veil';
+    // A child of #app-bar, not of <body>: --paper is only redefined for My
+    // Market inside #app-bar's own subtree (see "My Market is a dark app" in
+    // app-bar.css), and position:fixed covers the full viewport regardless
+    // of which element in the tree actually holds the node. Appending to
+    // <body> would have inherited the light paper token even here, and the
+    // dark app would have flashed cream for the 220ms before the reload.
+    var bar = document.getElementById('app-bar');
+    (bar || document.body).appendChild(veil);
+    requestAnimationFrame(function () { veil.className += ' is-in'; });
+    // The listener's own job is done; do not let a slow paint hold the
+    // reload hostage. 260ms is the veil's own transition length.
+    setTimeout(function () { location.reload(); }, 260);
   });
 
   var ICON_V = '20260810a';

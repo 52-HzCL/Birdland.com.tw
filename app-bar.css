@@ -346,11 +346,69 @@ html.ui-lg #app-bar .ab-status{font-size:12px}
     left:0;right:auto;top:100%;margin-top:6px;
     width:min(210px,calc(100vw - 32px));
   }
-  /* The dock is the one control that must not shrink — it is how you leave. */
-  .ab-app-ico{width:34px;height:34px}
   .ab-home span{display:none}
   .ab-home{padding:7px 10px}
+
+  /* ---- the dock becomes a bottom tab bar ----
+     A thumb rests near the bottom of a phone, not the top — the switch that
+     matters most on a phone was living exactly where a thumb has to travel
+     furthest to reach it. Pulled out of .ab-act into a fixed strip along the
+     bottom edge, the way every native app on the reader's phone already
+     arranges its own switcher; the row above keeps the identity chip, the
+     freshness/version chips, and the language picker exactly as they were,
+     just without the dock's width to share.
+     position:fixed removes it from .ab-act's flex flow entirely, so nothing
+     else in that row needs to change to make space for it. */
+  .ab-dock{
+    position:fixed;left:0;right:0;bottom:0;z-index:400;
+    display:flex;align-items:stretch;justify-content:space-around;gap:0;
+    padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));
+    border:0;border-top:1px solid var(--line);border-radius:0;
+    background:var(--paper);
+    box-shadow:0 -6px 20px rgba(7,60,51,.10);
+  }
+  /* Each tile becomes a tab: icon over a now-visible label, evenly sharing
+     the width, sized for a thumb rather than a cursor. The name was
+     accessibility-only markup up to this point (clipped to 1px); this is the
+     one context on the whole site where it is meant to be read, not just
+     announced. */
+  .ab-app{
+    flex:1 1 0;display:flex;flex-direction:column;align-items:center;gap:2px;
+    padding:4px 2px 2px;border-radius:10px;
+  }
+  .ab-app-ico{width:26px;height:26px;margin:0 auto}
+  .ab-app-name{
+    position:static;width:auto;height:auto;margin:0;padding:0;overflow:visible;
+    clip-path:none;white-space:nowrap;
+    font:600 9.5px/1.2 var(--ff-sans);color:var(--flat);letter-spacing:.01em;
+  }
+  .ab-app[aria-current="page"] .ab-app-name{color:var(--ab-accent)}
+  /* The under-dot doesn't fit a bottom bar the way it fit a top one — there
+     is nothing below it to point at — so the current tab is carried by the
+     ring on its icon and its own coloured label instead. */
+  .ab-app[aria-current="page"]::after{display:none}
+  .ab-app:hover{transform:none}                    /* :hover on a touch tab bar is a stuck hover, not a real one */
+  .ab-app:active{transform:scale(.95)}
+
+  /* Room for the strip so it never sits over the desk's own last row of
+     content. Height is measured, not guessed: 26px icon + ~12px label line +
+     12px padding + the hairline border ≈ 56px, plus whatever inset the
+     device's own home indicator needs. */
+  html.ab-ready body{padding-bottom:calc(56px + env(safe-area-inset-bottom,0px))!important}
+
+  /* My Market's dark-theme block (above) redefines .ab-dock as a translucent
+     well meant to sit ON TOP of the bar's own solid --paper background. Fixed
+     to the bottom of the viewport, this element no longer has that backdrop
+     behind it — it needs to BE the solid surface, not a film over one. Same
+     selector specificity as the rule it corrects, so it wins by simply
+     coming later in the file, and the strip cannot go translucent over
+     whatever content is scrolled beneath it. */
+  #app-bar.ab[data-app="market"] .ab-dock{
+    background:var(--paper);
+    box-shadow:0 -6px 20px rgba(0,0,0,.4);
+  }
 }
+@media(max-width:680px) and (prefers-reduced-motion:reduce){.ab-app:active{transform:none}}
 @media print{#app-bar.ab{display:none!important}}
 
 /* ---- the launch screen ----
@@ -536,3 +594,16 @@ html.ab-seen .ab-splash{display:none!important}
 .ab-toast button:hover{background:var(--ab-accent,var(--jade-900));color:var(--paper)}
 @media(prefers-reduced-motion:reduce){.ab-toast{transition:none}}
 @media print{.ab-toast{display:none!important}}
+
+/* ---- the veil ahead of a language-switch reload ----
+   See the click handler in app-bar.js for why this is still a reload rather
+   than a re-render. The veil's job is narrower: make that reload read as the
+   page changing language, not as a page going blank and coming back. It
+   resolves to fully opaque BEFORE location.reload() is called, so whatever
+   the browser's own cross-document view transition does with the outgoing
+   frame, it is compositing this solid colour, not a half-torn-down page. */
+.ab-lang-veil{
+  position:fixed;inset:0;z-index:9800;background:var(--paper);
+  opacity:0;transition:opacity .22s ease;
+}
+.ab-lang-veil.is-in{opacity:1}
