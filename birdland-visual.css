@@ -722,11 +722,14 @@ button{font:inherit}
    visitor arrived at birdland.com.tw and read a picture. On a phone, where
    there is no pointer at all, so did a first-time visitor.
 
-   The illustration is worth keeping and is not the problem. So the words come
-   out from under it: a lead band above the art carries the headline, the
-   promise and the two ways forward, and the three propositions inside the art
-   are simply on. The nine detail notes stay on the reveal — those are the
-   delight, and they are supplementary by definition. */
+   The illustration is worth keeping and is not the problem. So the h1 comes
+   out from under it as a plate caption below the art (.bl-ink-title) — the
+   one line a returning visitor needs is on the page at every width. The
+   three propositions inside the art went back to hover/click/focus-only
+   (7d87c09): a breathing marker at low opacity is the discoverable
+   affordance, and the reveal itself is the radial cursor-mask torch this
+   hero is built around. Once per session, the opening sequence still lights
+   each one in turn so nobody who never hovers goes home without seeing them. */
 .bl-ink-hero{display:block;min-height:0;aspect-ratio:auto;overflow:visible;background:transparent;border-bottom:0}
 .bl-ink-art{
   position:relative;isolation:isolate;overflow:hidden;
