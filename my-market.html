@@ -4,7 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#6D4A86">
 <meta name="description" content="My Market is Birdland's buyer view of Taiwan- and China-origin supply trends in your own import market, compared with the markets around it — direction and share only, never a price.">
 <title>Birdland My Market</title><meta name="robots" content="noindex">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="images/app-market-tile.png" sizes="96x96"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="images/apple-touch-market.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="My Market">
 <link rel="manifest" href="market-desk.webmanifest">
 <script src="context.js?v=20260731d"></script><script defer src="mail-routing.js?v=20260807a"></script>
 <style>
@@ -37,6 +37,14 @@
 .mm-head .views button[aria-pressed="true"] em{color:#4A5058}
 .mm-head .ed{margin-left:auto;font:500 calc(10.5px * var(--ui-scale))/1 var(--mono);color:var(--tx3);white-space:nowrap}
 .mm-head .ed em{font-style:normal;color:var(--tx2)}
+/* Install entry — the other three desks each have one of these; this app
+   shipped without one. Matches the toolbar's own instrument-panel language
+   rather than borrowing AsiaSource's paper-theme button. */
+.mm-head .install{appearance:none;border:1px solid var(--edge2);background:none;color:var(--tx2);
+  font:640 calc(10.5px * var(--ui-scale))/1 var(--sans);padding:7px 11px;cursor:pointer;white-space:nowrap}
+.mm-head .install:hover{border-color:var(--grn);color:var(--tx)}
+.mm-head .install[hidden]{display:none}
+.mm-head .install-note{font:500 calc(9px * var(--ui-scale))/1.3 var(--mono);color:var(--tx3);max-width:22ch}
 @media (max-width:640px){.mm-head{gap:8px}.mm-head .ed{margin-left:0;width:100%}}
 
 /* ---- desk view ---- */
@@ -187,6 +195,8 @@
       <button type="button" id="vBrief" role="tab" aria-pressed="false">This edition <em id="edEmLabel">read it</em></button>
     </span>
     <span class="ed" id="edLine"></span>
+    <button type="button" class="install" id="install-app" hidden title="Install My Market on this device. No account is created and it can be removed from your browser.">Install My Market</button>
+    <small class="install-note" id="install-note"></small>
   </div>
 
   <div class="dsk" id="deskView" style="display:none">
@@ -831,4 +841,41 @@ if("serviceWorker" in navigator){
 }
 })();
 </script>
+<script>(function(){
+// Install entry. ABrief and AsiaSource/CostNow each wire this up their own
+// way already; this is the same beforeinstallprompt/appinstalled shape,
+// styled for this app's own toolbar rather than borrowed markup.
+var btn=document.getElementById('install-app'),note=document.getElementById('install-note');
+if(!btn||!note)return;
+var deferred=null;
+function setNote(text){note.textContent=text;}
+function installed(){return window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches;}
+if(installed()){
+ btn.hidden=true;
+ setNote('My Market is already installed on this device.');
+}else if(!('serviceWorker' in navigator)){
+ setNote('Secure install works best in Chrome or Edge; it stays on this device and can be removed anytime.');
+}
+window.addEventListener('beforeinstallprompt',function(e){
+ e.preventDefault();
+ deferred=e;
+ btn.hidden=false;
+ setNote('Secure one-click return visits on this device — no account change, remove anytime.');
+});
+window.addEventListener('appinstalled',function(){
+ deferred=null;
+ btn.hidden=true;
+ setNote('My Market installed. Reopen it from your desktop or app launcher.');
+});
+btn.addEventListener('click',function(){
+ if(!deferred){
+  setNote(installed()?'My Market is already installed on this device.':'Use your browser menu to install or add this app to your home screen.');
+  return;
+ }
+ deferred.prompt();
+ deferred.userChoice.then(function(choice){
+  if(choice&&choice.outcome!=='accepted')setNote('Install was dismissed. You can try again from this browser later.');
+ });
+});
+})();</script>
 </body></html>

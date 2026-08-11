@@ -5,6 +5,10 @@
   "start_url": "./my-market.html",
   "scope": "./",
   "launch_handler": {"client_mode": "navigate-existing"},
+  "shortcuts": [
+    {"name": "Desk — Work the Markets", "short_name": "Desk", "url": "./my-market.html#desk", "icons": [{"src": "./images/app-market-tile.png", "sizes": "96x96", "type": "image/png"}]},
+    {"name": "This Edition — Read It", "short_name": "This Edition", "url": "./my-market.html#brief", "icons": [{"src": "./images/app-market-tile.png", "sizes": "96x96", "type": "image/png"}]}
+  ],
   "display": "standalone",
   "background_color": "#0A0C0F",
   "theme_color": "#6D4A86",

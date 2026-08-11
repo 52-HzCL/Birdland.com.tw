@@ -1,7 +1,7 @@
 // Bumped with every deploy that changes core assets: `activate` deletes every
 // cache whose key is not the current one, which is what evicts the previous
 // runtime cache. Without it a returning visitor keeps the old CSS for a load.
-const VERSION = "birdland-desks-v46";
+const VERSION = "birdland-desks-v47";
 const CORE_CACHE = `${VERSION}-core`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const CORE_ASSETS = [
@@ -68,6 +68,12 @@ const CORE_ASSETS = [
   "./images/app-cost-512.png",
   "./images/app-market-192.png",
   "./images/app-market-512.png",
+  // iOS reads none of the manifest fields above; without these it screenshots
+  // the page itself for the home-screen icon.
+  "./images/apple-touch-news.png",
+  "./images/apple-touch-buyer.png",
+  "./images/apple-touch-cost.png",
+  "./images/apple-touch-market.png",
   // My Market is nothing without the quarterly customs file, and at ~65KB it
   // costs less to precache than one of the photographs above. An app whose
   // only content arrives over the network is a web page with an icon.

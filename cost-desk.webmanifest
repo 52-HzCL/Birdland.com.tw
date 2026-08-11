@@ -5,6 +5,10 @@
   "start_url": "./cost-desk.html",
   "scope": "./",
   "launch_handler": {"client_mode": "navigate-existing"},
+  "shortcuts": [
+    {"name": "Cost Workspace", "short_name": "Workspace", "url": "./cost-desk.html", "icons": [{"src": "./images/app-cost-tile.png", "sizes": "96x96", "type": "image/png"}]},
+    {"name": "Cost & Origin Signals", "short_name": "Cost & Origin", "url": "./cost-desk.html#p-mkt", "icons": [{"src": "./images/app-cost-tile.png", "sizes": "96x96", "type": "image/png"}]}
+  ],
   "display": "standalone",
   "background_color": "#EFF4EE",
   "theme_color": "#0A3D2B",

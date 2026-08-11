@@ -5,6 +5,9 @@
   "start_url": "./executive.html",
   "scope": "./",
   "launch_handler": {"client_mode": "navigate-existing"},
+  "shortcuts": [
+    {"name": "Today's Edition", "short_name": "Today", "url": "./executive.html", "icons": [{"src": "./images/app-news-tile.png", "sizes": "96x96", "type": "image/png"}]}
+  ],
   "display": "standalone",
   "background_color": "#F2EBDD",
   "theme_color": "#221E19",

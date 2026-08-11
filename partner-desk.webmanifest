@@ -5,6 +5,10 @@
   "start_url": "./partner.html",
   "scope": "./",
   "launch_handler": {"client_mode": "navigate-existing"},
+  "shortcuts": [
+    {"name": "Build a Buying Plan", "short_name": "Buying Plan", "url": "./partner.html", "icons": [{"src": "./images/app-buyer-tile.png", "sizes": "96x96", "type": "image/png"}]},
+    {"name": "Cost & Origin Signals", "short_name": "Cost & Origin", "url": "./partner.html#p-mkt", "icons": [{"src": "./images/app-buyer-tile.png", "sizes": "96x96", "type": "image/png"}]}
+  ],
   "display": "standalone",
   "background_color": "#F7F5EF",
   "theme_color": "#073F35",

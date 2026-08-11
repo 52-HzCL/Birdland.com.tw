@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- the Inter + IBM Plex Mono + Source Serif 4 request lived here, two skins ago -->
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=optional" rel="stylesheet">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="images/app-cost-tile.png" sizes="96x96"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="images/apple-touch-cost.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="AsiaSource" id="ios-title"><script>if("cost"==="cost")document.getElementById("ios-title").content="CostNow"</script>
 <link rel="manifest" href="cost-desk.webmanifest">
 <style>
  :root{--bg:#F8F9FA;--panel:#11161d;--panel2:#161c24;--line:#262e39;--txt:#e2e8f0;--mut:var(--ink-500);--gold:var(--copper-600);--amber:var(--copper-600);--cyan:var(--jade-700);--green:var(--down);--red:var(--up);--purple:var(--jade-700);--mono:var(--ff-mono);--sans:var(--ff-sans);--serif:var(--ff-serif)}
@@ -2722,7 +2722,27 @@ window.BL_DESK='cost';
      builder, its published-PDF shelf. None of it is cost work, so the shell
      goes rather than being shown with most of its contents removed. The Cost
      Desk's front door is Cost & Origin, set as home in the router below. */
-  var shell=document.getElementById('overview');if(shell)drop.push(shell);
+  var shell=document.getElementById('overview');
+  // #install-app/#install-note live inside that shell, and the wiring script
+  // further down finds them purely by id — it does not care which parent
+  // holds them. So the card is rescued into the surviving front door before
+  // the shell it came from is thrown away, rather than rebuilding a second
+  // install flow from scratch. Without this CostNow shipped a valid manifest
+  // (cost-desk.webmanifest) with no on-page way to install it at all — the
+  // button existed in the markup and was deleted by this exact branch before
+  // a reader ever saw it.
+  var installCard=document.querySelector('.bd-install-card');
+  var costHome=document.getElementById('p-landed2');
+  if(installCard&&costHome){
+   var body=costHome.querySelector('.blk-b')||costHome;
+   body.insertBefore(installCard,body.firstChild);
+   var installBtn=installCard.querySelector('#install-app');
+   if(installBtn){
+    installBtn.textContent='Install CostNow safely';
+    installBtn.title='Install CostNow on this device. No account is created and it can be removed from your browser.';
+   }
+  }
+  if(shell)drop.push(shell);
  }
  drop.forEach(function(s){if(s.parentNode)s.parentNode.removeChild(s);});
  // The menu must lose the same entries, or it lists panels that are not here.
