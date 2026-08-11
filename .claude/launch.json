@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "birdland-preview",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["tools/dev/serve.js"],
+      "port": 8123
+    }
+  ]
+}

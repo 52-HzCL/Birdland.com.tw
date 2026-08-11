@@ -137,6 +137,19 @@ try:
         try: return isinstance(x,dict) and all(isinstance(x.get(k),str) and 0<len(x[k].strip())<=200 for k in ("changed","action"))
         except: return False
     def _sig(r): return json.dumps([r.get("headline"),r.get("regulation"),r.get("supply"),r.get("view")],ensure_ascii=False,sort_keys=True)
+    # A date stamp may only speak for the text printed next to it. asof covers the
+    # whole region, which is right for a page that shows the whole region and wrong
+    # for ABrief's front page, which prints the headline and the two summary lines
+    # and nothing else. Measured over 120 editions: asof moved on days when all
+    # three of those lines were byte-identical to the day before (15, 17 and 25 Jul),
+    # because supply and view had moved underneath them. So the lead block gets its
+    # own stamp, and the headline — 2 distinct values in 4 months, a deliberately
+    # slow structural read — gets a second one, because a 32-day-old headline above
+    # a same-day summary is two ages that one date cannot honestly report.
+    def _lead_sig(r):
+        s=r.get("summary") or {}
+        return json.dumps([r.get("headline"),s.get("changed"),s.get("action")],ensure_ascii=False,sort_keys=True)
+    def _head_sig(r): return json.dumps(r.get("headline"),ensure_ascii=False)
     for code,oldr in data["regions"].items():
         nr=cand["regions"][code]
         ns=nr.get("summary")
@@ -145,6 +158,12 @@ try:
         else: nr.pop("summary",None)
         if _sig(nr)!=_sig(oldr): nr["asof"]=today
         elif oldr.get("asof"): nr["asof"]=oldr["asof"]
+        # Same carry-forward shape as asof: stamp today only on a real change,
+        # otherwise inherit. Seeded in outlook-data.json from git history, so the
+        # first run after this lands does not reset every region to "today".
+        for field,sig in (("lead_asof",_lead_sig),("head_asof",_head_sig)):
+            if sig(nr)!=sig(oldr): nr[field]=today
+            elif oldr.get(field): nr[field]=oldr[field]
     cand["news"]=data.get("news",[])                      # never let AI touch company news
     # indices: roll change% + sparkline from previous values; keep labels/units/spark history
     oldidx={ (x.get("short") or x.get("label")):x for x in data.get("indices",[]) }

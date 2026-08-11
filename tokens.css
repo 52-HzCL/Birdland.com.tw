@@ -49,8 +49,17 @@
      through these tokens, so one variable moves almost all of the text.
      The reader's own browser zoom still works on top of this. */
   --ui-scale:1;
-  --fs-display:calc(48px * var(--ui-scale));
-  --fs-h1:calc(32px * var(--ui-scale));
+  /* Display type takes a damped multiplier, and the reason is measured: at the
+     full 2.175 the ABrief masthead went to 104px, ran off a 1440px screen and
+     printed itself over the breadcrumb in the top right. A reader who turns
+     Large on wants the landed-cost table legible, not a masthead two lines
+     tall — the headline is already the biggest thing on the page. 0.45 puts
+     2.175x display at 1.53x (48px -> 73px), which clears the breadcrumb at
+     1440 and still reads as a decisive step up. Normal is unaffected: at
+     --ui-scale:1 this evaluates to exactly 1. */
+  --ui-scale-display:calc(1 + (var(--ui-scale) - 1) * 0.45);
+  --fs-display:calc(48px * var(--ui-scale-display));
+  --fs-h1:calc(32px * var(--ui-scale-display));
   --fs-h2:calc(22px * var(--ui-scale));
   --fs-h3:calc(16px * var(--ui-scale));
   --fs-body:calc(15px * var(--ui-scale));   /* the most-used size by an order of magnitude */
@@ -96,19 +105,27 @@ input,select,textarea,button{font-family:inherit}
 
 /* ===== Reader text size =====
 
-   Two steps, named, set from the header and remembered. Large is 1.45x: 15px
-   body becomes 22px and the 11px floor becomes 16px — this is for a buyer
-   reading a landed-cost table without their glasses, not a decorative
-   preference. 1.45 is where it stops: past 1.55 the reference article starts
-   to scroll sideways at 1440px, so the ceiling is measured, not chosen.
+   Two steps, named, set from the header and remembered. Large is 2.175x —
+   1.45 x 1.5: 15px body becomes 33px and the 11px floor becomes 24px. This is
+   for a buyer reading a landed-cost table without their glasses, not a
+   decorative preference, and 1.45 was not far enough to be worth the click.
+
+   An earlier note here put the ceiling at 1.45 because "past 1.55 the
+   reference article starts to scroll sideways at 1440px". Re-measured across
+   all 11 pages at both widths, that was one page and 12px. What the same sweep
+   turned up is that 1.45 — the step already shipping — overflowed My Market by
+   96px and the Factory page by 46px at 390px. Raising the scale did not create
+   those; it made them impossible to keep ignoring. Fixed at the cause, below
+   and in app-bar.css, rather than worked around by capping the scale.
 
    Only the type scale moves. Spacing and the grid stay put, so nothing
    reflows into a different layout; the text simply gets bigger inside it. */
-html.ui-lg{--ui-scale:1.45}
+html.ui-lg{--ui-scale:2.175}
 /* The reading scale is for the page, not the chrome. At 1.45 the header's
-   right cluster grows past its grid column and slides under the nav, so the
-   status line and the two pills are pinned near their normal size — a buyer
-   who needs Large needs it for the landed-cost table, not for the clock. */
+   right cluster already grew past its grid column and slid under the nav, so
+   the status line and the two pills are pinned near their normal size — a
+   buyer who needs Large needs it for the landed-cost table, not for the
+   clock, which at 2.175 would otherwise be 33px of timestamp. */
 html.ui-lg .bl-status,
 html.ui-lg .bl-status-time,
 html.ui-lg .bl-language summary{font-size:12px}

@@ -125,7 +125,7 @@ html.ui-lg .navgroup a{font-size:12px}
   max-width:1120px;
   margin:var(--sp-3) 0 var(--sp-2);
   color:var(--kb-ink);
-  font-size:calc(clamp(48px,6.7vw,48px) * var(--ui-scale));
+  font-size:calc(clamp(48px,6.7vw,48px) * var(--ui-scale-display));
   line-height:.94;
   letter-spacing:.015em;
   text-transform:uppercase;
@@ -163,6 +163,12 @@ html.ui-lg .navgroup a{font-size:12px}
 .journal-lead,.journal-drivers{padding:var(--sp-4) var(--sp-4)}
 .journal-lead{padding-left:0;border-right:1px solid var(--kb-line)}
 .journal-lead h2{margin:var(--sp-3) 0 var(--sp-3);font:700 var(--fs-h1)/1.14 var(--serif);letter-spacing:-.035em}
+/* Sits directly under the headline and only when the headline is older than
+   the summary below it, so the reader is told which of the two ages the big
+   line has. Pulled up by one step to close the h2's bottom margin — the marker
+   belongs to the headline, not to the paragraph after it. */
+.journal-standing{margin:calc(var(--sp-3) * -1) 0 var(--sp-3);color:var(--kb-muted);font:600 var(--fs-micro) var(--mono);letter-spacing:.07em;text-transform:uppercase}
+.journal-standing[hidden]{display:none}
 .journal-lead p{margin:0;color:#514b41;font:var(--fs-body)/1.5 var(--serif)}
 .journal-lead a{display:inline-block;margin-top:var(--sp-4);color:var(--kb-red);font:700 var(--fs-micro) var(--mono);letter-spacing:.07em;text-decoration:none;text-transform:uppercase}
 .journal-map{margin:0;display:flex;flex-direction:column;border-right:1px solid var(--kb-line);background:#e9e2d6}
