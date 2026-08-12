@@ -1,10 +1,10 @@
 {
   "schema": 2,
   "edition": "2026-Q3",
-  "generated": "2026-08-11T03:09:01Z",
+  "generated": "2026-08-12T03:28:22Z",
   "shard_state": {
-    "cursor": 14,
-    "completed_pct": 21,
+    "cursor": 15,
+    "completed_pct": 22,
     "quarter": "2026-Q3"
   },
   "sources": {
@@ -877,6 +877,7 @@
           "share_tw": 0,
           "share_tw_prev": 2,
           "share_cn": 97,
+          "share_cn_prev": 92,
           "stale": false,
           "band": null
         },
@@ -887,6 +888,7 @@
           "share_tw": 14,
           "share_tw_prev": 32,
           "share_cn": 85,
+          "share_cn_prev": 65,
           "stale": false,
           "band": null
         },
@@ -897,6 +899,7 @@
           "share_tw": 47,
           "share_tw_prev": 47,
           "share_cn": 37,
+          "share_cn_prev": 34,
           "stale": false,
           "band": {
             "market": "mid",
@@ -912,6 +915,7 @@
           "share_tw": 13,
           "share_tw_prev": 17,
           "share_cn": 53,
+          "share_cn_prev": 35,
           "stale": false,
           "band": {
             "market": "mid",
@@ -921,10 +925,36 @@
           }
         },
         "821300": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -8,
+          "vol_change_pct": 11.9,
+          "share_tw": 1,
+          "share_tw_prev": 1,
+          "share_cn": 85,
+          "share_cn_prev": 85,
+          "stale": false,
+          "band": {
+            "market": "upper",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 9
+          }
         },
         "820210": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 2.9,
+          "vol_change_pct": 48.5,
+          "share_tw": 2,
+          "share_tw_prev": 3,
+          "share_cn": 88,
+          "share_cn_prev": 83,
+          "stale": false,
+          "band": {
+            "market": "upper",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 8
+          }
         }
       }
     },
