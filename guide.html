@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="tokens.css?v=20260811b"><script src="text-size.js?v=20260804a"></script><link rel="stylesheet" href="desk-banner.css?v=20260811a"><link rel="stylesheet" href="terminal.css?v=20260807a"><script defer src="terminal.js?v=20260807a"></script><script defer src="desk-banner.js?v=20260804a"></script><script defer src="i18n.js?v=20260807a"></script>
+  <link rel="stylesheet" href="tokens.css?v=20260813a"><script src="text-size.js?v=20260804a"></script><link rel="stylesheet" href="desk-banner.css?v=20260813a"><link rel="stylesheet" href="terminal.css?v=20260807a"><script defer src="terminal.js?v=20260807a"></script><script defer src="desk-banner.js?v=20260804a"></script><script defer src="i18n.js?v=20260807a"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Guide | How this site works | Birdland</title>
@@ -156,6 +156,11 @@
       .ov-spine:before{content:'';position:absolute;left:50%;top:9%;bottom:9%;border-left:2px solid var(--line,#d7cdbb)}
       .ov-branches{display:grid;gap:var(--sp-2)}
       .ov-br{position:relative;display:grid;grid-template-columns:130px minmax(0,1fr);background:var(--paper,var(--paper));border:1px solid var(--line,#d7cdbb);border-radius:var(--r-md);overflow:hidden}
+/* The 130px label column holds a word like "AsiaSource", which is 2.175x wider
+   at Large than the column allows, so it printed across into the chips beside
+   it. One column at Large: the label sits above its own content instead of
+   beside it. */
+html.ui-lg .ov-br{grid-template-columns:1fr}
       .ov-br:before{content:'';position:absolute;left:-46px;top:50%;width:46px;border-top:2px solid var(--line,#d7cdbb)}
       .ov-lbl{display:grid;align-content:center;gap:var(--sp-1);padding:var(--sp-3) var(--sp-3);background:rgba(6,61,52,.05);border-right:1px solid var(--line,#d7cdbb)}
       .ov-lbl b{font:700 var(--fs-small) var(--ff-sans)}

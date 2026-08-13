@@ -660,13 +660,13 @@ const HEADER = `  <a class="bl-skip" href="#main">Skip to content</a>
 const html = `<!doctype html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="tokens.css?v=20260811b"><script src="text-size.js?v=20260804a"></script>
+  <link rel="stylesheet" href="tokens.css?v=20260813a"><script src="text-size.js?v=20260804a"></script>
   <link rel="stylesheet" href="terminal.css?v=20260803a"><script defer src="terminal.js?v=20260803a"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Factory | Garden Hand-Tool Manufacturing Reference</title>
   <meta name="description" content="A reference article on garden hand-tool manufacturing: the Taiwan works since 1974, seven production gates, nine material families, eleven packaging formats and the four blocks of landed cost — each rated for how common and how costly it is in European and North American DIY retail.">
-  <link rel="stylesheet" href="birdland-visual.css?v=20260811b"><script defer src="terminal-status.js?v=20260730d"></script>
+  <link rel="stylesheet" href="birdland-visual.css?v=20260813a"><script defer src="terminal-status.js?v=20260730d"></script>
   ${cluster('product-101.html')}
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>

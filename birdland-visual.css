@@ -1188,6 +1188,18 @@ button{font:inherit}
 
 /* Ratings: a heading row on every list, two different shapes, and a word. */
 .wk-rates li{grid-template-columns:190px 132px 148px minmax(0,1fr);gap:var(--sp-3);align-items:center}
+/* Those three column widths are pixels, and each <li> is its own grid — which
+   is what keeps the rows aligned with each other, and what breaks at Large.
+   At 2.175x the mono labels are wider than the columns holding them, so
+   "Everywhere" printed over the cost bars and "Above average" ran into the
+   note column: 118 of the 161 collisions the Large sweep found, on one
+   selector pair. Widening the columns is not available — 190+132+148 already
+   scales past the content area. So at Large a rated row becomes what it
+   already becomes on a narrow phone: one field per line, no columns to
+   compete for. The heading row has nothing left to head, so it goes. */
+html.ui-lg .wk-rates li{grid-template-columns:minmax(0,1fr);gap:var(--sp-1);padding:var(--sp-2) 0}
+html.ui-lg .wk-rates-head{display:none}
+html.ui-lg .wk-cell{flex-wrap:wrap}
 .wk-rates-head{border-top:0;padding-bottom:var(--sp-2);border-bottom:1px solid var(--bl-jade)}
 .wk-rates-head b,.wk-rates-head span{color:var(--bl-copper);font:500 var(--fs-micro) var(--bl-mono);letter-spacing:.1em;text-transform:uppercase}
 .wk-rates li+li{border-top:1px solid var(--bl-line)}

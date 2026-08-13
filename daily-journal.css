@@ -93,6 +93,20 @@ body{
 html.ui-lg .rail h2,
 html.ui-lg .navgroup strong{font-size:11px}
 html.ui-lg .navgroup a{font-size:12px}
+/* The multi-column blocks collapse to one column at 640px because that is
+   where their text stops fitting. At Large the text is 2.175x, so it stops
+   fitting far earlier — headlines in the three-column news grid ran sideways
+   into the neighbouring card, and the same is true of every other grid on the
+   page. Large gets the one-column treatment at any width: it is the same
+   layout the page already uses when the text is too big for the columns. */
+html.ui-lg .brief-grid,
+html.ui-lg .metric-grid,
+html.ui-lg .desk-grid,
+html.ui-lg .routes,
+html.ui-lg .calendar-grid,
+html.ui-lg .trust-grid,
+html.ui-lg .news-grid{grid-template-columns:1fr}
+html.ui-lg .news-card:first-child{grid-row:auto}
 .free-app{position:relative;display:flex;justify-content:flex-end;align-items:center;padding:0 8px;border:0;min-width:126px}
 .free-app .subscription-art-button{position:relative;display:block;width:112px;margin:-9px 0 -7px;padding:0;border:0;background:transparent;line-height:0;filter:drop-shadow(0 4px 4px rgba(34,30,25,.16));transform:rotate(-1.1deg);transition:transform var(--dur-slow) ease,filter var(--dur-slow) ease}
 .free-app .subscription-art-button img{display:block;width:100%;height:auto}
@@ -179,7 +193,11 @@ html.ui-lg .navgroup a{font-size:12px}
    have a gutter. */
 .journal-risk{padding-left:var(--sp-4)}
 .journal-lead{padding-right:var(--sp-4)}
-.journal-map figcaption{height:38px;padding:var(--sp-2) var(--sp-3);color:var(--kb-muted);font:600 var(--fs-micro) var(--mono);letter-spacing:.08em;text-transform:uppercase}
+/* min-height, not height — the third hard-pinned box this sweep turned up.
+   "Raw-material flow · finished goods · key ports" is one line at 11px and
+   three at Large, so it spilled out of its 38px box and printed over the
+   "Risk scope" eyebrow in the column below. Identical rendering when it fits. */
+.journal-map figcaption{min-height:38px;padding:var(--sp-2) var(--sp-3);color:var(--kb-muted);font:600 var(--fs-micro) var(--mono);letter-spacing:.08em;text-transform:uppercase}
  /* The front is a three-column grid — lead, map, risk — and the drivers block
     was falling into column one of the second row, which is the narrowest of
     the three (.75fr). That is why three cards could not sit side by side: they

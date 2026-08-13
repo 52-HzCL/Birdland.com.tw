@@ -114,6 +114,17 @@ body{padding-top:0!important}
   .dbar-nav>a,.dbar-nav summary,.dbar-nav .tm-chip{padding:var(--sp-3) 0 var(--sp-2)}
   .dbar-menu-panel{top:42px;left:0;right:auto}
 }
+/* 1200px is where this header runs out of room for a single row at 15px text.
+   At Large the wordmark and the actions are 2.175x, so it runs out much
+   earlier — at 1280 the Terminal chip still printed over "Contact". Large
+   takes the same row-per-section layout at every width; the nav items
+   themselves stay pinned (tokens.css), so this only moves the row, and the
+   scroller keeps every item reachable. */
+html.ui-lg .dbar-inner{grid-template-columns:auto auto;gap:var(--sp-3)}
+html.ui-lg .dbar-nav{grid-column:1/-1;order:3;justify-content:flex-start;overflow:auto;gap:var(--sp-4);border-top:1px solid var(--line);scrollbar-width:none}
+html.ui-lg .dbar-nav::-webkit-scrollbar{display:none}
+html.ui-lg .dbar-nav>a,html.ui-lg .dbar-nav summary,html.ui-lg .dbar-nav .tm-chip{padding:var(--sp-3) 0 var(--sp-2)}
+html.ui-lg .dbar-menu-panel{top:42px;left:0;right:auto}
 @media(max-width:680px){
   /* Same three rows the home page header wraps into at this width. The desk
      switch rides up beside the wordmark rather than taking a fourth row: at

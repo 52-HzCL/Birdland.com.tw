@@ -132,6 +132,15 @@ html.ui-lg .bl-language summary{font-size:12px}
 html.ui-lg .bl-nav>a,
 html.ui-lg .bl-nav summary,
 html.ui-lg .bl-nav .tm-chip{font-size:15px}
+/* .dbar-nav is guide.html's header. It looks like the same component as
+   .bl-nav and is not — this site has three independent headers (.bl-header,
+   .dbar-*, #app-bar), which is how the original nav-over-status-strip bug got
+   written three times. The rule above was added for .bl-nav only, so at Large
+   the Guide's Terminal chip printed over "Contact" and "Factory": the same
+   collision, on the header that was missed. Pinned to the same 15px. */
+html.ui-lg .dbar-nav>a,
+html.ui-lg .dbar-nav summary,
+html.ui-lg .dbar-nav .tm-chip{font-size:15px}
 
 .bl-textsize{display:inline-flex;align-items:center;gap:0;margin-left:var(--sp-2);border:1px solid var(--jade-900);border-radius:999px;overflow:hidden;background:var(--paper)}
 .bl-textsize-tag{
