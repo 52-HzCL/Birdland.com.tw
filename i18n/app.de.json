@@ -86,7 +86,6 @@
   "Cost workspace — your shipment, priced": "Kostenarbeitsplatz — Ihre Sendung, kalkuliert",
   "Retail margin planner": "Planer für Handelsmargen",
   "Plan a sailing — dates, cost, space": "Verschiffung planen — Termine, Kosten, Platz",
-  "Cost comparison — TW vs CN origin": "Kostenvergleich — Ursprung TW gegen CN",
   "Origin & Destination Decision": "Entscheidung zu Ursprung & Ziel",
   "Choose a buying action from the menu.": "Wählen Sie im Menü eine Einkaufsaufgabe.",
   "Share": "Teilen",
@@ -128,7 +127,7 @@
   "Gross profit / unit": "Rohertrag / Stück",
   "04 · Origin compare": "04 · Ursprung vergleichen",
   "Same destination, two origins": "Ein Ziel, zwei Ursprünge",
-  "Taiwan vs China duty": "Zoll Taiwan gegen China",
+  "Taiwan vs China duty": "Zoll TW gegen CN",
   "Taiwan origin duty": "Zoll bei Ursprung Taiwan",
   "China origin duty": "Zoll bei Ursprung China",
   "Difference on this shipment": "Differenz bei dieser Sendung",
@@ -299,7 +298,6 @@
   "Retail margin": "Handelsmarge",
   "Reorder timing": "Nachbestelltermin",
   "Plan a sailing": "Verschiffung planen",
-  "TW vs CN duty": "Zoll TW gegen CN",
   "My landed cost": "Mein Landed Cost",
   "What these inputs mean": "Was diese Eingaben bedeuten",
   "Global": "Global",
@@ -406,7 +404,6 @@
   "Plan a sailing →": "Eine Verschiffung planen →",
   "Reorder timing →": "Zeitpunkt der Nachbestellung →",
   "Retail margin →": "Handelsmarge →",
-  "TW vs CN duty →": "Zoll TW gegen CN →",
   "Recent trend": "Jüngster Verlauf",
   "Material forecast": "Materialprognose",
   "Shipping forecast": "Frachtprognose",
@@ -1041,5 +1038,7 @@
   "Hang, drop and carton-compression testing together simulate the real shipping and retail-handling chain — ask which specific test standard (ISTA, ASTM, or an internal spec) the supplier tests against, since standards vary in severity.": "Häng-, Fall- und Kartondrucktests simulieren gemeinsam die reale Versand- und Handelsumschlagskette — abfragen, gegen welchen konkreten Teststandard (ISTA, ASTM oder eine interne Spezifikation) der Lieferant prüft, da sich die Standards im Schweregrad unterscheiden.",
   "Transit testing should reflect the actual shipping configuration (pallet height, carrier handling profile) for the destination market, not a generic single-carton test — a test too gentle relative to actual handling will not catch a packaging weakness before it reaches the customer.": "Der Transporttest sollte die tatsächliche Versandkonfiguration (Palettenhöhe, Umschlagprofil des Frachtführers) für den Zielmarkt widerspiegeln, nicht einen generischen Einzelkartontest — ein im Vergleich zur realen Handhabung zu schonender Test erkennt eine Verpackungsschwäche nicht, bevor sie den Kunden erreicht.",
   "Unchanged since": "Unverändert seit",
-  "Standing view since": "Feststehende Einschätzung seit"
+  "Standing view since": "Feststehende Einschätzung seit",
+  "Cost comparison — Taiwan vs China origin": "Kostenvergleich — Ursprung TW gegen CN",
+  "Taiwan vs China duty →": "Zoll TW gegen CN →"
 }

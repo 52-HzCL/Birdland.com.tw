@@ -1933,7 +1933,16 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
   padding:var(--sp-1) 0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;
   color:var(--kb-ink)!important;font-family:var(--mono)!important;font-size:var(--fs-h3);font-weight:600;font-variant-numeric:tabular-nums}
 
-.blk-b .calc input:focus,.blk-b .calc select:focus{outline:0!important;box-shadow:none!important}
+/* This was outline:0!important;box-shadow:none!important. It beat the ring set
+   further up (.calc input:focus, which gives a 3px accent shadow) on both
+   specificity and source order, so it removed the ring and put nothing back:
+   a focused field on the landed-cost calculator rendered pixel-identical to an
+   unfocused one. Measured — outline-width went 3px -> 0px on focus, with
+   outline-style:none and no shadow or border either way. Someone working the
+   calculator by keyboard had no way to see which of the eleven fields they
+   were in. One ring, kept to a single indicator so the doubled outline this
+   rule was presumably written to suppress does not come back. */
+.blk-b .calc input:focus,.blk-b .calc select:focus{outline:2px solid var(--kb-accent,#0a6b52)!important;outline-offset:1px;box-shadow:none!important}
 .calc>div:focus-within{border-bottom-color:var(--kb-accent)}
 
 .tool-explain{display:block;margin-top:16px;padding:var(--sp-2) var(--sp-3);border:1px solid var(--kb-line);border-left:2px solid var(--kb-accent,#0E6652);border-radius:var(--r-md);background:var(--kb-panel);color:var(--kb-ink);font-size:var(--fs-body);text-decoration:none}
@@ -2199,8 +2208,8 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
             <div class="bd-impact-data">
               <span>Material input<b id="bb-summary-material-move">—</b></span>
               <span>Process driver<b id="bb-summary-process-move">—</b></span>
-              <span>Labour floor<b>TW +2.95% · CN +5.2% YoY</b></span>
-              <span>Working capital<b>TW 2.155% · CN 3.00% p.a.</b></span>
+              <span>Labour floor<b>Taiwan +2.95% · China +5.2% YoY</b></span>
+              <span>Working capital<b>Taiwan 2.155% · China 3.00% p.a.</b></span>
             </div>
           </article>
           <article class="bd-impact-card">
@@ -2236,28 +2245,28 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
         <div class="bd-references-head"><div><h2 id="bd-references-title">Public product references</h2><p>Current PDF links supplied through Birdland's public product feed.</p></div><span class="bd-updated" id="pd-product-updated">published PDF shelf</span></div>
         <div class="pd-offer-grid" id="pd-offer-grid"></div>
       </section>
-      <aside class="bd-tools"><h2>Buying tools</h2><p>Use your own figures. Inputs remain in this browser session.</p><div class="bd-tool-links"><button type="button" data-go="p-alerts">Buy Queue</button><button type="button" data-go="p-mkt">Cost &amp; Origin</button><a class="x" href="cost-desk.html#p-landed2">Workspace</a><a class="x" href="cost-desk.html#p-margin">Retail margin</a><a class="x" href="cost-desk.html#p-reorder">Reorder timing</a><a class="x" href="cost-desk.html#p-sail">Plan a sailing</a><a class="x" href="cost-desk.html#p-cduty">TW vs CN duty</a><a class="x" href="my-market.html">My Market</a></div></aside>
+      <aside class="bd-tools"><h2>Buying tools</h2><p>Use your own figures. Inputs remain in this browser session.</p><div class="bd-tool-links"><button type="button" data-go="p-alerts">Buy Queue</button><button type="button" data-go="p-mkt">Cost &amp; Origin</button><a class="x" href="cost-desk.html#p-landed2">Workspace</a><a class="x" href="cost-desk.html#p-margin">Retail margin</a><a class="x" href="cost-desk.html#p-reorder">Reorder timing</a><a class="x" href="cost-desk.html#p-sail">Plan a sailing</a><a class="x" href="cost-desk.html#p-cduty">Taiwan vs China duty</a><a class="x" href="my-market.html">My Market</a></div></aside>
     </div>
     <div class="bd-privacy"><span>Public planning only. AsiaSource does not create an order, quotation or account.</span><button id="reset-buyer-desk" type="button">Reset this brief</button></div>
   </section>
-  <nav class="toc" aria-label="AsiaSource sections"><a href="#overview" data-icon="⌂" class="toc-home">Overview</a><a href="#p-alerts" data-icon="▤">Buy Queue</a><a href="#p-offers" data-icon="◇">Product Finder</a><a href="#pd-builder" data-icon="✎">Buyer Brief</a><a href="#p-landed2" data-icon="▦">Workspace</a><a href="#p-mkt" data-icon="◎">Cost &amp; Origin</a><a href="#p-margin" data-icon="$">Retail margin</a><a href="#p-reorder" data-icon="◴">Reorder timing</a><a href="#p-sail" data-icon="≋">Plan a sailing</a><a href="#p-cduty" data-icon="⚖">TW vs CN duty</a></nav>
+  <nav class="toc" aria-label="AsiaSource sections"><a href="#overview" data-icon="⌂" class="toc-home">Overview</a><a href="#p-alerts" data-icon="▤">Buy Queue</a><a href="#p-offers" data-icon="◇">Product Finder</a><a href="#pd-builder" data-icon="✎">Buyer Brief</a><a href="#p-landed2" data-icon="▦">Workspace</a><a href="#p-mkt" data-icon="◎">Cost &amp; Origin</a><a href="#p-margin" data-icon="$">Retail margin</a><a href="#p-reorder" data-icon="◴">Reorder timing</a><a href="#p-sail" data-icon="≋">Plan a sailing</a><a href="#p-cduty" data-icon="⚖">Taiwan vs China duty</a></nav>
   <div id="tab-hint" class="tab-hint"><div class="mac-note"><span class="mn-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-5 4 3 4-7 4 5"/></svg></span><div class="mn-txt"><b>ASIASOURCE</b><span>Choose a buying action from the menu.</span></div></div></div>
 
   <section class="blk landed-tool" data-open="0" id="p-landed2"><button class="blk-h"><span class="k">WORKSPACE</span><h2>Cost workspace — your shipment, priced</h2><span class="ihelp" title="We deliver FOB at the origin port; everything after that is yours. Pick your country to prefill duty & import tax, then see CIF, duty, VAT/GST, fees and total landed cost per unit.">i</span><span class="tog"></span></button><div class="blk-b">
     <section class="landed-input-panel" aria-labelledby="landed-setup-title">
       <div class="landed-panel-head"><span>01 · Shipment setup</span><button type="button" id="ws_sheet_btn" class="ws-pin ws-export">Export estimate (PDF)</button><h3 id="landed-setup-title">Build the landed-cost scenario</h3><p>Birdland delivers FOB at the origin port. Set your destination, shipment value and post-FOB costs; duty and import tax remain editable planning inputs.</p></div>
       <div class="calc landed-form">
-        <div><label>Destination country</label><select id="bc_co"></select></div>
-        <div><label>FOB value (USD)</label><input id="bc_fob" type="number" value="50000"></div>
-        <div><label>Quantity (pcs)</label><input id="bc_qty" type="number" value="5000"></div>
-        <div><label>Ocean freight (USD)</label><input id="bc_frt" type="number" value="3200"><small class="ws-live" id="ws_frt_live" hidden></small></div>
-        <div><label>Insurance rate %</label><input id="bc_ins" type="number" value="0.2" step="0.05"></div>
-        <div><label>Duty %</label><input id="bc_duty" type="number" value="1.7" step="0.1"></div>
-        <div><label id="bc_taxL">Import tax %</label><input id="bc_tax" type="number" value="19" step="0.5"></div>
-        <div><label>Customs brokerage (USD)</label><input id="bc_brk" type="number" value="150"></div>
-        <div><label>Inland delivery (USD)</label><input id="bc_inl" type="number" value="400"></div>
-        <div><label>Other / inspection (USD)</label><input id="bc_oth" type="number" value="0"></div>
-        <div><label>Target gross margin %</label><input id="ws_mg" type="number" value="45" step="1"></div>
+        <div><label for="bc_co">Destination country</label><select id="bc_co"></select></div>
+        <div><label for="bc_fob">FOB value (USD)</label><input id="bc_fob" type="number" value="50000"></div>
+        <div><label for="bc_qty">Quantity (pcs)</label><input id="bc_qty" type="number" value="5000"></div>
+        <div><label for="bc_frt">Ocean freight (USD)</label><input id="bc_frt" type="number" value="3200"><small class="ws-live" id="ws_frt_live" hidden></small></div>
+        <div><label for="bc_ins">Insurance rate %</label><input id="bc_ins" type="number" value="0.2" step="0.05"></div>
+        <div><label for="bc_duty">Duty %</label><input id="bc_duty" type="number" value="1.7" step="0.1"></div>
+        <div><label id="bc_taxL" for="bc_tax">Import tax %</label><input id="bc_tax" type="number" value="19" step="0.5"></div>
+        <div><label for="bc_brk">Customs brokerage (USD)</label><input id="bc_brk" type="number" value="150"></div>
+        <div><label for="bc_inl">Inland delivery (USD)</label><input id="bc_inl" type="number" value="400"></div>
+        <div><label for="bc_oth">Other / inspection (USD)</label><input id="bc_oth" type="number" value="0"></div>
+        <div><label for="ws_mg">Target gross margin %</label><input id="ws_mg" type="number" value="45" step="1"></div>
       </div>
       <p class="landed-note" id="bc_note"></p>
       <p class="landed-note bc-signal" id="bc-signal" hidden></p>
@@ -2287,15 +2296,15 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
   <section class="blk" data-open="0" id="p-sail"><button class="blk-h"><span class="k">SAIL</span><h2>Plan a sailing — dates, cost, space</h2><span class="ihelp" title="Pick origin, destination, departure and container like choosing a flight. See ETD to ETA, transit days, likely delay, indicative freight and space availability across three service options. Freight is indicative.">i</span><span class="tog"></span></button><div class="blk-b">
     <div class="sub">Like choosing a flight: pick origin, destination, departure date and container to estimate arrival (ETA), transit days, likely delay, indicative freight and space availability across three service options. Freight is indicative — confirm with the carrier.</div>
     <div class="calc">
-      <div><label>Origin port</label><select id="s_o"></select></div>
-      <div><label>Destination port</label><select id="s_d"></select></div>
-      <div><label>Departure (ETD)</label><input id="s_etd" type="date"></div>
-      <div><label>Container</label><select id="s_ct"><option value="20">20' GP</option><option value="40" selected>40' GP</option><option value="40h">40' HC</option></select></div>
+      <div><label for="s_o">Origin port</label><select id="s_o"></select></div>
+      <div><label for="s_d">Destination port</label><select id="s_d"></select></div>
+      <div><label for="s_etd">Departure (ETD)</label><input id="s_etd" type="date"></div>
+      <div><label for="s_ct">Container</label><select id="s_ct"><option value="20">20' GP</option><option value="40" selected>40' GP</option><option value="40h">40' HC</option></select></div>
     </div>
     <div class="sailcards" id="s_cards"></div>
   </div></section>
 
-  <section class="blk" data-open="0" id="p-cduty"><button class="blk-h"><span class="k">DUTY</span><h2>Cost comparison — TW vs CN origin</h2><span class="ihelp" title="Estimate import duty by destination and origin. Switching origin (Taiwan vs China) shows the tariff stacking you avoid. Illustrative — confirm HS with your broker.">i</span><span class="tog"></span></button><div class="blk-b">
+  <section class="blk" data-open="0" id="p-cduty"><button class="blk-h"><span class="k">DUTY</span><h2>Cost comparison — Taiwan vs China origin</h2><span class="ihelp" title="Estimate import duty by destination and origin. Switching origin (Taiwan vs China) shows the tariff stacking you avoid. Illustrative — confirm HS with your broker.">i</span><span class="tog"></span></button><div class="blk-b">
     <div class="calc"><div><label for="pcDest">Destination</label><select id="pcDest"></select></div><div><label for="pcOrigin">Country of origin</label><select id="pcOrigin"><option value="TW">Taiwan</option><option value="CN">China</option></select></div><div><label for="pcVal">Shipment value (US$)</label><input id="pcVal" type="number" value="10000" min="0" step="100"></div></div>
     <div class="calc-out" id="pcalcOut"></div><div class="sub" id="pcalc-note" style="margin-top:12px"></div></div></section>
 
@@ -2344,10 +2353,10 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
   <section class="blk" data-open="0" id="p-margin"><button class="blk-h"><span class="k">MARGIN</span><h2>Retail margin planner</h2><span class="ihelp" title="Price for your shelves: enter landed cost and target margin to get suggested retail, markup and gross profit per order.">i</span><span class="tog"></span></button><div class="blk-b">
     <div class="sub">Price for your shelves — turn a landed cost into a retail price at your target margin.</div>
     <div class="calc">
-      <div><label>Landed cost / unit (US$)</label><input id="mg_cost" type="number" value="8.5" step="0.1"></div>
-      <div><label>Target gross margin %</label><input id="mg_margin" type="number" value="45" step="1"></div>
-      <div><label>US$ &rarr; your currency</label><input id="mg_fx" type="number" value="1" step="0.01"></div>
-      <div><label>Units / order</label><input id="mg_qty" type="number" value="5000" step="100"></div>
+      <div><label for="mg_cost">Landed cost / unit (US$)</label><input id="mg_cost" type="number" value="8.5" step="0.1"></div>
+      <div><label for="mg_margin">Target gross margin %</label><input id="mg_margin" type="number" value="45" step="1"></div>
+      <div><label for="mg_fx">US$ &rarr; your currency</label><input id="mg_fx" type="number" value="1" step="0.01"></div>
+      <div><label for="mg_qty">Units / order</label><input id="mg_qty" type="number" value="5000" step="100"></div>
     </div>
     <div class="calc-out" id="mg_out"></div>
   </div></section>
@@ -2355,11 +2364,11 @@ body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back
   <section class="blk" data-open="0" id="p-reorder"><button class="blk-h"><span class="k">REORDER</span><h2>Reorder timing</h2><span class="ihelp" title="When to place the next order so stock lands before you run out — factoring production lead time and ocean transit.">i</span><span class="tog"></span></button><div class="blk-b">
     <div class="sub">When to place your next order so stock lands before you run out — lead time + transit built in.</div>
     <div class="calc">
-      <div><label>Current stock (units)</label><input id="ro_stock" type="number" value="4000" step="100"></div>
-      <div><label>Weekly sell-through</label><input id="ro_rate" type="number" value="350" step="10"></div>
-      <div><label>Production lead (weeks)</label><input id="ro_lead" type="number" value="6" step="1"></div>
-      <div><label>Ocean transit (weeks)</label><input id="ro_transit" type="number" value="5" step="1"></div>
-      <div><label>Safety stock (weeks)</label><input id="ro_safety" type="number" value="3" step="1"></div>
+      <div><label for="ro_stock">Current stock (units)</label><input id="ro_stock" type="number" value="4000" step="100"></div>
+      <div><label for="ro_rate">Weekly sell-through</label><input id="ro_rate" type="number" value="350" step="10"></div>
+      <div><label for="ro_lead">Production lead (weeks)</label><input id="ro_lead" type="number" value="6" step="1"></div>
+      <div><label for="ro_transit">Ocean transit (weeks)</label><input id="ro_transit" type="number" value="5" step="1"></div>
+      <div><label for="ro_safety">Safety stock (weeks)</label><input id="ro_safety" type="number" value="3" step="1"></div>
     </div>
     <div class="calc-out" id="ro_out"></div>
   </div></section>
@@ -3394,7 +3403,7 @@ function toolShell(id,outSel,smFns){
   var hero=null;
   /* A sentence set at hero size reads as a broken number, so a headline that
      is prose gets no card. 'Order now' is a verdict, not prose, and it is the
-     right answer for a timing tool — the test is length, not digits. TW vs CN
+     right answer for a timing tool — the test is length, not digits. Taiwan vs China
      duty leads with a paragraph-long caveat and keeps only its outcome panel. */
   function headlineOK(v){v=String(v||'');return /[0-9]/.test(v)||v.length<=24;}
   if(vals.length&&headlineOK(vals[0].v)){
@@ -4362,7 +4371,7 @@ var fmt=function(x){return 'US$'+Math.round(x).toLocaleString('en-US');};
        rendered may appear here — several sections are display:none on this
        skin, and a chip that scrolls to nothing is worse than no chip. */
  var NEXT={
-  "p-landed2":[["Retail margin","p-margin"],["TW vs CN duty","p-cduty"]],
+  "p-landed2":[["Retail margin","p-margin"],["Taiwan vs China duty","p-cduty"]],
   "p-margin":[["My landed cost","p-landed2"],["Product Finder","p-offers"]],
   "p-cduty":[["My landed cost","p-landed2"],["Cost &amp; Origin","p-mkt"]],
   "p-sail":[["Reorder timing","p-reorder"],["Cost &amp; Origin","p-mkt"]],

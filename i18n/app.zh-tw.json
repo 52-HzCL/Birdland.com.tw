@@ -86,7 +86,6 @@
   "Cost workspace — your shipment, priced": "成本工作區 — 你的出貨,算給你看",
   "Retail margin planner": "零售毛利試算",
   "Plan a sailing — dates, cost, space": "規劃一趟船期 — 日期、成本、艙位",
-  "Cost comparison — TW vs CN origin": "成本比較 — 台灣產地 vs 中國產地",
   "Origin & Destination Decision": "產地與目的地決策",
   "Choose a buying action from the menu.": "請從選單挑一項採購工作。",
   "Share": "分享",
@@ -128,7 +127,7 @@
   "Gross profit / unit": "毛利 / 單位",
   "04 · Origin compare": "04 · 產地比較",
   "Same destination, two origins": "同一目的地,兩個產地",
-  "Taiwan vs China duty": "台灣與中國關稅",
+  "Taiwan vs China duty": "關稅 台灣對中國",
   "Taiwan origin duty": "台灣產地關稅",
   "China origin duty": "中國產地關稅",
   "Difference on this shipment": "這批出貨的差額",
@@ -299,7 +298,6 @@
   "Retail margin": "零售毛利",
   "Reorder timing": "補貨時機",
   "Plan a sailing": "規劃船期",
-  "TW vs CN duty": "關稅 台灣對中國",
   "My landed cost": "我的 landed cost",
   "What these inputs mean": "這些欄位的意思",
   "Global": "全球",
@@ -406,7 +404,6 @@
   "Plan a sailing →": "規劃一趟船期 →",
   "Reorder timing →": "補貨時機 →",
   "Retail margin →": "零售毛利 →",
-  "TW vs CN duty →": "台灣與中國關稅比較 →",
   "Recent trend": "近期走勢",
   "Material forecast": "材料預測",
   "Shipping forecast": "運費預測",
@@ -1041,5 +1038,7 @@
   "Hang, drop and carton-compression testing together simulate the real shipping and retail-handling chain — ask which specific test standard (ISTA, ASTM, or an internal spec) the supplier tests against, since standards vary in severity.": "懸掛測試、跌落測試與紙箱抗壓測試三者合併,可模擬真實的運送與零售搬運流程——應詢問供應商依據哪一項具體測試標準(ISTA、ASTM,或內部規格),因為不同標準的嚴苛程度不同。",
   "Transit testing should reflect the actual shipping configuration (pallet height, carrier handling profile) for the destination market, not a generic single-carton test — a test too gentle relative to actual handling will not catch a packaging weakness before it reaches the customer.": "運輸測試應反映目的市場實際的出貨配置(棧板高度、承運商搬運方式),而不是一個籠統的單箱測試——若測試條件相對實際搬運過於溫和,便無法在產品送達客戶前抓出包裝的弱點。",
   "Unchanged since": "未變動,自",
-  "Standing view since": "長期研判,自"
+  "Standing view since": "長期研判,自",
+  "Cost comparison — Taiwan vs China origin": "成本比較 — 台灣產地 vs 中國產地",
+  "Taiwan vs China duty →": "台灣與中國關稅比較 →"
 }

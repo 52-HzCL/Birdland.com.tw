@@ -86,7 +86,6 @@
   "Cost workspace — your shipment, priced": "Kostenwerkblad — uw zending, doorgerekend",
   "Retail margin planner": "Planner voor winkelmarge",
   "Plan a sailing — dates, cost, space": "Verscheping plannen — data, kosten, ruimte",
-  "Cost comparison — TW vs CN origin": "Kostenvergelijking — oorsprong TW tegen CN",
   "Origin & Destination Decision": "Besluit over oorsprong & bestemming",
   "Choose a buying action from the menu.": "Kies een inkoopactie uit het menu.",
   "Share": "Delen",
@@ -128,7 +127,7 @@
   "Gross profit / unit": "Brutowinst / stuk",
   "04 · Origin compare": "04 · Oorsprong vergelijken",
   "Same destination, two origins": "Eén bestemming, twee oorsprongen",
-  "Taiwan vs China duty": "Recht Taiwan tegen China",
+  "Taiwan vs China duty": "Recht TW tegen CN",
   "Taiwan origin duty": "Recht bij oorsprong Taiwan",
   "China origin duty": "Recht bij oorsprong China",
   "Difference on this shipment": "Verschil op deze zending",
@@ -299,7 +298,6 @@
   "Retail margin": "Winkelmarge",
   "Reorder timing": "Besteltiming",
   "Plan a sailing": "Verscheping plannen",
-  "TW vs CN duty": "Recht TW tegen CN",
   "My landed cost": "Mijn landed cost",
   "What these inputs mean": "Wat deze invoer betekent",
   "Global": "Wereldwijd",
@@ -406,7 +404,6 @@
   "Plan a sailing →": "Een afvaart plannen →",
   "Reorder timing →": "Besteltiming →",
   "Retail margin →": "Winkelmarge →",
-  "TW vs CN duty →": "Recht TW tegen CN →",
   "Recent trend": "Recente trend",
   "Material forecast": "Materiaalprognose",
   "Shipping forecast": "Vrachtprognose",
@@ -1041,5 +1038,7 @@
   "Hang, drop and carton-compression testing together simulate the real shipping and retail-handling chain — ask which specific test standard (ISTA, ASTM, or an internal spec) the supplier tests against, since standards vary in severity.": "Hang-, val- en dooscompressietests simuleren samen de werkelijke verzend- en retailbehandelingsketen — vraag tegen welke specifieke teststandaard (ISTA, ASTM of een interne specificatie) de leverancier test, aangezien standaarden verschillen in strengheid.",
   "Transit testing should reflect the actual shipping configuration (pallet height, carrier handling profile) for the destination market, not a generic single-carton test — a test too gentle relative to actual handling will not catch a packaging weakness before it reaches the customer.": "Transittests moeten de werkelijke verzendconfiguratie weerspiegelen (palethoogte, behandelingsprofiel van de vervoerder) voor de bestemmingsmarkt, niet een generieke test met één enkele doos — een test die te mild is ten opzichte van de werkelijke behandeling, zal een verpakkingszwakte niet opsporen voordat deze de klant bereikt.",
   "Unchanged since": "Ongewijzigd sinds",
-  "Standing view since": "Vaste inschatting sinds"
+  "Standing view since": "Vaste inschatting sinds",
+  "Cost comparison — Taiwan vs China origin": "Kostenvergelijking — oorsprong TW tegen CN",
+  "Taiwan vs China duty →": "Recht TW tegen CN →"
 }
