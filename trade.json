@@ -1,10 +1,10 @@
 {
   "schema": 2,
   "edition": "2026-Q3",
-  "generated": "2026-08-12T03:28:22Z",
+  "generated": "2026-08-13T03:33:17Z",
   "shard_state": {
-    "cursor": 15,
-    "completed_pct": 22,
+    "cursor": 16,
+    "completed_pct": 24,
     "quarter": "2026-Q3"
   },
   "sources": {
@@ -531,6 +531,7 @@
           "share_tw": 0,
           "share_tw_prev": 0,
           "share_cn": 51,
+          "share_cn_prev": 52,
           "stale": false,
           "band": {
             "market": "mid",
@@ -546,6 +547,7 @@
           "share_tw": null,
           "share_tw_prev": null,
           "share_cn": 29,
+          "share_cn_prev": 33,
           "stale": false,
           "band": {
             "market": "lower",
@@ -561,6 +563,7 @@
           "share_tw": 2,
           "share_tw_prev": 12,
           "share_cn": 45,
+          "share_cn_prev": 45,
           "stale": false,
           "band": {
             "market": "mid",
@@ -577,6 +580,7 @@
           "share_tw": 10,
           "share_tw_prev": 11,
           "share_cn": 45,
+          "share_cn_prev": 37,
           "stale": false,
           "band": {
             "market": "upper",
@@ -586,10 +590,37 @@
           }
         },
         "821300": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 7.3,
+          "vol_change_pct": -53.9,
+          "share_tw": 1,
+          "share_tw_prev": 0,
+          "share_cn": 81,
+          "share_cn_prev": 84,
+          "stale": false,
+          "band": {
+            "market": "upper",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 15
+          }
         },
         "820210": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -20,
+          "vol_change_pct": -27.9,
+          "share_tw": 4,
+          "share_tw_prev": 2,
+          "share_cn": 78,
+          "share_cn_prev": 69,
+          "stale": false,
+          "band": {
+            "market": "upper",
+            "tw": "upper",
+            "moved": "flat",
+            "to_next_pct": 11
+          },
+          "note": "world cross-check diverged >5% from Comtrade's reported total; used summed sources"
         }
       }
     },
