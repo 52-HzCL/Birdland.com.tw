@@ -38,7 +38,7 @@
  .blk{margin-top:var(--sp-4);border:1px solid var(--line);background:var(--panel)}
  .blk-h{width:100%;display:flex;align-items:center;gap:var(--sp-2);background:var(--paper);border:0;border-bottom:1px solid var(--line);padding:var(--sp-3) 16px;cursor:pointer;text-align:left}
  .blk-h .k{font-family:var(--mono);font-size:var(--fs-small);color:#1A1D20;background:var(--gold);padding:var(--sp-1) 8px;letter-spacing:.1em;font-weight:700;border-radius:var(--r-sm)}
- .blk-h h2{font-size:var(--fs-h2);font-weight:700;color:#fff}
+ .blk-h h1,.blk-h h2{font-size:var(--fs-h2);font-weight:700;color:#fff}
  .ihelp{width:18px;height:18px;border:1px solid var(--mut);color:var(--mut);border-radius:50%;font-size:var(--fs-body);font-family:var(--mono);display:inline-flex;align-items:center;justify-content:center;cursor:help;flex:0 0 auto}
  .blk-h .meta{margin-left:auto;font-family:var(--mono);font-size:var(--fs-body);color:var(--mut)}
  .tog{margin-left:var(--sp-2);width:28px;height:28px;border:1.5px solid var(--mut);border-radius:var(--r-sm);display:inline-flex;align-items:center;justify-content:center;color:var(--gold);font-family:var(--mono);font-weight:700;font-size:var(--fs-h2);flex:0 0 auto}
@@ -73,7 +73,7 @@
  /* ===== Variant B — Win3.1 title bars (Partner Desk) ===== */
  .blk{border:1px solid #000}
  .blk-h{background:#1A1D20;border-bottom:1px solid #000;padding:var(--sp-2) var(--sp-2);gap:8px}
- .blk-h h2{color:#fff;font-size:var(--fs-h3)}
+ .blk-h h1,.blk-h h2{color:#fff;font-size:var(--fs-h3)}
  .blk-h .k{background:var(--jade-100);color:#000;border:1px solid #000;border-radius:0}
  .blk-h .meta,.blk-h .secupd{color:#9AA1A9}
  .blk-h .ihelp{border-color:#9AA1A9;color:#9AA1A9}
@@ -125,7 +125,7 @@
  .theme-light .toc a:hover,.theme-light .toc a.on{background:#1A1D20;color:#fff;border-color:#1A1D20}
  .theme-light .blk{background:#FFFFFF;border:1px solid #2a2620;box-shadow:none}
  .theme-light .blk-h{background:#1A1D20;border-bottom:1px solid #1A1D20;gap:var(--sp-2);padding:var(--sp-2) var(--sp-3)}
- .theme-light .blk-h h2{color:#FFFFFF;font-family:var(--serif);font-weight:700;font-size:var(--fs-h2);letter-spacing:.01em}
+ .theme-light .blk-h h1,.blk-h h2{color:#FFFFFF;font-family:var(--serif);font-weight:700;font-size:var(--fs-h2);letter-spacing:.01em}
  .theme-light .blk-h .k{background:#9AA1A9;color:#1A1D20;border:0}
  .theme-light .blk-h .meta,.theme-light .blk-h .secupd{color:#9AA1A9}.theme-light .blk-h .ihelp{border-color:#9AA1A9;color:#9AA1A9}
  .theme-light .tog{background:#FFFFFF;color:#1A1D20;border:1px solid #1A1D20;box-shadow:none}
@@ -256,7 +256,7 @@
    on a header whose text can scale is a spill waiting to happen. Renders
    identically whenever the content fits. */
 .blk-h{background:linear-gradient(180deg,rgba(250,250,252,.85),rgba(240,242,246,.62));border-bottom:.5px solid rgba(0,0,0,.1);padding:0 16px;min-height:48px;gap:var(--sp-2)}
- .theme-light .blk-h h2{color:#1A1D20;font-family:var(--sf);font-weight:600;font-size:var(--fs-h3);letter-spacing:-.01em}
+ .theme-light .blk-h h1,.blk-h h2{color:#1A1D20;font-family:var(--sf);font-weight:600;font-size:var(--fs-h3);letter-spacing:-.01em}
  .theme-light .blk-h .k{display:none}
  .theme-light .blk-h .meta,.theme-light .blk-h .secupd{color:#9AA1A9;font-family:var(--sf);font-weight:500}
  .theme-light .blk-h .ihelp{border-color:#D1D5DB;color:#9AA1A9}
@@ -336,7 +336,7 @@
  /* mobile: stop card-header truncation — let title wrap, timestamp drop to its own small line */
  @media(max-width:560px){
   .theme-light .blk-h{flex-wrap:wrap;height:auto;min-height:44px;padding:var(--sp-2) var(--sp-3);gap:8px;row-gap:4px;align-items:center}
-  .theme-light .blk-h h2{white-space:normal;overflow:visible;text-overflow:clip;min-width:0;flex:1 1 auto;font-size:var(--fs-h2);line-height:1.25}
+  .theme-light .blk-h h1,.blk-h h2{white-space:normal;overflow:visible;text-overflow:clip;min-width:0;flex:1 1 auto;font-size:var(--fs-h2);line-height:1.25}
   .theme-light .blk-h .ihelp{flex:0 0 auto}
   .theme-light .blk-h .tog{margin-left:auto;flex:0 0 auto}
   .theme-light .blk-h .meta,.theme-light .blk-h .secupd{order:5;flex:1 1 100%;width:100%;white-space:normal;font-size:var(--fs-small);margin-left:0;padding-left:0;text-align:left;color:#9AA1A9}
@@ -386,7 +386,7 @@
    below it — the worst collision the Large sweep found, and the only one at
    cover 1.0. min-height renders identically when the content fits. */
 .blk-h{padding:0 var(--sp-3);min-height:52px;border-bottom:.5px solid rgba(0,0,0,.07)}
- .theme-light .blk-h h2{font-weight:600;letter-spacing:-.015em;font-size:var(--fs-h3)}
+ .theme-light .blk-h h1,.blk-h h2{font-weight:600;letter-spacing:-.015em;font-size:var(--fs-h3)}
  .theme-light .blk-h .lights .lt{transition:filter .15s ease}.theme-light .blk-h:hover .lights .lt{filter:saturate(1.15)}
  .theme-light .blk-b{padding:var(--sp-4) 24px}
  .theme-light .head2{letter-spacing:-.01em}
@@ -446,7 +446,7 @@
  body.theme-light .tab-hint{display:none!important}
  body.theme-light main .blk{display:block!important;background:var(--panel);border:.5px solid var(--line2);border-radius:var(--r-md);box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;margin-top:16px}
  body.theme-light .blk-h{background:transparent;border-bottom:.5px solid var(--line);padding:var(--sp-3) var(--sp-4)}
- body.theme-light .blk-h h2{color:var(--ink);font-weight:500}
+ body.theme-light .blk-h h1,.blk-h h2{color:var(--ink);font-weight:500}
  body.theme-light .blk-h .k{background:var(--panel2);color:var(--mut);border:0;border-radius:var(--r-sm);box-shadow:none;font-family:var(--ff-mono)}
  body.theme-light .blk-h .meta,body.theme-light .blk-h .secupd{color:var(--faint)}
  body.theme-light .blk-h .ihelp{background:var(--panel2);color:var(--mut);border:0}
@@ -665,7 +665,7 @@ body::after{display:none!important}
 .blk,.tool,.fxbig,.fxcard,.botbox,.regitem,.advbox,.card,.supplyb,.view,.sailcard,.news a.item,.qresult,.fxblk{
   background:var(--kb-panel)!important;border:1px solid var(--kb-line)!important;border-radius:var(--kb-radius)!important;box-shadow:var(--kb-shadow)!important;backdrop-filter:none!important}
 .blk-h{background:var(--kb-panel)!important;border-bottom:1px solid var(--kb-line)!important;padding:var(--sp-3) var(--sp-4)!important}
-.blk-h h2,h2.sh{color:var(--kb-ink)!important;font-family:var(--kb-sans)!important;font-weight:700!important;font-size:var(--fs-h2)!important;letter-spacing:-.005em!important;border-top:0!important;text-transform:none!important}
+.blk-h h1,.blk-h h2,h2.sh{color:var(--kb-ink)!important;font-family:var(--kb-sans)!important;font-weight:700!important;font-size:var(--fs-h2)!important;letter-spacing:-.005em!important;border-top:0!important;text-transform:none!important}
 .blk-h .k{display:none!important}
 .blk-h .ihelp{border-color:var(--kb-line)!important;color:var(--kb-faint)!important}
 .blk-h .meta,.blk-h .secupd,.updstamp,.grp{color:var(--kb-faint)!important;font-family:var(--kb-mono)!important}
@@ -2814,6 +2814,23 @@ window.BL_DESK='cost';
    if(installBtn){
     installBtn.textContent='Install CostNow safely';
     installBtn.title='Install CostNow on this device. No account is created and it can be removed from your browser.';
+   }
+  }
+  /* The page's only h1 — #bd-title, "Build your buying plan before the quote."
+     — is AsiaSource copy and lives inside that same shell, so throwing the
+     shell away left CostNow with no h1 at all. The static file still has one,
+     which is why a crawler saw a heading and a screen reader did not: this
+     branch runs after the HTML is parsed. Rather than invent a title the
+     design has nowhere to put, the section that IS this page's subject is
+     promoted in place. Attributes and text are carried over and .blk-h h1 is
+     styled identically to .blk-h h1,.blk-h h2, so nothing moves. */
+  if(costHome){
+   var oldH=costHome.querySelector('.blk-h h1,.blk-h h2');
+   if(oldH){
+    var h1=document.createElement('h1');
+    [].forEach.call(oldH.attributes,function(a){h1.setAttribute(a.name,a.value);});
+    h1.innerHTML=oldH.innerHTML;
+    oldH.parentNode.replaceChild(h1,oldH);
    }
   }
   if(shell)drop.push(shell);
