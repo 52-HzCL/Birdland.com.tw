@@ -174,7 +174,7 @@ async function staleWhileRevalidate(request) {
   if (fromNetwork) return fromNetwork;
   // Last resort, and only once the network is genuinely gone: match without
   // the query string. CORE_ASSETS lists "./tokens.css" while every page asks
-  // for "tokens.css?v=20260813a", and Cache.match is exact on the full URL —
+  // for "tokens.css?v=20260814a", and Cache.match is exact on the full URL —
   // so every cache-busted asset on the site has always missed offline, no
   // matter which token was current. That is why an offline page came back
   // unstyled. Kept out of the lookup above on purpose: matching loosely while

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="tokens.css?v=20260813a"><script src="text-size.js?v=20260804a"></script><link rel="stylesheet" href="desk-banner.css?v=20260813a"><link rel="stylesheet" href="terminal.css?v=20260807a"><script defer src="terminal.js?v=20260807a"></script><script defer src="desk-banner.js?v=20260804a"></script><script defer src="i18n.js?v=20260807a"></script>
+  <link rel="stylesheet" href="tokens.css?v=20260814a"><script src="text-size.js?v=20260804a"></script><link rel="stylesheet" href="desk-banner.css?v=20260813a"><link rel="stylesheet" href="terminal.css?v=20260807a"><script defer src="terminal.js?v=20260814a"></script><script defer src="desk-banner.js?v=20260804a"></script><script defer src="i18n.js?v=20260807a"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Guide | How this site works | Birdland</title>
@@ -40,10 +40,10 @@
    lot of nothing. Both columns now have a measure. */
     .section-intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);align-items:end;gap:var(--sp-6);margin-bottom:var(--sp-4)}
     .section-intro>div{min-width:0}
-    .section-intro h2{max-width:16ch}
+    .section-intro h1,.section-intro h2{max-width:16ch}
     .section-intro>p{max-width:46ch;margin:0}
-    @media(max-width:760px){.section-intro{grid-template-columns:minmax(0,1fr);gap:var(--sp-3)}.section-intro h2,.section-intro>p{max-width:none}}
-    .section-intro h2{max-width:620px;margin:var(--sp-2) 0 0;font:600 calc(clamp(32px,4vw,48px) * var(--ui-scale-display))/1 'Playfair Display',var(--ff-serif)}
+    @media(max-width:760px){.section-intro{grid-template-columns:minmax(0,1fr);gap:var(--sp-3)}.section-intro h1,.section-intro h2,.section-intro>p{max-width:none}}
+    .section-intro h1,.section-intro h2{max-width:620px;margin:var(--sp-2) 0 0;font:600 calc(clamp(32px,4vw,48px) * var(--ui-scale-display))/1 'Playfair Display',var(--ff-serif)}
     .section-intro p{max-width:420px;margin:0;color:var(--muted);font-size:var(--fs-small)}
     
     
@@ -183,7 +183,7 @@ html.ui-lg .ov-br{grid-template-columns:1fr}
 
     <section class="proof-section" aria-labelledby="ov-start-title">
       <div class="section-intro">
-        <div><span class="eyebrow">START HERE</span><h2 id="ov-start-title">Five steps, in the order they actually happen.</h2></div>
+        <div><span class="eyebrow">START HERE</span><h1 id="ov-start-title">Five steps, in the order they actually happen.</h1></div>
         <p>Each step names the page, what you do there, and what you walk away holding. Nothing here needs an account.</p>
       </div>
       <ol class="ov-walk">

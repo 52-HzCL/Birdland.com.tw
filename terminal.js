@@ -164,6 +164,7 @@
       place();
       requestAnimationFrame(function () { dim.classList.add('on'); panel.classList.add('on'); });
       if (trigger) trigger.setAttribute('aria-expanded', 'true');
+      document.addEventListener('keydown', escAnywhere, true);
       input.value = ''; search('');
       setTimeout(function () { input.focus(); }, 30);
     });
@@ -177,8 +178,14 @@
     old.parentNode.replaceChild(wrap.firstChild, old);
   }
 
+  // Escape belongs to the document while a modal is open, not to the modal's
+  // own subtree: a reader who has tabbed into browser chrome and back, or who
+  // clicked the dim layer, still expects it to work. Bound only while open.
+  function escAnywhere(e) { if (e.key === 'Escape') { e.preventDefault(); close(); } }
+
   function close() {
     if (!panel) return;
+    document.removeEventListener('keydown', escAnywhere, true);
     dim.classList.remove('on'); panel.classList.remove('on');
     document.documentElement.classList.remove('tm-open');
     if (chip) { chip.setAttribute('aria-expanded', 'false'); chip.focus(); }
@@ -242,8 +249,34 @@
     })[f] || f.replace('.html', '').toUpperCase();
   }
 
+  // Everything the reader can reach with Tab while the panel is open, in the
+  // order the browser would visit it. Filtered to what is actually rendered —
+  // a hidden result row must not become a stop on the way round.
+  function focusables() {
+    if (!panel) return [];
+    return [].slice.call(panel.querySelectorAll(
+      'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),' +
+      'textarea:not([disabled]),[tabindex]:not([tabindex="-1"])'
+    )).filter(function (el) {
+      return el.offsetWidth > 0 || el.offsetHeight > 0 || el === document.activeElement;
+    });
+  }
+
   function keys(e) {
     if (e.key === 'Escape') { e.preventDefault(); close(); return; }
+    // The panel says role="dialog" aria-modal="true", which is a promise that
+    // Tab stays inside it. It did not: measured on all six pages carrying the
+    // chip, the seventh Tab landed on "Skip to content" behind the dim layer,
+    // and from there Escape stopped working too — this handler is bound to the
+    // panel, so once focus left, nothing was listening. Wrap at both ends.
+    if (e.key === 'Tab') {
+      var f = focusables();
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      return;
+    }
     if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp' && e.key !== 'Enter') return;
     var hits = [].slice.call(panel.querySelectorAll('.tm-hit'));
     if (!hits.length) return;

@@ -13,14 +13,23 @@
   --jade-800:#0E5140;
   --jade-700:#0E6652;   /* accent green: links, active states, cost falling */
   --jade-100:#E7EDEA;
-  --copper-600:#B96032; /* the one accent */
+  /* Was #B96032, which read 4.17:1 on --paper and 3.82:1 on --paper-2 — under
+     AA on both, across 332 nodes and six pages. Darkened by 5% lightness with
+     hue and saturation untouched (20.4deg / 57% both before and after), so it
+     is the same copper, not a new one. Now 4.97:1 and 4.55:1. */
+  --copper-600:#A7562D; /* the one accent */
   --copper-800:#A64F2A; /* copper pressed / hover */
   --copper-200:#E4C6A7;
 
   /* --- ink -------------------------------------------------------------- */
   --ink-900:#17362F;    /* body text */
   --ink-700:#42675D;    /* secondary */
-  --ink-500:#66736E;    /* muted, captions — the lightest that clears 4.5:1 on paper */
+  /* The old note here — "the lightest that clears 4.5:1 on paper" — was true
+     and was the trap: it clears 4.5 on --paper (4.70:1) and this colour is
+     also used on --paper-2, the recessed band, where it fell to 4.31:1 across
+     317 nodes. Re-picked against the DARKER of the two surfaces it actually
+     sits on, so the note now holds wherever it is used. */
+  --ink-500:#636F6A;    /* muted, captions — clears 4.5:1 on paper AND paper-2 */
   --ink-300:#9AA1A9;    /* disabled, hairline */
 
   /* --- surface ---------------------------------------------------------- */
