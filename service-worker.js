@@ -1,7 +1,7 @@
 // Bumped with every deploy that changes core assets: `activate` deletes every
 // cache whose key is not the current one, which is what evicts the previous
 // runtime cache. Without it a returning visitor keeps the old CSS for a load.
-const VERSION = "birdland-desks-v50";
+const VERSION = "birdland-desks-v51";
 const CORE_CACHE = `${VERSION}-core`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const CORE_ASSETS = [
@@ -138,7 +138,16 @@ async function networkFirst(request, fallbackUrl) {
     }
     return response;
   } catch (error) {
-    const cached = await cache.match(request);
+    // Search EVERY cache, not just the runtime one. install() precaches all of
+    // CORE_ASSETS into CORE_CACHE, so the page being asked for is almost always
+    // already on disk — but this only ever looked in RUNTIME_CACHE, which holds
+    // just what the reader had visited since. Offline, a page they had not
+    // revisited fell straight through to the fallback below, and the fallback
+    // is "partner.html unless the URL ends in executive.html". Measured: an
+    // offline reload of CostNow, My Market and the home page all rendered
+    // AsiaSource under their own URL, while the correct page sat in
+    // CORE_CACHE the whole time.
+    const cached = (await caches.match(request)) || (await cache.match(request));
     if (cached) return cached;
     return caches.match(fallbackUrl);
   }
@@ -146,14 +155,33 @@ async function networkFirst(request, fallbackUrl) {
 
 async function staleWhileRevalidate(request) {
   const cache = await caches.open(RUNTIME_CACHE);
-  const cached = await cache.match(request);
+  // Same reason as networkFirst: the precached copy lives in CORE_CACHE.
+  const cached = (await cache.match(request)) || (await caches.match(request));
   const network = fetch(request).then((response) => {
     if (response && response.ok) {
       cache.put(request, response.clone());
     }
     return response;
   }).catch(() => null);
-  return cached || network || fetch(request);
+  if (cached) return cached;
+  // The old line was `cached || network || fetch(request)`. network is a
+  // Promise, so it is always truthy and the third branch was unreachable —
+  // and when nothing was cached and the fetch failed, this resolved to null.
+  // respondWith(null) is what Chrome reports as net::ERR_FAILED, which is how
+  // an offline reload produced 12-20 of them per page instead of one clean
+  // failure per genuinely missing file.
+  const fromNetwork = await network;
+  if (fromNetwork) return fromNetwork;
+  // Last resort, and only once the network is genuinely gone: match without
+  // the query string. CORE_ASSETS lists "./tokens.css" while every page asks
+  // for "tokens.css?v=20260813a", and Cache.match is exact on the full URL —
+  // so every cache-busted asset on the site has always missed offline, no
+  // matter which token was current. That is why an offline page came back
+  // unstyled. Kept out of the lookup above on purpose: matching loosely while
+  // the network is up would serve the previous CSS to a reader whose page
+  // just asked for the new one, which is the whole point of the token.
+  const ignoringToken = await caches.match(request, { ignoreSearch: true });
+  return ignoringToken || Response.error();
 }
 
 self.addEventListener("fetch", (event) => {

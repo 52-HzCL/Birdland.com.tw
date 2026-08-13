@@ -621,7 +621,7 @@ ${ECO.map(r => `              <tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td>
         <div class="cost-ladder">
 ${COST.map((c, i) => `          <div class="cost-cell"><b>BLOCK 0${i + 1}</b><strong>${esc(c[0])}</strong><span>${esc(c[1])}</span></div>`).join('\n')}
         </div>
-        <p>Run your own numbers: the landed-cost tool on the <a href="partner.html#p-landed2">AsiaSource</a> uses these same four blocks, with current material and freight readings already loaded.</p>` },
+        <p>Run your own numbers: the landed-cost tool on the <a href="cost-desk.html#p-landed2">CostNow desk</a> uses these same four blocks, with current material and freight readings already loaded.</p>` },
 
   { id: 's-also', title: 'See also', subs: [],
     take: "Where to go next, and what this page deliberately does not contain.",
