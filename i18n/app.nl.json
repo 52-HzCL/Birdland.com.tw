@@ -1070,5 +1070,20 @@
   "{family} · {market} — Taiwan-origin supply moved bands, now in the {band}.": "{family} · {market} — aanbod van oorsprong Taiwan is van band gewisseld: nu in de {band}.",
   "Your market leads its neighbourhood — <b>{av}%</b> of {family} imports are Taiwan-origin, against {nv}% in {market}.": "Uw markt loopt voorop in de regio: <b>{av}%</b> van de invoer van {family} heeft oorsprong Taiwan, tegenover {nv}% in {market}.",
   "CHINA-ORIGIN SHARE IS RECEDING — A WINDOW": "AANDEEL VAN CHINESE OORSPRONG NEEMT AF — EEN VENSTER",
-  "A CHINA PRICE PUSH IS UNDER WAY": "EEN CHINEES PRIJSOFFENSIEF IS GAANDE"
+  "A CHINA PRICE PUSH IS UNDER WAY": "EEN CHINEES PRIJSOFFENSIEF IS GAANDE",
+  "Daily brief": "Dagelijkse briefing",
+  "Across all markets": "Over alle markten",
+  "Freight": "Vracht",
+  "Energy": "Energie",
+  "Compliance": "Naleving",
+  "Materials": "Materialen",
+  "Demand": "Vraag",
+  "No change this edition": "Geen wijziging in deze editie",
+  "No change in your markets this edition": "Geen wijziging in uw markten in deze editie",
+  "Also moved": "Ook bewogen",
+  "This week": "Deze week",
+  "Open the tool": "Open de tool",
+  "Carried forward from": "Overgenomen uit",
+  "Figure verified against this edition": "Cijfer gecontroleerd met deze editie",
+  "Open the section for this line": "Open de sectie bij deze regel"
 }

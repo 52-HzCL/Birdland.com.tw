@@ -25,7 +25,6 @@ data=json.load(open(DATA_PATH,encoding="utf-8"))
 # the last silent breakage here (an f-string over a brace-filled prompt) froze
 # the daily refresh for weeks before anyone noticed.
 DIG_TAGS={"freight","energy","compliance","tariff","materials","demand"}
-DIG_JUMPS={"shipping","forward","war","procurement","indices","timeline"}
 DIG_TOOLS={"cost-desk#p-sail","cost-desk#p-landed2","cost-desk#p-cduty",
            "partner.html#p-mkt","my-market.html",""}
 DIG_LANGS=("de","es","fr","it","ja","nl","pl","pt-br","zh-tw")
@@ -68,9 +67,9 @@ def build_digest(dg,regions,corpus,today):
         if not isinstance(it,dict): continue
         txt=line(it.get("text"),130)
         if txt and it.get("tag") in DIG_TAGS:
-            themes.append({"tag":it["tag"],
-                           "jump":it.get("jump") if it.get("jump") in DIG_JUMPS else "",
-                           "text":txt})
+            # No jump field: the page derives the target section from the tag.
+            # An AI-chosen anchor is an AI-chosen chance of a dead link.
+            themes.append({"tag":it["tag"],"text":txt})
     if len(themes)<2: return None
     markets=[]
     for it in (dg.get("markets") or [])[:6]:
@@ -129,8 +128,8 @@ if "--selftest" in sys.argv:
     _corp={"88","3","9","2026","1.4"}
     _reg={"eu":1,"us":1}
     _base={"headline":"Freight eases while EU rules ==tighten==",
-           "themes":[{"tag":"freight","jump":"shipping","text":"Transpacific ==down== a @@3@@rd week"},
-                     {"tag":"energy","jump":"indices","text":"Brent holds near @@88@@"}],
+           "themes":[{"tag":"freight","text":"Transpacific ==down== a @@3@@rd week"},
+                     {"tag":"energy","text":"Brent holds near @@88@@"}],
            "markets":[{"code":"eu","text":"Filing rules bite from @@9@@ September"}],
            "action":{"text":"Book ==early== this week","tool":"cost-desk#p-sail"}}
     def _cp(o): return json.loads(json.dumps(o))
@@ -243,14 +242,14 @@ RULES (strict):
 - "partner.birdbot" and top-level "birdbot_client" are Bird BOT explainers, one per section. Refresh each to the CURRENT picture, keeping EXACTLY this format: "simple" = ONE plain sentence with an everyday analogy a 10-year-old would instantly grasp; "expert" = an array of EXACTLY 3 concise expert sentences. Keep the same keys. For the market entries (keys "p-mkt" and "c-mkt") keep framing as Birdland’s interpretation of publicly reported BNP Paribas and Citi views; never fabricate bank quotes or numbers, stay grounded, keep the "src" disclaimer. Do NOT touch the other partner sub-objects (procurement, shipping, material, tariffmon, war).
 - "teamdesk" is an internal dashboard. Refresh ONLY these sub-fields (leave fx_baseline, fx_today and usdtwd_spark untouched): "usdtwd_view"={bias:"depreciation pressure"|"appreciation pressure"|"balanced", text: 2-3 sentences grounded in Fed stance, Taiwan central bank and US-China relations, 1-4 week horizon}; "materials"=array for Lumber, Pulp, Steel HRC, PE/PP, Cotton each {name,dir:"up"|"down"|"flat",note: one short current sentence}; "regnews"={china:[],taiwan:[],ports:[],env:[]} each an array of 1-2 {date,title,summary,url} grounded items on customs/origin, tariffs, EU & US ports, and FSC/EUDR/Lacey/CBAM; "advice"={zh: a ready-to-send Traditional-Chinese supply-chain+ocean-freight weekly brief with a recommendation, en: the English equivalent}. Keep keys; set teamdesk.updated to today (e.g. "DD Mon YYYY"). Stay grounded; cite source URLs where possible.
 - Top-level "today_digest" is TODAY'S front page for a busy import buyer: what moved today, nothing else. Output it on EVERY run, in this exact shape:
-  {"headline":"...","themes":[{"tag":"freight","jump":"shipping","text":"..."}],"markets":[{"code":"eu","text":"..."}],"action":{"text":"...","tool":"cost-desk#p-sail"},"i18n":{"de":{...},...}}
+  {"headline":"...","themes":[{"tag":"freight","text":"..."}],"markets":[{"code":"eu","text":"..."}],"action":{"text":"...","tool":"cost-desk#p-sail"},"i18n":{"de":{...},...}}
   - "headline": ONE line, 70 characters or less. It may only refer to something that also appears in "themes" — never introduce a claim that is not below it.
-  - "themes": 3 to 6 items, ordered most important first. "tag" MUST be one of: freight, energy, compliance, tariff, materials, demand. "jump" MUST be one of: shipping, forward, war, procurement, indices, timeline. "text" is 110 characters or less, one or two clauses.
+  - "themes": 3 to 6 items, ordered most important first. "tag" MUST be one of: freight, energy, compliance, tariff, materials, demand. "text" is 110 characters or less, one or two clauses.
   - "markets": 0 to 6 items, ONLY for regions where something genuinely changed today. "code" MUST be one of the 14 region codes. "text" is 100 characters or less. A quiet market MUST be omitted — the page states quietness itself. Do not pad this list.
   - "action": the ONE thing to do this week, 90 characters or less. "tool" MUST be one of: cost-desk#p-sail, cost-desk#p-landed2, cost-desk#p-cduty, partner.html#p-mkt, my-market.html, or "" when no tool fits.
   - MARK WHAT MATTERS: in every "text" and in "headline", wrap the single most important phrase in ==double equals== and wrap each figure in @@double at-signs@@. At most one ==...== and two @@...@@ per line. These marks drive the page's highlighter and circles, so put them around the words a buyer must not miss.
   - EVERY figure you state must already appear in the JSON below. Lines containing a number that is not in the data are DISCARDED by a validator before publication, so an invented figure costs you the whole line. If you cannot support a point with a figure from the data, write it qualitatively with no number.
-  - "i18n": an object keyed exactly de, es, fr, it, ja, nl, pl, pt-br, zh-tw. Each value repeats the SAME structure with the SAME number of themes and markets in the SAME order: {"headline":"...","themes":[{"text":"..."}],"markets":[{"text":"..."}],"action":{"text":"..."}}. Translate only the text; never translate tag/jump/code/tool, and keep the ==...== and @@...@@ marks around the equivalent words in each language. Traditional Chinese for zh-tw. Never abbreviate Taiwan or China.
+  - "i18n": an object keyed exactly de, es, fr, it, ja, nl, pl, pt-br, zh-tw. Each value repeats the SAME structure with the SAME number of themes and markets in the SAME order: {"headline":"...","themes":[{"text":"..."}],"markets":[{"text":"..."}],"action":{"text":"..."}}. Translate only the text; never translate tag/code/tool, and keep the ==...== and @@...@@ marks around the equivalent words in each language. Traditional Chinese for zh-tw. Never abbreviate Taiwan or China.
 - Output ONLY the complete updated JSON object. No markdown, no commentary.
 
 CURRENT JSON:

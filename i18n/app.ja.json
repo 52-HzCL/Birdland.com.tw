@@ -1070,5 +1070,20 @@
   "{family} · {market} — Taiwan-origin supply moved bands, now in the {band}.": "{family}・{market} — 台湾原産の供給が価格帯を移動：現在は{band}にあります。",
   "Your market leads its neighbourhood — <b>{av}%</b> of {family} imports are Taiwan-origin, against {nv}% in {market}.": "貴社の市場は近隣で首位に立っている — {family}輸入の<b>{av}%</b>が台湾産であり、{market}では{nv}%にとどまる。",
   "CHINA-ORIGIN SHARE IS RECEDING — A WINDOW": "中国産シェアが後退中 — 好機です",
-  "A CHINA PRICE PUSH IS UNDER WAY": "中国発の価格攻勢が進行中"
+  "A CHINA PRICE PUSH IS UNDER WAY": "中国発の価格攻勢が進行中",
+  "Daily brief": "デイリーブリーフ",
+  "Across all markets": "全市場に共通",
+  "Freight": "運賃",
+  "Energy": "エネルギー",
+  "Compliance": "法令順守",
+  "Materials": "原材料",
+  "Demand": "需要",
+  "No change this edition": "今回の版に変更はありません",
+  "No change in your markets this edition": "今回の版では貴社の市場に変更はありません",
+  "Also moved": "ほかに動いた市場",
+  "This week": "今週",
+  "Open the tool": "ツールを開く",
+  "Carried forward from": "前版から引き継ぎ",
+  "Figure verified against this edition": "この版のデータと照合済み",
+  "Open the section for this line": "この行のセクションを開く"
 }

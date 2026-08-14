@@ -163,7 +163,7 @@
     .section p,.item,.lane,.source-link{font-size:10pt;line-height:1.5}
   }
 </style>
-  <link rel="stylesheet" href="daily-journal.css?v=20260813a"><script defer src="terminal-status.js?v=20260730d"></script><script defer src="mail-routing.js?v=20260807a"></script>
+  <link rel="stylesheet" href="daily-journal.css?v=20260815a"><script defer src="terminal-status.js?v=20260730d"></script><script defer src="mail-routing.js?v=20260807a"></script>
   <link rel="icon" href="images/app-news-tile.png" sizes="96x96"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="images/apple-touch-news.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="ABrief">
 <!-- The hero's "Subscribe RSS" button is how a reader finds this feed; this is
      how a feed reader finds it without being told. It was missing, which is
@@ -191,7 +191,7 @@
     <aside class="rail"><h2>Edition index</h2><nav class="navgroups" aria-label="ABrief sections"><div class="navgroup"><strong>Today</strong><a href="#brief">Supply Brief</a><a href="#cost">Asia Cost Board</a><a href="#production">Taiwan &amp; China</a><a href="#freight">Freight &amp; Ports</a><a href="#policy">Tariff &amp; Regulation</a><a href="#news">Daily News Desk</a></div><div class="navgroup"><strong>Return</strong><a href="#follow">Follow this signal</a><a href="#calendar">Calendar Hub</a><a href="#trust">Data Trust</a><a href="partner.html">Open AsiaSource</a></div></nav><div class="free-app"><button class="subscription-art-button" id="free-app" type="button" title="Keep ABrief one tap away. No account required." aria-label="Free subscription: add ABrief to this device"><img src="images/free-subscription-mailbox-option-a.webp" alt="" width="410" height="470" decoding="async"></button><small id="free-app-note" class="visually-hidden" aria-live="polite"></small></div></aside>
     <main class="main" id="daily-main">
       <section class="hero"><div class="eyebrow">ABrief · Birdland Taiwan</div><h1>The Asia Supply View.</h1><p>Production, export, freight and policy signals translated for Western OEM buyers.</p><div class="editionline"><span id="edition-date">Daily edition</span><span>Birdland Industrial · Since 1974</span><span>Source state shown per report</span></div><div class="hero-actions"><a class="btn" href="feeds/daily-supply-news.xml">Subscribe RSS</a><span class="mail-pick"><label for="edition-market">Market</label><select id="edition-market" aria-label="Your market"></select></span><button class="btn ghost" id="email-edition">Email this edition</button><span class="mail-dest">to the <b id="edition-desk">European desk</b></span><button class="btn print" type="button" onclick="window.print()" aria-label="Print this brief or save it as a PDF">Print &middot; save PDF</button></div></section>
-      <section class="section journal-front-section" id="brief"><div class="journal-front"><article class="journal-lead"><div class="eyebrow">Lead story <b id="lead-asof"></b></div><h2 id="lead-head">Reading the regional shifts that move real-world quotes.</h2><div class="journal-standing" id="lead-standing" hidden><span>Standing view since</span> <b id="lead-standing-date"></b></div><p id="lead-sub">From raw-material corridors to policy turns and port conditions—what actually changes your landed cost.</p><a href="#production">Read the full Asia view →</a></article><figure class="journal-map"><img src="images/asia-supply-map.webp" alt="Editorial map of China and Taiwan supply routes"><figcaption>Raw-material flow · finished goods · key ports</figcaption></figure><div class="journal-risk"><div class="eyebrow">Risk scope</div><h3>Route disruption</h3><div class="list" id="risk-list"></div></div><div class="journal-drivers"><div class="journal-driver-head"><div><div class="eyebrow">Buyer cost drivers</div><h2>What changes the next quote?</h2><p>Three sourced signals only. Read the action first, then open the evidence.</p></div><span class="tag" id="brief-tag">Source-aware</span></div><div class="brief-grid" id="brief-grid"></div></div></div></section>
+      <section class="section journal-front-section" id="brief"><div class="journal-front"><article class="journal-lead" id="daily-brief"><div class="eyebrow"><span id="lead-kicker">Lead story</span> <b id="lead-asof"></b></div><h2 id="lead-head">Reading the regional shifts that move real-world quotes.</h2><div class="journal-standing" id="lead-standing" hidden><span>Standing view since</span> <b id="lead-standing-date"></b></div><div class="db-carried" id="db-carried" hidden><span>Carried forward from</span> <b id="db-carried-date"></b></div><div class="db-away" id="db-away" hidden><span>While you were away</span><ul id="db-away-list"></ul></div><div class="db-cols" id="db-cols" hidden><div class="db-col"><div class="db-col-head">Across all markets</div><ul class="db-list" id="db-themes"></ul></div><div class="db-col"><div class="db-col-head">Your markets</div><ul class="db-list" id="db-markets"></ul></div></div><p class="db-action" id="db-action" hidden></p><p id="lead-sub">From raw-material corridors to policy turns and port conditions—what actually changes your landed cost.</p><a href="#production">Read the full Asia view →</a></article><div class="journal-risk"><div class="eyebrow">Risk scope</div><h3>Route disruption</h3><div class="list" id="risk-list"></div></div><div class="journal-drivers"><div class="journal-driver-head"><div><div class="eyebrow">Buyer cost drivers</div><h2>What changes the next quote?</h2><p>Three sourced signals only. Read the action first, then open the evidence.</p></div><span class="tag" id="brief-tag">Source-aware</span></div><div class="brief-grid" id="brief-grid"></div></div></div></section>
 
   <section class="section" id="cost"><div class="sectionhead"><div><div class="eyebrow">Cost direction</div><h2>Asia Cost Board</h2><p>Inputs are shown only when this edition carries a usable series. Red means rising buyer-cost pressure.</p></div><span class="tag">USD buyer view</span></div><div class="metric-grid" id="metric-grid"></div></section>
 
@@ -326,6 +326,192 @@
        the headline is genuinely older than the summary beneath it. */
     var st=document.getElementById('lead-standing'),sd=document.getElementById('lead-standing-date');
     if(st&&sd&&g.head_asof&&g.head_asof!==lead){sd.textContent=g.head_asof;st.hidden=false;}
+  }());
+  (function(){
+    /* Today's brief.
+
+       Replaces the standing view as the front page's first block. The standing
+       view above is left in the markup and simply stays put when there is no
+       digest to show — a rejected digest costs the reader a day of the new
+       block, not the whole front page.
+
+       Nothing here decides what matters. The ==highlight== and @@figure@@
+       marks come from the generator, which also drops any line whose figure
+       does not appear in that edition's own data. The page only draws. */
+    var D={};try{D=JSON.parse(document.getElementById('outlook-data').textContent||'{}');}catch(e){}
+    var DG=D.today_digest,cols=document.getElementById('db-cols');
+    if(!cols||!DG||!(DG.themes||[]).length)return;
+
+    var T=window.blT||function(s){return s;};
+    var lang='en';try{lang=localStorage.getItem('bl_lang')||'en';}catch(e){}
+    var tr=(DG.i18n||{})[lang]||null;
+    function pick(a,b){return (typeof a==='string'&&a)?a:b;}
+
+    /* Tag to section, decided here rather than by the model: an AI-chosen
+       anchor is an AI-chosen chance of a link that goes nowhere. Every value
+       is a section that exists on this page. */
+    var SECT={freight:'freight',energy:'cost',compliance:'policy',tariff:'policy',materials:'cost',demand:'production'};
+    var TAGL={freight:'Freight',energy:'Energy',compliance:'Compliance',tariff:'Tariffs',materials:'Materials',demand:'Demand'};
+    var PROV=T('Figure verified against this edition')+' · '+(DG.date||'');
+
+    function marked(text,fig){
+      var frag=document.createDocumentFragment(),re=/==([^=]+)==|@@([^@]+)@@/g,i=0,m;
+      while((m=re.exec(text))){
+        if(m.index>i)frag.appendChild(document.createTextNode(text.slice(i,m.index)));
+        var sp=document.createElement('span');
+        if(m[1]!==undefined){sp.className='db-hl';sp.textContent=m[1];}
+        else{sp.className='db-fig';sp.textContent=m[2];if(fig)sp.title=PROV;}
+        frag.appendChild(sp);i=re.lastIndex;
+      }
+      if(i<text.length)frag.appendChild(document.createTextNode(text.slice(i)));
+      return frag;
+    }
+    function row(label,text,href){
+      var li=document.createElement('li');li.className='db-line';
+      if(label){var b=document.createElement('span');b.className='db-tag';b.textContent=label;li.appendChild(b);}
+      var s=document.createElement('span');s.className='db-text';s.appendChild(marked(text,true));li.appendChild(s);
+      if(href){
+        /* The whole row is the target, not just a small arrow. */
+        var a=document.createElement('a');a.className='db-jump';a.href=href;
+        a.setAttribute('aria-label',T('Open the section for this line'));
+        li.appendChild(a);li.classList.add('is-link');
+      }
+      return li;
+    }
+
+    document.getElementById('lead-kicker').textContent=T('Daily brief');
+    var head=document.getElementById('lead-head');
+    head.textContent='';head.appendChild(marked(pick(tr&&tr.headline,DG.headline),false));
+    var as=document.getElementById('lead-asof');if(as)as.textContent='· '+(DG.date||'');
+    var sub=document.getElementById('lead-sub');if(sub)sub.hidden=true;
+    var standing=document.getElementById('lead-standing');if(standing)standing.hidden=true;
+
+    /* An edition whose digest was rejected keeps yesterday's lines. Saying so
+       is the difference between a stale page and a lying one. */
+    var edDate=String(D.updated||'').split(',')[0].trim();
+    if(DG.date&&edDate&&DG.date!==edDate){
+      var cf=document.getElementById('db-carried'),cd=document.getElementById('db-carried-date');
+      if(cf&&cd){cd.textContent=DG.date;cf.querySelector('span').textContent=T('Carried forward from');cf.hidden=false;}
+    }
+
+    var themes=document.getElementById('db-themes');
+    (DG.themes||[]).forEach(function(t,i){
+      var sec=SECT[t.tag]||'';
+      themes.appendChild(row(T(TAGL[t.tag]||t.tag),pick(tr&&tr.themes&&tr.themes[i],t.text),sec?'#'+sec:''));
+    });
+
+    /* Watched markets come from My Market's own list, so starring a market in
+       one desk orders the other. Personalisation may only sort, never filter:
+       a market that moved today and is not on the list still gets a line,
+       because a brief that hides the news you did not ask for is a brief that
+       helps you miss it. */
+    var mine=[];try{mine=JSON.parse(localStorage.getItem('bl_mm_mine')||'[]')||[];}catch(e){mine=[];}
+    if(!Array.isArray(mine))mine=[];
+    var byCode={};(DG.markets||[]).forEach(function(m,i){byCode[m.code]={m:m,i:i};});
+    var box=document.getElementById('db-markets'),shown={};
+    function marketRow(code){
+      var e=byCode[code];if(!e)return null;shown[code]=1;
+      return row(String(code).toUpperCase(),pick(tr&&tr.markets&&tr.markets[e.i],e.m.text),'#production');
+    }
+    var listed=0;
+    mine.forEach(function(code){
+      var li=marketRow(code);
+      if(li){box.appendChild(li);listed++;}
+      else if(D.regions&&D.regions[code]){
+        var q=document.createElement('li');q.className='db-line is-quiet';
+        var b=document.createElement('span');b.className='db-tag';b.textContent=String(code).toUpperCase();
+        var s=document.createElement('span');s.className='db-text';s.textContent=T('No change this edition');
+        q.appendChild(b);q.appendChild(s);box.appendChild(q);listed++;
+      }
+    });
+    var rest=(DG.markets||[]).filter(function(m){return !shown[m.code];});
+    if(!listed){
+      rest.forEach(function(m,i){var li=marketRow(m.code);if(li)box.appendChild(li);});
+    }else if(rest.length){
+      var li=document.createElement('li');li.className='db-line is-also';
+      var b=document.createElement('span');b.className='db-tag';b.textContent=T('Also moved');
+      var s=document.createElement('span');s.className='db-text';
+      s.textContent=rest.map(function(m){return String(m.code).toUpperCase();}).join(', ');
+      var a=document.createElement('a');a.className='db-jump';a.href='#production';
+      a.setAttribute('aria-label',T('Open the section for this line'));
+      li.appendChild(b);li.appendChild(s);li.appendChild(a);li.classList.add('is-link');box.appendChild(li);
+    }
+    if(!box.children.length){
+      var q=document.createElement('li');q.className='db-line is-quiet';
+      q.textContent=T('No change in your markets this edition');box.appendChild(q);
+    }
+    cols.hidden=false;
+
+    var act=DG.action&&pick(tr&&tr.action,DG.action.text);
+    if(act){
+      var p=document.getElementById('db-action');
+      var lab=document.createElement('b');lab.textContent=T('This week');
+      p.appendChild(lab);p.appendChild(document.createTextNode(' '));
+      p.appendChild(marked(act,true));
+      if(DG.action.tool){
+        var a=document.createElement('a');a.className='db-tool';a.href=DG.action.tool;
+        a.textContent=T('Open the tool');p.appendChild(document.createTextNode(' '));p.appendChild(a);
+      }
+      p.hidden=false;
+    }
+
+    /* Editions missed since the last visit. Headlines only — enough to know
+       what happened, cheap enough to carry in the page. */
+    var seen=null;try{seen=localStorage.getItem('bl_ab_seen');}catch(e){}
+    var arch=(DG.archive||[]);
+    if(seen&&seen!==DG.date){
+      var missed=[];
+      for(var i=0;i<arch.length;i++){if(arch[i].date===seen)break;missed.push(arch[i]);}
+      if(missed.length){
+        var away=document.getElementById('db-away'),ul=document.getElementById('db-away-list');
+        away.querySelector('span').textContent=T('While you were away');
+        missed.forEach(function(a){
+          var li=document.createElement('li');
+          var d=document.createElement('b');d.textContent=a.date||'';
+          li.appendChild(d);li.appendChild(document.createTextNode(' '));
+          li.appendChild(marked(pick(a.i18n&&a.i18n[lang],a.headline),false));
+          ul.appendChild(li);
+        });
+        away.hidden=false;
+      }
+    }
+    try{localStorage.setItem('bl_ab_seen',DG.date||'');}catch(e){}
+
+    /* The press run. Lines land first so the page is readable inside a second,
+       then the editor's marks go on. Plays on every open by explicit choice —
+       the marks are the point, not a first-run flourish. Reduced motion gets
+       the finished page with no run at all. */
+    var reduce=false;try{reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}
+    var lines=[].slice.call(document.querySelectorAll('#daily-brief .db-line'));
+    var hls=[].slice.call(document.querySelectorAll('#daily-brief .db-hl'));
+    var figs=[].slice.call(document.querySelectorAll('#daily-brief .db-fig'));
+    function circle(sp){
+      /* One SVG scaled by the span itself, so a resize or a font change can
+         never leave the ring behind the number it belongs to. */
+      var NS='http://www.w3.org/2000/svg';
+      var svg=document.createElementNS(NS,'svg');
+      svg.setAttribute('viewBox','0 0 100 40');svg.setAttribute('preserveAspectRatio','none');
+      svg.setAttribute('aria-hidden','true');
+      var e=document.createElementNS(NS,'ellipse');
+      e.setAttribute('cx','50');e.setAttribute('cy','20');e.setAttribute('rx','47');e.setAttribute('ry','17');
+      e.setAttribute('fill','none');e.setAttribute('stroke','currentColor');e.setAttribute('stroke-width','2');
+      e.setAttribute('stroke-linecap','round');e.setAttribute('vector-effect','non-scaling-stroke');
+      e.setAttribute('transform','rotate(-2 50 20)');
+      e.setAttribute('pathLength','100');e.setAttribute('stroke-dasharray','100');
+      e.setAttribute('stroke-dashoffset',reduce?'0':'100');
+      svg.appendChild(e);sp.appendChild(svg);
+      if(!reduce)requestAnimationFrame(function(){requestAnimationFrame(function(){e.style.strokeDashoffset='0';});});
+    }
+    if(reduce){
+      lines.forEach(function(l){l.classList.add('is-in');});
+      hls.forEach(function(h){h.classList.add('is-on');});
+      figs.forEach(circle);
+      return;
+    }
+    lines.forEach(function(l,i){setTimeout(function(){l.classList.add('is-in');},60+i*70);});
+    var after=60+lines.length*70+180;
+    hls.forEach(function(h,i){setTimeout(function(){h.classList.add('is-on');},after+i*260);});
+    figs.forEach(function(f,i){setTimeout(function(){circle(f);},after+hls.length*260+i*300);});
   }());
   (function(){
     /* The edition strip.

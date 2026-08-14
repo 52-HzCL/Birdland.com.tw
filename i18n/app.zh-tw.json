@@ -1070,5 +1070,20 @@
   "{family} · {market} — Taiwan-origin supply moved bands, now in the {band}.": "{family}・{market}——台灣來源供應移動了價帶：現位於{band}。",
   "Your market leads its neighbourhood — <b>{av}%</b> of {family} imports are Taiwan-origin, against {nv}% in {market}.": "你的市場在鄰近地區居於領先:{family} 進口中有 <b>{av}%</b> 來自台灣,而 {market} 只有 {nv}%。",
   "CHINA-ORIGIN SHARE IS RECEDING — A WINDOW": "中國產地佔比正在退——窗口期",
-  "A CHINA PRICE PUSH IS UNDER WAY": "中國價格戰進行中"
+  "A CHINA PRICE PUSH IS UNDER WAY": "中國價格戰進行中",
+  "Daily brief": "每日要點",
+  "Across all markets": "全局主題",
+  "Freight": "運價",
+  "Energy": "能源",
+  "Compliance": "合規",
+  "Materials": "原料",
+  "Demand": "需求",
+  "No change this edition": "本期無變化",
+  "No change in your markets this edition": "本期你的市場無變化",
+  "Also moved": "其他有動的市場",
+  "This week": "本週該做",
+  "Open the tool": "開啟工具",
+  "Carried forward from": "沿用自",
+  "Figure verified against this edition": "數字已核對本期資料",
+  "Open the section for this line": "開啟這條對應的段落"
 }

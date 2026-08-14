@@ -165,13 +165,13 @@ html.ui-lg .news-card:first-child{grid-row:auto}
   border-bottom:3px double var(--kb-ink);
 }
 .journal-front-section{border-bottom:4px double var(--kb-ink)}
-/* Lead, map, risk. The lead used to get .75fr — 318px at 1440 — which set a
-   36px serif headline two words to the line; the map was a fixed 372px image
-   inside a 600px row, and the leftover 230px showed as a bare beige band.
-   The lead now gets a readable measure and the map fills its cell. */
+/* Brief and risk. The supply-route map used to hold the middle column; it
+   was a fixed illustration occupying prime front-page space every single
+   day, which is the wrong trade for a paper that is reread daily, so it
+   moved to the opening sequence and the brief took the width. */
 .journal-front{
   display:grid;
-  grid-template-columns:1.05fr 1.2fr 1.15fr;
+  grid-template-columns:2.05fr 1.15fr;
   min-height:410px;
 }
 .journal-lead,.journal-drivers{padding:var(--sp-4) var(--sp-4)}
@@ -185,19 +185,11 @@ html.ui-lg .news-card:first-child{grid-row:auto}
 .journal-standing[hidden]{display:none}
 .journal-lead p{margin:0;color:#514b41;font:var(--fs-body)/1.5 var(--serif)}
 .journal-lead a{display:inline-block;margin-top:var(--sp-4);color:var(--kb-red);font:700 var(--fs-micro) var(--mono);letter-spacing:.07em;text-decoration:none;text-transform:uppercase}
-.journal-map{margin:0;display:flex;flex-direction:column;border-right:1px solid var(--kb-line);background:#e9e2d6}
-.journal-map img{display:block;width:100%;flex:1;min-height:372px;height:auto;object-fit:cover;filter:saturate(.76) contrast(.98)}
-.journal-map figcaption{flex:0 0 auto}
 /* The lead column was padded and the risk column was not, so the risk text
    started flush against the map — 0px, measured. Both sides of the map now
    have a gutter. */
 .journal-risk{padding-left:var(--sp-4)}
 .journal-lead{padding-right:var(--sp-4)}
-/* min-height, not height — the third hard-pinned box this sweep turned up.
-   "Raw-material flow · finished goods · key ports" is one line at 11px and
-   three at Large, so it spilled out of its 38px box and printed over the
-   "Risk scope" eyebrow in the column below. Identical rendering when it fits. */
-.journal-map figcaption{min-height:38px;padding:var(--sp-2) var(--sp-3);color:var(--kb-muted);font:600 var(--fs-micro) var(--mono);letter-spacing:.08em;text-transform:uppercase}
  /* The front is a three-column grid — lead, map, risk — and the drivers block
     was falling into column one of the second row, which is the narrowest of
     the three (.75fr). That is why three cards could not sit side by side: they
@@ -278,7 +270,6 @@ dialog{border-radius:0}
   .hero h1{white-space:normal}
   .journal-front{grid-template-columns:1fr 1fr}
   .journal-drivers{grid-column:1/-1;padding-left:0}
-  .journal-map{border-right:0}
 }
 @media(max-width:640px){
   .free-app{justify-content:flex-start;min-width:0;padding-left:4px}
@@ -292,9 +283,8 @@ dialog{border-radius:0}
   .hero h1{font-size:var(--fs-display);margin-top:var(--sp-4)}
   .hero p{font-size:var(--fs-body)}
   .journal-front{grid-template-columns:1fr}
-  .journal-lead,.journal-map{border-right:0;border-bottom:1px solid var(--kb-line)}
+  .journal-lead{border-right:0;border-bottom:1px solid var(--kb-line)}
   .journal-lead,.journal-drivers{padding:var(--sp-3) 0}
-  .journal-map img{height:300px}
   .journal-front .brief-card{grid-template-columns:76px 74px 1fr}
   .journal-front .brief-card .state{grid-column:3}
   .journal-front .brief-card p{grid-column:1/-1;grid-row:2}
@@ -313,19 +303,22 @@ dialog{border-radius:0}
    footer and everything between them dropped 353px once the script ran. That
    single move was most of this page's 0.234 CLS, the worst on the site.
 
-   The heights below are measured, not guessed — 896 / 1031 / 1157 / 1666 /
-   2192px at 1440 / 1100 / 900 / 700 / 380. min-height only reserves; a taller
-   edition still grows the box, it just grows from the right starting point.
+   The heights below are measured, not guessed — 807 / 874 / 1098 / 1654 /
+   2164px at 1440 / 1100 / 900 / 700 / 380, re-measured after the supply map
+   left this row and the brief took its place. They are a typical edition, not
+   the contract maximum: min-height only reserves, so a six-theme day still
+   grows the box, whereas reserving for the busiest possible edition would
+   leave dead paper under every ordinary one.
 
    The tint is the skeleton: something is coming, rather than a white gap. */
-.journal-front{min-height:900px;background:linear-gradient(var(--kb-line,rgba(0,0,0,.03)) 0 0) no-repeat 0 0/100% 1px}
+.journal-front{min-height:810px;background:linear-gradient(var(--kb-line,rgba(0,0,0,.03)) 0 0) no-repeat 0 0/100% 1px}
 /* No [data-ready] escape hatch: min-height only reserves, it never caps, so a
    taller edition still grows and releasing the reservation later would just be
    a second shift. */
-@media(max-width:1200px){.journal-front{min-height:1040px}}
-@media(max-width:1000px){.journal-front{min-height:1160px}}
-@media(max-width:820px){.journal-front{min-height:1680px}}
-@media(max-width:560px){.journal-front{min-height:2200px}}
+@media(max-width:1200px){.journal-front{min-height:875px}}
+@media(max-width:1000px){.journal-front{min-height:1100px}}
+@media(max-width:820px){.journal-front{min-height:1655px}}
+@media(max-width:560px){.journal-front{min-height:2165px}}
 
 /* ---- Sections reserve their height before they have content ----
 
@@ -348,11 +341,9 @@ dialog{border-radius:0}
      its natural height rather than stretching to match a column that is no
      longer beside it. */
   .journal-front{display:block}
-  .journal-lead,.journal-map{border-right:0}
+  .journal-lead{border-right:0}
   /* One column on paper: a side gutter would read as an indent. */
   .journal-risk,.journal-lead{padding-left:0;padding-right:0}
-  .journal-map{margin:4mm 0}
-  .journal-map img{min-height:0;height:auto;flex:none}
   /* Three cards in a 2x2 grid left the fourth cell showing the grid's own
      line-colour background — a grey brick on paper. */
   .journal-front .brief-grid{background:transparent;border:0;gap:6px}
@@ -364,10 +355,87 @@ dialog{border-radius:0}
    placeholder sentence is replaced by the real one; the driver cards grow,
    by 15px at 1440 and 297px at 380; the action row grows 8px once the desk
    name is written into it. Each reserves the taller of its two states. */
-.journal-lead,.journal-risk{min-height:590px}
+.journal-lead,.journal-risk{min-height:520px}
 .journal-drivers{min-height:330px}
 .hero-actions{min-height:47px}
 @media(max-width:820px){
   .journal-lead,.journal-risk{min-height:0}
   .journal-drivers{min-height:800px}
+}
+
+/* ---- Today's brief -------------------------------------------------------
+   Style is the paper's own: mono eyebrow, serif headline, hairline-ruled
+   rows. Nothing new is introduced except the editor's two marks.
+
+   Written in logical properties throughout. Hebrew is a queued language and
+   this block would otherwise be the one part of the front page that has to
+   be rebuilt rather than mirrored. */
+.db-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 var(--sp-4);margin-block:var(--sp-3) 0}
+.db-cols[hidden]{display:none}
+.db-col-head{margin-block-end:var(--sp-2);padding-block-end:6px;border-block-end:1px solid var(--kb-line);color:var(--kb-muted);font:700 var(--fs-micro) var(--mono);letter-spacing:.09em;text-transform:uppercase}
+.db-list{margin:0;padding:0;list-style:none}
+.db-line{position:relative;display:flex;gap:var(--sp-2);padding-block:7px;border-block-end:1px solid #e3ddcd;color:#514b41;font:var(--fs-micro)/1.55 var(--serif)}
+.db-line:last-child{border-block-end:0}
+.db-tag{flex:0 0 auto;min-inline-size:44px;color:var(--kb-red);font:700 var(--fs-micro)/1.7 var(--mono);letter-spacing:.05em;text-transform:uppercase}
+.db-text{min-inline-size:0}
+.db-line.is-quiet{color:var(--kb-faint)}
+.db-line.is-also .db-tag{color:var(--kb-amber)}
+.db-jump{position:absolute;inset:0;text-indent:-9999px;overflow:hidden}
+.db-line.is-link:hover{background:#f2ecdf}
+.db-jump:focus-visible{outline:2px solid var(--kb-red);outline-offset:-2px}
+.db-action{margin-block:var(--sp-3) 0;padding-block-start:var(--sp-2);border-block-start:1px solid var(--kb-line);font:var(--fs-micro)/1.6 var(--serif)}
+.db-action[hidden]{display:none}
+.db-action b{color:var(--kb-red);font:700 var(--fs-micro) var(--mono);letter-spacing:.07em;text-transform:uppercase}
+.db-tool{color:var(--kb-jade);font:700 var(--fs-micro) var(--mono);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.db-carried,.db-away{color:var(--kb-muted);font:600 var(--fs-micro) var(--mono);letter-spacing:.07em;text-transform:uppercase}
+.db-carried{margin-block:calc(var(--sp-3) * -1) var(--sp-3)}
+.db-carried[hidden],.db-away[hidden]{display:none}
+.db-away{margin-block-start:var(--sp-3);text-transform:none;letter-spacing:0}
+.db-away ul{margin:6px 0 0;padding:0;list-style:none}
+.db-away li{padding-block:3px;color:#514b41;font:var(--fs-micro)/1.5 var(--serif)}
+.db-away li b{color:var(--kb-muted);font:700 var(--fs-micro) var(--mono);letter-spacing:.06em}
+.db-hl{background-image:linear-gradient(#f2e3bd,#f2e3bd);background-repeat:no-repeat;background-size:0% 82%;background-position:0 62%;border-radius:2px;transition:background-size .42s ease}
+.db-hl.is-on{background-size:100% 82%}
+.db-fig{position:relative;color:var(--kb-red);white-space:nowrap;padding-inline:5px}
+.db-fig svg{position:absolute;inset-block-start:-2px;inset-inline-start:0;inline-size:100%;block-size:calc(100% + 4px);overflow:visible;pointer-events:none}
+.db-fig ellipse{transition:stroke-dashoffset .5s ease}
+.db-line{opacity:0;transform:translateY(5px);transition:opacity .22s ease,transform .22s ease}
+.db-line.is-in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .db-line{opacity:1;transform:none;transition:none}
+  .db-hl{transition:none}
+  .db-fig ellipse{transition:none}
+}
+@media(max-width:820px){.db-cols{grid-template-columns:1fr;gap:var(--sp-3)}}
+html.ui-lg .db-cols{grid-template-columns:1fr;gap:var(--sp-3)}
+html.ui-lg .db-line{flex-wrap:wrap}
+html.ui-lg .db-tag{min-inline-size:0}
+@media print{
+  .db-line{opacity:1;transform:none}
+  .db-hl{background-size:100% 82%}
+  .db-jump{display:none}
+}
+
+/* ---- The supply map's new home -------------------------------------------
+   It used to hold the middle column of the front page: a fixed illustration
+   occupying prime space in a paper that is reread every day. It does its real
+   job in one look, so it does it here, behind the opening sheet, and the
+   column it vacated went to the brief.
+
+   Applied as a background on the sheet itself rather than a positioned layer:
+   the sheet is shared chrome across five desks and this rule is scoped to
+   ABrief, so it must not be able to disturb anything it does not own. The
+   veil above it is the paper colour, so the icon and app name keep their
+   contrast. The file is already in the service worker's precache, so a
+   returning reader pays nothing for it.
+
+   The sheet is shown once per browser session by app-bar.js, which is its
+   own long-standing rhythm and not this block's to change. */
+#ab-splash[data-app="news"]{
+  background-image:
+    linear-gradient(rgba(243,239,229,.88),rgba(243,239,229,.94)),
+    url("images/asia-supply-map.webp");
+  background-repeat:no-repeat,no-repeat;
+  background-position:center,center;
+  background-size:cover,cover;
 }

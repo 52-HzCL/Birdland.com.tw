@@ -174,6 +174,33 @@ jobs:
           python3 -m compileall -q tools
           python3 tools/gen_news_gemini.py --selftest
 
+      # outlook-data.json is inlined verbatim into five generated pages, so a
+      # kilobyte added to the data is a kilobyte added to every one of them,
+      # downloaded again on each edition. The daily digest carries ten
+      # languages and a five-edition archive, which is exactly the kind of
+      # thing that grows quietly. These ceilings are roughly 1.4x today's
+      # sizes: room to grow, but not room to double unnoticed.
+      - name: Check the data and page size budget
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const budget = [
+            ['outlook-data.json', 150 * 1024],
+            ['executive.html', 260 * 1024],
+            ['guide.html', 190 * 1024]
+          ];
+          let bad = 0;
+          for (const [file, cap] of budget) {
+            const size = fs.statSync(file).size;
+            const pct = Math.round((size / cap) * 100);
+            console.log(`${file}: ${size} bytes, ${pct}% of budget`);
+            if (size > cap) { console.error(`::error::${file} is ${size} bytes, over its ${cap}-byte budget`); bad++; }
+          }
+          process.exit(bad ? 1 : 0);
+          NODE
+
       - name: Check the app list agrees everywhere
         shell: bash
         run: |

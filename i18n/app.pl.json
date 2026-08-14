@@ -1070,5 +1070,20 @@
   "{family} · {market} — Taiwan-origin supply moved bands, now in the {band}.": "{family} · {market} — dostawy pochodzenia tajwańskiego zmieniły przedział: teraz w {band}.",
   "Your market leads its neighbourhood — <b>{av}%</b> of {family} imports are Taiwan-origin, against {nv}% in {market}.": "Państwa rynek jest liderem w okolicy: <b>{av}%</b> importu {family} pochodzi z Tajwanu, wobec {nv}% w {market}.",
   "CHINA-ORIGIN SHARE IS RECEDING — A WINDOW": "UDZIAŁ POCHODZENIA CHIŃSKIEGO SIĘ COFA — OKNO MOŻLIWOŚCI",
-  "A CHINA PRICE PUSH IS UNDER WAY": "TRWA CHIŃSKA OFENSYWA CENOWA"
+  "A CHINA PRICE PUSH IS UNDER WAY": "TRWA CHIŃSKA OFENSYWA CENOWA",
+  "Daily brief": "Brief dzienny",
+  "Across all markets": "We wszystkich rynkach",
+  "Freight": "Fracht",
+  "Energy": "Energia",
+  "Compliance": "Zgodność",
+  "Materials": "Materiały",
+  "Demand": "Popyt",
+  "No change this edition": "Bez zmian w tym wydaniu",
+  "No change in your markets this edition": "Bez zmian na Państwa rynkach w tym wydaniu",
+  "Also moved": "Poruszyły się także",
+  "This week": "W tym tygodniu",
+  "Open the tool": "Otwórz narzędzie",
+  "Carried forward from": "Przeniesione z",
+  "Figure verified against this edition": "Liczba zweryfikowana z tym wydaniem",
+  "Open the section for this line": "Otwórz sekcję dla tego wiersza"
 }
