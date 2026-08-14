@@ -352,7 +352,13 @@
        is a section that exists on this page. */
     var SECT={freight:'freight',energy:'cost',compliance:'policy',tariff:'policy',materials:'cost',demand:'production'};
     var TAGL={freight:'Freight',energy:'Energy',compliance:'Compliance',tariff:'Tariffs',materials:'Materials',demand:'Demand'};
-    var PROV=T('Figure verified against this edition')+' · '+(DG.date||'');
+    /* The label alone, with no date joined onto it. This block runs before the
+       deferred i18n.js has its dictionary, so T() returns the English key here
+       and the later sweep is what translates it — and that sweep matches whole
+       attribute values exactly. A composed "label · date" string is never
+       byte-identical to the key, so it would stay English forever in all nine
+       languages. The date is already printed in the eyebrow above. */
+    var PROV=T('Figure verified against this edition');
 
     function marked(text,fig){
       var frag=document.createDocumentFragment(),re=/==([^=]+)==|@@([^@]+)@@/g,i=0,m;
