@@ -41,7 +41,7 @@ def digest_corpus(*objs):
         out|=set(digest_numbers(json.dumps(o,ensure_ascii=False)))
     return out
 
-def build_digest(dg,regions,corpus,today):
+def build_digest(dg,regions,corpus,today,why=None):
     """Validate one AI-proposed digest. Returns the cleaned digest or None.
 
     Every figure printed on the front page must be traceable to the day's own
@@ -59,9 +59,13 @@ def build_digest(dg,regions,corpus,today):
         if t.count("==")%2 or t.count("@@")%2: return None
         if t.count("==")>2 or t.count("@@")>4: return None
         return t if all(n in corpus for n in digest_numbers(t)) else None
-    if not isinstance(dg,dict): return None
+    def note(m):
+        if why is not None: why.append(m)
+    if not isinstance(dg,dict):
+        note("no today_digest object in the reply"); return None
     head=line(dg.get("headline"),90)
-    if not head: return None
+    if not head:
+        note("headline rejected: %r"%(dg.get("headline"),)); return None
     themes=[]
     for it in (dg.get("themes") or [])[:6]:
         if not isinstance(it,dict): continue
@@ -70,7 +74,8 @@ def build_digest(dg,regions,corpus,today):
             # No jump field: the page derives the target section from the tag.
             # An AI-chosen anchor is an AI-chosen chance of a dead link.
             themes.append({"tag":it["tag"],"text":txt})
-    if len(themes)<2: return None
+    if len(themes)<2:
+        note("only %d usable theme(s) of %d offered"%(len(themes),len(dg.get("themes") or []))); return None
     markets=[]
     for it in (dg.get("markets") or [])[:6]:
         if not isinstance(it,dict): continue
@@ -104,6 +109,67 @@ def build_digest(dg,regions,corpus,today):
         tr[lg]=e
     out["i18n"]=tr
     return out
+
+def digest_context(d):
+    """The slice of the edition the brief is actually written from.
+
+    Asking for the digest inside the main call meant asking the model to echo
+    a 97KB document and remember to bolt a new structure onto it; the first
+    live run came back with no digest at all. This is a few KB instead, so the
+    second call has one job and its whole context is the evidence for it."""
+    out={"indices":d.get("indices",[]),"macro":d.get("macro",[]),
+         "shipping":d.get("shipping",{}),"forward":d.get("forward",{}),
+         "procurement":d.get("procurement",{}),"war":d.get("war",{}),
+         "material":d.get("material",{})}
+    out["regions"]={c:{"headline":r.get("headline"),"summary":r.get("summary")}
+                    for c,r in (d.get("regions") or {}).items()}
+    return out
+
+DIGEST_PROMPT="""You write the front page of Birdland's daily supply brief for an import buyer of garden and field hand tools. Below is today's market data. Write today's brief from it and output NOTHING but one JSON object in exactly this shape:
+
+{"headline":"...","themes":[{"tag":"freight","text":"..."}],"markets":[{"code":"de","text":"..."}],"action":{"text":"...","tool":"cost-desk#p-sail"},"i18n":{"de":{"headline":"...","themes":[{"text":"..."}],"markets":[{"text":"..."}],"action":{"text":"..."}}}}
+
+RULES (a broken rule costs you the line, or the whole brief):
+- "headline": one line, 70 characters or fewer, about the single most important thing in the data below. It may only refer to something that also appears in "themes".
+- "themes": 3 to 6 items, most important first. "tag" MUST be one of: freight, energy, compliance, tariff, materials, demand. "text" is 110 characters or fewer.
+- "markets": 0 to 6 items, ONLY for regions where something genuinely changed. "code" MUST be one of the region codes in the data. "text" is 100 characters or fewer. Omit a quiet market — the page says so itself. Do not pad this list.
+- "action": the one thing to do this week, 90 characters or fewer. "tool" MUST be one of: cost-desk#p-sail, cost-desk#p-landed2, cost-desk#p-cduty, partner.html#p-mkt, my-market.html, or "".
+- MARK WHAT MATTERS: wrap the single most important phrase of each line in ==double equals== and each figure in @@double at-signs@@. At most one ==...== and two @@...@@ per line. These drive the page's highlighter and its circled figures.
+- EVERY figure you write must already appear in the data below. A validator drops any line containing a number that is not in the data, so an invented figure costs you the line. If you cannot support a point with a figure from the data, write it without a number.
+- "i18n": keys de, es, fr, it, ja, nl, pl, pt-br, zh-tw. Each repeats the SAME structure with the SAME number of themes and markets in the SAME order, translated. Never translate tag/code/tool. Keep the ==...== and @@...@@ marks around the equivalent words. Traditional Chinese for zh-tw. Never abbreviate Taiwan or China.
+- Lead with regulation, origin and supply risk; treat prices and freight as background. Never tell the buyer to push for a lower price.
+- No markdown, no commentary, no code fence. One JSON object.
+
+TODAY'S DATA:
+"""
+
+def request_digest(ctx,model,key):
+    body={"contents":[{"parts":[{"text":DIGEST_PROMPT+json.dumps(ctx,ensure_ascii=False)}]}],
+          "generationConfig":{"temperature":0.4,"maxOutputTokens":8192,
+                              "responseMimeType":"application/json"}}
+    u="https://generativelanguage.googleapis.com/v1beta/models/"+model+":generateContent?key="+key
+    req=urllib.request.Request(u,data=json.dumps(body).encode(),
+                               headers={"Content-Type":"application/json"})
+    resp=json.load(urllib.request.urlopen(req,timeout=120))
+    txt="".join(p.get("text","") for p in resp["candidates"][0]["content"]["parts"])
+    return _extract_digest_json(txt)
+
+def _extract_digest_json(t):
+    t=(t or "").strip()
+    if t.startswith("```"):
+        t=t[3:]
+        if t[:4].lower()=="json": t=t[4:]
+        if t.endswith("```"): t=t[:-3]
+    dec=json.JSONDecoder(); i=0; L=len(t)
+    while i<L:
+        c=t.find("{",i)
+        if c<0: break
+        try: obj,end=dec.raw_decode(t,c)
+        except ValueError:
+            i=c+1; continue
+        if isinstance(obj,dict) and "themes" in obj: return obj
+        i=end
+    return None
 
 def roll_digest_archive(newdig,olddig):
     """Headlines only. Enough to tell a buyer who was away three days what they
@@ -328,7 +394,20 @@ try:
     # ---- today's front-page digest -------------------------------------
     _corpus=digest_corpus(data,{k:v for k,v in cand.items() if k!="today_digest"})
     _olddig=data.get("today_digest") or {}
-    _newdig=build_digest(cand.get("today_digest"),data["regions"],_corpus,today)
+    _why=[]
+    _newdig=build_digest(cand.get("today_digest"),data["regions"],_corpus,today,_why)
+    if not _newdig:
+        # The main call is a 97KB echo and drops the new key; a dedicated call
+        # with a few KB of context and one job does not. Never allowed to break
+        # the edition: any failure here leaves the rest of the update intact.
+        print("digest: first pass unusable (%s); asking separately"%("; ".join(_why) or "not offered"))
+        try:
+            _dg2=request_digest(digest_context(cand),MODEL,KEY)
+            _why2=[]
+            _newdig=build_digest(_dg2,data["regions"],_corpus,today,_why2)
+            if not _newdig: print("digest: dedicated call also unusable (%s)"%("; ".join(_why2) or "no object"))
+        except Exception as _ex:
+            print("digest: dedicated call failed (%s)"%_ex)
     if _newdig:
         cand["today_digest"]=roll_digest_archive(_newdig,_olddig)
         print("digest: %d themes, %d markets, %d languages, %d archived"%(
