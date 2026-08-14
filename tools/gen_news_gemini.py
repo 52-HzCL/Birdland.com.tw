@@ -157,6 +157,8 @@ RULES (a broken rule costs you the line, or the whole brief):
 - "headline": one line, 70 characters or fewer, about the single most important thing in the data below. It may only refer to something that also appears in "themes".
 - "themes": 3 to 6 items, most important first. "tag" MUST be one of: freight, energy, compliance, tariff, materials, demand. "text" is 110 characters or fewer.
 - "markets": 0 to 6 items, ONLY for regions where something genuinely changed. "code" MUST be one of the region codes in the data. "text" is 100 characters or fewer. Omit a quiet market — the page says so itself. Do not pad this list.
+- A market line must be ABOUT that market. The reader sees only the market's own name beside it, so a line filed under "uk" that talks about Rotterdam and Genoa reads as a claim about the United Kingdom. If a movement belongs to a lane or a region rather than one market, put it in "themes" instead.
+- Write plainly. No filler adverbs ("strategically", "proactively", "carefully"), no throat-clearing. Say the thing to do.
 - "action": the one thing to do this week, 90 characters or fewer. "tool" MUST be one of: cost-desk#p-sail, cost-desk#p-landed2, cost-desk#p-cduty, partner.html#p-mkt, my-market.html, or "".
 - MARK WHAT MATTERS: wrap the single most important phrase of each line in ==double equals== and each figure in @@double at-signs@@. At most one ==...== and two @@...@@ per line. These drive the page's highlighter and its circled figures.
 - EVERY figure you write must already appear in the data below. A validator drops any line containing a number that is not in the data, so an invented figure costs you the line. If you cannot support a point with a figure from the data, write it without a number.
