@@ -82,7 +82,7 @@ function add(t, n, d, u) {
  ['Retail margin', 'Cost to shelf price and gross profit', 'cost-desk.html#p-margin'],
  ['Reorder timing', 'When to place the next order', 'cost-desk.html#p-reorder'],
  ['Plan a sailing', 'Lane options and booking window', 'cost-desk.html#p-sail'],
- ['TW vs CN duty', 'Origin comparison including duty', 'cost-desk.html#p-cduty'],
+ ['Taiwan vs China duty', 'Origin comparison including duty', 'cost-desk.html#p-cduty'],
 ].forEach(r => add('TOOL', r[0], r[1], r[2]));
 
 // Materials and processes come out of AsiaSource's own tables by bracket

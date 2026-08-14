@@ -101,7 +101,7 @@ for n, d, u in [
     ("Retail margin", "Cost to shelf price and gross profit", "cost-desk.html#p-margin"),
     ("Reorder timing", "When to place the next order", "cost-desk.html#p-reorder"),
     ("Plan a sailing", "Lane options and booking window", "cost-desk.html#p-sail"),
-    ("TW vs CN duty", "Origin comparison including duty", "cost-desk.html#p-cduty"),
+    ("Taiwan vs China duty", "Origin comparison including duty", "cost-desk.html#p-cduty"),
 ]:
     add("TOOL", n, d, u)
 
