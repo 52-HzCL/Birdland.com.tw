@@ -105,7 +105,8 @@ html.ui-lg .desk-grid,
 html.ui-lg .routes,
 html.ui-lg .calendar-grid,
 html.ui-lg .trust-grid,
-html.ui-lg .news-grid{grid-template-columns:1fr}
+html.ui-lg .news-grid,
+html.ui-lg .source-columns{grid-template-columns:1fr}
 html.ui-lg .news-card:first-child{grid-row:auto}
 .free-app{position:relative;display:flex;justify-content:flex-end;align-items:center;padding:0 8px;border:0;min-width:126px}
 .free-app .subscription-art-button{position:relative;display:block;width:112px;margin:-9px 0 -7px;padding:0;border:0;background:transparent;line-height:0;filter:drop-shadow(0 4px 4px rgba(34,30,25,.16));transform:rotate(-1.1deg);transition:transform var(--dur-slow) ease,filter var(--dur-slow) ease}
