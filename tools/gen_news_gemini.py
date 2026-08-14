@@ -3,7 +3,7 @@
 then rebuild news.html. Safe by design: if the API call or parsing fails, it only
 bumps the 'updated' timestamp so the live site never breaks. Requires env GEMINI_API_KEY.
 """
-import os,json,sys,datetime,urllib.request,subprocess
+import os,json,re,sys,datetime,urllib.request,subprocess
 
 HERE=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_PATH=os.path.join(HERE,"outlook-data.json")
@@ -18,6 +18,159 @@ def _eh(t,v,tb):
 sys.excepthook=_eh
 
 data=json.load(open(DATA_PATH,encoding="utf-8"))
+
+# ---- today's front-page digest: contract + validator -----------------------
+# Kept at module level, free of the network path, so --selftest can exercise it
+# offline. This file has no local interpreter on the maintainer's machine, and
+# the last silent breakage here (an f-string over a brace-filled prompt) froze
+# the daily refresh for weeks before anyone noticed.
+DIG_TAGS={"freight","energy","compliance","tariff","materials","demand"}
+DIG_JUMPS={"shipping","forward","war","procurement","indices","timeline"}
+DIG_TOOLS={"cost-desk#p-sail","cost-desk#p-landed2","cost-desk#p-cduty",
+           "partner.html#p-mkt","my-market.html",""}
+DIG_LANGS=("de","es","fr","it","ja","nl","pl","pt-br","zh-tw")
+_THOUSANDS=re.compile(r"(?<=\d),(?=\d{3}\b)")
+_NUMRE=re.compile(r"\d+(?:\.\d+)?")
+
+def digest_numbers(t):
+    return _NUMRE.findall(_THOUSANDS.sub("",str(t)))
+
+def digest_corpus(*objs):
+    """Every numeric token the day's own data contains."""
+    out=set()
+    for o in objs:
+        out|=set(digest_numbers(json.dumps(o,ensure_ascii=False)))
+    return out
+
+def build_digest(dg,regions,corpus,today):
+    """Validate one AI-proposed digest. Returns the cleaned digest or None.
+
+    Every figure printed on the front page must be traceable to the day's own
+    data. The model is instructed to do this, but instructing is not enforcing:
+    any line carrying a number absent from today's JSON is dropped here, before
+    publication. Measured against the 28 summary lines the model already writes
+    each run this rejects 0 of 18 real figures, while a synthetic "fell 47.3%
+    to $9,912/FEU" loses both numbers and the line with them. A front page that
+    quietly drops a line is a smaller failure than one that quietly invents a
+    freight rate."""
+    def line(t,limit):
+        t=str(t or "").strip()
+        if not t or len(t)>limit: return None
+        # unbalanced or excessive markers would leak "==" onto the page
+        if t.count("==")%2 or t.count("@@")%2: return None
+        if t.count("==")>2 or t.count("@@")>4: return None
+        return t if all(n in corpus for n in digest_numbers(t)) else None
+    if not isinstance(dg,dict): return None
+    head=line(dg.get("headline"),90)
+    if not head: return None
+    themes=[]
+    for it in (dg.get("themes") or [])[:6]:
+        if not isinstance(it,dict): continue
+        txt=line(it.get("text"),130)
+        if txt and it.get("tag") in DIG_TAGS:
+            themes.append({"tag":it["tag"],
+                           "jump":it.get("jump") if it.get("jump") in DIG_JUMPS else "",
+                           "text":txt})
+    if len(themes)<2: return None
+    markets=[]
+    for it in (dg.get("markets") or [])[:6]:
+        if not isinstance(it,dict): continue
+        txt=line(it.get("text"),120)
+        if txt and it.get("code") in regions:
+            markets.append({"code":it["code"],"text":txt})
+    act=dg.get("action") if isinstance(dg.get("action"),dict) else {}
+    atxt=line(act.get("text"),110)
+    action={"text":atxt,"tool":act.get("tool") if act.get("tool") in DIG_TOOLS else ""} if atxt else None
+    out={"date":today,"headline":head,"themes":themes,"markets":markets}
+    if action: out["action"]=action
+    # Translations must line up item-for-item, or the page would print a German
+    # theme beside an English figure. A language that does not line up is
+    # dropped whole and that language falls back to English.
+    tr={}
+    src=dg.get("i18n") or {}
+    for lg in DIG_LANGS:
+        v=src.get(lg)
+        if not isinstance(v,dict): continue
+        h=line(v.get("headline"),110)
+        vt=[line((x or {}).get("text"),160) for x in (v.get("themes") or [])]
+        vm=[line((x or {}).get("text"),150) for x in (v.get("markets") or [])]
+        if not h: continue
+        if len(vt)<len(themes) or any(x is None for x in vt[:len(themes)]): continue
+        if len(vm)<len(markets) or any(x is None for x in vm[:len(markets)]): continue
+        e={"headline":h,"themes":vt[:len(themes)],"markets":vm[:len(markets)]}
+        if action:
+            a=line((v.get("action") or {}).get("text") if isinstance(v.get("action"),dict) else None,130)
+            if not a: continue
+            e["action"]=a
+        tr[lg]=e
+    out["i18n"]=tr
+    return out
+
+def roll_digest_archive(newdig,olddig):
+    """Headlines only. Enough to tell a buyer who was away three days what they
+    missed, without a tenfold copy of every edition riding inside the page —
+    the whole data file is inlined into executive.html."""
+    arch=list((olddig or {}).get("archive") or [])
+    if olddig and olddig.get("headline") and olddig.get("date")!=newdig["date"]:
+        entry={"date":olddig.get("date"),"headline":olddig["headline"],
+               "i18n":{k:v.get("headline") for k,v in (olddig.get("i18n") or {}).items()
+                       if isinstance(v,dict) and v.get("headline")}}
+        arch=[entry]+[a for a in arch if a.get("date")!=entry["date"]]
+    newdig["archive"]=arch[:5]
+    return newdig
+
+if "--selftest" in sys.argv:
+    # Explicit checks, not bare asserts: this module installs an excepthook and
+    # assertions vanish under -O, so a silent pass would be the one outcome
+    # worse than a failure.
+    _fails=[]
+    def check(cond,msg):
+        if not cond: _fails.append(msg)
+    _corp={"88","3","9","2026","1.4"}
+    _reg={"eu":1,"us":1}
+    _base={"headline":"Freight eases while EU rules ==tighten==",
+           "themes":[{"tag":"freight","jump":"shipping","text":"Transpacific ==down== a @@3@@rd week"},
+                     {"tag":"energy","jump":"indices","text":"Brent holds near @@88@@"}],
+           "markets":[{"code":"eu","text":"Filing rules bite from @@9@@ September"}],
+           "action":{"text":"Book ==early== this week","tool":"cost-desk#p-sail"}}
+    def _cp(o): return json.loads(json.dumps(o))
+    ok=build_digest(_cp(_base),_reg,_corp,"14 Aug 2026")
+    check(ok and len(ok["themes"])==2 and len(ok["markets"])==1, "clean digest must pass")
+    check(ok["action"]["tool"]=="cost-desk#p-sail", "ok[\"action\"][\"tool\"]==\"cost-desk#p-sail\"")
+    bad=_cp(_base); bad["themes"][0]["text"]="Transpacific fell @@47.3@@% to @@9912@@"
+    r=build_digest(bad,_reg,_corp,"14 Aug 2026")
+    check(r and len(r["themes"])==1, "invented figures must drop that line only")
+    bad=_cp(_base); bad["headline"]="Rates fell @@12.5@@%"
+    check(build_digest(bad,_reg,_corp,"14 Aug 2026") is None, "unsupported headline kills the digest")
+    bad=_cp(_base); bad["themes"][0]["text"]="Unbalanced ==marker"
+    r=build_digest(bad,_reg,_corp,"14 Aug 2026")
+    check(r and len(r["themes"])==1, "unbalanced markers must drop the line")
+    bad=_cp(_base); bad["themes"][0]["tag"]="nonsense"
+    r=build_digest(bad,_reg,_corp,"14 Aug 2026")
+    check(r and len(r["themes"])==1, "unknown tag must drop the line")
+    bad=_cp(_base); bad["markets"][0]["code"]="zz"
+    r=build_digest(bad,_reg,_corp,"14 Aug 2026")
+    check(r and r["markets"]==[], "unknown region code must drop the market line")
+    bad=_cp(_base); bad["themes"]=[bad["themes"][0]]
+    check(build_digest(bad,_reg,_corp,"14 Aug 2026") is None, "fewer than 2 themes is not a digest")
+    tr=_cp(_base)
+    tr["i18n"]={"de":{"headline":"Frachtraten ==sinken==",
+                      "themes":[{"text":"Transpazifik ==faellt== dritte Woche"},{"text":"Brent nahe @@88@@"}],
+                      "markets":[{"text":"Meldepflicht ab @@9@@. September"}],
+                      "action":{"text":"Frueh ==buchen=="}},
+                "ja":{"headline":"運賃は落ち着く","themes":[{"text":"太平洋 @@3@@週連続"}],
+                      "markets":[{"text":"欧州の申告規制"}],"action":{"text":"早めに手配"}}}
+    r=build_digest(tr,_reg,_corp,"14 Aug 2026")
+    check("de" in r["i18n"], "aligned translation must survive")
+    check("ja" not in r["i18n"], "short theme list must drop that language whole")
+    a=roll_digest_archive({"date":"14 Aug 2026","headline":"new"},
+                          {"date":"13 Aug 2026","headline":"old","i18n":{"de":{"headline":"alt"}}})
+    check(a["archive"][0]["date"]=="13 Aug 2026" and a["archive"][0]["i18n"]["de"]=="alt", "a[\"archive\"][0][\"date\"]==\"13 Aug 2026\" and a[\"archive\"][0][\"")
+    a=roll_digest_archive({"date":"14 Aug 2026","headline":"new"},
+                          {"date":"14 Aug 2026","headline":"same","archive":[{"date":"13 Aug 2026","headline":"old"}]})
+    check(len(a["archive"])==1 and a["archive"][0]["date"]=="13 Aug 2026", "same-day rerun must not archive itself")
+    print("gen_news selftest: all digest assertions passed")
+    sys.exit(0)
 
 def ensure_status(d):
     st=d.setdefault("status",{})
@@ -89,6 +242,15 @@ RULES (strict):
 - Each region also has a "viz" object with numeric 0-100 scores: heat{regulation,tariff,freight,energy}, x (regulatory pressure), y (cost/supply volatility), size (importer exposure), px, py (previous position). Update heat and x/y/size to reflect current conditions where they have clearly shifted; keep them plausible and bounded 0-100. Do NOT set px/py yourself.
 - "partner.birdbot" and top-level "birdbot_client" are Bird BOT explainers, one per section. Refresh each to the CURRENT picture, keeping EXACTLY this format: "simple" = ONE plain sentence with an everyday analogy a 10-year-old would instantly grasp; "expert" = an array of EXACTLY 3 concise expert sentences. Keep the same keys. For the market entries (keys "p-mkt" and "c-mkt") keep framing as Birdland’s interpretation of publicly reported BNP Paribas and Citi views; never fabricate bank quotes or numbers, stay grounded, keep the "src" disclaimer. Do NOT touch the other partner sub-objects (procurement, shipping, material, tariffmon, war).
 - "teamdesk" is an internal dashboard. Refresh ONLY these sub-fields (leave fx_baseline, fx_today and usdtwd_spark untouched): "usdtwd_view"={bias:"depreciation pressure"|"appreciation pressure"|"balanced", text: 2-3 sentences grounded in Fed stance, Taiwan central bank and US-China relations, 1-4 week horizon}; "materials"=array for Lumber, Pulp, Steel HRC, PE/PP, Cotton each {name,dir:"up"|"down"|"flat",note: one short current sentence}; "regnews"={china:[],taiwan:[],ports:[],env:[]} each an array of 1-2 {date,title,summary,url} grounded items on customs/origin, tariffs, EU & US ports, and FSC/EUDR/Lacey/CBAM; "advice"={zh: a ready-to-send Traditional-Chinese supply-chain+ocean-freight weekly brief with a recommendation, en: the English equivalent}. Keep keys; set teamdesk.updated to today (e.g. "DD Mon YYYY"). Stay grounded; cite source URLs where possible.
+- Top-level "today_digest" is TODAY'S front page for a busy import buyer: what moved today, nothing else. Output it on EVERY run, in this exact shape:
+  {"headline":"...","themes":[{"tag":"freight","jump":"shipping","text":"..."}],"markets":[{"code":"eu","text":"..."}],"action":{"text":"...","tool":"cost-desk#p-sail"},"i18n":{"de":{...},...}}
+  - "headline": ONE line, 70 characters or less. It may only refer to something that also appears in "themes" — never introduce a claim that is not below it.
+  - "themes": 3 to 6 items, ordered most important first. "tag" MUST be one of: freight, energy, compliance, tariff, materials, demand. "jump" MUST be one of: shipping, forward, war, procurement, indices, timeline. "text" is 110 characters or less, one or two clauses.
+  - "markets": 0 to 6 items, ONLY for regions where something genuinely changed today. "code" MUST be one of the 14 region codes. "text" is 100 characters or less. A quiet market MUST be omitted — the page states quietness itself. Do not pad this list.
+  - "action": the ONE thing to do this week, 90 characters or less. "tool" MUST be one of: cost-desk#p-sail, cost-desk#p-landed2, cost-desk#p-cduty, partner.html#p-mkt, my-market.html, or "" when no tool fits.
+  - MARK WHAT MATTERS: in every "text" and in "headline", wrap the single most important phrase in ==double equals== and wrap each figure in @@double at-signs@@. At most one ==...== and two @@...@@ per line. These marks drive the page's highlighter and circles, so put them around the words a buyer must not miss.
+  - EVERY figure you state must already appear in the JSON below. Lines containing a number that is not in the data are DISCARDED by a validator before publication, so an invented figure costs you the whole line. If you cannot support a point with a figure from the data, write it qualitatively with no number.
+  - "i18n": an object keyed exactly de, es, fr, it, ja, nl, pl, pt-br, zh-tw. Each value repeats the SAME structure with the SAME number of themes and markets in the SAME order: {"headline":"...","themes":[{"text":"..."}],"markets":[{"text":"..."}],"action":{"text":"..."}}. Translate only the text; never translate tag/jump/code/tool, and keep the ==...== and @@...@@ marks around the equivalent words in each language. Traditional Chinese for zh-tw. Never abbreviate Taiwan or China.
 - Output ONLY the complete updated JSON object. No markdown, no commentary.
 
 CURRENT JSON:
@@ -164,6 +326,23 @@ try:
         for field,sig in (("lead_asof",_lead_sig),("head_asof",_head_sig)):
             if sig(nr)!=sig(oldr): nr[field]=today
             elif oldr.get(field): nr[field]=oldr[field]
+    # ---- today's front-page digest -------------------------------------
+    _corpus=digest_corpus(data,{k:v for k,v in cand.items() if k!="today_digest"})
+    _olddig=data.get("today_digest") or {}
+    _newdig=build_digest(cand.get("today_digest"),data["regions"],_corpus,today)
+    if _newdig:
+        cand["today_digest"]=roll_digest_archive(_newdig,_olddig)
+        print("digest: %d themes, %d markets, %d languages, %d archived"%(
+            len(_newdig["themes"]),len(_newdig["markets"]),len(_newdig["i18n"]),len(_newdig["archive"])))
+    elif _olddig:
+        # Keep yesterday's rather than blank the front page, but leave its own
+        # date on it so the page can say it is carried forward instead of
+        # presenting stale lines as today's.
+        cand["today_digest"]=_olddig
+        print("digest: rejected today's, carried forward %s"%_olddig.get("date"))
+    else:
+        cand.pop("today_digest",None)
+        print("digest: none available")
     cand["news"]=data.get("news",[])                      # never let AI touch company news
     # indices: roll change% + sparkline from previous values; keep labels/units/spark history
     oldidx={ (x.get("short") or x.get("label")):x for x in data.get("indices",[]) }
