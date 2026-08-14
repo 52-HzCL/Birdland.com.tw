@@ -45,7 +45,9 @@
 .mm-head .install:hover{border-color:var(--grn);color:var(--tx)}
 .mm-head .install[hidden]{display:none}
 .mm-head .install-note{font:500 calc(9px * var(--ui-scale))/1.3 var(--mono);color:var(--tx3);max-width:22ch}
-@media (max-width:640px){.mm-head{gap:8px}.mm-head .ed{margin-left:0;width:100%}}
+@media (max-width:640px){.mm-head{gap:8px}.mm-head .ed{margin-left:0;width:100%}
+  /* two view tabs side by side outgrow a phone once text is scaled up */
+  html.ui-lg .mm-head .views{flex-wrap:wrap}}
 
 /* ---- desk view ---- */
 .mm .dsk{background:var(--bg);color:var(--tx);font:400 calc(13px * var(--ui-scale))/1.5 var(--mono)}
@@ -116,6 +118,47 @@
   background:#0E1318;padding:8px 10px;font:400 calc(11.5px * var(--ui-scale))/1.55 var(--sans);color:var(--tx2)}
 .mm .dsk .insight b{color:var(--tx)}
 
+/* ---- since your last visit: the return-visit diff strip ---- */
+.mm .dsk .since{margin:10px 12px 0;border:1px solid var(--edge2);background:#0E1318;padding:8px 10px}
+.mm .dsk .since .sh{font:600 calc(9px * var(--ui-scale))/1 var(--mono);letter-spacing:.14em;color:var(--tx3);margin-bottom:5px}
+.mm .dsk .sline{display:block;width:100%;text-align:left;appearance:none;background:none;border:0;border-top:1px solid var(--edge);
+  padding:5px 0;font:400 calc(11.5px * var(--ui-scale))/1.5 var(--sans);color:var(--tx2)}
+.mm .dsk .sline:first-of-type{border-top:0}
+.mm .dsk button.sline{cursor:pointer}
+.mm .dsk button.sline:hover{color:var(--tx)}
+.mm .dsk .sline b{color:inherit}
+
+/* ---- programme sheet: chip in the toolbar, tray above the grid ---- */
+.mm .dsk .bar2 #sheetChip{white-space:nowrap}
+.mm .dsk .sheet{margin:10px 12px 0;border:1px solid var(--edge2);background:#0E1318;padding:10px}
+.mm .dsk .sheet h5{margin:0 0 2px;font:660 calc(13px * var(--ui-scale))/1.2 var(--sans);color:var(--tx)}
+.mm .dsk .sheet .ssub{font:500 calc(10px * var(--ui-scale))/1.45 var(--mono);color:var(--tx3);margin-bottom:6px}
+.mm .dsk .sheet .srow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:6px 0;border-top:1px solid var(--edge);
+  font:400 calc(11px * var(--ui-scale))/1.45 var(--mono);color:var(--tx2)}
+.mm .dsk .sheet .srow.dim{opacity:.55}
+.mm .dsk .sheet .sname{appearance:none;border:0;background:none;color:var(--tx);font:620 calc(11.5px * var(--ui-scale))/1.3 var(--sans);cursor:pointer;text-align:left;padding:0}
+.mm .dsk .sheet .sname:hover{text-decoration:underline}
+.mm .dsk .sheet .sdel{margin-left:auto;appearance:none;border:1px solid var(--edge2);background:none;color:var(--tx2);
+  font:600 calc(10px * var(--ui-scale))/1 var(--sans);padding:4px 8px;cursor:pointer}
+.mm .dsk .sheet .snote{font:500 calc(10px * var(--ui-scale))/1.45 var(--mono);color:var(--amb);margin-top:6px}
+.mm .dsk .sheet .sfoot{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.mm .dsk .sheet .sfoot button{appearance:none;border:1px solid var(--edge2);background:#10151B;color:var(--tx);
+  font:620 calc(11px * var(--ui-scale))/1 var(--sans);padding:9px 10px;cursor:pointer}
+.mm .dsk .sheet .sfoot button.primary{background:var(--grn);border-color:var(--grn);color:#0A0C0F}
+
+/* ---- band ladder in the rail: positions, not directions, so the two
+   markers stay neutral / plum — only band.moved gets sign colour ---- */
+.mm .dsk .ladder{border-top:1px solid var(--edge);padding-top:2px}
+.mm .dsk .ladder .lrow{display:flex;align-items:center;gap:6px 10px;flex-wrap:wrap;padding:5px 0;border-bottom:1px dotted var(--edge);
+  font:500 calc(10.5px * var(--ui-scale))/1.3 var(--mono);color:var(--tx3);min-width:0}
+.mm .dsk .ladder .lrow:last-of-type{border-bottom:0}
+.mm .dsk .ladder .tier{flex:0 0 auto;min-width:9ch;color:var(--tx2)}
+.mm .dsk .ladder .mark{display:inline-flex;align-items:center;gap:5px;font-size:calc(9.5px * var(--ui-scale));color:var(--tx2)}
+.mm .dsk .ladder .mark i{width:7px;height:7px;border-radius:50%;flex:0 0 auto}
+.mm .dsk .ladder .mark.mkt i{background:var(--tx2)}
+.mm .dsk .ladder .mark.twn i{background:#9C77BC}
+.mm .dsk .ladder .lnote{font:500 calc(9.5px * var(--ui-scale))/1.45 var(--mono);color:var(--tx3);padding:4px 0 0}
+
 @media (max-width:900px){
   .mm .dsk .body{grid-template-columns:1fr}
   .mm .dsk .grid{border-right:0;border-bottom:1px solid var(--edge)}
@@ -124,6 +167,17 @@
   .mm .dsk .bar2{flex-direction:column;align-items:stretch}
   .mm .dsk .cmd{flex:1 1 auto}
   .mm .dsk .bar2 .nb{margin-left:0}
+  /* stacked bar items must be allowed to shrink below min-content, or the
+     search input's intrinsic 20-character width holds the whole desk at
+     ~444px on a 375px phone once text is scaled up */
+  .mm .dsk .bar2 .cmd,.mm .dsk .bar2 .nb,.mm .dsk .bar2 .mych{min-width:0;max-width:100%}
+  .mm .dsk .cmd input{width:0;flex:1 1 0px}
+}
+/* Large text on a phone: the two-column family cards are what forces the
+   whole desk wider than the viewport (min-content of a card ~190px x2).
+   One column under ui-lg reuses the page's own narrow layout. */
+@media (max-width:640px){
+  html.ui-lg .mm .dsk .fams{grid-template-columns:1fr}
 }
 
 /* ---- brief view: light paper inside a dark app ---- */
@@ -204,9 +258,12 @@
       <span class="cmd"><span style="color:var(--grn)">&rsaquo;</span>
         <input id="dq" placeholder="your market — germany, brazil, poland…" autocomplete="off"><kbd>/</kbd></span>
       <span class="nb" id="nbline"></span>
+      <button type="button" class="mych" id="sheetChip" aria-expanded="false"></button>
     </div>
     <div class="body">
       <div class="grid">
+        <div id="sheetTray" hidden></div>
+        <div id="sinceWrap"></div>
         <div id="myMarket"></div>
         <h5 class="sech" id="aroundH"></h5>
         <div id="aroundWrap"></div>
@@ -280,9 +337,9 @@ var DISPLAY_NAME={us:'United States',kr:'South Korea','do':'Dominican Republic',
 // for AsiaSource and CostNow. Nothing checks that the two agree, so renaming a
 // family means editing both — and the fallback below means a mismatch shows up
 // as a wrong label rather than as an error.
-var FAM_NAME={'820150':'One-handed pruners','820160':'Two-handed shears','820110':'Spades & shovels','820130':'Hoes, rakes & cultivators'};
-var FAM_SHORT={'820150':'PRUNERS','820160':'SHEARS','820110':'SPADES','820130':'HOES & RAKES'};
-var FAM_CANON=['820150','820160','820110','820130'];
+var FAM_NAME={'820150':'One-handed pruners','820160':'Two-handed shears','820110':'Spades & shovels','820130':'Hoes, rakes & cultivators','820210':'Hand saws','821300':'Scissors'};
+var FAM_SHORT={'820150':'PRUNERS','820160':'SHEARS','820110':'SPADES','820130':'HOES & RAKES','820210':'HAND SAWS','821300':'SCISSORS'};
+var FAM_CANON=['820150','820160','820110','820130','820210','821300'];
 function famKey(code){code=String(code);return code.length>6?code.slice(0,6):code;}
 function famName(k){return FAM_NAME[k]||('HS '+k);}
 function famShort(k){return FAM_SHORT[k]||('HS '+k);}
@@ -409,7 +466,200 @@ function ptsDelta(v){
 }
 
 // ---- state -----------------------------------------------------------------
-var st={anchor:null,sel:null,mine:[]};
+var st={anchor:null,sel:null,mine:[],tray:false};
+var GROUP_LABEL={};
+GROUPS.forEach(function(g){GROUP_LABEL[g[0]]=g[1];});
+
+// ---- programme sheet (stars -> one programme-review enquiry) ---------------
+// bl_mm_sheet stores KEYS ONLY, never numbers — every render re-reads the
+// live cell from MKT, so the sheet can never show last edition's figures.
+var SHEET_KEY="bl_mm_sheet", SHEET_MAX=12;
+var sheetFullNote=false;
+function sheetCells(){
+ try{
+  var o=JSON.parse(localStorage.getItem(SHEET_KEY)||"null");
+  if(o&&o.v===1&&Array.isArray(o.cells))
+   return o.cells.filter(function(k){return typeof k==="string"&&k.indexOf("|")>0;}).slice(0,SHEET_MAX);
+ }catch(e){}
+ return [];
+}
+function saveSheet(cells){try{localStorage.setItem(SHEET_KEY,JSON.stringify({v:1,cells:cells}));}catch(e){}}
+function toggleSheetCell(f,iso){
+ var key=f+"|"+iso, cells=sheetCells(), i=cells.indexOf(key);
+ sheetFullNote=false;
+ if(i>=0){cells.splice(i,1);saveSheet(cells);}
+ else if(cells.length>=SHEET_MAX){
+  // Nothing is evicted implicitly — the tray says so and opens if closed,
+  // because the message lives only there.
+  sheetFullNote=true; st.tray=true;
+ }else{cells.push(key);saveSheet(cells);}
+ renderSheetChip();renderSheetTray();rail();
+}
+function renderSheetChip(){
+ var el=document.getElementById("sheetChip"); if(!el) return;
+ el.textContent=tf("SHEET · {count}",{count:sheetCells().length});
+ el.classList.toggle("on",!!st.tray);
+ el.setAttribute("aria-expanded",st.tray?"true":"false");
+}
+function renderSheetTray(){
+ var el=document.getElementById("sheetTray"); if(!el) return;
+ if(!st.tray){el.hidden=true;el.innerHTML="";return;}
+ el.hidden=false;
+ var cells=sheetCells();
+ var rows=cells.map(function(key){
+  var parts=key.split("|"),f=parts[0],iso=parts[1];
+  var m=MKT[iso], c=m&&m.cells[f], name=m?m.name:iso;
+  var head='<button type="button" class="sname" data-f="'+esc(f)+'" data-a="'+esc(iso)+'">'+esc(t(famName(f)))+" · "+esc(name)+"</button>";
+  var del='<button type="button" class="sdel" data-k="'+esc(key)+'">'+esc(t("Remove"))+"</button>";
+  // A cell that has gone stale, or a market missing from this edition, stays
+  // on the sheet dimmed — the buyer removes it, never the app.
+  if(!m||!cellValid(c)) return '<div class="srow dim">'+head+"<span>"+esc(t("not in edition"))+"</span>"+del+"</div>";
+  return '<div class="srow">'+head
+   +'<b style="color:'+heat(c.uv_change_pct)+'">'+glyph(c.uv_change_pct)+" "+Math.abs(c.uv_change_pct)+"%</b>"
+   +"<span>"+fmtShare("Taiwan",c.share_tw,null)+" · "+fmtShare("China",c.share_cn,null)+"</span>"+del+"</div>";
+ }).join("");
+ var body=cells.length?rows:'<div class="ssub">'+t("Nothing on your sheet yet — open a category and press “Add to programme sheet”.")+"</div>";
+ var note=sheetFullNote?'<div class="snote">'+t("Your sheet is full (12) — remove one to add another.")+"</div>":"";
+ var foot=cells.length
+  ?'<div class="sfoot"><button type="button" class="primary" id="sheetSend">'+t("Send as one programme enquiry →")+'</button><button type="button" id="sheetClear">'+t("Clear sheet")+"</button></div>":"";
+ el.innerHTML='<div class="sheet"><h5>'+t("Programme sheet")+'</h5><div class="ssub">'+t("Categories you have starred across your markets — send them to Birdland as one enquiry.")+"</div>"+body+note+foot+"</div>";
+ [].forEach.call(el.querySelectorAll(".sname"),function(b){
+  b.addEventListener("click",function(){st.sel=b.getAttribute("data-f");setAnchor(b.getAttribute("data-a"),false);});
+ });
+ [].forEach.call(el.querySelectorAll(".sdel"),function(b){
+  b.addEventListener("click",function(){
+   var cells=sheetCells(),i=cells.indexOf(b.getAttribute("data-k"));
+   if(i>=0){cells.splice(i,1);saveSheet(cells);}
+   sheetFullNote=false;
+   renderSheetChip();renderSheetTray();rail();
+  });
+ });
+ var send=document.getElementById("sheetSend");
+ if(send) send.addEventListener("click",sendSheetEnquiry);
+ var clr=document.getElementById("sheetClear");
+ // Recoverable by re-starring, so no confirm dialog — matches the app's
+ // no-modal interaction language.
+ if(clr) clr.addEventListener("click",function(){saveSheet([]);sheetFullNote=false;renderSheetChip();renderSheetTray();rail();});
+}
+function sendSheetEnquiry(){
+ var cells=sheetCells(); if(!cells.length) return;
+ // Mail text mirrors bringToEnquiry() exactly (untranslated English, change
+ // rates and shares only — never a unit-value level, never a cross-cell
+ // aggregate).
+ var blocks=cells.map(function(key){
+  var parts=key.split("|"),f=parts[0],iso=parts[1],m=MKT[iso],c=m&&m.cells[f],name=m?m.name:iso;
+  if(!m||!cellValid(c)) return "Category: "+famName(f)+" (HS "+famCode(f)+")\nMarket: "+name+"\nNot published this edition.";
+  return "Category: "+famName(f)+" (HS "+famCode(f)+")\n"
+   +"Market: "+name+"\n"
+   +"Import unit-value direction: "+(c.uv_change_pct>0?"rising":(c.uv_change_pct<0?"falling":"flat"))+" ("+pct(c.uv_change_pct)+", 12 months, "+(c.basis==="piece"?"per-piece":"per-kg")+" basis)\n"
+   +"Taiwan-origin share: "+(c.share_tw!=null?c.share_tw+"%":"not published")+"\n"
+   +"China-origin share: "+(c.share_cn!=null?c.share_cn+"%":"not published");
+ });
+ var body=blocks.join("\n\n")+"\n\nI am looking at these categories on the My Market desk as one programme.";
+ var subject="Programme review · "+cells.length+" categories · My Market";
+ if(window.blMail){
+  var region=(window.blCtx&&window.blCtx.mailRegion)?window.blCtx.mailRegion():"global";
+  var line=(window.blCtx&&window.blCtx.get)?window.blCtx.get().line:"";
+  window.blMail.open(region,line,subject,body,"mkt");
+ }
+}
+
+// ---- since your last visit (return-visit diff) -----------------------------
+// The snapshot records signs, groups and band names — never levels — for
+// every live cell in scope (pins + sheet markets). The diff is computed ONCE
+// per page load and cached: the snapshot is overwritten immediately, so a
+// language-arrival re-render must format from the cache, never recompute.
+var SNAP_KEY="bl_mm_snap";
+var sinceDiff=null;
+function snapScope(){
+ var s={};
+ st.mine.forEach(function(k){s[k]=1;});
+ sheetCells().forEach(function(key){s[key.split("|")[1]]=1;});
+ return Object.keys(s).filter(function(k){return !!MKT[k];}).slice(0,24);
+}
+function takeSnapshot(scope){
+ var cells={};
+ scope.forEach(function(iso){
+  FAM_LIST.forEach(function(f){
+   var c=MKT[iso].cells[f];
+   if(!cellValid(c)) return;
+   cells[f+"|"+iso]={
+    d:(c.uv_change_pct>0?1:(c.uv_change_pct<0?-1:0)),
+    g:classify(c),
+    b:(c.band&&TIER_LABEL[c.band.tw])?c.band.tw:null
+   };
+  });
+ });
+ return {v:1,edition:TRADE.edition||"",generated:TRADE.generated||"",scope:scope,cells:cells};
+}
+function computeSince(){
+ // Fetch failure boots with an empty MKT — never clobber a good snapshot
+ // with an empty one, or the next successful visit invents a "new edition".
+ if(!Object.keys(MKT).length) return {kind:"quiet"};
+ var now=takeSnapshot(snapScope());
+ var old=null;
+ try{old=JSON.parse(localStorage.getItem(SNAP_KEY)||"null");}catch(e){old=null;}
+ try{localStorage.setItem(SNAP_KEY,JSON.stringify(now));}catch(e){}
+ if(!old||old.v!==1) return {kind:"first"};
+ if(!Object.keys(now.cells).length) return {kind:"quiet"};
+ if(old.generated===now.generated) return {kind:"same"};
+ var newEdition=(old.edition!==now.edition)?now.edition:null;
+ var items=[],newly=0;
+ Object.keys(now.cells).forEach(function(key){
+  var n=now.cells[key],o=old.cells?old.cells[key]:null;
+  var parts=key.split("|"),f=parts[0],iso=parts[1];
+  if(o){
+   // one line per cell, highest-priority change only
+   if(o.d!==n.d&&n.d!==0) items.push({p:1,f:f,iso:iso,up:n.d>0});
+   else if(o.g!==n.g) items.push({p:2,f:f,iso:iso,g:n.g});
+   else if(o.b!==n.b&&n.b) items.push({p:3,f:f,iso:iso,b:n.b});
+  }else if(old.scope&&old.scope.indexOf(iso)>=0){
+   // stale -> live is "newly published", nothing more; a freshly pinned
+   // market only enters scope for next time.
+   newly++;
+  }
+ });
+ if(!items.length&&!newly&&!newEdition) return {kind:"same"};
+ items.sort(function(a,b){return a.p-b.p;});
+ return {kind:"diff",edition:newEdition,items:items,newly:newly};
+}
+function renderSince(){
+ var el=document.getElementById("sinceWrap"); if(!el) return;
+ var d=sinceDiff;
+ if(!d){el.innerHTML="";return;}
+ var body="";
+ if(d.kind==="first"){
+  body='<div class="sline">'+t("First visit noted — from now on this desk opens with what changed for your markets since you were last here.")+"</div>";
+ }else if(d.kind==="quiet"){
+  body='<div class="sline">'+t("Your markets are still accumulating in this edition — nothing published to compare yet.")+"</div>";
+ }else if(d.kind==="same"){
+  body='<div class="sline">'+t("Nothing has changed for your markets since your last visit — the feed accumulates daily.")+"</div>";
+ }else{
+  if(d.edition) body+='<div class="sline">'+tf("A new edition ({edition}) has been published since your last visit.",{edition:esc(d.edition)})+"</div>";
+  d.items.slice(0,3).forEach(function(it){
+   var fam=esc(t(famName(it.f))), mkt=esc(MKT[it.iso]?MKT[it.iso].name:it.iso), line;
+   if(it.p===1){
+    line='<b style="color:'+(it.up?"var(--grn)":"var(--red)")+'">'+(it.up?"▲":"▼")+"</b> "
+     +tf(it.up?"{family} · {market} — unit value has turned upward since your last visit."
+             :"{family} · {market} — unit value has turned downward since your last visit.",
+        {family:fam,market:mkt});
+   }else if(it.p===2){
+    // refile stays neutral — a move to "window" is not coloured as good news
+    line=tf("{family} · {market} — now filed under “{group}”.",{family:fam,market:mkt,group:esc(t(GROUP_LABEL[it.g]||it.g))});
+   }else{
+    line=tf("{family} · {market} — Taiwan-origin supply moved bands, now in the {band}.",{family:fam,market:mkt,band:esc(t(TIER_LABEL[it.b]))});
+   }
+   body+='<button type="button" class="sline" data-f="'+esc(it.f)+'" data-a="'+esc(it.iso)+'">'+line+"</button>";
+  });
+  if(d.newly) body+='<div class="sline">'+tf("Newly published for your markets — {count}",{count:d.newly})+"</div>";
+  var extra=d.items.length-3;
+  if(extra>0) body+='<div class="sline">'+tf("and {count} more changes this visit",{count:extra})+"</div>";
+ }
+ el.innerHTML='<div class="since"><div class="sh">'+t("SINCE YOUR LAST VISIT")+"</div>"+body+"</div>";
+ [].forEach.call(el.querySelectorAll("button.sline[data-f]"),function(b){
+  b.addEventListener("click",function(){st.sel=b.getAttribute("data-f");setAnchor(b.getAttribute("data-a"),false);});
+ });
+}
 
 function saveMine(){try{localStorage.setItem("bl_mm_mine",JSON.stringify(st.mine));}catch(e){}}
 // bd_bc_co is the destination-country key context.js and CostNow already
@@ -534,7 +784,7 @@ function insight(ns){
    {market:esc(MKT[behind.k].name),nv:behind.nv,family:esc(t(famName(behind.f))),av:behind.av});
   el.innerHTML=leadB+" <b>"+t("The route exists; the question is whose shelf uses it.")+"</b>";
  }else if(ahead&&ahead.diff>=8){
-  var leadA=tf("Your market leads its neighbourhood: <b>{av}%</b> of {family} imports are Taiwan-origin, against {nv}% in {market}.",
+  var leadA=tf("Your market leads its neighbourhood — <b>{av}%</b> of {family} imports are Taiwan-origin, against {nv}% in {market}.",
    {av:ahead.av,family:esc(t(famName(ahead.f))),nv:ahead.nv,market:esc(MKT[ahead.k].name)});
   el.innerHTML=leadA+" <b>"+t("Worth defending before the next season.")+"</b>";
  }else{
@@ -553,6 +803,30 @@ function setAnchor(k,fromSearch){
  myMarket();around();rail();
 }
 
+// Band ladder: where the whole market clears and where Taiwan-origin supply
+// sits within it. Bands are POSITIONS, not directions — the two markers stay
+// uncoloured; only band.moved (the market band's own move) gets the
+// mechanical sign colour. band.moved describes the market band and is
+// present even where band.tw is null, so it must never be drawn on the
+// Taiwan marker. to_next_pct's direction is undefined in the data — the
+// sentence below deliberately does not say "up" or "down". Do not "clarify" it.
+function ladderHtml(c){
+ var b=c.band;
+ if(!b||!TIER_LABEL[b.market])
+  return '<div class="rowline"><span>'+t("Market tier")+'</span><b>'+t("too few sources to place")+"</b></div>";
+ var moved=b.moved==="up"?' <b style="color:var(--grn)">▲</b>':(b.moved==="down"?' <b style="color:var(--red)">▼</b>':"");
+ var rows=["upper","mid","lower"].map(function(k){
+  var marks="";
+  if(b.market===k) marks+='<span class="mark mkt"><i></i>'+esc(t("Whole market"))+moved+"</span>";
+  if(b.tw===k&&TIER_LABEL[b.tw]) marks+='<span class="mark twn"><i></i>'+esc(t("Taiwan-origin"))+"</span>";
+  return '<div class="lrow"><span class="tier">'+esc(t(TIER_LABEL[k]))+"</span>"+marks+"</div>";
+ }).join("");
+ var notes="";
+ if(!(b.tw&&TIER_LABEL[b.tw])) notes+='<div class="lnote">'+t("Taiwan-origin band — not yet published for this market.")+"</div>";
+ if(typeof b.to_next_pct==="number") notes+='<div class="lnote">'+tf("Distance to the next band — {pct}%",{pct:b.to_next_pct})+"</div>";
+ return '<div class="ladder">'+rows+notes+"</div>";
+}
+
 function rail(){
  var m=MKT[st.anchor], c=m.cells[st.sel];
  var h='<div><h4>'+esc(m.name)+"</h4><div class=\"sub\">"+esc(t(famName(st.sel)).toUpperCase())+" · "+(m.src==="comtrade"?"UN Comtrade":"Eurostat")+"</div></div>";
@@ -566,12 +840,18 @@ function rail(){
  h+='<div class="rowline"><span>'+t("Import volume")+'</span><b style="color:'+heat(c.vol_change_pct)+'">'+pct(c.vol_change_pct)+"</b></div>";
  h+='<div class="rowline"><span>'+t("Taiwan-origin share")+'</span><b>'+(c.share_tw==null?"—":c.share_tw+"%")+(d!==null&&d!==0?' <span class="'+(d>0?"up":"dn")+'">'+ptsDelta(d)+"</span>":"")+"</b></div>";
  h+='<div class="rowline"><span>'+t("China-origin share")+'</span><b>'+(c.share_cn==null?"—":c.share_cn+"%")+(cd!==null&&cd!==0?' <span class="'+(cd>0?"up":"dn")+'">'+ptsDelta(cd)+"</span>":"")+"</b></div>";
- h+='<div class="rowline"><span>'+t("Market tier")+'</span><b>'+(c.band&&c.band.market&&TIER_LABEL[c.band.market]?t(TIER_LABEL[c.band.market]):t("too few sources to place"))+"</b></div>";
+ h+=ladderHtml(c);
  h+='<div class="why">'+why(c)+"</div>";
- h+='<div class="acts"><button type="button" class="primary" id="actMail">Bring to enquiry →</button><button type="button" id="actCost">Cost it in CostNow</button><button type="button" id="actBrief">Read it in This edition →</button></div>';
+ var onSheet=sheetCells().indexOf(st.sel+"|"+st.anchor)>=0;
+ h+='<div class="acts"><button type="button" class="primary" id="actMail">Bring to enquiry →</button>'
+  +'<button type="button" id="actSheet" aria-pressed="'+(onSheet?"true":"false")+'">'
+  +esc(t(onSheet?"On your sheet ★ — press to remove":"Add to programme sheet ☆"))+"</button>"
+  +'<button type="button" id="actCost">Cost it in CostNow</button><button type="button" id="actBrief">Read it in This edition →</button></div>';
  document.getElementById("drail").innerHTML=h;
  var mailBtn=document.getElementById("actMail");
  if(mailBtn) mailBtn.addEventListener("click",function(){bringToEnquiry(m,st.sel,c);});
+ var sheetBtn=document.getElementById("actSheet");
+ if(sheetBtn) sheetBtn.addEventListener("click",function(){toggleSheetCell(st.sel,st.anchor);});
  var costBtn=document.getElementById("actCost");
  if(costBtn) costBtn.addEventListener("click",function(){
   try{localStorage.setItem("bd_bc_co",m.iso);}catch(e){}
@@ -737,6 +1017,9 @@ window.addEventListener("popstate",function(){
 });
 document.getElementById("vDesk").addEventListener("click",function(){setView("desk",true);});
 document.getElementById("vBrief").addEventListener("click",function(){setView("brief",true);});
+document.getElementById("sheetChip").addEventListener("click",function(){
+ st.tray=!st.tray;sheetFullNote=false;renderSheetChip();renderSheetTray();
+});
 document.getElementById("briefCta").addEventListener("click",function(){
  var iso=st.mine[0]||st.anchor, m=MKT[iso];
  if(m){
@@ -779,6 +1062,8 @@ function boot(trade){
   }
  }
  if(!forcedView&&editionParam) forcedView="brief";
+ // ?sheet=1 — a bookmarkable route to the programme sheet
+ if(qs.get("sheet")==="1"){st.tray=true;if(!forcedView)forcedView="desk";}
 
  st.anchor=deepAnchor||st.mine[0]||"de";
  if(!MKT[st.anchor]) st.anchor=Object.keys(MKT)[0];
@@ -789,8 +1074,14 @@ function boot(trade){
  }
  if(deepAnchor) pinCurrent();
 
+ // Diff before first paint, after deep-link pinning, so a just-pinned market
+ // is in the written snapshot's scope. computeSince() both reads and
+ // overwrites bl_mm_snap — call it exactly once per page load.
+ sinceDiff=computeSince();
+
  edLine();
  myMarket();around();rail();
+ renderSince();renderSheetChip();renderSheetTray();
 
  var hashView=(location.hash||"").slice(1);
  var seen=false;
@@ -831,6 +1122,7 @@ fetch("trade.json",{cache:"no-store"}).then(function(r){ if(!r.ok) throw new Err
   if (!TRADE) return; // boot() hasn't rendered yet — it will see the dictionary itself.
   edLine();
   myMarket();around();rail();
+  renderSince();renderSheetChip();renderSheetTray(); // formats from the cached diff — never recomputes
   if (st.view === "brief") renderBrief();
  });
  mo.observe(document.documentElement, {attributes:true, attributeFilter:["lang"]});
