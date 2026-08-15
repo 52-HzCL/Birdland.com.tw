@@ -1,10 +1,10 @@
 {
   "schema": 2,
   "edition": "2026-Q3",
-  "generated": "2026-08-14T19:32:20Z",
+  "generated": "2026-08-15T02:19:24Z",
   "shard_state": {
-    "cursor": 19,
-    "completed_pct": 28,
+    "cursor": 20,
+    "completed_pct": 29,
     "quarter": "2026-Q3"
   },
   "sources": {
@@ -666,6 +666,7 @@
           "share_tw": 9,
           "share_tw_prev": 14,
           "share_cn": 44,
+          "share_cn_prev": 22,
           "stale": false,
           "band": {
             "market": "mid",
@@ -681,6 +682,7 @@
           "share_tw": 3,
           "share_tw_prev": 2,
           "share_cn": 31,
+          "share_cn_prev": 38,
           "stale": false,
           "band": {
             "market": "mid",
@@ -696,6 +698,7 @@
           "share_tw": 6,
           "share_tw_prev": 4,
           "share_cn": 40,
+          "share_cn_prev": 50,
           "stale": false,
           "band": {
             "market": "mid",
@@ -711,6 +714,7 @@
           "share_tw": 8,
           "share_tw_prev": 6,
           "share_cn": 33,
+          "share_cn_prev": 41,
           "stale": false,
           "band": {
             "market": "mid",
@@ -720,10 +724,36 @@
           }
         },
         "821300": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 5.3,
+          "vol_change_pct": 7.8,
+          "share_tw": 1,
+          "share_tw_prev": 1,
+          "share_cn": 41,
+          "share_cn_prev": 42,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 44
+          }
         },
         "820210": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -10.7,
+          "vol_change_pct": 9.4,
+          "share_tw": 2,
+          "share_tw_prev": 2,
+          "share_cn": 40,
+          "share_cn_prev": 34,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "upper",
+            "moved": "flat",
+            "to_next_pct": 32
+          }
         }
       }
     },
