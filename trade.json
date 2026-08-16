@@ -1,10 +1,10 @@
 {
   "schema": 2,
   "edition": "2026-Q3",
-  "generated": "2026-08-15T02:19:24Z",
+  "generated": "2026-08-16T02:26:10Z",
   "shard_state": {
-    "cursor": 20,
-    "completed_pct": 29,
+    "cursor": 21,
+    "completed_pct": 31,
     "quarter": "2026-Q3"
   },
   "sources": {
@@ -822,6 +822,7 @@
           "share_tw": 0,
           "share_tw_prev": 0,
           "share_cn": 14,
+          "share_cn_prev": 14,
           "stale": false,
           "band": {
             "market": "lower",
@@ -837,6 +838,7 @@
           "share_tw": 0,
           "share_tw_prev": 2,
           "share_cn": 26,
+          "share_cn_prev": 32,
           "stale": false,
           "band": {
             "market": "mid",
@@ -852,6 +854,7 @@
           "share_tw": 2,
           "share_tw_prev": 5,
           "share_cn": 7,
+          "share_cn_prev": 5,
           "stale": false,
           "band": {
             "market": "mid",
@@ -867,6 +870,7 @@
           "share_tw": 6,
           "share_tw_prev": 5,
           "share_cn": 14,
+          "share_cn_prev": 14,
           "stale": false,
           "band": {
             "market": "mid",
@@ -876,10 +880,36 @@
           }
         },
         "821300": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -88.3,
+          "vol_change_pct": 925.7,
+          "share_tw": 2,
+          "share_tw_prev": 3,
+          "share_cn": 23,
+          "share_cn_prev": 32,
+          "stale": true,
+          "band": {
+            "market": "mid",
+            "tw": "upper",
+            "moved": "flat",
+            "to_next_pct": 62
+          }
         },
         "820210": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -17.3,
+          "vol_change_pct": 39.2,
+          "share_tw": 6,
+          "share_tw_prev": 7,
+          "share_cn": 21,
+          "share_cn_prev": 22,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "lower",
+            "moved": "flat",
+            "to_next_pct": 21
+          }
         }
       }
     },
