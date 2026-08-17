@@ -487,6 +487,11 @@ button{font:inherit}
   .bl-nav::-webkit-scrollbar{display:none}
   .bl-nav>a,.bl-nav summary,.bl-nav .tm-chip{padding:var(--sp-3) 0 var(--sp-2);white-space:nowrap}
   .bl-menu-panel{top:42px;left:0;right:auto}
+  /* overflow:auto above makes the nav row scrollable, but a scroll container
+     clips its absolutely-positioned descendants — the About panel included
+     (the warning next to .bl-nav's base rule was right). Suspend the clip
+     while the menu is open; scrolling resumes when it closes. */
+  .bl-nav:has(.bl-menu[open]){overflow:visible}
 }
 @media(max-width:980px){
   .bl-header-inner{width:calc(100% - 32px)}
