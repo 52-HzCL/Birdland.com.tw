@@ -1,0 +1,38 @@
+<!doctype html>
+<!-- Dev harness for the configurator sketch engine. Renders every drawing in
+     BL_DRAWINGS at two sizes and three states so the screenshot gate can
+     eyeball them. Not linked from the site. -->
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>sketch harness</title>
+<style>
+body{font:13px Arial;margin:20px;background:#faf8f4}
+.row{display:flex;gap:18px;align-items:flex-start;margin-bottom:26px;flex-wrap:wrap}
+.cell{text-align:center}
+canvas{background:#fff;border:1px solid #d8d2c6}
+h2{font-size:15px;margin:0 0 8px}
+</style>
+<div id="root"></div>
+<script src="/bl-sketch.js"></script>
+<script src="/configurator-drawings.js"></script>
+<script>
+var root=document.getElementById('root');
+Object.keys(window.BL_DRAWINGS).forEach(function(key){
+  var spec=window.BL_DRAWINGS[key];
+  var h=document.createElement('h2');h.textContent=key;root.appendChild(h);
+  var row=document.createElement('div');row.className='row';root.appendChild(row);
+  var first=spec.parts[0].id, second=(spec.parts[1]||spec.parts[0]).id;
+  [['default',360,{}],
+   ['hover:'+first,360,{hover:first}],
+   ['selected',360,{selected:(function(){var s={};s[first]=true;s[second]=true;return s;})()}],
+   ['small',200,{}]
+  ].forEach(function(cfg){
+    var cell=document.createElement('div');cell.className='cell';
+    var c=document.createElement('canvas');c.width=cfg[1];c.height=cfg[1]*0.72;
+    cell.appendChild(c);
+    var cap=document.createElement('div');cap.textContent=cfg[0];cell.appendChild(cap);
+    row.appendChild(cell);
+    window.BLSketch.drawProduct(c.getContext('2d'),spec,cfg[2],{});
+  });
+});
+</script>
