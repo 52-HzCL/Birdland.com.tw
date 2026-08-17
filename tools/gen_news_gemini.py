@@ -31,8 +31,16 @@ DIG_LANGS=("de","es","fr","it","ja","nl","pl","pt-br","zh-tw")
 _THOUSANDS=re.compile(r"(?<=\d),(?=\d{3}\b)")
 _NUMRE=re.compile(r"\d+(?:\.\d+)?")
 
+_DECCOMMA=re.compile(r"(?<=\d),(?=\d)")
+
 def digest_numbers(t):
-    return _NUMRE.findall(_THOUSANDS.sub("",str(t)))
+    """Numbers in a line, normalised so a translation is not punished for
+    writing them the way its language does. German and nine other locales put
+    a comma where English puts the decimal point, so "87,18" is the same
+    figure as "87.18" and must clear the same firewall. Thousands separators
+    go first, then what is left of a comma between digits is a decimal point."""
+    s=_THOUSANDS.sub("",str(t))
+    return _NUMRE.findall(_DECCOMMA.sub(".",s))
 
 def digest_corpus(*objs):
     """Every numeric token the day's own data contains."""
@@ -176,7 +184,7 @@ def digest_context(d,news_src=None):
 
 DIGEST_PROMPT="""You write the front page of Birdland's daily supply brief for an import buyer of garden and field hand tools. Below is today's market data. Write today's brief from it and output NOTHING but one JSON object in exactly this shape:
 
-{"origin":{"china":"...","taiwan":"..."},"themes":[{"tag":"freight","text":"..."}],"markets":[{"code":"de","text":"..."}],"action":{"text":"...","tool":"cost-desk#p-sail"},"i18n":{"de":{"origin":{"china":"...","taiwan":"..."},"themes":[{"text":"..."}],"markets":[{"text":"..."}],"action":{"text":"..."}}}}
+{"origin":{"china":"...","taiwan":"..."},"themes":[{"tag":"freight","text":"..."}],"markets":[{"code":"de","text":"..."}],"action":{"text":"...","tool":"cost-desk#p-sail"}}
 
 RULES (a broken rule costs you the line, or the whole brief):
 - "origin" is the lead, and it is the whole headline. Birdland produces in Taiwan and in China, so the reader's first question every morning is what happened at each of those two production bases. Write ONE sentence for each, 95 characters or fewer, each drawn from that desk's own stories in "local_news" below — the same reports the reader can see further down the page.
@@ -189,7 +197,6 @@ RULES (a broken rule costs you the line, or the whole brief):
 - "action": the one thing to do this week, 90 characters or fewer. "tool" MUST be one of: cost-desk#p-sail, cost-desk#p-landed2, cost-desk#p-cduty, partner.html#p-mkt, my-market.html, or "".
 - MARK WHAT MATTERS: wrap the single most important phrase of each line in ==double equals== and each figure in @@double at-signs@@. At most one ==...== and two @@...@@ per line. These drive the page's highlighter and its circled figures.
 - EVERY figure you write must already appear in the data below. A validator drops any line containing a number that is not in the data, so an invented figure costs you the line. If you cannot support a point with a figure from the data, write it without a number.
-- "i18n": keys de, es, fr, it, ja, nl, pl, pt-br, zh-tw. Each repeats the SAME structure — including "origin" with both sides — with the SAME number of themes and markets in the SAME order, translated. Never translate tag/code/tool. Keep the ==...== and @@...@@ marks around the equivalent words. Traditional Chinese for zh-tw. Never abbreviate Taiwan or China.
 - Lead with regulation, origin and supply risk; treat prices and freight as background. Never tell the buyer to push for a lower price.
 - No markdown, no commentary, no code fence. One JSON object.
 
@@ -223,6 +230,92 @@ def _extract_digest_json(t):
         if isinstance(obj,dict) and "themes" in obj: return obj
         i=end
     return None
+
+TRANSLATE_PROMPT="""Translate this daily supply brief into nine languages. Output NOTHING but one JSON object whose keys are exactly: de, es, fr, it, ja, nl, pl, pt-br, zh-tw.
+
+Each value repeats the brief's structure exactly:
+{"origin":{"china":"...","taiwan":"..."},"themes":[{"text":"..."}],"markets":[{"text":"..."}],"action":{"text":"..."}}
+
+RULES:
+- ALL NINE keys are required. A reply missing a language is a failed reply.
+- Same number of themes and markets, in the same order, as the English below. Never merge, drop or reorder them.
+- Keep the ==...== and @@...@@ marks around the equivalent words. They drive a highlighter and a circled figure on the page.
+- Keep every figure exactly as written in the English — same digits. Write the decimal separator your language uses.
+- If an English side of "origin" is an empty string, that side must be an empty string in every language too.
+- Traditional Chinese for zh-tw. Never abbreviate Taiwan or China. No markdown, no commentary.
+
+ENGLISH BRIEF:
+"""
+
+def request_translations(dg,model,key):
+    payload={"origin":dg["origin"],"themes":[{"text":t["text"]} for t in dg["themes"]],
+             "markets":[{"text":m["text"]} for m in dg["markets"]]}
+    if dg.get("action"): payload["action"]={"text":dg["action"]["text"]}
+    body={"contents":[{"parts":[{"text":TRANSLATE_PROMPT+json.dumps(payload,ensure_ascii=False)}]}],
+          "generationConfig":{"temperature":0.2,"maxOutputTokens":24576,
+                              "responseMimeType":"application/json"}}
+    u="https://generativelanguage.googleapis.com/v1beta/models/"+model+":generateContent?key="+key
+    req=urllib.request.Request(u,data=json.dumps(body).encode(),
+                               headers={"Content-Type":"application/json"})
+    resp=json.load(urllib.request.urlopen(req,timeout=180))
+    txt="".join(p.get("text","") for p in resp["candidates"][0]["content"]["parts"])
+    t=(txt or "").strip()
+    if t.startswith("```"):
+        t=t[3:]
+        if t[:4].lower()=="json": t=t[4:]
+        if t.endswith("```"): t=t[:-3]
+    dec=json.JSONDecoder(); i=0
+    while i<len(t):
+        c=t.find("{",i)
+        if c<0: break
+        try: obj,end=dec.raw_decode(t,c)
+        except ValueError:
+            i=c+1; continue
+        if isinstance(obj,dict) and any(k in obj for k in DIG_LANGS): return obj
+        i=end
+    return None
+
+def attach_translations(out,raw,corpus,why=None):
+    """Validate translations against the already-published English brief.
+
+    Asking for the brief and nine translations in one reply produced German
+    and then stopped — the other eight came back 'not offered'. Same lesson as
+    the digest itself: one call, one job. The English brief is already final
+    when this runs, so a failure here costs translations, never the edition."""
+    def note(m):
+        if why is not None: why.append(m)
+    def line(t,limit):
+        t=str(t or "").strip()
+        if not t or len(t)>limit: return None
+        if t.count("==")%2 or t.count("@@")%2: return None
+        return t if all(n in corpus for n in digest_numbers(t)) else None
+    tr={}
+    src=raw if isinstance(raw,dict) else {}
+    origin,themes,markets=out["origin"],out["themes"],out["markets"]
+    action=out.get("action")
+    for lg in DIG_LANGS:
+        v=src.get(lg)
+        if not isinstance(v,dict):
+            note("lang %s: not offered"%lg); continue
+        vog=v.get("origin") if isinstance(v.get("origin"),dict) else {}
+        h={"china":line(vog.get("china"),140) or "","taiwan":line(vog.get("taiwan"),140) or ""}
+        if (bool(origin["china"])!=bool(h["china"])) or (bool(origin["taiwan"])!=bool(h["taiwan"])):
+            note("lang %s: origin sides do not match"%lg); continue
+        vt=[line((x or {}).get("text"),200) for x in (v.get("themes") or [])]
+        vm=[line((x or {}).get("text"),190) for x in (v.get("markets") or [])]
+        if len(vt)<len(themes) or any(x is None for x in vt[:len(themes)]):
+            note("lang %s: %d of %d themes usable"%(lg,len([x for x in vt[:len(themes)] if x]),len(themes))); continue
+        if len(vm)<len(markets) or any(x is None for x in vm[:len(markets)]):
+            note("lang %s: %d of %d markets usable"%(lg,len([x for x in vm[:len(markets)] if x]),len(markets))); continue
+        e={"origin":h,"themes":vt[:len(themes)],"markets":vm[:len(markets)]}
+        if action:
+            a=line((v.get("action") or {}).get("text") if isinstance(v.get("action"),dict) else None,170)
+            if not a:
+                note("lang %s: action rejected"%lg); continue
+            e["action"]=a
+        tr[lg]=e
+    out["i18n"]=tr
+    return out
 
 def roll_digest_archive(newdig,olddig):
     """The lead pair only. Enough to tell a buyer who was away three days what
@@ -306,6 +399,15 @@ if "--selftest" in sys.argv:
     check("build_digest(cand.get(\"today_digest\")" not in _block,
           "the echoed digest must never be validated for publication")
     check("request_digest(" in _block,"the digest must come from its own call")
+    _tr={"de":{"origin":{"china":"Jinshi baut ==Biofertigung== aus","taiwan":"Maschinenexporte @@3@@ Monate im Plus"},"themes":[{"text":"Transpazifik ==faellt=="},{"text":"Brent nahe @@88@@"}],"markets":[{"text":"Meldepflicht ab @@9@@. September"}],"action":{"text":"Frueh ==buchen=="}}}
+    _en=build_digest(_cp(_base),_reg,_corp,"14 Aug 2026")
+    attach_translations(_en,_tr,_corp)
+    check("de" in _en["i18n"] and _en["i18n"]["de"]["origin"]["china"].startswith("Jinshi baut"),"a separate translation attaches")
+    check(len(_en["i18n"])==1,"languages the reply omitted are simply absent")
+    _en2=build_digest(_cp(_base),_reg,_corp,"14 Aug 2026")
+    attach_translations(_en2,{"de":{"origin":{"china":"x","taiwan":"y"},"themes":[{"text":"Brent nahe @@88,0@@"},{"text":"ok"}],"markets":[{"text":"ok"}],"action":{"text":"ok"}}},_corp)
+    check("de" not in _en2["i18n"],"a figure that is not in the data still fails in translation")
+    check(digest_numbers("Brent bei 87,18 je Barrel")==["87.18"],"a decimal comma reads as the same figure")
     _ctx=digest_context({"regions":{}},{"market_news":[{"topic":"taiwan","title":"T"},{"topic":"china","title":"C"}]})
     check(len(_ctx["local_news"]["taiwan"])==1 and len(_ctx["local_news"]["china"])==1,"context reads news from the source, not the half-built reply")
     _dirty={"regions":{"us":{"supply":"Rates ==surged== to @@10%@@ this week"}},
@@ -486,8 +588,19 @@ try:
             _why2=[]
             _newdig=build_digest(_dg2,data["regions"],_corpus,today,_why2)
             if not _newdig: print("digest: dedicated call also unusable (%s)"%("; ".join(_why2) or "no object"))
-            elif len(_newdig["i18n"])<len(DIG_LANGS):
-                print("digest: %d/%d languages kept — %s"%(len(_newdig["i18n"]),len(DIG_LANGS),"; ".join(_why2) or "no reason recorded"))
+            else:
+                # Translations are their own call. Asking for the brief and
+                # nine languages in one reply produced German and then stopped:
+                # the other eight came back "not offered". The English brief is
+                # already final here, so a failure costs translations only.
+                try:
+                    _wt=[]
+                    attach_translations(_newdig,request_translations(_newdig,MODEL,KEY),_corpus,_wt)
+                    if len(_newdig["i18n"])<len(DIG_LANGS):
+                        print("digest: %d/%d languages kept — %s"%(len(_newdig["i18n"]),len(DIG_LANGS),"; ".join(_wt)))
+                except Exception as _tex:
+                    _newdig["i18n"]={}
+                    print("digest: translation call failed (%s); English only"%_tex)
         except Exception as _ex:
             print("digest: dedicated call failed (%s)"%_ex)
     if _newdig:
