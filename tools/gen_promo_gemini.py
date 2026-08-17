@@ -154,12 +154,18 @@ def market_context():
         d=json.load(open(os.path.join(ROOT,"outlook-data.json"),encoding="utf-8"))
     except OSError:
         return []
+    regs=d.get("regions") or {}
+    pairs=list(regs.items()) if isinstance(regs,dict) else [(str(i),r) for i,r in enumerate(regs)]
     ctx=[]
-    for r in d.get("regions",[])[:14]:
-        for k in ("supply","summary"):
-            v=r.get(k)
+    for code,r in pairs[:14]:
+        if not isinstance(r,dict): continue
+        summ=r.get("summary")
+        cand=[r.get("headline"),r.get("regulation"),r.get("supply"),
+              summ.get("changed") if isinstance(summ,dict) else summ]
+        for v in cand:
+            # lines carrying prices are simply not offered to the appeal call
             if isinstance(v,str) and v and not PRICE_PAT.search(v):
-                ctx.append(r.get("name","")+": "+v)
+                ctx.append(code+": "+v)
     return ctx[:20]
 
 def appeal(items):
@@ -452,6 +458,13 @@ def selftest():
     ext2=json.loads(json.dumps(ext)); ext2["items"][0]["specs"].append("USD 3.20 FOB")
     check(build_promo(ext2,ap,b"s","","","de",30,"2026-08-17") is None,
           "a smuggled price rejects the whole promotion")
+    # the real data file must never crash context building, and the context
+    # itself must already be price-free
+    if os.path.exists(os.path.join(ROOT,"outlook-data.json")):
+        mc=market_context()
+        check(isinstance(mc,list),"market_context tolerates the real data shape")
+        check(not any(PRICE_PAT.search(x) for x in mc),
+              "market_context lines are price-free")
     # template contract (only if the template already exists)
     tp=os.path.join(ROOT,"tools","promo_template.html")
     if os.path.exists(tp):
