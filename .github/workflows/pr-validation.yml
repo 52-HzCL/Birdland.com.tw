@@ -216,6 +216,7 @@ jobs:
           set -euo pipefail
           node tools/dev/verify-config-data.js
           node tools/dev/verify-drawings.js
+          node tools/dev/costnow-harness.js --selftest
 
       - name: Validate public calendar feeds
         shell: bash

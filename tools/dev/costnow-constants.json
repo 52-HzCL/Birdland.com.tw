@@ -1,0 +1,61 @@
+{
+  "_note": "Inventory only — extracted from tools/partner_template.html, nothing here has been changed. 'where' = line number(s) in partner_template.html as read on 2026-08-18. as_of is left 'unknown' intentionally; do not backfill without verifying against a real source.",
+  "_verification": "2026-08-18 checked against official/secondary sources: MPF rate 0.3464% unchanged FY2026; MPF min/max updated in template 31/615 -> 33.58/651.50 (CBP FY2026, effective 2025-10-01); HMF 0.125% correct; VAT/GST DE19 NL21 IT22 FR20 ES21 PL23 UK20 AU10 NZ15 JP10 all current; basis US=FOB (transaction value excl. int'l freight/ins), EU/UK/NZ/JP tax on CIF+duty correct; AU GST base is VOTI (customs value+duty+freight+ins) — CIF+duty is a close approximation, accepted. Entries below reflect pre-fix template values; MPF min/max now 33.58/651.50 as_of FY2026.",
+  "constants": [
+    { "name": "CO.us.dutyPct", "value": 0, "where": 2521, "as_of": "unknown" },
+    { "name": "CO.us.taxPct", "value": 0, "where": 2521, "as_of": "unknown" },
+    { "name": "CO.us.customsValueBasis", "value": "fob", "where": 2521, "as_of": "unknown" },
+    { "name": "CO.us.MPF_rate", "value": 0.003464, "where": 2558, "as_of": "unknown", "note": "hardcoded in landed(): fob*0.003464, not in the CO table itself" },
+    { "name": "CO.us.MPF_min", "value": 31, "where": 2558, "as_of": "unknown" },
+    { "name": "CO.us.MPF_max", "value": 615, "where": 2558, "as_of": "unknown" },
+    { "name": "CO.us.HMF_rate", "value": 0.00125, "where": 2558, "as_of": "unknown", "note": "hardcoded in landed(): fob*0.00125" },
+
+    { "name": "CO.de.dutyPct", "value": 1.7, "where": 2522, "as_of": "unknown" },
+    { "name": "CO.de.taxPct", "value": 19, "where": 2522, "as_of": "unknown", "note": "VAT" },
+    { "name": "CO.de.customsValueBasis", "value": "cif", "where": 2522, "as_of": "unknown" },
+
+    { "name": "CO.nl.dutyPct", "value": 1.7, "where": 2523, "as_of": "unknown" },
+    { "name": "CO.nl.taxPct", "value": 21, "where": 2523, "as_of": "unknown", "note": "VAT" },
+    { "name": "CO.nl.customsValueBasis", "value": "cif", "where": 2523, "as_of": "unknown" },
+
+    { "name": "CO.it.dutyPct", "value": 1.7, "where": 2524, "as_of": "unknown" },
+    { "name": "CO.it.taxPct", "value": 22, "where": 2524, "as_of": "unknown", "note": "VAT" },
+    { "name": "CO.it.customsValueBasis", "value": "cif", "where": 2524, "as_of": "unknown" },
+
+    { "name": "CO.fr.dutyPct", "value": 1.7, "where": 2525, "as_of": "unknown" },
+    { "name": "CO.fr.taxPct", "value": 20, "where": 2525, "as_of": "unknown", "note": "VAT" },
+    { "name": "CO.fr.customsValueBasis", "value": "cif", "where": 2525, "as_of": "unknown" },
+
+    { "name": "CO.es.dutyPct", "value": 1.7, "where": 2526, "as_of": "unknown" },
+    { "name": "CO.es.taxPct", "value": 21, "where": 2526, "as_of": "unknown", "note": "VAT" },
+    { "name": "CO.es.customsValueBasis", "value": "cif", "where": 2526, "as_of": "unknown" },
+
+    { "name": "CO.pl.dutyPct", "value": 1.7, "where": 2527, "as_of": "unknown" },
+    { "name": "CO.pl.taxPct", "value": 23, "where": 2527, "as_of": "unknown", "note": "VAT" },
+    { "name": "CO.pl.customsValueBasis", "value": "cif", "where": 2527, "as_of": "unknown" },
+
+    { "name": "CO.uk.dutyPct", "value": 0, "where": 2528, "as_of": "unknown" },
+    { "name": "CO.uk.taxPct", "value": 20, "where": 2528, "as_of": "unknown", "note": "VAT" },
+    { "name": "CO.uk.customsValueBasis", "value": "cif", "where": 2528, "as_of": "unknown" },
+
+    { "name": "CO.au.dutyPct", "value": 5, "where": 2529, "as_of": "unknown" },
+    { "name": "CO.au.taxPct", "value": 10, "where": 2529, "as_of": "unknown", "note": "GST" },
+    { "name": "CO.au.customsValueBasis", "value": "cif", "where": 2529, "as_of": "unknown" },
+
+    { "name": "CO.nz.dutyPct", "value": 0, "where": 2530, "as_of": "unknown" },
+    { "name": "CO.nz.taxPct", "value": 15, "where": 2530, "as_of": "unknown", "note": "GST" },
+    { "name": "CO.nz.customsValueBasis", "value": "cif", "where": 2530, "as_of": "unknown" },
+
+    { "name": "CO.jp.dutyPct", "value": 0, "where": 2531, "as_of": "unknown" },
+    { "name": "CO.jp.taxPct", "value": 10, "where": 2531, "as_of": "unknown", "note": "Consumption tax" },
+    { "name": "CO.jp.customsValueBasis", "value": "cif", "where": 2531, "as_of": "unknown" },
+
+    { "name": "default_bc_duty_input_value", "value": 1.7, "where": 2264, "as_of": "unknown", "note": "<input id=\"bc_duty\" value=\"1.7\"> initial HTML attribute (matches EU default), separate from the CO table" },
+    { "name": "retail_margin_note_default_pct", "value": 45, "where": 2285, "as_of": "unknown", "note": "'at 45% margin' static label text near ws_mgnote in markup, illustrative only — not read by JS" },
+    { "name": "retail_margin_cap_pct", "value": 95, "where": 2575, "as_of": "unknown", "note": "Math.min(95, ...) cap on ws_mg input inside landed()" }
+  ],
+  "not_included_deliberately": [
+    "tariff_calc (T.destinations mfn/addons percentages) — these are NOT constants in partner_template.html; they are loaded at runtime from data.json's tariff_calc block, so there is nothing to snapshot from the template itself for that part.",
+    "OPORT/DPORT sailing-simulator tables (lines 2601-2602) — these feed the sailing ETA/space simulator, not the landed-cost calculation, so out of scope per task wording."
+  ]
+}

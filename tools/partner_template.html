@@ -2518,7 +2518,7 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
  function n(i){return parseFloat(($(i)||{}).value)||0;}
  function money(x){return 'US$'+Math.round(x).toLocaleString();}
  // ===== Buyer landed cost (after our FOB) =====
- var CO={us:['USA',0,0,'','fob','US customs value = FOB; no VAT. Instead MPF 0.3464% (US$31–615) + HMF 0.125%. Rates vary by HS/FTA — verify with customs.'],
+ var CO={us:['USA',0,0,'','fob','US customs value = FOB; no VAT. Instead MPF 0.3464% (US$33.58–651.50, FY2026) + HMF 0.125%. Rates vary by HS/FTA — verify with customs.'],
   de:['Germany',1.7,19,'VAT','cif','EU customs value = CIF; VAT on CIF + duty. Hand-tool duty ~0–2.7% by HS — verify with customs.'],
   nl:['Netherlands',1.7,21,'VAT','cif','EU customs value = CIF; VAT on CIF + duty.'],
   it:['Italy',1.7,22,'VAT','cif','EU customs value = CIF; VAT on CIF + duty.'],
@@ -2555,7 +2555,7 @@ Object.keys(BB).forEach(function(id){var sec=document.getElementById(id);if(!sec
  function applyCo(){var c=CO[sel.value];$('bc_duty').value=c[1];$('bc_tax').value=c[2];$('bc_taxL').textContent=(c[3]||'Import tax')+' %';$('bc_note').textContent=c[5];}
  function landed(){if(!sel)return;var c=CO[sel.value],fob=n('bc_fob'),qty=n('bc_qty'),frt=n('bc_frt'),insR=n('bc_ins')/100,duty=n('bc_duty')/100,tax=n('bc_tax')/100;
    var ins=(fob+frt)*insR,cif=fob+frt+ins,custVal=c[4]==='fob'?fob:cif,dutyAmt=custVal*duty,taxAmt;
-   if(sel.value==='us'){var mpf=Math.min(615,Math.max(31,fob*0.003464)),hmf=fob*0.00125;taxAmt=mpf+hmf;}else{taxAmt=(cif+dutyAmt)*tax;}
+   if(sel.value==='us'){var mpf=Math.min(651.50,Math.max(33.58,fob*0.003464)),hmf=fob*0.00125;taxAmt=mpf+hmf;}else{taxAmt=(cif+dutyAmt)*tax;}
    var fees=n('bc_brk')+n('bc_inl')+n('bc_oth');
    var total=fob+frt+ins+dutyAmt+taxAmt+fees,per=qty>0?total/qty:0,up=fob>0?(total-fob)/fob*100:0;
    var segs=[['FOB value',fob,'#0E6652'],['Freight',frt,'#B95B12'],['Insurance',ins,'#A6372D'],['Duty',dutyAmt,'#B95B12'],[(c[3]||'Import tax'),taxAmt,'#1F6B49'],['Fees',fees,'#858B88']];
