@@ -142,7 +142,8 @@ TRANSLATE_PROMPT=(
  "Translate the JSON promotion content into the target language given in "
  '"lang". Translate values of title, intro, specs, appeal, why_now and item '
  "names; NEVER translate or alter item codes or moq. Keep every number exactly "
- "as in the source. Return STRICT JSON with the same shape as \"content\".")
+ "as in the source. Return ONLY the translated object itself (top-level keys "
+ "title, intro, items, why_now) — do NOT wrap it in any envelope key.")
 
 # ---------------------------------------------------------------- pipeline steps
 def extract(data,mime):
@@ -230,6 +231,9 @@ def attach_lang(promo):
         tr=translate(content,lang)
     except Exception as e:
         note("translation failed, English only: %s"%e); return
+    # tolerate the one wrapper shape models keep producing anyway
+    if isinstance(tr,dict) and "items" not in tr and isinstance(tr.get("content"),dict):
+        tr=tr["content"]
     if not isinstance(tr,dict) or len(tr.get("items") or [])!=len(promo["items"]):
         note("translation misaligned, English only"); return
     for i,it in enumerate(tr["items"]):
@@ -325,14 +329,58 @@ def save_outputs(promo,src_hash):
     note("written p/%s.html (%d items, %d images, lang %s)"%(
         promo["slug"],len(promo["items"]),len(promo["images"]),promo["lang"]))
 
+# ---------------------------------------------------------------- expiry
+# An expired promotion is truly removed, not just hidden by page JS: the html
+# is overwritten with a minimal contact-only page (search caches and forwarded
+# links then show nothing customer-specific), and its images are deleted.
+EXPIRED_MSG={
+ "en":"This promotion has ended. Please contact your Birdland representative for the current offer.",
+ "zh-tw":"本檔推廣已結束,請聯繫您的 Birdland 業務窗口取得最新資訊。",
+ "de":"Diese Aktion ist beendet. Bitte kontaktieren Sie Ihren Birdland-Ansprechpartner.",
+ "fr":"Cette promotion est terminée. Veuillez contacter votre représentant Birdland.",
+ "es":"Esta promoción ha finalizado. Contacte con su representante de Birdland.",
+ "it":"Questa promozione è terminata. Contatti il suo referente Birdland.",
+ "nl":"Deze promotie is afgelopen. Neem contact op met uw Birdland-vertegenwoordiger.",
+ "pl":"Ta promocja dobiegła końca. Skontaktuj się ze swoim przedstawicielem Birdland.",
+ "pt-br":"Esta promoção foi encerrada. Fale com seu representante Birdland.",
+ "ja":"本プロモーションは終了しました。Birdland 担当者までお問い合わせください。"}
+
+def expired_page(x):
+    email=(x.get("sales") or {}).get("email","")
+    msg=EXPIRED_MSG.get(x.get("lang","en"),EXPIRED_MSG["en"])
+    both=msg if x.get("lang","en")=="en" else msg+"<br>"+EXPIRED_MSG["en"]
+    link=('<p><a href="mailto:'+email+'">'+email+'</a></p>') if email else ""
+    return ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
+     '<meta name="viewport" content="width=device-width,initial-scale=1">'
+     '<meta name="robots" content="noindex,nofollow">'
+     '<meta name="referrer" content="no-referrer">'
+     '<title>Birdland</title></head><body style="font:17px/1.6 Georgia,serif;'
+     'max-width:560px;margin:80px auto;padding:0 16px;text-align:center">'
+     '<p><b>BIRDLAND</b></p><p>'+both+'</p>'+link+'</body></html>')
+
+def prune_expired(today=None):
+    today=today or datetime.date.today().isoformat()
+    idx=load_index(); removed=0
+    for x in idx["promos"]:
+        if x.get("expires") and x["expires"]<today and not x.get("expired"):
+            open(os.path.join(ROOT,"p",x["slug"]+".html"),"w",encoding="utf-8").write(expired_page(x))
+            for n in range(1,13):
+                try: os.remove(os.path.join(ROOT,"p","img","%s-%d.webp"%(x["slug"],n)))
+                except OSError: pass
+            x["expired"]=True; removed+=1
+    if removed:
+        open(os.path.join(ROOT,"p","index.json"),"w",encoding="utf-8").write(
+            json.dumps(idx,ensure_ascii=False,indent=1))
+        note("pruned %d expired promotion(s)"%removed)
+
 # ---------------------------------------------------------------- entry
-def process_file(data,fname,sales_name,sales_email,market,expires_days):
+def process_file(data,fname,sales_name,sales_email,market,expires_days,force=False):
     ext_name=os.path.splitext(fname)[1].lower()
     mime=MIMES.get(ext_name)
     if not mime:
         note("unsupported file type %s"%ext_name); return False
     src_hash=hashlib.sha256(data).hexdigest()
-    if src_hash in load_index()["processed"]:
+    if not force and src_hash in load_index()["processed"]:
         note("already processed %s"%fname); return False
     today=datetime.date.today().isoformat()
     ext=extract(data,mime)
@@ -371,6 +419,7 @@ def market_from_name(fname):
     return m.group(1) if m else ""
 
 def poll():
+    prune_expired()  # runs hourly even before SharePoint is wired up
     tok=graph_token()
     if not tok:
         note("MSGRAPH secrets not configured; poll skipped"); return 0
@@ -413,10 +462,12 @@ def main(argv):
     if not f:
         note("usage: --file <path> [--sales-name N --sales-email E --market cc --expires-days 30]")
         return 2
+    prune_expired()
     data=open(f,"rb").read()
+    # a manual --file run is always intentional; only the poll deduplicates
     ok=process_file(data,os.path.basename(f),args.get("sales-name",""),
         args.get("sales-email",""),args.get("market",""),
-        int(args.get("expires-days","30") or 30))
+        int(args.get("expires-days","30") or 30),force=True)
     return 0 if ok else 1
 
 # ---------------------------------------------------------------- selftest
@@ -458,6 +509,24 @@ def selftest():
     ext2=json.loads(json.dumps(ext)); ext2["items"][0]["specs"].append("USD 3.20 FOB")
     check(build_promo(ext2,ap,b"s","","","de",30,"2026-08-17") is None,
           "a smuggled price rejects the whole promotion")
+    # expiry truly removes content: the page is overwritten contact-only
+    import tempfile
+    g=globals();_oldroot=g["ROOT"];td=tempfile.mkdtemp()
+    try:
+        os.makedirs(os.path.join(td,"p","img"))
+        open(os.path.join(td,"p","xx.html"),"w",encoding="utf-8").write("SECRET PRODUCT DATA")
+        open(os.path.join(td,"p","img","xx-1.webp"),"wb").write(b"x")
+        open(os.path.join(td,"p","index.json"),"w",encoding="utf-8").write(json.dumps(
+            {"promos":[{"slug":"xx","expires":"2000-01-01","lang":"de","title":"T",
+                        "sales":{"email":"a@b.tw"}}],"processed":[]}))
+        g["ROOT"]=td
+        prune_expired("2026-01-01")
+        html=open(os.path.join(td,"p","xx.html"),encoding="utf-8").read()
+        check("SECRET" not in html and "a@b.tw" in html,"expired page keeps only the contact")
+        check(not os.path.exists(os.path.join(td,"p","img","xx-1.webp")),"expired images deleted")
+        check(load_index()["promos"][0].get("expired") is True,"index marks the expiry")
+    finally:
+        g["ROOT"]=_oldroot
     # the real data file must never crash context building, and the context
     # itself must already be price-free
     if os.path.exists(os.path.join(ROOT,"outlook-data.json")):
@@ -468,8 +537,11 @@ def selftest():
     # template contract (only if the template already exists)
     tp=os.path.join(ROOT,"tools","promo_template.html")
     if os.path.exists(tp):
-        check(open(tp,encoding="utf-8").read().count("__PROMO__")==1,
-              "template has exactly one __PROMO__")
+        tpl=open(tp,encoding="utf-8").read()
+        check(tpl.count("__PROMO__")==1,"template has exactly one __PROMO__")
+        check('name="referrer" content="no-referrer"' in tpl,
+              "template suppresses the Referer header")
+        check('name="robots" content="noindex' in tpl,"template is noindex")
     print("selftest: %d failure(s)"%len(fails))
     return 1 if fails else 0
 
