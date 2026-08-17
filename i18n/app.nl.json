@@ -1085,5 +1085,12 @@
   "Open the tool": "Open de tool",
   "Carried forward from": "Overgenomen uit",
   "Figure verified against this edition": "Cijfer gecontroleerd met deze editie",
-  "Open the section for this line": "Open de sectie bij deze regel"
+  "Open the section for this line": "Open de sectie bij deze regel",
+  "No production report from the China desk this edition": "Geen productiebericht van de China-desk in deze editie",
+  "No production report from the Taiwan desk this edition": "Geen productiebericht van de Taiwan-desk in deze editie",
+  "All markets ({n})": "Alle markten ({n})",
+  "All markets in this edition": "Alle markten in deze editie",
+  "Pick a country to open it. It is added to Your markets so the brief follows it.": "Kies een land om het te openen. Het wordt aan Uw markten toegevoegd zodat de briefing het volgt.",
+  "No market matches that search.": "Geen markt komt overeen met die zoekopdracht.",
+  "Choose your markets →": "Kies uw markten →"
 }

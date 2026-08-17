@@ -1085,5 +1085,12 @@
   "Open the tool": "開啟工具",
   "Carried forward from": "沿用自",
   "Figure verified against this edition": "數字已核對本期資料",
-  "Open the section for this line": "開啟這條對應的段落"
+  "Open the section for this line": "開啟這條對應的段落",
+  "No production report from the China desk this edition": "本期中國產線沒有生產快訊",
+  "No production report from the Taiwan desk this edition": "本期台灣產線沒有生產快訊",
+  "All markets ({n})": "全部市場({n})",
+  "All markets in this edition": "本期所有市場",
+  "Pick a country to open it. It is added to Your markets so the brief follows it.": "選一個國家就開啟。它會加入你的市場,要點也會跟著追蹤。",
+  "No market matches that search.": "沒有符合的市場。",
+  "Choose your markets →": "選擇你的市場 →"
 }

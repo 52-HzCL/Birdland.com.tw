@@ -440,3 +440,18 @@ html.ui-lg .db-tag{min-inline-size:0}
   background-position:center,center;
   background-size:cover,cover;
 }
+
+/* The lead: one line per production base. Set in the headline face but a step
+   down from a single-line headline, because two of them share the space one
+   used to have. Each line links to the desk its story came from. */
+.journal-lead h2 .db-origin{display:block;margin-block-end:var(--sp-2)}
+.journal-lead h2 .db-origin:last-child{margin-block-end:0}
+.db-origin-tag{display:block;margin-block-end:2px;color:var(--kb-red);font:700 var(--fs-micro) var(--mono);letter-spacing:.11em;text-transform:uppercase}
+/* .journal-lead a is dressed for the one link this column used to hold —
+   the uppercase mono "READ THE FULL ASIA VIEW" line. The lead is now made of
+   anchors too, so it inherited all-caps mono red and printed the whole front
+   page shouting. These four resets are what that rule has to be told. */
+.journal-lead h2 .db-origin-text{display:inline;margin:0;font:700 calc(24px * var(--ui-scale-display))/1.2 var(--serif);letter-spacing:-.025em;text-transform:none;color:inherit;text-decoration:none}
+.journal-lead h2 a.db-origin-text:hover,.journal-lead h2 a.db-origin-text:focus-visible{text-decoration:underline;text-underline-offset:3px}
+.db-origin.is-quiet .db-origin-text{color:var(--kb-faint);font-weight:400;font-style:italic}
+@media(max-width:820px){.journal-lead h2 .db-origin-text{font-size:calc(20px * var(--ui-scale-display))}}

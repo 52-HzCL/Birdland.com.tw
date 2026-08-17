@@ -1085,5 +1085,12 @@
   "Open the tool": "Otwórz narzędzie",
   "Carried forward from": "Przeniesione z",
   "Figure verified against this edition": "Liczba zweryfikowana z tym wydaniem",
-  "Open the section for this line": "Otwórz sekcję dla tego wiersza"
+  "Open the section for this line": "Otwórz sekcję dla tego wiersza",
+  "No production report from the China desk this edition": "Brak raportu produkcyjnego z działu chińskiego w tym wydaniu",
+  "No production report from the Taiwan desk this edition": "Brak raportu produkcyjnego z działu tajwańskiego w tym wydaniu",
+  "All markets ({n})": "Wszystkie rynki ({n})",
+  "All markets in this edition": "Wszystkie rynki w tym wydaniu",
+  "Pick a country to open it. It is added to Your markets so the brief follows it.": "Proszę wybrać kraj, aby go otworzyć. Zostanie dodany do Państwa rynków, aby brief go śledził.",
+  "No market matches that search.": "Żaden rynek nie pasuje do tego wyszukiwania.",
+  "Choose your markets →": "Wybierz swoje rynki →"
 }

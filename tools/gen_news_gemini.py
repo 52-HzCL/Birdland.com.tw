@@ -63,9 +63,14 @@ def build_digest(dg,regions,corpus,today,why=None):
         if why is not None: why.append(m)
     if not isinstance(dg,dict):
         note("no today_digest object in the reply"); return None
-    head=line(dg.get("headline"),90)
-    if not head:
-        note("headline rejected: %r"%(dg.get("headline"),)); return None
+    # The lead is one sentence per production base. A side may be empty when
+    # that desk genuinely had no production story — the page prints its own
+    # line for it, which is honest; an invented sentence would not be. The
+    # digest still needs at least one of the two to be worth a front page.
+    og=dg.get("origin") if isinstance(dg.get("origin"),dict) else {}
+    origin={"china":line(og.get("china"),110) or "","taiwan":line(og.get("taiwan"),110) or ""}
+    if not (origin["china"] or origin["taiwan"]):
+        note("origin rejected on both sides: %r"%(og,)); return None
     themes=[]
     for it in (dg.get("themes") or [])[:6]:
         if not isinstance(it,dict): continue
@@ -85,7 +90,7 @@ def build_digest(dg,regions,corpus,today,why=None):
     act=dg.get("action") if isinstance(dg.get("action"),dict) else {}
     atxt=line(act.get("text"),110)
     action={"text":atxt,"tool":act.get("tool") if act.get("tool") in DIG_TOOLS else ""} if atxt else None
-    out={"date":today,"headline":head,"themes":themes,"markets":markets}
+    out={"date":today,"origin":origin,"themes":themes,"markets":markets}
     if action: out["action"]=action
     # Translations must line up item-for-item, or the page would print a German
     # theme beside an English figure. A language that does not line up is
@@ -95,13 +100,14 @@ def build_digest(dg,regions,corpus,today,why=None):
     for lg in DIG_LANGS:
         v=src.get(lg)
         if not isinstance(v,dict): continue
-        h=line(v.get("headline"),110)
+        vog=v.get("origin") if isinstance(v.get("origin"),dict) else {}
+        h={"china":line(vog.get("china"),140) or "","taiwan":line(vog.get("taiwan"),140) or ""}
         vt=[line((x or {}).get("text"),160) for x in (v.get("themes") or [])]
         vm=[line((x or {}).get("text"),150) for x in (v.get("markets") or [])]
-        if not h: continue
+        if (bool(origin["china"])!=bool(h["china"])) or (bool(origin["taiwan"])!=bool(h["taiwan"])): continue
         if len(vt)<len(themes) or any(x is None for x in vt[:len(themes)]): continue
         if len(vm)<len(markets) or any(x is None for x in vm[:len(markets)]): continue
-        e={"headline":h,"themes":vt[:len(themes)],"markets":vm[:len(markets)]}
+        e={"origin":h,"themes":vt[:len(themes)],"markets":vm[:len(markets)]}
         if action:
             a=line((v.get("action") or {}).get("text") if isinstance(v.get("action"),dict) else None,130)
             if not a: continue
@@ -147,14 +153,25 @@ def digest_context(d):
          "material":d.get("material",{})}
     out["regions"]={c:{"headline":r.get("headline"),"summary":r.get("summary")}
                     for c,r in (d.get("regions") or {}).items()}
+    # The two production desks the lead is written from. Same rows the reader
+    # sees under "Local News: Taiwan and China", so the lead can be checked
+    # against the stories printed below it.
+    news={"taiwan":[],"china":[]}
+    for n in (d.get("market_news") or []):
+        t=n.get("topic")
+        if t in news and len(news[t])<4:
+            news[t].append({"date":n.get("date"),"title":n.get("title"),"source":n.get("source")})
+    out["local_news"]=news
     return out
 
 DIGEST_PROMPT="""You write the front page of Birdland's daily supply brief for an import buyer of garden and field hand tools. Below is today's market data. Write today's brief from it and output NOTHING but one JSON object in exactly this shape:
 
-{"headline":"...","themes":[{"tag":"freight","text":"..."}],"markets":[{"code":"de","text":"..."}],"action":{"text":"...","tool":"cost-desk#p-sail"},"i18n":{"de":{"headline":"...","themes":[{"text":"..."}],"markets":[{"text":"..."}],"action":{"text":"..."}}}}
+{"origin":{"china":"...","taiwan":"..."},"themes":[{"tag":"freight","text":"..."}],"markets":[{"code":"de","text":"..."}],"action":{"text":"...","tool":"cost-desk#p-sail"},"i18n":{"de":{"origin":{"china":"...","taiwan":"..."},"themes":[{"text":"..."}],"markets":[{"text":"..."}],"action":{"text":"..."}}}}
 
 RULES (a broken rule costs you the line, or the whole brief):
-- "headline": one line, 70 characters or fewer, about the single most important thing in the data below. It may only refer to something that also appears in "themes".
+- "origin" is the lead, and it is the whole headline. Birdland produces in Taiwan and in China, so the reader's first question every morning is what happened at each of those two production bases. Write ONE sentence for each, 95 characters or fewer, each drawn from that desk's own stories in "local_news" below — the same reports the reader can see further down the page.
+- "origin.china": what changed for production in China. "origin.taiwan": what changed for production in Taiwan. Each must be traceable to a story in the matching "local_news" list; do not swap a China story into the Taiwan line or the reverse, and do not write a freight or currency line here — this is about making things.
+- If a desk genuinely has no relevant production story, write an empty string for that side. An empty string is honest and the page prints its own line for it; an invented sentence is not.
 - "themes": 3 to 6 items, most important first. "tag" MUST be one of: freight, energy, compliance, tariff, materials, demand. "text" is 110 characters or fewer.
 - "markets": 0 to 6 items, ONLY for regions where something genuinely changed. "code" MUST be one of the region codes in the data. "text" is 100 characters or fewer. Omit a quiet market — the page says so itself. Do not pad this list.
 - A market line must be ABOUT that market. The reader sees only the market's own name beside it, so a line filed under "uk" that talks about Rotterdam and Genoa reads as a claim about the United Kingdom. If a movement belongs to a lane or a region rather than one market, put it in "themes" instead.
@@ -162,7 +179,7 @@ RULES (a broken rule costs you the line, or the whole brief):
 - "action": the one thing to do this week, 90 characters or fewer. "tool" MUST be one of: cost-desk#p-sail, cost-desk#p-landed2, cost-desk#p-cduty, partner.html#p-mkt, my-market.html, or "".
 - MARK WHAT MATTERS: wrap the single most important phrase of each line in ==double equals== and each figure in @@double at-signs@@. At most one ==...== and two @@...@@ per line. These drive the page's highlighter and its circled figures.
 - EVERY figure you write must already appear in the data below. A validator drops any line containing a number that is not in the data, so an invented figure costs you the line. If you cannot support a point with a figure from the data, write it without a number.
-- "i18n": keys de, es, fr, it, ja, nl, pl, pt-br, zh-tw. Each repeats the SAME structure with the SAME number of themes and markets in the SAME order, translated. Never translate tag/code/tool. Keep the ==...== and @@...@@ marks around the equivalent words. Traditional Chinese for zh-tw. Never abbreviate Taiwan or China.
+- "i18n": keys de, es, fr, it, ja, nl, pl, pt-br, zh-tw. Each repeats the SAME structure — including "origin" with both sides — with the SAME number of themes and markets in the SAME order, translated. Never translate tag/code/tool. Keep the ==...== and @@...@@ marks around the equivalent words. Traditional Chinese for zh-tw. Never abbreviate Taiwan or China.
 - Lead with regulation, origin and supply risk; treat prices and freight as background. Never tell the buyer to push for a lower price.
 - No markdown, no commentary, no code fence. One JSON object.
 
@@ -198,14 +215,15 @@ def _extract_digest_json(t):
     return None
 
 def roll_digest_archive(newdig,olddig):
-    """Headlines only. Enough to tell a buyer who was away three days what they
-    missed, without a tenfold copy of every edition riding inside the page —
-    the whole data file is inlined into executive.html."""
+    """The lead pair only. Enough to tell a buyer who was away three days what
+    they missed at each production base, without a tenfold copy of every
+    edition riding inside the page — the data file is inlined into
+    executive.html."""
     arch=list((olddig or {}).get("archive") or [])
-    if olddig and olddig.get("headline") and olddig.get("date")!=newdig["date"]:
-        entry={"date":olddig.get("date"),"headline":olddig["headline"],
-               "i18n":{k:v.get("headline") for k,v in (olddig.get("i18n") or {}).items()
-                       if isinstance(v,dict) and v.get("headline")}}
+    if olddig and olddig.get("origin") and olddig.get("date")!=newdig["date"]:
+        entry={"date":olddig.get("date"),"origin":olddig["origin"],
+               "i18n":{k:v.get("origin") for k,v in (olddig.get("i18n") or {}).items()
+                       if isinstance(v,dict) and v.get("origin")}}
         arch=[entry]+[a for a in arch if a.get("date")!=entry["date"]]
     newdig["archive"]=arch[:5]
     return newdig
@@ -219,7 +237,7 @@ if "--selftest" in sys.argv:
         if not cond: _fails.append(msg)
     _corp={"88","3","9","2026","1.4"}
     _reg={"eu":1,"us":1}
-    _base={"headline":"Freight eases while EU rules ==tighten==",
+    _base={"origin":{"china":"Jinshi steps up ==bio-manufacturing==","taiwan":"Machinery exports grew @@3@@ months running"},
            "themes":[{"tag":"freight","text":"Transpacific ==down== a @@3@@rd week"},
                      {"tag":"energy","text":"Brent holds near @@88@@"}],
            "markets":[{"code":"eu","text":"Filing rules bite from @@9@@ September"}],
@@ -227,12 +245,16 @@ if "--selftest" in sys.argv:
     def _cp(o): return json.loads(json.dumps(o))
     ok=build_digest(_cp(_base),_reg,_corp,"14 Aug 2026")
     check(ok and len(ok["themes"])==2 and len(ok["markets"])==1, "clean digest must pass")
+    check(ok and ok["origin"]["china"] and ok["origin"]["taiwan"], "both origin sides survive")
     check(ok["action"]["tool"]=="cost-desk#p-sail", "ok[\"action\"][\"tool\"]==\"cost-desk#p-sail\"")
     bad=_cp(_base); bad["themes"][0]["text"]="Transpacific fell @@47.3@@% to @@9912@@"
     r=build_digest(bad,_reg,_corp,"14 Aug 2026")
     check(r and len(r["themes"])==1, "invented figures must drop that line only")
-    bad=_cp(_base); bad["headline"]="Rates fell @@12.5@@%"
-    check(build_digest(bad,_reg,_corp,"14 Aug 2026") is None, "unsupported headline kills the digest")
+    bad=_cp(_base); bad["origin"]={"china":"Output fell @@12.5@@%","taiwan":"Orders fell @@47.3@@%"}
+    check(build_digest(bad,_reg,_corp,"14 Aug 2026") is None, "both origin sides unsupported kills the digest")
+    bad=_cp(_base); bad["origin"]["taiwan"]=""
+    r=build_digest(bad,_reg,_corp,"14 Aug 2026")
+    check(r and r["origin"]["china"] and r["origin"]["taiwan"]=="", "one quiet desk is allowed and stays empty")
     bad=_cp(_base); bad["themes"][0]["text"]="Unbalanced ==marker"
     r=build_digest(bad,_reg,_corp,"14 Aug 2026")
     check(r and len(r["themes"])==1, "unbalanced markers must drop the line")
@@ -245,20 +267,22 @@ if "--selftest" in sys.argv:
     bad=_cp(_base); bad["themes"]=[bad["themes"][0]]
     check(build_digest(bad,_reg,_corp,"14 Aug 2026") is None, "fewer than 2 themes is not a digest")
     tr=_cp(_base)
-    tr["i18n"]={"de":{"headline":"Frachtraten ==sinken==",
+    tr["i18n"]={"de":{"origin":{"china":"Jinshi baut ==Biofertigung== aus","taiwan":"Maschinenexporte seit @@3@@ Monaten im Plus"},
                       "themes":[{"text":"Transpazifik ==faellt== dritte Woche"},{"text":"Brent nahe @@88@@"}],
                       "markets":[{"text":"Meldepflicht ab @@9@@. September"}],
                       "action":{"text":"Frueh ==buchen=="}},
-                "ja":{"headline":"運賃は落ち着く","themes":[{"text":"太平洋 @@3@@週連続"}],
+                "ja":{"origin":{"china":"金石市が==バイオ製造==を強化","taiwan":"機械輸出が@@3@@カ月連続で増加"},"themes":[{"text":"太平洋 @@3@@週連続"}],
                       "markets":[{"text":"欧州の申告規制"}],"action":{"text":"早めに手配"}}}
     r=build_digest(tr,_reg,_corp,"14 Aug 2026")
     check("de" in r["i18n"], "aligned translation must survive")
     check("ja" not in r["i18n"], "short theme list must drop that language whole")
-    a=roll_digest_archive({"date":"14 Aug 2026","headline":"new"},
-                          {"date":"13 Aug 2026","headline":"old","i18n":{"de":{"headline":"alt"}}})
-    check(a["archive"][0]["date"]=="13 Aug 2026" and a["archive"][0]["i18n"]["de"]=="alt", "a[\"archive\"][0][\"date\"]==\"13 Aug 2026\" and a[\"archive\"][0][\"")
-    a=roll_digest_archive({"date":"14 Aug 2026","headline":"new"},
-                          {"date":"14 Aug 2026","headline":"same","archive":[{"date":"13 Aug 2026","headline":"old"}]})
+    _o={"china":"c","taiwan":"t"}
+    a=roll_digest_archive({"date":"14 Aug 2026","origin":_o},
+                          {"date":"13 Aug 2026","origin":_o,"i18n":{"de":{"origin":{"china":"cd","taiwan":"td"}}}})
+    check(a["archive"][0]["date"]=="13 Aug 2026" and a["archive"][0]["i18n"]["de"]["china"]=="cd",
+          "archive keeps the lead pair per language")
+    a=roll_digest_archive({"date":"14 Aug 2026","origin":_o},
+                          {"date":"14 Aug 2026","origin":_o,"archive":[{"date":"13 Aug 2026","origin":_o}]})
     check(len(a["archive"])==1 and a["archive"][0]["date"]=="13 Aug 2026", "same-day rerun must not archive itself")
     _dirty={"regions":{"us":{"supply":"Rates ==surged== to @@10%@@ this week"}},
             "war":{"zones":[{"note":"Transit is ==effectively closed=="}]},

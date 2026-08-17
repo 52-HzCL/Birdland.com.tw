@@ -1085,5 +1085,12 @@
   "Open the tool": "ツールを開く",
   "Carried forward from": "前版から引き継ぎ",
   "Figure verified against this edition": "この版のデータと照合済み",
-  "Open the section for this line": "この行のセクションを開く"
+  "Open the section for this line": "この行のセクションを開く",
+  "No production report from the China desk this edition": "今回の版に中国デスクからの生産報告はありません",
+  "No production report from the Taiwan desk this edition": "今回の版に台湾デスクからの生産報告はありません",
+  "All markets ({n})": "全市場({n})",
+  "All markets in this edition": "今回の版の全市場",
+  "Pick a country to open it. It is added to Your markets so the brief follows it.": "国を選ぶと開きます。貴社の市場に追加され、ブリーフが追跡します。",
+  "No market matches that search.": "該当する市場はありません。",
+  "Choose your markets →": "市場を選ぶ →"
 }

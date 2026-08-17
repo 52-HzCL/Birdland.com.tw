@@ -131,6 +131,15 @@
 /* ---- programme sheet: chip in the toolbar, tray above the grid ---- */
 .mm .dsk .bar2 #sheetChip{white-space:nowrap}
 .mm .dsk .sheet{margin:10px 12px 0;border:1px solid var(--edge2);background:#0E1318;padding:10px}
+    /* Every market in the edition, browsable. Wraps rather than scrolls
+       sideways, and caps its own height so the list never pushes the desk
+       off the screen on a phone. */
+    .agrid{display:flex;flex-wrap:wrap;gap:6px;align-items:center;max-height:46vh;overflow:auto;padding:2px 0}
+    .aletter{flex:0 0 100%;margin-top:6px;color:var(--tx3);font:700 calc(10px * var(--ui-scale))/1.2 var(--mono);letter-spacing:.12em}
+    .abtn{border:1px solid var(--edge2);background:transparent;color:var(--tx);padding:5px 9px;font:500 calc(12px * var(--ui-scale))/1.2 var(--sans);cursor:pointer;min-height:32px}
+    .abtn:hover,.abtn:focus-visible{border-color:var(--grn);color:var(--grn)}
+    .abtn.on{border-color:var(--grn);background:rgba(79,185,138,.12);color:var(--grn)}
+    .abtn.mine i{font-style:normal;color:var(--amb)}
 .mm .dsk .sheet h5{margin:0 0 2px;font:660 calc(13px * var(--ui-scale))/1.2 var(--sans);color:var(--tx)}
 .mm .dsk .sheet .ssub{font:500 calc(10px * var(--ui-scale))/1.45 var(--mono);color:var(--tx3);margin-bottom:6px}
 .mm .dsk .sheet .srow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:6px 0;border-top:1px solid var(--edge);
@@ -258,10 +267,12 @@
       <span class="cmd"><span style="color:var(--grn)">&rsaquo;</span>
         <input id="dq" placeholder="your market — germany, brazil, poland…" autocomplete="off"><kbd>/</kbd></span>
       <span class="nb" id="nbline"></span>
+      <button type="button" class="mych" id="allChip" aria-expanded="false" aria-controls="allTray"></button>
       <button type="button" class="mych" id="sheetChip" aria-expanded="false"></button>
     </div>
     <div class="body">
       <div class="grid">
+        <div id="allTray" hidden></div>
         <div id="sheetTray" hidden></div>
         <div id="sinceWrap"></div>
         <div id="myMarket"></div>
@@ -290,6 +301,7 @@
     <div class="pull">
       <p>&ldquo;Every figure on this page is an official statistical change rate &mdash; bring it to your Birdland desk and we will turn it into a routed, costed programme.&rdquo;</p>
       <button type="button" id="briefCta">Bring this edition to enquiry &rarr;</button>
+      <button type="button" id="briefPick">Choose your markets &rarr;</button>
     </div>
   </div>
 </div>
@@ -466,7 +478,7 @@ function ptsDelta(v){
 }
 
 // ---- state -----------------------------------------------------------------
-var st={anchor:null,sel:null,mine:[],tray:false};
+var st={all:false,anchor:null,sel:null,mine:[],tray:false};
 var GROUP_LABEL={};
 GROUPS.forEach(function(g){GROUP_LABEL[g[0]]=g[1];});
 
@@ -493,13 +505,55 @@ function toggleSheetCell(f,iso){
   // because the message lives only there.
   sheetFullNote=true; st.tray=true;
  }else{cells.push(key);saveSheet(cells);}
- renderSheetChip();renderSheetTray();rail();
+ renderSheetChip();renderSheetTray();renderAllChip();renderAllTray();rail();
 }
 function renderSheetChip(){
  var el=document.getElementById("sheetChip"); if(!el) return;
  el.textContent=tf("SHEET · {count}",{count:sheetCells().length});
  el.classList.toggle("on",!!st.tray);
  el.setAttribute("aria-expanded",st.tray?"true":"false");
+}
+// ---- every market, browsable ------------------------------------------
+// The edition covers 133 markets and the only way to reach any of them was to
+// know the country's name and type it into a search box that a first-time
+// reader never sees — the desk opens on This edition, where the box does not
+// exist. A buyer cannot pick from a list they were never shown, so here is
+// the list. Alphabetical, not grouped by region: which continent a country
+// belongs to is a judgement this file should not be making, and a reader
+// looking for one country already knows its name.
+function renderAllChip(){
+ var b=document.getElementById("allChip"); if(!b) return;
+ var n=Object.keys(MKT).length;
+ b.textContent=tf("All markets ({n})",{n:n});
+ b.setAttribute("aria-expanded",st.all?"true":"false");
+ b.classList.toggle("on",!!st.all);
+}
+function renderAllTray(){
+ var el=document.getElementById("allTray"); if(!el) return;
+ if(!st.all){el.hidden=true;el.innerHTML="";return;}
+ el.hidden=false;
+ var q=(document.getElementById("dq")||{}).value||"";
+ q=q.trim().toLowerCase();
+ var codes=Object.keys(MKT).sort(function(a,b){return MKT[a].name.localeCompare(MKT[b].name);});
+ if(q) codes=codes.filter(function(k){return MKT[k].name.toLowerCase().indexOf(q)>=0||k.indexOf(q)===0;});
+ var letter="",rows=[];
+ codes.forEach(function(k){
+  var first=MKT[k].name.charAt(0).toUpperCase();
+  if(first!==letter){letter=first;rows.push('<span class="aletter" aria-hidden="true">'+esc(letter)+"</span>");}
+  var mine=st.mine.indexOf(k)>=0;
+  rows.push('<button type="button" class="abtn'+(k===st.anchor?" on":"")+(mine?" mine":"")+'" data-a="'+esc(k)+'">'
+   +esc(MKT[k].name)+(mine?' <i aria-hidden="true">★</i>':"")+"</button>");
+ });
+ var body=codes.length?rows.join(""):'<div class="ssub">'+t("No market matches that search.")+"</div>";
+ el.innerHTML='<div class="sheet"><h5>'+t("All markets in this edition")+'</h5><div class="ssub">'
+  +t("Pick a country to open it. It is added to Your markets so the brief follows it.")
+  +'</div><div class="agrid">'+body+"</div></div>";
+ [].forEach.call(el.querySelectorAll(".abtn"),function(b){
+  b.addEventListener("click",function(){
+   setAnchor(b.getAttribute("data-a"),true);   // true = pin it
+   st.all=false;renderAllChip();renderAllTray();
+  });
+ });
 }
 function renderSheetTray(){
  var el=document.getElementById("sheetTray"); if(!el) return;
@@ -1017,7 +1071,22 @@ window.addEventListener("popstate",function(){
 });
 document.getElementById("vDesk").addEventListener("click",function(){setView("desk",true);});
 document.getElementById("vBrief").addEventListener("click",function(){setView("brief",true);});
+// The desk opens on This edition, where the market list does not exist. Without
+// this the only route to the other 132 markets is a tab a first-time reader has
+// no reason to press.
+document.getElementById("briefPick").addEventListener("click",function(){
+ setView("desk",true);
+ st.all=true;renderAllChip();renderAllTray();
+ var el=document.getElementById("allTray");
+ if(el&&el.scrollIntoView) el.scrollIntoView({block:"nearest"});
+});
+document.getElementById("allChip").addEventListener("click",function(){
+ st.all=!st.all;
+ if(st.all){st.tray=false;renderSheetChip();renderSheetTray();}
+ renderAllChip();renderAllTray();
+});
 document.getElementById("sheetChip").addEventListener("click",function(){
+ if(st.all){st.all=false;renderAllChip();renderAllTray();}
  st.tray=!st.tray;sheetFullNote=false;renderSheetChip();renderSheetTray();
 });
 document.getElementById("briefCta").addEventListener("click",function(){
@@ -1032,6 +1101,7 @@ document.getElementById("briefCta").addEventListener("click",function(){
 // ---- search + keyboard shortcut -------------------------------------------
 var dq=document.getElementById("dq");
 dq.addEventListener("input",function(){
+ if(st.all){renderAllTray();return;}   // the list is open: filter it, do not jump away
  var q=this.value.trim(); if(!q) return;
  var hit=Object.keys(MKT).filter(function(k){return fuzzy(q,MKT[k].name);})[0];
  if(hit) setAnchor(hit,true);
@@ -1087,6 +1157,7 @@ function boot(trade){
  var seen=false;
  try{seen=!!localStorage.getItem("bl_mm_seen");}catch(e){}
  var initial=forcedView||(hashView==="desk"||hashView==="brief"?hashView:(seen?"desk":"brief"));
+ renderAllChip();renderAllTray();
  setView(initial,false);
 }
 

@@ -163,7 +163,7 @@
     .section p,.item,.lane,.source-link{font-size:10pt;line-height:1.5}
   }
 </style>
-  <link rel="stylesheet" href="daily-journal.css?v=20260815a"><script defer src="terminal-status.js?v=20260730d"></script><script defer src="mail-routing.js?v=20260807a"></script>
+  <link rel="stylesheet" href="daily-journal.css?v=20260815b"><script defer src="terminal-status.js?v=20260730d"></script><script defer src="mail-routing.js?v=20260807a"></script>
   <link rel="icon" href="images/app-news-tile.png" sizes="96x96"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="images/apple-touch-news.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="ABrief">
 <!-- The hero's "Subscribe RSS" button is how a reader finds this feed; this is
      how a feed reader finds it without being told. It was missing, which is
@@ -386,8 +386,39 @@
     }
 
     document.getElementById('lead-kicker').textContent=T('Daily brief');
+    /* The lead is one line per production base. Birdland makes things in
+       Taiwan and in China, so what happened at each of those two is the
+       reader's first question every morning, ahead of any freight number.
+       Each line is written from that desk's own stories in "Local News:
+       Taiwan and China" below, and links down to them. A desk with no
+       production story that day gets an honest line saying so rather than a
+       sentence invented to fill the space. */
     var head=document.getElementById('lead-head');
-    head.textContent='';head.appendChild(marked(pick(tr&&tr.headline,DG.headline),false));
+    head.textContent='';
+    var og=(tr&&tr.origin)||DG.origin||{},ogEn=DG.origin||{};
+    /* An edition written before the lead became a pair, or carried forward
+       across the change, still has a single headline. Print it rather than
+       two "no report" lines about a shape that edition never had. */
+    if(!ogEn.china&&!ogEn.taiwan&&(DG.headline||(tr&&tr.headline))){
+      head.appendChild(marked(pick(tr&&tr.headline,DG.headline),false));
+      og=null;
+    }
+    if(og)
+    [['china','China','No production report from the China desk this edition'],
+     ['taiwan','Taiwan','No production report from the Taiwan desk this edition']].forEach(function(row){
+      var side=row[0],txt=pick(og[side],ogEn[side]);
+      var p=document.createElement('span');p.className='db-origin'+(txt?'':' is-quiet');
+      var b=document.createElement('b');b.className='db-origin-tag';b.textContent=T(row[1]);
+      p.appendChild(b);
+      if(txt){
+        var a=document.createElement('a');a.className='db-origin-text';a.href='#production';
+        a.appendChild(marked(txt,true));p.appendChild(a);
+      }else{
+        var s=document.createElement('span');s.className='db-origin-text';s.textContent=T(row[2]);
+        p.appendChild(s);
+      }
+      head.appendChild(p);
+    });
     var as=document.getElementById('lead-asof');if(as)as.textContent='· '+(DG.date||'');
     var sub=document.getElementById('lead-sub');if(sub)sub.hidden=true;
     var standing=document.getElementById('lead-standing');if(standing)standing.hidden=true;
@@ -472,10 +503,15 @@
         var away=document.getElementById('db-away'),ul=document.getElementById('db-away-list');
         away.querySelector('span').textContent=T('While you were away');
         missed.forEach(function(a){
+          var o=(a.i18n&&a.i18n[lang])||a.origin||{},oe=a.origin||{};
           var li=document.createElement('li');
           var d=document.createElement('b');d.textContent=a.date||'';
           li.appendChild(d);li.appendChild(document.createTextNode(' '));
-          li.appendChild(marked(pick(a.i18n&&a.i18n[lang],a.headline),false));
+          var parts=[pick(o.china,oe.china),pick(o.taiwan,oe.taiwan)].filter(Boolean);
+          parts.forEach(function(txt,i){
+            if(i)li.appendChild(document.createTextNode(' · '));
+            li.appendChild(marked(txt,false));
+          });
           ul.appendChild(li);
         });
         away.hidden=false;
