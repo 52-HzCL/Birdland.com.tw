@@ -13,7 +13,7 @@
 #   price_scan() rejects the whole promotion if any currency/price marker
 #   survives into the generated data. This runs BEFORE anything is written,
 #   so no price ever reaches the public git history.
-import json,os,re,sys,base64,hashlib,datetime,urllib.request,urllib.parse
+import json,os,re,sys,base64,hashlib,datetime,time,urllib.request,urllib.parse,urllib.error
 
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODEL=os.environ.get("GEMINI_MODEL","gemini-2.5-flash")
@@ -31,11 +31,17 @@ def gem_call(parts,maxtok=16384,temp=0.3,timeout=240):
     req=urllib.request.Request(u,data=json.dumps(body).encode(),
                                headers={"Content-Type":"application/json"})
     last=None
-    for attempt in range(3):
+    for attempt in range(4):
         try:
             resp=json.load(urllib.request.urlopen(req,timeout=timeout))
             t=resp["candidates"][0]["content"]["parts"][0]["text"]
             return json.loads(_strip_fence(t))
+        except urllib.error.HTTPError as e:
+            last=e; note("gemini attempt %d failed: HTTP %d"%(attempt+1,e.code))
+            if e.code in (429,500,503):
+                ra=(e.headers.get("Retry-After") or "")
+                wait=int(ra) if ra.isdigit() else 12*(attempt+1)
+                time.sleep(min(wait,90))
         except Exception as e:
             last=e; note("gemini attempt %d failed: %s"%(attempt+1,e))
     raise RuntimeError("gemini call failed after retries: %s"%last)
