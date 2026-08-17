@@ -99,18 +99,23 @@ def build_digest(dg,regions,corpus,today,why=None):
     src=dg.get("i18n") or {}
     for lg in DIG_LANGS:
         v=src.get(lg)
-        if not isinstance(v,dict): continue
+        if not isinstance(v,dict):
+            note("lang %s: not offered"%lg); continue
         vog=v.get("origin") if isinstance(v.get("origin"),dict) else {}
         h={"china":line(vog.get("china"),140) or "","taiwan":line(vog.get("taiwan"),140) or ""}
         vt=[line((x or {}).get("text"),160) for x in (v.get("themes") or [])]
         vm=[line((x or {}).get("text"),150) for x in (v.get("markets") or [])]
-        if (bool(origin["china"])!=bool(h["china"])) or (bool(origin["taiwan"])!=bool(h["taiwan"])): continue
-        if len(vt)<len(themes) or any(x is None for x in vt[:len(themes)]): continue
-        if len(vm)<len(markets) or any(x is None for x in vm[:len(markets)]): continue
+        if (bool(origin["china"])!=bool(h["china"])) or (bool(origin["taiwan"])!=bool(h["taiwan"])):
+            note("lang %s: origin sides do not match (%r)"%(lg,vog)); continue
+        if len(vt)<len(themes) or any(x is None for x in vt[:len(themes)]):
+            note("lang %s: %d of %d themes usable"%(lg,len([x for x in vt[:len(themes)] if x]),len(themes))); continue
+        if len(vm)<len(markets) or any(x is None for x in vm[:len(markets)]):
+            note("lang %s: %d of %d markets usable"%(lg,len([x for x in vm[:len(markets)] if x]),len(markets))); continue
         e={"origin":h,"themes":vt[:len(themes)],"markets":vm[:len(markets)]}
         if action:
             a=line((v.get("action") or {}).get("text") if isinstance(v.get("action"),dict) else None,130)
-            if not a: continue
+            if not a:
+                note("lang %s: action rejected"%lg); continue
             e["action"]=a
         tr[lg]=e
     out["i18n"]=tr
@@ -188,7 +193,7 @@ TODAY'S DATA:
 
 def request_digest(ctx,model,key):
     body={"contents":[{"parts":[{"text":DIGEST_PROMPT+json.dumps(ctx,ensure_ascii=False)}]}],
-          "generationConfig":{"temperature":0.4,"maxOutputTokens":8192,
+          "generationConfig":{"temperature":0.4,"maxOutputTokens":24576,
                               "responseMimeType":"application/json"}}
     u="https://generativelanguage.googleapis.com/v1beta/models/"+model+":generateContent?key="+key
     req=urllib.request.Request(u,data=json.dumps(body).encode(),
@@ -457,6 +462,8 @@ try:
             _why2=[]
             _newdig=build_digest(_dg2,data["regions"],_corpus,today,_why2)
             if not _newdig: print("digest: dedicated call also unusable (%s)"%("; ".join(_why2) or "no object"))
+            elif len(_newdig["i18n"])<len(DIG_LANGS):
+                print("digest: %d/%d languages kept — %s"%(len(_newdig["i18n"]),len(DIG_LANGS),"; ".join(_why2) or "no reason recorded"))
         except Exception as _ex:
             print("digest: dedicated call failed (%s)"%_ex)
     if _newdig:
