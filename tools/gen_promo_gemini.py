@@ -70,7 +70,12 @@ PRICE_PAT=re.compile(
     r"|\b(?:FOB|CIF|EXW|DDP|DDU|CFR|CNF)\b"
     r"|\b(?:price|prices|pricing|quotation|MSRP|per\s+(?:pc|pcs|piece|unit))\b"
     r"|\bPreis\w*|\bprix\b|\bprecio\w*|\bprezz\w*|\bprijs\w*|\bcen[ay]\b|\bpreço\w*"
-    r"|價格|報價|售價|單價|定價|価格|単価",
+    r"|價格|報價|售價|單價|定價|価格|単価"
+    # bare unit prices that survive currency stripping: "3.20/pc", "@ 2.10",
+    # "2.10 each" — the audit found these could ride through all three walls
+    r"|\b\d+(?:[.,]\d+)?\s*/\s*(?:pc|pcs|piece|unit|set|doz|dozen|ctn|carton)\b"
+    r"|@\s*\d+(?:[.,]\d+)?(?![\w.])"
+    r"|\b\d+(?:[.,]\d+)?\s+each\b",
     re.IGNORECASE)
 
 def price_scan(obj,path="$"):
@@ -229,31 +234,33 @@ def build_promo(ext,ap,src_bytes,sales_name,sales_email,market,expires_days,toda
     return promo
 
 def attach_lang(promo):
+    """True when the promo needs no translation or got one; False = retry later."""
     lang=promo["lang"]
-    if lang=="en": return
+    if lang=="en": return True
     content={"title":promo["title"],"intro":promo["intro"],
              "items":promo["items"],"why_now":promo["why_now"]}
     try:
         tr=translate(content,lang)
     except Exception as e:
-        note("translation failed, English only: %s"%e); return
+        note("translation failed, English only: %s"%e); return False
     # tolerate the one wrapper shape models keep producing anyway
     if isinstance(tr,dict) and "items" not in tr and isinstance(tr.get("content"),dict):
         tr=tr["content"]
     if not isinstance(tr,dict) or len(tr.get("items") or [])!=len(promo["items"]):
-        note("translation misaligned, English only"); return
+        note("translation misaligned, English only"); return False
     for i,it in enumerate(tr["items"]):
         if clean_str(it.get("code"),60)!=promo["items"][i]["code"]:
-            note("translation altered an item code, English only"); return
+            note("translation altered an item code, English only"); return False
     hits=price_scan(tr)
     if hits:
-        note("translation dropped by price firewall (%s)"%hits[0][0]); return
+        note("translation dropped by price firewall (%s)"%hits[0][0]); return False
     promo["tr"]={"title":clean_str(tr.get("title"),120),
                  "intro":clean_str(tr.get("intro"),600),
                  "items":[{"name":clean_str(it.get("name"),120),
                            "specs":[clean_str(s,160) for s in (it.get("specs") or [])[:6]],
                            "appeal":clean_str(it.get("appeal"),240)} for it in tr["items"]],
                  "why_now":[clean_str(w,240) for w in (tr.get("why_now") or [])[:3]]}
+    return True
 
 # ---------------------------------------------------------------- images
 def extract_images(data,ext_name,slug):
@@ -312,7 +319,10 @@ def render_page(promo):
     tpl=open(os.path.join(ROOT,"tools","promo_template.html"),encoding="utf-8").read()
     if tpl.count("__PROMO__")!=1:
         raise RuntimeError("promo_template.html must contain exactly one __PROMO__")
-    return tpl.replace("__PROMO__",json.dumps(promo,ensure_ascii=False))
+    # "<" is escaped inside the JSON so no string value can ever close the
+    # script tag and inject markup into the page
+    return tpl.replace("__PROMO__",
+        json.dumps(promo,ensure_ascii=False).replace("<","\\u003c"))
 
 def load_index():
     p=os.path.join(ROOT,"p","index.json")
@@ -327,7 +337,9 @@ def save_outputs(promo,src_hash):
     idx["promos"]=[x for x in idx["promos"] if x["slug"]!=promo["slug"]]
     idx["promos"].insert(0,{k:promo[k] for k in
         ("slug","created","expires","market","lang","title")}|{"sales":promo["sales"],
-        "items":len(promo["items"]),"images":len(promo["images"])})
+        "items":len(promo["items"]),"images":len(promo["images"]),
+        # a failed translation is retried on later polls, never fossilised
+        "tr_pending":promo["lang"]!="en" and "tr" not in promo})
     if src_hash and src_hash not in idx["processed"]:
         idx["processed"]=([src_hash]+idx["processed"])[:500]
     open(os.path.join(ROOT,"p","index.json"),"w",encoding="utf-8").write(
@@ -379,6 +391,36 @@ def prune_expired(today=None):
             json.dumps(idx,ensure_ascii=False,indent=1))
         note("pruned %d expired promotion(s)"%removed)
 
+def _page_promo(slug):
+    """Recover the full promo object from its own published page."""
+    try:
+        html=open(os.path.join(ROOT,"p",slug+".html"),encoding="utf-8").read()
+    except OSError:
+        return None
+    m=re.search(r'id="promo-data">(.*?)</script>',html,re.S)
+    if not m: return None
+    try:
+        return json.loads(m.group(1))
+    except ValueError:
+        return None
+
+def retry_translations():
+    """Hourly second chance for promos whose translation call failed (429s)."""
+    idx=load_index(); changed=False
+    for x in idx["promos"]:
+        if not x.get("tr_pending") or x.get("expired"): continue
+        promo=_page_promo(x["slug"])
+        if not promo or promo.get("tr"):
+            x["tr_pending"]=False; changed=True; continue
+        if attach_lang(promo) and not price_scan(promo):
+            open(os.path.join(ROOT,"p",promo["slug"]+".html"),"w",encoding="utf-8").write(
+                render_page(promo))
+            x["tr_pending"]=False; changed=True
+            note("translation retried ok for %s (%s)"%(x["slug"],promo["lang"]))
+    if changed:
+        open(os.path.join(ROOT,"p","index.json"),"w",encoding="utf-8").write(
+            json.dumps(idx,ensure_ascii=False,indent=1))
+
 # ---------------------------------------------------------------- entry
 def process_file(data,fname,sales_name,sales_email,market,expires_days,force=False):
     ext_name=os.path.splitext(fname)[1].lower()
@@ -426,6 +468,7 @@ def market_from_name(fname):
 
 def poll():
     prune_expired()  # runs hourly even before SharePoint is wired up
+    if KEY: retry_translations()
     tok=graph_token()
     if not tok:
         note("MSGRAPH secrets not configured; poll skipped"); return 0
@@ -486,12 +529,14 @@ def selftest():
     bad=["FOB Keelung USD 3.20/pc","unit price $2.10","Preisliste 2026",
          "prix indicatif","報價單","単価 120円/本".replace("円/本",""),
          "NT$85","EXW Taichung","precio unitario","cena za sztuke",
-         "preço por peça","€ 1,05","attractive pricing"]
+         "preço por peça","€ 1,05","attractive pricing",
+         "3.20/pc","@ 2.10","2.10 each","9,50 / carton"]
     for b in bad: check(price_scan({"x":b}),"blocks %r"%b[:24])
     # ...and stays quiet on legitimate product content (incl. the word inquiry)
     good=["28.5 cm forged carbon steel blade","MOQ 3,000 pcs","S45C steel, HRC 48-52",
           "ash wood handle 120 cm","歡迎勾選品項向業務詢價","zinc plated, 250 g",
-          "PP+TPR grip, EU compliant packaging"]
+          "PP+TPR grip, EU compliant packaging","contact sales-test@birdland.com.tw",
+          "reply to team@163.com","12 pcs per inner box"]
     for g in good: check(not price_scan({"x":g}),"allows %r"%g[:24])
     # number firewall on why_now
     corpus=set(_nums("rates rose 12.5 this week; 2,300 TEU"))
@@ -548,6 +593,11 @@ def selftest():
         check('name="referrer" content="no-referrer"' in tpl,
               "template suppresses the Referer header")
         check('name="robots" content="noindex' in tpl,"template is noindex")
+        fake={"slug":"t","created":"2026-01-01","expires":"2099-01-01","market":"",
+              "lang":"en","sales":{"name":"","email":""},"intro":"","items":[],
+              "why_now":[],"images":[],"title":"a</script><img src=x onerror=alert(1)>"}
+        check("a</script>" not in render_page(fake),
+              "promo JSON cannot break out of its script tag")
     print("selftest: %d failure(s)"%len(fails))
     return 1 if fails else 0
 

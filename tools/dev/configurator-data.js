@@ -140,15 +140,15 @@ const PRODUCTS = [
     part('joint',  'Pivot',        { joining: ['Riveting'], inspection: JOINT_QC }),
     part('pack',   'Packaging',    { pack: ['Blister pack', 'Colour box'] }),
   ]),
-  P('garden-gloves', 'Garden gloves (sourcing)', 'source', 1, 'gloves', [
-    part('body',   'Shell & coating', { material: ['Fabric', 'Grip compounds'], forming: ['Dip moulding'], inspection: ['Dimensional AQL'] }),
-    part('cuff',   'Cuff & label', { pack: ['Label set', 'Hang tag / header card'] }),
-    part('pack',   'Packaging',    { pack: ['Hang tag / header card', 'Corrugated export carton'] }),
-  ]),
   P('tool-set', 'Boxed tool set (mixed programme)', 'source', 2, 'set', [
     part('tools',  'Tool selection', { material: ['Blade & spring steel', 'Stainless steel'], inspection: ['Edge & function check', 'Dimensional AQL'] }),
     part('tray',   'Tray / case',  { material: ['Rigid plastics', 'Packaging board'], forming: ['Injection moulding'] }),
     part('pack',   'Retail pack',  { pack: ['Colour box', 'Paper-and-plastic composite'], inspection: ['Barcode & label check', 'Pack drop test'] }),
+  ]),
+  P('garden-gloves', 'Garden gloves (sourcing)', 'source', 1, 'gloves', [
+    part('body',   'Shell & coating', { material: ['Fabric', 'Grip compounds'], forming: ['Dip moulding'], inspection: ['Dimensional AQL'] }),
+    part('cuff',   'Cuff & label', { pack: ['Label set', 'Hang tag / header card'] }),
+    part('pack',   'Packaging',    { pack: ['Hang tag / header card', 'Corrugated export carton'] }),
   ]),
 ];
 

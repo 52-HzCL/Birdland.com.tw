@@ -33,8 +33,20 @@ PRODUCTS.forEach(p => {
     });
   });
 });
-// the menu must lead with metal: first product of the list is full-metal forge
+// Ordering IS the positioning (owner's directive): the menu opens full-metal
+// forge, tiers appear in fixed order, and metal content never increases
+// within a tier. The whole sequence is asserted, not just the first row.
 if (!(PRODUCTS[0].tier === 'forge' && PRODUCTS[0].metal === 5))
   errs.push('menu must open with a full-metal forged product');
+const tierOrder = TIERS.map(t => t.id);
+if (tierOrder.join(',') !== 'forge,form,source') errs.push('tier order changed');
+let ti = 0, lastMetal = Infinity;
+PRODUCTS.forEach(p => {
+  const i = tierOrder.indexOf(p.tier);
+  if (i < ti) errs.push(`${p.id}: tier out of order`);
+  if (i > ti) { ti = i; lastMetal = Infinity; }
+  if (p.metal > lastMetal) errs.push(`${p.id}: metal increases within its tier`);
+  lastMetal = p.metal;
+});
 if (errs.length) { console.error('configurator data INVALID:'); errs.forEach(e => console.error(' - ' + e)); process.exit(1); }
 console.log(`configurator data ok: ${PRODUCTS.length} products, ${TIERS.length} tiers, all option names verified`);
