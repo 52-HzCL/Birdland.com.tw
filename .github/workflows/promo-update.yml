@@ -1,0 +1,90 @@
+name: Promotion pipeline
+
+# Salesperson drops a document into the SharePoint folder; the hourly poll turns
+# it into an unlisted customer page under p/. The original document is processed
+# in runner memory only and is NEVER committed — the price firewall in
+# tools/gen_promo_gemini.py rejects the whole promotion before anything is
+# written if any currency/price marker survives extraction.
+on:
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+    inputs:
+      file:
+        description: "Repo path to a test document (leave empty to poll SharePoint)"
+        required: false
+      sales_name:
+        description: "Salesperson name (test runs only)"
+        required: false
+      sales_email:
+        description: "Salesperson email (test runs only)"
+        required: false
+      market:
+        description: "Two-letter market code, e.g. de (test runs only)"
+        required: false
+      expires_days:
+        description: "Days until the promotion expires"
+        required: false
+        default: "30"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: promo-update
+  cancel-in-progress: false
+
+jobs:
+  promo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install document tooling
+        run: pip install --quiet pymupdf pillow
+
+      - name: Selftest gate (offline)
+        run: python3 tools/gen_promo_gemini.py --selftest
+
+      - name: Run the pipeline
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY || secrets.GEMINI_MAY_API_KEY }}
+          MSGRAPH_TENANT_ID: ${{ secrets.MSGRAPH_TENANT_ID }}
+          MSGRAPH_CLIENT_ID: ${{ secrets.MSGRAPH_CLIENT_ID }}
+          MSGRAPH_CLIENT_SECRET: ${{ secrets.MSGRAPH_CLIENT_SECRET }}
+          PROMO_SP_SITE: ${{ secrets.PROMO_SP_SITE }}
+          PROMO_SP_FOLDER: ${{ vars.PROMO_SP_FOLDER || 'Promotion上傳' }}
+        run: |
+          if [ -n "${{ github.event.inputs.file }}" ]; then
+            python3 tools/gen_promo_gemini.py \
+              --file "${{ github.event.inputs.file }}" \
+              --sales-name "${{ github.event.inputs.sales_name }}" \
+              --sales-email "${{ github.event.inputs.sales_email }}" \
+              --market "${{ github.event.inputs.market }}" \
+              --expires-days "${{ github.event.inputs.expires_days || '30' }}"
+          else
+            python3 tools/gen_promo_gemini.py --poll
+          fi
+
+      - name: Belt check — no currency markers in the promotion data
+        run: |
+          if [ -f p/index.json ]; then
+            ! grep -nE '[$€£¥₩]|\bUSD\b|\bEUR\b|\bFOB\b|\bCIF\b|\bEXW\b' p/index.json
+          fi
+
+      - name: Commit generated pages only
+        run: |
+          git config user.name "Birdland Promo Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add p/
+          if git diff --cached --quiet; then
+            echo "nothing new"
+          else
+            git commit -m "Promotion update $(date -u +%Y-%m-%dT%H:%MZ)"
+            git pull --rebase origin main
+            git push && echo "pushed" || echo "PUSH FAILED — check workflow permissions"
+          fi

@@ -2,5 +2,6 @@ User-agent: *
 Disallow: /partner.html
 Disallow: /team.html
 Disallow: /news.html
+Disallow: /p/
 
 Sitemap: https://birdland.com.tw/sitemap.xml

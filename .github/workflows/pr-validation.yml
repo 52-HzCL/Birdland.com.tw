@@ -173,6 +173,7 @@ jobs:
           set -euo pipefail
           python3 -m compileall -q tools
           python3 tools/gen_news_gemini.py --selftest
+          python3 tools/gen_promo_gemini.py --selftest
 
       # outlook-data.json is inlined verbatim into five generated pages, so a
       # kilobyte added to the data is a kilobyte added to every one of them,
