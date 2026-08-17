@@ -145,7 +145,7 @@ def strip_marks(o,skip=()):
         return {k:(v if k in skip else strip_marks(v)) for k,v in o.items()}
     return o
 
-def digest_context(d):
+def digest_context(d,news_src=None):
     """The slice of the edition the brief is actually written from.
 
     Asking for the digest inside the main call meant asking the model to echo
@@ -161,8 +161,13 @@ def digest_context(d):
     # The two production desks the lead is written from. Same rows the reader
     # sees under "Local News: Taiwan and China", so the lead can be checked
     # against the stories printed below it.
+    # market_news is never AI-authored — it is restored verbatim from the
+    # stored file, and that restore happens AFTER the digest is written. Read
+    # it from the source explicitly: taking it from the half-built reply gave
+    # the model an empty news list, and it correctly answered that it had no
+    # production story for either desk.
     news={"taiwan":[],"china":[]}
-    for n in (d.get("market_news") or []):
+    for n in ((news_src or d).get("market_news") or []):
         t=n.get("topic")
         if t in news and len(news[t])<4:
             news[t].append({"date":n.get("date"),"title":n.get("title"),"source":n.get("source")})
@@ -301,6 +306,8 @@ if "--selftest" in sys.argv:
     check("build_digest(cand.get(\"today_digest\")" not in _block,
           "the echoed digest must never be validated for publication")
     check("request_digest(" in _block,"the digest must come from its own call")
+    _ctx=digest_context({"regions":{}},{"market_news":[{"topic":"taiwan","title":"T"},{"topic":"china","title":"C"}]})
+    check(len(_ctx["local_news"]["taiwan"])==1 and len(_ctx["local_news"]["china"])==1,"context reads news from the source, not the half-built reply")
     _dirty={"regions":{"us":{"supply":"Rates ==surged== to @@10%@@ this week"}},
             "war":{"zones":[{"note":"Transit is ==effectively closed=="}]},
             "today_digest":{"headline":"Freight ==up== @@3@@"}}
@@ -475,7 +482,7 @@ try:
         # of the update intact and the previous digest carried forward under
         # its own date.
         try:
-            _dg2=request_digest(digest_context(cand),MODEL,KEY)
+            _dg2=request_digest(digest_context(cand,data),MODEL,KEY)
             _why2=[]
             _newdig=build_digest(_dg2,data["regions"],_corpus,today,_why2)
             if not _newdig: print("digest: dedicated call also unusable (%s)"%("; ".join(_why2) or "no object"))
