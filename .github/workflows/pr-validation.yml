@@ -208,6 +208,15 @@ jobs:
           set -euo pipefail
           node tools/dev/verify-app-list.js
 
+      # The configurator's option names and anatomy drawings must never drift
+      # from the single data source they cite.
+      - name: Validate configurator data and drawings
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/dev/verify-config-data.js
+          node tools/dev/verify-drawings.js
+
       - name: Validate public calendar feeds
         shell: bash
         run: |
