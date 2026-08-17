@@ -289,6 +289,18 @@ if "--selftest" in sys.argv:
     a=roll_digest_archive({"date":"14 Aug 2026","origin":_o},
                           {"date":"14 Aug 2026","origin":_o,"archive":[{"date":"13 Aug 2026","origin":_o}]})
     check(len(a["archive"])==1 and a["archive"][0]["date"]=="13 Aug 2026", "same-day rerun must not archive itself")
+    # The main reply echoes the document back, so the digest that went in comes
+    # out again. It must never be the published one: it would be re-stamped
+    # with today's date and yesterday's brief would read as today's.
+    import inspect as _inspect
+    _src=_inspect.getsource(sys.modules[__name__])
+    _i=_src.find("_corpus=digest_corpus(")
+    _j=_src.find("cand[\"news\"]=data.get(\"news\"",_i)
+    _block=_src[_i:_j] if _i>=0 and _j>_i else ""
+    check(bool(_block),"digest publish block must be findable")
+    check("build_digest(cand.get(\"today_digest\")" not in _block,
+          "the echoed digest must never be validated for publication")
+    check("request_digest(" in _block,"the digest must come from its own call")
     _dirty={"regions":{"us":{"supply":"Rates ==surged== to @@10%@@ this week"}},
             "war":{"zones":[{"note":"Transit is ==effectively closed=="}]},
             "today_digest":{"headline":"Freight ==up== @@3@@"}}
@@ -450,13 +462,18 @@ try:
     cand=strip_marks(cand,skip=("today_digest",))
     _corpus=digest_corpus(data,{k:v for k,v in cand.items() if k!="today_digest"})
     _olddig=data.get("today_digest") or {}
+    # The digest is ALWAYS written by its own call. The main reply is an echo
+    # of the whole document, so whatever digest went in comes back out — and
+    # once that echo is shaped correctly it passes this validator and gets
+    # re-stamped with today's date. Yesterday's brief published as today's is
+    # the exact dishonesty the rest of this file exists to prevent, and it is
+    # invisible: the log said "5 themes, 1 markets" either way.
     _why=[]
-    _newdig=build_digest(cand.get("today_digest"),data["regions"],_corpus,today,_why)
-    if not _newdig:
-        # The main call is a 97KB echo and drops the new key; a dedicated call
-        # with a few KB of context and one job does not. Never allowed to break
-        # the edition: any failure here leaves the rest of the update intact.
-        print("digest: first pass unusable (%s); asking separately"%("; ".join(_why) or "not offered"))
+    _newdig=None
+    if True:
+        # Never allowed to break the edition: any failure here leaves the rest
+        # of the update intact and the previous digest carried forward under
+        # its own date.
         try:
             _dg2=request_digest(digest_context(cand),MODEL,KEY)
             _why2=[]
