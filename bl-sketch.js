@@ -124,7 +124,13 @@
     ctx.font = o.font;
     ctx.textAlign = tailDir > 0 ? 'left' : 'right';
     ctx.textBaseline = 'middle';
-    ctx.fillText(text, tx + 10 * tailDir, ty);
+    // Clamp the text inside the visible canvas: a right-aligned label near the
+    // left edge (or left-aligned near the right) otherwise loses its first
+    // glyphs off-canvas — this shipped once with "Handle" reading "landle".
+    var tx2 = tx + 10 * tailDir, w = ctx.measureText(text).width;
+    if (o.minX !== undefined && tailDir < 0 && tx2 - w < o.minX) tx2 = o.minX + w;
+    if (o.maxX !== undefined && tailDir > 0 && tx2 + w > o.maxX) tx2 = o.maxX - w;
+    ctx.fillText(text, tx2, ty);
     ctx.restore();
   }
 
@@ -161,7 +167,9 @@
       if (!part.label) return;
       var txt = (state && state.labels && state.labels[part.id]) || part.name || part.id;
       leader(ctx, part.label[0], part.label[1], part.label[2], part.label[3], txt,
-        { ink: o.ink, font: o.font });
+        { ink: o.ink, font: o.font,
+          minX: -(W - 100 * scale) / 2 / scale + 1,
+          maxX: 100 + (W - 100 * scale) / 2 / scale - 1 });
     });
     ctx.restore();
     return scale;

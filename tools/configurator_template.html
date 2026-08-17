@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <link rel="stylesheet" href="tokens.css?v=20260814a"><script src="text-size.js?v=20260804a"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AsiaSource Configurator | Birdland</title>
+  <meta name="description" content="Configure a Birdland OEM programme part by part — materials, forming, heat treatment, finish and packaging — and send the requirement sheet to our sales team. No prices, no commitments.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <script src="bl-sketch.js?v=20260818a"></script>
+  <script src="configurator-drawings.js?v=20260818a"></script>
+  <style>
+  :root{
+    --cfg-bg:var(--paper);--cfg-panel:var(--card);--cfg-band:var(--paper-2);
+    --cfg-line:var(--line);--cfg-line-soft:var(--line-soft);
+    --cfg-txt:var(--ink-900);--cfg-mut:var(--ink-500);
+    --cfg-accent:var(--jade-700);--cfg-deep:var(--jade-900);--cfg-copper:var(--copper-600);
+    --cfg-ink:#2b3a35;--cfg-canvas-mut:#8a9490;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --cfg-bg:#101614;--cfg-panel:#161d1a;--cfg-band:#131a17;
+    --cfg-line:rgba(231,237,234,.18);--cfg-line-soft:rgba(231,237,234,.08);
+    --cfg-txt:#E7EDEA;--cfg-mut:#9fb0a9;
+    --cfg-accent:#5CC8A8;--cfg-deep:#E7EDEA;--cfg-copper:#E4A47A;
+    --cfg-ink:#d8e2dd;--cfg-canvas-mut:#6b7a74;
+  }}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:100%}
+  body{font-family:var(--ff-sans);background:var(--cfg-bg);color:var(--cfg-txt);font-size:var(--fs-h3);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  .wrap{max-width:1500px;margin:0 auto;padding:0 clamp(.8rem,2.5vw,2rem)}
+
+  /* -- top chrome: the way back, styled like the desks' own bar ---------- */
+  .topbar{background:var(--cfg-deep);color:#F6F4EC;border-bottom:1px solid var(--cfg-line)}
+  @media (prefers-color-scheme:dark){.topbar{background:#0b100e;color:var(--cfg-txt)}}
+  .topbar .tb{display:flex;align-items:center;gap:14px;padding:10px 0}
+  .tb-brand{font-weight:800;letter-spacing:.02em;font-size:var(--fs-h3)}
+  .tb-brand small{display:block;font-family:var(--ff-mono);font-weight:400;font-size:var(--fs-micro);opacity:.75;letter-spacing:.12em;text-transform:uppercase}
+  .tb-back{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-family:var(--ff-mono);font-size:var(--fs-small);border:1px solid rgba(246,244,236,.35);border-radius:var(--r-sm,4px);padding:6px 12px}
+  .tb-back:hover{border-color:currentColor}
+  .tb-home{font-family:var(--ff-mono);font-size:var(--fs-small);opacity:.8}
+  .tb-home:hover{opacity:1}
+
+  /* -- requirement sheet summary bar (always in view) -------------------- */
+  .sheetbar{position:sticky;top:0;z-index:20;background:var(--cfg-band);border-bottom:1px solid var(--cfg-line);box-shadow:0 1px 6px rgba(0,0,0,.06)}
+  .sheetbar .sb{display:flex;align-items:center;gap:10px;padding:8px 0;flex-wrap:wrap}
+  .sb-title{font-family:var(--ff-mono);font-size:var(--fs-small);letter-spacing:.1em;text-transform:uppercase;color:var(--cfg-mut);flex:0 0 auto}
+  .sb-items{display:flex;gap:8px;flex-wrap:wrap;flex:1 1 auto;min-width:0}
+  .sb-chip{display:inline-flex;align-items:center;gap:6px;background:var(--cfg-panel);border:1px solid var(--cfg-line);border-radius:999px;padding:3px 10px;font-size:var(--fs-small)}
+  .sb-chip b{font-weight:700}
+  .sb-chip .q{font-family:var(--ff-mono);color:var(--cfg-accent)}
+  .sb-empty{color:var(--cfg-mut);font-size:var(--fs-small)}
+  .sb-act{display:flex;gap:8px;flex:0 0 auto}
+  .sb-btn{border:1px solid var(--cfg-accent);color:var(--cfg-accent);border-radius:var(--r-sm,4px);padding:5px 12px;font-weight:700;font-size:var(--fs-small)}
+  .sb-btn.primary{background:var(--cfg-accent);color:var(--cfg-bg)}
+  .sb-btn:disabled{opacity:.4;cursor:not-allowed}
+
+  /* -- layout ------------------------------------------------------------ */
+  .lay{display:grid;grid-template-columns:300px minmax(0,1fr);gap:18px;padding:18px 0 40px}
+  @media(max-width:900px){.lay{grid-template-columns:1fr}}
+
+  /* -- product menu ------------------------------------------------------ */
+  .tier{margin-bottom:16px}
+  .tier-h{font-weight:800;font-size:var(--fs-h3);color:var(--cfg-deep)}
+  @media (prefers-color-scheme:dark){.tier-h{color:var(--cfg-txt)}}
+  .tier-b{color:var(--cfg-mut);font-size:var(--fs-small);margin:2px 0 8px;line-height:1.45}
+  .pbtn{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:8px 10px;border:1px solid transparent;border-radius:var(--r-sm,4px);font-size:var(--fs-h3)}
+  .pbtn:hover{background:var(--cfg-band)}
+  .pbtn[aria-current="true"]{background:var(--cfg-panel);border-color:var(--cfg-accent);font-weight:700}
+  .pbtn .done{margin-left:auto;font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--cfg-accent)}
+  @media(max-width:900px){
+    .menu{display:block}
+    .tier .plist{display:flex;flex-wrap:wrap;gap:6px}
+    .pbtn{width:auto;border:1px solid var(--cfg-line)}
+  }
+
+  /* -- stage: canvas + parts --------------------------------------------- */
+  .stage{min-width:0}
+  .stage-h{margin-bottom:8px}
+  .stage-h h1{font-size:var(--fs-h1);font-weight:800;line-height:1.15;color:var(--cfg-deep)}
+  @media (prefers-color-scheme:dark){.stage-h h1{color:var(--cfg-txt)}}
+  .stage-h p{color:var(--cfg-mut);font-size:var(--fs-small)}
+  .board{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:18px}
+  @media(max-width:1100px){.board{grid-template-columns:1fr}}
+  .canvas-card{background:var(--cfg-panel);border:1px solid var(--cfg-line);border-radius:var(--r-md,8px);padding:10px;position:relative}
+  .canvas-card .hint{font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--cfg-mut);text-align:center;padding:4px 0 2px}
+  #cv{display:block;width:100%;aspect-ratio:1/1;max-height:560px;margin:0 auto;touch-action:manipulation;cursor:pointer}
+
+  .parts{display:flex;flex-direction:column;gap:10px}
+  .part{background:var(--cfg-panel);border:1px solid var(--cfg-line);border-radius:var(--r-md,8px)}
+  .part-h{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:10px 12px;font-weight:700;font-size:var(--fs-h3)}
+  .part-h .tick{width:20px;height:20px;flex:0 0 auto;border:1.5px solid var(--cfg-mut);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;color:transparent}
+  .part.is-done .part-h .tick{border-color:var(--cfg-accent);background:var(--cfg-accent);color:var(--cfg-bg)}
+  .part-h .st{margin-left:auto;font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--cfg-mut);font-weight:400}
+  .part[data-open="1"]{border-color:var(--cfg-accent)}
+  .part-b{display:none;border-top:1px solid var(--cfg-line-soft);padding:10px 12px 14px}
+  .part[data-open="1"] .part-b{display:block}
+  .gate{margin-top:10px}
+  .gate:first-child{margin-top:0}
+  .gate-h{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--cfg-copper);margin-bottom:6px}
+  .opt{border:1px solid var(--cfg-line);border-radius:var(--r-sm,4px);padding:8px 10px;margin-bottom:6px;cursor:pointer}
+  .opt:hover{border-color:var(--cfg-accent)}
+  .opt.is-on{border-color:var(--cfg-accent);background:var(--cfg-band);box-shadow:inset 3px 0 0 var(--cfg-accent)}
+  .opt .o-top{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .opt .o-name{font-weight:700;font-size:var(--fs-h3)}
+  .opt .o-meta{font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--cfg-mut);margin-left:auto;white-space:nowrap}
+  .opt .o-buyer{font-size:var(--fs-small);color:var(--cfg-txt);margin-top:3px;line-height:1.5}
+  .opt details{margin-top:5px}
+  .opt summary{font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--cfg-accent);cursor:pointer;list-style:none}
+  .opt summary::before{content:"+ "}
+  .opt details[open] summary::before{content:"\2212 "}
+  .opt .o-prod{font-size:var(--fs-small);color:var(--cfg-mut);margin-top:4px;line-height:1.5;border-left:2px solid var(--cfg-line);padding-left:8px}
+
+  /* -- per-product quantity & delivery ----------------------------------- */
+  .order{background:var(--cfg-band);border:1px solid var(--cfg-line);border-radius:var(--r-md,8px);padding:12px;margin-top:10px}
+  .order .oh{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--cfg-mut);margin-bottom:8px}
+  .order .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .order label{font-size:var(--fs-small);font-weight:700}
+  .order input{font-family:var(--ff-mono);font-size:var(--fs-h3);color:var(--cfg-txt);background:var(--cfg-panel);border:1px solid var(--cfg-line);border-radius:var(--r-sm,4px);padding:5px 8px;max-width:130px}
+  .order input:focus{outline:2px solid var(--cfg-accent)}
+  .qq{display:inline-flex;gap:4px}
+  .qq button{font-family:var(--ff-mono);font-size:var(--fs-micro);border:1px solid var(--cfg-line);border-radius:999px;padding:3px 9px;color:var(--cfg-mut)}
+  .qq button:hover{border-color:var(--cfg-accent);color:var(--cfg-accent)}
+
+  footer{border-top:1px solid var(--cfg-line);padding:18px 0 30px;color:var(--cfg-mut);font-size:var(--fs-small)}
+  footer a{color:var(--cfg-accent);font-weight:700}
+  </style>
+</head>
+<body>
+  <header class="topbar"><div class="wrap tb">
+    <a class="tb-brand" href="index.html">BIRDLAND<small>Confidential OEM &middot; Taiwan</small></a>
+    <span style="font-family:var(--ff-mono);font-size:var(--fs-small);opacity:.85">Product Configurator</span>
+    <a class="tb-back" href="partner.html">&larr; AsiaSource</a>
+    <a class="tb-home" href="index.html">Birdland</a>
+  </div></header>
+
+  <div class="sheetbar"><div class="wrap sb">
+    <span class="sb-title">Requirement sheet</span>
+    <div class="sb-items" id="sbItems"><span class="sb-empty">Pick a product on the left and choose its build — your selections collect here.</span></div>
+    <div class="sb-act">
+      <button class="sb-btn" id="csvBtn" disabled>Download CSV</button>
+      <button class="sb-btn primary" id="mailBtn" disabled>Send to sales</button>
+    </div>
+  </div></div>
+
+  <main class="wrap lay" id="main">
+    <aside class="menu" id="menu" aria-label="Product menu"></aside>
+    <section class="stage">
+      <div class="stage-h">
+        <h1 id="pName"></h1>
+        <p id="pTier"></p>
+      </div>
+      <div class="board">
+        <div class="canvas-card">
+          <canvas id="cv" aria-label="Product anatomy drawing"></canvas>
+          <div class="hint">Tap a part on the drawing — or open it in the list — to choose materials and processes.</div>
+        </div>
+        <div>
+          <div class="parts" id="parts"></div>
+          <div class="order" id="order" hidden>
+            <div class="oh">This product on the requirement sheet</div>
+            <div class="row">
+              <label for="qty">Quantity</label>
+              <input id="qty" type="number" min="1" step="1" inputmode="numeric">
+              <span class="qq" id="qq"></span>
+              <label for="delv">Target delivery</label>
+              <input id="delv" type="month">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap">
+    No prices here, by design — the requirement sheet goes to a person on our sales team.
+    Back to <a href="partner.html">AsiaSource</a> or <a href="index.html">Birdland</a>.
+  </div></footer>
+
+<script id="cfg-data" type="application/json">__CFGDATA__</script>
+<script>
+(function () {
+  'use strict';
+  var DATA = JSON.parse(document.getElementById('cfg-data').textContent);
+  var GATE_LABEL = { material: 'Material', forming: 'Forming', heat: 'Heat treatment',
+    tooling: 'Tooling', joining: 'Joining', finish: 'Finish', inspection: 'Inspection', pack: 'Packaging' };
+  var QUICK = [[500, '500'], [1000, '1k'], [5000, '5k'], [10000, '10k']];
+  var SALES = 'executive@birdland.com.tw';
+
+  var byId = {}; DATA.products.forEach(function (p) { byId[p.id] = p; });
+
+  // sheet[pid] = { picks: {partId: {gate: option}}, qty, delv }
+  var sheet = {};
+  try { sheet = JSON.parse(localStorage.getItem('bl_cfg_sheet') || '{}') || {}; } catch (e) { sheet = {}; }
+  function save() { try { localStorage.setItem('bl_cfg_sheet', JSON.stringify(sheet)); } catch (e) {} }
+
+  var cur = null;      // current product
+  var openPart = null; // open part id
+  var hoverPart = null;
+  var animTimer = null;
+
+  function entry(pid) {
+    if (!sheet[pid]) sheet[pid] = { picks: {}, qty: 1000, delv: '' };
+    return sheet[pid];
+  }
+  function picksOf(pid) { return (sheet[pid] && sheet[pid].picks) || {}; }
+  function partDone(p, part) {
+    var picks = picksOf(p.id)[part.id] || {};
+    return Object.keys(part.options || {}).every(function (g) { return !!picks[g]; });
+  }
+  function anyPick(pid) {
+    var picks = picksOf(pid);
+    return Object.keys(picks).some(function (k) { return Object.keys(picks[k]).length; });
+  }
+  function onSheet() { return DATA.products.filter(function (p) { return anyPick(p.id); }); }
+
+  // ---- theme-linked canvas colours ------------------------------------
+  function inkColours() {
+    var cs = getComputedStyle(document.documentElement);
+    return {
+      ink: cs.getPropertyValue('--cfg-ink').trim() || '#2b3a35',
+      accent: cs.getPropertyValue('--cfg-accent').trim() || '#0E6652',
+      muted: cs.getPropertyValue('--cfg-canvas-mut').trim() || '#8a9490'
+    };
+  }
+
+  // ---- canvas ----------------------------------------------------------
+  var cv = document.getElementById('cv');
+  var ctx = cv.getContext('2d');
+  var hits = [];
+
+  function sizeCanvas() {
+    var r = cv.getBoundingClientRect();
+    var dpr = window.devicePixelRatio || 1;
+    var w = Math.max(1, Math.round(r.width * dpr));
+    var h = Math.max(1, Math.round(r.height * dpr));
+    if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
+  }
+
+  function drawSpec() { return cur && window.BL_DRAWINGS[cur.draw]; }
+
+  function draw(partCount) {
+    var spec = drawSpec();
+    if (!spec) { ctx.clearRect(0, 0, cv.width, cv.height); return; }
+    sizeCanvas();
+    var shown = partCount === undefined ? spec : { parts: spec.parts.slice(0, partCount) };
+    var c = inkColours();
+    var state = { hover: hoverPart, selected: {}, labels: {} };
+    if (openPart) state.selected[openPart] = true;
+    cur.parts.forEach(function (part) {
+      if (partDone(cur, part)) {
+        state.labels[part.id] = (specName(spec, part.id) || part.name) + ' ✓';
+      }
+    });
+    window.BLSketch.drawProduct(ctx, shown, state, {
+      ink: c.ink, accent: c.accent, muted: c.muted,
+      width: Math.max(1.2, 1.6 * (window.devicePixelRatio || 1) / 2)
+    });
+    hits = window.BLSketch.hitPaths(spec, cv);
+  }
+  function specName(spec, id) {
+    for (var i = 0; i < spec.parts.length; i++) if (spec.parts[i].id === id) return spec.parts[i].name;
+    return '';
+  }
+
+  function animateDraw() {
+    var spec = drawSpec();
+    if (!spec) return;
+    if (animTimer) clearInterval(animTimer);
+    var n = 0;
+    draw(0);
+    animTimer = setInterval(function () {
+      n++;
+      draw(n);
+      if (n >= spec.parts.length) { clearInterval(animTimer); animTimer = null; draw(); }
+    }, 110);
+  }
+
+  function hitAt(e) {
+    var r = cv.getBoundingClientRect();
+    var x = (e.clientX - r.left) * (cv.width / r.width);
+    var y = (e.clientY - r.top) * (cv.height / r.height);
+    for (var i = hits.length - 1; i >= 0; i--) {
+      if (ctx.isPointInPath(hits[i].path, x, y)) {
+        // unnamed helper polygons (blade2 etc.) map onto their named sibling
+        var id = hits[i].id;
+        if (cur.parts.some(function (p) { return p.id === id; })) return id;
+        var base = id.replace(/\d+$/, '');
+        if (cur.parts.some(function (p) { return p.id === base; })) return base;
+        return null;
+      }
+    }
+    return null;
+  }
+  cv.addEventListener('pointermove', function (e) {
+    var id = hitAt(e);
+    cv.style.cursor = id ? 'pointer' : 'default';
+    if (id !== hoverPart) { hoverPart = id; draw(); }
+  });
+  cv.addEventListener('pointerleave', function () { if (hoverPart) { hoverPart = null; draw(); } });
+  cv.addEventListener('click', function (e) {
+    var id = hitAt(e);
+    if (id) togglePart(id, true);
+  });
+
+  // ---- menu ------------------------------------------------------------
+  var menu = document.getElementById('menu');
+  function renderMenu() {
+    menu.innerHTML = DATA.tiers.map(function (t) {
+      var items = DATA.products.filter(function (p) { return p.tier === t.id; });
+      return '<div class="tier"><div class="tier-h">' + t.name + '</div>' +
+        '<div class="tier-b">' + t.body + '</div><div class="plist">' +
+        items.map(function (p) {
+          var done = p.parts.filter(function (part) { return partDone(p, part); }).length;
+          return '<button type="button" class="pbtn" data-pid="' + p.id + '"' +
+            (cur && cur.id === p.id ? ' aria-current="true"' : '') + '>' + p.name +
+            (done ? '<span class="done">' + done + '/' + p.parts.length + ' ✓</span>' : '') +
+            '</button>';
+        }).join('') + '</div></div>';
+    }).join('');
+  }
+  menu.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-pid]');
+    if (b) selectProduct(b.getAttribute('data-pid'));
+  });
+
+  // ---- parts & options -------------------------------------------------
+  var partsEl = document.getElementById('parts');
+  function renderParts() {
+    partsEl.innerHTML = cur.parts.map(function (part) {
+      var gates = Object.keys(part.options || {});
+      var picks = picksOf(cur.id)[part.id] || {};
+      var nPicked = gates.filter(function (g) { return picks[g]; }).length;
+      var done = nPicked === gates.length;
+      return '<div class="part' + (done ? ' is-done' : '') + '" data-part="' + part.id + '"' +
+        ' data-open="' + (openPart === part.id ? 1 : 0) + '">' +
+        '<button type="button" class="part-h"><span class="tick">✓</span>' + part.name +
+        '<span class="st">' + nPicked + '/' + gates.length + '</span></button>' +
+        '<div class="part-b">' +
+        gates.map(function (g) {
+          return '<div class="gate"><div class="gate-h">' + (GATE_LABEL[g] || g) + ' — pick one</div>' +
+            part.options[g].map(function (name) {
+              var o = DATA.options[name];
+              var on = picks[g] === name;
+              return '<div class="opt' + (on ? ' is-on' : '') + '" data-gate="' + g +
+                '" data-opt="' + name.replace(/"/g, '&quot;') + '" role="button" tabindex="0">' +
+                '<div class="o-top"><span class="o-name">' + name + '</span>' +
+                '<span class="o-meta">market use ' + o.pop + '/5 · cost ' + o.cost + '/5</span></div>' +
+                '<div class="o-buyer">' + o.buyer + '</div>' +
+                '<details><summary>From the production floor</summary>' +
+                '<div class="o-prod">' + o.production + '</div></details></div>';
+            }).join('') + '</div>';
+        }).join('') +
+        '</div></div>';
+    }).join('');
+    renderOrder();
+  }
+
+  partsEl.addEventListener('click', function (e) {
+    var head = e.target.closest('.part-h');
+    if (head) { togglePart(head.parentNode.getAttribute('data-part'), false); return; }
+    var opt = e.target.closest('.opt');
+    if (opt && !e.target.closest('summary') && !e.target.closest('.o-prod')) pickOption(opt);
+  });
+  partsEl.addEventListener('keydown', function (e) {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('opt')) {
+      e.preventDefault(); pickOption(e.target);
+    }
+  });
+
+  function pickOption(optEl) {
+    var partEl = optEl.closest('.part');
+    var partId = partEl.getAttribute('data-part');
+    var gate = optEl.getAttribute('data-gate');
+    var name = optEl.getAttribute('data-opt');
+    var en = entry(cur.id);
+    if (!en.picks[partId]) en.picks[partId] = {};
+    en.picks[partId][gate] = en.picks[partId][gate] === name ? undefined : name;
+    if (!en.picks[partId][gate]) delete en.picks[partId][gate];
+    save();
+    renderParts(); renderMenu(); renderSheet(); draw();
+  }
+
+  function togglePart(id, fromCanvas) {
+    openPart = (openPart === id && !fromCanvas) ? null : id;
+    renderParts(); draw();
+    if (fromCanvas) {
+      var el = partsEl.querySelector('.part[data-part="' + id + '"]');
+      if (el && el.scrollIntoView) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  // ---- quantity & delivery --------------------------------------------
+  var orderEl = document.getElementById('order');
+  var qtyEl = document.getElementById('qty');
+  var delvEl = document.getElementById('delv');
+  var qqEl = document.getElementById('qq');
+  QUICK.forEach(function (q) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.textContent = q[1];
+    b.addEventListener('click', function () {
+      qtyEl.value = q[0]; entry(cur.id).qty = q[0]; save(); renderSheet();
+    });
+    qqEl.appendChild(b);
+  });
+  function renderOrder() {
+    if (!cur || !anyPick(cur.id)) { orderEl.hidden = true; return; }
+    orderEl.hidden = false;
+    var en = entry(cur.id);
+    qtyEl.value = en.qty || '';
+    delvEl.value = en.delv || '';
+  }
+  qtyEl.addEventListener('input', function () {
+    var v = parseInt(qtyEl.value, 10);
+    entry(cur.id).qty = (v > 0 ? v : '');
+    save(); renderSheet();
+  });
+  delvEl.addEventListener('input', function () {
+    entry(cur.id).delv = delvEl.value; save(); renderSheet();
+  });
+
+  // ---- requirement sheet summary --------------------------------------
+  var sbItems = document.getElementById('sbItems');
+  var csvBtn = document.getElementById('csvBtn');
+  var mailBtn = document.getElementById('mailBtn');
+  function renderSheet() {
+    var list = onSheet();
+    sbItems.textContent = '';
+    if (!list.length) {
+      var s = document.createElement('span');
+      s.className = 'sb-empty';
+      s.textContent = 'Pick a product on the left and choose its build — your selections collect here.';
+      sbItems.appendChild(s);
+    }
+    list.forEach(function (p) {
+      var en = entry(p.id);
+      var chip = document.createElement('button');
+      chip.type = 'button'; chip.className = 'sb-chip';
+      var b = document.createElement('b'); b.textContent = p.name;
+      var q = document.createElement('span'); q.className = 'q';
+      // user input reaches the DOM as textContent only
+      q.textContent = '× ' + (en.qty || '?') + (en.delv ? ' · ' + en.delv : '');
+      chip.appendChild(b); chip.appendChild(q);
+      chip.addEventListener('click', function () { selectProduct(p.id); });
+      sbItems.appendChild(chip);
+    });
+    csvBtn.disabled = mailBtn.disabled = !list.length;
+  }
+
+  function sheetRows() {
+    var rows = [];
+    onSheet().forEach(function (p) {
+      var en = entry(p.id);
+      p.parts.forEach(function (part) {
+        var picks = en.picks[part.id] || {};
+        Object.keys(part.options || {}).forEach(function (g) {
+          if (picks[g]) rows.push([p.name, part.name, GATE_LABEL[g] || g, picks[g],
+            String(en.qty || ''), en.delv || '']);
+        });
+      });
+    });
+    return rows;
+  }
+
+  mailBtn.addEventListener('click', function () {
+    var lines = [];
+    onSheet().forEach(function (p) {
+      var en = entry(p.id);
+      lines.push('* ' + p.name + ' - quantity: ' + (en.qty || 'TBD') +
+        ', target delivery: ' + (en.delv || 'TBD'));
+      p.parts.forEach(function (part) {
+        var picks = en.picks[part.id] || {};
+        var chosen = Object.keys(part.options || {}).filter(function (g) { return picks[g]; })
+          .map(function (g) { return (GATE_LABEL[g] || g) + ': ' + picks[g]; });
+        if (chosen.length) lines.push('  - ' + part.name + ' | ' + chosen.join(' | '));
+      });
+      lines.push('');
+    });
+    var body = 'Hello Birdland sales,\n\nRequirement sheet from the AsiaSource configurator:\n\n' +
+      lines.join('\n') + '\nPlease come back to us with feasibility and lead time.\n';
+    location.href = 'mailto:' + SALES +
+      '?subject=' + encodeURIComponent('[AsiaSource RFQ] Requirement sheet — ' +
+        onSheet().map(function (p) { return p.name; }).join(', ').slice(0, 120)) +
+      '&body=' + encodeURIComponent(body);
+  });
+
+  csvBtn.addEventListener('click', function () {
+    var esc = function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; };
+    var csv = '﻿' + // UTF-8 BOM so Excel opens the CSV as UTF-8
+       [['Product', 'Part', 'Decision', 'Option', 'Quantity', 'Target delivery']]
+      .concat(sheetRows()).map(function (r) { return r.map(esc).join(','); }).join('\r\n');
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+    a.download = 'asiasource-requirement-sheet.csv';
+    document.body.appendChild(a); a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  });
+
+  // ---- product switch --------------------------------------------------
+  var pName = document.getElementById('pName');
+  var pTier = document.getElementById('pTier');
+  function selectProduct(pid) {
+    if (cur && cur.id === pid) return;
+    cur = byId[pid];
+    openPart = null; hoverPart = null;
+    pName.textContent = cur.name;
+    var t = DATA.tiers.filter(function (x) { return x.id === cur.tier; })[0];
+    pTier.textContent = t ? t.name + ' — ' + t.body : '';
+    renderMenu(); renderParts(); renderOrder();
+    animateDraw();
+  }
+
+  window.addEventListener('resize', function () { draw(); });
+  if (window.matchMedia) {
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mq.addEventListener) mq.addEventListener('change', function () { draw(); });
+  }
+
+  renderSheet();
+  selectProduct(DATA.products[0].id);
+})();
+</script>
+</body></html>
