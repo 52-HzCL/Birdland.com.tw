@@ -1,0 +1,21 @@
+{
+ "promos": [
+  {
+   "slug": "296c47e6fb31",
+   "created": "2026-08-17",
+   "expires": "2026-09-16",
+   "market": "de",
+   "lang": "de",
+   "title": "Garden Hand Tools Collection",
+   "sales": {
+    "name": "Test Sales",
+    "email": "sales-test@birdland.com.tw"
+   },
+   "items": 3,
+   "images": 3
+  }
+ ],
+ "processed": [
+  "c2b179622d78b7aba73fd70ad8bf50a041e2e435463d8288edc19e0d62fef9e4"
+ ]
+}
