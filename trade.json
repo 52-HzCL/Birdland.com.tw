@@ -1,10 +1,10 @@
 {
   "schema": 2,
   "edition": "2026-Q3",
-  "generated": "2026-08-16T02:26:10Z",
+  "generated": "2026-08-17T02:24:21Z",
   "shard_state": {
-    "cursor": 21,
-    "completed_pct": 31,
+    "cursor": 22,
+    "completed_pct": 32,
     "quarter": "2026-Q3"
   },
   "sources": {
@@ -925,6 +925,7 @@
           "share_tw": 0,
           "share_tw_prev": null,
           "share_cn": 64,
+          "share_cn_prev": 48,
           "stale": false,
           "band": {
             "market": "mid",
@@ -935,11 +936,12 @@
         },
         "820130": {
           "basis": "kg",
-          "uv_change_pct": 6,
+          "uv_change_pct": 5.9,
           "vol_change_pct": 17.8,
           "share_tw": 0,
           "share_tw_prev": 0,
           "share_cn": 43,
+          "share_cn_prev": 34,
           "stale": false,
           "band": {
             "market": "mid",
@@ -955,6 +957,7 @@
           "share_tw": 2,
           "share_tw_prev": 1,
           "share_cn": 48,
+          "share_cn_prev": 27,
           "stale": false,
           "band": {
             "market": "mid",
@@ -970,6 +973,7 @@
           "share_tw": 3,
           "share_tw_prev": 0,
           "share_cn": 49,
+          "share_cn_prev": 29,
           "stale": false,
           "band": {
             "market": "mid",
@@ -979,10 +983,36 @@
           }
         },
         "821300": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 2.9,
+          "vol_change_pct": -11.4,
+          "share_tw": 1,
+          "share_tw_prev": 2,
+          "share_cn": 63,
+          "share_cn_prev": 35,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 26
+          }
         },
         "820210": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -12.1,
+          "vol_change_pct": 10.2,
+          "share_tw": 1,
+          "share_tw_prev": 0,
+          "share_cn": 61,
+          "share_cn_prev": 41,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 19
+          }
         }
       }
     },
