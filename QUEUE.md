@@ -7,7 +7,7 @@ Q4 開跑前必須清空該標記;插隊工單只掃核心不展開;研究凍結
 
 1. ~~V7 微批次:promo XSS 跳脫 + 裸單價防火牆補丁 + 翻譯重試~~(2026-08-18 完成)
 2. ~~U-F CostNow 計算機正確性~~(2026-08-18 完成:MPF min/max 31/615→33.58/651.50 FY2026;其餘常數全數查證無誤;costnow-harness.js 逐字副本+漂移守衛+不變量選測進 CI;commit 38456b7)
-3. **Q3** 配置器互動本體:選部位→選材料→需求單(mailto+CSV,禁 cart/checkout 詞彙)`pre-i18n`
+3. ~~Q3 配置器互動本體~~(2026-08-18 完成:configurator.html 上線,入口在 AsiaSource Buying tools;bl-sketch 標籤 clamp 修裁切;SW v58;commit e284b27)`Q4 仍要收它的字串`
 4. **R1a** 假日 JSON(CI 週更)+ 交期承諾區間(保守值~樂觀值,建議承諾日=保守值)`pre-i18n`
 5. **T1-T3** 工廠信任面(60秒摘要/聚焦聲明/分類卡/能力矩陣/打樣時程/介紹包PDF;認證徽章與影片留插槽,素材到位即插)`pre-i18n`
 6. **U-A 誠實性、U-C 死控制項**(動文案)`pre-i18n`
