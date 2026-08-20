@@ -1,0 +1,44 @@
+name: Holidays refresh
+
+# Weekly refresh of holidays.json (factory TW + export-market national
+# holidays, current + next year) for the Team Desk delivery-promise tool.
+# tools/dev/build-holidays.js fetches Nager.Date, falls back to the builtin
+# TW table, and keeps the old file when fetches fail — so a red run here
+# never blanks the calendar.
+on:
+  schedule:
+    - cron: "0 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: holidays-update
+  cancel-in-progress: false
+
+jobs:
+  holidays:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build holidays.json
+        run: node tools/dev/build-holidays.js
+
+      - name: Commit only when the calendar changed
+        run: |
+          git config user.name "Birdland Holidays Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add holidays.json
+          if git diff --cached --quiet; then
+            echo "no change"
+          else
+            git commit -m "chore: weekly holidays refresh"
+            git pull --rebase origin main
+            git push && echo "pushed" || echo "PUSH FAILED — check workflow permissions"
+          fi

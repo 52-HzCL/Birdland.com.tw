@@ -427,6 +427,24 @@ body::after{display:none!important}
     </div>
   </div>
 
+  <h2 class="sh" data-r="sales">交期承諾試算<span class="role">業務</span></h2>
+  <div class="sub">一眼報出安全交期:生產天數跳過台灣國定假日、清關收貨跳過目的市場假日、海運走日曆天。承諾日永遠取保守值——給客人的就是這個日期。</div>
+  <div class="tool">
+    <div class="frow">
+      <div><label>訂單品類</label><select id="dp_cat"><option value="forged" selected>鍛造工具</option><option value="formed">沖壓/成型工具</option><option value="assembly">組裝/套組</option></select></div>
+      <div><label>數量</label><select id="dp_qty"><option value="s" selected>5,000 pcs 以下</option><option value="m">5,001 – 20,000 pcs</option><option value="l">20,000 pcs 以上</option></select></div>
+      <div><label>目的市場</label><select id="dp_mkt"></select></div>
+      <div><label>預計下單日</label><input id="dp_date" type="date"></div>
+    </div>
+    <div class="qresult">
+      <div class="kv"><span>最快到貨(樂觀)</span><b id="dp_fast">—</b></div>
+      <div class="kv"><span>建議承諾日(保守)</span><b id="dp_prom">—</b></div>
+      <div class="kv"><span>途中假日</span><b id="dp_hol" style="font-weight:400;text-align:right;max-width:62%">—</b></div>
+    </div>
+    <div class="tl" id="dp_tl"></div>
+    <div id="dp_note" style="margin-top:10px;font-size:.84rem;color:var(--mut)"></div>
+  </div>
+
   <h2 class="sh" data-r="ship assist">貨櫃裝載計算<span class="role">船務 · 助理</span></h2>
   <div class="sub">依航線(美/歐)套用對應重量上限,同時以材積與重量計算單櫃可裝箱數、需櫃數、雙重利用率,並比較櫃型給出最佳方案。</div>
   <div class="tool">
@@ -862,6 +880,74 @@ body::after{display:none!important}
    $('ts_cards').innerHTML=cards+(peak?'<div style="grid-column:1/-1;font-size:.8rem;color:var(--mut)">⚠ '+mo+' 月為海運旺季,艙位偏緊、含旺季附加(PSS),建議提前 2–3 週訂艙。</div>':'');}
   [so,sd,etd,sct].forEach(function(e){if(e)e.addEventListener('change',sail);});etd.addEventListener('input',sail);sail();}
 })();</script>
+<script>(function(){ // Delivery Promise — production (TW working days) + ocean transit (calendar days) + customs/receiving (destination working days). Holiday data: holidays.json (weekly refresh via .github/workflows/holidays-update.yml).
+ var $=function(i){return document.getElementById(i);};
+ if(!$('dp_cat'))return;
+ // ---- house estimate bands — tune these constants, not the math below ----
+ // Production bands in TW working days (Birdland's usual quoting bands).
+ var PROD_DAYS={forged:{opt:25,cons:40},formed:{opt:18,cons:30},assembly:{opt:12,cons:22}};
+ // Extra production working days by order size.
+ var QTY_EXTRA={s:{opt:0,cons:0},m:{opt:3,cons:6},l:{opt:7,cons:14}};
+ // Booking + export handling before sailing, calendar days.
+ var BOOK_DAYS={opt:2,cons:5};
+ // Port-to-port transit, calendar days. opt mirrors the typical transits used
+ // by the sailing tool above (DPORT); cons adds the usual delay buffer.
+ var SHIP_DAYS={
+  US:{port:'Los Angeles / New York',opt:16,cons:30},
+  DE:{port:'Hamburg',opt:33,cons:38},
+  NL:{port:'Rotterdam',opt:32,cons:37},
+  GB:{port:'Felixstowe',opt:31,cons:36},
+  IT:{port:'Genoa',opt:26,cons:31},
+  FR:{port:'Le Havre',opt:30,cons:35},
+  ES:{port:'Valencia',opt:27,cons:32},
+  PL:{port:'Gdansk',opt:35,cons:40},
+  AU:{port:'Sydney',opt:18,cons:24},
+  NZ:{port:'Auckland',opt:22,cons:28},
+  JP:{port:'Tokyo',opt:4,cons:8}};
+ // Customs clearance + delivery after arrival, destination working days.
+ var CUSTOMS_DAYS={opt:2,cons:5};
+ var MKT_NAME={US:'United States',DE:'Germany',NL:'Netherlands',GB:'United Kingdom',IT:'Italy',FR:'France',ES:'Spain',PL:'Poland',AU:'Australia',NZ:'New Zealand',JP:'Japan'};
+ var ms=$('dp_mkt');Object.keys(SHIP_DAYS).forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=MKT_NAME[k];ms.appendChild(o);});ms.value='DE';
+ if(!$('dp_date').value)$('dp_date').value=new Date().toISOString().slice(0,10);
+ var HOL=null,holStamp='',holFail=false;
+ var MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],WD=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+ function iso(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
+ function fdate(d){return MO[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()+' ('+WD[d.getDay()]+')';}
+ function fshort(d){return MO[d.getMonth()]+' '+d.getDate();}
+ function dmap(code){var m=HOL&&HOL[code];return (m&&m.days)||null;}
+ // Advance n working days from d: weekends always skipped, listed holidays
+ // skipped when the calendar is available; skipped holidays are recorded.
+ function addWork(d,nDays,map,crossed,label){var x=new Date(d.getTime()),left=nDays;
+   while(left>0){x.setDate(x.getDate()+1);var hol=map&&map[iso(x)];
+     if(hol){if(crossed)crossed.push(label+' '+hol+' ('+fshort(x)+')');continue;}
+     var wd=x.getDay();if(wd===0||wd===6)continue;left--;}
+   return x;}
+ function addCal(d,n){var x=new Date(d.getTime());x.setDate(x.getDate()+n);return x;}
+ function run(mode,crossed){var cat=$('dp_cat').value,qty=$('dp_qty').value,mkt=ms.value;
+   var start=$('dp_date').value?new Date($('dp_date').value+'T12:00:00'):new Date();
+   var prod=PROD_DAYS[cat][mode]+QTY_EXTRA[qty][mode];
+   var ready=addWork(start,prod,dmap('TW'),crossed,'TW:');
+   var etd=addCal(ready,BOOK_DAYS[mode]);
+   var eta=addCal(etd,SHIP_DAYS[mkt][mode]);
+   var done=addWork(eta,CUSTOMS_DAYS[mode],dmap(mkt),crossed,mkt+':');
+   return {start:start,ready:ready,etd:etd,eta:eta,done:done};}
+ function calc(){
+   var crossed=[],cons=run('cons',crossed),opt=run('opt',null),mkt=ms.value;
+   $('dp_fast').textContent=fdate(opt.done);
+   $('dp_prom').textContent=fdate(cons.done);
+   var seen={},uniq=crossed.filter(function(x){if(seen[x])return false;seen[x]=1;return true;});
+   $('dp_hol').textContent=uniq.length?uniq.join(' · '):'此區間無假日';
+   $('dp_tl').innerHTML='<div class="node">下單<b>'+fshort(cons.start)+'</b></div><span class="arr">→ 生產 →</span><div class="node">完工+訂艙<b>'+fshort(cons.etd)+'</b></div><span class="arr">→ 海運至 '+SHIP_DAYS[mkt].port+' →</span><div class="node">抵港<b>'+fshort(cons.eta)+'</b></div><span class="arr">→ 清關 →</span><div class="node">送達<b>'+fshort(cons.done)+'</b></div>';
+   var note='對外承諾請報保守日期——每一段都取區間的安全端(內部估算區間,可在頁面原始碼調整)。下方時間軸走的就是保守路徑。';
+   if(holFail)note='假日行事曆載入失敗——日期未扣假日(仍跳過週末)。'+note;
+   else if(holStamp)note+=' 假日行事曆更新於 '+holStamp+'。';
+   $('dp_note').textContent=note;}
+ ['dp_cat','dp_qty','dp_mkt','dp_date'].forEach(function(i){var e=$(i);if(e){e.addEventListener('change',calc);e.addEventListener('input',calc);}});
+ fetch('holidays.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){
+   if(j&&j.markets){HOL=j.markets;holStamp=(j.generated_at||'').slice(0,10);}else{holFail=true;}calc();
+ }).catch(function(){holFail=true;calc();});
+ calc();
+})();</script>
 <script>(function(){ // boot: 今日開工帶 + 記住角色/區塊開合 (bd_t_*)
 var D;try{D=JSON.parse(document.getElementById('outlook-data').textContent);}catch(e){return;}
 var T=D.teamdesk||{};
@@ -970,7 +1056,7 @@ hs.forEach(function(h,i){
 <script>
 (function(){
  // Promotion workbench: reads p/index.json at runtime (it is generated by the
- // promo pipeline, not part of __DATA__). Static markup only, no user input.
+ // promo pipeline, outside the inlined outlook data). Static markup only, no user input.
  var box=document.getElementById('promoList');
  if(!box)return;
  var st=document.createElement('style');
