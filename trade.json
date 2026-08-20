@@ -1,10 +1,10 @@
 {
   "schema": 2,
   "edition": "2026-Q3",
-  "generated": "2026-08-19T02:24:46Z",
+  "generated": "2026-08-20T02:23:58Z",
   "shard_state": {
-    "cursor": 29,
-    "completed_pct": 43,
+    "cursor": 30,
+    "completed_pct": 44,
     "quarter": "2026-Q3"
   },
   "sources": {
@@ -2048,22 +2048,76 @@
       "src": "comtrade",
       "cells": {
         "820110": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": null,
+          "vol_change_pct": null,
+          "share_tw": null,
+          "share_tw_prev": null,
+          "share_cn": null,
+          "share_cn_prev": null,
+          "stale": true,
+          "band": null
         },
         "820130": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": null,
+          "vol_change_pct": null,
+          "share_tw": null,
+          "share_tw_prev": null,
+          "share_cn": null,
+          "share_cn_prev": null,
+          "stale": true,
+          "band": null
         },
         "820150": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": null,
+          "vol_change_pct": null,
+          "share_tw": null,
+          "share_tw_prev": null,
+          "share_cn": null,
+          "share_cn_prev": null,
+          "stale": true,
+          "band": null
         },
         "820160": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -36.8,
+          "vol_change_pct": 231.3,
+          "share_tw": 1,
+          "share_tw_prev": 12,
+          "share_cn": 16,
+          "share_cn_prev": 2,
+          "stale": false,
+          "band": {
+            "market": "lower",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 42
+          },
+          "note": "world cross-check diverged >5% from Comtrade's reported total; used summed sources"
         },
         "821300": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": null,
+          "vol_change_pct": null,
+          "share_tw": null,
+          "share_tw_prev": null,
+          "share_cn": null,
+          "share_cn_prev": null,
+          "stale": true,
+          "band": null
         },
         "820210": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": null,
+          "vol_change_pct": null,
+          "share_tw": null,
+          "share_tw_prev": null,
+          "share_cn": null,
+          "share_cn_prev": null,
+          "stale": true,
+          "band": null
         }
       }
     },
