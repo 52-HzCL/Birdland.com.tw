@@ -14,7 +14,7 @@ Q4 開跑前必須清空該標記;插隊工單只掃核心不展開;研究凍結
 ~~7. **Q4** 配置器 i18n:機器已就緒(UI 字串抽進 DATA.ui;58 選項+116 句沿用 product-101 既有九語譯文;verify-configurator-i18n.js 進 CI)。**尚缺**:UI 23 鍵九語翻譯(代理跑中)、語言頁 build、T/R 新文案的 facade 補譯~~(2026-08-21 完成:c2580b7)
 ~~8. U-B 可達性、U-D 手機落地、U-E 打磨、U2 希伯來文RTL~~(2026-08-21 完成:U-B privacy.html 補 skip link 與 id="main",其餘四頁查證後無需修改;U-D/U-E my-market/configurator/manufacturing 手機溢出、hover/focus、觸控區修復;U2 查證後 he 語系不存在,無需修改;commit f2741d5)
 ~~9. V2 效能、V3 SEO、V6 相容性、V7 全站完整版~~(2026-08-21 完成:index/about 首圖補 width/height+decoding、index 首圖 fetchpriority=high;index/about/contact/privacy 補 self-canonical;privacy 補 meta description `pre-i18n`;修復 configurator 模板漂移(f2741d5 的兩條 CSS 未回寫模板,下次 build 會被清掉);my-market/news/manufacturing 與 robots/llms/sitemap 查證後無需修改——sitemap 不重生以免 lastmod 假新鮮、og/twitter 全站皆無屬慣例、noindex 轉址殼是刻意的;commit 2c9e0ed)
-10. R1b 信草稿+異議卡、R1c 破冰卡、R1d 報價分享頁(先盤點與 /p/ 管線重疊)
+~~10. R1b 信草稿+異議卡、R1c 破冰卡、R1d 報價分享頁(先盤點與 /p/ 管線重疊)~~(2026-08-22 完成:三卡落在 PIN 保護的 team.html;R1d 走 team.html#qs= 純前端 base64url,不進 /p/ 管線、價格不落地、內部成本毛利不入 payload;sw v59→v60;新增中英文案標 pre-i18n 併入 45;commit 197b68f)
 
 ## 已知待處理
 
