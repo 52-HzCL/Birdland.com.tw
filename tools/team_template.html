@@ -427,6 +427,21 @@ body::after{display:none!important}
     </div>
   </div>
 
+
+  <h2 class="sh" data-r="sales">報價分享頁<span class="role">業務</span></h2>
+  <div class="sub">把上方「報價・毛利試算」目前填的內容,打包成一條分享連結;收到連結的人只會看到報價單本身(品名、單價、數量、交易條件、付款與有效期),<b>絕對不含成本與毛利</b>。所有資料都編碼在連結網址裡,不寫入任何檔案、不經過伺服器。</div>
+  <div class="tool" id="qs_tool">
+    <div class="frow">
+      <div><label>客戶名稱</label><input id="qs_cust" type="text" placeholder="例:ACME Tools"></div>
+      <div><label>品名/型號</label><input id="qs_item" type="text" placeholder="例:花鏟 FS-200"></div>
+      <div><label>報價有效期至</label><input id="qs_valid" type="date"></div>
+      <div><label>備註(選填)</label><input id="qs_note" type="text" placeholder="例:含彩盒包裝"></div>
+    </div>
+    <button class="copybtn" id="qs_make" type="button">🔗 產生並複製分享連結</button>
+    <div class="grp">收到連結的人看到的報價單(預覽)</div>
+    <div class="qresult" id="qs_prev"><div class="kv"><span>尚未產生</span><b>按上方按鈕即可預覽</b></div></div>
+  </div>
+
   <h2 class="sh" data-r="sales">交期承諾試算<span class="role">業務</span></h2>
   <div class="sub">一眼報出安全交期:生產天數跳過台灣國定假日、清關收貨跳過目的市場假日、海運走日曆天。承諾日永遠取保守值——給客人的就是這個日期。</div>
   <div class="tool">
@@ -584,6 +599,31 @@ body::after{display:none!important}
     <div class="langtog"><button id="lz" class="on" type="button">繁中</button><button id="le" type="button">EN</button></div></div>
   <div class="advbox" id="advBox"></div>
   <button class="copybtn" id="copyBtn" type="button">📋 複製給客戶</button>
+
+
+  <h2 class="sh" data-r="sales">信草稿 + 異議卡<span class="role">業務</span></h2>
+  <div class="sub">選情境、填客戶稱呼,一鍵產出信件草稿(繁體中文/英文),可整段複製,也可直接開啟郵件軟體;下方異議卡整理客人最常見的推託與建議回應,點「複製回應」即可貼進回信。</div>
+  <div class="tool">
+    <div class="frow">
+      <div><label>客戶稱呼</label><input id="dr_name" type="text" placeholder="例:Mr. Smith / 王經理"></div>
+      <div><label>情境</label><select id="dr_case"></select></div>
+      <div><label>語言</label><select id="dr_lang"><option value="zh" selected>繁體中文</option><option value="en">English</option></select></div>
+    </div>
+    <div class="advbox" id="dr_box"></div>
+    <button class="copybtn" id="dr_copy" type="button">📋 複製草稿</button>
+    <button class="copybtn" id="dr_mail" type="button">✉️ 開啟郵件草稿</button>
+    <div class="grp">異議卡 — 客人這樣說,你可以這樣回</div>
+    <div id="obj_list"></div>
+  </div>
+
+  <h2 class="sh" data-r="sales">破冰卡<span class="role">業務</span></h2>
+  <div class="sub">面對新客人不知道怎麼開口?選場合、抽一張開場白,繁體中文與英文對照,點「複製開場白」直接帶走。</div>
+  <div class="tool">
+    <div class="tabs" id="ice_tabs"></div>
+    <div id="ice_card"></div>
+    <button class="copybtn" id="ice_next" type="button">🔀 換一張</button>
+    <button class="copybtn" id="ice_copy" type="button">📋 複製開場白</button>
+  </div>
 
   <h2 class="sh" data-r="sales">Promotion 推廣工作台<span class="role">業務</span></h2>
   <div class="sub">把產品文件存進 SharePoint「Promotion上傳」資料夾即可,系統每小時自動生成<b>不含價格</b>的客戶推廣頁(檔名加兩碼市場前綴可指定語言,如 <code>de_花鏟系列.pdf</code>)。<b>先開啟連結確認內容無誤,再交給客人</b>;到期後頁面自動清空只留聯絡方式。</div>
@@ -1101,5 +1141,148 @@ hs.forEach(function(h,i){
  }).catch(function(){
   box.textContent='尚無推廣文件——業務把檔案存進 SharePoint 資料夾後,這裡就會出現。';
  });
+})();</script>
+<script>(function(){ /* R1b 信草稿+異議卡 · R1c 破冰卡 · R1d 報價分享頁 */
+var css=document.createElement('style');
+css.textContent='.objcard{border:1px solid rgba(127,127,127,.25);border-radius:10px;padding:10px 12px;margin:8px 0;font-size:.85rem;line-height:1.55}.objcard b.oq{display:block;margin-bottom:4px}.objcard .oa{white-space:pre-wrap;opacity:.9}.objcard .copybtn{margin-top:6px;font-size:.78rem;padding:4px 10px}.icebox{border:1px solid rgba(127,127,127,.25);border-radius:10px;padding:14px;margin:10px 0;font-size:.9rem;line-height:1.6;white-space:pre-wrap}.qsheet{border:1px solid rgba(127,127,127,.3);border-radius:12px;padding:16px;margin-top:10px}.qsheet h3{margin:0 0 8px;font-size:1rem}.qsheet .kv{display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-bottom:1px dashed rgba(127,127,127,.2);font-size:.88rem}.qsheet .kv:last-child{border-bottom:0}';
+document.head.appendChild(css);
+function copyText(t,b,ok){function done(){if(!b)return;var o=b.textContent;b.classList.add('ok');b.textContent=ok||'✓ 已複製';setTimeout(function(){b.classList.remove('ok');b.textContent=o;},2000);}
+ (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(done,function(){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done();}catch(e){}document.body.removeChild(ta);});}
+
+/* ===== R1b 信草稿 ===== */
+(function(){
+var sel=document.getElementById('dr_case'),box=document.getElementById('dr_box');if(!sel||!box)return;
+var NM=function(){return (document.getElementById('dr_name').value||'').trim();};
+var CASES=[
+ ['follow','報價跟進',
+  {s:'報價單跟進',b:'{n}您好:\n\n先前提供的報價單,不知道您這邊評估得如何?若規格、數量或包裝需要調整,我們可以馬上重新試算給您。\n\n近期物料與匯率略有波動,報價有效期內我們都會照原價保留,過期後需要重新核算,建議把握這段時間確認。\n\n方便的話,回覆這封信告訴我們您的想法,或約個時間線上談,期待您的消息。'},
+  {s:'Following up on our quotation',b:'Dear {n},\n\nI hope this message finds you well. I am writing to follow up on the quotation we sent recently. If any specification, quantity or packaging detail needs adjustment, we would be glad to recalculate right away.\n\nMaterial and currency markets have been moving lately; the quoted prices remain firm within the validity period, so it may be worth confirming before it expires.\n\nPlease let me know your thoughts, or feel free to suggest a time for a short call.'}],
+ ['intro','新品介紹',
+  {s:'新品介紹',b:'{n}您好:\n\n我們最近完成了一個新系列,規格與您目前採購的品項相近,但在用料與表面處理上有明顯升級,想第一時間讓您知道。\n\n如果您有興趣,我可以先寄上規格書與圖片,或安排寄送樣品讓您實際上手比較。\n\n期待您的回覆。'},
+  {s:'Introducing our new product line',b:'Dear {n},\n\nWe have just completed a new product series close to the items you currently source, with clear upgrades in material and surface finishing, and I wanted you to be among the first to know.\n\nIf you are interested, I can send the specification sheet and photos first, or arrange samples so you can compare them hands-on.\n\nLooking forward to hearing from you.'}],
+ ['lead','交期說明',
+  {s:'交期說明',b:'{n}您好:\n\n關於您詢問的交期,說明如下:我們的承諾日已把生產天數、台灣國定假日、海運航程與目的港清關時間都算進去,取的是保守值,實際到貨通常只會提早、不會延後。\n\n若這個日期對您的銷售檔期太晚,請告訴我們您的底線日期,我們再看產線與船期有沒有調整空間。'},
+  {s:'About the delivery schedule',b:'Dear {n},\n\nRegarding the delivery date you asked about: our committed date already accounts for production days, Taiwan public holidays, ocean transit and customs clearance at the destination port, calculated conservatively — actual arrival is usually earlier, not later.\n\nIf this date is too late for your sales season, please tell us your deadline and we will check what room the production line and vessel schedule allow.'}],
+ ['price','漲價溝通',
+  {s:'價格調整說明',b:'{n}您好:\n\n因原物料與運費成本持續走高,我們不得不對部分品項調整價格,新價格將於下一批訂單生效。\n\n我們已盡量透過製程優化吸收大部分漲幅,調整後的價格仍具市場競爭力;若您近期有備貨計畫,現在下單仍可適用原價。\n\n造成不便深感抱歉,也感謝您長期的支持。'},
+  {s:'Price adjustment notice',b:'Dear {n},\n\nDue to the continued rise in raw material and freight costs, we regretfully need to adjust prices on some items, effective from the next order.\n\nWe have absorbed most of the increase through process improvements, and the adjusted prices remain competitive. If you are planning to restock soon, orders placed now can still enjoy the current prices.\n\nWe apologise for the inconvenience and truly appreciate your long-term support.'}],
+ ['hello','久未聯絡問候',
+  {s:'好久不見,近況問候',b:'{n}您好:\n\n好一陣子沒聯絡了,先向您問聲好。\n\n這段時間我們新增了幾個系列,也優化了交期與包裝方式;不知道您今年的採購計畫是否已經展開?若方便,我很樂意整理一份最新的產品與市場資訊給您參考。\n\n祝生意興隆。'},
+  {s:'Long time no talk — greetings',b:'Dear {n},\n\nIt has been a while since we last spoke, and I wanted to reach out and say hello.\n\nOver the past months we have added several new series and improved our lead times and packaging. May I ask whether your purchasing plan for this year has started? I would be happy to put together the latest product and market information for your reference.\n\nWishing you a prosperous season.'}],
+ ['sample','樣品寄出通知',
+  {s:'樣品已寄出',b:'{n}您好:\n\n您要的樣品已經寄出,追蹤號碼會另行提供,預計數個工作天內送達。\n\n收到後若有任何規格、手感或包裝上的意見,請隨時告訴我們;確認樣品沒問題後,我們就能安排正式報價與生產排程。\n\n謝謝您給我們機會。'},
+  {s:'Your samples are on the way',b:'Dear {n},\n\nThe samples you requested have been dispatched; the tracking number will follow separately, and delivery is expected within a few working days.\n\nOnce received, please share any feedback on specification, feel or packaging. As soon as the samples are confirmed, we can proceed with the formal quotation and production schedule.\n\nThank you for the opportunity.'}]
+];
+CASES.forEach(function(c){var o=document.createElement('option');o.value=c[0];o.textContent=c[1];sel.appendChild(o);});
+function cur(){var lang=document.getElementById('dr_lang').value;var c=CASES.filter(function(x){return x[0]===sel.value;})[0]||CASES[0];
+ var t=lang==='en'?c[3]:c[2];var n=NM()||(lang==='en'?'Sir or Madam':'您');
+ return {s:t.s,b:t.b.split('{n}').join(n)};}
+function render(){var d=cur();box.textContent='主旨:'+d.s+'\n\n'+d.b;}
+['dr_name','dr_lang'].forEach(function(id){var el=document.getElementById(id);el.addEventListener('input',render);el.addEventListener('change',render);});
+sel.addEventListener('change',render);render();
+document.getElementById('dr_copy').addEventListener('click',function(){copyText(box.textContent,this);});
+document.getElementById('dr_mail').addEventListener('click',function(){var d=cur();
+ window.location.href='mailto:?subject='+encodeURIComponent(d.s)+'&body='+encodeURIComponent(d.b);});
+/* 異議卡 */
+var OBJ=[
+ ['「價格太高了。」','先別急著降價:確認客人比較的基準(材質、鍍層、包裝、驗貨標準是否相同),再把總持有成本講清楚——不良率低、交期穩,整體反而便宜。','Our price reflects the material grade, plating and inspection standard included. May I ask which specification you are comparing against? Looking at total cost — defect rate and delivery reliability — we are confident it works out favourably.'],
+ ['「我們已經有固定供應商了。」','不搶單、先卡位:表示理解,爭取當「第二供應源」,在旺季缺貨或漲價時就是我們的機會。','That makes sense, and we are not asking you to switch. Many partners keep us as a second source for peak seasons or supply disruptions — may we quote one or two of your regular items for comparison?'],
+ ['「交期太長。」','拆解給客人看:哪一段是生產、哪一段是海運與清關,我們的承諾日是保守值;再問清楚對方的檔期底線,評估分批出貨。','Let me break the schedule down: production, ocean transit and clearance. Our committed date is conservative. If your season deadline is tight, we can look at partial shipment to get the first batch to you earlier.'],
+ ['「最低訂購量太高。」','先問年用量,把最低訂購量放到年度框架下談:可以簽年約分批交貨,或首單搭配現有量產品項湊量。','May I ask your annual volume? We can place the minimum quantity under a yearly agreement with staggered deliveries, or combine your first order with items already in production to reach the quantity together.'],
+ ['「先寄樣品,之後再說。」','樣品照寄,但要換承諾:寄出前約好回饋時間點與評估標準,避免石沉大海。','Samples are on their way. To make them useful for you, may we agree on a feedback date and what you will be evaluating — so we can prepare the right follow-up?'],
+ ['「市場景氣不好,晚點再談。」','認同景氣、翻轉話題:淡季正是換供應商與談條件的最好時機,備貨成本也最低;約一個「不下單也沒關係」的更新會議。','Understood — and a slow market is actually the best time to review suppliers and terms, with the lowest cost to prepare. Could we schedule a short update call, no order required, so you have the numbers ready when demand returns?']
+];
+var ol=document.getElementById('obj_list');
+OBJ.forEach(function(o){var d=document.createElement('div');d.className='objcard';
+ var q=document.createElement('b');q.className='oq';q.textContent=o[0];
+ var a=document.createElement('div');a.className='oa';a.textContent='建議做法:'+o[1]+'\n英文回應:'+o[2];
+ var b=document.createElement('button');b.className='copybtn';b.type='button';b.textContent='📋 複製回應';
+ b.addEventListener('click',function(){copyText(o[2],b);});
+ d.appendChild(q);d.appendChild(a);d.appendChild(b);ol.appendChild(d);});
+})();
+
+/* ===== R1c 破冰卡 ===== */
+(function(){
+var tabs=document.getElementById('ice_tabs'),card=document.getElementById('ice_card');if(!tabs||!card)return;
+var ICE={
+'展會現場':[
+ ['我注意到您在我們的鍛造工具前停了一下——這系列的握感是我們今年改最多的地方,您可以實際握握看。','I noticed you paused at our forged tools — the grip is what we improved most this year. Please pick one up and feel the difference.'],
+ ['您是做零售通路還是進口批發?我可以直接帶您看最適合您市場的那一區。','Are you in retail or import wholesale? Let me walk you straight to the section that fits your market best.'],
+ ['很多歐洲買家今天都在問防鏽處理——這正好是我們的強項,給我三分鐘介紹?','Many European buyers have been asking about rust protection today — that happens to be our strength. May I take three minutes to show you?'],
+ ['展會人多,不耽誤您——交換個名片,我把今天您看過的品項整理成一頁寄給您。','I know fair days are busy — let us exchange cards and I will send you a one-page summary of the items you looked at today.']],
+'電話開發':[
+ ['您好,我是台灣的手工具製造商,只占用您兩分鐘——想確認一下貴公司園藝工具這條線,現在是由您負責採購嗎?','Hello, this is a hand tool manufacturer from Taiwan. Just two minutes of your time — may I confirm whether you are the buyer in charge of the garden tool category?'],
+ ['我們最近幫同市場的一家通路商把到貨不良率降到千分之三以下,想跟您分享做法,看是否也適用貴公司。','We recently helped a distributor in your market bring incoming defects below zero point three percent, and I would like to share how — it may apply to your company too.'],
+ ['我知道您一定有供應商了,所以我不是來搶單的——只想寄一份市場價格與物料趨勢月報給您,對您談判也有幫助。','I am sure you already have suppliers, so I am not calling to take orders — I would simply like to send you our monthly market price and material trend brief, useful for your own negotiations.'],
+ ['請問您明年春季檔期的備貨,大概什麼時候開始定案?我想在那之前把樣品送到您桌上。','May I ask when you finalise purchasing for next spring season? I would like to have samples on your desk before that.']],
+'開發信':[
+ ['寫給正在為明年檔期尋找穩定供應源的您——我們是台灣的手工具製造商,交期承諾以保守值計算,說到就到。','To a buyer preparing next season and looking for a dependable source — we are a Taiwan hand tool manufacturer whose committed dates are calculated conservatively: what we promise, we deliver.'],
+ ['一句話介紹我們:數十年鍛造經驗、外銷歐美、驗貨標準照您的來。若值得您花三十秒,規格書就在附件。','In one line: decades of forging experience, exporting to Europe and America, inspection to your standard. If that earns thirty seconds, the specification sheet is attached.'],
+ ['您的同業最近開始把部分訂單移往台灣分散風險——想知道他們怎麼評估的,我可以分享一份比較清單。','Some of your peers have begun moving part of their orders to Taiwan to spread risk — I can share the comparison checklist they used, if useful.'],
+ ['不推銷,先送上:附件是本月物料與海運趨勢一頁報告,往後每月一封,若不需要回覆一聲即可。','No sales pitch — attached is our one-page monthly brief on materials and freight. One email per month; a single reply stops it any time.']],
+'拜訪面談':[
+ ['謝謝您撥時間——開始前想先聽聽:您目前的供應鏈裡,最讓您頭痛的一件事是什麼?','Thank you for making time. Before I begin, I would love to hear: what is the single biggest headache in your current supply chain?'],
+ ['我今天只帶了三頁資料,十五分鐘講完;剩下的時間想留給您的問題。','I brought only three pages today and need fifteen minutes; the rest of the time belongs to your questions.'],
+ ['在來的路上逛了您的門市,你們把園藝區放在入口第一排,看得出這條線對您很重要——我們就從這裡談起。','I visited your store on the way here — the garden section sits right at the entrance, which tells me this category matters. Let us start there.'],
+ ['先說結論:我們能在同樣預算下,把您這條線的缺貨風險再降一級。接下來十五分鐘說明怎麼做到。','Conclusion first: within the same budget, we can bring the stock-out risk of this category down one more level. The next fifteen minutes explain how.']]
+};
+var keys=Object.keys(ICE),curKey=keys[0],idx=0;
+keys.forEach(function(k,i){var b=document.createElement('button');b.type='button';b.textContent=k;if(i===0)b.className='on';
+ b.addEventListener('click',function(){curKey=k;idx=0;[].forEach.call(tabs.children,function(x){x.classList.remove('on');});b.classList.add('on');render();});
+ tabs.appendChild(b);});
+function render(){var c=ICE[curKey][idx];card.innerHTML='';var d=document.createElement('div');d.className='icebox';
+ d.textContent=c[0]+'\n\n'+c[1];card.appendChild(d);}
+document.getElementById('ice_next').addEventListener('click',function(){idx=(idx+1)%ICE[curKey].length;render();});
+document.getElementById('ice_copy').addEventListener('click',function(){var c=ICE[curKey][idx];copyText(c[0]+'\n'+c[1],this);});
+render();
+})();
+
+/* ===== R1d 報價分享頁 ===== */
+(function(){
+var mk=document.getElementById('qs_make'),prev=document.getElementById('qs_prev');if(!mk||!prev)return;
+function b64e(o){return btoa(unescape(encodeURIComponent(JSON.stringify(o)))).split('+').join('-').split('/').join('_').replace(/=+$/,'');}
+function b64d(t){t=t.split('-').join('+').split('_').join('/');while(t.length%4)t+='=';return JSON.parse(decodeURIComponent(escape(atob(t))));}
+function val(id){var el=document.getElementById(id);return el?el.value:'';}
+function payload(){
+ var fob=document.getElementById('qm_fob');
+ return {cust:val('qs_cust'),item:val('qs_item'),valid:val('qs_valid'),note:val('qs_note'),
+  term:(fob&&fob.classList.contains('on'))?'FOB':'CIF',
+  cur:val('q_pc'),price:val('q_price'),qty:val('q_qty'),
+  dep:val('q_dep'),depd:val('q_depd'),bald:val('q_bald'),d:new Date().toISOString().slice(0,10)};}
+function sheet(o){
+ var w=document.createElement('div');w.className='qsheet';
+ var h=document.createElement('h3');h.textContent='報價單 Quotation'+(o.cust?' — '+o.cust:'');w.appendChild(h);
+ function row(k,v){if(!v)return;var d=document.createElement('div');d.className='kv';
+  var s1=document.createElement('span');s1.textContent=k;var s2=document.createElement('b');s2.textContent=v;
+  d.appendChild(s1);d.appendChild(s2);w.appendChild(d);}
+ row('品名/型號 Item',o.item);
+ row('交易條件 Terms',o.term);
+ row('單價 Unit price',o.price?(o.cur+' '+o.price+' / 個'):'');
+ row('數量 Quantity',o.qty?Number(o.qty).toLocaleString()+' 個':'');
+ var amt=(Number(o.price)||0)*(Number(o.qty)||0);
+ row('總金額 Amount',amt?(o.cur+' '+amt.toLocaleString()):'');
+ row('付款 Payment',o.dep?('訂金 '+o.dep+'% / 尾款 '+(100-Number(o.dep))+'%'):'');
+ row('預計訂金日 Deposit date',o.depd);
+ row('預計尾款日 Balance date',o.bald);
+ row('報價日 Quoted on',o.d);
+ row('有效期至 Valid until',o.valid);
+ row('備註 Remarks',o.note);
+ return w;}
+mk.addEventListener('click',function(){
+ var o=payload();
+ var url=location.origin+location.pathname+'#qs='+b64e(o);
+ prev.innerHTML='';prev.appendChild(sheet(o));
+ copyText(url,mk,'✓ 連結已複製');});
+/* 收到連結:解碼並打開本區,顯示報價單 */
+var m=(location.hash||'').match(/^#qs=([A-Za-z0-9_-]+)$/);
+if(m){var o=null;try{o=b64d(m[1]);}catch(e){}
+ if(o){prev.innerHTML='';prev.appendChild(sheet(o));
+  var hs=[].slice.call(document.querySelectorAll('main h2.sh'));
+  var mine=document.getElementById('qs_tool');
+  var h2=mine&&mine.previousElementSibling&&mine.previousElementSibling.previousElementSibling;
+  var i=hs.indexOf(h2);
+  if(i>=0){var l=document.querySelector('#t-rail .tr-link[data-i="'+i+'"]');if(l)l.click();}
+  setTimeout(function(){prev.scrollIntoView({behavior:'smooth',block:'center'});},150);}}
+})();
 })();</script>
 </body></html>
