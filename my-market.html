@@ -107,7 +107,7 @@
 .mm .dsk tr.me td{background:#141B23}
 .mm .dsk .aname{padding:7px 9px;font:600 calc(11px * var(--ui-scale))/1.3 var(--sans);white-space:nowrap;cursor:pointer;
   color:var(--tx);position:sticky;left:0;background:var(--bg);z-index:1;border:0;text-align:left;display:block;width:100%}
-.mm .dsk tr.me .aname{background:#141B23}
+.mm .dsk tr.me .aname{background:#141B23;cursor:default}
 .mm .dsk .aname em{font-style:normal;display:block;font:500 calc(8.5px * var(--ui-scale))/1.4 var(--mono);color:var(--tx3);letter-spacing:.07em}
 .mm .dsk .acell{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 5px;
   border-left:1px solid var(--edge);position:relative;min-height:54px;justify-content:center;min-width:76px}
@@ -283,7 +283,7 @@
     </div>
     <div class="foot">
       <span><span style="color:var(--grn)">&#9650;</span> rising &middot; <span style="color:var(--red)">&#9660;</span> falling &mdash; colour tracks the sign, never a side</span>
-      <span>Taiwan / China = origin share of imports, vs prior year &mdash; sign only, no colour</span>
+      <span>Taiwan / China = origin share of imports, vs prior year &mdash; the level stays neutral, the change carries the sign colour</span>
       <span><span style="color:var(--amb)">&#9679;</span> direction differs from your market</span>
       <span>no absolute prices, by design</span>
     </div>
@@ -327,6 +327,9 @@ function tf(tmpl,vars){
 function pct(v){return (v>0?"+":"")+v+"%";}
 function heat(v){return v>0?"var(--grn)":(v<0?"var(--red)":"var(--tx2)");}
 function glyph(v){return v>0?"▲":(v<0?"▼":"—");}
+// Three-way sign, for comparing directions: a flat reading (0) is its own
+// direction, not the same thing as "not rising".
+function sgn(v){return v>0?1:(v<0?-1:0);}
 function fuzzy(q,s){q=String(q).toLowerCase();s=String(s).toLowerCase();var i=0;
  for(var j=0;j<s.length&&i<q.length;j++)if(s[j]===q[i])i++;return i===q.length;}
 
@@ -428,8 +431,11 @@ var GROUPS=[["tw","TAIWAN-ORIGIN SUPPLY IS ADVANCING IN YOUR MARKET"],
 // translator from having to retranslate it every time the facts around it
 // change. Numbers are substituted after both pieces come back translated.
 function why(c){
- var d=delta(c)||0, cd=cnd(c);
- if(c.vol_change_pct>15&&c.uv_change_pct<-5&&d<0){
+ // d===null means "no prior Taiwan-share reading in this edition" — it is
+ // never folded into 0: a zero claims the share held steady, which is a
+ // statement about a prior value the data does not carry.
+ var d=delta(c), cd=cnd(c);
+ if(c.vol_change_pct>15&&c.uv_change_pct<-5&&d!==null&&d<0){
   var lead1=tf("Volume rose {vol} while unit value fell {uv} and Taiwan-origin share slipped {pts} pts.",
    {vol:pct(c.vol_change_pct),uv:pct(c.uv_change_pct),pts:Math.abs(d)});
   var tail1=(cd!==null&&cd>=3)
@@ -442,16 +448,20 @@ function why(c){
    {cnPts:cd,cnShare:c.share_cn,uv:pct(c.uv_change_pct)});
   return lead2+" <b>"+t("A price-led push is under way — quote on total cost, not first price.")+"</b>";
  }
- if(cd!==null&&cd<=-3&&d>=0){
+ if(cd!==null&&cd<=-3&&d!==null&&d>=0){
   var lead3=(d>0)
    ?tf("China-origin share receded {cnPts} pts to {cnShare}% while Taiwan held and gained {pts} pts.",{cnPts:Math.abs(cd),cnShare:c.share_cn,pts:d})
    :tf("China-origin share receded {cnPts} pts to {cnShare}% while Taiwan held.",{cnPts:Math.abs(cd),cnShare:c.share_cn});
   return lead3+" <b>"+t("Displacement is under way — this is the window to take share.")+"</b>";
  }
  if(c.vol_change_pct>15&&c.uv_change_pct<-5){
+  // "Holding" is a claim about the prior reading. With no prior reading
+  // (d===null) the sentence says so instead of pretending steadiness.
   var lead4=(c.share_tw==null)
    ?tf("Volume rose {vol} on a {uv} fall in unit value, Taiwan share holding at an unpublished level.",{vol:pct(c.vol_change_pct),uv:pct(c.uv_change_pct)})
-   :tf("Volume rose {vol} on a {uv} fall in unit value, Taiwan share holding at {twShare}%.",{vol:pct(c.vol_change_pct),uv:pct(c.uv_change_pct),twShare:c.share_tw});
+   :(d===null
+    ?tf("Volume rose {vol} on a {uv} fall in unit value, Taiwan share at {twShare}% with no prior reading to compare.",{vol:pct(c.vol_change_pct),uv:pct(c.uv_change_pct),twShare:c.share_tw})
+    :tf("Volume rose {vol} on a {uv} fall in unit value, Taiwan share holding at {twShare}%.",{vol:pct(c.vol_change_pct),uv:pct(c.uv_change_pct),twShare:c.share_tw}));
   return lead4+" <b>"+t("Growth is real but it is being bought on price.")+"</b>";
  }
  if(c.uv_change_pct>5&&c.vol_change_pct<0){
@@ -791,18 +801,30 @@ function around(){
   ? tf("compared with {list}",{list:ns.map(function(k){return MKT[k].name;}).join(" · ")})
   : "";
  if(!ns.length){
-  document.getElementById("aroundWrap").innerHTML='<div class="empty-around">'+t("No neighbouring market is in this edition yet — the daily feed is accumulating them.")+'</div>';
+  // Two different absences, two different sentences: listed neighbours that
+  // the feed has not published yet (a data gap), and a market this desk has
+  // never listed neighbours for (a roster gap in NEIGH above — Angola and
+  // Australia today). Blaming the daily feed for the second would be
+  // inventing a data problem this page does not have.
+  var listedN=(NEIGH[st.anchor]||[]).length;
+  document.getElementById("aroundWrap").innerHTML='<div class="empty-around">'+(listedN
+   ?t("No neighbouring market is in this edition yet — the daily feed is accumulating them.")
+   :tf("No comparison markets are set for {market} on this desk yet — that list is maintained by hand, not by the data feed.",{market:esc(MKT[st.anchor].name)}))+'</div>';
   return;
  }
  var a=MKT[st.anchor];
  var rows=[st.anchor].concat(ns).map(function(k){
   var m=MKT[k], me=(k===st.anchor);
-  return "<tr"+(me?' class="me"':"")+'><td><button type="button" class="aname" data-a="'+esc(k)+'">'+esc(m.name)
-   +"<em>"+(me?"YOUR MARKET":(m.src==="comtrade"?"UN Comtrade":"Eurostat"))+"</em></button></td>"
+  // The anchor's own row is not a control — "switch to the market you are
+  // already on" does nothing — so its name is not drawn as a button.
+  var nameCell=me
+   ?'<span class="aname">'+esc(m.name)+"<em>YOUR MARKET</em></span>"
+   :'<button type="button" class="aname" data-a="'+esc(k)+'">'+esc(m.name)+"<em>"+(m.src==="comtrade"?"UN Comtrade":"Eurostat")+"</em></button>";
+  return "<tr"+(me?' class="me"':"")+"><td>"+nameCell+"</td>"
    +FAM_LIST.map(function(f){
     var c=m.cells[f];
     if(!cellValid(c)) return '<td><div class="acell" style="color:var(--tx3);font:500 calc(9px * var(--ui-scale))/1 var(--mono)">'+t("not in edition")+'</div></td>';
-    var ca=a.cells[f], dot=(!me&&cellValid(ca)&&((c.uv_change_pct>0)!==(ca.uv_change_pct>0)));
+    var ca=a.cells[f], dot=(!me&&cellValid(ca)&&sgn(c.uv_change_pct)!==sgn(ca.uv_change_pct));
     return '<td><div class="acell">'+(dot?'<span class="dz" title="direction differs from your market"></span>':"")
      +'<b style="color:'+heat(c.uv_change_pct)+'">'+glyph(c.uv_change_pct)+" "+Math.abs(c.uv_change_pct)+"%</b>"
      +'<span class="fl">'+fmtShare("Taiwan",c.share_tw,null)+"</span>"
@@ -814,7 +836,7 @@ function around(){
   +FAM_LIST.map(function(f){return '<th>'+esc(famShort(f))+"</th>";}).join("")
   +"</tr></thead><tbody>"+rows+"</tbody></table></div>"
   +'<div class="insight" id="insight"></div>';
- [].forEach.call(document.querySelectorAll("#aroundWrap .aname"),function(n){
+ [].forEach.call(document.querySelectorAll("#aroundWrap button.aname"),function(n){
   n.addEventListener("click",function(){setAnchor(n.getAttribute("data-a"),false);});
  });
  insight(ns);
@@ -992,7 +1014,10 @@ function briefChips(){
  var h='<span class="lab">Your markets</span>'+vis.map(function(k){
   return '<button type="button" class="chip on" data-a="'+esc(k)+'">'+esc(MKT[k].name)+"</button>";
  }).join("");
- if(rest>0) h+='<span class="chip">'+tf("+ {rest} more",{rest:rest})+"</span>";
+ // The overflow count is a real control: it opens the Desk, where the full
+ // "Your markets" chip row lives — a chip-styled span that did nothing was
+ // a button-shaped promise the page never kept.
+ if(rest>0) h+='<button type="button" class="chip" id="chipMore" title="'+esc(t("All your markets are listed on the Desk"))+'">'+tf("+ {rest} more",{rest:rest})+"</button>";
  h+='<span class="src">follows your Desk pins · ★</span>';
  document.getElementById("briefChips").innerHTML=h;
  [].forEach.call(document.querySelectorAll("#briefChips .chip[data-a]"),function(b){
@@ -1001,6 +1026,8 @@ function briefChips(){
    setView("desk",true);
   });
  });
+ var more=document.getElementById("chipMore");
+ if(more) more.addEventListener("click",function(){setView("desk",true);});
 }
 
 function briefChapters(){

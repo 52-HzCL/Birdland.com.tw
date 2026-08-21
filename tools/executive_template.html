@@ -150,6 +150,18 @@
   .wya-x:hover,.wya-x:focus-visible{color:var(--kb-red)}
   @media(max-width:900px){.wya-in{flex-wrap:wrap;gap:6px;padding:6px var(--sp-3)}.wya-t{flex:1 1 100%;order:3}.wya-x{order:2}}
   @media print{.wya{display:none!important}}
+  /* ---- source state on a phone ----
+     The topbar's source chip is adopted into the app bar, whose status slot
+     is dropped below 900px. The Data Trust section still carries the truth,
+     but it sits at the end of a long page — so when feeds are partial, this
+     one-line band says so up top and links down to the detail. It only
+     appears for the warning; a current feed needs no banner. */
+  .src-mobile{display:none}
+  @media(max-width:900px){
+    .src-mobile:not([hidden]){display:flex;align-items:center;gap:8px;padding:6px var(--sp-3);background:#f6efe0;border-bottom:1px solid var(--kb-line2);color:#7b3822;font:600 var(--fs-micro) var(--mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+    .src-mobile:not([hidden])::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--kb-amber);flex:0 0 auto}
+  }
+  @media print{.src-mobile{display:none!important}}
   @page{size:A4;margin:14mm}
   @media print{
     .page{display:block;padding:0}
@@ -186,6 +198,9 @@
   <header class="top"><div class="topin"><a class="brand" href="index.html">Birdland <small>ABRIEF</small></a><div class="topmeta"><span id="source-state"><i class="dot"></i>Source status</span><span class="hq" data-hq-status>Birdland Office <b data-hq-label>Resting</b></span><span data-taipei-time>--:-- Taipei</span><span class="desk3" aria-label="Desk"><a class="on" aria-current="page" href="executive.html">News</a><a href="partner.html">Buyer</a><a href="cost-desk.html">Cost</a></span></div></div></header>
   <div class="edstrip" id="edstrip"><div class="edstrip-in"><span class="edstrip-chip" id="edstrip-chip">Today’s edition</span><nav class="edstrip-seg" id="edstrip-seg" aria-label="Jump to a section of this edition"></nav></div></div>
   <div class="mktband" id="mktband" hidden><div class="mktband-in" id="mktband-in" role="group" aria-label="Market indicators carried by this edition"></div></div>
+  <a class="src-mobile" id="src-mobile" href="#trust" hidden><span>Source feeds partial — see Data Trust</span></a>
+  <!-- #wya-slot is filled by the while-you-were-away script at the foot of
+       this page; it stays empty on a first visit by design. -->
   <div id="wya-slot"></div>
   <div class="page">
     <aside class="rail"><h2>Edition index</h2><nav class="navgroups" aria-label="ABrief sections"><div class="navgroup"><strong>Today</strong><a href="#brief">Supply Brief</a><a href="#cost">Asia Cost Board</a><a href="#production">Taiwan &amp; China</a><a href="#freight">Freight &amp; Ports</a><a href="#policy">Tariff &amp; Regulation</a><a href="#news">Daily News Desk</a></div><div class="navgroup"><strong>Return</strong><a href="#follow">Follow this signal</a><a href="#calendar">Calendar Hub</a><a href="#trust">Data Trust</a><a href="partner.html">Open AsiaSource</a></div></nav><div class="free-app"><button class="subscription-art-button" id="free-app" type="button" title="Keep ABrief one tap away. No account required." aria-label="Free subscription: add ABrief to this device"><img src="images/free-subscription-mailbox-option-a.webp" alt="" width="410" height="470" decoding="async"></button><small id="free-app-note" class="visually-hidden" aria-live="polite"></small></div></aside>
@@ -217,6 +232,10 @@
   <script>
   (function(){'use strict';
     var D={};try{D=JSON.parse(document.getElementById('outlook-data').textContent||'{}');}catch(e){}
+    /* The edition's date part ("04 Aug 2026" from "04 Aug 2026, 04:17 UTC"),
+       derived once. The lead block, the carried-forward check and the edition
+       strip all read this instead of re-splitting D.updated three ways. */
+    window.__abEditionDate=String(D.updated||'').split(',')[0].trim();
     var $=function(s,r){return (r||document).querySelector(s);},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
     var esc=function(v){return String(v==null?'':v).replace(/[&<>\"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
     var store={get:function(k,f){try{var v=localStorage.getItem('bd_e_'+k);return v?JSON.parse(v):f;}catch(e){return f;}},set:function(k,v){try{localStorage.setItem('bd_e_'+k,JSON.stringify(v));}catch(e){}},clear:function(){try{Object.keys(localStorage).filter(function(k){return k.indexOf('bd_e_')===0;}).forEach(function(k){localStorage.removeItem(k);});}catch(e){}}};
@@ -240,7 +259,7 @@
     function evidenceForMetric(label,x,src,interpretation){return addEvidence({title:label,source:src.name,fetched:src.updated,state:src.state,period:'Supplied series, latest available observation',facts:x?'Latest supplied value: '+fmt(x.value!=null?x.value:x.rate)+' '+(x.unit||'')+'.':'No usable series supplied.',interpretation:interpretation||'Use direction as public supply-planning context; confirm before fixing a quote.'});}
     function briefCard(label,x,topic,src){var d=costDir(x),eid=evidenceForMetric(label,x,src,actionFor(topic)),change=realChg(x),status=x?src.state:'unavailable',what=x?(x.short||x.label||x.name||label)+' '+(change==null?'has no usable change series.':(change>0?'is higher versus the last non-duplicated observation.':change<0?'is lower versus the last non-duplicated observation.':'is broadly flat versus the last non-duplicated observation.')):'No verified '+label.toLowerCase()+' signal is available.';return '<article class="brief-card '+(d==='up'?'pressure':'')+'"><div class="eyebrow">'+esc(label)+'</div><h3 class="'+d+'">'+esc(x?(d==='up'?'WATCH':d==='down'?'RELIEF':'REVIEW'):'UNAVAILABLE')+'</h3><span class="state '+status+'">'+esc(status)+'</span><p><b>What changed:</b> '+esc(what)+'</p><p><b>Buyer impact:</b> '+esc(x?(d==='up'?'Higher cost exposure may affect the next quote.':d==='down'?'Lower immediate pressure; avoid assuming a permanent decrease.':'No clear cost direction from this series.'):'No buyer action should be inferred.')+'</p><div class="move">Next move: '+esc(actionFor(topic))+'</div><button class="evidence-button" data-evidence="'+eid+'">Evidence</button></article>';}
     $('#brief-grid').innerHTML=briefCard('Cost',steel||resin,'cost',tdSource)+briefCard('Freight',freight,'freight',tdSource)+briefCard('Policy',find(/tariff/i,idx)||proc[0],'tariff',marketSource);$('#brief-tag').textContent=(steel||resin||freight)?'Data present':'No connected signals';
-    var metrics=[['Steel HRC',steel,'Cost cover timing'],['PP resin',resin,'Material flexibility'],['Freight',freight,'Booking window'],['DXY',dxy,'USD purchasing context']];$('#metric-grid').innerHTML=metrics.map(function(m){var x=m[1],src=x===dxy?tdSource:tdSource,eid=evidenceForMetric(m[0],x,src,m[2]),d=costDir(x);return '<article class="metric"><h3>'+esc(m[0])+'</h3><div class="value '+d+'">'+esc(x?fmt(x.value!=null?x.value:x.rate):'—')+'</div><div class="meta">'+esc(x?(x.unit||'unit unavailable')+' · '+src.state:'No usable series')+'</div>'+svgSpark(x)+'<button class="evidence-button" data-evidence="'+eid+'">Evidence</button></article>';}).join('');
+    var metrics=[['Steel HRC',steel,'Cost cover timing'],['PP resin',resin,'Material flexibility'],['Freight',freight,'Booking window'],['DXY',dxy,'USD purchasing context']];$('#metric-grid').innerHTML=metrics.map(function(m){var x=m[1],src=x===dxy?tdSource:tdSource,eid=evidenceForMetric(m[0],x,src,m[2]),d=costDir(x);return '<article class="metric"><h3>'+esc(m[0])+'</h3><div class="value '+d+'">'+esc(x?fmt(x.value!=null?x.value:x.rate):'—')+'</div><div class="meta">'+esc(x?((x.unit?x.unit+' · ':'')+src.state):'No usable series')+'</div>'+svgSpark(x)+'<button class="evidence-button" data-evidence="'+eid+'">Evidence</button></article>';}).join('');
     function localEnglishMedia(topic,n){if(topic!=='china'&&topic!=='taiwan')return true;var s=String(n.source||'').toLowerCase();return /focus taiwan|taipei times|taipeitimes\.com|taiwan news|taiwannews\.com\.tw|taiwan today|commonwealth magazine|天下雜誌|digitimes|caixin global|yicai global|china daily|global times|xinhua|cgtn|china\.org\.cn|china economic net|ecns|south china morning post/.test(s);}
     function relevantNews(topic,n){var t=String(n.title||'').toLowerCase(),bad=/drone|election|military|defen[cs]e|nationalization|stock market|property market|semiconductor|chip|smartphone|\bai\b|artificial intelligence/;var words={tariff:/tariff|customs|import|trade|section 301|compliance/,shipping:/freight|shipping|container|port|ocean|vessel/,china:/hardware|fastener|screw|hand tool|machine tool|metal|steel|alumin[iu]um|plastic|resin|polypropylene|petrochemical|chemical|rubber|molding|moulding|machinery|factory|manufacturing|exports|export order|industrial output|industrial production|pmi/,taiwan:/hardware|fastener|screw|hand tool|machine tool|metal|steel|alumin[iu]um|plastic|resin|polypropylene|petrochemical|chemical|rubber|molding|moulding|machinery|factory|manufacturing|exports|export order|industrial output|industrial production|pmi/};return localEnglishMedia(topic,n)&&!bad.test(t)&&(!words[topic]||words[topic].test(t));}
     function newsFor(topic){return news.filter(function(n){return String(n.topic||'').toLowerCase()===topic&&relevantNews(topic,n);});}
@@ -261,7 +280,7 @@
     function icsEscape(v){return String(v||'').replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\r?\n/g,'\\n');}function eventIcs(e){var d=new Date(e.starts_at),end=new Date(e.ends_at||e.starts_at),stamp=function(x){return x.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');};return ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Birdland//Public Calendar Hub//EN','BEGIN:VEVENT','UID:'+icsEscape(e.id)+'.birdland-public-calendar','DTSTAMP:'+stamp(new Date()),'DTSTART:'+stamp(d),'DTEND:'+stamp(end),'SUMMARY:'+icsEscape(e.title),'DESCRIPTION:'+icsEscape((e.buyer_meaning||'Public planning reminder.')+' Source: '+(e.source_url||'')),'URL:'+icsEscape('https://birdland.com.tw/'+(e.deep_link||'executive.html#calendar')),'END:VEVENT','END:VCALENDAR',''].join('\r\n');}function download(name,text){var a=document.createElement('a'),u=URL.createObjectURL(new Blob([text],{type:'text/calendar;charset=utf-8'}));a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u);},0);}
     function drawCalendar(events){var now=Date.now(),list=events.filter(function(e){return new Date(e.starts_at).getTime()>=now;}).sort(function(a,b){return String(a.starts_at).localeCompare(String(b.starts_at));}).slice(0,5);$('#calendar-list').innerHTML=list.length?list.map(function(e,i){var eid=addEvidence({title:e.title,source:e.source_name||'Source',published:e.starts_at||'',fetched:e.verified_at||'',state:e.status||'manual',period:'Public calendar event',facts:e.buyer_meaning||'Public planning reminder.',interpretation:'Add this public reminder only if it is relevant to your program.',url:e.source_url||''});return '<div class="item"><span><b>'+esc(e.title)+'</b><br><small>'+esc(new Date(e.starts_at).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}))+' · '+esc(e.region||'Global')+' · verified '+esc(e.verified_at||'not supplied')+'</small>'+esc(e.buyer_meaning||'Public planning reminder.')+'</span><span><button class="text-button" data-event="'+i+'">Download .ics</button><br><button class="evidence-button" data-evidence="'+eid+'">Evidence</button></span></div>';}).join(''):'<div class="item"><span>No verified public event is available.</span></div>';$('#calendar-list').dataset.events=JSON.stringify(list);}
     fetch('calendar-events.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('Calendar unavailable');return r.json();}).then(function(x){drawCalendar(Array.isArray(x.events)?x.events:[]);}).catch(function(){drawCalendar([]);});$('#calendar-list').addEventListener('click',function(e){var b=e.target.closest('[data-event]');if(!b)return;var events=JSON.parse($('#calendar-list').dataset.events||'[]'),x=events[Number(b.getAttribute('data-event'))];if(x)download('birdland-'+x.id+'.ics',eventIcs(x));});$$('[data-copy-feed]').forEach(function(b){b.addEventListener('click',function(){var u=new URL(b.getAttribute('data-copy-feed'),location.href).href;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(function(){toast('Calendar feed URL copied.');},function(){toast(u);});}else{toast(u);}});});
-    var sourceRows=[source('gemini','Narrative'),source('twelvedata','Twelve Data'),source('fred','FRED freight'),source('fx','FX'),source('market_news','Market news'),{name:'Calendar events',state:'manual',updated:'calendar-events.json',detail:'Public planning reminders verified by Birdland.'},{name:'Tariff monitor',state:'manual',updated:'desk-set',detail:'Public monitoring context; not a daily external feed.'}];var partial=sourceRows.some(function(x){return x.state==='delayed'||x.state==='unavailable';}),dot=$('#source-state .dot');$('#source-state').lastChild.nodeValue=partial?'Source feeds partial':'Source feeds current';dot.className='dot '+(partial?'delayed':'');$('#workflow-state').textContent=partial?'Partial data':'Source-aware';$('#source-list').innerHTML=sourceRows.map(function(x){return '<div class="item"><span><b>'+esc(x.name)+'</b><br><small class="'+esc(x.state)+'">'+esc(x.state)+' · '+esc(x.detail||'No source detail supplied')+'</small></span><span>'+esc(x.updated||'unknown')+'</span></div>';}).join('');
+    var sourceRows=[source('gemini','Narrative'),source('twelvedata','Twelve Data'),source('fred','FRED freight'),source('fx','FX'),source('market_news','Market news'),{name:'Calendar events',state:'manual',updated:'calendar-events.json',detail:'Public planning reminders verified by Birdland.'},{name:'Tariff monitor',state:'manual',updated:'desk-set',detail:'Public monitoring context; not a daily external feed.'}];var partial=sourceRows.some(function(x){return x.state==='delayed'||x.state==='unavailable';}),dot=$('#source-state .dot');$('#source-state').lastChild.nodeValue=partial?'Source feeds partial':'Source feeds current';dot.className='dot '+(partial?'delayed':'');var srcMobile=document.getElementById('src-mobile');if(srcMobile)srcMobile.hidden=!partial;$('#workflow-state').textContent=partial?'Partial data':'Source-aware';$('#source-list').innerHTML=sourceRows.map(function(x){return '<div class="item"><span><b>'+esc(x.name)+'</b><br><small class="'+esc(x.state)+'">'+esc(x.state)+' · '+esc(x.detail||'No source detail supplied')+'</small></span><span>'+esc(x.updated||'unknown')+'</span></div>';}).join('');
     $('#email-edition').addEventListener('click',function(){var subject='Birdland ABrief — '+(D.updated||'current edition'),body='Hello Birdland,\n\nI am reviewing this public ABrief edition and would like to discuss a sourcing question.\n\nEdition: '+location.href+'\n\nPlease keep project-specific information in this email thread.';if(window.blMail)window.blMail.open(marketSel&&marketSel.value||'global','',subject,body,'brief');});
     var marketSel=$('#edition-market'),deskLabel=$('#edition-desk');
     document.addEventListener('DOMContentLoaded',function(){ if(window.blMail&&marketSel){
@@ -307,7 +326,7 @@
        text is from the 10th. lead_asof is computed from exactly what is
        rendered here. asof stays for AsiaSource's region room, which does show
        the whole region. Older data has neither field, hence the fallback. */
-    var ed=String(D.updated||'').split(',')[0].trim(),lead=g.lead_asof||g.asof;
+    var ed=window.__abEditionDate||'',lead=g.lead_asof||g.asof;
     if(a&&lead){
       a.textContent='';
       if(lead===ed){a.appendChild(document.createTextNode('\u00b7 '+lead));}
@@ -425,7 +444,7 @@
 
     /* An edition whose digest was rejected keeps yesterday's lines. Saying so
        is the difference between a stale page and a lying one. */
-    var edDate=String(D.updated||'').split(',')[0].trim();
+    var edDate=window.__abEditionDate||'';
     if(DG.date&&edDate&&DG.date!==edDate){
       var cf=document.getElementById('db-carried'),cd=document.getElementById('db-carried-date');
       if(cf&&cd){cd.textContent=DG.date;cf.querySelector('span').textContent=T('Carried forward from');cf.hidden=false;}
@@ -570,7 +589,7 @@
     /* "04 Aug 2026, 04:17 UTC" -> "04 Aug 2026". The time belongs to the
        workflow stamp shown further down, not to a date chip. There is no
        archive of past editions, so this is the only date the strip may show. */
-    var stamp=String(D.updated||'').trim(),datePart=stamp?stamp.split(',')[0].trim():'';
+    var datePart=window.__abEditionDate||'';
     /* Label and date go in as two text nodes rather than one string. The chip
        reads exactly the same; what changes is that "Today's edition" becomes a
        node of its own, which is the only shape i18n.js can act on \u2014 it matches
@@ -715,7 +734,7 @@
         return '<span class="mkt"><span class="mkt-l">'+esc(w.label)+'</span>'+
           '<span class="mkt-v">'+esc(num(w.value,dec(w.value))+unit)+'</span>'+
           '<span class="mkt-c '+d+'" aria-label="'+esc(txt)+'">'+mark+' '+esc(txt)+'</span></span>';
-      }).join('')+'<span class="mkt-note">indicative · daily</span>';
+      }).join('')+'<span class="mkt-note" title="Latest daily observations carried by this edition — a delayed feed, not live quotes. Each move compares the latest value with the last differing observation in the same series, so it can span more than one day.">delayed · daily series · not intraday</span>';
       band.hidden=false;
     }
 
