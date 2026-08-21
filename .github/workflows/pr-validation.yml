@@ -217,6 +217,7 @@ jobs:
           node tools/dev/verify-config-data.js
           node tools/dev/verify-drawings.js
           node tools/dev/costnow-harness.js --selftest
+          node tools/dev/verify-configurator-i18n.js
 
       - name: Validate public calendar feeds
         shell: bash
