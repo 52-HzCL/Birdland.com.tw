@@ -9,9 +9,9 @@ Q4 開跑前必須清空該標記;插隊工單只掃核心不展開;研究凍結
 2. ~~U-F CostNow 計算機正確性~~(2026-08-18 完成:MPF min/max 31/615→33.58/651.50 FY2026;其餘常數全數查證無誤;costnow-harness.js 逐字副本+漂移守衛+不變量選測進 CI;commit 38456b7)
 3. ~~Q3 配置器互動本體~~(2026-08-18 完成:configurator.html 上線,入口在 AsiaSource Buying tools;bl-sketch 標籤 clamp 修裁切;SW v58;commit e284b27)`Q4 仍要收它的字串`
 4. ~~**R1a** 假日 JSON(CI 週更)+ 交期承諾區間(保守值~樂觀值,建議承諾日=保守值)`pre-i18n`~~(2026-08-21 完成:假日 JSON + 交期承諾區間 commit 54e85ca)
-5. **T1-T3** 工廠信任面(60秒摘要/聚焦聲明/分類卡/能力矩陣/打樣時程/介紹包PDF;認證徽章與影片留插槽,素材到位即插)`pre-i18n`
+~~5. **T1-T3** 工廠信任面(60秒摘要/聚焦聲明/分類卡/能力矩陣/打樣時程/介紹包PDF;認證徽章與影片留插槽,素材到位即插)`pre-i18n`~~(2026-08-21 完成:ebfee63/f2efe35/cd5c790)
 6. **U-A 誠實性、U-C 死控制項**(動文案)`pre-i18n`
-7. **Q4** 配置器 i18n:機器已就緒(UI 字串抽進 DATA.ui;58 選項+116 句沿用 product-101 既有九語譯文;verify-configurator-i18n.js 進 CI)。**尚缺**:UI 23 鍵九語翻譯(代理跑中)、語言頁 build、T/R 新文案的 facade 補譯
+~~7. **Q4** 配置器 i18n:機器已就緒(UI 字串抽進 DATA.ui;58 選項+116 句沿用 product-101 既有九語譯文;verify-configurator-i18n.js 進 CI)。**尚缺**:UI 23 鍵九語翻譯(代理跑中)、語言頁 build、T/R 新文案的 facade 補譯~~(2026-08-21 完成:c2580b7)
 8. U-B 可達性、U-D 手機落地、U-E 打磨、U2 希伯來文RTL
 9. V2 效能、V3 SEO、V6 相容性、V7 全站完整版
 10. R1b 信草稿+異議卡、R1c 破冰卡、R1d 報價分享頁(先盤點與 /p/ 管線重疊)
