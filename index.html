@@ -21,6 +21,24 @@
   <link rel="alternate" hreflang="ja" href="https://birdland.com.tw/ja/index.html">
   <link rel="alternate" hreflang="zh-Hant" href="https://birdland.com.tw/zh-tw/index.html">
   <link rel="alternate" hreflang="x-default" href="https://birdland.com.tw/index.html">
+  <style>
+    /* The 60-second summary. A buyer's first visit averages about a minute,
+       and on a phone the hero's nine numbered notes are display:none — so the
+       numbers the site already claims get one plain band of their own, right
+       under the hero. Every figure is either published elsewhere on this site
+       or counted from tools/dev data; the provenance is in the T1 ticket.
+       HTML band, not SVG, for the usual reason (clipped four times). */
+    .bl-sixty{width:min(1180px,calc(100% - 64px));margin:0 auto;padding:var(--sp-5) 0 var(--sp-6)}
+    .bl-sixty-eyebrow{display:block;color:var(--copper-600);font:600 var(--fs-micro) var(--ff-mono);letter-spacing:.18em;text-transform:uppercase}
+    .bl-sixty h2{margin:var(--sp-2) 0 var(--sp-1);font:500 var(--fs-h1)/1.15 var(--ff-serif);letter-spacing:-.015em;color:var(--jade-900)}
+    .bl-sixty-focus{margin:0 0 var(--sp-4);max-width:62ch;font-size:var(--fs-body);line-height:var(--lh-body);color:var(--ink-900)}
+    .bl-sixty-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden}
+    .bl-sixty-grid article{padding:var(--sp-3) var(--sp-3) var(--sp-3);background:var(--card)}
+    .bl-sixty-grid b{display:block;font:600 clamp(26px,3vw,34px)/1 var(--ff-serif);letter-spacing:-.03em;color:var(--jade-800)}
+    .bl-sixty-grid span{display:block;margin-top:var(--sp-2);font-size:var(--fs-small);line-height:1.45;color:var(--ink-500)}
+    .bl-sixty .bl-actions{margin-top:var(--sp-4)}
+    @media(max-width:900px){.bl-sixty{width:calc(100% - 40px)}}
+  </style>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
 <body>
@@ -75,11 +93,31 @@
       </div>
       <h1 id="home-title" class="bl-ink-title">Your design. Our discipline. Never our brand.</h1>
     </section>
+
+    <section class="bl-sixty" aria-labelledby="sixty-title">
+      <span class="bl-sixty-eyebrow">The 60-second factory summary</span>
+      <h2 id="sixty-title">One line of work, measured.</h2>
+      <p class="bl-sixty-focus">Garden and field hand tools, forged and formed metal first &mdash; made behind other people&rsquo;s brands. Not power tools, not whatever is trending, and never a retail label of our own. That is the whole company.</p>
+      <div class="bl-sixty-grid">
+        <article><b>52</b><span>Years of OEM manufacturing, since 1974</span></article>
+        <article><b>180+</b><span>Programmes manufactured behind customer brands</span></article>
+        <article><b>9</b><span>Material families run on this floor</span></article>
+        <article><b>76</b><span>Process, material &amp; packaging options, documented and rated</span></article>
+        <article><b>159</b><span>Material routes documented across 38 part types</span></article>
+      </div>
+      <!-- S1-B: cert badge slot — certification badges render here once real
+           certificate artwork/scans exist; until then the intro pack carries
+           the only honest wording, "available on request". -->
+      <div class="bl-actions">
+        <a class="bl-button" href="birdland-intro-pack.pdf" download>Download the factory intro pack (PDF)</a>
+        <a class="bl-button bl-button-secondary" href="manufacturing.html">See the capability matrix</a>
+      </div>
+    </section>
   </main>
 
   <footer class="bl-footer">
     <span>Birdland Ind. · Garden and field tool OEM manufacturing since 1974.</span>
-    <span><a href="privacy.html">Privacy</a> · <a href="contact.html">Contact</a></span>
+    <span><a href="birdland-intro-pack.pdf" download>Intro pack (PDF)</a> · <a href="privacy.html">Privacy</a> · <a href="contact.html">Contact</a></span>
   </footer>
   <script>
     (function(){

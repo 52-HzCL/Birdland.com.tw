@@ -1,1 +1,269 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url=product-101.html"><title>Factory | Birdland</title><meta name="description" content="Birdland Factory manufacturing encyclopedia."><meta name="robots" content="noindex,follow"><link rel="canonical" href="https://birdland.com.tw/product-101.html"><link rel="stylesheet" href="tokens.css?v=20260814a"><script src="text-size.js?v=20260804a"></script><link rel="stylesheet" href="site-shell.css?v=20260811b"></head><body class="shell"><main class="shell-main"><nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span class="current">Factory</span></nav><section class="hero"><div><span class="eyebrow">Factory</span><h1>This manufacturing guide has moved.</h1><p>Open the dedicated Factory page for the current process and materials encyclopedia.</p><div class="cta-row"><a class="cta" href="product-101.html">Open the factory &rarr;</a></div></div></section></main></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="tokens.css?v=20260814a"><script src="text-size.js?v=20260804a"></script>
+  <link rel="stylesheet" href="terminal.css?v=20260807a"><script defer src="terminal.js?v=20260814a"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Process Capability | Birdland OEM Manufacturing Since 1974</title>
+  <meta name="description" content="The Birdland capability matrix: every process, material and packaging option on the floor, rated and documented, with the sample-to-mass-production timeline.">
+  <!-- This URL spent a year as a redirect stub to product-101.html and is not
+       in sitemap.xml. It is a real page again, but stays noindex until the
+       Q4 i18n pass gives it language versions and a sitemap entry — flipping
+       robots here without touching build-sitemap.js is a Search Console error
+       waiting to happen, in either direction. -->
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://birdland.com.tw/manufacturing.html">
+  <link rel="stylesheet" href="birdland-visual.css?v=20260817a"><script defer src="terminal-status.js?v=20260730d"></script>
+  <style>
+    /* Capability matrix. HTML and CSS on purpose, not SVG: banded/tabular
+       layouts are exactly where SVG text has been clipped on this site four
+       times. Rows are generated from tools/dev/ratings.js between the
+       CAP-MATRIX markers below — edit the data and re-run
+       `node tools/dev/build-intropack.js --sync-page`, not the rows. */
+    .cap-wrap{width:min(1180px,calc(100% - 64px));margin:0 auto;padding:var(--sp-6) 0}
+    @media(max-width:900px){.cap-wrap{width:calc(100% - 40px);padding:var(--sp-5) 0}}
+    .cap-wrap+.cap-wrap{border-top:1px solid var(--line)}
+    .cap-eyebrow{display:block;color:var(--copper-600);font:600 var(--fs-micro) var(--ff-mono);letter-spacing:.18em;text-transform:uppercase}
+    .cap-wrap h2{margin:var(--sp-2) 0 var(--sp-3);max-width:24ch;font:500 var(--fs-h1)/1.15 var(--ff-serif);letter-spacing:-.015em;color:var(--jade-900)}
+    .cap-lead{margin:0 0 var(--sp-4);max-width:60ch;font-size:var(--fs-body);line-height:var(--lh-body);color:var(--ink-900)}
+    .cap-legend{margin:0 0 var(--sp-4);padding:var(--sp-3) var(--sp-3);border-left:2px solid var(--copper-600);background:var(--card);color:var(--ink-500);font-size:var(--fs-small);line-height:1.5}
+    .cap-legend i{font-style:normal;letter-spacing:.1em}
+    .cap-pop-i{color:var(--jade-800)}
+    .cap-cost-i{color:var(--copper-600)}
+
+    .cap-block{margin:0 0 var(--sp-4)}
+    .cap-block h3{margin:0;padding:var(--sp-2) 0;border-bottom:1px solid var(--jade-900);font:600 var(--fs-h3)/1.2 var(--ff-sans);color:var(--jade-900)}
+    .cap-count{margin-left:var(--sp-2);color:var(--ink-500);font:500 var(--fs-micro) var(--ff-mono);letter-spacing:.08em;text-transform:uppercase}
+    .cap-rows{margin:0;padding:0;list-style:none}
+    .cap-rows li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:2px var(--sp-3);align-items:baseline;padding:var(--sp-2) 0;border-top:1px solid var(--line-soft)}
+    .cap-rows li:first-child{border-top:0}
+    .cap-rows b{font:600 var(--fs-body) var(--ff-sans);color:var(--ink-900)}
+    .cap-dots{white-space:nowrap}
+    .cap-dots i{font-style:normal;font-size:10px;letter-spacing:.14em;color:var(--jade-800)}
+    .cap-dots.cap-cost i{color:var(--copper-600)}
+    .cap-rows small{grid-column:1/-1;color:var(--ink-500);font-size:var(--fs-small);line-height:1.45}
+    @media(min-width:900px){
+      .cap-rows li{grid-template-columns:250px 88px 88px minmax(0,1fr)}
+      .cap-rows small{grid-column:auto}
+    }
+
+    /* Sample -> mass production: a vertical timeline in every viewport. The
+       phone is the primary reader here and a five-across band is how stage
+       copy gets clipped; a column never does. */
+    .cap-timeline{margin:0;padding:0;list-style:none;max-width:640px}
+    .cap-timeline li{position:relative;padding:0 0 var(--sp-4) var(--sp-5);border-left:2px solid var(--line)}
+    .cap-timeline li:last-child{border-left-color:transparent;padding-bottom:0}
+    .cap-timeline li::before{content:'';position:absolute;left:-6px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--jade-800);border:2px solid var(--paper)}
+    .cap-stage-no{display:inline-block;color:var(--copper-600);font:600 var(--fs-micro) var(--ff-mono);letter-spacing:.2em}
+    .cap-timeline b{display:block;margin:2px 0 2px;font:600 var(--fs-h3) var(--ff-sans);color:var(--jade-900)}
+    .cap-days{display:inline-block;margin:0 0 var(--sp-1);padding:2px var(--sp-2);border:1px solid var(--line);border-radius:var(--r-pill);background:var(--card);color:var(--jade-800);font:600 var(--fs-micro) var(--ff-mono);letter-spacing:.05em}
+    .cap-timeline p{margin:var(--sp-1) 0 0;max-width:52ch;color:var(--ink-700);font-size:var(--fs-small);line-height:1.5}
+    .cap-foot{margin:var(--sp-3) 0 0;max-width:60ch;color:var(--ink-500);font-size:var(--fs-small);line-height:1.5}
+
+    /* Insights entrance: one card, pointing at the encyclopedia that already
+       exists. Entrance and wording only — the knowledge lives on product-101. */
+    .cap-insights{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--sp-1);border:1px solid var(--line);border-left:2px solid var(--copper-600);border-radius:var(--r-md);background:var(--card);padding:var(--sp-4);max-width:640px}
+    .cap-insights b{font:600 var(--fs-h3) var(--ff-serif);color:var(--jade-900)}
+    .cap-insights span{color:var(--ink-500);font-size:var(--fs-small);line-height:1.5}
+    .cap-insights a{margin-top:var(--sp-2);justify-self:start;font:600 var(--fs-small) var(--ff-sans);color:var(--jade-900);text-decoration:none;border-bottom:1px solid var(--copper-600);padding-bottom:2px}
+    .cap-insights a:hover,.cap-insights a:focus-visible{color:var(--copper-600)}
+  </style>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="bl-skip" href="#main">Skip to content</a>
+  <header class="bl-header">
+    <div class="bl-header-inner">
+      <a class="bl-wordmark" href="index.html">BIRDLAND<small>Confidential OEM · Taiwan</small></a>
+      <nav class="bl-nav" aria-label="Main navigation">
+        <details class="bl-menu"><summary>About</summary><div class="bl-menu-panel"><a href="about.html">Us</a><a href="guide.html">Guide</a></div></details>
+        <a href="product-101.html">Factory</a>
+        <button type="button" class="tm-chip" data-terminal aria-haspopup="dialog" aria-expanded="false"><i aria-hidden="true"></i>Terminal</button>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <!-- No language picker yet: this page has no /de/ ... /zh-tw/ versions
+           until the Q4 i18n pass, and a picker pointing at 404s is worse than
+           none. Q4: add the picker and hreflang block together. -->
+      <div class="bl-header-actions"><div class="bl-status" aria-label="Birdland system status"><span class="bl-status-online" data-hq-status>Birdland Office <b data-hq-label>Resting</b></span><span class="bl-status-time" data-taipei-time>--:-- Taipei</span></div></div>
+    </div>
+  </header>
+
+  <main class="bl-main" id="main">
+    <section class="cap-wrap" aria-labelledby="cap-title">
+      <nav class="ledger-crumbs" aria-label="Breadcrumb" style="padding:0 0 var(--sp-4)"><a href="index.html">Home</a><span>/</span><a href="product-101.html">Factory</a><span>/</span><span>Capability</span></nav>
+      <span class="cap-eyebrow">Process capability · generated from the factory encyclopedia</span>
+      <h2 id="cap-title" style="max-width:none;font-size:var(--fs-display);margin-bottom:var(--sp-3)">What this floor can run.</h2>
+      <p class="cap-lead">One line of work: garden and field hand tools, forged and formed metal first. Below is every process, material and packaging option this factory runs for that line &mdash; nothing padded, nothing hidden. Each option is rated from the same data that drives the <a href="product-101.html">Factory encyclopedia</a>, so this page cannot say more than the floor can do.</p>
+      <div class="bl-actions" style="margin:0">
+        <a class="bl-button" href="birdland-intro-pack.pdf" download>Download the factory intro pack (PDF)</a>
+        <a class="bl-button bl-button-secondary" href="contact.html">Start an OEM conversation</a>
+      </div>
+      <!-- S1-B: cert badge slot — certification badges render here once real
+           certificate artwork/scans exist. Until then the only honest wording
+           is the one in the intro pack: "available on request". -->
+    </section>
+
+    <section class="cap-wrap" aria-labelledby="cap-matrix-title">
+      <span class="cap-eyebrow">The capability matrix</span>
+      <h2 id="cap-matrix-title">Every option, rated. Nothing more.</h2>
+      <p class="cap-legend"><i class="cap-pop-i">●●●●●</i> how common in European &amp; North American DIY retail &nbsp;·&nbsp; <i class="cap-cost-i">●●●●●</i> relative cost within its own group. Rated 1&ndash;5 &mdash; ordinal judgements about the channel, not measured market data. The two-sided buyer and production notes behind every row are in the <a href="product-101.html">Factory encyclopedia</a>.</p>
+      <!-- CAP-MATRIX:BEGIN generated from tools/dev/ratings.js by `node tools/dev/build-intropack.js --sync-page`; edit the data, not this block -->
+      <section class="cap-block">
+        <h3>Material intake <span class="cap-count">7 options</span></h3>
+        <ul class="cap-rows">
+        <li><b>Blade &amp; spring steel</b><span class="cap-dots" aria-label="How common: 5 of 5"><i>●●●●●</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 3 of 5"><i>●●●○○</i></span><small>Core material for every cutting edge; mid-range cost</small></li>
+        <li><b>Stainless steel</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 4 of 5"><i>●●●●○</i></span><small>Premium rust-resistant blades and trowels; pricier than carbon steel</small></li>
+        <li><b>Aluminium</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 3 of 5"><i>●●●○○</i></span><small>Lightweight shafts and heads on premium lines; moderate cost</small></li>
+        <li><b>Rigid plastics</b><span class="cap-dots" aria-label="How common: 5 of 5"><i>●●●●●</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Dominant for handles and housings; cheapest structural material</small></li>
+        <li><b>Grip compounds</b><span class="cap-dots" aria-label="How common: 5 of 5"><i>●●●●●</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Soft overmould grip now a standard ergonomic selling point</small></li>
+        <li><b>Timber</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 3 of 5"><i>●●●○○</i></span><small>Heritage handle material for spades and forks; pricier than plastic</small></li>
+        <li><b>Fabric</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Gloves and straps only; low cost, limited to few SKUs</small></li>
+        </ul>
+      </section>
+      <section class="cap-block">
+        <h3>Forming <span class="cap-count">11 options</span></h3>
+        <ul class="cap-rows">
+        <li><b>Stamping</b><span class="cap-dots" aria-label="How common: 5 of 5"><i>●●●●●</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>The default for volume blades and brackets</small></li>
+        <li><b>Hot forging</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 4 of 5"><i>●●●●○</i></span><small>Heavier tool heads; costlier and less common in mass DIY</small></li>
+        <li><b>Cold forging</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 3 of 5"><i>●●●○○</i></span><small>Higher-strength small parts like pivot pins; moderate extra cost</small></li>
+        <li><b>Laser cutting</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 4 of 5"><i>●●●●○</i></span><small>Short runs or premium blade profiles; costly per part</small></li>
+        <li><b>Tube drawing</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 3 of 5"><i>●●●○○</i></span><small>Shafts for forks, spades, loppers; moderate cost, fairly common</small></li>
+        <li><b>Tube bending</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Bends stock tube into handles and frames; cheaper than drawing</small></li>
+        <li><b>Swaging</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Tapers or joins tube ends; niche, low-cost forming step</small></li>
+        <li><b>Wood turning</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 3 of 5"><i>●●●○○</i></span><small>Turned wooden handles for heritage lines; pricier than moulding</small></li>
+        <li><b>Injection moulding</b><span class="cap-dots" aria-label="How common: 5 of 5"><i>●●●●●</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Dominant process for plastic handles and housings; low unit cost</small></li>
+        <li><b>Two-shot over-moulding</b><span class="cap-dots" aria-label="How common: 4 of 5"><i>●●●●○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 4 of 5"><i>●●●●○</i></span><small>Common for soft-grip handles; pricier tooling than single-shot moulding</small></li>
+        <li><b>Dip moulding</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Dips tool ends for handle coatings; simple, fairly cheap process</small></li>
+        </ul>
+      </section>
+      <section class="cap-block">
+        <h3>Heat treatment <span class="cap-count">6 options</span></h3>
+        <ul class="cap-rows">
+        <li><b>Through hardening</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Hardens solid steel parts like trowel blades; simple, low cost</small></li>
+        <li><b>Quench &amp; temper</b><span class="cap-dots" aria-label="How common: 4 of 5"><i>●●●●○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Standard treatment for spring steel blades and springs; low cost</small></li>
+        <li><b>Induction (local) hardening</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 3 of 5"><i>●●●○○</i></span><small>Hardens only the cutting edge; needs dedicated equipment, moderate cost</small></li>
+        <li><b>Solution annealing</b><span class="cap-dots" aria-label="How common: 1 of 5"><i>●○○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 3 of 5"><i>●●●○○</i></span><small>Stainless-specific heat treatment; rare outside premium stainless tool lines</small></li>
+        <li><b>Stress relief</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Reduces warping after forming; cheap, occasional extra process step</small></li>
+        <li><b>Hardness banding by grade</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Sorts output into hardness grades; cheap QC step, not universal</small></li>
+        </ul>
+      </section>
+      <section class="cap-block">
+        <h3>Tooling <span class="cap-count">7 options</span></h3>
+        <ul class="cap-rows">
+        <li><b>Progressive dies</b><span class="cap-dots" aria-label="How common: 4 of 5"><i>●●●●○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 4 of 5"><i>●●●●○</i></span><small>High-volume stamping tooling; expensive investment, common for big brands</small></li>
+        <li><b>Single-station dies</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Simple tooling for low-volume stampings; cheaper than progressive dies</small></li>
+        <li><b>Trim &amp; pierce tools</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Secondary stamping operations; moderate tooling cost, fairly common</small></li>
+        <li><b>Injection moulds</b><span class="cap-dots" aria-label="How common: 5 of 5"><i>●●●●●</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 5 of 5"><i>●●●●●</i></span><small>Needed for every plastic part; the most expensive tooling category</small></li>
+        <li><b>Welding jigs</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Simple fixtures for welded assemblies; cheap, used only occasionally</small></li>
+        <li><b>Assembly fixtures</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Keeps assembly consistent across lines; low individual tooling cost</small></li>
+        <li><b>Gauges</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Inspection tooling for dimensions; cheap, moderately common across lines</small></li>
+        </ul>
+      </section>
+      <section class="cap-block">
+        <h3>Joining &amp; assembly <span class="cap-count">9 options</span></h3>
+        <ul class="cap-rows">
+        <li><b>Riveting</b><span class="cap-dots" aria-label="How common: 5 of 5"><i>●●●●●</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Standard pivot joint for shears and secateurs; cheap and common</small></li>
+        <li><b>Bolted joints</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Adjustable pivots or handle attachment; costs more than riveting</small></li>
+        <li><b>Snap-fit</b><span class="cap-dots" aria-label="How common: 4 of 5"><i>●●●●○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Plastic housings clip together; cheap, very common on mass tools</small></li>
+        <li><b>Press-fit</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Ferrule onto handle or blade tang; cheap, common assembly method</small></li>
+        <li><b>Spot welding</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Joins metal frame assemblies; moderate cost, less used on hand tools</small></li>
+        <li><b>MIG welding</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 3 of 5"><i>●●●○○</i></span><small>Welds heavier long-handled tool assemblies; costlier than spot welding</small></li>
+        <li><b>Brazing</b><span class="cap-dots" aria-label="How common: 1 of 5"><i>●○○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 4 of 5"><i>●●●●○</i></span><small>Premium blade-to-tang joints; rare and costly in mass-market channel</small></li>
+        <li><b>Over-moulded joints</b><span class="cap-dots" aria-label="How common: 4 of 5"><i>●●●●○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 3 of 5"><i>●●●○○</i></span><small>Bonds soft grip onto handle body; common on ergonomic mid-tier lines</small></li>
+        <li><b>Adhesive bonding</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Glues ferrules and labels; moderate cost, fairly common assembly step</small></li>
+        </ul>
+      </section>
+      <section class="cap-block">
+        <h3>Finishing &amp; marking <span class="cap-count">12 options</span></h3>
+        <ul class="cap-rows">
+        <li><b>Zinc plating</b><span class="cap-dots" aria-label="How common: 5 of 5"><i>●●●●●</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Default cheap rust protection for small steel parts and blades</small></li>
+        <li><b>Nickel-chrome plating</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 4 of 5"><i>●●●●○</i></span><small>Decorative premium finish; pricier, used mainly on higher-end lines</small></li>
+        <li><b>Dacromet</b><span class="cap-dots" aria-label="How common: 1 of 5"><i>●○○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 4 of 5"><i>●●●●○</i></span><small>Specialist corrosion coating; rare in consumer garden tools, costly</small></li>
+        <li><b>Powder coating</b><span class="cap-dots" aria-label="How common: 4 of 5"><i>●●●●○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Durable colour finish on metal heads; moderate cost, fairly common</small></li>
+        <li><b>Wet paint</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Cheap colour coat on lower-cost ranges; less durable than powder</small></li>
+        <li><b>E-coat</b><span class="cap-dots" aria-label="How common: 1 of 5"><i>●○○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 3 of 5"><i>●●●○○</i></span><small>Electro-deposited priming; rare for hand tools, more of an automotive process</small></li>
+        <li><b>Anodising</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 3 of 5"><i>●●●○○</i></span><small>Colours and protects aluminium parts; pricier than plain paint</small></li>
+        <li><b>Polishing</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Bright blade finish for shelf appeal; moderate labour cost</small></li>
+        <li><b>Sand-blasting</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Surface prep before coating; cheap step, not used on every SKU</small></li>
+        <li><b>Lacquer or oil on wood</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Finish for timber handles only; cheap, relevant to wood SKUs</small></li>
+        <li><b>Heat transfer print</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Cheap branding and graphics onto plastic handles; fairly common</small></li>
+        <li><b>Laser marking</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Permanent blade branding; moderate cost, common on premium tool lines</small></li>
+        </ul>
+      </section>
+      <section class="cap-block">
+        <h3>Inspection &amp; testing <span class="cap-count">8 options</span></h3>
+        <ul class="cap-rows">
+        <li><b>Hardness sampling</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Batch check of blade hardness; low-cost routine sampling step</small></li>
+        <li><b>Open/close cycle life</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Durability test for shears and loppers pivots; moderate extra cost</small></li>
+        <li><b>Salt-spray hours</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Corrosion test for plated parts; moderate cost, not every SKU</small></li>
+        <li><b>Dimensional AQL</b><span class="cap-dots" aria-label="How common: 4 of 5"><i>●●●●○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Standard incoming and outgoing dimension check; cheap and common</small></li>
+        <li><b>Edge &amp; function check</b><span class="cap-dots" aria-label="How common: 5 of 5"><i>●●●●●</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Near-universal sharpness and function check before packing; low cost</small></li>
+        <li><b>Joint pull test</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Destructive test on riveted or bolted joints; occasional, moderate cost</small></li>
+        <li><b>Pack drop test</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Standard transit test for retail packaging; cheap and common</small></li>
+        <li><b>Barcode &amp; label check</b><span class="cap-dots" aria-label="How common: 5 of 5"><i>●●●●●</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Mandatory retailer compliance scan; cheap, done on every unit</small></li>
+        </ul>
+      </section>
+      <section class="cap-block">
+        <h3>Material families <span class="cap-count">9 options</span></h3>
+        <ul class="cap-rows">
+        <li><b>Blade and spring steel</b><span class="cap-dots" aria-label="How common: 5 of 5"><i>●●●●●</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 3 of 5"><i>●●●○○</i></span><small>Core material for every cutting edge; mid-range cost</small></li>
+        <li><b>Stainless steel</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 4 of 5"><i>●●●●○</i></span><small>Premium rust-resistant blades and trowels; pricier than carbon steel</small></li>
+        <li><b>Plating and coating</b><span class="cap-dots" aria-label="How common: 5 of 5"><i>●●●●●</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Near-universal rust protection on steel parts; low added cost</small></li>
+        <li><b>Aluminium</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 3 of 5"><i>●●●○○</i></span><small>Lightweight shafts and heads on premium lines; moderate cost</small></li>
+        <li><b>Rigid plastics</b><span class="cap-dots" aria-label="How common: 5 of 5"><i>●●●●●</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Dominant for handles and housings; cheapest structural material</small></li>
+        <li><b>Grips and soft compounds</b><span class="cap-dots" aria-label="How common: 5 of 5"><i>●●●●●</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Soft overmould grip now a standard ergonomic selling point</small></li>
+        <li><b>Timber</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 3 of 5"><i>●●●○○</i></span><small>Heritage handle material for spades and forks; pricier than plastic</small></li>
+        <li><b>Fabric and textile</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Gloves and straps only; low cost, limited to few SKUs</small></li>
+        <li><b>Packaging board</b><span class="cap-dots" aria-label="How common: 5 of 5"><i>●●●●●</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Universal for cartons and header cards; cheapest packaging material</small></li>
+        </ul>
+      </section>
+      <section class="cap-block">
+        <h3>Packaging formats <span class="cap-count">11 options</span></h3>
+        <ul class="cap-rows">
+        <li><b>Corrugated export carton</b><span class="cap-dots" aria-label="How common: 5 of 5"><i>●●●●●</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Standard bulk shipping carton used for nearly every export run</small></li>
+        <li><b>Colour box</b><span class="cap-dots" aria-label="How common: 4 of 5"><i>●●●●○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 4 of 5"><i>●●●●○</i></span><small>Printed retail box for premium SKUs; pricier than plain carton</small></li>
+        <li><b>Hang tag / header card</b><span class="cap-dots" aria-label="How common: 5 of 5"><i>●●●●●</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Cheap card for blister and peg-hook display; near-universal</small></li>
+        <li><b>Blister pack</b><span class="cap-dots" aria-label="How common: 4 of 5"><i>●●●●○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 3 of 5"><i>●●●○○</i></span><small>Plastic-and-card display pack for small tools; under regulatory pressure</small></li>
+        <li><b>Skin pack</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 3 of 5"><i>●●●○○</i></span><small>Film-wrapped display for irregular shapes; less common than blister</small></li>
+        <li><b>Paper-and-plastic composite</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 2 of 5"><i>●●○○○</i></span><small>Hybrid format cutting plastic content; growing under packaging regulation</small></li>
+        <li><b>Shrink film</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Cheap overwrap for bundling multipacks; fairly common, low cost</small></li>
+        <li><b>Label set</b><span class="cap-dots" aria-label="How common: 5 of 5"><i>●●●●●</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Barcode and care labels; cheap, applied to almost every unit</small></li>
+        <li><b>Void fill</b><span class="cap-dots" aria-label="How common: 3 of 5"><i>●●●○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Paper or foam fill for protection; cheap, used selectively</small></li>
+        <li><b>Strapping</b><span class="cap-dots" aria-label="How common: 2 of 5"><i>●●○○○</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 1 of 5"><i>●○○○○</i></span><small>Secures bundled units or pallets; cheap, used only occasionally</small></li>
+        <li><b>Pallet</b><span class="cap-dots" aria-label="How common: 5 of 5"><i>●●●●●</i></span><span class="cap-dots cap-cost" aria-label="Relative cost: 5 of 5"><i>●●●●●</i></span><small>Base unit for bulk transport; highest per-unit cost in group</small></li>
+        </ul>
+      </section>
+      <!-- CAP-MATRIX:END -->
+    </section>
+
+    <section class="cap-wrap" aria-labelledby="cap-time-title">
+      <span class="cap-eyebrow">Sample &rarr; mass production</span>
+      <h2 id="cap-time-title">How long a programme actually takes.</h2>
+      <ol class="cap-timeline">
+        <li><span class="cap-stage-no">01</span><b>Specification &amp; quote</b><span class="cap-days">typical 5&ndash;10 working days</span><p>Your drawings or a reference sample, reviewed against the matrix above. You get a route, a tooling answer and a quote &mdash; and if specification OEM on existing tooling reaches what you want, we say so before quoting a tool you did not need.</p></li>
+        <li><span class="cap-stage-no">02</span><b>Sampling / first article</b><span class="cap-days">typical 15&ndash;30 days</span><p>On existing tooling, sampling runs in weeks. The first article closes the engineering gate: the specification stops moving here.</p></li>
+        <li><span class="cap-stage-no">03</span><b>Tooling &mdash; only if new</b><span class="cap-days">typical 45&ndash;70 days</span><p>New dies or moulds are cut only on a design-OEM programme; a specification-OEM programme on our amortised tooling skips this stage entirely. Cutting and proving the tool closes the tooling gate.</p></li>
+        <li><span class="cap-stage-no">04</span><b>Pilot run</b><span class="cap-days">typical 7&ndash;20 days</span><p>An approval quantity through the full line and the real pack &mdash; the run that proves the fifty-thousandth piece will match the first.</p></li>
+        <li><span class="cap-stage-no">05</span><b>Mass production</b><span class="cap-days">typical 30&ndash;60 days per order</span><p>Order-size dependent. Outgoing inspection closes the third gate before anything is containerised.</p></li>
+      </ol>
+      <p class="cap-foot">Ranges are typical, not contractual &mdash; each stage is confirmed in writing at quotation for your programme, volume and season.</p>
+    </section>
+
+    <section class="cap-wrap" aria-labelledby="cap-ins-title">
+      <span class="cap-eyebrow">Insights</span>
+      <h2 id="cap-ins-title">The knowledge behind the matrix.</h2>
+      <div class="cap-insights">
+        <b>The Factory encyclopedia</b>
+        <span>Every row above carries two working notes on the Factory page: what the buyer is actually deciding, and what fifty-two years on this floor says about running it. Materials, processes, packaging, compliance &mdash; documented in one place, no account needed.</span>
+        <a href="product-101.html">Open the encyclopedia &rarr;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bl-footer">
+    <span>Birdland Ind. · Process capability, generated from the factory encyclopedia.</span>
+    <span><a href="birdland-intro-pack.pdf" download>Intro pack (PDF)</a> · <a href="contact.html">Contact</a></span>
+  </footer>
+</body>
+</html>

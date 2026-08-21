@@ -40,6 +40,13 @@
     .bd-firewall strong{display:block;margin:8px 0 var(--sp-1);font-size:15px;color:#12251f}
     .bd-firewall span{display:block;font-size:var(--fs-small);line-height:1.5;color:#5a6660}
     @media (max-width:720px){.bd-boundary{grid-template-columns:1fr}.bd-rule{width:auto;height:1px}}
+    /* Plate IV shares the plates' width and rhythm but is copy + cards, not
+       figure + copy, so it gets a plain band rather than the two-column grid. */
+    .ab-band{width:min(1180px,calc(100% - 64px));margin:0 auto;padding:var(--sp-6) 0;border-top:1px solid var(--bl-line)}
+    .ab-band .bd-firewall{margin-top:var(--sp-4)}
+    .ab-band .bd-numbers{margin-top:var(--sp-4)}
+    .ab-clients-note{margin:var(--sp-3) 0 0;max-width:60ch;color:var(--ink-500,#636F6A);font-size:var(--fs-small);line-height:1.5}
+    @media(max-width:900px){.ab-band{width:calc(100% - 40px);padding:var(--sp-5) 0}}
   </style>
   <link rel="alternate" hreflang="en" href="https://birdland.com.tw/about.html">
   <link rel="alternate" hreflang="nl" href="https://birdland.com.tw/nl/about.html">
@@ -144,6 +151,33 @@
           <a class="bl-button" href="executive.html">Open public supply evidence</a>
           <a class="bl-button bl-button-secondary" href="contact.html">Start an OEM conversation</a>
         </div>
+      </div>
+    </section>
+
+    <section class="ab-band" id="one-line" aria-labelledby="plate-4">
+      <div class="ab-copy">
+        <span class="ab-no">IV</span>
+        <h2 id="plate-4">One category, fifty-two years deep.</h2>
+        <p>We make garden and field hand tools &mdash; trowels, pruners, shears, loppers, hoes, forks, spades &mdash; forged and formed metal first, and nothing else. No power tools, no seasonal detours into whatever is selling this year. A factory that claims every category is a trading company with a website; this one claims one line and documents it, option by option.</p>
+      </div>
+      <div class="bd-numbers" role="list" aria-label="Capability figures">
+        <article role="listitem"><b>9</b><span>Material families run on this floor</span></article>
+        <article role="listitem"><b>76</b><span>Process, material &amp; packaging options, documented and rated</span></article>
+        <article role="listitem"><b>159</b><span>Material routes documented across 38 part types</span></article>
+      </div>
+      <div class="bd-firewall" role="list" aria-label="Who this factory serves">
+        <article role="listitem"><b>DIY retail</b><strong>Private label garden ranges</strong><span>European &amp; North American chains putting a tool range on the shelf under their own name.</span></article>
+        <article role="listitem"><b>Trade</b><strong>Importers, distributors &amp; buying groups</strong><span>Programme supply with tooling ownership, sample discipline and documents settled in writing.</span></article>
+        <article role="listitem"><b>Professional</b><strong>Grounds-care &amp; professional lines</strong><span>Heavier specifications, cycle-life and coating standards for tools used every working day.</span></article>
+        <article role="listitem"><b>Field &amp; agricultural</b><strong>Field-tool programmes</strong><span>Hoes, mattocks, machetes and cultivators, run alongside the garden line on the same gates.</span></article>
+      </div>
+      <p class="ab-clients-note">Categories, not names &mdash; confidentiality is the product here, and no customer is named anywhere on this site.</p>
+      <!-- S1-B: cert badge slot — certification badges render here once real
+           certificate artwork/scans exist; wording until then stays
+           "available on request", as in the intro pack. -->
+      <div class="bl-actions">
+        <a class="bl-button" href="birdland-intro-pack.pdf" download>Download the factory intro pack (PDF)</a>
+        <a class="bl-button bl-button-secondary" href="manufacturing.html">See the capability matrix</a>
       </div>
     </section>
 
