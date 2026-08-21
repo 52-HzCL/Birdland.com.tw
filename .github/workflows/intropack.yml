@@ -1,0 +1,54 @@
+name: Rebuild factory intro pack
+# The intro pack PDF and the manufacturing.html capability matrix are both
+# generated from tools/dev/ratings.js. This workflow keeps them from drifting:
+# it re-runs the generator when the data or the template changes, and once a
+# month so the dated filename never goes stale. Commits only when git sees a
+# difference, like news-update.yml.
+on:
+  push:
+    branches: [main]
+    paths:
+      - tools/dev/ratings.js
+      - tools/dev/rating-notes.js
+      - tools/dev/build-intropack.js
+      - tools/dev/intropack-template.html
+  schedule:
+    - cron: '0 2 1 * *'   # 1st of the month, 02:00 UTC
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: intropack
+  cancel-in-progress: false
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dev dependencies
+        run: npm ci
+      - name: Sync capability matrix + build PDF
+        # ubuntu-latest ships Google Chrome at /usr/bin/google-chrome, which
+        # tools/dev/_env.js finds on its own; playwright-core drives it and
+        # downloads nothing. build-intropack.js exits 1 if the PDF tops 5 MB.
+        run: |
+          node tools/dev/build-intropack.js --sync-page
+          node tools/dev/build-intropack.js
+      - name: Commit & push if changed
+        run: |
+          git config user.name "Birdland Intropack Bot"
+          git config user.email "actions@users.noreply.github.com"
+          # -A, not a glob: the build deletes last month's dated PDF, and a
+          # shell glob can only stage files that still exist.
+          git add -A
+          echo "--- git status ---"; git status --short
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Intro pack auto-rebuild $(date -u +%Y-%m-%dT%H:%MZ)"
+            git pull --rebase origin main
+            git push && echo "pushed" || echo "PUSH FAILED — check Settings > Actions > General > Workflow permissions = Read and write"
+          fi

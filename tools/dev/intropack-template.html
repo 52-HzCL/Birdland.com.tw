@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Birdland factory intro pack</title>
+<style>
+  /* Printed by build-intropack.js through headless Chrome. No webfonts, no
+     network: the pack must render identically on a CI runner and a laptop,
+     so it uses the same fallback stacks the site resolves to offline. */
+  @page{size:A4;margin:0}
+  :root{
+    --jade:#073C33;--jade-800:#0E5140;--copper:#A7562D;
+    --ink:#17362F;--muted:#636F6A;
+    --paper:#FBF9F3;--paper-2:#F3EFE5;--card:#FFFDF8;
+    --line:rgba(7,60,51,.18);
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+    --mono:"Consolas","DM Mono",ui-monospace,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:var(--paper);color:var(--ink);font:400 9.5px/1.45 var(--sans)}
+  .sheet{padding:11mm 12mm 8mm}
+
+  header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--jade);padding-bottom:8px}
+  .wordmark{font:700 21px/1 var(--sans);letter-spacing:.06em;color:var(--jade)}
+  .wordmark small{display:block;margin-top:3px;font:600 8px/1 var(--mono);letter-spacing:.22em;color:var(--copper);text-transform:uppercase}
+  .issued{text-align:right;color:var(--muted);font:500 8px/1.5 var(--mono)}
+
+  .focus{margin:12px 0 10px}
+  .focus h1{font:500 17px/1.3 var(--serif);color:var(--jade);letter-spacing:-.01em}
+  .focus p{margin-top:5px;max-width:64ch;color:var(--ink);font-size:9.5px}
+
+  .numbers{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:10px 0 12px}
+  .numbers article{background:var(--card);padding:8px 9px 7px}
+  .numbers b{display:block;font:600 20px/1 var(--serif);letter-spacing:-.02em;color:var(--jade-800)}
+  .numbers span{display:block;margin-top:4px;color:var(--muted);font-size:7.5px;line-height:1.4}
+
+  h2{font:600 8.5px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--copper);margin:0 0 6px}
+  .note{color:var(--muted);font-size:7.5px;margin:4px 0 8px}
+
+  .matrix{column-count:3;column-gap:12px}
+  .matrix section{break-inside:avoid;margin-bottom:7px}
+  .matrix h3{font:700 8px/1.3 var(--sans);color:var(--jade);border-bottom:1px solid var(--line);padding-bottom:2px;margin-bottom:3px}
+  .matrix ul{list-style:none}
+  .matrix li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:5px;align-items:baseline;padding:.6px 0}
+  .matrix li span{font-size:7.6px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+  .matrix i{font-style:normal;font-size:5.6px;letter-spacing:.12em;color:var(--jade-800)}
+  .matrix i.c{color:var(--copper)}
+
+  .timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:2px 0 12px}
+  .timeline article{border-top:2px solid var(--jade);background:var(--card);border-bottom:1px solid var(--line);padding:5px 7px 6px;position:relative}
+  .timeline b{display:block;font:700 8.5px/1.3 var(--sans);color:var(--jade)}
+  .timeline em{display:block;margin:2px 0 3px;font:600 8px/1.2 var(--mono);font-style:normal;color:var(--copper)}
+  .timeline span{display:block;color:var(--muted);font-size:7.3px;line-height:1.4}
+
+  .split{display:grid;grid-template-columns:1.25fr 1fr;gap:12px;margin-top:2px}
+  .clients ul{list-style:none}
+  .clients li{padding:3px 0 3px 10px;border-left:2px solid var(--jade-800);margin-bottom:3px}
+  .clients li b{font:700 8.5px/1.3 var(--sans);color:var(--jade)}
+  .clients li span{display:block;color:var(--muted);font-size:7.5px;line-height:1.4}
+
+  .contact{background:var(--jade);color:#F2ECDD;padding:9px 11px 10px;border-radius:3px}
+  .contact h2{color:#E4C6A7}
+  .contact p{font-size:8px;line-height:1.55;color:rgba(242,236,221,.92)}
+  .contact p+p{margin-top:4px}
+  .contact b{color:#fff;font-weight:700}
+
+  footer{margin-top:9px;padding-top:6px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:7px;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <header>
+    <div class="wordmark">BIRDLAND<small>Confidential OEM · Taiwan · since 1974</small></div>
+    <div class="issued">Factory intro pack<br>Issued {{DATE}} · birdland.com.tw</div>
+  </header>
+
+  <div class="focus">
+    <h1>We make one line of work: garden and field hand tools, forged and formed metal first — behind other people&rsquo;s brands.</h1>
+    <p>Birdland Ind. is a Taiwanese OEM manufacturer, not a trading company. Trowels, pruners, shears, loppers, hoes, forks and spades leave this floor under the customer&rsquo;s label, never under ours: no retail arm, no house brand, no competing channel. Every programme passes three signed control gates &mdash; engineering, tooling and inspection &mdash; across qualified Taiwan and China origins.</p>
+  </div>
+
+  <div class="numbers">
+    <article><b>{{YEARS}}</b><span>Years of OEM manufacturing, since 1974</span></article>
+    <article><b>{{PROGRAMMES}}</b><span>Programmes manufactured behind customer brands</span></article>
+    <article><b>{{N_FAMILIES}}</b><span>Material families run on this floor</span></article>
+    <article><b>{{N_DOCUMENTED}}</b><span>Process, material &amp; packaging options, documented and rated</span></article>
+    <article><b>{{ROUTES}}</b><span>Material routes documented across {{PART_TYPES}} part types</span></article>
+  </div>
+
+  <h2>Process capability</h2>
+  <p class="note">Rated from the factory&rsquo;s own encyclopedia data: <i style="font-style:normal;color:var(--jade-800)">●</i> how common in European &amp; North American DIY retail &nbsp;·&nbsp; <i style="font-style:normal;color:var(--copper)">●</i> relative cost within its group. Ordinal judgements about the channel, not measured market data. Full notes: birdland.com.tw/manufacturing.html</p>
+  <div class="matrix">
+      {{MATRIX}}
+  </div>
+
+  <h2>Sample to mass production</h2>
+  <div class="timeline">
+    <article><b>Specification &amp; quote</b><em>typical 1&ndash;2 wks</em><span>Drawings or samples reviewed; route and tooling question answered.</span></article>
+    <article><b>Sampling / first article</b><em>typical 2&ndash;4 wks</em><span>On existing tooling. Signed gate: engineering.</span></article>
+    <article><b>Tooling, if new</b><em>typical 6&ndash;10 wks</em><span>New dies or moulds, design-OEM only &mdash; skipped on existing tooling. Signed gate: tooling.</span></article>
+    <article><b>Pilot run</b><em>typical 1&ndash;3 wks</em><span>Approval quantity through the full line and pack.</span></article>
+    <article><b>Mass production</b><em>typical 4&ndash;8 wks</em><span>Per order, size-dependent. Signed gate: inspection.</span></article>
+  </div>
+
+  <div class="split">
+    <div class="clients">
+      <h2>Who this factory serves</h2>
+      <ul>
+        <li><b>DIY retail private label</b><span>European &amp; North American chains putting a garden tool range on the shelf under their own name.</span></li>
+        <li><b>Importers, distributors &amp; buying groups</b><span>Programme supply with tooling ownership, sample discipline and documents in writing.</span></li>
+        <li><b>Professional &amp; grounds-care brands</b><span>Heavier specifications, cycle-life and coating standards for daily professional use.</span></li>
+        <li><b>Agricultural &amp; field-tool programmes</b><span>Field tools &mdash; hoes, mattocks, machetes, cultivators &mdash; alongside the garden line.</span></li>
+      </ul>
+    </div>
+    <div class="contact">
+      <h2>Start the conversation</h2>
+      <p><b>birdland.com.tw/contact.html</b> routes your enquiry to the regional desk for your market and product line. Drawings, prices, specifications and approvals continue in private email &mdash; never on the public site.</p>
+      <p><b>Certifications &amp; audit reports:</b> available on request through your regional desk.</p>
+    </div>
+  </div>
+
+  <footer>
+    <span>Birdland Ind. &middot; Garden and field tool OEM manufacturing since 1974 &middot; The product, brand and market remain the customer&rsquo;s &mdash; not ours.</span>
+    <span>Generated from the factory&rsquo;s published encyclopedia data &middot; {{DATE}}</span>
+  </footer>
+</div>
+</body>
+</html>
