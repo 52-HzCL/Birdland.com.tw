@@ -1,10 +1,10 @@
 {
   "schema": 2,
   "edition": "2026-Q3",
-  "generated": "2026-08-21T02:29:13Z",
+  "generated": "2026-08-22T02:21:23Z",
   "shard_state": {
-    "cursor": 31,
-    "completed_pct": 46,
+    "cursor": 32,
+    "completed_pct": 47,
     "quarter": "2026-Q3"
   },
   "sources": {
@@ -2220,22 +2220,106 @@
       "src": "comtrade",
       "cells": {
         "820110": {
-          "stale": true
+          "basis": "piece",
+          "uv_change_pct": 56.1,
+          "vol_change_pct": -49.8,
+          "share_tw": 1,
+          "share_tw_prev": 1,
+          "share_cn": 0,
+          "share_cn_prev": 59,
+          "stale": true,
+          "band": {
+            "market": "mid",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 25
+          },
+          "note": "world cross-check diverged >5% from Comtrade's reported total; used summed sources"
         },
         "820130": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -5.1,
+          "vol_change_pct": 17.6,
+          "share_tw": 0,
+          "share_tw_prev": 0,
+          "share_cn": 23,
+          "share_cn_prev": 35,
+          "stale": false,
+          "band": {
+            "market": "lower",
+            "tw": null,
+            "moved": "down",
+            "to_next_pct": 18
+          },
+          "note": "world cross-check diverged >5% from Comtrade's reported total; used summed sources"
         },
         "820150": {
-          "stale": true
+          "basis": "piece",
+          "uv_change_pct": 0.4,
+          "vol_change_pct": -34.6,
+          "share_tw": 14,
+          "share_tw_prev": 0,
+          "share_cn": 36,
+          "share_cn_prev": 0,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "down",
+            "to_next_pct": 29
+          },
+          "note": "world cross-check diverged >5% from Comtrade's reported total; used summed sources"
         },
         "820160": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 53.9,
+          "vol_change_pct": 160.3,
+          "share_tw": 12,
+          "share_tw_prev": 0,
+          "share_cn": 0,
+          "share_cn_prev": 57,
+          "stale": true,
+          "band": {
+            "market": "lower",
+            "tw": "lower",
+            "moved": "down",
+            "to_next_pct": 12
+          },
+          "note": "world cross-check diverged >5% from Comtrade's reported total; used summed sources"
         },
         "821300": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -25.2,
+          "vol_change_pct": 492.5,
+          "share_tw": 5,
+          "share_tw_prev": 1,
+          "share_cn": 0,
+          "share_cn_prev": 0,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "mid",
+            "moved": "flat",
+            "to_next_pct": 32
+          },
+          "note": "world cross-check diverged >5% from Comtrade's reported total; used summed sources"
         },
         "820210": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -58.8,
+          "vol_change_pct": 1404.1,
+          "share_tw": 2,
+          "share_tw_prev": 0,
+          "share_cn": 50,
+          "share_cn_prev": 0,
+          "stale": true,
+          "band": {
+            "market": "mid",
+            "tw": "upper",
+            "moved": "up",
+            "to_next_pct": 21
+          },
+          "note": "world cross-check diverged >5% from Comtrade's reported total; used summed sources"
         }
       }
     },
