@@ -18,7 +18,7 @@ Q4 開跑前必須清空該標記;插隊工單只掃核心不展開;研究凍結
 
 ## 已知待處理
 
-- i18n-drift 報 45 個語言頁 STALE(index/about/contact/privacy/product-101 × 9 語)——product-101 查證為指紋過期非缺譯(1019 段 0 未譯);facade 四頁待 T 批次落地後一次重建+補譯
+- ~~i18n-drift 報 45 個語言頁 STALE(index/about/contact/privacy/product-101 × 9 語)~~(2026-08-22 完成:九個 facade pairs 各補 20 組新文案 102→122,i18n-build 九語系 4 pages 122/122 keys hit,i18n-drift --stamp 重蓋 45 頁指紋,STALE 45→0;commit 89a87fb)
 
 ## 待使用者的事(不阻塞上面)
 
