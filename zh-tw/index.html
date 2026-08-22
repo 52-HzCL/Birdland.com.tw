@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- i18n-src:127a62dfc160cfb2bf22c918bf31d46174925285 -->
+<!-- i18n-src:153d6e1ec4083b00c083ead3657d75a30ff73d05 -->
 <html lang="zh-Hant">
 <head>
   <script>try{localStorage.setItem("bl_lang","zh-tw")}catch(e){}</script>
@@ -12,6 +12,25 @@
   <meta name="description" content="Birdland 是保密的園藝與田野工具 OEM 製造商。">
   <link rel="stylesheet" href="../birdland-visual.css?v=20260817a">
   <script defer src="../terminal-status.js?v=20260730d"></script>
+  <link rel="canonical" href="https://birdland.com.tw/index.html">
+  <style>
+    /* The 60-second summary. A buyer's first visit averages about a minute,
+       and on a phone the hero's nine numbered notes are display:none — so the
+       numbers the site already claims get one plain band of their own, right
+       under the hero. Every figure is either published elsewhere on this site
+       or counted from tools/dev data; the provenance is in the T1 ticket.
+       HTML band, not SVG, for the usual reason (clipped four times). */
+    .bl-sixty{width:min(1180px,calc(100% - 64px));margin:0 auto;padding:var(--sp-5) 0 var(--sp-6)}
+    .bl-sixty-eyebrow{display:block;color:var(--copper-600);font:600 var(--fs-micro) var(--ff-mono);letter-spacing:.18em;text-transform:uppercase}
+    .bl-sixty h2{margin:var(--sp-2) 0 var(--sp-1);font:500 var(--fs-h1)/1.15 var(--ff-serif);letter-spacing:-.015em;color:var(--jade-900)}
+    .bl-sixty-focus{margin:0 0 var(--sp-4);max-width:62ch;font-size:var(--fs-body);line-height:var(--lh-body);color:var(--ink-900)}
+    .bl-sixty-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden}
+    .bl-sixty-grid article{padding:var(--sp-3) var(--sp-3) var(--sp-3);background:var(--card)}
+    .bl-sixty-grid b{display:block;font:600 clamp(26px,3vw,34px)/1 var(--ff-serif);letter-spacing:-.03em;color:var(--jade-800)}
+    .bl-sixty-grid span{display:block;margin-top:var(--sp-2);font-size:var(--fs-small);line-height:1.45;color:var(--ink-500)}
+    .bl-sixty .bl-actions{margin-top:var(--sp-4)}
+    @media(max-width:900px){.bl-sixty{width:calc(100% - 40px)}}
+  </style>
   <link rel="alternate" hreflang="en" href="https://birdland.com.tw/index.html">
   <link rel="alternate" hreflang="nl" href="https://birdland.com.tw/nl/index.html">
   <link rel="alternate" hreflang="de" href="https://birdland.com.tw/de/index.html">
@@ -51,7 +70,7 @@
   <main class="bl-main" id="main">
     <section class="bl-ink-hero" aria-labelledby="home-title">
       <div class="bl-ink-art">
-      <img class="bl-ink-hero-art" src="../images/hero-oem-program-production-quality-v2.webp" alt="一把傳統荷蘭式手鏟,橫跨保密 OEM 工程、受控生產與品質檢驗三個階段。">
+      <img class="bl-ink-hero-art" src="../images/hero-oem-program-production-quality-v2.webp" width="1600" height="900" decoding="async" fetchpriority="high" alt="一把傳統荷蘭式手鏟,橫跨保密 OEM 工程、受控生產與品質檢驗三個階段。">
       <div class="bl-ink-stages">
         <article class="bl-ink-stage bl-ink-oem" tabindex="0" aria-labelledby="oem-title">
           <span class="bl-ink-marker" aria-hidden="true">OEM 專案</span>
@@ -78,11 +97,31 @@
       </div>
       <h1 id="home-title" class="bl-ink-title">你的設計。我們的紀律。永遠不是我們的品牌。</h1>
     </section>
+
+    <section class="bl-sixty" aria-labelledby="sixty-title">
+      <span class="bl-sixty-eyebrow">60 秒讀完這座工廠</span>
+      <h2 id="sixty-title">一條產品線,以數字衡量。</h2>
+      <p class="bl-sixty-focus">園藝與農用手工具,以鍛造與成形金屬為主——都在別人的品牌之後製造。不做電動工具,不追流行,也從不推自有零售品牌。這就是整間公司。</p>
+      <div class="bl-sixty-grid">
+        <article><b>52</b><span>OEM 製造年資,自 1974 年起</span></article>
+        <article><b>180+</b><span>在客戶品牌之後完成的專案</span></article>
+        <article><b>9</b><span>這片廠區實際運轉的材料家族</span></article>
+        <article><b>76</b><span>製程、材料與包裝選項,逐項記錄並評級</span></article>
+        <article><b>159</b><span>38 種零件類型的材料路線,均有文件記錄</span></article>
+      </div>
+      <!-- S1-B: cert badge slot — certification badges render here once real
+           certificate artwork/scans exist; until then the intro pack carries
+           the only honest wording, "available on request". -->
+      <div class="bl-actions">
+        <a class="bl-button" href="birdland-intro-pack.pdf" download>下載工廠簡介資料包(PDF)</a>
+        <a class="bl-button bl-button-secondary" href="manufacturing.html">查看能力矩陣</a>
+      </div>
+    </section>
   </main>
 
   <footer class="bl-footer">
     <span>Birdland 工業 · 1974 年起的園藝與田野工具 OEM 製造。</span>
-    <span><a href="privacy.html">隱私</a> · <a href="contact.html">聯絡</a></span>
+    <span><a href="birdland-intro-pack.pdf" download>Intro pack (PDF)</a> · <a href="privacy.html">隱私</a> · <a href="contact.html">聯絡</a></span>
   <span class="bl-i18n-note">本頁譯自英文原文;規格與法遵內容以英文版為準。</span></footer>
   <script>
     (function(){

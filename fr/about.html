@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- i18n-src:2704f53b8fb371750045c5dfbdc83abb2dbdaf73 -->
+<!-- i18n-src:15718eac9f49e3ac92c52e10906911312a9c3b42 -->
 <html lang="fr">
 <head>
   <script>try{localStorage.setItem("bl_lang","fr")}catch(e){}</script>
@@ -42,7 +42,15 @@
     .bd-firewall strong{display:block;margin:8px 0 var(--sp-1);font-size:15px;color:#12251f}
     .bd-firewall span{display:block;font-size:var(--fs-small);line-height:1.5;color:#5a6660}
     @media (max-width:720px){.bd-boundary{grid-template-columns:1fr}.bd-rule{width:auto;height:1px}}
+    /* Plate IV shares the plates' width and rhythm but is copy + cards, not
+       figure + copy, so it gets a plain band rather than the two-column grid. */
+    .ab-band{width:min(1180px,calc(100% - 64px));margin:0 auto;padding:var(--sp-6) 0;border-top:1px solid var(--bl-line)}
+    .ab-band .bd-firewall{margin-top:var(--sp-4)}
+    .ab-band .bd-numbers{margin-top:var(--sp-4)}
+    .ab-clients-note{margin:var(--sp-3) 0 0;max-width:60ch;color:var(--ink-500,#636F6A);font-size:var(--fs-small);line-height:1.5}
+    @media(max-width:900px){.ab-band{width:calc(100% - 40px);padding:var(--sp-5) 0}}
   </style>
+  <link rel="canonical" href="https://birdland.com.tw/about.html">
   <link rel="alternate" hreflang="en" href="https://birdland.com.tw/about.html">
   <link rel="alternate" hreflang="nl" href="https://birdland.com.tw/nl/about.html">
   <link rel="alternate" hreflang="de" href="https://birdland.com.tw/de/about.html">
@@ -85,12 +93,16 @@
         </div>
       </div>
       <figure class="ledger-image ledger-image-oem">
-        <img src="../images/hero-foundry-oem-blueprint-v1.png" alt="Une ligne de fonderie en fonte se transformant en plan d'ingénierie OEM d'une truelle de jardin">
+        <img src="../images/hero-foundry-oem-blueprint-v1.png" width="1672" height="941" decoding="async" alt="Une ligne de fonderie en fonte se transformant en plan d'ingénierie OEM d'une truelle de jardin">
         <figcaption class="ledger-caption">Précision dans le procédé.<br>Discrétion dans le partenariat.</figcaption>
       </figure>
     </section>
 
-    <section class="ab-plate" id="brand" aria-labelledby="plate-1">
+    <!-- id is "pure-play", not "brand": every Factory page in all ten languages,
+         the why-birdland redirect stub and tools/dev/build-p101.js link here as
+         about.html#pure-play, and nothing anywhere links to #brand. The anchor
+         had been silently landing readers at the top of this page instead. -->
+    <section class="ab-plate" id="pure-play" aria-labelledby="plate-1">
       <figure class="ab-fig">
         <img src="../images/about-brand.webp?v=20260804a" width="761" height="881" loading="lazy" decoding="async"
              alt="Un acheteur et un artisan Birdland tiennent ensemble un écusson. Derrière la vitre se trouvent les produits emballés de l'acheteur ; la plaque au pied de l'écusson est vierge.">
@@ -140,6 +152,33 @@
           <a class="bl-button" href="../executive.html">Ouvrir les preuves publiques d'approvisionnement</a>
           <a class="bl-button bl-button-secondary" href="contact.html">Engager une conversation OEM</a>
         </div>
+      </div>
+    </section>
+
+    <section class="ab-band" id="one-line" aria-labelledby="plate-4">
+      <div class="ab-copy">
+        <span class="ab-no">IV</span>
+        <h2 id="plate-4">Une seule catégorie, cinquante-deux ans de profondeur.</h2>
+        <p>Nous fabriquons des outils à main de jardin et de plein champ &mdash; transplantoirs, sécateurs, cisailles, coupe-branches, houes, fourches, bêches &mdash; avant tout en métal forgé et formé, et rien d'autre. Pas d'outils électriques, pas de détours saisonniers vers ce qui se vend cette année. Une usine qui revendique toutes les catégories est une société de négoce avec un site web ; celle-ci revendique une seule ligne et la documente, option par option.</p>
+      </div>
+      <div class="bd-numbers" role="list" aria-label="Chiffres de capacité">
+        <article role="listitem"><b>9</b><span>Familles de matériaux travaillées dans cet atelier</span></article>
+        <article role="listitem"><b>76</b><span>Options de procédé, de matériau &amp; d'emballage, documentées et notées</span></article>
+        <article role="listitem"><b>159</b><span>Filières matières documentées sur 38 types de pièces</span></article>
+      </div>
+      <div class="bd-firewall" role="list" aria-label="Qui cette usine sert">
+        <article role="listitem"><b>Distribution bricolage</b><strong>Gammes de jardin en marque propre</strong><span>Chaînes européennes &amp; nord-américaines mettant en rayon une gamme d'outils sous leur propre nom.</span></article>
+        <article role="listitem"><b>Négoce</b><strong>Importateurs, distributeurs &amp; groupements d'achat</strong><span>Approvisionnement de programme avec propriété de l'outillage, discipline d'échantillonnage et documents fixés par écrit.</span></article>
+        <article role="listitem"><b>Professionnel</b><strong>Lignes espaces verts &amp; professionnelles</strong><span>Spécifications renforcées, durée de vie en cycles et normes de revêtement pour des outils utilisés chaque jour de travail.</span></article>
+        <article role="listitem"><b>Plein champ &amp; agricole</b><strong>Programmes d'outils de plein champ</strong><span>Houes, pioches, machettes et cultivateurs, menés aux côtés de la ligne jardin aux mêmes portes de contrôle.</span></article>
+      </div>
+      <p class="ab-clients-note">Des catégories, pas des noms &mdash; la confidentialité est ici le produit, et aucun client n'est nommé nulle part sur ce site.</p>
+      <!-- S1-B: cert badge slot — certification badges render here once real
+           certificate artwork/scans exist; wording until then stays
+           "available on request", as in the intro pack. -->
+      <div class="bl-actions">
+        <a class="bl-button" href="birdland-intro-pack.pdf" download>Télécharger le dossier de présentation de l'usine (PDF)</a>
+        <a class="bl-button bl-button-secondary" href="manufacturing.html">Voir la matrice des capacités</a>
       </div>
     </section>
 

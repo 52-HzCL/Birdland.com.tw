@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- i18n-src:2704f53b8fb371750045c5dfbdc83abb2dbdaf73 -->
+<!-- i18n-src:15718eac9f49e3ac92c52e10906911312a9c3b42 -->
 <html lang="ja">
 <head>
   <script>try{localStorage.setItem("bl_lang","ja")}catch(e){}</script>
@@ -42,7 +42,15 @@
     .bd-firewall strong{display:block;margin:8px 0 var(--sp-1);font-size:15px;color:#12251f}
     .bd-firewall span{display:block;font-size:var(--fs-small);line-height:1.5;color:#5a6660}
     @media (max-width:720px){.bd-boundary{grid-template-columns:1fr}.bd-rule{width:auto;height:1px}}
+    /* Plate IV shares the plates' width and rhythm but is copy + cards, not
+       figure + copy, so it gets a plain band rather than the two-column grid. */
+    .ab-band{width:min(1180px,calc(100% - 64px));margin:0 auto;padding:var(--sp-6) 0;border-top:1px solid var(--bl-line)}
+    .ab-band .bd-firewall{margin-top:var(--sp-4)}
+    .ab-band .bd-numbers{margin-top:var(--sp-4)}
+    .ab-clients-note{margin:var(--sp-3) 0 0;max-width:60ch;color:var(--ink-500,#636F6A);font-size:var(--fs-small);line-height:1.5}
+    @media(max-width:900px){.ab-band{width:calc(100% - 40px);padding:var(--sp-5) 0}}
   </style>
+  <link rel="canonical" href="https://birdland.com.tw/about.html">
   <link rel="alternate" hreflang="en" href="https://birdland.com.tw/about.html">
   <link rel="alternate" hreflang="nl" href="https://birdland.com.tw/nl/about.html">
   <link rel="alternate" hreflang="de" href="https://birdland.com.tw/de/about.html">
@@ -85,12 +93,16 @@
         </div>
       </div>
       <figure class="ledger-image ledger-image-oem">
-        <img src="../images/hero-foundry-oem-blueprint-v1.png" alt="鋳鉄の鋳造ラインが、ハンドスコップのOEM設計図へと移り変わる情景">
+        <img src="../images/hero-foundry-oem-blueprint-v1.png" width="1672" height="941" decoding="async" alt="鋳鉄の鋳造ラインが、ハンドスコップのOEM設計図へと移り変わる情景">
         <figcaption class="ledger-caption">工程には精度を。<br>協業には慎みを。</figcaption>
       </figure>
     </section>
 
-    <section class="ab-plate" id="brand" aria-labelledby="plate-1">
+    <!-- id is "pure-play", not "brand": every Factory page in all ten languages,
+         the why-birdland redirect stub and tools/dev/build-p101.js link here as
+         about.html#pure-play, and nothing anywhere links to #brand. The anchor
+         had been silently landing readers at the top of this page instead. -->
+    <section class="ab-plate" id="pure-play" aria-labelledby="plate-1">
       <figure class="ab-fig">
         <img src="../images/about-brand.webp?v=20260804a" width="761" height="881" loading="lazy" decoding="async"
              alt="バイヤーとBirdlandの職人が一枚の盾を共に掲げている。ガラスの奥にあるのはバイヤー自身の包装済み製品で、盾の足元の銘板は空白のまま。">
@@ -140,6 +152,33 @@
           <a class="bl-button" href="../executive.html">公開されている供給の裏付けを開く</a>
           <a class="bl-button bl-button-secondary" href="contact.html">OEMの対話を始める</a>
         </div>
+      </div>
+    </section>
+
+    <section class="ab-band" id="one-line" aria-labelledby="plate-4">
+      <div class="ab-copy">
+        <span class="ab-no">IV</span>
+        <h2 id="plate-4">一つのカテゴリーに、52年。</h2>
+        <p>当社がつくるのは、園芸・農作業の手工具 &mdash; 移植ごて、剪定ばさみ、刈込ばさみ、太枝切りばさみ、くわ、フォーク、スペード &mdash; 鍛造・成形の金属加工を中心に、それ以外はつくりません。電動工具も、その年に売れるものへの季節的な寄り道もありません。あらゆるカテゴリーを掲げる工場は、ウェブサイトを持った商社です。当社は一つの分野だけを掲げ、それを選択肢ごとに文書化しています。</p>
+      </div>
+      <div class="bd-numbers" role="list" aria-label="能力の数値">
+        <article role="listitem"><b>9</b><span>この工場で扱う材料系統</span></article>
+        <article role="listitem"><b>76</b><span>文書化・評価済みの工程、材料 &amp; 包装の選択肢</span></article>
+        <article role="listitem"><b>159</b><span>38種類の部品タイプで文書化した材料ルート</span></article>
+      </div>
+      <div class="bd-firewall" role="list" aria-label="この工場が支えるお客様">
+        <article role="listitem"><b>DIY小売</b><strong>プライベートブランドの園芸用品シリーズ</strong><span>自社の名前で工具シリーズを棚に並べる、欧州 &amp; 北米のチェーン。</span></article>
+        <article role="listitem"><b>貿易</b><strong>輸入業者、卸売業者 &amp; 購買グループ</strong><span>金型の所有権、サンプルの規律、書面で取り決めた文書を伴うプログラム供給。</span></article>
+        <article role="listitem"><b>プロフェッショナル</b><strong>緑地管理 &amp; プロ向けライン</strong><span>毎日の仕事で使われる工具のための、重めの仕様、サイクル寿命、コーティング基準。</span></article>
+        <article role="listitem"><b>農地 &amp; 農業</b><strong>農作業工具のプログラム</strong><span>くわ、つるはし、山刀、耕うん具を、園芸ラインと同じ管理ゲートで並行して生産。</span></article>
+      </div>
+      <p class="ab-clients-note">名前ではなくカテゴリーで &mdash; 機密こそが当社の製品であり、このサイトのどこにもお客様の名前は載せていません。</p>
+      <!-- S1-B: cert badge slot — certification badges render here once real
+           certificate artwork/scans exist; wording until then stays
+           "available on request", as in the intro pack. -->
+      <div class="bl-actions">
+        <a class="bl-button" href="birdland-intro-pack.pdf" download>工場紹介資料(PDF)をダウンロード</a>
+        <a class="bl-button bl-button-secondary" href="manufacturing.html">能力マトリクスを見る</a>
       </div>
     </section>
 

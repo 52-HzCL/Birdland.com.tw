@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- i18n-src:2704f53b8fb371750045c5dfbdc83abb2dbdaf73 -->
+<!-- i18n-src:15718eac9f49e3ac92c52e10906911312a9c3b42 -->
 <html lang="it">
 <head>
   <script>try{localStorage.setItem("bl_lang","it")}catch(e){}</script>
@@ -42,7 +42,15 @@
     .bd-firewall strong{display:block;margin:8px 0 var(--sp-1);font-size:15px;color:#12251f}
     .bd-firewall span{display:block;font-size:var(--fs-small);line-height:1.5;color:#5a6660}
     @media (max-width:720px){.bd-boundary{grid-template-columns:1fr}.bd-rule{width:auto;height:1px}}
+    /* Plate IV shares the plates' width and rhythm but is copy + cards, not
+       figure + copy, so it gets a plain band rather than the two-column grid. */
+    .ab-band{width:min(1180px,calc(100% - 64px));margin:0 auto;padding:var(--sp-6) 0;border-top:1px solid var(--bl-line)}
+    .ab-band .bd-firewall{margin-top:var(--sp-4)}
+    .ab-band .bd-numbers{margin-top:var(--sp-4)}
+    .ab-clients-note{margin:var(--sp-3) 0 0;max-width:60ch;color:var(--ink-500,#636F6A);font-size:var(--fs-small);line-height:1.5}
+    @media(max-width:900px){.ab-band{width:calc(100% - 40px);padding:var(--sp-5) 0}}
   </style>
+  <link rel="canonical" href="https://birdland.com.tw/about.html">
   <link rel="alternate" hreflang="en" href="https://birdland.com.tw/about.html">
   <link rel="alternate" hreflang="nl" href="https://birdland.com.tw/nl/about.html">
   <link rel="alternate" hreflang="de" href="https://birdland.com.tw/de/about.html">
@@ -85,12 +93,16 @@
         </div>
       </div>
       <figure class="ledger-image ledger-image-oem">
-        <img src="../images/hero-foundry-oem-blueprint-v1.png" alt="Una linea di fonderia in ghisa che si trasforma nel disegno tecnico OEM di una paletta da giardino">
+        <img src="../images/hero-foundry-oem-blueprint-v1.png" width="1672" height="941" decoding="async" alt="Una linea di fonderia in ghisa che si trasforma nel disegno tecnico OEM di una paletta da giardino">
         <figcaption class="ledger-caption">Precisione nel processo.<br>Discrezione nella collaborazione.</figcaption>
       </figure>
     </section>
 
-    <section class="ab-plate" id="brand" aria-labelledby="plate-1">
+    <!-- id is "pure-play", not "brand": every Factory page in all ten languages,
+         the why-birdland redirect stub and tools/dev/build-p101.js link here as
+         about.html#pure-play, and nothing anywhere links to #brand. The anchor
+         had been silently landing readers at the top of this page instead. -->
+    <section class="ab-plate" id="pure-play" aria-labelledby="plate-1">
       <figure class="ab-fig">
         <img src="../images/about-brand.webp?v=20260804a" width="761" height="881" loading="lazy" decoding="async"
              alt="Un acquirente e un artigiano Birdland sollevano insieme uno scudo. Dietro il vetro ci sono i prodotti confezionati dell'acquirente stesso; la targhetta ai piedi dello scudo è vuota.">
@@ -140,6 +152,33 @@
           <a class="bl-button" href="../executive.html">Aprire le evidenze pubbliche di fornitura</a>
           <a class="bl-button bl-button-secondary" href="contact.html">Avviare una conversazione OEM</a>
         </div>
+      </div>
+    </section>
+
+    <section class="ab-band" id="one-line" aria-labelledby="plate-4">
+      <div class="ab-copy">
+        <span class="ab-no">IV</span>
+        <h2 id="plate-4">Una sola categoria, da cinquantadue anni.</h2>
+        <p>Produciamo attrezzi manuali da giardino e da campo &mdash; palette, forbici da potatura, cesoie, troncarami, zappe, forche, vanghe &mdash; anzitutto in metallo forgiato e formato, e nient'altro. Niente elettroutensili, niente deviazioni stagionali verso ciò che si vende quest'anno. Una fabbrica che dichiara ogni categoria è una società commerciale con un sito web; questa dichiara una sola linea e la documenta, opzione per opzione.</p>
+      </div>
+      <div class="bd-numbers" role="list" aria-label="Dati di capacità">
+        <article role="listitem"><b>9</b><span>Famiglie di materiali lavorate in questo stabilimento</span></article>
+        <article role="listitem"><b>76</b><span>Opzioni di processo, materiale e imballaggio, documentate e valutate</span></article>
+        <article role="listitem"><b>159</b><span>Percorsi di materiale documentati su 38 tipi di pezzo</span></article>
+      </div>
+      <div class="bd-firewall" role="list" aria-label="Chi serve questa fabbrica">
+        <article role="listitem"><b>Retail fai-da-te</b><strong>Gamme da giardino in private label</strong><span>Catene europee e nordamericane che mettono a scaffale una gamma di attrezzi con il proprio nome.</span></article>
+        <article role="listitem"><b>Ingrosso</b><strong>Importatori, distributori e gruppi d'acquisto</strong><span>Fornitura di programma con proprietà delle attrezzature, disciplina dei campioni e documenti definiti per iscritto.</span></article>
+        <article role="listitem"><b>Professionale</b><strong>Linee professionali e per la cura del verde</strong><span>Specifiche più robuste, standard di durata a cicli e di rivestimento per attrezzi usati ogni giorno lavorativo.</span></article>
+        <article role="listitem"><b>Campo e agricoltura</b><strong>Programmi di attrezzi da campo</strong><span>Zappe, picconi, machete e coltivatori, condotti accanto alla linea giardino sugli stessi cancelli di controllo.</span></article>
+      </div>
+      <p class="ab-clients-note">Categorie, non nomi &mdash; qui la riservatezza è il prodotto, e nessun cliente è nominato in alcun punto di questo sito.</p>
+      <!-- S1-B: cert badge slot — certification badges render here once real
+           certificate artwork/scans exist; wording until then stays
+           "available on request", as in the intro pack. -->
+      <div class="bl-actions">
+        <a class="bl-button" href="birdland-intro-pack.pdf" download>Scarichi il dossier di presentazione della fabbrica (PDF)</a>
+        <a class="bl-button bl-button-secondary" href="manufacturing.html">Consulti la matrice delle capacità</a>
       </div>
     </section>
 

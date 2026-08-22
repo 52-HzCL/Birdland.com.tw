@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- i18n-src:2704f53b8fb371750045c5dfbdc83abb2dbdaf73 -->
+<!-- i18n-src:15718eac9f49e3ac92c52e10906911312a9c3b42 -->
 <html lang="nl">
 <head>
   <script>try{localStorage.setItem("bl_lang","nl")}catch(e){}</script>
@@ -42,7 +42,15 @@
     .bd-firewall strong{display:block;margin:8px 0 var(--sp-1);font-size:15px;color:#12251f}
     .bd-firewall span{display:block;font-size:var(--fs-small);line-height:1.5;color:#5a6660}
     @media (max-width:720px){.bd-boundary{grid-template-columns:1fr}.bd-rule{width:auto;height:1px}}
+    /* Plate IV shares the plates' width and rhythm but is copy + cards, not
+       figure + copy, so it gets a plain band rather than the two-column grid. */
+    .ab-band{width:min(1180px,calc(100% - 64px));margin:0 auto;padding:var(--sp-6) 0;border-top:1px solid var(--bl-line)}
+    .ab-band .bd-firewall{margin-top:var(--sp-4)}
+    .ab-band .bd-numbers{margin-top:var(--sp-4)}
+    .ab-clients-note{margin:var(--sp-3) 0 0;max-width:60ch;color:var(--ink-500,#636F6A);font-size:var(--fs-small);line-height:1.5}
+    @media(max-width:900px){.ab-band{width:calc(100% - 40px);padding:var(--sp-5) 0}}
   </style>
+  <link rel="canonical" href="https://birdland.com.tw/about.html">
   <link rel="alternate" hreflang="en" href="https://birdland.com.tw/about.html">
   <link rel="alternate" hreflang="nl" href="https://birdland.com.tw/nl/about.html">
   <link rel="alternate" hreflang="de" href="https://birdland.com.tw/de/about.html">
@@ -85,12 +93,16 @@
         </div>
       </div>
       <figure class="ledger-image ledger-image-oem">
-        <img src="../images/hero-foundry-oem-blueprint-v1.png" alt="Een gietijzeren gieterijlijn die overgaat in een OEM-constructietekening van een handschep">
+        <img src="../images/hero-foundry-oem-blueprint-v1.png" width="1672" height="941" decoding="async" alt="Een gietijzeren gieterijlijn die overgaat in een OEM-constructietekening van een handschep">
         <figcaption class="ledger-caption">Precisie in het proces.<br>Discretie in de samenwerking.</figcaption>
       </figure>
     </section>
 
-    <section class="ab-plate" id="brand" aria-labelledby="plate-1">
+    <!-- id is "pure-play", not "brand": every Factory page in all ten languages,
+         the why-birdland redirect stub and tools/dev/build-p101.js link here as
+         about.html#pure-play, and nothing anywhere links to #brand. The anchor
+         had been silently landing readers at the top of this page instead. -->
+    <section class="ab-plate" id="pure-play" aria-labelledby="plate-1">
       <figure class="ab-fig">
         <img src="../images/about-brand.webp?v=20260804a" width="761" height="881" loading="lazy" decoding="async"
              alt="Een inkoper en een Birdland-vakman houden samen een schild omhoog. Achter het glas ligt de verpakte waar van de inkoper zelf; het naamplaatje aan de voet van het schild is leeg.">
@@ -140,6 +152,33 @@
           <a class="bl-button" href="../executive.html">Open het publieke aanvoerdossier</a>
           <a class="bl-button bl-button-secondary" href="contact.html">Begin een OEM-gesprek</a>
         </div>
+      </div>
+    </section>
+
+    <section class="ab-band" id="one-line" aria-labelledby="plate-4">
+      <div class="ab-copy">
+        <span class="ab-no">IV</span>
+        <h2 id="plate-4">Eén categorie, tweeënvijftig jaar diep.</h2>
+        <p>Wij maken handgereedschap voor tuin en veld &mdash; plantschepjes, snoeischaren, heggenscharen, takkenscharen, schoffels, vorken, spaden &mdash; in de eerste plaats gesmeed en gevormd metaal, en niets anders. Geen elektrisch gereedschap, geen seizoensuitstapjes naar wat dit jaar toevallig goed verkoopt. Een fabriek die elke categorie claimt is een handelsbedrijf met een website; deze claimt één lijn en documenteert die, optie voor optie.</p>
+      </div>
+      <div class="bd-numbers" role="list" aria-label="Capaciteitscijfers">
+        <article role="listitem"><b>9</b><span>Materiaalfamilies die op deze vloer draaien</span></article>
+        <article role="listitem"><b>76</b><span>Proces-, materiaal- &amp; verpakkingsopties, gedocumenteerd en beoordeeld</span></article>
+        <article role="listitem"><b>159</b><span>Materiaalroutes gedocumenteerd over 38 onderdeeltypen</span></article>
+      </div>
+      <div class="bd-firewall" role="list" aria-label="Wie deze fabriek bedient">
+        <article role="listitem"><b>Doe-het-zelfretail</b><strong>Private-label tuinassortimenten</strong><span>Europese &amp; Noord-Amerikaanse ketens die onder eigen naam een gereedschapslijn in het schap leggen.</span></article>
+        <article role="listitem"><b>Handel</b><strong>Importeurs, distributeurs &amp; inkoopcombinaties</strong><span>Programmalevering met eigendom van de gereedschapbouw, monsterdiscipline en schriftelijk vastgelegde documenten.</span></article>
+        <article role="listitem"><b>Professioneel</b><strong>Terreinonderhoud &amp; professionele lijnen</strong><span>Zwaardere specificaties, cyclusduur- en coatingnormen voor gereedschap dat elke werkdag wordt gebruikt.</span></article>
+        <article role="listitem"><b>Veld &amp; landbouw</b><strong>Veldgereedschapsprogramma's</strong><span>Schoffels, houwelen, kapmessen en cultivators, gedraaid naast de tuinlijn langs dezelfde controlepoorten.</span></article>
+      </div>
+      <p class="ab-clients-note">Categorieën, geen namen &mdash; vertrouwelijkheid is hier het product, en nergens op deze site wordt een klant bij naam genoemd.</p>
+      <!-- S1-B: cert badge slot — certification badges render here once real
+           certificate artwork/scans exist; wording until then stays
+           "available on request", as in the intro pack. -->
+      <div class="bl-actions">
+        <a class="bl-button" href="birdland-intro-pack.pdf" download>Download het introductiepakket van de fabriek (PDF)</a>
+        <a class="bl-button bl-button-secondary" href="manufacturing.html">Bekijk de capaciteitenmatrix</a>
       </div>
     </section>
 

@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- i18n-src:127a62dfc160cfb2bf22c918bf31d46174925285 -->
+<!-- i18n-src:153d6e1ec4083b00c083ead3657d75a30ff73d05 -->
 <html lang="ja">
 <head>
   <script>try{localStorage.setItem("bl_lang","ja")}catch(e){}</script>
@@ -12,6 +12,25 @@
   <meta name="description" content="Birdlandは、園芸・農作業工具の機密OEMメーカーです。">
   <link rel="stylesheet" href="../birdland-visual.css?v=20260817a">
   <script defer src="../terminal-status.js?v=20260730d"></script>
+  <link rel="canonical" href="https://birdland.com.tw/index.html">
+  <style>
+    /* The 60-second summary. A buyer's first visit averages about a minute,
+       and on a phone the hero's nine numbered notes are display:none — so the
+       numbers the site already claims get one plain band of their own, right
+       under the hero. Every figure is either published elsewhere on this site
+       or counted from tools/dev data; the provenance is in the T1 ticket.
+       HTML band, not SVG, for the usual reason (clipped four times). */
+    .bl-sixty{width:min(1180px,calc(100% - 64px));margin:0 auto;padding:var(--sp-5) 0 var(--sp-6)}
+    .bl-sixty-eyebrow{display:block;color:var(--copper-600);font:600 var(--fs-micro) var(--ff-mono);letter-spacing:.18em;text-transform:uppercase}
+    .bl-sixty h2{margin:var(--sp-2) 0 var(--sp-1);font:500 var(--fs-h1)/1.15 var(--ff-serif);letter-spacing:-.015em;color:var(--jade-900)}
+    .bl-sixty-focus{margin:0 0 var(--sp-4);max-width:62ch;font-size:var(--fs-body);line-height:var(--lh-body);color:var(--ink-900)}
+    .bl-sixty-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden}
+    .bl-sixty-grid article{padding:var(--sp-3) var(--sp-3) var(--sp-3);background:var(--card)}
+    .bl-sixty-grid b{display:block;font:600 clamp(26px,3vw,34px)/1 var(--ff-serif);letter-spacing:-.03em;color:var(--jade-800)}
+    .bl-sixty-grid span{display:block;margin-top:var(--sp-2);font-size:var(--fs-small);line-height:1.45;color:var(--ink-500)}
+    .bl-sixty .bl-actions{margin-top:var(--sp-4)}
+    @media(max-width:900px){.bl-sixty{width:calc(100% - 40px)}}
+  </style>
   <link rel="alternate" hreflang="en" href="https://birdland.com.tw/index.html">
   <link rel="alternate" hreflang="nl" href="https://birdland.com.tw/nl/index.html">
   <link rel="alternate" hreflang="de" href="https://birdland.com.tw/de/index.html">
@@ -51,7 +70,7 @@
   <main class="bl-main" id="main">
     <section class="bl-ink-hero" aria-labelledby="home-title">
       <div class="bl-ink-art">
-      <img class="bl-ink-hero-art" src="../images/hero-oem-program-production-quality-v2.webp" alt="伝統的なオランダ式ハンドスコップが、機密OEM設計・管理された生産・品質検査の三工程にまたがる図。">
+      <img class="bl-ink-hero-art" src="../images/hero-oem-program-production-quality-v2.webp" width="1600" height="900" decoding="async" fetchpriority="high" alt="伝統的なオランダ式ハンドスコップが、機密OEM設計・管理された生産・品質検査の三工程にまたがる図。">
       <div class="bl-ink-stages">
         <article class="bl-ink-stage bl-ink-oem" tabindex="0" aria-labelledby="oem-title">
           <span class="bl-ink-marker" aria-hidden="true">OEMプログラム</span>
@@ -78,11 +97,31 @@
       </div>
       <h1 id="home-title" class="bl-ink-title">お客様の設計。当社の規律。決して当社のブランドではありません。</h1>
     </section>
+
+    <section class="bl-sixty" aria-labelledby="sixty-title">
+      <span class="bl-sixty-eyebrow">60秒でわかる工場の要約</span>
+      <h2 id="sixty-title">一筋の仕事を、数字で。</h2>
+      <p class="bl-sixty-focus">園芸・農作業の手工具、それも鍛造・成形の金属加工を中心に &mdash; 他社ブランドの背後でつくっています。電動工具は扱わず、流行を追うこともなく、自社の小売ブランドを持つこともありません。それがこの会社のすべてです。</p>
+      <div class="bl-sixty-grid">
+        <article><b>52</b><span>1974年からのOEM生産の年数</span></article>
+        <article><b>180+</b><span>お客様のブランドの背後で手がけたプログラム</span></article>
+        <article><b>9</b><span>この工場で扱う材料系統</span></article>
+        <article><b>76</b><span>文書化・評価済みの工程、材料 &amp; 包装の選択肢</span></article>
+        <article><b>159</b><span>38種類の部品タイプで文書化した材料ルート</span></article>
+      </div>
+      <!-- S1-B: cert badge slot — certification badges render here once real
+           certificate artwork/scans exist; until then the intro pack carries
+           the only honest wording, "available on request". -->
+      <div class="bl-actions">
+        <a class="bl-button" href="birdland-intro-pack.pdf" download>工場紹介資料(PDF)をダウンロード</a>
+        <a class="bl-button bl-button-secondary" href="manufacturing.html">能力マトリクスを見る</a>
+      </div>
+    </section>
   </main>
 
   <footer class="bl-footer">
     <span>Birdland Ind. · 1974年からの園芸・農作業工具のOEM生産。</span>
-    <span><a href="privacy.html">プライバシー</a> · <a href="contact.html">お問い合わせ</a></span>
+    <span><a href="birdland-intro-pack.pdf" download>Intro pack (PDF)</a> · <a href="privacy.html">プライバシー</a> · <a href="contact.html">お問い合わせ</a></span>
   <span class="bl-i18n-note">本ページは英語原文からの翻訳です。仕様およびコンプライアンスに関する内容は英語版を正とします。</span></footer>
   <script>
     (function(){

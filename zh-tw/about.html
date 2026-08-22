@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- i18n-src:2704f53b8fb371750045c5dfbdc83abb2dbdaf73 -->
+<!-- i18n-src:15718eac9f49e3ac92c52e10906911312a9c3b42 -->
 <html lang="zh-Hant">
 <head>
   <script>try{localStorage.setItem("bl_lang","zh-tw")}catch(e){}</script>
@@ -42,7 +42,15 @@
     .bd-firewall strong{display:block;margin:8px 0 var(--sp-1);font-size:15px;color:#12251f}
     .bd-firewall span{display:block;font-size:var(--fs-small);line-height:1.5;color:#5a6660}
     @media (max-width:720px){.bd-boundary{grid-template-columns:1fr}.bd-rule{width:auto;height:1px}}
+    /* Plate IV shares the plates' width and rhythm but is copy + cards, not
+       figure + copy, so it gets a plain band rather than the two-column grid. */
+    .ab-band{width:min(1180px,calc(100% - 64px));margin:0 auto;padding:var(--sp-6) 0;border-top:1px solid var(--bl-line)}
+    .ab-band .bd-firewall{margin-top:var(--sp-4)}
+    .ab-band .bd-numbers{margin-top:var(--sp-4)}
+    .ab-clients-note{margin:var(--sp-3) 0 0;max-width:60ch;color:var(--ink-500,#636F6A);font-size:var(--fs-small);line-height:1.5}
+    @media(max-width:900px){.ab-band{width:calc(100% - 40px);padding:var(--sp-5) 0}}
   </style>
+  <link rel="canonical" href="https://birdland.com.tw/about.html">
   <link rel="alternate" hreflang="en" href="https://birdland.com.tw/about.html">
   <link rel="alternate" hreflang="nl" href="https://birdland.com.tw/nl/about.html">
   <link rel="alternate" hreflang="de" href="https://birdland.com.tw/de/about.html">
@@ -85,12 +93,16 @@
         </div>
       </div>
       <figure class="ledger-image ledger-image-oem">
-        <img src="../images/hero-foundry-oem-blueprint-v1.png" alt="鑄鐵鑄造產線漸變為一張手鏟的 OEM 工程圖">
+        <img src="../images/hero-foundry-oem-blueprint-v1.png" width="1672" height="941" decoding="async" alt="鑄鐵鑄造產線漸變為一張手鏟的 OEM 工程圖">
         <figcaption class="ledger-caption">製程裡的精準。<br>合作裡的分寸。</figcaption>
       </figure>
     </section>
 
-    <section class="ab-plate" id="brand" aria-labelledby="plate-1">
+    <!-- id is "pure-play", not "brand": every Factory page in all ten languages,
+         the why-birdland redirect stub and tools/dev/build-p101.js link here as
+         about.html#pure-play, and nothing anywhere links to #brand. The anchor
+         had been silently landing readers at the top of this page instead. -->
+    <section class="ab-plate" id="pure-play" aria-labelledby="plate-1">
       <figure class="ab-fig">
         <img src="../images/about-brand.webp?v=20260804a" width="761" height="881" loading="lazy" decoding="async"
              alt="採購與 Birdland 職人共同舉起一面盾牌。玻璃後是採購自己的包裝商品;盾牌基座的銘牌是空白的。">
@@ -140,6 +152,33 @@
           <a class="bl-button" href="../executive.html">查看公開供應佐證</a>
           <a class="bl-button bl-button-secondary" href="contact.html">開始 OEM 對話</a>
         </div>
+      </div>
+    </section>
+
+    <section class="ab-band" id="one-line" aria-labelledby="plate-4">
+      <div class="ab-copy">
+        <span class="ab-no">IV</span>
+        <h2 id="plate-4">一個品類,五十二年的深度。</h2>
+        <p>我們做園藝與農用手工具——移植鏝、修枝剪、大剪、長柄剪、鋤頭、叉、鏟——以鍛造與成形金屬為主,別的不做。沒有電動工具,也不會今年什麼好賣就季節性轉向。號稱什麼品類都做的工廠,只是一家有網站的貿易公司;這一間只認一條產品線,並且逐一選項寫成文件。</p>
+      </div>
+      <div class="bd-numbers" role="list" aria-label="能力數據">
+        <article role="listitem"><b>9</b><span>這片廠區實際運轉的材料家族</span></article>
+        <article role="listitem"><b>76</b><span>製程、材料與包裝選項,逐項記錄並評級</span></article>
+        <article role="listitem"><b>159</b><span>38 種零件類型的材料路線,均有文件記錄</span></article>
+      </div>
+      <div class="bd-firewall" role="list" aria-label="這座工廠服務的對象">
+        <article role="listitem"><b>DIY 零售</b><strong>自有品牌園藝系列</strong><span>歐洲與北美連鎖通路,以自家品牌把整組工具擺上貨架。</span></article>
+        <article role="listitem"><b>貿易通路</b><strong>進口商、經銷商與採購集團</strong><span>專案式供應:模具歸屬、樣品紀律與文件,均以書面確定。</span></article>
+        <article role="listitem"><b>專業</b><strong>場地養護與專業產品線</strong><span>更重的規格、循環壽命與塗層標準,給每個工作日都在用的工具。</span></article>
+        <article role="listitem"><b>農用</b><strong>農具專案</strong><span>鋤頭、十字鎬、開山刀與中耕器,與園藝線在同一套管制閘上並行生產。</span></article>
+      </div>
+      <p class="ab-clients-note">只列品類,不列名字——保密本身就是這裡的產品,全站不具名任何一位客戶。</p>
+      <!-- S1-B: cert badge slot — certification badges render here once real
+           certificate artwork/scans exist; wording until then stays
+           "available on request", as in the intro pack. -->
+      <div class="bl-actions">
+        <a class="bl-button" href="birdland-intro-pack.pdf" download>下載工廠簡介資料包(PDF)</a>
+        <a class="bl-button bl-button-secondary" href="manufacturing.html">查看能力矩陣</a>
       </div>
     </section>
 
