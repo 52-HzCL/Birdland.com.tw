@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T02:41:50.363Z",
+  "generated_at": "2026-08-24T03:43:32.268Z",
   "source": "Nager.Date public API — https://date.nager.at/api/v3/PublicHolidays/{year}/{code} (no key). TW: builtin table in tools/dev/build-holidays.js (Nager has no Taiwan data).",
   "years": [
     2026,
