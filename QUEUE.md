@@ -20,7 +20,8 @@ Q4 開跑前必須清空該標記;插隊工單只掃核心不展開;研究凍結
 
 ## 已知待處理
 
-- 目錄後續:MOQ 級距+交期區間欄位(catalog.json 加欄)、九語系 i18n(規格見 scratchpad\I45-SPEC.md)、56 張 SVG 線稿待使用者過目、下次動 manufacturing.html 時處理 noindex+self-canonical 衝突
+- 目錄後續:九語系 i18n(規格見 scratchpad\I45-SPEC.md)、56 張 SVG 線稿待使用者過目、下次動 manufacturing.html 時處理 noindex+self-canonical 衝突
+- MOQ 級距+交期區間欄位:使用者 2026-08-26 明確說不要做(勿再提案)
 
 - ~~i18n-drift 報 45 個語言頁 STALE(index/about/contact/privacy/product-101 × 9 語)~~(2026-08-22 完成:九個 facade pairs 各補 20 組新文案 102→122,i18n-build 九語系 4 pages 122/122 keys hit,i18n-drift --stamp 重蓋 45 頁指紋,STALE 45→0;commit 89a87fb)
 
