@@ -16,7 +16,11 @@ Q4 開跑前必須清空該標記;插隊工單只掃核心不展開;研究凍結
 ~~9. V2 效能、V3 SEO、V6 相容性、V7 全站完整版~~(2026-08-21 完成:index/about 首圖補 width/height+decoding、index 首圖 fetchpriority=high;index/about/contact/privacy 補 self-canonical;privacy 補 meta description `pre-i18n`;修復 configurator 模板漂移(f2741d5 的兩條 CSS 未回寫模板,下次 build 會被清掉);my-market/news/manufacturing 與 robots/llms/sitemap 查證後無需修改——sitemap 不重生以免 lastmod 假新鮮、og/twitter 全站皆無屬慣例、noindex 轉址殼是刻意的;commit 2c9e0ed)
 ~~10. R1b 信草稿+異議卡、R1c 破冰卡、R1d 報價分享頁(先盤點與 /p/ 管線重疊)~~(2026-08-22 完成:三卡落在 PIN 保護的 team.html;R1d 走 team.html#qs= 純前端 base64url,不進 /p/ 管線、價格不落地、內部成本毛利不入 payload;sw v59→v60;新增中英文案標 pre-i18n 併入 45;commit 197b68f)
 
+~~11. Garden & DIY catalogue(partner.html buyer 模式)~~(2026-08-26 完成:56 SKU + 市場/貨架選擇器 + twin-collapse 雙貨架恆 52 + 詢價清單純文字複製;成本只顯示 movement index(2026-01=100),絕不出現價格;build.js 以 tools/catalog_partial.html 經 __CATALOG__ 注入,cost-desk.html byte-identical;56 張單色線稿 SVG;文案標 `pre-i18n`;commit dad7a69)
+
 ## 已知待處理
+
+- 目錄後續:MOQ 級距+交期區間欄位(catalog.json 加欄)、九語系 i18n(規格見 scratchpad\I45-SPEC.md)、56 張 SVG 線稿待使用者過目、下次動 manufacturing.html 時處理 noindex+self-canonical 衝突
 
 - ~~i18n-drift 報 45 個語言頁 STALE(index/about/contact/privacy/product-101 × 9 語)~~(2026-08-22 完成:九個 facade pairs 各補 20 組新文案 102→122,i18n-build 九語系 4 pages 122/122 keys hit,i18n-drift --stamp 重蓋 45 頁指紋,STALE 45→0;commit 89a87fb)
 
