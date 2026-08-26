@@ -1,0 +1,5911 @@
+{
+ "meta": {
+  "index_base": "2026-01",
+  "updated": "2026-08-20",
+  "methodology": "Cost index tracks four input baskets priced monthly against the 2026-01 base of 100: hot-rolled/forging-grade steel bar, PP/PE plastic resin, pallet-grade softwood lumber, and ocean freight (Taiwan/China to Rotterdam, Los Angeles, Southampton, and Yokohama base ports), each converted through TWD and CNY spot FX against USD/EUR. TW and CN indices are weighted and published separately per SKU since the two supply bases move on different cost drivers (Taiwan: energy, TWD, forging labor; China: RMB, coastal logistics, resin feedstock). Weighting is fixed per product category (steel-dominant tools weight steel ~70%, freight ~15%, FX ~15%; packaging materials weight lumber/resin/paper ~60%, freight ~30%, FX ~10%). Index refreshes monthly on the 20th. This index is a directional cost-trend signal for planning only — no FOB or landed prices are published anywhere on this site."
+ },
+ "markets": {
+  "US": {
+   "name": "United States",
+   "pallet": "48×40 in GMA pallet",
+   "ispm15": true,
+   "packaging_law": "state EPR (CA SB54, OR, CO)",
+   "marking": "UL required for electrics; CE not applicable; origin mark 'Made in Taiwan'/'Made in China' required at import",
+   "barcode": "UPC-A",
+   "lang": [
+    "en"
+   ],
+   "notes": "Prop 65 warning label required for CA-bound shipments"
+  },
+  "DE": {
+   "name": "Germany",
+   "pallet": "1200×800 mm EUR-pallet (EPAL)",
+   "ispm15": true,
+   "packaging_law": "PPWR (EU) 2025/40 + VerpackG (LUCID registration)",
+   "marking": "CE marking where applicable; origin mark required",
+   "barcode": "EAN-13",
+   "lang": [
+    "de"
+   ],
+   "notes": "Grüner Punkt / dual-system packaging registration"
+  },
+  "FR": {
+   "name": "France",
+   "pallet": "1200×800 mm EUR-pallet (EPAL)",
+   "ispm15": true,
+   "packaging_law": "PPWR (EU) 2025/40 + Triman logo + EPR (filière Léko)",
+   "marking": "CE marking where applicable; origin mark required",
+   "barcode": "EAN-13",
+   "lang": [
+    "fr"
+   ],
+   "notes": "Triman recyclability logo mandatory on packaging"
+  },
+  "NL": {
+   "name": "Netherlands",
+   "pallet": "1200×800 mm EUR-pallet (EPAL)",
+   "ispm15": true,
+   "packaging_law": "PPWR (EU) 2025/40 + Verpakkingenbesluit",
+   "marking": "CE marking where applicable; origin mark required",
+   "barcode": "EAN-13",
+   "lang": [
+    "nl"
+   ],
+   "notes": "Afvalfonds Verpakkingen packaging-waste fee"
+  },
+  "UK": {
+   "name": "United Kingdom",
+   "pallet": "1200×800 mm EUR-pallet (EPAL, accepted)",
+   "ispm15": true,
+   "packaging_law": "UK Packaging (EPR) Regulations 2023",
+   "marking": "UKCA marking where applicable; origin mark required",
+   "barcode": "EAN-13",
+   "lang": [
+    "en"
+   ],
+   "notes": "Separate UKCA marking track from EU CE, post-Brexit"
+  },
+  "PL": {
+   "name": "Poland",
+   "pallet": "1200×800 mm EUR-pallet (EPAL)",
+   "ispm15": true,
+   "packaging_law": "PPWR (EU) 2025/40 + ustawa o gospodarce opakowaniami",
+   "marking": "CE marking where applicable; origin mark required",
+   "barcode": "EAN-13",
+   "lang": [
+    "pl"
+   ],
+   "notes": "BDO packaging register entry required for importer"
+  },
+  "IT": {
+   "name": "Italy",
+   "pallet": "1200×800 mm EUR-pallet (EPAL)",
+   "ispm15": true,
+   "packaging_law": "PPWR (EU) 2025/40 + CONAI packaging consortium fee",
+   "marking": "CE marking where applicable; origin mark required",
+   "barcode": "EAN-13",
+   "lang": [
+    "it"
+   ],
+   "notes": "CONAI environmental contribution (CAC) on packaging"
+  },
+  "ES": {
+   "name": "Spain",
+   "pallet": "1200×800 mm EUR-pallet (EPAL)",
+   "ispm15": true,
+   "packaging_law": "PPWR (EU) 2025/40 + Real Decreto de envases",
+   "marking": "CE marking where applicable; origin mark required",
+   "barcode": "EAN-13",
+   "lang": [
+    "es"
+   ],
+   "notes": "Extended producer responsibility (RAP) registration"
+  },
+  "JP": {
+   "name": "Japan",
+   "pallet": "1100×1100 mm T11 pallet",
+   "ispm15": true,
+   "packaging_law": "Containers and Packaging Recycling Act",
+   "marking": "PSE not applicable to hand tools; origin mark 'Made in Taiwan'/'Made in China' required",
+   "barcode": "JAN (EAN-13 compatible)",
+   "lang": [
+    "ja"
+   ],
+   "notes": "JIS-style sizing/labeling conventions expected by DIY chains"
+  }
+ },
+ "axes": [
+  {
+   "id": "ground",
+   "label": "Ground prep & handled tools",
+   "main": true,
+   "subs": [
+    {
+     "id": "hoe",
+     "label": "Hoes & cultivators"
+    },
+    {
+     "id": "weeder",
+     "label": "Weeders"
+    },
+    {
+     "id": "axe",
+     "label": "Axes & hatchets"
+    },
+    {
+     "id": "hammer",
+     "label": "Hammers & mallets"
+    },
+    {
+     "id": "spade",
+     "label": "Spades, forks, rakes"
+    },
+    {
+     "id": "trowel",
+     "label": "Hand trowels"
+    }
+   ]
+  },
+  {
+   "id": "cut",
+   "label": "Pruning & cutting",
+   "main": true,
+   "subs": [
+    {
+     "id": "pruner",
+     "label": "Pruners / secateurs"
+    },
+    {
+     "id": "lopper",
+     "label": "Loppers"
+    },
+    {
+     "id": "shear",
+     "label": "Hedge & grass shears"
+    },
+    {
+     "id": "saw",
+     "label": "Pruning saws"
+    },
+    {
+     "id": "snip",
+     "label": "Snips & scissors"
+    }
+   ]
+  },
+  {
+   "id": "pack",
+   "label": "Packaging",
+   "main": true,
+   "subs": [
+    {
+     "id": "pallet",
+     "label": "Pallets"
+    },
+    {
+     "id": "carton",
+     "label": "Cartons"
+    },
+    {
+     "id": "inner",
+     "label": "Inner packs & blisters"
+    },
+    {
+     "id": "label",
+     "label": "Labels & hangtags"
+    },
+    {
+     "id": "strap",
+     "label": "Strapping & film"
+    }
+   ]
+  },
+  {
+   "id": "water",
+   "label": "Watering accessories",
+   "main": false,
+   "subs": [
+    {
+     "id": "nozzle",
+     "label": "Nozzles & connectors"
+    },
+    {
+     "id": "can",
+     "label": "Watering cans"
+    }
+   ]
+  },
+  {
+   "id": "ppe",
+   "label": "Gloves & protection",
+   "main": false,
+   "subs": [
+    {
+     "id": "glove",
+     "label": "Gloves"
+    },
+    {
+     "id": "knee",
+     "label": "Knee pads"
+    }
+   ]
+  },
+  {
+   "id": "support",
+   "label": "Plant support (coming)",
+   "main": false,
+   "placeholder": true,
+   "subs": []
+  },
+  {
+   "id": "hardware",
+   "label": "Small hardware (coming)",
+   "main": false,
+   "placeholder": true,
+   "subs": []
+  }
+ ],
+ "products": [
+  {
+   "id": "hoe-draw",
+   "axis": "ground",
+   "sub": "hoe",
+   "name": "Draw hoe",
+   "origin": "TW",
+   "why_origin": "Taiwan's forging base supports small-batch, tight-tolerance production for this head shape; unit freight cost is low relative to bulkier packaging SKUs, so origin is driven by tooling quality rather than shipping weight.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "1400 mm",
+    "blade": "flat draw blade, 150 mm",
+    "material": "carbon steel, powder coat",
+    "handle": "ash wood",
+    "weight": "650 g"
+   },
+   "index": {
+    "TW": {
+     "value": 102,
+     "trend": "flat",
+     "reason": "steel input steady, TWD range-bound"
+    },
+    "CN": {
+     "value": 106,
+     "trend": "up",
+     "reason": "forging steel up, coastal energy cost"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 3,
+     "why": "score 3/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 5,
+     "why": "score 5/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 5,
+     "why": "score 5/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 4,
+     "why": "score 4/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 3,
+     "why": "score 3/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 4,
+     "why": "score 4/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 5,
+     "why": "score 5/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 3,
+     "why": "score 3/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "DE",
+     "shape": "standard head geometry, no market-specific change",
+     "blade": "flat draw blade, 150 mm",
+     "handle": "ash wood",
+     "length": "1400 mm",
+     "why": "strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail; standard head geometry, no market-specific change.",
+     "src": "OBI/Hornbach top sellers 2025"
+    },
+    {
+     "market": "FR",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "flat draw blade, 150 mm",
+     "handle": "ash wood",
+     "length": "1540 mm",
+     "why": "garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Also used in small-scale row-crop farming and landscaping trade work.",
+   "packaging": [
+    "inner: 18 pcs/poly bag, header card",
+    "carton: 72 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 24 ctn/pallet"
+   ],
+   "img": "images/catalog/hoe-draw.svg",
+   "tags": [
+    "hoe",
+    "cultivation",
+    "bed prep",
+    "hand tool"
+   ]
+  },
+  {
+   "id": "hoe-dutch",
+   "axis": "ground",
+   "sub": "hoe",
+   "name": "Dutch push hoe",
+   "origin": "TW",
+   "why_origin": "Taiwan's forging base supports small-batch, tight-tolerance production for this head shape; unit freight cost is low relative to bulkier packaging SKUs, so origin is driven by tooling quality rather than shipping weight.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "1450 mm",
+    "blade": "push/pull double edge, 130 mm",
+    "material": "carbon steel, powder coat",
+    "handle": "ash wood",
+    "weight": "620 g"
+   },
+   "index": {
+    "TW": {
+     "value": 96,
+     "trend": "down",
+     "reason": "carbon steel softer on weak export orders"
+    },
+    "CN": {
+     "value": 100,
+     "trend": "flat",
+     "reason": "steel input flat, RMB stable"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 3,
+     "why": "score 3/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 5,
+     "why": "score 5/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 5,
+     "why": "score 5/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 4,
+     "why": "score 4/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 3,
+     "why": "score 3/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 4,
+     "why": "score 4/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 5,
+     "why": "score 5/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 3,
+     "why": "score 3/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "DE",
+     "shape": "standard head geometry, no market-specific change",
+     "blade": "push/pull double edge, 130 mm",
+     "handle": "ash wood",
+     "length": "1450 mm",
+     "why": "strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail; standard head geometry, no market-specific change.",
+     "src": "OBI/Hornbach top sellers 2025"
+    },
+    {
+     "market": "FR",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "push/pull double edge, 130 mm",
+     "handle": "ash wood",
+     "length": "1595 mm",
+     "why": "garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Also used in small-scale row-crop farming and landscaping trade work.",
+   "packaging": [
+    "inner: 6 pcs/poly bag, header card",
+    "carton: 24 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 30 ctn/pallet"
+   ],
+   "img": "images/catalog/hoe-dutch.svg",
+   "tags": [
+    "hoe",
+    "weeding",
+    "push-pull",
+    "bed prep"
+   ]
+  },
+  {
+   "id": "cultivator-3tine",
+   "axis": "ground",
+   "sub": "hoe",
+   "name": "3-tine hand cultivator",
+   "origin": "TW",
+   "why_origin": "Taiwan's forging base supports small-batch, tight-tolerance production for this head shape; unit freight cost is low relative to bulkier packaging SKUs, so origin is driven by tooling quality rather than shipping weight.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "1400 mm",
+    "blade": "3-tine claw, 120 mm",
+    "material": "carbon steel, powder coat",
+    "handle": "ash wood",
+    "weight": "700 g"
+   },
+   "index": {
+    "TW": {
+     "value": 116,
+     "trend": "up",
+     "reason": "hot-rolled steel bar up, TWD firm"
+    },
+    "CN": {
+     "value": 93,
+     "trend": "down",
+     "reason": "flat steel easing, RMB weaker"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 5,
+     "why": "score 5/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 5,
+     "why": "score 5/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 4,
+     "why": "score 4/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 3,
+     "why": "score 3/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 4,
+     "why": "score 4/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 5,
+     "why": "score 5/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 3,
+     "why": "score 3/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 4,
+     "why": "score 4/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 2,
+     "why": "score 2/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "US",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "3-tine claw, 120 mm",
+     "handle": "ash wood",
+     "length": "1540 mm",
+     "why": "large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning; wider head/blade profile for larger beds and plot work.",
+     "src": "Home Depot/Lowe's assortment 2025"
+    },
+    {
+     "market": "DE",
+     "shape": "standard head geometry, no market-specific change",
+     "blade": "3-tine claw, 120 mm",
+     "handle": "ash wood",
+     "length": "1400 mm",
+     "why": "strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail; standard head geometry, no market-specific change.",
+     "src": "OBI/Hornbach top sellers 2025"
+    }
+   ],
+   "elsewhere": "Also used in small-scale row-crop farming and landscaping trade work.",
+   "packaging": [
+    "inner: 18 pcs/poly bag, header card",
+    "carton: 72 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 30 ctn/pallet"
+   ],
+   "img": "images/catalog/cultivator-3tine.svg",
+   "tags": [
+    "cultivator",
+    "tines",
+    "soil prep"
+   ]
+  },
+  {
+   "id": "hoe-stirrup",
+   "axis": "ground",
+   "sub": "hoe",
+   "name": "Stirrup / scuffle hoe",
+   "origin": "TW",
+   "why_origin": "Head-and-handle forging and heat-treat capability is concentrated in Taiwan's hand-tool cluster, giving tighter edge geometry than commodity casting; finished-tool HS coding also carries lower EU/US tariff exposure than raw-steel imports.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "1400 mm",
+    "blade": "oscillating loop, 100 mm",
+    "material": "carbon steel",
+    "handle": "ash wood",
+    "weight": "600 g"
+   },
+   "index": {
+    "TW": {
+     "value": 93,
+     "trend": "down",
+     "reason": "carbon steel softer on weak export orders"
+    },
+    "CN": {
+     "value": 97,
+     "trend": "down",
+     "reason": "billet price down on overcapacity"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 3,
+     "why": "score 3/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 5,
+     "why": "score 5/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 5,
+     "why": "score 5/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 4,
+     "why": "score 4/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 3,
+     "why": "score 3/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 4,
+     "why": "score 4/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 5,
+     "why": "score 5/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 3,
+     "why": "score 3/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "DE",
+     "shape": "standard head geometry, no market-specific change",
+     "blade": "oscillating loop, 100 mm",
+     "handle": "ash wood",
+     "length": "1400 mm",
+     "why": "strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail; standard head geometry, no market-specific change.",
+     "src": "OBI/Hornbach top sellers 2025"
+    },
+    {
+     "market": "FR",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "oscillating loop, 100 mm",
+     "handle": "ash wood",
+     "length": "1540 mm",
+     "why": "garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Adopted by municipal parks crews for bed edging outside residential gardening.",
+   "packaging": [
+    "inner: 24 pcs/poly bag, header card",
+    "carton: 96 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 36 ctn/pallet"
+   ],
+   "img": "images/catalog/hoe-stirrup.svg",
+   "tags": [
+    "hoe",
+    "stirrup",
+    "weeding",
+    "shallow cultivation"
+   ]
+  },
+  {
+   "id": "weeder-brickjoint",
+   "axis": "ground",
+   "sub": "weeder",
+   "name": "Brick-joint / patio weeder",
+   "origin": "TW",
+   "why_origin": "Head-and-handle forging and heat-treat capability is concentrated in Taiwan's hand-tool cluster, giving tighter edge geometry than commodity casting; finished-tool HS coding also carries lower EU/US tariff exposure than raw-steel imports.",
+   "alt_origin": "CN",
+   "alt_origin_id": "weeder-brickjoint-cn",
+   "tier": "home",
+   "alt_tier_id": "weeder-brickjoint-pro",
+   "specs": {
+    "length": "320 mm",
+    "blade": "L-shaped hook, 50 mm",
+    "material": "carbon steel, powder coat",
+    "handle": "ash wood / PP",
+    "weight": "180 g"
+   },
+   "index": {
+    "TW": {
+     "value": 111,
+     "trend": "up",
+     "reason": "forging-grade carbon steel up, energy cost pass-through"
+    },
+    "CN": {
+     "value": 115,
+     "trend": "up",
+     "reason": "forging steel up, coastal energy cost"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 3,
+     "why": "score 3/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 5,
+     "why": "score 5/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 5,
+     "why": "score 5/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 5,
+     "why": "score 5/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 2,
+     "why": "score 2/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 4,
+     "why": "score 4/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 5,
+     "why": "score 5/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 4,
+     "why": "score 4/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "DE",
+     "shape": "standard head geometry, no market-specific change",
+     "blade": "L-shaped hook, 50 mm",
+     "handle": "ash wood / PP",
+     "length": "320 mm",
+     "why": "strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail; standard head geometry, no market-specific change.",
+     "src": "OBI/Hornbach top sellers 2025"
+    },
+    {
+     "market": "FR",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "L-shaped hook, 50 mm",
+     "handle": "ash wood / PP",
+     "length": "352 mm",
+     "why": "garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Common in commercial paver maintenance beyond home gardens.",
+   "packaging": [
+    "inner: 1 pc/blister card, 4×6 per display box",
+    "carton: 96 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 30 ctn/pallet"
+   ],
+   "img": "images/catalog/weeder-brickjoint.svg",
+   "tags": [
+    "patio",
+    "joint",
+    "weeder",
+    "hand tool"
+   ]
+  },
+  {
+   "id": "weeder-brickjoint-cn",
+   "axis": "ground",
+   "sub": "weeder",
+   "name": "Brick-joint / patio weeder (CN)",
+   "origin": "CN",
+   "why_origin": "China twin of the Taiwan-forged base model: stamped-steel head and PP handle trade edge tolerance for lower unit cost on high-volume, price-sensitive retail programs.",
+   "alt_origin": "TW",
+   "alt_origin_id": "weeder-brickjoint",
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "320 mm",
+    "blade": "L-shaped hook, 50 mm",
+    "material": "carbon steel, epoxy coat",
+    "handle": "PP plastic",
+    "weight": "160 g"
+   },
+   "index": {
+    "TW": {
+     "value": 105,
+     "trend": "up",
+     "reason": "forging-grade carbon steel up, energy cost pass-through"
+    },
+    "CN": {
+     "value": 109,
+     "trend": "up",
+     "reason": "forging steel up, coastal energy cost"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 3,
+     "why": "score 3/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 5,
+     "why": "score 5/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 5,
+     "why": "score 5/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 5,
+     "why": "score 5/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 2,
+     "why": "score 2/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 4,
+     "why": "score 4/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 5,
+     "why": "score 5/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 4,
+     "why": "score 4/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "DE",
+     "shape": "standard head geometry, no market-specific change",
+     "blade": "L-shaped hook, 50 mm",
+     "handle": "PP plastic",
+     "length": "320 mm",
+     "why": "strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail; standard head geometry, no market-specific change.",
+     "src": "OBI/Hornbach top sellers 2025"
+    },
+    {
+     "market": "FR",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "L-shaped hook, 50 mm",
+     "handle": "PP plastic",
+     "length": "352 mm",
+     "why": "garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Common in commercial paver maintenance beyond home gardens.",
+   "packaging": [
+    "inner: 1 pc/blister card, 4×6 per display box",
+    "carton: 96 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 30 ctn/pallet"
+   ],
+   "img": "images/catalog/weeder-brickjoint-cn.svg",
+   "tags": [
+    "patio",
+    "joint",
+    "weeder",
+    "value"
+   ]
+  },
+  {
+   "id": "weeder-brickjoint-pro",
+   "axis": "ground",
+   "sub": "weeder",
+   "name": "Brick-joint / patio weeder, pro",
+   "origin": "TW",
+   "why_origin": "Head-and-handle forging and heat-treat capability is concentrated in Taiwan's hand-tool cluster, giving tighter edge geometry than commodity casting; finished-tool HS coding also carries lower EU/US tariff exposure than raw-steel imports.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "pro",
+   "alt_tier_id": "weeder-brickjoint",
+   "specs": {
+    "length": "340 mm",
+    "blade": "L-shaped hook, forged, 55 mm",
+    "material": "high-carbon forged steel",
+    "handle": "ash wood, leather wrist strap",
+    "weight": "210 g"
+   },
+   "index": {
+    "TW": {
+     "value": 94,
+     "trend": "down",
+     "reason": "flat-rolled steel down, mill oversupply"
+    },
+    "CN": {
+     "value": 98,
+     "trend": "flat",
+     "reason": "steel input flat, RMB stable"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 4,
+     "why": "score 4/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 4,
+     "why": "score 4/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 3,
+     "why": "score 3/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 5,
+     "why": "score 5/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 3,
+     "why": "score 3/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 5,
+     "why": "score 5/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 3,
+     "why": "score 3/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 5,
+     "why": "score 5/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "NL",
+     "shape": "compact head, shortened reach for small-plot/balcony use",
+     "blade": "L-shaped hook, forged, 55 mm",
+     "handle": "ash wood, leather wrist strap",
+     "length": "306 mm",
+     "why": "high density of allotment/balcony gardens, EAN-13 retail; compact head, shortened reach for small-plot/balcony use.",
+     "src": "Praxis/Gamma assortment 2025"
+    },
+    {
+     "market": "UK",
+     "shape": "compact head, shortened reach for small-plot/balcony use",
+     "blade": "L-shaped hook, forged, 55 mm",
+     "handle": "ash wood, leather wrist strap",
+     "length": "306 mm",
+     "why": "large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking; compact head, shortened reach for small-plot/balcony use.",
+     "src": "B&Q/Wickes range 2025"
+    }
+   ],
+   "elsewhere": "Common in commercial paver maintenance beyond home gardens.",
+   "packaging": [
+    "inner: 1 pc/blister card, 4×6 per display box",
+    "carton: 96 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 36 ctn/pallet"
+   ],
+   "img": "images/catalog/weeder-brickjoint-pro.svg",
+   "tags": [
+    "patio",
+    "joint",
+    "weeder",
+    "pro"
+   ]
+  },
+  {
+   "id": "weeder-dandelion",
+   "axis": "ground",
+   "sub": "weeder",
+   "name": "Dandelion / taproot weeder",
+   "origin": "TW",
+   "why_origin": "Taiwan's forging base supports small-batch, tight-tolerance production for this head shape; unit freight cost is low relative to bulkier packaging SKUs, so origin is driven by tooling quality rather than shipping weight.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "400 mm",
+    "blade": "forked tip, 40 mm",
+    "material": "carbon steel",
+    "handle": "ash wood, T-grip",
+    "weight": "260 g"
+   },
+   "index": {
+    "TW": {
+     "value": 117,
+     "trend": "up",
+     "reason": "forging-grade carbon steel up, energy cost pass-through"
+    },
+    "CN": {
+     "value": 94,
+     "trend": "down",
+     "reason": "billet price down on overcapacity"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 3,
+     "why": "score 3/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 5,
+     "why": "score 5/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 5,
+     "why": "score 5/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 5,
+     "why": "score 5/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 2,
+     "why": "score 2/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 4,
+     "why": "score 4/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 5,
+     "why": "score 5/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 4,
+     "why": "score 4/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "DE",
+     "shape": "standard head geometry, no market-specific change",
+     "blade": "forked tip, 40 mm",
+     "handle": "ash wood, T-grip",
+     "length": "400 mm",
+     "why": "strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail; standard head geometry, no market-specific change.",
+     "src": "OBI/Hornbach top sellers 2025"
+    },
+    {
+     "market": "FR",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "forked tip, 40 mm",
+     "handle": "ash wood, T-grip",
+     "length": "440 mm",
+     "why": "garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Used for driveway and patio-joint maintenance by hardscaping contractors.",
+   "packaging": [
+    "inner: 1 pc/blister card, 3×6 per display box",
+    "carton: 72 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 24 ctn/pallet"
+   ],
+   "img": "images/catalog/weeder-dandelion.svg",
+   "tags": [
+    "dandelion",
+    "taproot",
+    "weeder"
+   ]
+  },
+  {
+   "id": "weeder-standup",
+   "axis": "ground",
+   "sub": "weeder",
+   "name": "Stand-up weeder",
+   "origin": "TW",
+   "why_origin": "Head-and-handle forging and heat-treat capability is concentrated in Taiwan's hand-tool cluster, giving tighter edge geometry than commodity casting; finished-tool HS coding also carries lower EU/US tariff exposure than raw-steel imports.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "950 mm",
+    "blade": "claw-tine head, 60 mm",
+    "material": "carbon steel",
+    "handle": "steel tube / PP grip",
+    "weight": "780 g"
+   },
+   "index": {
+    "TW": {
+     "value": 96,
+     "trend": "down",
+     "reason": "carbon steel softer on weak export orders"
+    },
+    "CN": {
+     "value": 100,
+     "trend": "flat",
+     "reason": "steel input flat, RMB stable"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 3,
+     "why": "score 3/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 5,
+     "why": "score 5/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 5,
+     "why": "score 5/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 5,
+     "why": "score 5/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 2,
+     "why": "score 2/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 4,
+     "why": "score 4/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 5,
+     "why": "score 5/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 4,
+     "why": "score 4/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "DE",
+     "shape": "standard head geometry, no market-specific change",
+     "blade": "claw-tine head, 60 mm",
+     "handle": "steel tube / PP grip",
+     "length": "950 mm",
+     "why": "strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail; standard head geometry, no market-specific change.",
+     "src": "OBI/Hornbach top sellers 2025"
+    },
+    {
+     "market": "FR",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "claw-tine head, 60 mm",
+     "handle": "steel tube / PP grip",
+     "length": "1045 mm",
+     "why": "garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Common in commercial paver maintenance beyond home gardens.",
+   "packaging": [
+    "inner: 1 pc/blister card, 2×6 per display box",
+    "carton: 48 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 30 ctn/pallet"
+   ],
+   "img": "images/catalog/weeder-standup.svg",
+   "tags": [
+    "stand-up",
+    "ergonomic",
+    "weeder"
+   ]
+  },
+  {
+   "id": "axe-splitting",
+   "axis": "ground",
+   "sub": "axe",
+   "name": "Splitting axe",
+   "origin": "TW",
+   "why_origin": "Taiwan's forging base supports small-batch, tight-tolerance production for this head shape; unit freight cost is low relative to bulkier packaging SKUs, so origin is driven by tooling quality rather than shipping weight.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "900 mm",
+    "blade": "splitting wedge head, 120 mm",
+    "material": "forged carbon steel",
+    "handle": "hickory wood",
+    "weight": "2100 g"
+   },
+   "index": {
+    "TW": {
+     "value": 110,
+     "trend": "up",
+     "reason": "hot-rolled steel bar up, TWD firm"
+    },
+    "CN": {
+     "value": 114,
+     "trend": "up",
+     "reason": "cold-rolled sheet up on export-rebate change"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 5,
+     "why": "score 5/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 4,
+     "why": "score 4/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 4,
+     "why": "score 4/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 1,
+     "why": "score 1/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 2,
+     "why": "score 2/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 5,
+     "why": "score 5/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 2,
+     "why": "score 2/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 3,
+     "why": "score 3/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 1,
+     "why": "score 1/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "US",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "splitting wedge head, 120 mm",
+     "handle": "hickory wood",
+     "length": "990 mm",
+     "why": "large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning; wider head/blade profile for larger beds and plot work.",
+     "src": "Home Depot/Lowe's assortment 2025"
+    },
+    {
+     "market": "PL",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "splitting wedge head, 120 mm",
+     "handle": "hickory wood",
+     "length": "990 mm",
+     "why": "rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin Polska/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Used for general firewood processing and camping/outdoor use beyond garden pruning.",
+   "packaging": [
+    "inner: 6 pcs/poly bag, header card",
+    "carton: 24 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 24 ctn/pallet"
+   ],
+   "img": "images/catalog/axe-splitting.svg",
+   "tags": [
+    "axe",
+    "splitting",
+    "firewood"
+   ]
+  },
+  {
+   "id": "hatchet-camp",
+   "axis": "ground",
+   "sub": "axe",
+   "name": "Camp hatchet",
+   "origin": "TW",
+   "why_origin": "Taiwan's forging base supports small-batch, tight-tolerance production for this head shape; unit freight cost is low relative to bulkier packaging SKUs, so origin is driven by tooling quality rather than shipping weight.",
+   "alt_origin": "CN",
+   "alt_origin_id": "hatchet-camp-cn",
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "350 mm",
+    "blade": "camp hatchet, 90 mm",
+    "material": "forged carbon steel",
+    "handle": "hickory wood",
+    "weight": "700 g"
+   },
+   "index": {
+    "TW": {
+     "value": 110,
+     "trend": "up",
+     "reason": "hot-rolled steel bar up, TWD firm"
+    },
+    "CN": {
+     "value": 114,
+     "trend": "up",
+     "reason": "cold-rolled sheet up on export-rebate change"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 5,
+     "why": "score 5/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 4,
+     "why": "score 4/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 4,
+     "why": "score 4/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 1,
+     "why": "score 1/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 2,
+     "why": "score 2/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 5,
+     "why": "score 5/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 2,
+     "why": "score 2/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 3,
+     "why": "score 3/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 1,
+     "why": "score 1/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "US",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "camp hatchet, 90 mm",
+     "handle": "hickory wood",
+     "length": "385 mm",
+     "why": "large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning; wider head/blade profile for larger beds and plot work.",
+     "src": "Home Depot/Lowe's assortment 2025"
+    },
+    {
+     "market": "PL",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "camp hatchet, 90 mm",
+     "handle": "hickory wood",
+     "length": "385 mm",
+     "why": "rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin Polska/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Used for general firewood processing and camping/outdoor use beyond garden pruning.",
+   "packaging": [
+    "inner: 18 pcs/poly bag, header card",
+    "carton: 72 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 36 ctn/pallet"
+   ],
+   "img": "images/catalog/hatchet-camp.svg",
+   "tags": [
+    "hatchet",
+    "camp",
+    "kindling"
+   ]
+  },
+  {
+   "id": "hatchet-camp-cn",
+   "axis": "ground",
+   "sub": "axe",
+   "name": "Camp hatchet (CN)",
+   "origin": "CN",
+   "why_origin": "China twin of the Taiwan-forged hatchet: drop-forged head with fiberglass handle trades handle-fit precision for lower landed cost on volume programs.",
+   "alt_origin": "TW",
+   "alt_origin_id": "hatchet-camp",
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "350 mm",
+    "blade": "camp hatchet, 90 mm",
+    "material": "drop-forged steel",
+    "handle": "fiberglass / rubber grip",
+    "weight": "650 g"
+   },
+   "index": {
+    "TW": {
+     "value": 107,
+     "trend": "up",
+     "reason": "hot-rolled steel bar up, TWD firm"
+    },
+    "CN": {
+     "value": 111,
+     "trend": "up",
+     "reason": "cold-rolled sheet up on export-rebate change"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 5,
+     "why": "score 5/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 4,
+     "why": "score 4/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 4,
+     "why": "score 4/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 1,
+     "why": "score 1/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 2,
+     "why": "score 2/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 5,
+     "why": "score 5/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 2,
+     "why": "score 2/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 3,
+     "why": "score 3/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 1,
+     "why": "score 1/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "US",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "camp hatchet, 90 mm",
+     "handle": "fiberglass / rubber grip",
+     "length": "385 mm",
+     "why": "large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning; wider head/blade profile for larger beds and plot work.",
+     "src": "Home Depot/Lowe's assortment 2025"
+    },
+    {
+     "market": "PL",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "camp hatchet, 90 mm",
+     "handle": "fiberglass / rubber grip",
+     "length": "385 mm",
+     "why": "rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin Polska/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Used for general firewood processing and camping/outdoor use beyond garden pruning.",
+   "packaging": [
+    "inner: 6 pcs/poly bag, header card",
+    "carton: 24 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 24 ctn/pallet"
+   ],
+   "img": "images/catalog/hatchet-camp-cn.svg",
+   "tags": [
+    "hatchet",
+    "camp",
+    "value"
+   ]
+  },
+  {
+   "id": "mallet-rubber",
+   "axis": "ground",
+   "sub": "hammer",
+   "name": "Rubber mallet",
+   "origin": "CN",
+   "why_origin": "Bulky, low value-density item; China's material and labor cost base plus proximity to container ports keeps landed freight cost down for a commodity-spec SKU.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "300 mm",
+    "blade": null,
+    "material": "rubber head",
+    "handle": "hardwood",
+    "weight": "450 g"
+   },
+   "index": {
+    "TW": {
+     "value": 111,
+     "trend": "up",
+     "reason": "NBR compound up, latex cost firmer"
+    },
+    "CN": {
+     "value": 115,
+     "trend": "up",
+     "reason": "NBR latex up, Hainan supply tight"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 3,
+     "why": "score 3/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 5,
+     "why": "score 5/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 5,
+     "why": "score 5/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 4,
+     "why": "score 4/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 4,
+     "why": "score 4/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 3,
+     "why": "score 3/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 4,
+     "why": "score 4/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 5,
+     "why": "score 5/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 4,
+     "why": "score 4/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "DE",
+     "shape": "standard head geometry, no market-specific change",
+     "blade": null,
+     "handle": "hardwood",
+     "length": "300 mm",
+     "why": "strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail; standard head geometry, no market-specific change.",
+     "src": "OBI/Hornbach top sellers 2025"
+    },
+    {
+     "market": "FR",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": null,
+     "handle": "hardwood",
+     "length": "330 mm",
+     "why": "garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Used in landscaping hardscape installation (pavers, edging stakes).",
+   "packaging": [
+    "inner: 12 pcs/poly bag, header card",
+    "carton: 48 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 24 ctn/pallet"
+   ],
+   "img": "images/catalog/mallet-rubber.svg",
+   "tags": [
+    "mallet",
+    "rubber",
+    "staking"
+   ]
+  },
+  {
+   "id": "hammer-club",
+   "axis": "ground",
+   "sub": "hammer",
+   "name": "Club hammer",
+   "origin": "TW",
+   "why_origin": "Taiwan's forging base supports small-batch, tight-tolerance production for this head shape; unit freight cost is low relative to bulkier packaging SKUs, so origin is driven by tooling quality rather than shipping weight.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "280 mm",
+    "blade": null,
+    "material": "forged steel head",
+    "handle": "fiberglass",
+    "weight": "1000 g"
+   },
+   "index": {
+    "TW": {
+     "value": 106,
+     "trend": "up",
+     "reason": "alloy steel billet up on export demand"
+    },
+    "CN": {
+     "value": 110,
+     "trend": "up",
+     "reason": "rebar-linked steel index up, RMB steady"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 4,
+     "why": "score 4/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 3,
+     "why": "score 3/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 3,
+     "why": "score 3/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 5,
+     "why": "score 5/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 4,
+     "why": "score 4/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 5,
+     "why": "score 5/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 3,
+     "why": "score 3/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 5,
+     "why": "score 5/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "NL",
+     "shape": "compact head, shortened reach for small-plot/balcony use",
+     "blade": null,
+     "handle": "fiberglass",
+     "length": "252 mm",
+     "why": "high density of allotment/balcony gardens, EAN-13 retail; compact head, shortened reach for small-plot/balcony use.",
+     "src": "Praxis/Gamma assortment 2025"
+    },
+    {
+     "market": "UK",
+     "shape": "compact head, shortened reach for small-plot/balcony use",
+     "blade": null,
+     "handle": "fiberglass",
+     "length": "252 mm",
+     "why": "large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking; compact head, shortened reach for small-plot/balcony use.",
+     "src": "B&Q/Wickes range 2025"
+    }
+   ],
+   "elsewhere": "General construction and fencing-post work outside garden use.",
+   "packaging": [
+    "inner: 6 pcs/poly bag, header card",
+    "carton: 24 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 24 ctn/pallet"
+   ],
+   "img": "images/catalog/hammer-club.svg",
+   "tags": [
+    "club hammer",
+    "stakes",
+    "edging"
+   ]
+  },
+  {
+   "id": "hammer-claw",
+   "axis": "ground",
+   "sub": "hammer",
+   "name": "Claw hammer",
+   "origin": "TW",
+   "why_origin": "Head-and-handle forging and heat-treat capability is concentrated in Taiwan's hand-tool cluster, giving tighter edge geometry than commodity casting; finished-tool HS coding also carries lower EU/US tariff exposure than raw-steel imports.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "330 mm",
+    "blade": null,
+    "material": "forged steel head",
+    "handle": "hickory wood",
+    "weight": "560 g"
+   },
+   "index": {
+    "TW": {
+     "value": 110,
+     "trend": "up",
+     "reason": "hot-rolled steel bar up, TWD firm"
+    },
+    "CN": {
+     "value": 114,
+     "trend": "up",
+     "reason": "cold-rolled sheet up on export-rebate change"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 5,
+     "why": "score 5/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 4,
+     "why": "score 4/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 4,
+     "why": "score 4/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 3,
+     "why": "score 3/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 3,
+     "why": "score 3/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 5,
+     "why": "score 5/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 3,
+     "why": "score 3/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 4,
+     "why": "score 4/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 3,
+     "why": "score 3/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "US",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": null,
+     "handle": "hickory wood",
+     "length": "363 mm",
+     "why": "large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning; wider head/blade profile for larger beds and plot work.",
+     "src": "Home Depot/Lowe's assortment 2025"
+    },
+    {
+     "market": "PL",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": null,
+     "handle": "hickory wood",
+     "length": "363 mm",
+     "why": "rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin Polska/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Used in landscaping hardscape installation (pavers, edging stakes).",
+   "packaging": [
+    "inner: 12 pcs/poly bag, header card",
+    "carton: 48 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 30 ctn/pallet"
+   ],
+   "img": "images/catalog/hammer-claw.svg",
+   "tags": [
+    "claw hammer",
+    "fencing",
+    "stakes"
+   ]
+  },
+  {
+   "id": "spade-digging",
+   "axis": "ground",
+   "sub": "spade",
+   "name": "Digging spade",
+   "origin": "TW",
+   "why_origin": "Taiwan's forging base supports small-batch, tight-tolerance production for this head shape; unit freight cost is low relative to bulkier packaging SKUs, so origin is driven by tooling quality rather than shipping weight.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "1150 mm",
+    "blade": "flat digging blade, 190×280 mm",
+    "material": "carbon steel, powder coat",
+    "handle": "ash wood, D-grip",
+    "weight": "1900 g"
+   },
+   "index": {
+    "TW": {
+     "value": 98,
+     "trend": "flat",
+     "reason": "steel input steady, TWD range-bound"
+    },
+    "CN": {
+     "value": 102,
+     "trend": "flat",
+     "reason": "steel input flat, RMB stable"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 5,
+     "why": "score 5/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 4,
+     "why": "score 4/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 4,
+     "why": "score 4/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 2,
+     "why": "score 2/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 4,
+     "why": "score 4/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 5,
+     "why": "score 5/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 3,
+     "why": "score 3/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 4,
+     "why": "score 4/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 2,
+     "why": "score 2/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "US",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "flat digging blade, 190×280 mm",
+     "handle": "ash wood, D-grip",
+     "length": "1265 mm",
+     "why": "large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning; wider head/blade profile for larger beds and plot work.",
+     "src": "Home Depot/Lowe's assortment 2025"
+    },
+    {
+     "market": "PL",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "flat digging blade, 190×280 mm",
+     "handle": "ash wood, D-grip",
+     "length": "1265 mm",
+     "why": "rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin Polska/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Used in general excavation, landscaping, and utility trenching work.",
+   "packaging": [
+    "inner: 6 pcs/poly bag, header card",
+    "carton: 24 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 30 ctn/pallet"
+   ],
+   "img": "images/catalog/spade-digging.svg",
+   "tags": [
+    "spade",
+    "digging",
+    "bed prep"
+   ]
+  },
+  {
+   "id": "fork-digging",
+   "axis": "ground",
+   "sub": "spade",
+   "name": "Digging fork",
+   "origin": "TW",
+   "why_origin": "Head-and-handle forging and heat-treat capability is concentrated in Taiwan's hand-tool cluster, giving tighter edge geometry than commodity casting; finished-tool HS coding also carries lower EU/US tariff exposure than raw-steel imports.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "1150 mm",
+    "blade": "4-tine fork, 190×280 mm",
+    "material": "carbon steel, powder coat",
+    "handle": "ash wood, D-grip",
+    "weight": "1850 g"
+   },
+   "index": {
+    "TW": {
+     "value": 100,
+     "trend": "flat",
+     "reason": "forging cost flat month on month"
+    },
+    "CN": {
+     "value": 104,
+     "trend": "flat",
+     "reason": "steel input flat, RMB stable"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 4,
+     "why": "score 4/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 3,
+     "why": "score 3/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 3,
+     "why": "score 3/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 4,
+     "why": "score 4/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 5,
+     "why": "score 5/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 5,
+     "why": "score 5/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 3,
+     "why": "score 3/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 4,
+     "why": "score 4/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "UK",
+     "shape": "compact head, shortened reach for small-plot/balcony use",
+     "blade": "4-tine fork, 190×280 mm",
+     "handle": "ash wood, D-grip",
+     "length": "1035 mm",
+     "why": "large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking; compact head, shortened reach for small-plot/balcony use.",
+     "src": "B&Q/Wickes range 2025"
+    },
+    {
+     "market": "PL",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "4-tine fork, 190×280 mm",
+     "handle": "ash wood, D-grip",
+     "length": "1265 mm",
+     "why": "rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin Polska/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Common on construction sites for light digging outside gardening.",
+   "packaging": [
+    "inner: 12 pcs/poly bag, header card",
+    "carton: 48 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 36 ctn/pallet"
+   ],
+   "img": "images/catalog/fork-digging.svg",
+   "tags": [
+    "fork",
+    "digging",
+    "aeration"
+   ]
+  },
+  {
+   "id": "rake-leaf",
+   "axis": "ground",
+   "sub": "spade",
+   "name": "Fan leaf rake",
+   "origin": "CN",
+   "why_origin": "Bulky, low value-density item; China's material and labor cost base plus proximity to container ports keeps landed freight cost down for a commodity-spec SKU.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "1600 mm",
+    "blade": "fan head, 550 mm span",
+    "material": "PP plastic tines",
+    "handle": "steel tube",
+    "weight": "550 g"
+   },
+   "index": {
+    "TW": {
+     "value": 117,
+     "trend": "up",
+     "reason": "engineering resin up on crude"
+    },
+    "CN": {
+     "value": 94,
+     "trend": "down",
+     "reason": "PE resin down, cheaper crude offsets RMB"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 3,
+     "why": "score 3/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 5,
+     "why": "score 5/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 5,
+     "why": "score 5/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 3,
+     "why": "score 3/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 4,
+     "why": "score 4/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 4,
+     "why": "score 4/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 5,
+     "why": "score 5/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 3,
+     "why": "score 3/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "DE",
+     "shape": "standard head geometry, no market-specific change",
+     "blade": "fan head, 550 mm span",
+     "handle": "steel tube",
+     "length": "1600 mm",
+     "why": "strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail; standard head geometry, no market-specific change.",
+     "src": "OBI/Hornbach top sellers 2025"
+    },
+    {
+     "market": "FR",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "fan head, 550 mm span",
+     "handle": "steel tube",
+     "length": "1760 mm",
+     "why": "garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Common on construction sites for light digging outside gardening.",
+   "packaging": [
+    "inner: 12 pcs/poly bag, header card",
+    "carton: 48 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 36 ctn/pallet"
+   ],
+   "img": "images/catalog/rake-leaf.svg",
+   "tags": [
+    "leaf rake",
+    "fan rake",
+    "lawn care"
+   ]
+  },
+  {
+   "id": "rake-bow",
+   "axis": "ground",
+   "sub": "spade",
+   "name": "Bow / garden rake",
+   "origin": "TW",
+   "why_origin": "Head-and-handle forging and heat-treat capability is concentrated in Taiwan's hand-tool cluster, giving tighter edge geometry than commodity casting; finished-tool HS coding also carries lower EU/US tariff exposure than raw-steel imports.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "1500 mm",
+    "blade": "bow-tine head, 300 mm",
+    "material": "carbon steel",
+    "handle": "ash wood",
+    "weight": "1200 g"
+   },
+   "index": {
+    "TW": {
+     "value": 96,
+     "trend": "down",
+     "reason": "carbon steel softer on weak export orders"
+    },
+    "CN": {
+     "value": 100,
+     "trend": "flat",
+     "reason": "steel input flat, RMB stable"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 3,
+     "why": "score 3/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 5,
+     "why": "score 5/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 5,
+     "why": "score 5/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 3,
+     "why": "score 3/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 4,
+     "why": "score 4/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 4,
+     "why": "score 4/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 5,
+     "why": "score 5/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 3,
+     "why": "score 3/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "DE",
+     "shape": "standard head geometry, no market-specific change",
+     "blade": "bow-tine head, 300 mm",
+     "handle": "ash wood",
+     "length": "1500 mm",
+     "why": "strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail; standard head geometry, no market-specific change.",
+     "src": "OBI/Hornbach top sellers 2025"
+    },
+    {
+     "market": "FR",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "bow-tine head, 300 mm",
+     "handle": "ash wood",
+     "length": "1650 mm",
+     "why": "garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Common on construction sites for light digging outside gardening.",
+   "packaging": [
+    "inner: 12 pcs/poly bag, header card",
+    "carton: 48 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 36 ctn/pallet"
+   ],
+   "img": "images/catalog/rake-bow.svg",
+   "tags": [
+    "bow rake",
+    "soil leveling"
+   ]
+  },
+  {
+   "id": "spade-border",
+   "axis": "ground",
+   "sub": "spade",
+   "name": "Border spade",
+   "origin": "TW",
+   "why_origin": "Head-and-handle forging and heat-treat capability is concentrated in Taiwan's hand-tool cluster, giving tighter edge geometry than commodity casting; finished-tool HS coding also carries lower EU/US tariff exposure than raw-steel imports.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "950 mm",
+    "blade": "flat blade, 140×230 mm",
+    "material": "carbon steel, powder coat",
+    "handle": "ash wood, D-grip",
+    "weight": "1400 g"
+   },
+   "index": {
+    "TW": {
+     "value": 113,
+     "trend": "up",
+     "reason": "hot-rolled steel bar up, TWD firm"
+    },
+    "CN": {
+     "value": 117,
+     "trend": "up",
+     "reason": "cold-rolled sheet up on export-rebate change"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 5,
+     "why": "score 5/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 4,
+     "why": "score 4/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 4,
+     "why": "score 4/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 2,
+     "why": "score 2/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 4,
+     "why": "score 4/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 5,
+     "why": "score 5/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 3,
+     "why": "score 3/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 4,
+     "why": "score 4/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 2,
+     "why": "score 2/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "US",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "flat blade, 140×230 mm",
+     "handle": "ash wood, D-grip",
+     "length": "1045 mm",
+     "why": "large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning; wider head/blade profile for larger beds and plot work.",
+     "src": "Home Depot/Lowe's assortment 2025"
+    },
+    {
+     "market": "PL",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "flat blade, 140×230 mm",
+     "handle": "ash wood, D-grip",
+     "length": "1045 mm",
+     "why": "rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin Polska/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Common on construction sites for light digging outside gardening.",
+   "packaging": [
+    "inner: 24 pcs/poly bag, header card",
+    "carton: 96 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 24 ctn/pallet"
+   ],
+   "img": "images/catalog/spade-border.svg",
+   "tags": [
+    "border spade",
+    "edging",
+    "compact"
+   ]
+  },
+  {
+   "id": "trowel-hand",
+   "axis": "ground",
+   "sub": "trowel",
+   "name": "Hand trowel",
+   "origin": "TW",
+   "why_origin": "Taiwan's forging base supports small-batch, tight-tolerance production for this head shape; unit freight cost is low relative to bulkier packaging SKUs, so origin is driven by tooling quality rather than shipping weight.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": "trowel-hand-pro",
+   "specs": {
+    "length": "280 mm",
+    "blade": "flat blade, 90 mm",
+    "material": "carbon steel",
+    "handle": "ash wood",
+    "weight": "150 g"
+   },
+   "index": {
+    "TW": {
+     "value": 110,
+     "trend": "up",
+     "reason": "hot-rolled steel bar up, TWD firm"
+    },
+    "CN": {
+     "value": 114,
+     "trend": "up",
+     "reason": "cold-rolled sheet up on export-rebate change"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 4,
+     "why": "score 4/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 4,
+     "why": "score 4/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 4,
+     "why": "score 4/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 4,
+     "why": "score 4/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 4,
+     "why": "score 4/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 4,
+     "why": "score 4/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 3,
+     "why": "score 3/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 4,
+     "why": "score 4/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 4,
+     "why": "score 4/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "US",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "flat blade, 90 mm",
+     "handle": "ash wood",
+     "length": "308 mm",
+     "why": "large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning; wider head/blade profile for larger beds and plot work.",
+     "src": "Home Depot/Lowe's assortment 2025"
+    },
+    {
+     "market": "DE",
+     "shape": "standard head geometry, no market-specific change",
+     "blade": "flat blade, 90 mm",
+     "handle": "ash wood",
+     "length": "280 mm",
+     "why": "strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail; standard head geometry, no market-specific change.",
+     "src": "OBI/Hornbach top sellers 2025"
+    }
+   ],
+   "elsewhere": "Used in masonry-adjacent bedding-in work and potting/greenhouse operations.",
+   "packaging": [
+    "inner: 1 pc/blister card, 3×6 per display box",
+    "carton: 72 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 30 ctn/pallet"
+   ],
+   "img": "images/catalog/trowel-hand.svg",
+   "tags": [
+    "trowel",
+    "planting",
+    "hand tool"
+   ]
+  },
+  {
+   "id": "trowel-hand-pro",
+   "axis": "ground",
+   "sub": "trowel",
+   "name": "Hand trowel, pro",
+   "origin": "TW",
+   "why_origin": "Taiwan's forging base supports small-batch, tight-tolerance production for this head shape; unit freight cost is low relative to bulkier packaging SKUs, so origin is driven by tooling quality rather than shipping weight.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "pro",
+   "alt_tier_id": "trowel-hand",
+   "specs": {
+    "length": "290 mm",
+    "blade": "flat blade, one-piece forged, 95 mm",
+    "material": "high-carbon forged steel",
+    "handle": "one-piece forged, rubberized grip",
+    "weight": "195 g"
+   },
+   "index": {
+    "TW": {
+     "value": 106,
+     "trend": "up",
+     "reason": "alloy steel billet up on export demand"
+    },
+    "CN": {
+     "value": 110,
+     "trend": "up",
+     "reason": "rebar-linked steel index up, RMB steady"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 3,
+     "why": "score 3/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 3,
+     "why": "score 3/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 3,
+     "why": "score 3/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 5,
+     "why": "score 5/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 3,
+     "why": "score 3/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 5,
+     "why": "score 5/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 3,
+     "why": "score 3/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 5,
+     "why": "score 5/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "NL",
+     "shape": "compact head, shortened reach for small-plot/balcony use",
+     "blade": "flat blade, one-piece forged, 95 mm",
+     "handle": "one-piece forged, rubberized grip",
+     "length": "261 mm",
+     "why": "high density of allotment/balcony gardens, EAN-13 retail; compact head, shortened reach for small-plot/balcony use.",
+     "src": "Praxis/Gamma assortment 2025"
+    },
+    {
+     "market": "UK",
+     "shape": "compact head, shortened reach for small-plot/balcony use",
+     "blade": "flat blade, one-piece forged, 95 mm",
+     "handle": "one-piece forged, rubberized grip",
+     "length": "261 mm",
+     "why": "large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking; compact head, shortened reach for small-plot/balcony use.",
+     "src": "B&Q/Wickes range 2025"
+    }
+   ],
+   "elsewhere": "Used in masonry-adjacent bedding-in work and potting/greenhouse operations.",
+   "packaging": [
+    "inner: 1 pc/blister card, 3×6 per display box",
+    "carton: 72 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 36 ctn/pallet"
+   ],
+   "img": "images/catalog/trowel-hand-pro.svg",
+   "tags": [
+    "trowel",
+    "planting",
+    "pro"
+   ]
+  },
+  {
+   "id": "fork-hand",
+   "axis": "ground",
+   "sub": "trowel",
+   "name": "Hand fork",
+   "origin": "TW",
+   "why_origin": "Head-and-handle forging and heat-treat capability is concentrated in Taiwan's hand-tool cluster, giving tighter edge geometry than commodity casting; finished-tool HS coding also carries lower EU/US tariff exposure than raw-steel imports.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "280 mm",
+    "blade": "3-tine hand fork, 90 mm",
+    "material": "carbon steel",
+    "handle": "ash wood",
+    "weight": "150 g"
+   },
+   "index": {
+    "TW": {
+     "value": 96,
+     "trend": "down",
+     "reason": "carbon steel softer on weak export orders"
+    },
+    "CN": {
+     "value": 100,
+     "trend": "flat",
+     "reason": "steel input flat, RMB stable"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 2,
+     "why": "score 2/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 5,
+     "why": "score 5/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 5,
+     "why": "score 5/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 5,
+     "why": "score 5/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 2,
+     "why": "score 2/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 4,
+     "why": "score 4/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 5,
+     "why": "score 5/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 5,
+     "why": "score 5/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "DE",
+     "shape": "standard head geometry, no market-specific change",
+     "blade": "3-tine hand fork, 90 mm",
+     "handle": "ash wood",
+     "length": "280 mm",
+     "why": "strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail; standard head geometry, no market-specific change.",
+     "src": "OBI/Hornbach top sellers 2025"
+    },
+    {
+     "market": "FR",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "3-tine hand fork, 90 mm",
+     "handle": "ash wood",
+     "length": "308 mm",
+     "why": "garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Common in nursery and greenhouse potting beyond home gardens.",
+   "packaging": [
+    "inner: 1 pc/blister card, 2×6 per display box",
+    "carton: 48 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 24 ctn/pallet"
+   ],
+   "img": "images/catalog/fork-hand.svg",
+   "tags": [
+    "hand fork",
+    "cultivating",
+    "planting"
+   ]
+  },
+  {
+   "id": "pruner-bypass",
+   "axis": "cut",
+   "sub": "pruner",
+   "name": "Bypass pruner",
+   "origin": "TW",
+   "why_origin": "This mechanism needs matched blade-to-anvil/bypass tolerance at assembly; Taiwan's precision stamping and QC base supports that consistency better than commodity-tier tooling.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": "pruner-bypass-pro",
+   "specs": {
+    "length": "205 mm",
+    "blade": "bypass, 25 mm cut capacity",
+    "material": "SK5 carbon steel blade",
+    "handle": "aluminum, cushioned grip",
+    "weight": "180 g"
+   },
+   "index": {
+    "TW": {
+     "value": 109,
+     "trend": "up",
+     "reason": "alloy steel billet up on export demand"
+    },
+    "CN": {
+     "value": 113,
+     "trend": "up",
+     "reason": "rebar-linked steel index up, RMB steady"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 4,
+     "why": "score 4/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 4,
+     "why": "score 4/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 3,
+     "why": "score 3/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 5,
+     "why": "score 5/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 3,
+     "why": "score 3/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 5,
+     "why": "score 5/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 3,
+     "why": "score 3/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 5,
+     "why": "score 5/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "NL",
+     "shape": "compact head, shortened reach for small-plot/balcony use",
+     "blade": "bypass, 25 mm cut capacity",
+     "handle": "aluminum, cushioned grip",
+     "length": "185 mm",
+     "why": "high density of allotment/balcony gardens, EAN-13 retail; compact head, shortened reach for small-plot/balcony use.",
+     "src": "Praxis/Gamma assortment 2025"
+    },
+    {
+     "market": "UK",
+     "shape": "compact head, shortened reach for small-plot/balcony use",
+     "blade": "bypass, 25 mm cut capacity",
+     "handle": "aluminum, cushioned grip",
+     "length": "185 mm",
+     "why": "large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking; compact head, shortened reach for small-plot/balcony use.",
+     "src": "B&Q/Wickes range 2025"
+    }
+   ],
+   "elsewhere": "Used in orchard and vineyard maintenance beyond ornamental gardening.",
+   "packaging": [
+    "inner: 6 pcs/poly bag, header card",
+    "carton: 24 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 36 ctn/pallet"
+   ],
+   "img": "images/catalog/pruner-bypass.svg",
+   "tags": [
+    "pruner",
+    "bypass",
+    "secateurs"
+   ]
+  },
+  {
+   "id": "pruner-bypass-pro",
+   "axis": "cut",
+   "sub": "pruner",
+   "name": "Bypass pruner, pro",
+   "origin": "TW",
+   "why_origin": "This mechanism needs matched blade-to-anvil/bypass tolerance at assembly; Taiwan's precision stamping and QC base supports that consistency better than commodity-tier tooling.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "pro",
+   "alt_tier_id": "pruner-bypass",
+   "specs": {
+    "length": "210 mm",
+    "blade": "bypass, 28 mm cut capacity, PTFE-coated",
+    "material": "high-carbon forged steel blade",
+    "handle": "forged aluminum, rotating grip",
+    "weight": "210 g"
+   },
+   "index": {
+    "TW": {
+     "value": 112,
+     "trend": "up",
+     "reason": "alloy steel billet up on export demand"
+    },
+    "CN": {
+     "value": 116,
+     "trend": "up",
+     "reason": "rebar-linked steel index up, RMB steady"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 4,
+     "why": "score 4/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 4,
+     "why": "score 4/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 3,
+     "why": "score 3/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 5,
+     "why": "score 5/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 3,
+     "why": "score 3/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 5,
+     "why": "score 5/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 3,
+     "why": "score 3/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 5,
+     "why": "score 5/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "NL",
+     "shape": "compact head, shortened reach for small-plot/balcony use",
+     "blade": "bypass, 28 mm cut capacity, PTFE-coated",
+     "handle": "forged aluminum, rotating grip",
+     "length": "189 mm",
+     "why": "high density of allotment/balcony gardens, EAN-13 retail; compact head, shortened reach for small-plot/balcony use.",
+     "src": "Praxis/Gamma assortment 2025"
+    },
+    {
+     "market": "UK",
+     "shape": "compact head, shortened reach for small-plot/balcony use",
+     "blade": "bypass, 28 mm cut capacity, PTFE-coated",
+     "handle": "forged aluminum, rotating grip",
+     "length": "189 mm",
+     "why": "large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking; compact head, shortened reach for small-plot/balcony use.",
+     "src": "B&Q/Wickes range 2025"
+    }
+   ],
+   "elsewhere": "Used in orchard and vineyard maintenance beyond ornamental gardening.",
+   "packaging": [
+    "inner: 6 pcs/poly bag, header card",
+    "carton: 24 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 30 ctn/pallet"
+   ],
+   "img": "images/catalog/pruner-bypass-pro.svg",
+   "tags": [
+    "pruner",
+    "bypass",
+    "pro"
+   ]
+  },
+  {
+   "id": "pruner-anvil",
+   "axis": "cut",
+   "sub": "pruner",
+   "name": "Anvil pruner",
+   "origin": "TW",
+   "why_origin": "This mechanism needs matched blade-to-anvil/bypass tolerance at assembly; Taiwan's precision stamping and QC base supports that consistency better than commodity-tier tooling.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "205 mm",
+    "blade": "anvil, 25 mm cut capacity",
+    "material": "carbon steel blade",
+    "handle": "aluminum, cushioned grip",
+    "weight": "190 g"
+   },
+   "index": {
+    "TW": {
+     "value": 92,
+     "trend": "down",
+     "reason": "steel bar easing, mill discounts"
+    },
+    "CN": {
+     "value": 96,
+     "trend": "down",
+     "reason": "flat steel easing, RMB weaker"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 5,
+     "why": "score 5/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 5,
+     "why": "score 5/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 4,
+     "why": "score 4/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 3,
+     "why": "score 3/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 3,
+     "why": "score 3/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 4,
+     "why": "score 4/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 3,
+     "why": "score 3/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 4,
+     "why": "score 4/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 4,
+     "why": "score 4/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "US",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "anvil, 25 mm cut capacity",
+     "handle": "aluminum, cushioned grip",
+     "length": "226 mm",
+     "why": "large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning; wider head/blade profile for larger beds and plot work.",
+     "src": "Home Depot/Lowe's assortment 2025"
+    },
+    {
+     "market": "DE",
+     "shape": "standard head geometry, no market-specific change",
+     "blade": "anvil, 25 mm cut capacity",
+     "handle": "aluminum, cushioned grip",
+     "length": "205 mm",
+     "why": "strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail; standard head geometry, no market-specific change.",
+     "src": "OBI/Hornbach top sellers 2025"
+    }
+   ],
+   "elsewhere": "Used in orchard and vineyard maintenance beyond ornamental gardening.",
+   "packaging": [
+    "inner: 18 pcs/poly bag, header card",
+    "carton: 72 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 36 ctn/pallet"
+   ],
+   "img": "images/catalog/pruner-anvil.svg",
+   "tags": [
+    "pruner",
+    "anvil",
+    "deadwood"
+   ]
+  },
+  {
+   "id": "pruner-ratchet",
+   "axis": "cut",
+   "sub": "pruner",
+   "name": "Ratchet pruner",
+   "origin": "CN",
+   "why_origin": "Mechanism relies on die-cast and extruded-aluminum components where China's tooling amortization and material cost base beat Taiwan on a price-point, high-volume line; cutting-edge tolerance requirement is lower than the precision-tier SKU.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "210 mm",
+    "blade": "ratchet anvil, 20 mm cut capacity",
+    "material": "carbon steel blade",
+    "handle": "PP/steel, cushioned grip",
+    "weight": "220 g"
+   },
+   "index": {
+    "TW": {
+     "value": 98,
+     "trend": "flat",
+     "reason": "forging cost flat month on month"
+    },
+    "CN": {
+     "value": 102,
+     "trend": "flat",
+     "reason": "steel input flat, RMB stable"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 5,
+     "why": "score 5/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 5,
+     "why": "score 5/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 4,
+     "why": "score 4/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 3,
+     "why": "score 3/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 3,
+     "why": "score 3/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 4,
+     "why": "score 4/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 3,
+     "why": "score 3/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 4,
+     "why": "score 4/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 4,
+     "why": "score 4/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "US",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "ratchet anvil, 20 mm cut capacity",
+     "handle": "PP/steel, cushioned grip",
+     "length": "231 mm",
+     "why": "large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning; wider head/blade profile for larger beds and plot work.",
+     "src": "Home Depot/Lowe's assortment 2025"
+    },
+    {
+     "market": "DE",
+     "shape": "standard head geometry, no market-specific change",
+     "blade": "ratchet anvil, 20 mm cut capacity",
+     "handle": "PP/steel, cushioned grip",
+     "length": "210 mm",
+     "why": "strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail; standard head geometry, no market-specific change.",
+     "src": "OBI/Hornbach top sellers 2025"
+    }
+   ],
+   "elsewhere": "Standard tool for arborist and municipal tree-crew light pruning.",
+   "packaging": [
+    "inner: 24 pcs/poly bag, header card",
+    "carton: 96 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 24 ctn/pallet"
+   ],
+   "img": "images/catalog/pruner-ratchet.svg",
+   "tags": [
+    "pruner",
+    "ratchet",
+    "low-effort"
+   ]
+  },
+  {
+   "id": "lopper-bypass",
+   "axis": "cut",
+   "sub": "lopper",
+   "name": "Bypass lopper",
+   "origin": "TW",
+   "why_origin": "This mechanism needs matched blade-to-anvil/bypass tolerance at assembly; Taiwan's precision stamping and QC base supports that consistency better than commodity-tier tooling.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "650 mm",
+    "blade": "bypass, 38 mm cut capacity",
+    "material": "SK5 carbon steel blade",
+    "handle": "fiberglass core, rubber grip",
+    "weight": "900 g"
+   },
+   "index": {
+    "TW": {
+     "value": 105,
+     "trend": "up",
+     "reason": "forging-grade carbon steel up, energy cost pass-through"
+    },
+    "CN": {
+     "value": 109,
+     "trend": "up",
+     "reason": "forging steel up, coastal energy cost"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 3,
+     "why": "score 3/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 5,
+     "why": "score 5/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 5,
+     "why": "score 5/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 4,
+     "why": "score 4/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 2,
+     "why": "score 2/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 4,
+     "why": "score 4/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 5,
+     "why": "score 5/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 2,
+     "why": "score 2/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "DE",
+     "shape": "standard head geometry, no market-specific change",
+     "blade": "bypass, 38 mm cut capacity",
+     "handle": "fiberglass core, rubber grip",
+     "length": "650 mm",
+     "why": "strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail; standard head geometry, no market-specific change.",
+     "src": "OBI/Hornbach top sellers 2025"
+    },
+    {
+     "market": "FR",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "bypass, 38 mm cut capacity",
+     "handle": "fiberglass core, rubber grip",
+     "length": "715 mm",
+     "why": "garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Used in orchard thinning and municipal park maintenance.",
+   "packaging": [
+    "inner: 6 pcs/poly bag, header card",
+    "carton: 24 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 24 ctn/pallet"
+   ],
+   "img": "images/catalog/lopper-bypass.svg",
+   "tags": [
+    "lopper",
+    "bypass",
+    "branch"
+   ]
+  },
+  {
+   "id": "lopper-telescopic",
+   "axis": "cut",
+   "sub": "lopper",
+   "name": "Telescopic lopper",
+   "origin": "CN",
+   "why_origin": "Mechanism relies on die-cast and extruded-aluminum components where China's tooling amortization and material cost base beat Taiwan on a price-point, high-volume line; cutting-edge tolerance requirement is lower than the precision-tier SKU.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "650-950 mm telescoping",
+    "blade": "bypass, 32 mm cut capacity",
+    "material": "carbon steel blade",
+    "handle": "aluminum telescoping tube",
+    "weight": "1050 g"
+   },
+   "index": {
+    "TW": {
+     "value": 114,
+     "trend": "up",
+     "reason": "aluminum extrusion up, LME firmer"
+    },
+    "CN": {
+     "value": 118,
+     "trend": "up",
+     "reason": "aluminum billet up, export-tax change"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 3,
+     "why": "score 3/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 5,
+     "why": "score 5/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 5,
+     "why": "score 5/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 4,
+     "why": "score 4/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 2,
+     "why": "score 2/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 4,
+     "why": "score 4/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 5,
+     "why": "score 5/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 2,
+     "why": "score 2/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "DE",
+     "shape": "standard head geometry, no market-specific change",
+     "blade": "bypass, 32 mm cut capacity",
+     "handle": "aluminum telescoping tube",
+     "length": "650-950 mm telescoping",
+     "why": "strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail; standard head geometry, no market-specific change.",
+     "src": "OBI/Hornbach top sellers 2025"
+    },
+    {
+     "market": "FR",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "bypass, 32 mm cut capacity",
+     "handle": "aluminum telescoping tube",
+     "length": "650-1045 mm telescoping",
+     "why": "garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Common in vineyard and small-orchard trade use.",
+   "packaging": [
+    "inner: 12 pcs/poly bag, header card",
+    "carton: 48 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 24 ctn/pallet"
+   ],
+   "img": "images/catalog/lopper-telescopic.svg",
+   "tags": [
+    "lopper",
+    "telescopic",
+    "reach"
+   ]
+  },
+  {
+   "id": "shear-hedge",
+   "axis": "cut",
+   "sub": "shear",
+   "name": "Hedge shear",
+   "origin": "TW",
+   "why_origin": "This mechanism needs matched blade-to-anvil/bypass tolerance at assembly; Taiwan's precision stamping and QC base supports that consistency better than commodity-tier tooling.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": "shear-hedge-pro",
+   "specs": {
+    "length": "620 mm",
+    "blade": "wavy-edge, 200 mm",
+    "material": "carbon steel blade",
+    "handle": "aluminum, cushioned grip",
+    "weight": "800 g"
+   },
+   "index": {
+    "TW": {
+     "value": 109,
+     "trend": "up",
+     "reason": "alloy steel billet up on export demand"
+    },
+    "CN": {
+     "value": 113,
+     "trend": "up",
+     "reason": "rebar-linked steel index up, RMB steady"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 3,
+     "why": "score 3/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 4,
+     "why": "score 4/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 4,
+     "why": "score 4/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 5,
+     "why": "score 5/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 3,
+     "why": "score 3/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 5,
+     "why": "score 5/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 3,
+     "why": "score 3/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 5,
+     "why": "score 5/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "NL",
+     "shape": "compact head, shortened reach for small-plot/balcony use",
+     "blade": "wavy-edge, 200 mm",
+     "handle": "aluminum, cushioned grip",
+     "length": "558 mm",
+     "why": "high density of allotment/balcony gardens, EAN-13 retail; compact head, shortened reach for small-plot/balcony use.",
+     "src": "Praxis/Gamma assortment 2025"
+    },
+    {
+     "market": "UK",
+     "shape": "compact head, shortened reach for small-plot/balcony use",
+     "blade": "wavy-edge, 200 mm",
+     "handle": "aluminum, cushioned grip",
+     "length": "558 mm",
+     "why": "large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking; compact head, shortened reach for small-plot/balcony use.",
+     "src": "B&Q/Wickes range 2025"
+    }
+   ],
+   "elsewhere": "Used by landscaping contractors for commercial hedge maintenance.",
+   "packaging": [
+    "inner: 6 pcs/poly bag, header card",
+    "carton: 24 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 36 ctn/pallet"
+   ],
+   "img": "images/catalog/shear-hedge.svg",
+   "tags": [
+    "hedge shear",
+    "trimming"
+   ]
+  },
+  {
+   "id": "shear-hedge-pro",
+   "axis": "cut",
+   "sub": "shear",
+   "name": "Hedge shear, pro",
+   "origin": "TW",
+   "why_origin": "This mechanism needs matched blade-to-anvil/bypass tolerance at assembly; Taiwan's precision stamping and QC base supports that consistency better than commodity-tier tooling.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "pro",
+   "alt_tier_id": "shear-hedge",
+   "specs": {
+    "length": "650 mm",
+    "blade": "wavy-edge, notch cutter, 220 mm, PTFE-coated",
+    "material": "high-carbon forged steel blade",
+    "handle": "forged aluminum, shock-absorb grip",
+    "weight": "870 g"
+   },
+   "index": {
+    "TW": {
+     "value": 109,
+     "trend": "up",
+     "reason": "alloy steel billet up on export demand"
+    },
+    "CN": {
+     "value": 113,
+     "trend": "up",
+     "reason": "rebar-linked steel index up, RMB steady"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 3,
+     "why": "score 3/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 4,
+     "why": "score 4/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 4,
+     "why": "score 4/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 5,
+     "why": "score 5/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 3,
+     "why": "score 3/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 5,
+     "why": "score 5/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 3,
+     "why": "score 3/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 5,
+     "why": "score 5/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "NL",
+     "shape": "compact head, shortened reach for small-plot/balcony use",
+     "blade": "wavy-edge, notch cutter, 220 mm, PTFE-coated",
+     "handle": "forged aluminum, shock-absorb grip",
+     "length": "585 mm",
+     "why": "high density of allotment/balcony gardens, EAN-13 retail; compact head, shortened reach for small-plot/balcony use.",
+     "src": "Praxis/Gamma assortment 2025"
+    },
+    {
+     "market": "UK",
+     "shape": "compact head, shortened reach for small-plot/balcony use",
+     "blade": "wavy-edge, notch cutter, 220 mm, PTFE-coated",
+     "handle": "forged aluminum, shock-absorb grip",
+     "length": "585 mm",
+     "why": "large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking; compact head, shortened reach for small-plot/balcony use.",
+     "src": "B&Q/Wickes range 2025"
+    }
+   ],
+   "elsewhere": "Used by landscaping contractors for commercial hedge maintenance.",
+   "packaging": [
+    "inner: 6 pcs/poly bag, header card",
+    "carton: 24 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 36 ctn/pallet"
+   ],
+   "img": "images/catalog/shear-hedge-pro.svg",
+   "tags": [
+    "hedge shear",
+    "pro"
+   ]
+  },
+  {
+   "id": "shear-grass",
+   "axis": "cut",
+   "sub": "shear",
+   "name": "Grass shear",
+   "origin": "CN",
+   "why_origin": "Mechanism relies on die-cast and extruded-aluminum components where China's tooling amortization and material cost base beat Taiwan on a price-point, high-volume line; cutting-edge tolerance requirement is lower than the precision-tier SKU.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "330 mm",
+    "blade": "wavy-edge, 130 mm",
+    "material": "carbon steel blade",
+    "handle": "PP, cushioned grip",
+    "weight": "420 g"
+   },
+   "index": {
+    "TW": {
+     "value": 103,
+     "trend": "flat",
+     "reason": "forging cost flat month on month"
+    },
+    "CN": {
+     "value": 107,
+     "trend": "up",
+     "reason": "rebar-linked steel index up, RMB steady"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 3,
+     "why": "score 3/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 4,
+     "why": "score 4/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 4,
+     "why": "score 4/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 5,
+     "why": "score 5/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 3,
+     "why": "score 3/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 5,
+     "why": "score 5/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 3,
+     "why": "score 3/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 5,
+     "why": "score 5/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "NL",
+     "shape": "compact head, shortened reach for small-plot/balcony use",
+     "blade": "wavy-edge, 130 mm",
+     "handle": "PP, cushioned grip",
+     "length": "297 mm",
+     "why": "high density of allotment/balcony gardens, EAN-13 retail; compact head, shortened reach for small-plot/balcony use.",
+     "src": "Praxis/Gamma assortment 2025"
+    },
+    {
+     "market": "UK",
+     "shape": "compact head, shortened reach for small-plot/balcony use",
+     "blade": "wavy-edge, 130 mm",
+     "handle": "PP, cushioned grip",
+     "length": "297 mm",
+     "why": "large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking; compact head, shortened reach for small-plot/balcony use.",
+     "src": "B&Q/Wickes range 2025"
+    }
+   ],
+   "elsewhere": "Common in municipal parks and golf-course edge trimming.",
+   "packaging": [
+    "inner: 12 pcs/poly bag, header card",
+    "carton: 48 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 36 ctn/pallet"
+   ],
+   "img": "images/catalog/shear-grass.svg",
+   "tags": [
+    "grass shear",
+    "edging",
+    "lawn"
+   ]
+  },
+  {
+   "id": "saw-folding",
+   "axis": "cut",
+   "sub": "saw",
+   "name": "Folding pruning saw",
+   "origin": "TW",
+   "why_origin": "This mechanism needs matched blade-to-anvil/bypass tolerance at assembly; Taiwan's precision stamping and QC base supports that consistency better than commodity-tier tooling.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "210 mm folded / 330 mm open",
+    "blade": "curved pull-stroke, 7 TPI",
+    "material": "SK5 carbon steel blade",
+    "handle": "PP/rubber, lockback",
+    "weight": "180 g"
+   },
+   "index": {
+    "TW": {
+     "value": 116,
+     "trend": "up",
+     "reason": "hot-rolled steel bar up, TWD firm"
+    },
+    "CN": {
+     "value": 93,
+     "trend": "down",
+     "reason": "flat steel easing, RMB weaker"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 5,
+     "why": "score 5/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 4,
+     "why": "score 4/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 5,
+     "why": "score 5/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 2,
+     "why": "score 2/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 2,
+     "why": "score 2/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 5,
+     "why": "score 5/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 4,
+     "why": "score 4/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 5,
+     "why": "score 5/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 2,
+     "why": "score 2/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "US",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "curved pull-stroke, 7 TPI",
+     "handle": "PP/rubber, lockback",
+     "length": "231 mm folded / 330 mm open",
+     "why": "large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning; wider head/blade profile for larger beds and plot work.",
+     "src": "Home Depot/Lowe's assortment 2025"
+    },
+    {
+     "market": "FR",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "curved pull-stroke, 7 TPI",
+     "handle": "PP/rubber, lockback",
+     "length": "231 mm folded / 330 mm open",
+     "why": "garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Used in arborist light-limb work and general outdoor maintenance.",
+   "packaging": [
+    "inner: 6 pcs/poly bag, header card",
+    "carton: 24 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 24 ctn/pallet"
+   ],
+   "img": "images/catalog/saw-folding.svg",
+   "tags": [
+    "pruning saw",
+    "folding",
+    "branch"
+   ]
+  },
+  {
+   "id": "saw-pole",
+   "axis": "cut",
+   "sub": "saw",
+   "name": "Pole saw",
+   "origin": "CN",
+   "why_origin": "Mechanism relies on die-cast and extruded-aluminum components where China's tooling amortization and material cost base beat Taiwan on a price-point, high-volume line; cutting-edge tolerance requirement is lower than the precision-tier SKU.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "1800-3000 mm telescoping",
+    "blade": "curved pull-stroke, 6 TPI",
+    "material": "carbon steel blade",
+    "handle": "aluminum telescoping pole",
+    "weight": "1400 g"
+   },
+   "index": {
+    "TW": {
+     "value": 94,
+     "trend": "down",
+     "reason": "aluminum tube softer, LME down"
+    },
+    "CN": {
+     "value": 98,
+     "trend": "flat",
+     "reason": "aluminum flat, RMB stable"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 4,
+     "why": "score 4/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 3,
+     "why": "score 3/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 4,
+     "why": "score 4/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 4,
+     "why": "score 4/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 4,
+     "why": "score 4/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 4,
+     "why": "score 4/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 5,
+     "why": "score 5/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 4,
+     "why": "score 4/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 4,
+     "why": "score 4/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "IT",
+     "shape": "standard head geometry, no market-specific change",
+     "blade": "curved pull-stroke, 6 TPI",
+     "handle": "aluminum telescoping pole",
+     "length": "1800-3000 mm telescoping",
+     "why": "orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail; standard head geometry, no market-specific change.",
+     "src": "Brico io/Leroy Merlin Italia assortment 2025"
+    },
+    {
+     "market": "US",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "curved pull-stroke, 6 TPI",
+     "handle": "aluminum telescoping pole",
+     "length": "1800-3300 mm telescoping",
+     "why": "large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning; wider head/blade profile for larger beds and plot work.",
+     "src": "Home Depot/Lowe's assortment 2025"
+    }
+   ],
+   "elsewhere": "Common on camping/homestead sites for light branch cutting.",
+   "packaging": [
+    "inner: 24 pcs/poly bag, header card",
+    "carton: 96 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 24 ctn/pallet"
+   ],
+   "img": "images/catalog/saw-pole.svg",
+   "tags": [
+    "pole saw",
+    "reach",
+    "tree care"
+   ]
+  },
+  {
+   "id": "snip-floral",
+   "axis": "cut",
+   "sub": "snip",
+   "name": "Floral snip",
+   "origin": "TW",
+   "why_origin": "This mechanism needs matched blade-to-anvil/bypass tolerance at assembly; Taiwan's precision stamping and QC base supports that consistency better than commodity-tier tooling.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "170 mm",
+    "blade": "straight micro-tip, 40 mm",
+    "material": "stainless steel blade",
+    "handle": "PP, spring-loaded",
+    "weight": "70 g"
+   },
+   "index": {
+    "TW": {
+     "value": 102,
+     "trend": "flat",
+     "reason": "steel input steady, TWD range-bound"
+    },
+    "CN": {
+     "value": 106,
+     "trend": "up",
+     "reason": "forging steel up, coastal energy cost"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 2,
+     "why": "score 2/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 5,
+     "why": "score 5/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 5,
+     "why": "score 5/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 5,
+     "why": "score 5/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 4,
+     "why": "score 4/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 2,
+     "why": "score 2/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 3,
+     "why": "score 3/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 4,
+     "why": "score 4/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 4,
+     "why": "score 4/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "DE",
+     "shape": "standard head geometry, no market-specific change",
+     "blade": "straight micro-tip, 40 mm",
+     "handle": "PP, spring-loaded",
+     "length": "170 mm",
+     "why": "strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail; standard head geometry, no market-specific change.",
+     "src": "OBI/Hornbach top sellers 2025"
+    },
+    {
+     "market": "FR",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "straight micro-tip, 40 mm",
+     "handle": "PP, spring-loaded",
+     "length": "187 mm",
+     "why": "garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Used in floristry and market-garden harvest packing beyond home gardening.",
+   "packaging": [
+    "inner: 1 pc/blister card, 3×6 per display box",
+    "carton: 72 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 30 ctn/pallet"
+   ],
+   "img": "images/catalog/snip-floral.svg",
+   "tags": [
+    "floral snip",
+    "cut flower",
+    "precision"
+   ]
+  },
+  {
+   "id": "snip-harvest",
+   "axis": "cut",
+   "sub": "snip",
+   "name": "Harvest snip",
+   "origin": "TW",
+   "why_origin": "Blade-and-spring assembly for this cutting mechanism is a Taiwan hand-tool specialty (stamping, heat-treat, pivot-fit); holding cutting-edge tolerance is harder on lower-cost commodity tooling.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "150 mm",
+    "blade": "curved micro-tip, 35 mm",
+    "material": "stainless steel blade",
+    "handle": "PP, spring-loaded",
+    "weight": "60 g"
+   },
+   "index": {
+    "TW": {
+     "value": 99,
+     "trend": "flat",
+     "reason": "forging cost flat month on month"
+    },
+    "CN": {
+     "value": 103,
+     "trend": "flat",
+     "reason": "steel input flat, RMB stable"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 2,
+     "why": "score 2/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 5,
+     "why": "score 5/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 5,
+     "why": "score 5/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 5,
+     "why": "score 5/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 4,
+     "why": "score 4/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 2,
+     "why": "score 2/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 3,
+     "why": "score 3/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 4,
+     "why": "score 4/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 4,
+     "why": "score 4/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "DE",
+     "shape": "standard head geometry, no market-specific change",
+     "blade": "curved micro-tip, 35 mm",
+     "handle": "PP, spring-loaded",
+     "length": "150 mm",
+     "why": "strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail; standard head geometry, no market-specific change.",
+     "src": "OBI/Hornbach top sellers 2025"
+    },
+    {
+     "market": "FR",
+     "shape": "wider head/blade profile for larger beds and plot work",
+     "blade": "curved micro-tip, 35 mm",
+     "handle": "PP, spring-loaded",
+     "length": "165 mm",
+     "why": "garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling; wider head/blade profile for larger beds and plot work.",
+     "src": "Leroy Merlin/Castorama assortment 2025"
+    }
+   ],
+   "elsewhere": "Common in greenhouse cut-flower and herb harvest operations.",
+   "packaging": [
+    "inner: 1 pc/blister card, 2×6 per display box",
+    "carton: 48 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 30 ctn/pallet"
+   ],
+   "img": "images/catalog/snip-harvest.svg",
+   "tags": [
+    "harvest snip",
+    "herb",
+    "vegetable"
+   ]
+  },
+  {
+   "id": "pallet-wood-eur",
+   "axis": "pack",
+   "sub": "pallet",
+   "name": "EUR wood pallet",
+   "origin": "CN",
+   "why_origin": "Molded/stamped commodity component with thin per-unit margin; sourcing follows China's resin/steel cost base and port proximity rather than precision-tooling considerations.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "pro",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "1200×800×144 mm",
+    "blade": null,
+    "material": "pine, kiln-dried, ISPM15 HT-stamped",
+    "handle": null,
+    "weight": "22 kg/pallet"
+   },
+   "index": {
+    "TW": {
+     "value": 111,
+     "trend": "up",
+     "reason": "import handle-stock lumber up, freight cost"
+    },
+    "CN": {
+     "value": 115,
+     "trend": "up",
+     "reason": "pallet-grade pine up, logging quota tighter"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 2,
+     "why": "off-standard vs local 48×40 in GMA pallet; requires conversion, added handling cost."
+    },
+    "DE": {
+     "score": 5,
+     "why": "matches 1200×800 mm EUR-pallet (EPAL) pool standard and PPWR reusable-pallet expectations."
+    },
+    "FR": {
+     "score": 5,
+     "why": "matches 1200×800 mm EUR-pallet (EPAL) pool standard and PPWR reusable-pallet expectations."
+    },
+    "NL": {
+     "score": 5,
+     "why": "matches 1200×800 mm EUR-pallet (EPAL) pool standard and PPWR reusable-pallet expectations."
+    },
+    "UK": {
+     "score": 5,
+     "why": "matches 1200×800 mm EUR-pallet (EPAL, accepted) pool standard and PPWR reusable-pallet expectations."
+    },
+    "PL": {
+     "score": 5,
+     "why": "matches 1200×800 mm EUR-pallet (EPAL) pool standard and PPWR reusable-pallet expectations."
+    },
+    "IT": {
+     "score": 5,
+     "why": "matches 1200×800 mm EUR-pallet (EPAL) pool standard and PPWR reusable-pallet expectations."
+    },
+    "ES": {
+     "score": 5,
+     "why": "matches 1200×800 mm EUR-pallet (EPAL) pool standard and PPWR reusable-pallet expectations."
+    },
+    "JP": {
+     "score": 2,
+     "why": "off-standard vs local 1100×1100 mm T11 pallet; requires conversion, added handling cost."
+    }
+   },
+   "variants": [
+    {
+     "market": "DE",
+     "shape": "four-way block pallet",
+     "blade": null,
+     "handle": null,
+     "length": "1200×800×144 mm, EPAL-stamped",
+     "why": "EPAL block-pallet pool exchange standard in DACH region.",
+     "src": "EPAL pallet pool spec 2025"
+    },
+    {
+     "market": "FR",
+     "shape": "four-way block pallet, HT stamp",
+     "blade": null,
+     "handle": null,
+     "length": "1200×800×144 mm",
+     "why": "ISPM15 heat-treat stamp required for cross-border pallet pool acceptance.",
+     "src": "Leroy Merlin/Castorama logistics spec 2025"
+    }
+   ],
+   "elsewhere": "Used across general warehouse and light-industrial goods movement, not just garden goods.",
+   "packaging": [
+    "inner: n/a, shipped as assembled unit",
+    "bundle: 20 pallets/banded stack, corner boards",
+    "container: approx. 22 bundles per 40 ft HC"
+   ],
+   "img": "images/catalog/pallet-wood-eur.svg",
+   "tags": [
+    "pallet",
+    "eur",
+    "wood",
+    "logistics"
+   ]
+  },
+  {
+   "id": "pallet-wood-gma",
+   "axis": "pack",
+   "sub": "pallet",
+   "name": "GMA wood pallet",
+   "origin": "CN",
+   "why_origin": "Bulky, low value-density item; China's material and labor cost base plus proximity to container ports keeps landed freight cost down for a commodity-spec SKU.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "pro",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "48×40×5.5 in (1219×1016×140 mm)",
+    "blade": null,
+    "material": "pine/mixed hardwood, ISPM15 HT-stamped",
+    "handle": null,
+    "weight": "25 kg/pallet"
+   },
+   "index": {
+    "TW": {
+     "value": 103,
+     "trend": "flat",
+     "reason": "handle lumber flat"
+    },
+    "CN": {
+     "value": 107,
+     "trend": "up",
+     "reason": "plywood block up on export demand"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 5,
+     "why": "sized to the 48×40 in GMA pallet standard used across US DIY distribution."
+    },
+    "DE": {
+     "score": 2,
+     "why": "off-standard vs local 1200×800 mm EUR-pallet (EPAL); not the default pool footprint."
+    },
+    "FR": {
+     "score": 2,
+     "why": "off-standard vs local 1200×800 mm EUR-pallet (EPAL); not the default pool footprint."
+    },
+    "NL": {
+     "score": 2,
+     "why": "off-standard vs local 1200×800 mm EUR-pallet (EPAL); not the default pool footprint."
+    },
+    "UK": {
+     "score": 2,
+     "why": "off-standard vs local 1200×800 mm EUR-pallet (EPAL, accepted); not the default pool footprint."
+    },
+    "PL": {
+     "score": 2,
+     "why": "off-standard vs local 1200×800 mm EUR-pallet (EPAL); not the default pool footprint."
+    },
+    "IT": {
+     "score": 2,
+     "why": "off-standard vs local 1200×800 mm EUR-pallet (EPAL); not the default pool footprint."
+    },
+    "ES": {
+     "score": 2,
+     "why": "off-standard vs local 1200×800 mm EUR-pallet (EPAL); not the default pool footprint."
+    },
+    "JP": {
+     "score": 2,
+     "why": "off-standard vs local 1100×1100 mm T11 pallet; not the default pool footprint."
+    }
+   },
+   "variants": [
+    {
+     "market": "US",
+     "shape": "stringer pallet, 4-way partial entry",
+     "blade": null,
+     "handle": null,
+     "length": "48×40×5.5 in",
+     "why": "GMA 48×40 is the default US grocery/DIY pallet footprint.",
+     "src": "GMA pallet standard 2025"
+    }
+   ],
+   "elsewhere": "Standard unit-load platform for any palletized retail category.",
+   "packaging": [
+    "inner: n/a, shipped as assembled unit",
+    "bundle: 18 pallets/banded stack, corner boards",
+    "container: approx. 20 bundles per 40 ft HC"
+   ],
+   "img": "images/catalog/pallet-wood-gma.svg",
+   "tags": [
+    "pallet",
+    "gma",
+    "wood",
+    "logistics"
+   ]
+  },
+  {
+   "id": "pallet-plastic",
+   "axis": "pack",
+   "sub": "pallet",
+   "name": "Plastic pallet",
+   "origin": "CN",
+   "why_origin": "Molded/stamped commodity component with thin per-unit margin; sourcing follows China's resin/steel cost base and port proximity rather than precision-tooling considerations.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "pro",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "1200×800×150 mm",
+    "blade": null,
+    "material": "HDPE, nestable",
+    "handle": null,
+    "weight": "12 kg/pallet"
+   },
+   "index": {
+    "TW": {
+     "value": 96,
+     "trend": "down",
+     "reason": "PP resin softer, crude down"
+    },
+    "CN": {
+     "value": 100,
+     "trend": "flat",
+     "reason": "resin flat, RMB stable"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 4,
+     "why": "reusable/washable, ISPM15-exempt (no wood-packaging fumigation cert to check at import)."
+    },
+    "DE": {
+     "score": 4,
+     "why": "reusable/washable, ISPM15-exempt (no wood-packaging fumigation cert to check at import)."
+    },
+    "FR": {
+     "score": 4,
+     "why": "reusable/washable, ISPM15-exempt (no wood-packaging fumigation cert to check at import)."
+    },
+    "NL": {
+     "score": 4,
+     "why": "reusable/washable, ISPM15-exempt (no wood-packaging fumigation cert to check at import)."
+    },
+    "UK": {
+     "score": 4,
+     "why": "reusable/washable, ISPM15-exempt (no wood-packaging fumigation cert to check at import)."
+    },
+    "PL": {
+     "score": 4,
+     "why": "reusable/washable, ISPM15-exempt (no wood-packaging fumigation cert to check at import)."
+    },
+    "IT": {
+     "score": 4,
+     "why": "reusable/washable, ISPM15-exempt (no wood-packaging fumigation cert to check at import)."
+    },
+    "ES": {
+     "score": 4,
+     "why": "reusable/washable, ISPM15-exempt (no wood-packaging fumigation cert to check at import)."
+    },
+    "JP": {
+     "score": 5,
+     "why": "reusable/washable, ISPM15-exempt (no wood-packaging fumigation cert to check at import); matches strict phytosanitary inspection regime at Japanese ports."
+    }
+   },
+   "variants": [
+    {
+     "market": "JP",
+     "shape": "nestable HDPE pallet",
+     "blade": null,
+     "handle": null,
+     "length": "1100×1100×150 mm, T11 profile",
+     "why": "matches Japan T11 pallet pool used by DIY chains.",
+     "src": "JPR (Japan Pallet Rental) T11 spec 2025"
+    },
+    {
+     "market": "US",
+     "shape": "nestable HDPE pallet",
+     "blade": null,
+     "handle": null,
+     "length": "48×40×150 mm",
+     "why": "reusable pallet-pool alternative to wood for closed-loop DIY chain logistics.",
+     "src": "CHEP/iGPS pooling spec 2025"
+    }
+   ],
+   "elsewhere": "Used across general warehouse and light-industrial goods movement, not just garden goods.",
+   "packaging": [
+    "inner: n/a, shipped as assembled unit",
+    "nest stack: 10 pallets/nested stack, strapped",
+    "container: approx. 40 nested stacks per 40 ft HC"
+   ],
+   "img": "images/catalog/pallet-plastic.svg",
+   "tags": [
+    "pallet",
+    "plastic",
+    "reusable",
+    "logistics"
+   ]
+  },
+  {
+   "id": "carton-rsc",
+   "axis": "pack",
+   "sub": "carton",
+   "name": "RSC shipping carton",
+   "origin": "CN",
+   "why_origin": "Bulky, low value-density item; China's material and labor cost base plus proximity to container ports keeps landed freight cost down for a commodity-spec SKU.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "pro",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "600×400×300 mm (adjustable)",
+    "blade": null,
+    "material": "5-ply corrugated kraft",
+    "handle": null,
+    "weight": "0.9 kg/carton (empty)"
+   },
+   "index": {
+    "TW": {
+     "value": 93,
+     "trend": "down",
+     "reason": "kraft board easing, pulp softer"
+    },
+    "CN": {
+     "value": 97,
+     "trend": "down",
+     "reason": "corrugated board down, mill discounting"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 5,
+     "why": "bulk case-pack format for palletized distribution; barcode printed to UPC-A."
+    },
+    "DE": {
+     "score": 5,
+     "why": "bulk case-pack format for palletized distribution; barcode printed to EAN-13."
+    },
+    "FR": {
+     "score": 4,
+     "why": "bulk case-pack format for palletized distribution; barcode printed to EAN-13."
+    },
+    "NL": {
+     "score": 4,
+     "why": "bulk case-pack format for palletized distribution; barcode printed to EAN-13."
+    },
+    "UK": {
+     "score": 5,
+     "why": "bulk case-pack format for palletized distribution; barcode printed to EAN-13."
+    },
+    "PL": {
+     "score": 5,
+     "why": "bulk case-pack format for palletized distribution; barcode printed to EAN-13."
+    },
+    "IT": {
+     "score": 4,
+     "why": "bulk case-pack format for palletized distribution; barcode printed to EAN-13."
+    },
+    "ES": {
+     "score": 4,
+     "why": "bulk case-pack format for palletized distribution; barcode printed to EAN-13."
+    },
+    "JP": {
+     "score": 4,
+     "why": "bulk case-pack format for palletized distribution; barcode printed to JAN (EAN-13 compatible)."
+    }
+   },
+   "variants": [
+    {
+     "market": "US",
+     "shape": "RSC (regular slotted container)",
+     "blade": null,
+     "handle": null,
+     "length": "600×400×300 mm, adjustable",
+     "why": "standard bulk case format for palletized big-box distribution.",
+     "src": "Home Depot/Lowe's logistics spec 2025"
+    },
+    {
+     "market": "DE",
+     "shape": "RSC, FEFCO 0201",
+     "blade": null,
+     "handle": null,
+     "length": "600×400×300 mm",
+     "why": "FEFCO code referenced on freight docs for EU carriers.",
+     "src": "OBI/Hornbach logistics spec 2025"
+    }
+   ],
+   "elsewhere": "Common corrugated format for hardware and houseware distribution.",
+   "packaging": [
+    "inner: flat-packed bundle, 25 pcs/bundle",
+    "carton bale: 250 pcs/banded bale",
+    "pallet: market pallet standard, 8 bales/pallet"
+   ],
+   "img": "images/catalog/carton-rsc.svg",
+   "tags": [
+    "carton",
+    "rsc",
+    "shipping"
+   ]
+  },
+  {
+   "id": "carton-display",
+   "axis": "pack",
+   "sub": "carton",
+   "name": "FSDU display carton",
+   "origin": "CN",
+   "why_origin": "Bulky, low value-density item; China's material and labor cost base plus proximity to container ports keeps landed freight cost down for a commodity-spec SKU.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "pro",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "400×300×250 mm (FSDU)",
+    "blade": null,
+    "material": "printed 3-ply corrugated, die-cut",
+    "handle": null,
+    "weight": "0.7 kg/unit (empty)"
+   },
+   "index": {
+    "TW": {
+     "value": 110,
+     "trend": "up",
+     "reason": "kraft board up, pulp cost firmer"
+    },
+    "CN": {
+     "value": 114,
+     "trend": "up",
+     "reason": "corrugated board up, pulp import cost"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 4,
+     "why": "floor-display (FSDU) format suits promotional merchandising at chains such as Home Depot/Lowe's."
+    },
+    "DE": {
+     "score": 5,
+     "why": "floor-display (FSDU) format suits promotional merchandising at chains such as OBI/Hornbach."
+    },
+    "FR": {
+     "score": 5,
+     "why": "floor-display (FSDU) format suits promotional merchandising at chains such as Leroy Merlin/Castorama."
+    },
+    "NL": {
+     "score": 5,
+     "why": "floor-display (FSDU) format suits promotional merchandising at chains such as Praxis/Gamma."
+    },
+    "UK": {
+     "score": 4,
+     "why": "floor-display (FSDU) format suits promotional merchandising at chains such as B&Q/Wickes."
+    },
+    "PL": {
+     "score": 3,
+     "why": "floor-display (FSDU) format suits promotional merchandising at chains such as Leroy Merlin Polska/Castorama."
+    },
+    "IT": {
+     "score": 5,
+     "why": "floor-display (FSDU) format suits promotional merchandising at chains such as Brico io/Leroy Merlin Italia."
+    },
+    "ES": {
+     "score": 5,
+     "why": "floor-display (FSDU) format suits promotional merchandising at chains such as Bricomart/Leroy Merlin España."
+    },
+    "JP": {
+     "score": 3,
+     "why": "floor-display (FSDU) format suits promotional merchandising at chains such as Cainz/Komeri DIY chain."
+    }
+   },
+   "variants": [
+    {
+     "market": "FR",
+     "shape": "FSDU (floor standing display unit)",
+     "blade": null,
+     "handle": null,
+     "length": "400×300×250 mm",
+     "why": "promotional floor-display format used in seasonal garden aisles.",
+     "src": "Leroy Merlin/Castorama merchandising 2025"
+    },
+    {
+     "market": "IT",
+     "shape": "counter-top display carton",
+     "blade": null,
+     "handle": null,
+     "length": "300×250×200 mm",
+     "why": "smaller-format checkout-adjacent display common in Italian DIY chains.",
+     "src": "Brico io/Leroy Merlin Italia merchandising 2025"
+    }
+   ],
+   "elsewhere": "Common corrugated format for hardware and houseware distribution.",
+   "packaging": [
+    "inner: flat-packed, 10 pcs/poly-wrap sleeve",
+    "carton: 50 pcs/master carton",
+    "pallet: market pallet standard, 20 ctn/pallet"
+   ],
+   "img": "images/catalog/carton-display.svg",
+   "tags": [
+    "carton",
+    "display",
+    "fsdu",
+    "retail"
+   ]
+  },
+  {
+   "id": "carton-mailer",
+   "axis": "pack",
+   "sub": "carton",
+   "name": "E-commerce mailer carton",
+   "origin": "CN",
+   "why_origin": "Bulky, low value-density item; China's material and labor cost base plus proximity to container ports keeps landed freight cost down for a commodity-spec SKU.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "pro",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "300×220×80 mm",
+    "blade": null,
+    "material": "printed E-flute corrugated, self-lock",
+    "handle": null,
+    "weight": "0.2 kg/unit (empty)"
+   },
+   "index": {
+    "TW": {
+     "value": 95,
+     "trend": "down",
+     "reason": "kraft board easing, pulp softer"
+    },
+    "CN": {
+     "value": 99,
+     "trend": "flat",
+     "reason": "corrugated flat, RMB stable"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 5,
+     "why": "sized for direct-to-consumer/e-commerce parcel networks; label area sized to UPC-A."
+    },
+    "DE": {
+     "score": 5,
+     "why": "sized for direct-to-consumer/e-commerce parcel networks; label area sized to EAN-13."
+    },
+    "FR": {
+     "score": 4,
+     "why": "sized for direct-to-consumer/e-commerce parcel networks; label area sized to EAN-13."
+    },
+    "NL": {
+     "score": 4,
+     "why": "sized for direct-to-consumer/e-commerce parcel networks; label area sized to EAN-13."
+    },
+    "UK": {
+     "score": 5,
+     "why": "sized for direct-to-consumer/e-commerce parcel networks; label area sized to EAN-13."
+    },
+    "PL": {
+     "score": 3,
+     "why": "sized for direct-to-consumer/e-commerce parcel networks; label area sized to EAN-13."
+    },
+    "IT": {
+     "score": 3,
+     "why": "sized for direct-to-consumer/e-commerce parcel networks; label area sized to EAN-13."
+    },
+    "ES": {
+     "score": 3,
+     "why": "sized for direct-to-consumer/e-commerce parcel networks; label area sized to EAN-13."
+    },
+    "JP": {
+     "score": 3,
+     "why": "sized for direct-to-consumer/e-commerce parcel networks; label area sized to JAN (EAN-13 compatible)."
+    }
+   },
+   "variants": [
+    {
+     "market": "UK",
+     "shape": "self-lock mailer, E-flute",
+     "blade": null,
+     "handle": null,
+     "length": "300×220×80 mm",
+     "why": "sized for parcel-network dimensional-weight limits.",
+     "src": "B&Q/Wickes e-commerce spec 2025"
+    },
+    {
+     "market": "DE",
+     "shape": "self-lock mailer, E-flute",
+     "blade": null,
+     "handle": null,
+     "length": "300×220×80 mm",
+     "why": "DHL parcel network dimensional-weight optimization.",
+     "src": "OBI/Hornbach e-commerce spec 2025"
+    }
+   ],
+   "elsewhere": "Common corrugated format for hardware and houseware distribution.",
+   "packaging": [
+    "inner: flat-packed, 50 pcs/bundle",
+    "carton: 500 pcs/master carton",
+    "pallet: market pallet standard, 24 ctn/pallet"
+   ],
+   "img": "images/catalog/carton-mailer.svg",
+   "tags": [
+    "carton",
+    "mailer",
+    "ecommerce"
+   ]
+  },
+  {
+   "id": "blister-clamshell",
+   "axis": "pack",
+   "sub": "inner",
+   "name": "Blister clamshell",
+   "origin": "CN",
+   "why_origin": "Molded/stamped commodity component with thin per-unit margin; sourcing follows China's resin/steel cost base and port proximity rather than precision-tooling considerations.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "pro",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "200×150×40 mm",
+    "blade": null,
+    "material": "PET clamshell, heat-seal card",
+    "handle": null,
+    "weight": "25 g/unit (empty)"
+   },
+   "index": {
+    "TW": {
+     "value": 102,
+     "trend": "flat",
+     "reason": "resin cost flat, TWD steady"
+    },
+    "CN": {
+     "value": 106,
+     "trend": "up",
+     "reason": "PP/PE resin up, naphtha firmer"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 5,
+     "why": "anti-theft peg-hook format for open-shelf retail; state EPR (CA SB54, OR, CO)."
+    },
+    "DE": {
+     "score": 3,
+     "why": "anti-theft peg-hook format for open-shelf retail; PPWR (EU) 2025/40 + VerpackG (LUCID registration)."
+    },
+    "FR": {
+     "score": 3,
+     "why": "anti-theft peg-hook format for open-shelf retail; PPWR (EU) 2025/40 + Triman logo + EPR (filière Léko)."
+    },
+    "NL": {
+     "score": 3,
+     "why": "anti-theft peg-hook format for open-shelf retail; PPWR (EU) 2025/40 + Verpakkingenbesluit."
+    },
+    "UK": {
+     "score": 5,
+     "why": "anti-theft peg-hook format for open-shelf retail; UK Packaging (EPR) Regulations 2023."
+    },
+    "PL": {
+     "score": 4,
+     "why": "anti-theft peg-hook format for open-shelf retail; PPWR (EU) 2025/40 + ustawa o gospodarce opakowaniami."
+    },
+    "IT": {
+     "score": 4,
+     "why": "anti-theft peg-hook format for open-shelf retail; PPWR (EU) 2025/40 + CONAI packaging consortium fee."
+    },
+    "ES": {
+     "score": 4,
+     "why": "anti-theft peg-hook format for open-shelf retail; PPWR (EU) 2025/40 + Real Decreto de envases."
+    },
+    "JP": {
+     "score": 3,
+     "why": "anti-theft peg-hook format for open-shelf retail; Containers and Packaging Recycling Act."
+    }
+   },
+   "variants": [
+    {
+     "market": "US",
+     "shape": "RF/AM security-tag compatible clamshell",
+     "blade": null,
+     "handle": null,
+     "length": "200×150×40 mm",
+     "why": "peg-hook open-shelf format standard at big-box DIY chains.",
+     "src": "Home Depot/Lowe's planogram 2025"
+    },
+    {
+     "market": "UK",
+     "shape": "peg-hook clamshell",
+     "blade": null,
+     "handle": null,
+     "length": "200×150×40 mm",
+     "why": "anti-theft format for open-aisle small-tool merchandising.",
+     "src": "B&Q/Wickes planogram 2025"
+    }
+   ],
+   "elsewhere": "Used for small-parts retail packaging across hardware and houseware categories.",
+   "packaging": [
+    "inner: 100 pcs/poly bag",
+    "carton: 1,000 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 30 ctn/pallet"
+   ],
+   "img": "images/catalog/blister-clamshell.svg",
+   "tags": [
+    "blister",
+    "clamshell",
+    "anti-theft"
+   ]
+  },
+  {
+   "id": "sleeve-kraft",
+   "axis": "pack",
+   "sub": "inner",
+   "name": "Kraft sleeve",
+   "origin": "CN",
+   "why_origin": "Molded/stamped commodity component with thin per-unit margin; sourcing follows China's resin/steel cost base and port proximity rather than precision-tooling considerations.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "pro",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "220×160 mm",
+    "blade": null,
+    "material": "FSC kraft board, plastic-free",
+    "handle": null,
+    "weight": "15 g/unit (empty)"
+   },
+   "index": {
+    "TW": {
+     "value": 105,
+     "trend": "up",
+     "reason": "kraft board up, pulp cost firmer"
+    },
+    "CN": {
+     "value": 109,
+     "trend": "up",
+     "reason": "corrugated board up, pulp import cost"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 3,
+     "why": "plastic-free board format aligned with state EPR (CA SB54, OR, CO)."
+    },
+    "DE": {
+     "score": 5,
+     "why": "plastic-free board format aligned with PPWR (EU) 2025/40 + VerpackG (LUCID registration)."
+    },
+    "FR": {
+     "score": 5,
+     "why": "plastic-free board format aligned with PPWR (EU) 2025/40 + Triman logo + EPR (filière Léko)."
+    },
+    "NL": {
+     "score": 5,
+     "why": "plastic-free board format aligned with PPWR (EU) 2025/40 + Verpakkingenbesluit."
+    },
+    "UK": {
+     "score": 4,
+     "why": "plastic-free board format aligned with UK Packaging (EPR) Regulations 2023."
+    },
+    "PL": {
+     "score": 3,
+     "why": "plastic-free board format aligned with PPWR (EU) 2025/40 + ustawa o gospodarce opakowaniami."
+    },
+    "IT": {
+     "score": 3,
+     "why": "plastic-free board format aligned with PPWR (EU) 2025/40 + CONAI packaging consortium fee."
+    },
+    "ES": {
+     "score": 3,
+     "why": "plastic-free board format aligned with PPWR (EU) 2025/40 + Real Decreto de envases."
+    },
+    "JP": {
+     "score": 4,
+     "why": "plastic-free board format aligned with Containers and Packaging Recycling Act."
+    }
+   },
+   "variants": [
+    {
+     "market": "DE",
+     "shape": "plastic-free kraft sleeve",
+     "blade": null,
+     "handle": null,
+     "length": "220×160 mm",
+     "why": "plastic-reduction preference under PPWR/VerpackG.",
+     "src": "OBI/Hornbach sustainability spec 2025"
+    },
+    {
+     "market": "NL",
+     "shape": "plastic-free kraft sleeve",
+     "blade": null,
+     "handle": null,
+     "length": "220×160 mm",
+     "why": "Verpakkingenbesluit plastic-reduction expectation.",
+     "src": "Praxis/Gamma sustainability spec 2025"
+    }
+   ],
+   "elsewhere": "Used for small-parts retail packaging across hardware and houseware categories.",
+   "packaging": [
+    "inner: 200 pcs/kraft-taped bundle",
+    "carton: 2,000 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 30 ctn/pallet"
+   ],
+   "img": "images/catalog/sleeve-kraft.svg",
+   "tags": [
+    "sleeve",
+    "kraft",
+    "plastic-free"
+   ]
+  },
+  {
+   "id": "polybag-header",
+   "axis": "pack",
+   "sub": "inner",
+   "name": "Polybag with header card",
+   "origin": "CN",
+   "why_origin": "Bulky, low value-density item; China's material and labor cost base plus proximity to container ports keeps landed freight cost down for a commodity-spec SKU.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "pro",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "200×300 mm",
+    "blade": null,
+    "material": "LDPE poly bag, printed header card",
+    "handle": null,
+    "weight": "6 g/unit (empty)"
+   },
+   "index": {
+    "TW": {
+     "value": 117,
+     "trend": "up",
+     "reason": "engineering resin up on crude"
+    },
+    "CN": {
+     "value": 94,
+     "trend": "down",
+     "reason": "PE resin down, cheaper crude offsets RMB"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 4,
+     "why": "low-cost peg-hook format; acceptable under state EPR (CA SB54, OR, CO) where plastic-reduction rules are less strict."
+    },
+    "DE": {
+     "score": 3,
+     "why": "low-cost peg-hook format; acceptable under PPWR (EU) 2025/40 + VerpackG (LUCID registration) where plastic-reduction rules are less strict."
+    },
+    "FR": {
+     "score": 3,
+     "why": "low-cost peg-hook format; acceptable under PPWR (EU) 2025/40 + Triman logo + EPR (filière Léko) where plastic-reduction rules are less strict."
+    },
+    "NL": {
+     "score": 3,
+     "why": "low-cost peg-hook format; acceptable under PPWR (EU) 2025/40 + Verpakkingenbesluit where plastic-reduction rules are less strict."
+    },
+    "UK": {
+     "score": 4,
+     "why": "low-cost peg-hook format; acceptable under UK Packaging (EPR) Regulations 2023 where plastic-reduction rules are less strict."
+    },
+    "PL": {
+     "score": 4,
+     "why": "low-cost peg-hook format; acceptable under PPWR (EU) 2025/40 + ustawa o gospodarce opakowaniami where plastic-reduction rules are less strict."
+    },
+    "IT": {
+     "score": 4,
+     "why": "low-cost peg-hook format; acceptable under PPWR (EU) 2025/40 + CONAI packaging consortium fee where plastic-reduction rules are less strict."
+    },
+    "ES": {
+     "score": 4,
+     "why": "low-cost peg-hook format; acceptable under PPWR (EU) 2025/40 + Real Decreto de envases where plastic-reduction rules are less strict."
+    },
+    "JP": {
+     "score": 4,
+     "why": "low-cost peg-hook format; acceptable under Containers and Packaging Recycling Act where plastic-reduction rules are less strict."
+    }
+   },
+   "variants": [
+    {
+     "market": "PL",
+     "shape": "poly bag + header card",
+     "blade": null,
+     "handle": null,
+     "length": "200×300 mm",
+     "why": "lowest-cost inner pack for price-sensitive assortment.",
+     "src": "Leroy Merlin Polska assortment 2025"
+    },
+    {
+     "market": "US",
+     "shape": "poly bag + header card, child-safety warning",
+     "blade": null,
+     "handle": null,
+     "length": "200×300 mm",
+     "why": "CPSC-aligned suffocation-warning text on header card.",
+     "src": "Home Depot/Lowe's packaging spec 2025"
+    }
+   ],
+   "elsewhere": "Common inner-pack format for general DIY and houseware SKUs.",
+   "packaging": [
+    "inner: 500 pcs/master poly bag",
+    "carton: 5,000 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 24 ctn/pallet"
+   ],
+   "img": "images/catalog/polybag-header.svg",
+   "tags": [
+    "polybag",
+    "header card",
+    "low-cost"
+   ]
+  },
+  {
+   "id": "label-hangtag",
+   "axis": "pack",
+   "sub": "label",
+   "name": "Hangtag",
+   "origin": "TW",
+   "why_origin": "Print quality and fast changeover for SKU-specific tag/barcode artwork is easier to control on Taiwan's short-run print lines close to HQ QC than on large-batch China print runs.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "pro",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "60×90 mm",
+    "blade": null,
+    "material": "300gsm art card, printed",
+    "handle": null,
+    "weight": "2 g/unit"
+   },
+   "index": {
+    "TW": {
+     "value": 108,
+     "trend": "up",
+     "reason": "kraft board up, pulp cost firmer"
+    },
+    "CN": {
+     "value": 112,
+     "trend": "up",
+     "reason": "corrugated board up, pulp import cost"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 4,
+     "why": "printed tag carries required language set (en) and origin mark."
+    },
+    "DE": {
+     "score": 4,
+     "why": "printed tag carries required language set (de) and origin mark."
+    },
+    "FR": {
+     "score": 4,
+     "why": "printed tag carries required language set (fr) and origin mark."
+    },
+    "NL": {
+     "score": 4,
+     "why": "printed tag carries required language set (nl) and origin mark."
+    },
+    "UK": {
+     "score": 4,
+     "why": "printed tag carries required language set (en) and origin mark."
+    },
+    "PL": {
+     "score": 4,
+     "why": "printed tag carries required language set (pl) and origin mark."
+    },
+    "IT": {
+     "score": 4,
+     "why": "printed tag carries required language set (it) and origin mark."
+    },
+    "ES": {
+     "score": 4,
+     "why": "printed tag carries required language set (es) and origin mark."
+    },
+    "JP": {
+     "score": 5,
+     "why": "printed tag carries required language set (ja) and origin mark."
+    }
+   },
+   "variants": [
+    {
+     "market": "JP",
+     "shape": "printed card hangtag",
+     "blade": null,
+     "handle": null,
+     "length": "60×90 mm",
+     "why": "Japanese-language tag with JAN barcode block.",
+     "src": "Cainz/Komeri labeling spec 2025"
+    },
+    {
+     "market": "FR",
+     "shape": "printed card hangtag, Triman mark",
+     "blade": null,
+     "handle": null,
+     "length": "60×90 mm",
+     "why": "Triman logo placement required on French retail tags.",
+     "src": "Leroy Merlin/Castorama labeling spec 2025"
+    }
+   ],
+   "elsewhere": "Used across general retail compliance labeling, not limited to garden goods.",
+   "packaging": [
+    "inner: 1,000 pcs/kraft box",
+    "carton: 10,000 pcs, 3-ply carton",
+    "pallet: market pallet standard, 40 ctn/pallet"
+   ],
+   "img": "images/catalog/label-hangtag.svg",
+   "tags": [
+    "hangtag",
+    "label",
+    "printed"
+   ]
+  },
+  {
+   "id": "label-barcode",
+   "axis": "pack",
+   "sub": "label",
+   "name": "Barcode label",
+   "origin": "TW",
+   "why_origin": "Print quality and fast changeover for SKU-specific tag/barcode artwork is easier to control on Taiwan's short-run print lines close to HQ QC than on large-batch China print runs.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "pro",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "40×25 mm",
+    "blade": null,
+    "material": "thermal-transfer paper, adhesive",
+    "handle": null,
+    "weight": "<1 g/unit"
+   },
+   "index": {
+    "TW": {
+     "value": 106,
+     "trend": "up",
+     "reason": "kraft board up, pulp cost firmer"
+    },
+    "CN": {
+     "value": 110,
+     "trend": "up",
+     "reason": "corrugated board up, pulp import cost"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 5,
+     "why": "printed to UPC-A symbology for POS scanning."
+    },
+    "DE": {
+     "score": 5,
+     "why": "printed to EAN-13 symbology for POS scanning."
+    },
+    "FR": {
+     "score": 5,
+     "why": "printed to EAN-13 symbology for POS scanning."
+    },
+    "NL": {
+     "score": 5,
+     "why": "printed to EAN-13 symbology for POS scanning."
+    },
+    "UK": {
+     "score": 4,
+     "why": "printed to EAN-13 symbology for POS scanning."
+    },
+    "PL": {
+     "score": 5,
+     "why": "printed to EAN-13 symbology for POS scanning."
+    },
+    "IT": {
+     "score": 5,
+     "why": "printed to EAN-13 symbology for POS scanning."
+    },
+    "ES": {
+     "score": 5,
+     "why": "printed to EAN-13 symbology for POS scanning."
+    },
+    "JP": {
+     "score": 4,
+     "why": "printed to JAN (EAN-13 compatible) symbology for POS scanning."
+    }
+   },
+   "variants": [
+    {
+     "market": "US",
+     "shape": "thermal-transfer label, UPC-A",
+     "blade": null,
+     "handle": null,
+     "length": "40×25 mm",
+     "why": "UPC-A is the default US POS symbology.",
+     "src": "GS1 US barcode spec 2025"
+    },
+    {
+     "market": "DE",
+     "shape": "thermal-transfer label, EAN-13",
+     "blade": null,
+     "handle": null,
+     "length": "40×25 mm",
+     "why": "EAN-13 is the default EU POS symbology.",
+     "src": "GS1 Germany barcode spec 2025"
+    },
+    {
+     "market": "JP",
+     "shape": "thermal-transfer label, JAN",
+     "blade": null,
+     "handle": null,
+     "length": "40×25 mm",
+     "why": "JAN code (EAN-13 compatible) required for Japan retail POS.",
+     "src": "GS1 Japan barcode spec 2025"
+    }
+   ],
+   "elsewhere": "Used across general retail compliance labeling, not limited to garden goods.",
+   "packaging": [
+    "inner: 1 roll of 1,000 labels/poly bag",
+    "carton: 40 rolls/carton",
+    "pallet: market pallet standard, 60 ctn/pallet"
+   ],
+   "img": "images/catalog/label-barcode.svg",
+   "tags": [
+    "barcode",
+    "label",
+    "scan"
+   ]
+  },
+  {
+   "id": "label-warning",
+   "axis": "pack",
+   "sub": "label",
+   "name": "Warning / compliance label",
+   "origin": "TW",
+   "why_origin": "Print quality and fast changeover for SKU-specific tag/barcode artwork is easier to control on Taiwan's short-run print lines close to HQ QC than on large-batch China print runs.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "pro",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "50×30 mm",
+    "blade": null,
+    "material": "synthetic paper, adhesive, weatherproof",
+    "handle": null,
+    "weight": "<1 g/unit"
+   },
+   "index": {
+    "TW": {
+     "value": 98,
+     "trend": "flat",
+     "reason": "paperboard flat"
+    },
+    "CN": {
+     "value": 102,
+     "trend": "flat",
+     "reason": "corrugated flat, RMB stable"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 5,
+     "why": "compliance label; Prop 65 warning label required for CA-bound shipments."
+    },
+    "DE": {
+     "score": 4,
+     "why": "compliance label; Grüner Punkt / dual-system packaging registration."
+    },
+    "FR": {
+     "score": 4,
+     "why": "compliance label; Triman recyclability logo mandatory on packaging."
+    },
+    "NL": {
+     "score": 4,
+     "why": "compliance label; Afvalfonds Verpakkingen packaging-waste fee."
+    },
+    "UK": {
+     "score": 4,
+     "why": "compliance label; Separate UKCA marking track from EU CE, post-Brexit."
+    },
+    "PL": {
+     "score": 3,
+     "why": "compliance label; BDO packaging register entry required for importer."
+    },
+    "IT": {
+     "score": 3,
+     "why": "compliance label; CONAI environmental contribution (CAC) on packaging."
+    },
+    "ES": {
+     "score": 3,
+     "why": "compliance label; Extended producer responsibility (RAP) registration."
+    },
+    "JP": {
+     "score": 3,
+     "why": "compliance label; JIS-style sizing/labeling conventions expected by DIY chains."
+    }
+   },
+   "variants": [
+    {
+     "market": "US",
+     "shape": "Prop 65 warning label",
+     "blade": null,
+     "handle": null,
+     "length": "50×30 mm",
+     "why": "California Prop 65 requires point-of-sale warning text.",
+     "src": "CA Prop 65 compliance spec 2025"
+    },
+    {
+     "market": "DE",
+     "shape": "CE-adjacent safety pictogram label",
+     "blade": null,
+     "handle": null,
+     "length": "50×30 mm",
+     "why": "general product-safety pictogram set for EU market.",
+     "src": "EU GPSR compliance spec 2025"
+    }
+   ],
+   "elsewhere": "Used across general retail compliance labeling, not limited to garden goods.",
+   "packaging": [
+    "inner: 1 roll of 500 labels/poly bag",
+    "carton: 40 rolls/carton",
+    "pallet: market pallet standard, 60 ctn/pallet"
+   ],
+   "img": "images/catalog/label-warning.svg",
+   "tags": [
+    "warning label",
+    "compliance",
+    "safety"
+   ]
+  },
+  {
+   "id": "strap-pet",
+   "axis": "pack",
+   "sub": "strap",
+   "name": "PET strapping",
+   "origin": "CN",
+   "why_origin": "Bulky, low value-density item; China's material and labor cost base plus proximity to container ports keeps landed freight cost down for a commodity-spec SKU.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "pro",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "12 mm width, coil",
+    "blade": null,
+    "material": "PET strapping, embossed",
+    "handle": null,
+    "weight": "8 kg/coil"
+   },
+   "index": {
+    "TW": {
+     "value": 118,
+     "trend": "up",
+     "reason": "woven strap yarn up, PET feedstock"
+    },
+    "CN": {
+     "value": 95,
+     "trend": "down",
+     "reason": "strap tape softer, oversupply"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 5,
+     "why": "pallet-load unitization for 48×40 in GMA pallet distribution."
+    },
+    "DE": {
+     "score": 5,
+     "why": "pallet-load unitization for 1200×800 mm EUR-pallet (EPAL) distribution."
+    },
+    "FR": {
+     "score": 4,
+     "why": "pallet-load unitization for 1200×800 mm EUR-pallet (EPAL) distribution."
+    },
+    "NL": {
+     "score": 4,
+     "why": "pallet-load unitization for 1200×800 mm EUR-pallet (EPAL) distribution."
+    },
+    "UK": {
+     "score": 5,
+     "why": "pallet-load unitization for 1200×800 mm EUR-pallet (EPAL, accepted) distribution."
+    },
+    "PL": {
+     "score": 4,
+     "why": "pallet-load unitization for 1200×800 mm EUR-pallet (EPAL) distribution."
+    },
+    "IT": {
+     "score": 3,
+     "why": "pallet-load unitization for 1200×800 mm EUR-pallet (EPAL) distribution."
+    },
+    "ES": {
+     "score": 3,
+     "why": "pallet-load unitization for 1200×800 mm EUR-pallet (EPAL) distribution."
+    },
+    "JP": {
+     "score": 3,
+     "why": "pallet-load unitization for 1100×1100 mm T11 pallet distribution."
+    }
+   },
+   "variants": [
+    {
+     "market": "US",
+     "shape": "embossed PET strap coil",
+     "blade": null,
+     "handle": null,
+     "length": "12 mm width",
+     "why": "unitizes GMA-pallet loads for big-box distribution.",
+     "src": "Home Depot/Lowe's logistics spec 2025"
+    },
+    {
+     "market": "DE",
+     "shape": "embossed PET strap coil",
+     "blade": null,
+     "handle": null,
+     "length": "12 mm width",
+     "why": "unitizes EUR-pallet loads for EU distribution.",
+     "src": "OBI/Hornbach logistics spec 2025"
+    }
+   ],
+   "elsewhere": "Standard unitization material for any heavy or bulky retail category.",
+   "packaging": [
+    "inner: n/a, shipped as coil",
+    "carton: 4 coils/carton",
+    "pallet: market pallet standard, 40 ctn/pallet"
+   ],
+   "img": "images/catalog/strap-pet.svg",
+   "tags": [
+    "strapping",
+    "pet",
+    "pallet"
+   ]
+  },
+  {
+   "id": "film-stretch",
+   "axis": "pack",
+   "sub": "strap",
+   "name": "Stretch wrap film",
+   "origin": "CN",
+   "why_origin": "Bulky, low value-density item; China's material and labor cost base plus proximity to container ports keeps landed freight cost down for a commodity-spec SKU.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "pro",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "500 mm width, roll",
+    "blade": null,
+    "material": "LLDPE stretch film",
+    "handle": null,
+    "weight": "2.3 kg/roll"
+   },
+   "index": {
+    "TW": {
+     "value": 101,
+     "trend": "flat",
+     "reason": "resin cost flat, TWD steady"
+    },
+    "CN": {
+     "value": 105,
+     "trend": "up",
+     "reason": "recycled PET resin up on export demand"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 5,
+     "why": "pallet wrap compatible with 48×40 in GMA pallet handling and transit."
+    },
+    "DE": {
+     "score": 5,
+     "why": "pallet wrap compatible with 1200×800 mm EUR-pallet (EPAL) handling and transit."
+    },
+    "FR": {
+     "score": 4,
+     "why": "pallet wrap compatible with 1200×800 mm EUR-pallet (EPAL) handling and transit."
+    },
+    "NL": {
+     "score": 4,
+     "why": "pallet wrap compatible with 1200×800 mm EUR-pallet (EPAL) handling and transit."
+    },
+    "UK": {
+     "score": 4,
+     "why": "pallet wrap compatible with 1200×800 mm EUR-pallet (EPAL, accepted) handling and transit."
+    },
+    "PL": {
+     "score": 4,
+     "why": "pallet wrap compatible with 1200×800 mm EUR-pallet (EPAL) handling and transit."
+    },
+    "IT": {
+     "score": 4,
+     "why": "pallet wrap compatible with 1200×800 mm EUR-pallet (EPAL) handling and transit."
+    },
+    "ES": {
+     "score": 4,
+     "why": "pallet wrap compatible with 1200×800 mm EUR-pallet (EPAL) handling and transit."
+    },
+    "JP": {
+     "score": 4,
+     "why": "pallet wrap compatible with 1100×1100 mm T11 pallet handling and transit."
+    }
+   },
+   "variants": [
+    {
+     "market": "UK",
+     "shape": "machine-grade LLDPE stretch roll",
+     "blade": null,
+     "handle": null,
+     "length": "500 mm width",
+     "why": "pallet-wrap standard for UK 3PL cross-dock handling.",
+     "src": "B&Q/Wickes logistics spec 2025"
+    },
+    {
+     "market": "US",
+     "shape": "hand-grade LLDPE stretch roll",
+     "blade": null,
+     "handle": null,
+     "length": "500 mm width",
+     "why": "pallet-wrap standard for GMA-pallet cross-dock handling.",
+     "src": "Home Depot/Lowe's logistics spec 2025"
+    }
+   ],
+   "elsewhere": "Standard unitization material for any heavy or bulky retail category.",
+   "packaging": [
+    "inner: n/a, shipped as roll",
+    "carton: 6 rolls/carton",
+    "pallet: market pallet standard, 48 ctn/pallet"
+   ],
+   "img": "images/catalog/film-stretch.svg",
+   "tags": [
+    "stretch film",
+    "pallet wrap"
+   ]
+  },
+  {
+   "id": "nozzle-adjustable",
+   "axis": "water",
+   "sub": "nozzle",
+   "name": "Adjustable spray nozzle",
+   "origin": "CN",
+   "why_origin": "Bulky, low value-density item; China's material and labor cost base plus proximity to container ports keeps landed freight cost down for a commodity-spec SKU.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "140 mm",
+    "blade": null,
+    "material": "zinc alloy body, rubber seal",
+    "handle": "ergonomic PP grip",
+    "weight": "120 g"
+   },
+   "index": {
+    "TW": {
+     "value": 97,
+     "trend": "down",
+     "reason": "mixed input easing"
+    },
+    "CN": {
+     "value": 101,
+     "trend": "flat",
+     "reason": "mixed input flat, RMB stable"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 4,
+     "why": "score 4/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 4,
+     "why": "score 4/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 3,
+     "why": "score 3/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 5,
+     "why": "score 5/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 3,
+     "why": "score 3/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 4,
+     "why": "score 4/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 2,
+     "why": "score 2/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 4,
+     "why": "score 4/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "DE",
+     "shape": "push-fit quick-connect nozzle",
+     "blade": null,
+     "handle": "ergonomic PP grip",
+     "length": "140 mm",
+     "why": "Gardena-style push-fit coupling dominates the German hose-fitting ecosystem.",
+     "src": "OBI/Hornbach assortment 2025"
+    },
+    {
+     "market": "US",
+     "shape": "GHT-threaded nozzle",
+     "blade": null,
+     "handle": "ergonomic PP grip",
+     "length": "140 mm",
+     "why": "Garden Hose Thread (GHT) is the standard US hose-fitting spec.",
+     "src": "Home Depot/Lowe's assortment 2025"
+    }
+   ],
+   "elsewhere": "Common fitting in agricultural and light-commercial irrigation.",
+   "packaging": [
+    "inner: 1 pc/blister card, 12/display box",
+    "carton: 144 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 40 ctn/pallet"
+   ],
+   "img": "images/catalog/nozzle-adjustable.svg",
+   "tags": [
+    "nozzle",
+    "hose",
+    "spray pattern"
+   ]
+  },
+  {
+   "id": "connector-quick",
+   "axis": "water",
+   "sub": "nozzle",
+   "name": "Quick-connect coupler",
+   "origin": "CN",
+   "why_origin": "Molded/stamped commodity component with thin per-unit margin; sourcing follows China's resin/steel cost base and port proximity rather than precision-tooling considerations.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "pro",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "55 mm",
+    "blade": null,
+    "material": "POM plastic / brass insert",
+    "handle": null,
+    "weight": "35 g"
+   },
+   "index": {
+    "TW": {
+     "value": 102,
+     "trend": "flat",
+     "reason": "resin cost flat, TWD steady"
+    },
+    "CN": {
+     "value": 106,
+     "trend": "up",
+     "reason": "PP/PE resin up, naphtha firmer"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 3,
+     "why": "score 3/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 5,
+     "why": "score 5/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 5,
+     "why": "score 5/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 4,
+     "why": "score 4/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 4,
+     "why": "score 4/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 2,
+     "why": "score 2/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 3,
+     "why": "score 3/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 4,
+     "why": "score 4/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 3,
+     "why": "score 3/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "DE",
+     "shape": "push-fit quick-connector",
+     "blade": null,
+     "handle": null,
+     "length": "55 mm",
+     "why": "matches the Gardena-style push-fit standard common in German gardens.",
+     "src": "OBI/Hornbach assortment 2025"
+    },
+    {
+     "market": "UK",
+     "shape": "BSP-threaded connector",
+     "blade": null,
+     "handle": null,
+     "length": "55 mm",
+     "why": "British Standard Pipe thread is the common UK tap/hose fitting.",
+     "src": "B&Q/Wickes assortment 2025"
+    }
+   ],
+   "elsewhere": "Used in general outdoor cleaning and car-wash hose setups.",
+   "packaging": [
+    "inner: 2 pcs/poly bag + header card, 24/display box",
+    "carton: 288 pcs, 5-ply RSC",
+    "pallet: market pallet standard, 48 ctn/pallet"
+   ],
+   "img": "images/catalog/connector-quick.svg",
+   "tags": [
+    "connector",
+    "quick-fit",
+    "hose"
+   ]
+  },
+  {
+   "id": "can-watering",
+   "axis": "water",
+   "sub": "can",
+   "name": "Watering can",
+   "origin": "CN",
+   "why_origin": "Bulky, low value-density item; China's material and labor cost base plus proximity to container ports keeps landed freight cost down for a commodity-spec SKU.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "9 L capacity, 480 mm",
+    "blade": null,
+    "material": "galvanized steel or PP plastic",
+    "handle": "integrated carry handle",
+    "weight": "1400 g (empty)"
+   },
+   "index": {
+    "TW": {
+     "value": 102,
+     "trend": "flat",
+     "reason": "mixed input flat"
+    },
+    "CN": {
+     "value": 106,
+     "trend": "up",
+     "reason": "mixed input up, RMB steady"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 2,
+     "why": "score 2/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 5,
+     "why": "score 5/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 5,
+     "why": "score 5/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 5,
+     "why": "score 5/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 4,
+     "why": "score 4/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 2,
+     "why": "score 2/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 4,
+     "why": "score 4/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 5,
+     "why": "score 5/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 5,
+     "why": "score 5/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "JP",
+     "shape": "long-spout indoor can",
+     "blade": null,
+     "handle": "integrated carry handle",
+     "length": "6 L capacity, 420 mm",
+     "why": "long, narrow spout suited to compact balcony/indoor plant watering.",
+     "src": "Cainz/Komeri assortment 2025"
+    },
+    {
+     "market": "UK",
+     "shape": "multi-spray rose can",
+     "blade": null,
+     "handle": "integrated carry handle",
+     "length": "9 L capacity, 480 mm",
+     "why": "detachable rose head for seedling vs. bed watering, common in UK allotments.",
+     "src": "B&Q/Wickes assortment 2025"
+    }
+   ],
+   "elsewhere": "Common in greenhouse and nursery hand-watering.",
+   "packaging": [
+    "inner: 1 pc/poly sleeve",
+    "carton: 6 pcs, 3-ply RSC",
+    "pallet: market pallet standard, 60 ctn/pallet"
+   ],
+   "img": "images/catalog/can-watering.svg",
+   "tags": [
+    "watering can",
+    "hand watering"
+   ]
+  },
+  {
+   "id": "glove-nitrile",
+   "axis": "ppe",
+   "sub": "glove",
+   "name": "Nitrile-dip glove",
+   "origin": "CN",
+   "why_origin": "Molded/stamped commodity component with thin per-unit margin; sourcing follows China's resin/steel cost base and port proximity rather than precision-tooling considerations.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "one size fits most, cuff 250 mm",
+    "blade": null,
+    "material": "nitrile-dip coated polyester shell",
+    "handle": null,
+    "weight": "55 g/pair"
+   },
+   "index": {
+    "TW": {
+     "value": 103,
+     "trend": "flat",
+     "reason": "rubber input flat"
+    },
+    "CN": {
+     "value": 107,
+     "trend": "up",
+     "reason": "NBR latex up, Hainan supply tight"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 5,
+     "why": "score 5/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 4,
+     "why": "score 4/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 3,
+     "why": "score 3/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 5,
+     "why": "score 5/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 4,
+     "why": "score 4/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 5,
+     "why": "score 5/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 3,
+     "why": "score 3/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 4,
+     "why": "score 4/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "DE",
+     "shape": "EU-sized dip glove (7-10)",
+     "blade": null,
+     "handle": null,
+     "length": "cuff 250 mm",
+     "why": "EU glove sizing convention (7-10) used across DACH DIY retail.",
+     "src": "OBI/Hornbach assortment 2025"
+    },
+    {
+     "market": "US",
+     "shape": "US-sized dip glove (S-XL)",
+     "blade": null,
+     "handle": null,
+     "length": "cuff 250 mm",
+     "why": "US S-XL sizing convention used across big-box DIY retail.",
+     "src": "Home Depot/Lowe's assortment 2025"
+    }
+   ],
+   "elsewhere": "Used across general household cleaning and light workshop tasks.",
+   "packaging": [
+    "inner: 1 pair/header bag, 12 pairs/display box",
+    "carton: 144 pairs, 5-ply RSC",
+    "pallet: market pallet standard, 40 ctn/pallet"
+   ],
+   "img": "images/catalog/glove-nitrile.svg",
+   "tags": [
+    "gloves",
+    "nitrile",
+    "grip"
+   ]
+  },
+  {
+   "id": "glove-leather",
+   "axis": "ppe",
+   "sub": "glove",
+   "name": "Leather work glove",
+   "origin": "CN",
+   "why_origin": "Molded/stamped commodity component with thin per-unit margin; sourcing follows China's resin/steel cost base and port proximity rather than precision-tooling considerations.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "pro",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "cuff 300 mm",
+    "blade": null,
+    "material": "split cowhide leather, cotton lining",
+    "handle": null,
+    "weight": "110 g/pair"
+   },
+   "index": {
+    "TW": {
+     "value": 100,
+     "trend": "flat",
+     "reason": "mixed input flat"
+    },
+    "CN": {
+     "value": 104,
+     "trend": "flat",
+     "reason": "mixed input flat, RMB stable"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 5,
+     "why": "score 5/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 4,
+     "why": "score 4/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 3,
+     "why": "score 3/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 5,
+     "why": "score 5/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 4,
+     "why": "score 4/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 5,
+     "why": "score 5/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 3,
+     "why": "score 3/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 4,
+     "why": "score 4/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "US",
+     "shape": "reinforced-palm work glove",
+     "blade": null,
+     "handle": null,
+     "length": "cuff 300 mm",
+     "why": "heavier reinforcement suited to pro-trade/landscaping use common in US market.",
+     "src": "Home Depot/Lowe's assortment 2025"
+    },
+    {
+     "market": "PL",
+     "shape": "standard split-leather glove",
+     "blade": null,
+     "handle": null,
+     "length": "cuff 280 mm",
+     "why": "lighter-weight cut for general garden/farm use common in Polish rural market.",
+     "src": "Leroy Merlin Polska assortment 2025"
+    }
+   ],
+   "elsewhere": "Used across general household cleaning and light workshop tasks.",
+   "packaging": [
+    "inner: 1 pair/header bag, 12 pairs/display box",
+    "carton: 120 pairs, 5-ply RSC",
+    "pallet: market pallet standard, 36 ctn/pallet"
+   ],
+   "img": "images/catalog/glove-leather.svg",
+   "tags": [
+    "gloves",
+    "leather",
+    "heavy-duty"
+   ]
+  },
+  {
+   "id": "kneepad-gel",
+   "axis": "ppe",
+   "sub": "knee",
+   "name": "Gel knee pad",
+   "origin": "CN",
+   "why_origin": "Molded/stamped commodity component with thin per-unit margin; sourcing follows China's resin/steel cost base and port proximity rather than precision-tooling considerations.",
+   "alt_origin": null,
+   "alt_origin_id": null,
+   "tier": "home",
+   "alt_tier_id": null,
+   "specs": {
+    "length": "260×180 mm",
+    "blade": null,
+    "material": "gel core, EVA foam, nylon shell",
+    "handle": "adjustable straps",
+    "weight": "180 g/pair"
+   },
+   "index": {
+    "TW": {
+     "value": 112,
+     "trend": "up",
+     "reason": "PP resin up, naphtha firmer"
+    },
+    "CN": {
+     "value": 116,
+     "trend": "up",
+     "reason": "PP/PE resin up, naphtha firmer"
+    }
+   },
+   "market_fit": {
+    "US": {
+     "score": 4,
+     "why": "score 4/5 — large-format DIY chains (Home Depot/Lowe's) and UPC-A retail scanning."
+    },
+    "DE": {
+     "score": 4,
+     "why": "score 4/5 — strong allotment (Schrebergarten) and hardware-chain (OBI/Hornbach) demand, EAN-13 retail."
+    },
+    "FR": {
+     "score": 3,
+     "why": "score 3/5 — garden-centre (Leroy Merlin/Castorama) assortment, EAN-13 retail, Triman labeling."
+    },
+    "NL": {
+     "score": 5,
+     "why": "score 5/5 — high density of allotment/balcony gardens, EAN-13 retail."
+    },
+    "UK": {
+     "score": 5,
+     "why": "score 5/5 — large hedge/lawn-care culture (B&Q/Wickes), EAN-13 retail, UKCA marking."
+    },
+    "PL": {
+     "score": 3,
+     "why": "score 3/5 — rural/large-plot gardening, growing DIY-chain (Leroy Merlin Polska) demand."
+    },
+    "IT": {
+     "score": 5,
+     "why": "score 5/5 — orchard/terrace gardening (Brico io/Leroy Merlin Italia), EAN-13 retail."
+    },
+    "ES": {
+     "score": 3,
+     "why": "score 3/5 — terrace/orchard gardening (Bricomart/Leroy Merlin España), EAN-13 retail."
+    },
+    "JP": {
+     "score": 4,
+     "why": "score 4/5 — compact garden plots and precision-tool preference, JAN barcode retail."
+    }
+   },
+   "variants": [
+    {
+     "market": "UK",
+     "shape": "strap-on gel kneepad",
+     "blade": null,
+     "handle": "adjustable straps",
+     "length": "260×180 mm",
+     "why": "allotment/raised-bed kneeling work common in UK gardens.",
+     "src": "B&Q/Wickes assortment 2025"
+    },
+    {
+     "market": "NL",
+     "shape": "strap-on gel kneepad",
+     "blade": null,
+     "handle": "adjustable straps",
+     "length": "260×180 mm",
+     "why": "raised-bed and balcony-garden kneeling work common in Dutch gardens.",
+     "src": "Praxis/Gamma assortment 2025"
+    }
+   ],
+   "elsewhere": "Used in flooring, tiling, and general household maintenance kneeling work.",
+   "packaging": [
+    "inner: 1 pair/blister card, 6 pairs/display box",
+    "carton: 60 pairs, 5-ply RSC",
+    "pallet: market pallet standard, 30 ctn/pallet"
+   ],
+   "img": "images/catalog/kneepad-gel.svg",
+   "tags": [
+    "kneepad",
+    "gel",
+    "comfort"
+   ]
+  }
+ ]
+}

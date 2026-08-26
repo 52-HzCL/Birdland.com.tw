@@ -1,0 +1,54 @@
+<!-- catalog_partial.html — injected into partner.html in buyer mode only.
+     cost-desk.html receives an empty string, so it stays byte-identical. -->
+<link rel="stylesheet" href="catalog.css?v=20260822a">
+<section id="bl-cat" aria-labelledby="cat-title">
+  <div class="cat-step">
+    <h2 id="cat-title">Garden &amp; DIY catalogue</h2>
+    <p class="cat-sub">Handled ground tools, cutting tools and export packaging, made in Taiwan and China.
+      Pick your market and shelf; the list re-sorts by how well each item fits that shelf.
+      Cost is shown as a movement index, never as a price.</p>
+    <div class="cat-steps">
+      <label class="cat-field">
+        <span>1 · Market</span>
+        <select id="cat-market"></select>
+      </label>
+      <div class="cat-field">
+        <span>2 · Shelf</span>
+        <div class="cat-seg" id="cat-seg" role="group" aria-label="Shelf">
+          <button type="button" data-seg="home" aria-pressed="true">Homeowner / DIY</button>
+          <button type="button" data-seg="pro" aria-pressed="false">Professional</button>
+        </div>
+      </div>
+      <div class="cat-stamp" id="cat-stamp"></div>
+    </div>
+    <div class="cat-mkt" id="cat-mkt"></div>
+  </div>
+
+  <div class="cat-body">
+    <nav class="cat-rail" id="cat-rail" aria-label="Product groups"></nav>
+
+    <div class="cat-main">
+      <div class="cat-tools">
+        <input id="cat-q" type="search" placeholder="Search name, spec or tag…" aria-label="Search the catalogue">
+        <output id="cat-count" for="cat-q"></output>
+      </div>
+      <ol class="cat-list" id="cat-list"></ol>
+      <p class="cat-method" id="cat-method"></p>
+    </div>
+
+    <aside class="cat-drawer" aria-label="Product detail and enquiry list">
+      <div class="cat-card" id="cat-detail"></div>
+      <div class="cat-card cat-enq">
+        <h3>Enquiry list</h3>
+        <ol id="cat-enq-list"></ol>
+        <p class="cat-hint" id="cat-enq-hint">Add items from the list, then copy the plain-text enquiry into your e-mail. No prices, no order is placed.</p>
+        <div class="cat-enq-act">
+          <button type="button" class="pri" id="cat-enq-copy" disabled>Copy enquiry</button>
+          <button type="button" id="cat-enq-clear" disabled>Clear</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+<script>window.BL_CATALOG=__CATALOGDATA__;</script>
+<script defer src="catalog.js?v=20260822a"></script>

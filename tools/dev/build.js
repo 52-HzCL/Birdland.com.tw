@@ -6,10 +6,22 @@
 const fs = require('fs'), path = require('path');
 const { REPO } = require('./_env');
 const data = fs.readFileSync(path.join(REPO, 'outlook-data.json'), 'utf8');
+// The buyer desk ships the garden & DIY catalogue; the cost desk never sees it,
+// so cost-desk.html stays byte-identical. Data is inlined the same way __DATA__ is.
+let catalogPartial = '';
+const capPath = path.join(REPO, 'tools', 'catalog_partial.html');
+if (fs.existsSync(capPath)) {
+  const cjsonPath = path.join(REPO, 'catalog.json');
+  const cjson = fs.existsSync(cjsonPath)
+    ? fs.readFileSync(cjsonPath, 'utf8').trim().split('</').join('<\\/')
+    : 'null';
+  catalogPartial = '\n' + fs.readFileSync(capPath, 'utf8').split('__CATALOGDATA__').join(cjson);
+}
+
 const JOBS = [
   ['news_template.html', 'guide.html', null],
-  ['partner_template.html', 'partner.html', { __DESKMODE__: 'buyer' }],
-  ['partner_template.html', 'cost-desk.html', { __DESKMODE__: 'cost' }],
+  ['partner_template.html', 'partner.html', { __DESKMODE__: 'buyer', __CATALOG__: catalogPartial }],
+  ['partner_template.html', 'cost-desk.html', { __DESKMODE__: 'cost', __CATALOG__: '' }],
   ['team_template.html', 'team.html', null],
   ['executive_template.html', 'executive.html', null]
 ];
