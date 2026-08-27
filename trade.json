@@ -1,10 +1,10 @@
 {
   "schema": 2,
   "edition": "2026-Q3",
-  "generated": "2026-08-26T01:38:03Z",
+  "generated": "2026-08-27T02:47:54Z",
   "shard_state": {
-    "cursor": 35,
-    "completed_pct": 51,
+    "cursor": 36,
+    "completed_pct": 53,
     "quarter": "2026-Q3"
   },
   "sources": {
@@ -2655,22 +2655,95 @@
       "src": "comtrade",
       "cells": {
         "820110": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 15.7,
+          "vol_change_pct": -17,
+          "share_tw": 0,
+          "share_tw_prev": 0,
+          "share_cn": 19,
+          "share_cn_prev": 19,
+          "stale": false,
+          "band": null
         },
         "820130": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 13,
+          "vol_change_pct": -14.1,
+          "share_tw": 0,
+          "share_tw_prev": 0,
+          "share_cn": 7,
+          "share_cn_prev": 7,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 29
+          }
         },
         "820150": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -3.4,
+          "vol_change_pct": -11.8,
+          "share_tw": 5,
+          "share_tw_prev": 6,
+          "share_cn": 81,
+          "share_cn_prev": 82,
+          "stale": false,
+          "band": {
+            "market": "lower",
+            "tw": "upper",
+            "moved": "down",
+            "to_next_pct": 1
+          }
         },
         "820160": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -0.1,
+          "vol_change_pct": 6.7,
+          "share_tw": 2,
+          "share_tw_prev": 5,
+          "share_cn": 57,
+          "share_cn_prev": 49,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "upper",
+            "moved": "flat",
+            "to_next_pct": 2
+          }
         },
         "821300": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -8.1,
+          "vol_change_pct": 24.2,
+          "share_tw": 0,
+          "share_tw_prev": 0,
+          "share_cn": 93,
+          "share_cn_prev": 93,
+          "stale": false,
+          "band": {
+            "market": "upper",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 0
+          }
         },
         "820210": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 36.9,
+          "vol_change_pct": -20.9,
+          "share_tw": 5,
+          "share_tw_prev": 7,
+          "share_cn": 59,
+          "share_cn_prev": 69,
+          "stale": false,
+          "band": {
+            "market": "lower",
+            "tw": "upper",
+            "moved": "flat",
+            "to_next_pct": 27
+          }
         }
       }
     },
