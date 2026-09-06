@@ -60,6 +60,19 @@ is small, it is the state you reviewed in the Phase 4 screenshots, and renaming
 the desks' four variables is a change worth making deliberately rather than in
 the last minutes before a deploy.
 
+_Update, 2026-08-09 (Zero-Touch audit):_ `desk-banner.css` no longer loads on
+`partner.html`/`cost-desk.html` at all (removed in `d763499`, "the desks become
+apps") — the header hairline component it used to describe here is gone from
+these two pages. The same shadow now hits `app-bar.css` instead, which loads
+on **five** pages (`partner.html`, `cost-desk.html`, `team.html`,
+`executive.html`, `my-market.html`), confirmed via live computed styles to
+render at least 3 different hairline colours across that family
+(`team_template.html` independently shadows the same names to yet another
+value, and uses `--pos`/`--neg` instead of `--up`/`--down` on top of that).
+Still not urgent — it's a border-colour consistency issue, not a functional
+bug — but the affected surface is wider than when this entry was written, so
+it's a better cleanup candidate than before if anyone picks this up.
+
 ## Closed during the audit
 
 **I-0 · `renderDecisionVisuals` throws on every `news.html` load.**

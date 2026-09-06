@@ -5,16 +5,29 @@ GitHub Pages, custom domain birdland.com.tw, serving `main` directly — **push 
 
 ## Pages & build system (the #1 rule)
 
+_(Corrected 2026-08-09 by the Zero-Touch audit: `news.html` is no longer a
+built page and `cost-desk.html` was missing from this list entirely — see
+`tools/dev/build.js`'s `JOBS` array and `pr-validation.yml`'s `pairs` array,
+which are the two independent sources of truth this correction is based on.)_
+
 - `index.html` — hand-authored public landing page. Edit directly.
-- `news.html`, `partner.html`, `team.html`, `executive.html` — **BUILT ARTIFACTS. NEVER hand-edit.**
-  They are generated from `tools/news_template.html`, `tools/partner_template.html`,
-  `tools/team_template.html`, `tools/executive_template.html` by substituting the
-  literal token `__DATA__` with the full contents of `outlook-data.json` (see
-  `tools/build_news.py`).
-- Rebuild after any template change (Node version, works everywhere):
-  ```
-  node -e "const fs=require('fs');const d=fs.readFileSync('outlook-data.json','utf8');for(const [t,o] of [['tools/news_template.html','news.html'],['tools/partner_template.html','partner.html'],['tools/team_template.html','team.html'],['tools/executive_template.html','executive.html']])fs.writeFileSync(o,fs.readFileSync(t,'utf8').split('__DATA__').join(d));"
-  ```
+- `news.html` — hand-written redirect stub (same pattern as `manufacturing.html`
+  and `why-birdland.html`). Edit directly; it is **not** generated.
+- `guide.html`, `partner.html`, `cost-desk.html`, `team.html`, `executive.html`
+  — **BUILT ARTIFACTS. NEVER hand-edit.** Generated from `tools/news_template.html`
+  (→ `guide.html`), `tools/partner_template.html` (→ `partner.html` with
+  `__DESKMODE__` substituted to `buyer`, **and** → `cost-desk.html` with it
+  substituted to `cost` — one template, two pages), `tools/team_template.html`,
+  `tools/executive_template.html`, by substituting the literal token `__DATA__`
+  with the full contents of `outlook-data.json` (see `tools/build_news.py`).
+- Rebuild after any template change: `node tools/dev/build.js` (the Node
+  twin of `tools/build_news.py`, kept for this Python-less machine — it also
+  chains `gen-terminal.js` afterward, since the search index is harvested from
+  these same templates and goes stale the moment they change). Point at this
+  script rather than hand-rolling the substitution loop again — a previous
+  version of this exact section had its own inline one-liner, which is what
+  drifted out of sync (missing `cost-desk.html` and the `__DESKMODE__` step)
+  and went uncaught until this audit.
 - A template you did NOT edit must produce zero `git diff` in its built page.
 
 ## Daily CI pipeline (do not break it)
@@ -50,8 +63,12 @@ is the two rules that matter most; the doc has the rest.
   Always prefer the top-level daily block; use `P.*` only as fallback, and label
   static data honestly (see freshness badges below).
 - Known trap: `P.shipping` is a desk-set forecast CURVE whose levels can sit far
-  below real spot rates; live lane rates live in `D.shipping` (no points[] series —
-  it can never be fed to `lineChart`, it would throw).
+  below real spot rates; live lane rates live in `D.shipping` (no points[] series).
+  _(The section that used to render `P.shipping` was retired outright — see
+  `tools/partner_template.html`'s own "retired outright" comment — and no
+  function named `lineChart` exists anywhere in the repo anymore, corrected
+  2026-08-09 by the Zero-Touch audit after this warning was found to describe
+  a mechanism that no longer exists.)_
 - Known pipeline bug: the last spark-array point is often duplicated, so naive
   `chg` reads 0.0%. Use the existing "walk back past duplicate tail" pattern
   (search `realChg` / `rc(` in partner template) when deriving % change.
@@ -83,20 +100,40 @@ is the two rules that matter most; the doc has the rest.
 - `innerHTML` renderers are INTENTIONAL (static templates, no user input). Do not
   "security-fix" them to textContent — that turns nav markup into visible text.
 - Storage namespaces: partner `bd_p_*`, team `bd_t_*`, executive `bd_e_*`, index `bl_*`
-  (`bl_intro_seen`, `bl_fol_cut`). PIN gates bypass in dev:
-  `sessionStorage.bd_partner='1'` / `sessionStorage.bd_team='1'` /
-  `sessionStorage.bd_executive='1'`.
+  (`bl_ink_intro` — see index.html specifics below).
+- PIN gate bypass in dev: `sessionStorage.bd_team='1'` for team.html only.
+  _(Corrected 2026-08-09: partner.html and cost-desk.html no longer have a PIN
+  gate at all — deliberately removed in `6fd00c1` ("Actions become icons, and
+  15KB of CSS for markup that is gone", 2026-07-31). Both load fully with no
+  bypass needed; `sessionStorage.bd_partner` does nothing now.
+  `executive.html`'s only `sessionStorage` use is an unrelated dismissible-tip
+  mechanism, not a gate — there never was a `bd_executive` gate to bypass on
+  this page despite what this line used to imply.)_
 
 ## index.html specifics
 
-- Foliage-cut feature: keywords hidden behind SVG foliage (`.fol` component),
-  persisted in `bl_fol_cut`. `.fol-cut` is a real `<button>`; text stays in the
-  a11y tree; `preserveAspectRatio='none'` is set in JS so the SVG stretch-fills.
-- Reading-focus scroll zoom: text scale peak is capped at 1.1 with center origin.
-  Anything larger overflows the container and `body{overflow-x:hidden}` visibly
-  slices letters off. Do not raise it.
-- Desktop nav (≥981px) is a single row (brand | links | rule | SaaS Terminal |
-  EN); mobile keeps the hamburger overlay. Watch flex-shrink when touching it.
+_(Corrected 2026-08-09 by the Zero-Touch audit: the foliage-cut feature, the
+reading-focus scroll zoom, and the hamburger mobile nav this section used to
+describe were all removed in `6fa66ad` ("Rebuild Birdland as a buyer decision
+platform", 2026-07-28) and no longer exist anywhere in the repo — grep-verified.
+The section below describes what's actually there now.)_
+
+- The hero is `.bl-ink-hero`/`.bl-ink-stage` (3 stages, 4 `[data-ink-reveal]`
+  points each): clicking a stage advances `data-ink-index` and toggles
+  `.is-near` on one point at a time. A one-shot staggered flash of all three
+  `[data-ink-main]` propositions plays once per session
+  (`sessionStorage.bl_ink_intro`); after that, on desktop (>900px) they sit at
+  `opacity:0` at rest and only light up on hover/click/focus of their stage —
+  `birdland-visual.css:984` (base rule) vs `:998` (`.is-near`)/`.is-intro`. This
+  is a deliberate `7d87c09` trade-off restoring a cursor-mask interaction, not
+  a bug; below 900px `birdland-visual.css:1139` forces them permanently
+  visible. The `<h1>` tagline itself is always visible at every width
+  (unlike the pre-`5de128e` state this section used to warn about).
+- Desktop nav (`.bl-nav`) is a single flex row (brand | links | rule | Terminal
+  chip | language picker); there is no hamburger/overlay at any width — mobile
+  keeps the same row, horizontally scrollable (`overflow:auto`). Watch
+  flex-shrink when touching it, same reason as before: nothing between the
+  nav items and them (rebuilt to be) squeezed off-screen.
 
 ## Encoding & platform discipline
 
