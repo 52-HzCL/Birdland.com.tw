@@ -12,7 +12,8 @@
     "email": "sales-test@birdland.com.tw"
    },
    "items": 3,
-   "images": 3
+   "images": 3,
+   "expired": true
   }
  ],
  "processed": [
