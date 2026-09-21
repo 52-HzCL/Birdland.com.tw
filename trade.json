@@ -1,10 +1,10 @@
 {
   "schema": 2,
   "edition": "2026-Q3",
-  "generated": "2026-09-20T01:30:39Z",
+  "generated": "2026-09-21T01:38:34Z",
   "shard_state": {
-    "cursor": 60,
-    "completed_pct": 88,
+    "cursor": 61,
+    "completed_pct": 90,
     "quarter": "2026-Q3"
   },
   "sources": {
@@ -5486,22 +5486,70 @@
       "src": "comtrade",
       "cells": {
         "820110": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -8,
+          "vol_change_pct": -46.1,
+          "share_tw": null,
+          "share_tw_prev": null,
+          "share_cn": 99,
+          "share_cn_prev": 100,
+          "stale": false,
+          "band": null
         },
         "820130": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -11.3,
+          "vol_change_pct": -16.3,
+          "share_tw": null,
+          "share_tw_prev": 0,
+          "share_cn": 96,
+          "share_cn_prev": 89,
+          "stale": false,
+          "band": null
         },
         "820150": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 6.5,
+          "vol_change_pct": 4.1,
+          "share_tw": 0,
+          "share_tw_prev": 0,
+          "share_cn": 91,
+          "share_cn_prev": 94,
+          "stale": false,
+          "band": null
         },
         "820160": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -11.6,
+          "vol_change_pct": -14.6,
+          "share_tw": 2,
+          "share_tw_prev": 2,
+          "share_cn": 95,
+          "share_cn_prev": 94,
+          "stale": false,
+          "band": null
         },
         "821300": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -31,
+          "vol_change_pct": 18.2,
+          "share_tw": 0,
+          "share_tw_prev": null,
+          "share_cn": 93,
+          "share_cn_prev": 95,
+          "stale": false,
+          "band": null
         },
         "820210": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -8.2,
+          "vol_change_pct": -12.9,
+          "share_tw": 0,
+          "share_tw_prev": 0,
+          "share_cn": 98,
+          "share_cn_prev": 98,
+          "stale": false,
+          "band": null
         }
       }
     },
