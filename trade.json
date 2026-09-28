@@ -1,10 +1,10 @@
 {
   "schema": 2,
   "edition": "2026-Q3",
-  "generated": "2026-09-27T01:39:50Z",
+  "generated": "2026-09-28T01:43:21Z",
   "shard_state": {
-    "cursor": 66,
-    "completed_pct": 97,
+    "cursor": 67,
+    "completed_pct": 99,
     "quarter": "2026-Q3"
   },
   "sources": {
@@ -7409,22 +7409,34 @@
       "src": "comtrade",
       "cells": {
         "820110": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 38.8,
+          "stale": false
         },
         "820130": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -2.1,
+          "stale": false
         },
         "820150": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 0.2,
+          "stale": false
         },
         "820160": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -22,
+          "stale": false
         },
         "821300": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 13.5,
+          "stale": false
         },
         "820210": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -11.6,
+          "stale": false
         }
       }
     },
@@ -7434,22 +7446,34 @@
       "src": "comtrade",
       "cells": {
         "820110": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -10.8,
+          "stale": false
         },
         "820130": {
+          "basis": "kg",
+          "uv_change_pct": 150,
           "stale": true
         },
         "820150": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 10.4,
+          "stale": false
         },
         "820160": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -24.6,
+          "stale": false
         },
         "821300": {
+          "basis": "kg",
+          "uv_change_pct": 60.4,
           "stale": true
         },
         "820210": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -7.8,
+          "stale": false
         }
       }
     },
@@ -7459,22 +7483,34 @@
       "src": "comtrade",
       "cells": {
         "820110": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 8.4,
+          "stale": false
         },
         "820130": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -0.8,
+          "stale": false
         },
         "820150": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 4.1,
+          "stale": false
         },
         "820160": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -6.9,
+          "stale": false
         },
         "821300": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 1.8,
+          "stale": false
         },
         "820210": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -20.4,
+          "stale": false
         }
       }
     },
@@ -7484,21 +7520,33 @@
       "src": "comtrade",
       "cells": {
         "820110": {
+          "basis": "kg",
+          "uv_change_pct": -56.9,
           "stale": true
         },
         "820130": {
+          "basis": "kg",
+          "uv_change_pct": null,
           "stale": true
         },
         "820150": {
+          "basis": "kg",
+          "uv_change_pct": null,
           "stale": true
         },
         "820160": {
+          "basis": "kg",
+          "uv_change_pct": null,
           "stale": true
         },
         "821300": {
+          "basis": "kg",
+          "uv_change_pct": null,
           "stale": true
         },
         "820210": {
+          "basis": "kg",
+          "uv_change_pct": null,
           "stale": true
         }
       }
@@ -7509,22 +7557,34 @@
       "src": "comtrade",
       "cells": {
         "820110": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 4,
+          "stale": false
         },
         "820130": {
+          "basis": "kg",
+          "uv_change_pct": 59.5,
           "stale": true
         },
         "820150": {
+          "basis": "kg",
+          "uv_change_pct": -58.2,
           "stale": true
         },
         "820160": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -29.1,
+          "stale": false
         },
         "821300": {
+          "basis": "kg",
+          "uv_change_pct": 50.5,
           "stale": true
         },
         "820210": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 39.7,
+          "stale": false
         }
       }
     },
@@ -7534,21 +7594,33 @@
       "src": "comtrade",
       "cells": {
         "820110": {
-          "stale": true
+          "basis": "piece",
+          "uv_change_pct": -40.6,
+          "stale": false
         },
         "820130": {
-          "stale": true
+          "basis": "piece",
+          "uv_change_pct": -16,
+          "stale": false
         },
         "820150": {
-          "stale": true
+          "basis": "piece",
+          "uv_change_pct": -5.9,
+          "stale": false
         },
         "820160": {
-          "stale": true
+          "basis": "piece",
+          "uv_change_pct": -2.5,
+          "stale": false
         },
         "821300": {
-          "stale": true
+          "basis": "piece",
+          "uv_change_pct": -1,
+          "stale": false
         },
         "820210": {
+          "basis": "piece",
+          "uv_change_pct": 65.9,
           "stale": true
         }
       }
@@ -7559,22 +7631,34 @@
       "src": "comtrade",
       "cells": {
         "820110": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 47.3,
+          "stale": false
         },
         "820130": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 21.1,
+          "stale": false
         },
         "820150": {
+          "basis": "kg",
+          "uv_change_pct": -77.3,
           "stale": true
         },
         "820160": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -45.8,
+          "stale": false
         },
         "821300": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 13.3,
+          "stale": false
         },
         "820210": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 3.8,
+          "stale": false
         }
       }
     },
@@ -7584,22 +7668,34 @@
       "src": "comtrade",
       "cells": {
         "820110": {
-          "stale": true
+          "basis": "piece",
+          "uv_change_pct": -13.6,
+          "stale": false
         },
         "820130": {
-          "stale": true
+          "basis": "piece",
+          "uv_change_pct": -24.9,
+          "stale": false
         },
         "820150": {
-          "stale": true
+          "basis": "piece",
+          "uv_change_pct": -14.9,
+          "stale": false
         },
         "820160": {
+          "basis": "piece",
+          "uv_change_pct": 142.3,
           "stale": true
         },
         "821300": {
+          "basis": "piece",
+          "uv_change_pct": 185.6,
           "stale": true
         },
         "820210": {
-          "stale": true
+          "basis": "piece",
+          "uv_change_pct": 23.2,
+          "stale": false
         }
       }
     },
@@ -7609,22 +7705,34 @@
       "src": "comtrade",
       "cells": {
         "820110": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 7.8,
+          "stale": false
         },
         "820130": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -11.7,
+          "stale": false
         },
         "820150": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 12.9,
+          "stale": false
         },
         "820160": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -15.9,
+          "stale": false
         },
         "821300": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 5.2,
+          "stale": false
         },
         "820210": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -10.9,
+          "stale": false
         }
       }
     },
@@ -7634,22 +7742,34 @@
       "src": "comtrade",
       "cells": {
         "820110": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": -0.3,
+          "stale": false
         },
         "820130": {
+          "basis": "kg",
+          "uv_change_pct": 79.3,
           "stale": true
         },
         "820150": {
+          "basis": "kg",
+          "uv_change_pct": null,
           "stale": true
         },
         "820160": {
+          "basis": "kg",
+          "uv_change_pct": null,
           "stale": true
         },
         "821300": {
+          "basis": "kg",
+          "uv_change_pct": -54.2,
           "stale": true
         },
         "820210": {
-          "stale": true
+          "basis": "kg",
+          "uv_change_pct": 16,
+          "stale": false
         }
       }
     },
