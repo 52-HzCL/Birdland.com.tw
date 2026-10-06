@@ -106,7 +106,7 @@ html.tm-open .bl-header,html.tm-open #desk-banner{z-index:820}
    Four steps and three arrows — the column list must be kept in step with
    STEPS in terminal.js, which is why the count is written out rather than
    generated: a repeat() here would silently swallow a fifth app. */
-.tm-path{display:grid;grid-template-columns:1fr 26px 1fr 26px 1fr 26px 1fr;align-items:stretch}
+.tm-path{display:grid;grid-template-columns:1fr 26px 1fr 26px 1fr;align-items:stretch}
 .tm-step{
   display:flex;flex-direction:column;align-items:center;text-align:center;gap:7px;
   padding:22px 14px 20px;text-decoration:none;color:inherit;

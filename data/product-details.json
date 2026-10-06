@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "purpose": "Public product detail extensions; no customer order data or private source traces.",
+  "products": {},
+  "campaigns": []
+}

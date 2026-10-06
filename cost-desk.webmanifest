@@ -1,20 +1,53 @@
 {
-  "name": "Birdland CostNow",
-  "short_name": "CostNow",
-  "description": "CostNow — landed cost & margin. Landed cost, retail margin, reorder timing, sailing and duty comparison.",
+  "name": "Birdland Purchase Planning",
+  "short_name": "Purchase Planning",
+  "description": "Purchase Planning — Birdland buyer tools",
   "start_url": "./cost-desk.html",
   "scope": "./",
-  "launch_handler": {"client_mode": "navigate-existing"},
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
   "shortcuts": [
-    {"name": "Cost Workspace", "short_name": "Workspace", "url": "./cost-desk.html", "icons": [{"src": "./images/app-cost-tile.png", "sizes": "96x96", "type": "image/png"}]},
-    {"name": "Cost & Origin Signals", "short_name": "Cost & Origin", "url": "./cost-desk.html#p-mkt", "icons": [{"src": "./images/app-cost-tile.png", "sizes": "96x96", "type": "image/png"}]}
+    {
+      "name": "Cost Workspace",
+      "short_name": "Workspace",
+      "url": "./cost-desk.html",
+      "icons": [
+        {
+          "src": "./images/app-cost-tile.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Cost & Origin Signals",
+      "short_name": "Cost & Origin",
+      "url": "./cost-desk.html#p-mkt",
+      "icons": [
+        {
+          "src": "./images/app-cost-tile.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
   ],
   "display": "standalone",
   "background_color": "#EFF4EE",
   "theme_color": "#0A3D2B",
   "icons": [
-    {"src": "./images/app-cost-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
-    {"src": "./images/app-cost-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
-    {"src": "./images/app-cost-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+    {
+      "src": "./images/apps/cost-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./images/apps/cost-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
   ]
 }

@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Buying tools · Birdland</title>
+<meta name="description" content="Estimate import costs, plan reorder timing and follow verified metal trends with buyer-entered assumptions.">
+<link rel="canonical" href="https://birdland.com.tw/buying-tools.html">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="buyer-planning.css">
+<link rel="stylesheet" href="buyer-tools.css">
+<link rel="stylesheet" href="buyer-intelligence.css"><script src="context.js"></script><script src="buyer-focus.js"></script><link rel="stylesheet" href="buyer-journey.css" data-buyer-shell>
+<script src="site-registry.js"></script>
+<link rel="stylesheet" href="terminal.css">
+<script defer src="terminal.js"></script>
+<script defer src="buyer-navigation.js"></script>
+<link rel="stylesheet" href="buyer-brief.css"><script src="buyer-brief.js"></script>
+</head>
+<body class="bj-tools-page">
+<main id="main" class="bj-tools" data-guided-tools>
+<header class="bt-header">
+<p class="bj-eyebrow">BIRDLAND · BUYING TOOLS</p>
+<h1 translate="no" data-journey-key="biPlan" >Purchase planning</h1>
+<p translate="no" data-journey-key="biIntro" class="bt-intro">Choose your tools and market once. Start with relevant changes, then open the evidence.</p>
+</header>
+<nav class="bi-links" data-insight-navigation aria-label="Buyer workspaces"></nav>
+<section class="bi-focus" aria-label="Your buying focus"><label><span translate="no" data-journey-key="biCategory">Tool category</span><select id="bi-category"></select></label><label><span translate="no" data-journey-key="biMarket">Your market</span><select id="bi-market"></select></label><button type="button" id="bi-clear" translate="no" data-journey-key="biClear">Clear saved preferences</button></section>
+<nav class="bt-tasks" aria-label="Buying tasks">
+<a href="#landed-cost" data-tool-link>
+<span class="bt-number">01</span>
+<strong translate="no" data-journey-key="btCost" >Estimate import cost</strong>
+<span translate="no" data-journey-key="btCostHint" >From FOB quote to cost per unit.</span>
+</a>
+<a href="#reorder-planning" data-tool-link>
+<span class="bt-number">02</span>
+<strong translate="no" data-journey-key="btStock" >Plan a reorder</strong>
+<span translate="no" data-journey-key="btStockHint" >Know when to order before stock runs low.</span>
+</a>
+<a href="#cost-trends" data-tool-link>
+<span class="bt-number">03</span>
+<strong translate="no" data-journey-key="btTrends" >Follow cost trends</strong>
+<span translate="no" data-journey-key="btTrendsHint" >Monthly metals and your own cost scenarios.</span>
+</a>
+</nav>
+<section id="landed-cost" class="bt-panel" data-tool-panel aria-labelledby="bt-cost-title">
+<h2 id="bt-cost-title" tabindex="-1" translate="no" data-journey-key="btCost">Estimate import cost</h2>
+<p translate="no" data-journey-key="biPlanNote" class="bt-intro">Choose a model to see its production origin. Add your own quote when you want a per-unit cost.</p>
+<label class="bi-model-label"><span translate="no" data-journey-key="biChooseProduct">Choose a catalogue model</span><select id="bi-product" class="bi-product-select"></select></label><div id="bi-product-preview"></div><p class="bi-meta" id="bi-plan-signal"></p><div class="bi-lanes"><a href="#bt-estimate-inputs" data-quote-mode="LCL"><strong>LCL · <span translate="no" data-journey-key="biShared">Shared container</span></strong><span translate="no" data-journey-key="biLCLHint">Compare a quote based on packed volume and weight.</span></a><a href="#bt-estimate-inputs" data-quote-mode="FCL"><strong>FCL · <span translate="no" data-journey-key="biWhole">Whole container</span></strong><span translate="no" data-journey-key="biFCLHint">Compare a container quote for the same shipment.</span></a></div><details class="bi-more"><summary translate="no" data-journey-key="biShippingNotes">Shipping references</summary><p translate="no" data-journey-key="biShippingCaveat">Costs and timing depend on packing, route and service. These choices do not promise a price or sailing date.</p><a href="https://www.maersk.com/logistics-explained/transportation-and-freight/2023/12/15/understanding-ocean-freight" target="_blank" rel="noopener">Maersk · LCL / FCL ↗</a></details>
+<div class="bt-workspace">
+<details id="bt-estimate-inputs" class="bt-quote-details"><summary translate="no" data-journey-key="biAddQuote">Add your quote to estimate cost</summary><form id="bt-cost-form" autocomplete="off">
+<fieldset>
+<legend>
+<span translate="no" data-journey-key="btShipment" >1 · Enter your shipment</span>
+</legend>
+<p class="bt-muted">
+<span translate="no" data-journey-key="btUSD" >Shipment totals in USD; quantity in pieces.</span>
+</p>
+<div class="bt-fields">
+<label>
+<span translate="no" data-journey-key="btFOB" >FOB shipment value (USD)</span>
+<input id="bt-fob" name="fob" type="number" min="0.01" step="any" inputmode="decimal" required>
+</label>
+<label>
+<span translate="no" data-journey-key="btQuantity" >Shipment quantity (pcs)</span>
+<input id="bt-quantity" name="quantity" type="number" min="1" step="1" inputmode="numeric" required>
+</label>
+<label>
+<span translate="no" data-journey-key="btFreight" >Freight total (USD)</span>
+<input id="bt-freight" name="freight" type="number" min="0" step="any" inputmode="decimal" required>
+</label>
+</div>
+</fieldset>
+<details class="bt-more">
+<summary translate="no" data-journey-key="btExtras">Add duty, tax and other costs</summary>
+<p translate="no" data-journey-key="btRatesHint" class="bt-muted">Blank extras count as zero. Enter broker-confirmed rates. Import tax is modelled on CIF + duty; include any other charges under fees.</p>
+<div class="bt-fields">
+<label>
+<span translate="no" data-journey-key="btInsurance" >Insurance total (USD)</span>
+<input id="bt-insurance" name="insurance" type="number" min="0" step="any" inputmode="decimal" >
+</label>
+<label>
+<span translate="no" data-journey-key="btFees" >Brokerage, inland and other fees (USD)</span>
+<input id="bt-fees" name="fees" type="number" min="0" step="any" inputmode="decimal" >
+</label>
+<label>
+<span translate="no" data-journey-key="btDuty" >Duty (%)</span>
+<input id="bt-duty" name="duty" type="number" min="0" step="any" inputmode="decimal" max="100">
+</label>
+<label>
+<span translate="no" data-journey-key="btTax" >Import tax (%)</span>
+<input id="bt-tax" name="tax" type="number" min="0" step="any" inputmode="decimal" max="100">
+</label>
+<label>
+<span translate="no" data-journey-key="btBasis" >Customs valuation basis</span>
+<select id="bt-basis" name="basis">
+<option value="cif">CIF</option>
+<option value="fob">FOB</option>
+</select>
+</label>
+</div>
+</details>
+<details class="bt-more">
+<summary translate="no" data-journey-key="btMargin">Check a selling price</summary>
+<p translate="no" data-journey-key="btMarginHint" class="bt-muted">Optional: include import tax if it cannot be recovered. Sales taxes and selling overheads are excluded.</p>
+<div class="bt-fields">
+<label>
+<span translate="no" data-journey-key="btGrossMargin" >Target gross margin (%)</span>
+<input id="bt-margin" name="margin" type="number" min="0" step="any" inputmode="decimal" max="99.9">
+</label>
+</div>
+<label class="bt-check">
+<input type="checkbox" name="includeTax">
+<span translate="no" data-journey-key="btIncludeTax">Include import tax in pricing cost</span>
+</label>
+<p>
+<span translate="no" data-journey-key="btSellingPrice" >Selling price / unit (USD)</span>: <output id="bt-price">—</output>
+</p>
+</details>
+<button type="reset" translate="no" data-journey-key="bpReset">Reset assumptions</button>
+</form></details>
+<aside class="bt-result" aria-label="Cost result">
+<p class="bt-result-label">
+<span translate="no" data-journey-key="btResult" >2 · Your planning result</span>
+</p>
+<p id="bt-cost-empty" class="bt-empty">
+<span translate="no" data-journey-key="btCostEmpty" >Enter FOB value, quantity and freight to see your cost.</span>
+</p>
+<div id="bt-cost-result" hidden>
+<div class="bt-main-number">
+<span translate="no" data-journey-key="btUnit" >Landed cost / unit, before import tax</span>
+<output id="bt-unit" aria-live="polite">
+</output>
+</div>
+<dl>
+<div>
+<dt>
+<span translate="no" data-journey-key="btCash" >Total cash requirement</span>
+</dt>
+<dd id="bt-cash">
+</dd>
+</div>
+<div>
+<dt>
+<span translate="no" data-journey-key="btImportTax" >Import tax included in cash</span>
+</dt>
+<dd id="bt-tax-amount">
+</dd>
+</div>
+</dl>
+<p id="bt-cost-assumptions" class="bt-muted">
+</p>
+</div>
+<p translate="no" data-journey-key="btCostCaveat" class="bt-muted">Your assumptions only. No automatic tariff rates or live freight quote. Confirm valuation and tax treatment with your broker.</p>
+<button translate="no" data-journey-key="btCopy" type="button" id="bt-cost-copy" disabled>Copy planning summary</button>
+</aside>
+</div>
+</section>
+<section id="reorder-planning" class="bt-panel" data-tool-panel hidden aria-labelledby="bt-stock-title">
+<h2 id="bt-stock-title" tabindex="-1" translate="no" data-journey-key="btStock">Plan a reorder</h2>
+<p translate="no" data-journey-key="btStockGuide" class="bt-intro">Enter stock, weekly sales and your total replenishment time, including a safety buffer.</p>
+<div class="bt-workspace">
+<form id="bt-stock-form" autocomplete="off">
+<fieldset>
+<legend>
+<span translate="no" data-journey-key="btStockInputs" >1 · Enter stock and lead times</span>
+</legend>
+<div class="bt-fields">
+<label>
+<span translate="no" data-journey-key="btOnHand" >Available stock (units)</span>
+<input id="bt-stock" name="stock" type="number" min="0" step="any" inputmode="decimal" required>
+</label>
+<label>
+<span translate="no" data-journey-key="btWeekly" >Average weekly sales (units)</span>
+<input id="bt-weekly" name="weekly" type="number" min="0.01" step="any" inputmode="decimal" required>
+</label>
+<label><span translate="no" data-journey-key="btTotalLead">Total replenishment time (weeks)</span><input id="bt-total-lead" name="totalLead" type="number" min="0" step="any" inputmode="decimal" required></label>
+</div>
+<details id="bt-lead-details" class="bt-more"><summary translate="no" data-journey-key="btLeadDetail">Split lead time and buffer</summary><div class="bt-fields">
+<label>
+<span translate="no" data-journey-key="btProduction" >Production lead (weeks)</span>
+<input id="bt-production" name="production" type="number" min="0" step="any" inputmode="decimal">
+</label>
+<label>
+<span translate="no" data-journey-key="btTransit" >Transit to warehouse (weeks)</span>
+<input id="bt-transit" name="transit" type="number" min="0" step="any" inputmode="decimal">
+</label>
+<label>
+<span translate="no" data-journey-key="btSafety" >Safety buffer (weeks)</span>
+<input id="bt-safety" name="safety" type="number" min="0" step="any" inputmode="decimal">
+</label>
+</div></details>
+</fieldset>
+<button type="reset" translate="no" data-journey-key="bpReset">Reset assumptions</button>
+</form>
+<aside class="bt-result" aria-label="Reorder result">
+<p class="bt-result-label">
+<span translate="no" data-journey-key="btResult" >2 · Your planning result</span>
+</p>
+<p id="bt-stock-empty" class="bt-empty">
+<span translate="no" data-journey-key="btStockEmpty" >Complete the three inputs to see when to reorder.</span>
+</p>
+<div id="bt-stock-result" hidden>
+<div class="bt-main-number">
+<span translate="no" data-journey-key="btReorderBy" >Place your next order by</span>
+<output id="bt-order-date" aria-live="polite">
+</output>
+</div>
+<dl>
+<div>
+<dt>
+<span translate="no" data-journey-key="btCover" >Stock cover (weeks)</span>
+</dt>
+<dd id="bt-cover">
+</dd>
+</div>
+<div>
+<dt>
+<span translate="no" data-journey-key="btPipeline" >Lead time + safety (weeks)</span>
+</dt>
+<dd id="bt-pipeline">
+</dd>
+</div>
+<div>
+<dt>
+<span translate="no" data-journey-key="btThreshold" >Reorder threshold (units)</span>
+</dt>
+<dd id="bt-threshold">
+</dd>
+</div>
+</dl>
+</div>
+<p translate="no" data-journey-key="btStockCaveat" class="bt-muted">Assumes steady weekly demand and no inbound orders. This is a planning date, not a production or shipping promise.</p>
+<button translate="no" data-journey-key="btCopy" type="button" id="bt-stock-copy" disabled>Copy planning summary</button>
+</aside>
+</div>
+</section>
+<section class="bp-planning bt-panel" id="cost-trends" data-tool-panel hidden data-buyer-planning aria-labelledby="bp-title">
+<h2 id="bp-title" tabindex="-1" translate="no" data-journey-key="btTrends">Follow cost trends</h2>
+<p translate="no" data-journey-key="btTrendGuide" class="bt-intro">Start with observed metal data. For your own shipment, use route-specific freight quotes and supplier processing quotes; test their effect below.</p>
+<div class="bp-reference-grid">
+<article class="bp-reference">
+<h3 translate="no" data-journey-key="bpMaterials">Material trends</h3>
+<p translate="no" data-journey-key="bpMaterialsHint">Check the market behind your metal components. Commodity benchmarks do not equal finished-tool costs.</p>
+<div id="bp-metal-trend">
+</div>
+<p class="bp-status" id="bp-materials-status">
+</p>
+<a href="https://www.worldbank.org/en/research/commodity-markets" target="_blank" rel="noopener" translate="no" data-journey-key="bpMaterialsLink">World Bank monthly metals data ↗</a>
+</article>
+<article class="bp-reference bp-compact-reference">
+<h3 translate="no" data-journey-key="bpFreight">Freight trends</h3>
+<p translate="no" data-journey-key="bpFreightHint">Use the relevant route benchmark when planning imports. A global index is not your shipment quotation.</p>
+<p class="bp-status" id="bp-freight-status">
+</p>
+<a href="https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/world-container-index-assessed-by-drewry" target="_blank" rel="noopener" translate="no" data-journey-key="bpFreightLink">Drewry route report ↗</a>
+</article>
+</div>
+<details class="bp-scenario" id="cost-sensitivity">
+<summary translate="no" data-journey-key="bpScenario">What if materials, processing or freight change?</summary>
+<p translate="no" data-journey-key="bpScenarioHint">Enter your own cost shares, totalling 100%, and assumed changes. The starting index is 100. This is a scenario, not a forecast or Birdland quote.</p>
+<div class="bp-model">
+<div class="bp-model-heading">
+<span translate="no" data-journey-key="bpComponent">Component</span>
+<span translate="no" data-journey-key="bpShare">Cost share %</span>
+<span translate="no" data-journey-key="bpChange">Assumed change %</span>
+</div>
+<div class="bp-model-row">
+<span id="bp-material-label" translate="no" data-journey-key="bpMaterial">Materials</span>
+<input type="number" data-cost-share="material" min="0" max="100" step="0.1" aria-labelledby="bp-material-label bp-share-label">
+<input type="number" data-cost-change="material" min="-100" max="1000" step="0.1" value="0" aria-labelledby="bp-material-label bp-change-label">
+</div>
+<div class="bp-model-row">
+<span id="bp-processing-label" translate="no" data-journey-key="bpProcessing">Processing</span>
+<input type="number" data-cost-share="processing" min="0" max="100" step="0.1" aria-labelledby="bp-processing-label bp-share-label">
+<input type="number" data-cost-change="processing" min="-100" max="1000" step="0.1" value="0" aria-labelledby="bp-processing-label bp-change-label">
+</div>
+<div class="bp-model-row">
+<span id="bp-freight-label" translate="no" data-journey-key="bpFreight">Freight trends</span>
+<input type="number" data-cost-share="freight" min="0" max="100" step="0.1" aria-labelledby="bp-freight-label bp-share-label">
+<input type="number" data-cost-change="freight" min="-100" max="1000" step="0.1" value="0" aria-labelledby="bp-freight-label bp-change-label">
+</div>
+</div>
+<output id="bp-result" aria-live="polite">
+</output>
+<button type="button" id="bp-reset" translate="no" data-journey-key="bpReset">Reset assumptions</button>
+<span id="bp-share-label" class="bp-sr" translate="no" data-journey-key="bpShare">Cost share %</span>
+<span id="bp-change-label" class="bp-sr" translate="no" data-journey-key="bpChange">Assumed change %</span>
+</details>
+
+<p class="bp-data-terms">
+<a href="https://data.worldbank.org/summary-terms-of-use" target="_blank" rel="noopener" translate="no" data-journey-key="bpDataTerms">Data terms</a>
+</p>
+
+</section>
+<div class="bt-mobile-result" id="bt-mobile-result" hidden><output id="bt-mobile-value" aria-live="polite"></output><button type="button" id="bt-view-result" translate="no" data-journey-key="btViewResult">View result</button></div>
+<div class="bt-transfer">
+<p id="bt-copy-status" role="status">
+</p>
+<textarea id="bt-copy-fallback" hidden readonly aria-label="Planning summary">
+</textarea>
+<p translate="no" data-journey-key="btPrivate" class="bt-muted">Inputs stay in this page only. Reloading clears them; nothing is sent or saved to an account.</p>
+</div>
+<div class="bt-next">
+<a href="products.html#bl-cat" translate="no" data-journey-key="bpSelections">Return to products and your saved selections</a>
+<a href="contact.html" translate="no" data-journey-key="contact">Contact</a>
+</div>
+<noscript>
+<p>Calculators need JavaScript. <a href="products.html#bl-cat">Browse products</a> or <a href="contact.html">contact Birdland</a>.</p>
+</noscript>
+</main>
+<footer class="bj-footer">Birdland · Taiwan</footer>
+<script>window.BL_BUYER_CONTEXT={"sources":{"gemini":{"state":"delayed","updated":"2026-10-06T01:33:15Z","detail":"Gemini refresh failed; carried forward previous narrative blocks."},"twelvedata":{"state":"delayed","updated":"2026-10-06T01:33:20Z","detail":"No Twelve Data symbols updated; kept prior values."},"fred":{"state":"unavailable","updated":"2026-10-06T01:33:20Z","detail":"No freight block configured in outlook-data.json."},"fx":{"state":"current","updated":"2026-10-06T01:33:20Z","detail":"Updated USD/TWD, USD/CNY and USD/JPY from open.er-api."},"market_news":{"state":"current","updated":"2026-10-06T01:33:20Z","detail":"Fetched or retained 18 verified headlines (Taiwan 4, China 4, tariff 3, shipping 7). Local desks use English-language regional publishers and a 60-day verified continuity window."}},"materials":{"provider":"World Bank Commodity Price Data (Pink Sheet)","source_url":"https://www.worldbank.org/en/research/commodity-markets","download_url":"https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx","cadence":"monthly","checked_at":"2026-10-02T18:38:58+00:00","observed_month":"2026-08","series":[{"id":"aluminum","label":"Aluminum","unit":"US$/metric tonne","points":[{"month":"2025-09","value":2653},{"month":"2025-10","value":2793},{"month":"2025-11","value":2819},{"month":"2025-12","value":2876},{"month":"2026-01","value":3142},{"month":"2026-02","value":3065},{"month":"2026-03","value":3373},{"month":"2026-04","value":3600},{"month":"2026-05","value":3666},{"month":"2026-06","value":3439},{"month":"2026-07","value":3161},{"month":"2026-08","value":3251}]},{"id":"nickel","label":"Nickel","unit":"US$/metric tonne","points":[{"month":"2025-09","value":15106},{"month":"2025-10","value":15092},{"month":"2025-11","value":14671},{"month":"2025-12","value":14884},{"month":"2026-01","value":17769},{"month":"2026-02","value":17173},{"month":"2026-03","value":17076},{"month":"2026-04","value":17962},{"month":"2026-05","value":18806},{"month":"2026-06","value":17588},{"month":"2026-07","value":16651},{"month":"2026-08","value":16751}]}]}};</script>
+<script defer src="buyer-tool-models.js">
+</script>
+<script defer src="buyer-tools.js">
+</script>
+<script defer src="buyer-planning.js">
+</script>
+<script defer src="buyer-intelligence.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+{
+  "created": "2026-10-03",
+  "kind": "generated-educational-illustrations",
+  "notFactoryPhotos": true,
+  "notSkuConstruction": true,
+  "source": "image_gen",
+  "assets": [
+    {
+      "name": "materials",
+      "file": "images/generated/manufacturing-materials.webp",
+      "bytes": 151088,
+      "pngSHA256": "e6f6c1dbe7919c1120b284f59b872d78d2f0a22704349c23fbb6e99b82577105",
+      "webpSHA256": "50e18be1d03796149e44222390684229b234774d402bca55d7a9c0706df3fb3b"
+    },
+    {
+      "name": "processes",
+      "file": "images/generated/manufacturing-processes.webp",
+      "bytes": 166690,
+      "pngSHA256": "f7a9b3c6118da33a7572762e16040f3b817adbb0a423bc53e9859dccc8a3b917",
+      "webpSHA256": "64d9b7a4026eda658d5538394990401da5bafb2b375d16fc792405ae74217acb"
+    },
+    {
+      "name": "intake",
+      "file": "images/generated/manufacturing-intake.webp",
+      "bytes": 118866,
+      "pngSHA256": "9fab2d98b42eb34b9bf7ed296bb6c08c8d7122479dced49ad6b381df4e67536a",
+      "webpSHA256": "ed8d132e12d106fec8e587a8a1264db53178765b23b37c14cb0473cd429712fa"
+    }
+  ],
+  "materialGrid": {
+    "columns": 3,
+    "rows": 3,
+    "cells": [
+      "blade/spring steel appearance",
+      "stainless steel appearance",
+      "coating on metal concept",
+      "aluminium appearance",
+      "rigid polymer appearance",
+      "grip elastomer appearance",
+      "timber appearance",
+      "woven textile appearance",
+      "paperboard appearance"
+    ]
+  },
+  "processGrid": {
+    "columns": 2,
+    "rows": 3,
+    "cells": [
+      "sheet forming",
+      "matched die concept",
+      "heat/quench/temper principle",
+      "arc-welded T joint",
+      "powder application stage",
+      "dimensional check example"
+    ]
+  },
+  "limitations": [
+    "Not to scale; appearance does not identify grade or performance.",
+    "Process views illustrate the named example, not the entire manufacturing route or actual Birdland equipment.",
+    "Coating image depicts application only; pretreatment and curing are explained in its caption.",
+    "Plastic and timber sourcing remains attributed to specialist partners.",
+    "Original source photos and technical diagrams retained; no product exploded view replaced."
+  ]
+}

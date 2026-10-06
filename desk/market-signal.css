@@ -1,0 +1,7 @@
+
+/* This block used to be id="p-shelf-style" and carried the demand shelf's own
+   CSS. The shelf moved out to My Market; only these two unrelated rules —
+   the Cost Desk's #bc_co "market signal" line — were sharing the tag. */
+.landed-note.bc-signal{margin-top:6px}
+.landed-note.bc-signal a{color:var(--pd-jade-2);font-weight:700;text-decoration:none}
+.landed-note.bc-signal a:hover,.landed-note.bc-signal a:focus-visible{text-decoration:underline}

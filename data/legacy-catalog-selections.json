@@ -1,0 +1,730 @@
+[
+  {
+    "id": "hoe-draw",
+    "name": "Draw hoe",
+    "origin": "TW",
+    "specs": {
+      "length": "1400 mm",
+      "blade": "flat draw blade, 150 mm",
+      "material": "carbon steel, powder coat",
+      "handle": "ash wood",
+      "weight": "650 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "hoe-dutch",
+    "name": "Dutch push hoe",
+    "origin": "TW",
+    "specs": {
+      "length": "1450 mm",
+      "blade": "push/pull double edge, 130 mm",
+      "material": "carbon steel, powder coat",
+      "handle": "ash wood",
+      "weight": "620 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "cultivator-3tine",
+    "name": "3-tine hand cultivator",
+    "origin": "TW",
+    "specs": {
+      "length": "1400 mm",
+      "blade": "3-tine claw, 120 mm",
+      "material": "carbon steel, powder coat",
+      "handle": "ash wood",
+      "weight": "700 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "hoe-stirrup",
+    "name": "Stirrup / scuffle hoe",
+    "origin": "TW",
+    "specs": {
+      "length": "1400 mm",
+      "blade": "oscillating loop, 100 mm",
+      "material": "carbon steel",
+      "handle": "ash wood",
+      "weight": "600 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "weeder-brickjoint",
+    "name": "Brick-joint / patio weeder",
+    "origin": "TW",
+    "specs": {
+      "length": "320 mm",
+      "blade": "L-shaped hook, 50 mm",
+      "material": "carbon steel, powder coat",
+      "handle": "ash wood / PP",
+      "weight": "180 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "weeder-brickjoint-cn",
+    "name": "Brick-joint / patio weeder (CN)",
+    "origin": "CN",
+    "specs": {
+      "length": "320 mm",
+      "blade": "L-shaped hook, 50 mm",
+      "material": "carbon steel, epoxy coat",
+      "handle": "PP plastic",
+      "weight": "160 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "weeder-brickjoint-pro",
+    "name": "Brick-joint / patio weeder, pro",
+    "origin": "TW",
+    "specs": {
+      "length": "340 mm",
+      "blade": "L-shaped hook, forged, 55 mm",
+      "material": "high-carbon forged steel",
+      "handle": "ash wood, leather wrist strap",
+      "weight": "210 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "weeder-dandelion",
+    "name": "Dandelion / taproot weeder",
+    "origin": "TW",
+    "specs": {
+      "length": "400 mm",
+      "blade": "forked tip, 40 mm",
+      "material": "carbon steel",
+      "handle": "ash wood, T-grip",
+      "weight": "260 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "weeder-standup",
+    "name": "Stand-up weeder",
+    "origin": "TW",
+    "specs": {
+      "length": "950 mm",
+      "blade": "claw-tine head, 60 mm",
+      "material": "carbon steel",
+      "handle": "steel tube / PP grip",
+      "weight": "780 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "axe-splitting",
+    "name": "Splitting axe",
+    "origin": "TW",
+    "specs": {
+      "length": "900 mm",
+      "blade": "splitting wedge head, 120 mm",
+      "material": "forged carbon steel",
+      "handle": "hickory wood",
+      "weight": "2100 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "hatchet-camp",
+    "name": "Camp hatchet",
+    "origin": "TW",
+    "specs": {
+      "length": "350 mm",
+      "blade": "camp hatchet, 90 mm",
+      "material": "forged carbon steel",
+      "handle": "hickory wood",
+      "weight": "700 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "hatchet-camp-cn",
+    "name": "Camp hatchet (CN)",
+    "origin": "CN",
+    "specs": {
+      "length": "350 mm",
+      "blade": "camp hatchet, 90 mm",
+      "material": "drop-forged steel",
+      "handle": "fiberglass / rubber grip",
+      "weight": "650 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "mallet-rubber",
+    "name": "Rubber mallet",
+    "origin": "CN",
+    "specs": {
+      "length": "300 mm",
+      "blade": null,
+      "material": "rubber head",
+      "handle": "hardwood",
+      "weight": "450 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "hammer-club",
+    "name": "Club hammer",
+    "origin": "TW",
+    "specs": {
+      "length": "280 mm",
+      "blade": null,
+      "material": "forged steel head",
+      "handle": "fiberglass",
+      "weight": "1000 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "hammer-claw",
+    "name": "Claw hammer",
+    "origin": "TW",
+    "specs": {
+      "length": "330 mm",
+      "blade": null,
+      "material": "forged steel head",
+      "handle": "hickory wood",
+      "weight": "560 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "spade-digging",
+    "name": "Digging spade",
+    "origin": "TW",
+    "specs": {
+      "length": "1150 mm",
+      "blade": "flat digging blade, 190×280 mm",
+      "material": "carbon steel, powder coat",
+      "handle": "ash wood, D-grip",
+      "weight": "1900 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "fork-digging",
+    "name": "Digging fork",
+    "origin": "TW",
+    "specs": {
+      "length": "1150 mm",
+      "blade": "4-tine fork, 190×280 mm",
+      "material": "carbon steel, powder coat",
+      "handle": "ash wood, D-grip",
+      "weight": "1850 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "rake-leaf",
+    "name": "Fan leaf rake",
+    "origin": "CN",
+    "specs": {
+      "length": "1600 mm",
+      "blade": "fan head, 550 mm span",
+      "material": "PP plastic tines",
+      "handle": "steel tube",
+      "weight": "550 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "rake-bow",
+    "name": "Bow / garden rake",
+    "origin": "TW",
+    "specs": {
+      "length": "1500 mm",
+      "blade": "bow-tine head, 300 mm",
+      "material": "carbon steel",
+      "handle": "ash wood",
+      "weight": "1200 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "spade-border",
+    "name": "Border spade",
+    "origin": "TW",
+    "specs": {
+      "length": "950 mm",
+      "blade": "flat blade, 140×230 mm",
+      "material": "carbon steel, powder coat",
+      "handle": "ash wood, D-grip",
+      "weight": "1400 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "trowel-hand",
+    "name": "Hand trowel",
+    "origin": "TW",
+    "specs": {
+      "length": "280 mm",
+      "blade": "flat blade, 90 mm",
+      "material": "carbon steel",
+      "handle": "ash wood",
+      "weight": "150 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "trowel-hand-pro",
+    "name": "Hand trowel, pro",
+    "origin": "TW",
+    "specs": {
+      "length": "290 mm",
+      "blade": "flat blade, one-piece forged, 95 mm",
+      "material": "high-carbon forged steel",
+      "handle": "one-piece forged, rubberized grip",
+      "weight": "195 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "fork-hand",
+    "name": "Hand fork",
+    "origin": "TW",
+    "specs": {
+      "length": "280 mm",
+      "blade": "3-tine hand fork, 90 mm",
+      "material": "carbon steel",
+      "handle": "ash wood",
+      "weight": "150 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "pruner-bypass",
+    "name": "Bypass pruner",
+    "origin": "TW",
+    "specs": {
+      "length": "205 mm",
+      "blade": "bypass, 25 mm cut capacity",
+      "material": "SK5 carbon steel blade",
+      "handle": "aluminum, cushioned grip",
+      "weight": "180 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "pruner-bypass-pro",
+    "name": "Bypass pruner, pro",
+    "origin": "TW",
+    "specs": {
+      "length": "210 mm",
+      "blade": "bypass, 28 mm cut capacity, PTFE-coated",
+      "material": "high-carbon forged steel blade",
+      "handle": "forged aluminum, rotating grip",
+      "weight": "210 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "pruner-anvil",
+    "name": "Anvil pruner",
+    "origin": "TW",
+    "specs": {
+      "length": "205 mm",
+      "blade": "anvil, 25 mm cut capacity",
+      "material": "carbon steel blade",
+      "handle": "aluminum, cushioned grip",
+      "weight": "190 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "pruner-ratchet",
+    "name": "Ratchet pruner",
+    "origin": "CN",
+    "specs": {
+      "length": "210 mm",
+      "blade": "ratchet anvil, 20 mm cut capacity",
+      "material": "carbon steel blade",
+      "handle": "PP/steel, cushioned grip",
+      "weight": "220 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "lopper-bypass",
+    "name": "Bypass lopper",
+    "origin": "TW",
+    "specs": {
+      "length": "650 mm",
+      "blade": "bypass, 38 mm cut capacity",
+      "material": "SK5 carbon steel blade",
+      "handle": "fiberglass core, rubber grip",
+      "weight": "900 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "lopper-telescopic",
+    "name": "Telescopic lopper",
+    "origin": "CN",
+    "specs": {
+      "length": "650-950 mm telescoping",
+      "blade": "bypass, 32 mm cut capacity",
+      "material": "carbon steel blade",
+      "handle": "aluminum telescoping tube",
+      "weight": "1050 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "shear-hedge",
+    "name": "Hedge shear",
+    "origin": "TW",
+    "specs": {
+      "length": "620 mm",
+      "blade": "wavy-edge, 200 mm",
+      "material": "carbon steel blade",
+      "handle": "aluminum, cushioned grip",
+      "weight": "800 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "shear-hedge-pro",
+    "name": "Hedge shear, pro",
+    "origin": "TW",
+    "specs": {
+      "length": "650 mm",
+      "blade": "wavy-edge, notch cutter, 220 mm, PTFE-coated",
+      "material": "high-carbon forged steel blade",
+      "handle": "forged aluminum, shock-absorb grip",
+      "weight": "870 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "shear-grass",
+    "name": "Grass shear",
+    "origin": "CN",
+    "specs": {
+      "length": "330 mm",
+      "blade": "wavy-edge, 130 mm",
+      "material": "carbon steel blade",
+      "handle": "PP, cushioned grip",
+      "weight": "420 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "saw-folding",
+    "name": "Folding pruning saw",
+    "origin": "TW",
+    "specs": {
+      "length": "210 mm folded / 330 mm open",
+      "blade": "curved pull-stroke, 7 TPI",
+      "material": "SK5 carbon steel blade",
+      "handle": "PP/rubber, lockback",
+      "weight": "180 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "saw-pole",
+    "name": "Pole saw",
+    "origin": "CN",
+    "specs": {
+      "length": "1800-3000 mm telescoping",
+      "blade": "curved pull-stroke, 6 TPI",
+      "material": "carbon steel blade",
+      "handle": "aluminum telescoping pole",
+      "weight": "1400 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "snip-floral",
+    "name": "Floral snip",
+    "origin": "TW",
+    "specs": {
+      "length": "170 mm",
+      "blade": "straight micro-tip, 40 mm",
+      "material": "stainless steel blade",
+      "handle": "PP, spring-loaded",
+      "weight": "70 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "snip-harvest",
+    "name": "Harvest snip",
+    "origin": "TW",
+    "specs": {
+      "length": "150 mm",
+      "blade": "curved micro-tip, 35 mm",
+      "material": "stainless steel blade",
+      "handle": "PP, spring-loaded",
+      "weight": "60 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "pallet-wood-eur",
+    "name": "EUR wood pallet",
+    "origin": "CN",
+    "specs": {
+      "length": "1200×800×144 mm",
+      "blade": null,
+      "material": "pine, kiln-dried, ISPM15 HT-stamped",
+      "handle": null,
+      "weight": "22 kg/pallet"
+    },
+    "legacy": true
+  },
+  {
+    "id": "pallet-wood-gma",
+    "name": "GMA wood pallet",
+    "origin": "CN",
+    "specs": {
+      "length": "48×40×5.5 in (1219×1016×140 mm)",
+      "blade": null,
+      "material": "pine/mixed hardwood, ISPM15 HT-stamped",
+      "handle": null,
+      "weight": "25 kg/pallet"
+    },
+    "legacy": true
+  },
+  {
+    "id": "pallet-plastic",
+    "name": "Plastic pallet",
+    "origin": "CN",
+    "specs": {
+      "length": "1200×800×150 mm",
+      "blade": null,
+      "material": "HDPE, nestable",
+      "handle": null,
+      "weight": "12 kg/pallet"
+    },
+    "legacy": true
+  },
+  {
+    "id": "carton-rsc",
+    "name": "RSC shipping carton",
+    "origin": "CN",
+    "specs": {
+      "length": "600×400×300 mm (adjustable)",
+      "blade": null,
+      "material": "5-ply corrugated kraft",
+      "handle": null,
+      "weight": "0.9 kg/carton (empty)"
+    },
+    "legacy": true
+  },
+  {
+    "id": "carton-display",
+    "name": "FSDU display carton",
+    "origin": "CN",
+    "specs": {
+      "length": "400×300×250 mm (FSDU)",
+      "blade": null,
+      "material": "printed 3-ply corrugated, die-cut",
+      "handle": null,
+      "weight": "0.7 kg/unit (empty)"
+    },
+    "legacy": true
+  },
+  {
+    "id": "carton-mailer",
+    "name": "E-commerce mailer carton",
+    "origin": "CN",
+    "specs": {
+      "length": "300×220×80 mm",
+      "blade": null,
+      "material": "printed E-flute corrugated, self-lock",
+      "handle": null,
+      "weight": "0.2 kg/unit (empty)"
+    },
+    "legacy": true
+  },
+  {
+    "id": "blister-clamshell",
+    "name": "Blister clamshell",
+    "origin": "CN",
+    "specs": {
+      "length": "200×150×40 mm",
+      "blade": null,
+      "material": "PET clamshell, heat-seal card",
+      "handle": null,
+      "weight": "25 g/unit (empty)"
+    },
+    "legacy": true
+  },
+  {
+    "id": "sleeve-kraft",
+    "name": "Kraft sleeve",
+    "origin": "CN",
+    "specs": {
+      "length": "220×160 mm",
+      "blade": null,
+      "material": "FSC kraft board, plastic-free",
+      "handle": null,
+      "weight": "15 g/unit (empty)"
+    },
+    "legacy": true
+  },
+  {
+    "id": "polybag-header",
+    "name": "Polybag with header card",
+    "origin": "CN",
+    "specs": {
+      "length": "200×300 mm",
+      "blade": null,
+      "material": "LDPE poly bag, printed header card",
+      "handle": null,
+      "weight": "6 g/unit (empty)"
+    },
+    "legacy": true
+  },
+  {
+    "id": "label-hangtag",
+    "name": "Hangtag",
+    "origin": "TW",
+    "specs": {
+      "length": "60×90 mm",
+      "blade": null,
+      "material": "300gsm art card, printed",
+      "handle": null,
+      "weight": "2 g/unit"
+    },
+    "legacy": true
+  },
+  {
+    "id": "label-barcode",
+    "name": "Barcode label",
+    "origin": "TW",
+    "specs": {
+      "length": "40×25 mm",
+      "blade": null,
+      "material": "thermal-transfer paper, adhesive",
+      "handle": null,
+      "weight": "<1 g/unit"
+    },
+    "legacy": true
+  },
+  {
+    "id": "label-warning",
+    "name": "Warning / compliance label",
+    "origin": "TW",
+    "specs": {
+      "length": "50×30 mm",
+      "blade": null,
+      "material": "synthetic paper, adhesive, weatherproof",
+      "handle": null,
+      "weight": "<1 g/unit"
+    },
+    "legacy": true
+  },
+  {
+    "id": "strap-pet",
+    "name": "PET strapping",
+    "origin": "CN",
+    "specs": {
+      "length": "12 mm width, coil",
+      "blade": null,
+      "material": "PET strapping, embossed",
+      "handle": null,
+      "weight": "8 kg/coil"
+    },
+    "legacy": true
+  },
+  {
+    "id": "film-stretch",
+    "name": "Stretch wrap film",
+    "origin": "CN",
+    "specs": {
+      "length": "500 mm width, roll",
+      "blade": null,
+      "material": "LLDPE stretch film",
+      "handle": null,
+      "weight": "2.3 kg/roll"
+    },
+    "legacy": true
+  },
+  {
+    "id": "nozzle-adjustable",
+    "name": "Adjustable spray nozzle",
+    "origin": "CN",
+    "specs": {
+      "length": "140 mm",
+      "blade": null,
+      "material": "zinc alloy body, rubber seal",
+      "handle": "ergonomic PP grip",
+      "weight": "120 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "connector-quick",
+    "name": "Quick-connect coupler",
+    "origin": "CN",
+    "specs": {
+      "length": "55 mm",
+      "blade": null,
+      "material": "POM plastic / brass insert",
+      "handle": null,
+      "weight": "35 g"
+    },
+    "legacy": true
+  },
+  {
+    "id": "can-watering",
+    "name": "Watering can",
+    "origin": "CN",
+    "specs": {
+      "length": "9 L capacity, 480 mm",
+      "blade": null,
+      "material": "galvanized steel or PP plastic",
+      "handle": "integrated carry handle",
+      "weight": "1400 g (empty)"
+    },
+    "legacy": true
+  },
+  {
+    "id": "glove-nitrile",
+    "name": "Nitrile-dip glove",
+    "origin": "CN",
+    "specs": {
+      "length": "one size fits most, cuff 250 mm",
+      "blade": null,
+      "material": "nitrile-dip coated polyester shell",
+      "handle": null,
+      "weight": "55 g/pair"
+    },
+    "legacy": true
+  },
+  {
+    "id": "glove-leather",
+    "name": "Leather work glove",
+    "origin": "CN",
+    "specs": {
+      "length": "cuff 300 mm",
+      "blade": null,
+      "material": "split cowhide leather, cotton lining",
+      "handle": null,
+      "weight": "110 g/pair"
+    },
+    "legacy": true
+  },
+  {
+    "id": "kneepad-gel",
+    "name": "Gel knee pad",
+    "origin": "CN",
+    "specs": {
+      "length": "260×180 mm",
+      "blade": null,
+      "material": "gel core, EVA foam, nylon shell",
+      "handle": "adjustable straps",
+      "weight": "180 g/pair"
+    },
+    "legacy": true
+  }
+]

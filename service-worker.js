@@ -1,10 +1,38 @@
 // Bumped with every deploy that changes core assets: `activate` deletes every
 // cache whose key is not the current one, which is what evicts the previous
 // runtime cache. Without it a returning visitor keeps the old CSS for a load.
-const VERSION = "birdland-desks-v60";
+const VERSION = "birdland-desks-v87";
 const CORE_CACHE = `${VERSION}-core`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const CORE_ASSETS = [
+  "./products-experience.js", "./products-experience.css", "./buyer-enquiry-locales.js", "./buyer-enquiry.js", "./buyer-enquiry-labels.js", "./buyer-enquiry.css", "./data/buyer-materials.json",
+  "./buyer-brief.js", "./buyer-brief.css",
+  "./studio-references.css", "./studio-references.js",
+  "./images/generated/studio-pruner.webp", "./images/generated/studio-trowel.webp", "./images/generated/studio-rake.webp", "./images/generated/studio-sprinkler.webp", "./images/generated/studio-packaging.webp",
+  "./manufacturing-illustrations.css",
+  "./images/generated/manufacturing-materials.webp", "./images/generated/manufacturing-processes.webp", "./images/generated/manufacturing-intake.webp",
+  "./studio-needs.css", "./studio-needs.js",
+  "./market-reading.css", "./market-reading.js",
+  "./supply-reading.css", "./supply-reading.js",
+  "./products.html", "./restored-catalog.css", "./restored-catalog.js",
+  "./images/app-news-tile.png", "./images/app-market-tile.png", "./images/app-buyer-tile.png",
+  "./images/apps/news.svg", "./images/apps/market.svg", "./images/apps/buyer.svg", "./images/apps/cost.svg",
+  "./buying-tools.html",
+  "./buyer-focus.js",
+  "./buyer-intelligence.js",
+  "./buyer-intelligence.css",
+  "./buyer-intelligence.json",
+  "./catalog.json",
+  "./trade.json",
+  "./buyer-tools.css",
+  "./buyer-tools.js",
+  "./buyer-tool-models.js",
+  "./buyer-planning.css",
+  "./buyer-planning.js",
+  "./cost-entry.js",
+  "./buyer-journey.css",
+  "./buyer-navigation.js",
+  "./site-registry.js",
   "./",
   "./index.html",
   "./partner.html",

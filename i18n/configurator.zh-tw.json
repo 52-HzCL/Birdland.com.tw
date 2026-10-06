@@ -21,5 +21,7 @@
   "gate_joining": "接合",
   "gate_finish": "表面處理",
   "gate_inspection": "檢驗",
-  "gate_pack": "包裝"
+  "gate_pack": "包裝",
+  "sheetEmpty": "從左側選擇產品與配置，選擇內容會彙整於此。",
+  "toConfirm": "待確認"
 }

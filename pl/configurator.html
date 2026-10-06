@@ -1,0 +1,546 @@
+<!doctype html>
+<!-- i18n-src:3271f6336eba882a0ccf457dad8775c5f5551d93 --><html lang="pl"><head><script>try{localStorage.setItem("bl_lang","pl")}catch(e){}</script><link rel="alternate" hreflang="en" href="https://birdland.com.tw/configurator.html">
+  <link rel="alternate" hreflang="nl" href="https://birdland.com.tw/nl/configurator.html">
+  <link rel="alternate" hreflang="de" href="https://birdland.com.tw/de/configurator.html">
+  <link rel="alternate" hreflang="fr" href="https://birdland.com.tw/fr/configurator.html">
+  <link rel="alternate" hreflang="es" href="https://birdland.com.tw/es/configurator.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://birdland.com.tw/pt-br/configurator.html">
+  <link rel="alternate" hreflang="pl" href="https://birdland.com.tw/pl/configurator.html">
+  <link rel="alternate" hreflang="it" href="https://birdland.com.tw/it/configurator.html">
+  <link rel="alternate" hreflang="ja" href="https://birdland.com.tw/ja/configurator.html">
+  <link rel="alternate" hreflang="zh-Hant" href="https://birdland.com.tw/zh-tw/configurator.html">
+  <link rel="alternate" hreflang="x-default" href="https://birdland.com.tw/configurator.html">
+  <link rel="stylesheet" href="../tokens.css?v=20260814a"><script src="../text-size.js?v=20260804a"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Konfigurator AsiaSource · Birdland</title>
+  <meta name="description" content="Skonfiguruj program OEM Birdland według części: materiały, formowanie, obróbka cieplna, wykończenie i opakowanie. Wyślij zestawienie wymagań do działu sprzedaży. Bez cen i zobowiązań.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <script src="../bl-sketch.js?v=20260818a"></script>
+  <script src="../configurator-drawings.js?v=20260818a"></script>
+  <style>
+  :root{
+    --cfg-bg:var(--paper);--cfg-panel:var(--card);--cfg-band:var(--paper-2);
+    --cfg-line:var(--line);--cfg-line-soft:var(--line-soft);
+    --cfg-txt:var(--ink-900);--cfg-mut:var(--ink-500);
+    --cfg-accent:var(--jade-700);--cfg-deep:var(--jade-900);--cfg-copper:var(--copper-600);
+    --cfg-ink:#2b3a35;--cfg-canvas-mut:#8a9490;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --cfg-bg:#101614;--cfg-panel:#161d1a;--cfg-band:#131a17;
+    --cfg-line:rgba(231,237,234,.18);--cfg-line-soft:rgba(231,237,234,.08);
+    --cfg-txt:#E7EDEA;--cfg-mut:#9fb0a9;
+    --cfg-accent:#5CC8A8;--cfg-deep:#E7EDEA;--cfg-copper:#E4A47A;
+    --cfg-ink:#d8e2dd;--cfg-canvas-mut:#6b7a74;
+  }}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:100%}
+  body{font-family:var(--ff-sans);background:var(--cfg-bg);color:var(--cfg-txt);font-size:var(--fs-h3);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  .wrap{max-width:1500px;margin:0 auto;padding:0 clamp(.8rem,2.5vw,2rem)}
+
+  /* -- top chrome: the way back, styled like the desks' own bar ---------- */
+  .topbar{background:var(--cfg-deep);color:#F6F4EC;border-bottom:1px solid var(--cfg-line)}
+  @media (prefers-color-scheme:dark){.topbar{background:#0b100e;color:var(--cfg-txt)}}
+  .topbar .tb{display:flex;align-items:center;gap:14px;padding:10px 0}
+  .tb-brand{font-weight:800;letter-spacing:.02em;font-size:var(--fs-h3)}
+  .tb-brand small{display:block;font-family:var(--ff-mono);font-weight:400;font-size:var(--fs-micro);opacity:.75;letter-spacing:.12em;text-transform:uppercase}
+  .tb-back{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-family:var(--ff-mono);font-size:var(--fs-small);border:1px solid rgba(246,244,236,.35);border-radius:var(--r-sm,4px);padding:6px 12px}
+  .tb-back:hover{border-color:currentColor}
+  .tb-home{font-family:var(--ff-mono);font-size:var(--fs-small);opacity:.8}
+  .tb-home:hover{opacity:1}
+
+  /* -- requirement sheet summary bar (always in view) -------------------- */
+  .sheetbar{position:sticky;top:0;z-index:20;background:var(--cfg-band);border-bottom:1px solid var(--cfg-line);box-shadow:0 1px 6px rgba(0,0,0,.06)}
+  .sheetbar .sb{display:flex;align-items:center;gap:10px;padding:8px 0;flex-wrap:wrap}
+  .sb-title{font-family:var(--ff-mono);font-size:var(--fs-small);letter-spacing:.1em;text-transform:uppercase;color:var(--cfg-mut);flex:0 0 auto}
+  .sb-items{display:flex;gap:8px;flex-wrap:wrap;flex:1 1 auto;min-width:0}
+  .sb-chip{display:inline-flex;align-items:center;gap:6px;background:var(--cfg-panel);border:1px solid var(--cfg-line);border-radius:999px;padding:3px 10px;font-size:var(--fs-small)}
+  .sb-chip b{font-weight:700}
+  .sb-chip .q{font-family:var(--ff-mono);color:var(--cfg-accent)}
+  .sb-empty{color:var(--cfg-mut);font-size:var(--fs-small)}
+  .sb-act{display:flex;gap:8px;flex:0 0 auto}
+  .sb-btn{border:1px solid var(--cfg-accent);color:var(--cfg-accent);border-radius:var(--r-sm,4px);padding:5px 12px;font-weight:700;font-size:var(--fs-small)}
+  .sb-btn.primary{background:var(--cfg-accent);color:var(--cfg-bg)}
+  .sb-btn:not(:disabled):hover,.sb-btn:not(:disabled):focus-visible{filter:brightness(1.15)}
+  .sb-btn:disabled{opacity:.4;cursor:not-allowed}
+  @media(max-width:640px){.topbar .tb{flex-wrap:wrap;row-gap:2px}.sb-act{flex:1 1 auto;flex-wrap:wrap}.sb-btn{flex:1 1 auto}}
+
+  /* -- layout ------------------------------------------------------------ */
+  .lay{display:grid;grid-template-columns:300px minmax(0,1fr);gap:18px;padding:18px 0 40px}
+  @media(max-width:900px){.lay{grid-template-columns:1fr}}
+
+  /* -- product menu ------------------------------------------------------ */
+  .tier{margin-bottom:16px}
+  .tier-h{font-weight:800;font-size:var(--fs-h3);color:var(--cfg-deep)}
+  @media (prefers-color-scheme:dark){.tier-h{color:var(--cfg-txt)}}
+  .tier-b{color:var(--cfg-mut);font-size:var(--fs-small);margin:2px 0 8px;line-height:1.45}
+  .pbtn{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:8px 10px;border:1px solid transparent;border-radius:var(--r-sm,4px);font-size:var(--fs-h3)}
+  .pbtn:hover{background:var(--cfg-band)}
+  .pbtn[aria-current="true"]{background:var(--cfg-panel);border-color:var(--cfg-accent);font-weight:700}
+  .pbtn .done{margin-left:auto;font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--cfg-accent)}
+  @media(max-width:900px){
+    .menu{display:block}
+    .tier .plist{display:flex;flex-wrap:wrap;gap:6px}
+    .pbtn{width:auto;border:1px solid var(--cfg-line)}
+  }
+
+  /* -- stage: canvas + parts --------------------------------------------- */
+  .stage{min-width:0}
+  .stage-h{margin-bottom:8px}
+  .stage-h h1{font-size:var(--fs-h1);font-weight:800;line-height:1.15;color:var(--cfg-deep)}
+  @media (prefers-color-scheme:dark){.stage-h h1{color:var(--cfg-txt)}}
+  .stage-h p{color:var(--cfg-mut);font-size:var(--fs-small)}
+  .board{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:18px}
+  @media(max-width:1100px){.board{grid-template-columns:1fr}}
+  .canvas-card{background:var(--cfg-panel);border:1px solid var(--cfg-line);border-radius:var(--r-md,8px);padding:10px;position:relative}
+  .canvas-card .hint{font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--cfg-mut);text-align:center;padding:4px 0 2px}
+  #cv{display:block;width:100%;aspect-ratio:1/1;max-height:560px;margin:0 auto;touch-action:manipulation;cursor:pointer}
+
+  .parts{display:flex;flex-direction:column;gap:10px}
+  .part{background:var(--cfg-panel);border:1px solid var(--cfg-line);border-radius:var(--r-md,8px)}
+  .part-h{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:10px 12px;font-weight:700;font-size:var(--fs-h3)}
+  .part-h .tick{width:20px;height:20px;flex:0 0 auto;border:1.5px solid var(--cfg-mut);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;color:transparent}
+  .part.is-done .part-h .tick{border-color:var(--cfg-accent);background:var(--cfg-accent);color:var(--cfg-bg)}
+  .part-h .st{margin-left:auto;font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--cfg-mut);font-weight:400}
+  .part[data-open="1"]{border-color:var(--cfg-accent)}
+  .part-b{display:none;border-top:1px solid var(--cfg-line-soft);padding:10px 12px 14px}
+  .part[data-open="1"] .part-b{display:block}
+  .gate{margin-top:10px}
+  .gate:first-child{margin-top:0}
+  .gate-h{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--cfg-copper);margin-bottom:6px}
+  .opt{border:1px solid var(--cfg-line);border-radius:var(--r-sm,4px);padding:8px 10px;margin-bottom:6px;cursor:pointer}
+  .opt:hover{border-color:var(--cfg-accent)}
+  .opt.is-on{border-color:var(--cfg-accent);background:var(--cfg-band);box-shadow:inset 3px 0 0 var(--cfg-accent)}
+  .opt .o-top{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .opt .o-name{font-weight:700;font-size:var(--fs-h3)}
+  .opt .o-meta{font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--cfg-mut);margin-left:auto;white-space:nowrap}
+  .opt .o-buyer{font-size:var(--fs-small);color:var(--cfg-txt);margin-top:3px;line-height:1.5}
+  .opt details{margin-top:5px}
+  .opt summary{font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--cfg-accent);cursor:pointer;list-style:none}
+  .opt summary::before{content:"+ "}
+  .opt details[open] summary::before{content:"\2212 "}
+  .opt .o-prod{font-size:var(--fs-small);color:var(--cfg-mut);margin-top:4px;line-height:1.5;border-left:2px solid var(--cfg-line);padding-left:8px}
+
+  /* -- per-product quantity & delivery ----------------------------------- */
+  .order{background:var(--cfg-band);border:1px solid var(--cfg-line);border-radius:var(--r-md,8px);padding:12px;margin-top:10px}
+  .order .oh{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--cfg-mut);margin-bottom:8px}
+  .order .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .order label{font-size:var(--fs-small);font-weight:700}
+  .order input{font-family:var(--ff-mono);font-size:var(--fs-h3);color:var(--cfg-txt);background:var(--cfg-panel);border:1px solid var(--cfg-line);border-radius:var(--r-sm,4px);padding:5px 8px;max-width:130px}
+  .order input:focus{outline:2px solid var(--cfg-accent)}
+  .qq{display:inline-flex;gap:4px}
+  .qq button{font-family:var(--ff-mono);font-size:var(--fs-micro);border:1px solid var(--cfg-line);border-radius:999px;padding:3px 9px;color:var(--cfg-mut)}
+  .qq button:hover{border-color:var(--cfg-accent);color:var(--cfg-accent)}
+
+  footer{border-top:1px solid var(--cfg-line);padding:18px 0 30px;color:var(--cfg-mut);font-size:var(--fs-small)}
+  footer a{color:var(--cfg-accent);font-weight:700}
+  </style>
+<link rel="stylesheet" href="../buyer-journey.css" data-buyer-shell>
+<script src="../site-registry.js"></script>
+<link rel="stylesheet" href="../terminal.css">
+<script defer src="../terminal.js"></script>
+<script defer src="../buyer-navigation.js"></script>
+<link rel="stylesheet" href="../buyer-brief.css"><script src="../buyer-brief.js"></script>
+</head>
+<body>
+  <header class="topbar"><div class="wrap tb">
+    <a class="tb-brand" href="../index.html">BIRDLAND<small>Poufna produkcja OEM · Tajwan</small></a>
+    <span style="font-family:var(--ff-mono);font-size:var(--fs-small);opacity:.85">Konfigurator produktów</span>
+    <a class="tb-back" href="../products.html#bl-cat">← Produkty</a>
+    <a class="tb-home" href="../index.html">Birdland</a>
+  </div></header>
+
+  <div class="sheetbar"><div class="wrap sb">
+    <span class="sb-title">Arkusz wymagań</span>
+    <div class="sb-items" id="sbItems"><span class="sb-empty">Wybierz produkt po lewej i jego konfigurację — tutaj pojawią się wybrane opcje.</span></div>
+    <div class="sb-act">
+      <button class="sb-btn" id="csvBtn" disabled="">Pobierz CSV</button>
+      <button class="sb-btn primary" id="mailBtn" disabled="">Wyślij do działu sprzedaży</button>
+    </div>
+  </div></div>
+
+  <main class="wrap lay" id="main">
+    <aside class="menu" id="menu" aria-label="Menu produktów"></aside>
+    <section class="stage">
+      <div class="stage-h">
+        <h1 id="pName"></h1>
+        <p id="pTier"></p>
+      </div>
+      <div class="board">
+        <div class="canvas-card">
+          <canvas id="cv" aria-label="Rysunek części produktu"></canvas>
+          <div class="hint">Wybierz część na rysunku lub na liście, aby określić materiały i procesy.</div>
+        </div>
+        <div>
+          <div class="parts" id="parts"></div>
+          <div class="order" id="order" hidden="">
+            <div class="oh">Ten produkt w zestawieniu wymagań</div>
+            <div class="row">
+              <label for="qty">ilość</label>
+              <input id="qty" type="number" min="1" step="1" inputmode="numeric">
+              <span class="qq" id="qq"></span>
+              <label for="delv">oczekiwany termin dostawy</label>
+              <input id="delv" type="month">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap">
+    Nie podajemy tutaj cen — zestawienie wymagań trafi do naszego działu sprzedaży. Powrót do <a href="../products.html#bl-cat">Produkty</a> lub <a href="../index.html">Birdland</a> · <a href="../partner.html">Product Studio</a>.
+  </div></footer>
+
+<script id="cfg-data" type="application/json">{"tiers":[{"id":"forge","name":"Kucie i obróbka cieplna we własnym zakładzie","body":"Części kute na gorąco, własne piece i kontrola twardości. To rdzeń naszej produkcji."},{"id":"form","name":"Formowanie, spawanie i montaż we własnym zakładzie","body":"Stal tłoczona i ciągniona, połączenia spawane oraz montaż drewnianych trzonków i uchwytów na własnych liniach."},{"id":"source","name":"Program montażu i zaopatrzenia","body":"Artykuły niemetalowe, które montujemy lub pozyskujemy, aby uzupełnić asortyment w jednej wysyłce."}],"products":[{"id":"forged-trowel","name":"Kuta łopatka ogrodowa","tier":"forge","metal":5,"draw":"trowel","parts":[{"id":"blade","name":"Część robocza łopatki","options":{"material":["Stal na ostrza i sprężyny","Stal nierdzewna"],"forming":["Kucie na gorąco","Kucie na zimno"],"heat":["Hartowanie i odpuszczanie","Hartowanie indukcyjne (miejscowe)","Hartowanie na wskroś"],"finish":["Malowanie proszkowe","Kataforeza","Cynkowanie galwaniczne","Polerowanie","Piaskowanie"],"inspection":["Kontrola ostrza i działania","Kontrola twardości na próbkach","Godziny w komorze solnej"]}},{"id":"handle","name":"Rękojeść","options":{"material":["Drewno","Tworzywa uchwytów"],"forming":["Toczenie drewna","Lakier lub olej na drewnie","Wtrysk dwukomponentowy","Powlekanie zanurzeniowe"]}},{"id":"joint","name":"Trzpień i połączenie","options":{"joining":["Nitowanie","Połączenia śrubowe","Wciskanie"],"inspection":["Próba wyrywania połączenia","Trwałość cykli otwarcia i zamknięcia"]}},{"id":"pack","name":"Opakowanie","options":{"pack":["Pudełko kolorowe","Zawieszka / karta nagłówkowa","Karton eksportowy z tektury falistej"]}}]},{"id":"hatchet","name":"Siekierka","tier":"forge","metal":5,"draw":"hatchet","parts":[{"id":"head","name":"Głowica i krawędź tnąca","options":{"material":["Stal na ostrza i sprężyny","Stal nierdzewna"],"forming":["Kucie na gorąco","Kucie na zimno"],"heat":["Hartowanie i odpuszczanie","Hartowanie indukcyjne (miejscowe)","Hartowanie na wskroś"],"finish":["Malowanie proszkowe","Polerowanie","Piaskowanie"],"inspection":["Kontrola ostrza i działania","Kontrola twardości na próbkach","Godziny w komorze solnej"]}},{"id":"handle","name":"Rękojeść","options":{"material":["Drewno","Tworzywa konstrukcyjne"],"forming":["Toczenie drewna","Lakier lub olej na drewnie"]}},{"id":"joint","name":"Otwór na trzonek i klin","options":{"joining":["Wciskanie","Klejenie"],"inspection":["Próba wyrywania połączenia","Trwałość cykli otwarcia i zamknięcia"]}},{"id":"pack","name":"Opakowanie","options":{"pack":["Blister","Pudełko kolorowe","Zawieszka / karta nagłówkowa","Karton eksportowy z tektury falistej"]}}]},{"id":"mattock","name":"Motyka / kilof","tier":"forge","metal":5,"draw":"mattock","parts":[{"id":"head","name":"Kuta głowica","options":{"material":["Stal na ostrza i sprężyny"],"forming":["Kucie na gorąco","Kucie na zimno"],"heat":["Hartowanie i odpuszczanie","Hartowanie na wskroś"],"finish":["Malowanie proszkowe","Malowanie mokre"],"inspection":["Kontrola ostrza i działania","Kontrola twardości na próbkach","Godziny w komorze solnej"]}},{"id":"handle","name":"Rękojeść","options":{"material":["Drewno"],"forming":["Toczenie drewna","Lakier lub olej na drewnie"]}},{"id":"joint","name":"Osadzenie trzonka w otworze","options":{"joining":["Wciskanie"],"inspection":["Próba wyrywania połączenia","Trwałość cykli otwarcia i zamknięcia"]}},{"id":"pack","name":"Opakowanie","options":{"pack":["Karton eksportowy z tektury falistej","Taśmowanie","Paleta"]}}]},{"id":"machete","name":"Maczeta","tier":"forge","metal":5,"draw":"machete","parts":[{"id":"blade","name":"Ostrze","options":{"material":["Stal na ostrza i sprężyny","Stal nierdzewna"],"forming":["Tłoczenie","Kucie na gorąco"],"heat":["Hartowanie i odpuszczanie","Hartowanie indukcyjne (miejscowe)","Hartowanie na wskroś"],"finish":["Malowanie proszkowe","Polerowanie","Znakowanie laserowe"],"inspection":["Kontrola ostrza i działania","Kontrola twardości na próbkach","Godziny w komorze solnej"]}},{"id":"handle","name":"Okładziny rękojeści","options":{"material":["Tworzywa konstrukcyjne","Drewno","Tworzywa uchwytów"],"forming":["Formowanie wtryskowe"]}},{"id":"joint","name":"Pełny trzpień","options":{"joining":["Nitowanie"],"inspection":["Próba wyrywania połączenia","Trwałość cykli otwarcia i zamknięcia"]}},{"id":"pack","name":"Opakowanie","options":{"pack":["Skin pack","Pudełko kolorowe","Zawieszka / karta nagłówkowa","Karton eksportowy z tektury falistej"]}}]},{"id":"pruning-shears","name":"Sekator nożycowy","tier":"forge","metal":4,"draw":"shears","parts":[{"id":"blade","name":"Ostrze tnące","options":{"material":["Stal na ostrza i sprężyny","Stal nierdzewna"],"forming":["Kucie na gorąco","Kucie na zimno"],"heat":["Hartowanie i odpuszczanie","Hartowanie indukcyjne (miejscowe)","Hartowanie na wskroś"],"finish":["Chromowanie na podkładzie niklowym","Polerowanie"],"inspection":["Kontrola ostrza i działania","Kontrola twardości na próbkach","Godziny w komorze solnej"]}},{"id":"counter","name":"Przeciwostrze","options":{"material":["Stal na ostrza i sprężyny","Stal nierdzewna"],"forming":["Tłoczenie","Cięcie laserem"],"heat":["Hartowanie i odpuszczanie"]}},{"id":"handle","name":"Rękojeści i okładziny","options":{"material":["Aluminium","Tworzywa uchwytów"],"forming":["Wtrysk dwukomponentowy","Powlekanie zanurzeniowe"],"finish":["Anodowanie"]}},{"id":"pivot","name":"Przegub i sprężyna","options":{"joining":["Połączenia śrubowe","Nitowanie"],"inspection":["Próba wyrywania połączenia","Trwałość cykli otwarcia i zamknięcia"]}},{"id":"pack","name":"Opakowanie","options":{"pack":["Blister","Pudełko kolorowe","Zawieszka / karta nagłówkowa"]}}]},{"id":"loppers","name":"Sekator do gałęzi","tier":"forge","metal":4,"draw":"loppers","parts":[{"id":"blade","name":"Zestaw ostrzy","options":{"material":["Stal na ostrza i sprężyny","Stal nierdzewna"],"forming":["Kucie na gorąco","Kucie na zimno"],"heat":["Hartowanie i odpuszczanie","Hartowanie indukcyjne (miejscowe)","Hartowanie na wskroś"],"finish":["Chromowanie na podkładzie niklowym","Malowanie proszkowe"],"inspection":["Kontrola ostrza i działania","Kontrola twardości na próbkach","Godziny w komorze solnej"]}},{"id":"handle","name":"Długie rękojeści","options":{"material":["Aluminium"],"forming":["Ciągnienie rur","Gięcie rur","Zakuwanie końców"],"finish":["Anodowanie","Malowanie proszkowe"]}},{"id":"grip","name":"Okładziny uchwytów","options":{"material":["Tworzywa uchwytów"],"forming":["Powlekanie zanurzeniowe","Wtrysk dwukomponentowy"]}},{"id":"pivot","name":"Przegub","options":{"joining":["Połączenia śrubowe"],"inspection":["Próba wyrywania połączenia","Trwałość cykli otwarcia i zamknięcia"]}},{"id":"pack","name":"Opakowanie","options":{"pack":["Pudełko kolorowe","Zawieszka / karta nagłówkowa","Karton eksportowy z tektury falistej"]}}]},{"id":"hedge-shears","name":"Nożyce do żywopłotu","tier":"forge","metal":4,"draw":"hedge","parts":[{"id":"blade","name":"Ostrza","options":{"material":["Stal na ostrza i sprężyny","Stal nierdzewna"],"forming":["Tłoczenie","Kucie na gorąco"],"heat":["Hartowanie i odpuszczanie","Hartowanie indukcyjne (miejscowe)","Hartowanie na wskroś"],"finish":["Polerowanie","Chromowanie na podkładzie niklowym"],"inspection":["Kontrola ostrza i działania","Kontrola twardości na próbkach","Godziny w komorze solnej"]}},{"id":"handle","name":"Rękojeści","options":{"material":["Drewno","Aluminium"],"forming":["Toczenie drewna","Ciągnienie rur"]}},{"id":"pivot","name":"Przegub i odbojnik","options":{"joining":["Połączenia śrubowe"],"inspection":["Próba wyrywania połączenia","Trwałość cykli otwarcia i zamknięcia"]}},{"id":"pack","name":"Opakowanie","options":{"pack":["Pudełko kolorowe","Zawieszka / karta nagłówkowa","Karton eksportowy z tektury falistej"]}}]},{"id":"pruning-saw","name":"Piła do gałęzi","tier":"forge","metal":4,"draw":"saw","parts":[{"id":"blade","name":"Brzeszczot","options":{"material":["Stal na ostrza i sprężyny"],"forming":["Tłoczenie","Cięcie laserem"],"heat":["Hartowanie indukcyjne (miejscowe)","Sortowanie na przedziały twardości"],"finish":["Znakowanie laserowe"],"inspection":["Kontrola ostrza i działania","Kontrola twardości na próbkach","Godziny w komorze solnej"]}},{"id":"handle","name":"Rękojeść","options":{"material":["Tworzywa konstrukcyjne","Tworzywa uchwytów","Drewno"],"forming":["Formowanie wtryskowe","Wtrysk dwukomponentowy"]}},{"id":"joint","name":"Blokada ostrza","options":{"joining":["Połączenia śrubowe","Zatrzask"],"inspection":["Próba wyrywania połączenia","Trwałość cykli otwarcia i zamknięcia"]}},{"id":"pack","name":"Opakowanie","options":{"pack":["Skin pack","Pudełko kolorowe","Zawieszka / karta nagłówkowa"]}}]},{"id":"garden-hoe","name":"Motyka ogrodowa","tier":"form","metal":4,"draw":"hoe","parts":[{"id":"head","name":"Głowica robocza","options":{"material":["Stal na ostrza i sprężyny"],"forming":["Tłoczenie","Kucie na gorąco"],"heat":["Hartowanie i odpuszczanie"],"finish":["Malowanie proszkowe","Malowanie mokre"],"inspection":["Kontrola ostrza i działania","Kontrola twardości na próbkach","Godziny w komorze solnej"]}},{"id":"neck","name":"Szyjka / tuleja","options":{"forming":["Ciągnienie rur","Zakuwanie końców"],"joining":["Zgrzewanie punktowe","Spawanie MIG","Lutowanie twarde"],"inspection":["Próba wyrywania połączenia","Trwałość cykli otwarcia i zamknięcia"]}},{"id":"handle","name":"Rękojeść","options":{"material":["Drewno","Aluminium"],"forming":["Toczenie drewna","Ciągnienie rur"]}},{"id":"pack","name":"Opakowanie","options":{"pack":["Karton eksportowy z tektury falistej","Taśmowanie"]}}]},{"id":"cultivator","name":"Spulchniacz trzyzębny","tier":"form","metal":4,"draw":"cultivator","parts":[{"id":"head","name":"Głowica z zębami","options":{"material":["Stal na ostrza i sprężyny"],"forming":["Tłoczenie","Cięcie laserem"],"heat":["Hartowanie i odpuszczanie"],"finish":["Malowanie proszkowe","Cynkowanie galwaniczne"],"inspection":["Kontrola ostrza i działania","Kontrola twardości na próbkach","Godziny w komorze solnej"]}},{"id":"handle","name":"Rękojeść","options":{"material":["Drewno","Tworzywa uchwytów"],"forming":["Toczenie drewna","Powlekanie zanurzeniowe"]}},{"id":"joint","name":"Trzpień i pierścień","options":{"joining":["Nitowanie","Połączenia śrubowe","Wciskanie"],"inspection":["Próba wyrywania połączenia","Trwałość cykli otwarcia i zamknięcia"]}},{"id":"pack","name":"Opakowanie","options":{"pack":["Pudełko kolorowe","Zawieszka / karta nagłówkowa","Karton eksportowy z tektury falistej"]}}]},{"id":"garden-fork","name":"Widły do kopania","tier":"form","metal":4,"draw":"fork","parts":[{"id":"head","name":"Zęby","options":{"material":["Stal na ostrza i sprężyny"],"forming":["Kucie na gorąco","Tłoczenie"],"heat":["Hartowanie i odpuszczanie"],"finish":["Malowanie proszkowe","Kataforeza"],"inspection":["Kontrola ostrza i działania","Kontrola twardości na próbkach","Godziny w komorze solnej"]}},{"id":"socket","name":"Tuleja","options":{"forming":["Ciągnienie rur","Zakuwanie końców"],"joining":["Zgrzewanie punktowe","Spawanie MIG","Lutowanie twarde"],"inspection":["Próba wyrywania połączenia","Trwałość cykli otwarcia i zamknięcia"]}},{"id":"handle","name":"Trzonek i uchwyt","options":{"material":["Drewno","Tworzywa konstrukcyjne"],"forming":["Toczenie drewna","Formowanie wtryskowe"]}},{"id":"pack","name":"Opakowanie","options":{"pack":["Karton eksportowy z tektury falistej","Taśmowanie","Paleta"]}}]},{"id":"shovel","name":"Łopata / szpadel","tier":"form","metal":4,"draw":"shovel","parts":[{"id":"head","name":"Ostrze","options":{"material":["Stal na ostrza i sprężyny","Stal nierdzewna"],"forming":["Tłoczenie"],"heat":["Hartowanie i odpuszczanie"],"finish":["Malowanie proszkowe","Polerowanie"],"inspection":["Kontrola ostrza i działania","Kontrola twardości na próbkach","Godziny w komorze solnej"]}},{"id":"socket","name":"Tuleja i stopka","options":{"forming":["Zakuwanie końców"],"joining":["Zgrzewanie punktowe","Spawanie MIG","Lutowanie twarde"],"inspection":["Próba wyrywania połączenia","Trwałość cykli otwarcia i zamknięcia"]}},{"id":"handle","name":"Trzonek i uchwyt D","options":{"material":["Drewno","Tworzywa konstrukcyjne"],"forming":["Toczenie drewna","Formowanie wtryskowe"]}},{"id":"pack","name":"Opakowanie","options":{"pack":["Karton eksportowy z tektury falistej","Taśmowanie","Paleta"]}}]},{"id":"bow-rake","name":"Grabie pałąkowe","tier":"form","metal":3,"draw":"rake","parts":[{"id":"head","name":"Głowica grabi","options":{"material":["Stal na ostrza i sprężyny"],"forming":["Tłoczenie","Cięcie laserem"],"finish":["Malowanie proszkowe","Cynkowanie galwaniczne"],"inspection":["Wymiarowy AQL"]}},{"id":"handle","name":"Rękojeść","options":{"material":["Drewno","Aluminium"],"forming":["Toczenie drewna","Ciągnienie rur"]}},{"id":"joint","name":"Połączenie pałąka","options":{"joining":["Zgrzewanie punktowe","Spawanie MIG","Lutowanie twarde"],"inspection":["Próba wyrywania połączenia","Trwałość cykli otwarcia i zamknięcia"]}},{"id":"pack","name":"Opakowanie","options":{"pack":["Karton eksportowy z tektury falistej","Taśmowanie"]}}]},{"id":"hand-weeder","name":"Ręczny wyrywacz chwastów","tier":"form","metal":3,"draw":"weeder","parts":[{"id":"blade","name":"Rozwidlona końcówka","options":{"material":["Stal na ostrza i sprężyny","Stal nierdzewna"],"forming":["Tłoczenie","Cięcie laserem"],"heat":["Hartowanie i odpuszczanie"],"finish":["Cynkowanie galwaniczne","Malowanie proszkowe"],"inspection":["Kontrola ostrza i działania","Kontrola twardości na próbkach","Godziny w komorze solnej"]}},{"id":"handle","name":"Rękojeść","options":{"material":["Drewno","Tworzywa uchwytów","Tworzywa konstrukcyjne"],"forming":["Toczenie drewna","Formowanie wtryskowe"]}},{"id":"joint","name":"Trzpień","options":{"joining":["Nitowanie","Wciskanie"]}},{"id":"pack","name":"Opakowanie","options":{"pack":["Zawieszka / karta nagłówkowa","Blister","Karton eksportowy z tektury falistej"]}}]},{"id":"garden-snips","name":"Nożyczki ogrodowe (ostrza zakupione, własny montaż)","tier":"source","metal":3,"draw":"snips","parts":[{"id":"blade","name":"Ostrza","options":{"material":["Stal nierdzewna"],"forming":["Tłoczenie"],"finish":["Polerowanie"],"inspection":["Kontrola ostrza i działania","Kontrola twardości na próbkach","Godziny w komorze solnej"]}},{"id":"handle","name":"Rękojeści","options":{"material":["Tworzywa konstrukcyjne","Tworzywa uchwytów"],"forming":["Formowanie wtryskowe","Wtrysk dwukomponentowy"]}},{"id":"joint","name":"Przegub","options":{"joining":["Nitowanie"],"inspection":["Próba wyrywania połączenia","Trwałość cykli otwarcia i zamknięcia"]}},{"id":"pack","name":"Opakowanie","options":{"pack":["Blister","Pudełko kolorowe"]}}]},{"id":"tool-set","name":"Zestaw narzędzi w pudełku (asortyment mieszany)","tier":"source","metal":2,"draw":"set","parts":[{"id":"tools","name":"Dobór narzędzi","options":{"material":["Stal na ostrza i sprężyny","Stal nierdzewna"],"inspection":["Kontrola ostrza i działania","Wymiarowy AQL"]}},{"id":"tray","name":"Wkład / walizka","options":{"material":["Tworzywa konstrukcyjne","Tektura opakowaniowa"],"forming":["Formowanie wtryskowe"]}},{"id":"pack","name":"Opakowanie detaliczne","options":{"pack":["Pudełko kolorowe","Kompozyt papieru i tworzywa"],"inspection":["Kontrola kodu kreskowego i etykiety","Próba zrzutu opakowania"]}}]},{"id":"garden-gloves","name":"Rękawice ogrodowe (zakup)","tier":"source","metal":1,"draw":"gloves","parts":[{"id":"body","name":"Materiał bazowy i powłoka","options":{"material":["Tkanina","Tworzywa uchwytów"],"forming":["Powlekanie zanurzeniowe"],"inspection":["Wymiarowy AQL"]}},{"id":"cuff","name":"Mankiet i etykieta","options":{"pack":["Zestaw etykiet","Zawieszka / karta nagłówkowa"]}},{"id":"pack","name":"Opakowanie","options":{"pack":["Zawieszka / karta nagłówkowa","Karton eksportowy z tektury falistej"]}}]}],"options":{"Stal na ostrza i sprężyny":{"pop":5,"cost":3,"buyer":"Dopuszczenie tej rodziny oznacza dopuszczenie gatunku hartowalnego, więc atest hutniczy waży więcej niż linia cenowa: o przedziale twardości, który da się później utrzymać, decydują zawartość węgla, głębokość odwęglenia i płaskość taśmy na przyjęciu, a nie specyfikowana przez Państwa obróbka cieplna.","production":"Przychodzący krąg sprawdzamy pod kątem odwęglonej warstwy wierzchniej, zanim w ogóle trafi do matrycy — miękka warstwa o grubości kilku setnych milimetra przechodzi przez hartowanie jako krawędź, która tępi się w pierwszym sezonie, a po pokryciu galwanicznym jest już niewidoczna."},"Stal nierdzewna":{"pop":3,"cost":4,"buyer":"Stal nierdzewna trafiająca do magazynu przyjęć to dwa różne materiały: austenityczna 304 nie daje się utwardzić obróbką cieplną i jest właściwa na korpusy i elementy złączne, natomiast martenzytyczne 410 i 420 owszem — a ponieważ obie te gatunki są magnetyczne i wizualnie nie do odróżnienia, podstawienie niżej węglowej 410 w zastosowaniu na ostrze to zamiana, której nie wychwyci żadna kontrola przyjęcia bez badania materiału.","production":"Materiał martenzytyczny i austenityczny trzymamy na regale fizycznie rozdzielony, bo pod warstwą chłodziwa oba wyglądają identycznie, a wymieszaną partię wykrywa się dopiero po hartowaniu, gdy połowa części wychodzi miękka."},"Kucie na gorąco":{"pop":2,"cost":4,"buyer":"Płacą Państwo za przebieg włókien, a nie za masę: kucie układa materiał wzdłuż kształtu, dzięki czemu droga obciążenia pozostaje ciągła, i dlatego kuty trzpień przenosi obciążenia przy podważaniu, przy których równie gruby tłoczony pęka.","production":"Pilnujemy temperatury końca kucia i okrawania linii wypływki — odkuwka zakończona zbyt zimno umacnia się nierównomiernie i wnosi naprężenia własne do hartowania, gdzie zamieniają się one w odkształcenia, których nikt już ekonomicznie nie wyprostuje."},"Kucie na zimno":{"pop":2,"cost":3,"buyer":"Kucie na zimno umacnia część w trakcie jej kształtowania, więc sworzeń albo nit kuty na zimno przychodzi mocniejszy niż pręt, z którego powstał, i przy tej samej cenie w większej serii trzyma ciaśniejszą tolerancję średnicy niż obróbka skrawaniem.","production":"Granicą jest odkształcalność, a nie siła: materiał ma skończone odkształcenie do pęknięcia, więc rozkładamy kształt na kolejne stanowiska zamiast wymuszać go jednym uderzeniem, a tam, gdzie geometria tego wymaga, wyżarzamy międzyoperacyjnie."},"Hartowanie i odpuszczanie":{"pop":4,"cost":2,"buyer":"Twardość nic nie znaczy bez stojącego za nią odpuszczania: stal bezpośrednio po hartowaniu jest twarda i krucha, a to odpuszczanie odkupuje udarność, więc pytać należy o przedział twardości po odpuszczaniu i o jego tolerancję.","production":"Odpuszczamy niezwłocznie po hartowaniu, zamiast pozwalać częściom leżeć — nieodpuszczony martenzyt jest pod ogromnym naprężeniem własnym, a partia zostawiona na noc potrafi popękać w koszu, zanim ktokolwiek jej dotknie."},"Hartowanie indukcyjne (miejscowe)":{"pop":3,"cost":3,"buyer":"Hartowanie miejscowe daje twardość tylko tam, gdzie narzędzie tnie, i pozostawia korpus ciągliwy, co jest właściwą odpowiedzią dla ostrza sekatora; określić należy głębokość warstwy utwardzonej oraz to, gdzie strefa hartowana się zaczyna i kończy.","production":"Obraz strefy hartowanej wyznaczają geometria wzbudnika i czas nagrzewania, więc dowodzimy go przecięciem i trawieniem próbki, a nie pomiarem twardości powierzchni, który nie widzi, jak głęboko warstwa naprawdę sięga."},"Hartowanie na wskroś":{"pop":3,"cost":2,"buyer":"Hartowanie na wskroś czyni twardym cały przekrój, co jest właściwe dla pióra łopatki ogrodowej i niewłaściwe dla wszystkiego, co ma pochłaniać uderzenia, bo część zahartowana na wskroś nie ma już ciągliwego zapasu, który mógłby popłynąć przed pęknięciem.","production":"Grubość przekroju decyduje o intensywności chłodzenia — ta sama stal hartuje się na wskroś w cienkim ostrzu, a w grubym tylko powierzchniowo, więc hartowanie dobieramy do przekroju, a nie do gatunku."},"Malowanie proszkowe":{"pop":4,"cost":2,"buyer":"Proszek daje w jednym przejściu grubą, trwałą powłokę w dobranym kolorze i bez rozpuszczalnika, a jego rzeczywistym ograniczeniem są krawędzie: proszek ścieka z ostrej krawędzi w trakcie rozpływu, więc to korozja krawędziowa jest tym, przeciw czemu trzeba projektować.","production":"O przyczepności decyduje przygotowanie powierzchni znacznie bardziej niż jakość proszku — powłoka konwersyjna, fosforanowa lub równoważna, jest tym, w co film się wczepia, a powłoka nałożona na źle oczyszczoną część przejdzie kontrolę i odejdzie w terenie."},"Kataforeza":{"pop":1,"cost":3,"buyer":"Podkład nakładany elektroforetycznie równomiernie pokrywa złożone geometrie, w tym zagłębienia, do których natrysk nie dociera, i dlatego jest standardem motoryzacyjnym; w narzędziach ręcznych ma zwykle sens tylko jako podkład pod warstwę nawierzchniową.","production":"Kupowaną właściwością jest zdolność krycia — osadzony film izoluje w miarę narastania i to właśnie wpędza powłokę w miejsca zacienione, więc część trzeba zawiesić tak, by kąpiel z niej spływała, a nie się w niej zatrzymywała."},"Cynkowanie galwaniczne":{"pop":5,"cost":1,"buyer":"Cynk jest ochroną protektorową, więc kupują Państwo grubość i pasywację, a nie wygląd: powłoka koroduje zamiast stali, a godziny w komorze solnej rosną wraz z tym, ile jej jest.","production":"Na częściach hartowanych pilnujemy kruchości wodorowej — galwanizacja wprowadza wodór do stali o wysokiej twardości, a wygrzewanie, które go z powrotem wypędza, musi nastąpić w ciągu kilku godzin od pokrycia, inaczej część jest już nadwątlona."},"Polerowanie":{"pop":3,"cost":2,"buyer":"Polerowanie kupuje się dla półki i jest ono robocizną, więc skaluje się liniowo z wielkością serii, zamiast maleć — na błyszczącym ostrzu bywa największym pojedynczym kosztem wykończenia i najłatwiejszym miejscem do przespecyfikowania.","production":"Kontrolujemy kolejność gradacji ścierniw, a nie końcowe polerowanie, bo pominięta gradacja zostawia rysy, które polerka jedynie wypoleruje na błysk zamiast je usunąć, a widać je dopiero w oświetleniu sklepowym."},"Piaskowanie":{"pop":2,"cost":1,"buyer":"Obróbka strumieniowo-ścierna jest przygotowaniem powierzchni, a nie zdobieniem: daje powłoce zaczep i usuwa zgorzelinę, a jej pominięcie jest najczęstszym powodem, dla którego całkiem dobra powłoka odchodzi od całkiem dobrej części.","production":"Profil chropowatości ustalają ścierniwo i ciśnienie, a to od profilu zależy przyczepność — zbyt agresywna obróbka na cienkiej blasze wprowadza dodatkowo naprężenia i wypacza część, więc strumień dobiera się do przekroju."},"Kontrola ostrza i działania":{"pop":5,"cost":1,"buyer":"To ostatnia kontrola oddająca to, czego użytkownik końcowy doświadczy w pierwszych pięciu sekundach po wyjęciu z opakowania, i jest na tyle tania, że prowadzi się ją na pełnym pokryciu, a nie na próbkach.","production":"Używamy stałego materiału do prób cięcia, żeby wynik znaczył to samo między zmianami — subiektywna ocena ostrości zmienia się wraz z operatorem, a to jedyne badanie, w którym ta zmienność trafia wprost do klienta."},"Kontrola twardości na próbkach":{"pop":3,"cost":1,"buyer":"Wartość twardości jest warta tyle, co plan, który ją wytworzył: pytać należy o częstość poboru próbek i o przedział, bo certyfikat podający jedną liczbę dla całej wysyłki nic nie mówi o powtarzalności.","production":"Pomiary wykonujemy na przygotowanej powierzchni, a nie przez powłokę czy zgorzelinę, bo odczyt przez powłokę wychodzi zaniżony i każe komuś gonić problem obróbki cieplnej, który nie istnieje."},"Godziny w komorze solnej":{"pop":2,"cost":2,"buyer":"Komora solna jest badaniem porównawczym, a nie prognozą lat spędzonych w ogrodzie; przydaje się do trzymania dostawcy powłok przy normie i wprowadza w błąd, gdy podaje się ją jako deklarację trwałości użytkowej.","production":"Badamy część zmontowaną, a nie sam element powlekany, bo uszkodzenie prawie zawsze zaczyna się na krawędzi, przy elemencie złącznym albo w połączeniu dwóch metali — płaskie, łatwe powierzchnie nigdy nie są problemem."},"Drewno":{"pop":2,"cost":3,"buyer":"Wilgotność jest tu całą specyfikacją: trzonek osadzony przy 18% i wysłany do ogrzewanego europejskiego wnętrza kurczy się w tulejce i luzuje, więc uzgodnić trzeba wilgotność po suszeniu komorowym w chwili pakowania, a nie sam gatunek drewna.","production":"Patrzymy na wybieg włókien, a nie na wygląd powierzchni — trzonek, którego włókna wychodzą bokiem na długości drzewca, pęka w poprzek włókien przy podważaniu, niezależnie od tego, jak czysto wygląda wykończenie."},"Tworzywa uchwytów":{"pop":5,"cost":2,"buyer":"Elastomer należy określać twardością w skali Shore’a A oraz tym, do czego ma przylegać; TPR poprawny na polipropylenie odwarstwia się od poliamidu, a odchodzący uchwyt to zwrot gwarancyjny, choć narzędzie nadal działa.","production":"Przyczepność przy zaformowywaniu jest chemiczna, a nie mechaniczna, więc dobieramy rodzinę elastomeru do podłoża i pilnujemy temperatury styku — zimne podłoże daje połączenie, które przetrwa montaż i pęknie w dłoni."},"Toczenie drewna":{"pop":2,"cost":3,"buyer":"Toczenie wycenia się za przejście noża, a nie za drewno, i każdy dodatkowy wałek czy odsadzenie w profilu trzonka to kolejna operacja — prostszy profil w lepiej wysuszonej kantówce daje mocniejszy trzonek taniej niż wariant odwrotny.","production":"Toczymy z naddatkiem i pozwalamy półfabrykatowi odleżeć przed przejściem wykańczającym, bo drewno pracuje po zdjęciu materiału; pominięcie tego odleżenia jest powodem, dla którego część toczonych trzonków wychodzi zimą z magazynu lekko owalna."},"Lakier lub olej na drewnie":{"pop":2,"cost":1,"buyer":"Ten wybór jest decyzją serwisową podejmowaną za użytkownika końcowego: lakier zamyka powierzchnię i z czasem odpryskuje, olej wnika i wymaga odnawiania, a każde z nich oznacza inną instrukcję pielęgnacji na opakowaniu.","production":"Punktem kontrolnym jest wilgotność w chwili wykańczania — powłoka nałożona na drewno, które się nie ustabilizowało, zamyka w nim wilgoć, a trzonek później pęka włoskowato i podnosi film od spodu."},"Wtrysk dwukomponentowy":{"pop":4,"cost":4,"buyer":"Wtrysk dwukomponentowy to jedna forma dająca gotową część dwutworzywową, więc kosztuje więcej na wejściu i mniej na sztuce niż formowanie i montaż osobno, a przy okazji usuwa tryb uszkodzenia polegający na odejściu doklejanego uchwytu.","production":"Drugi wtrysk musi trafić na podłoże wciąż chemicznie chłonne i dlatego oba następują po sobie w jednej maszynie, zamiast być magazynowane — zimny, przeleżały pierwszy wtrysk zamienia związany uchwyt w zwykłą tuleję."},"Powlekanie zanurzeniowe":{"pop":3,"cost":2,"buyer":"Powlekanie zanurzeniowe daje amortyzowany koniec rękojeści przy najniższym koszcie oprzyrządowania ze wszystkich metod, ale grubość powłoki jest kontrolowana procesem, a nie narzędziem, więc uzgadnia się przedział grubości i normę utwardzenia zamiast jednej liczby.","production":"Grubość powłoki ustalają prędkość wynurzania i podgrzanie wstępne, więc kontrolujemy oba, a nie sam czas zanurzenia — pospieszne wynurzenie zostawia cienki film przy odsadzeniu, czyli dokładnie tam, gdzie rękojeść jest trzymana."},"Nitowanie":{"pop":5,"cost":1,"buyer":"Nit osi to jedyne połączenie decydujące o tym, czy sekator po sezonie nadal tnie czysto, i określa się go siłą docisku oraz tym, czy da się go ponownie naprężyć, a nie samą średnicą nitu.","production":"Naszym punktem kontrolnym jest siła zaciskania, a nie wysokość zakucia — nit zamknięty na właściwy wymiar przy niewłaściwej sile daje oś, która na stanowisku wydaje się poprawna, a luzuje się po kilku tysiącach cykli."},"Połączenia śrubowe":{"pop":3,"cost":2,"buyer":"Oś śrubowa to rozwiązanie serwisowalne: użytkownik może ją ponownie naprężyć i to ona pozwala sprzedawać narzędzie z opowieścią o ostrzeniu czy konserwacji, kosztem elementu złącznego, który można również zgubić.","production":"Metodę zabezpieczenia określamy razem z elementem złącznym — wkładka poliamidowa albo naniesiony klej zabezpieczający nadaje sens wartości momentu dokręcenia po drganiach, a jest materiałem zużywalnym, który nie przetrwa wielokrotnego demontażu."},"Wciskanie":{"pop":3,"cost":1,"buyer":"Wciskana tulejka albo trzpień trzyma wyłącznie wciskiem, więc wytrzymałość połączenia mieszka w całości w parze tolerancji — określić trzeba pasowanie, a nie średnicę nominalną, inaczej ufają Państwo, że dwa niezależne łańcuchy tolerancji się spotkają.","production":"Kontrolujemy obie połowy wcisku, a nie jedną, bo pasowanie złożone przy luźnych krańcach obu tolerancji nadal daje się wcisnąć i po prostu nie utrzyma obciążenia, na które je zaprojektowano."},"Próba wyrywania połączenia":{"pop":2,"cost":2,"buyer":"Jest to badanie niszczące, więc stanowi weryfikację procesu, a nie bramkę wysyłkową: mówi, że połączenie wytwarzane przez linię jest poprawne, co jest innym pytaniem niż to, czy dany karton jest dobry.","production":"Zapisujemy postać zniszczenia, a nie samo obciążenie — połączenie, które ulega zniszczeniu przez rozerwanie materiału rodzimego, jest połączeniem poprawnym doprowadzonym do granicy, a takie, które puszcza na styku, jest problemem procesowym niezależnie od liczby."},"Trwałość cykli otwarcia i zamknięcia":{"pop":2,"cost":2,"buyer":"Badanie cykliczne jest jedynym testem, który wykrywa luzowanie się osi i zmęczenie sprężyny wcześniej niż rynek, a uzgodnić trzeba liczbę cykli pod obciążeniem wraz z określonym kryterium zaliczenia — a nie samo „nadal się otwiera”.","production":"W tym badaniu obserwujemy zużycie osi, a nie ostrość ostrza — w niemal każdej awarii trwałościowej to geometria rozchodzi się pierwsza, a utrata jakości cięcia jest jej objawem, a nie osobną wadą."},"Pudełko kolorowe":{"pop":4,"cost":4,"buyer":"Zadrukowane pudełko detaliczne jest aktywem marketingowym o długim czasie realizacji i własnym minimum zamówienia, i zwykle to ono wyznacza, jak wcześnie w programie trzeba zamrozić projekt graficzny.","production":"Powracającym problemem jest zgodność kolorystyczna między nakładami, więc pracujemy na zatwierdzonym proofie fizycznym, a nie na wzorcu z ekranu — ten sam plik drukuje się inaczej na innej tekturze i na innej maszynie."},"Zawieszka / karta nagłówkowa":{"pop":5,"cost":1,"buyer":"Karta nagłówkowa jest tym, co pozwala wyrobowi zawisnąć na haku, a jej wykrojnik i położenie otworu są specyficzne dla sieci handlowej — to tutaj opakowanie nie przechodzi planogramu, a nie kontroli jakości.","production":"To kierunek włókien tektury względem otworu zawieszkowego powstrzymuje kartę przed rozdarciem na haku, a łatwo go zgubić, gdy grafikę przeskalowuje się późno bez ponownego sprawdzenia wykrojnika."},"Karton eksportowy z tektury falistej":{"pop":5,"cost":2,"buyer":"Karton eksportowy jest jednostką, na której liczy się zarówno Państwa fracht, jak i reklamacje za uszkodzenia, więc jego wymiary zasługują na tyle samo uwagi co wyrób — karton źle układający się na palecie kosztuje fracht przy każdej wysyłce.","production":"Karton wyprowadzamy wstecz od obrysu palety, a nie w przód od wyrobu, bo kilka milimetrów zwisu odbiera całą kolumnę na palecie i przy każdej serii zwraca się w zmarnowanej kubaturze."},"Tworzywa konstrukcyjne":{"pop":5,"cost":1,"buyer":"Tworzywo na przyjęciu określa gatunek i napełniacz, a nie słowo „nylon”: PA6 bez napełniacza i PA6-GF30 różnią się sztywnością mniej więcej trzykrotnie, a udział szkła to pozycja najczęściej po cichu znikająca z zestawienia materiałowego.","production":"Wilgoć w poliamidzie traktujemy poważnie, bo jest on higroskopijny — tworzywo, które stało nieszczelnie zamknięte, hydrolizuje w cylindrze i daje wypraski wyglądające poprawnie, a pękające przy nadlewie, dlatego przed każdą serią suszy się je zgodnie ze specyfikacją."},"Klejenie":{"pop":3,"cost":2,"buyer":"Klejenie jest elastyczną odpowiedzią dla tulejek i etykiet, a jego skuteczność zależy w całości od przygotowania powierzchni i warunków utwardzania, przez co jest to połączenie najbardziej wrażliwe na zmianę zmiany roboczej albo pory roku.","production":"Przygotowujemy energię powierzchniową — powierzchnia odtłuszczona i zmatowiona wiąże, a poliolefinowa prosto z formy nie, niezależnie od tego, jaki klej widnieje w karcie technicznej."},"Blister":{"pop":4,"cost":3,"buyer":"Blister dobrze prezentuje narzędzie i na kilku rynkach podlega czynnej presji regulacyjnej dotyczącej zawartości tworzyw sztucznych, więc warto potwierdzić, że dany format jest wciąż zgodny w kraju przeznaczenia, zanim zamrozi się grafikę i oprzyrządowanie.","production":"Kontrolami są temperatura i czas zgrzewania: niedogrzany blister otwiera się w transporcie, a przegrzanego klient nie otworzy bez narzędzi, a akceptowalne okno między nimi jest wąskie."},"Malowanie mokre":{"pop":3,"cost":1,"buyer":"Malowanie mokre jest najtańszym sposobem nałożenia koloru na metal i najmniej trwałym w użytkowaniu, co czyni je właściwą odpowiedzią dla powierzchni ekspozycyjnej i niewłaściwą dla powierzchni roboczej, takiej jak pióro szpadla.","production":"Kontrolami są grubość powłoki i utwardzenie, a oba łatwo szybko zepsuć — farba nałożona grubo, by zakryć słabą powierzchnię, spływa, a farba niedosuszona pozostaje na tyle miękka, że odbija się w kartonie."},"Taśmowanie":{"pop":2,"cost":1,"buyer":"Taśmowanie zabezpiecza zestawy i palety i jest decyzją logistyczną, a nie produktową; to, czy jest potrzebne, wynika z trasy i liczby przeładunków, a nie z samego towaru.","production":"Naciąg i ochrona krawędzi idą w parze — taśma napięta na niezabezpieczonej krawędzi kartonu wcina się w tekturę, a paleta dojeżdża spięta taśmami, które już niczego nie trzymają."},"Paleta":{"pop":5,"cost":5,"buyer":"Specyfikacja palety jest jednocześnie pozycją celną i kosztową: drewno poddane obróbce cieplnej nosi znak ISPM 15, którego opakowania drewniane wymagają przy większości przewozów międzynarodowych, a wymiary palety decydują o tym, za ile kubatury kontenera faktycznie Państwo płacą.","production":"Układ ładunku planujemy, zanim zostanie zadrukowany pierwszy karton, bo dopasowanie do palety wyznacza rozmiar kartonu — zmiana kartonu o kilka milimetrów później jest tym, co zamienia pełną paletę w częściowo wypełnioną."},"Tłoczenie":{"pop":5,"cost":1,"buyer":"Tłoczenie jest tanie w przeliczeniu na sztukę i drogie w zmianie: geometrię nosi matryca, więc korekta profilu po zatwierdzeniu oprzyrządowania oznacza koszt narzędziowy i wyzerowanie terminu realizacji, i to jest ta bramka, na której rysunek powinien przestać się zmieniać.","production":"Luz matrycowy ustala się jako procent grubości materiału i to on decyduje o wysokości zadzioru oraz o głębokości strefy ścinania na powierzchni cięcia — zbyt ciasny wykrusza matrycę, zbyt otwarty zawija krawędź, więc dobieramy go do materiału, a nie do przyzwyczajenia."},"Znakowanie laserowe":{"pop":3,"cost":2,"buyer":"Znakowanie laserowe jest trwałe i nie da się go z części usunąć ani podrobić, dlatego niesie markę, gatunek i dane identyfikowalności w liniach premium, gdzie nadruk zdążyłby się zetrzeć.","production":"Na stali hartowanej znakujemy parametrami, które nie odpuszczają powierzchni ponownie — nadmiernie mocny znak wprowadza w krawędź tnącą lokalną strefę wpływu ciepła, czyli miękkie miejsce dokładnie tam, gdzie krawędź pracuje."},"Formowanie wtryskowe":{"pop":5,"cost":2,"buyer":"Koszt jednostkowy spada z wielkością serii i rośnie z grubością ścianki oraz czasem cyklu, więc największą dźwignią ceny formowanej rękojeści jest projekt, a nie negocjacja — grube żebra chłodzą się wolno i kosztują podwójnie.","production":"Zapadnięciami i liniami łączenia sterujemy położeniem przewężki, a nie na etapie polerowania — linia łączenia w miejscu spotkania dwóch czół strumienia jest rzeczywistą nieciągłością wytrzymałościową, więc umieszcza się ją poza drogą obciążenia."},"Skin pack":{"pop":2,"cost":3,"buyer":"Skin pack pasuje do kształtów nieregularnych, których oprzyrządowanie blistrowe nie odwzorowałoby ekonomicznie, i wymienia niższy koszt narzędziowy na wolniejsze tempo linii oraz mniej ekskluzywną obecność na półce.","production":"Folia musi rozciągnąć się równomiernie na najwyższych punktach wyrobu, więc sterujemy jednocześnie nagrzewaniem i podciśnieniem — cienkie miejsce nad narożnikiem jest tym, w którym opakowanie później pęka przy manipulacji."},"Chromowanie na podkładzie niklowym":{"pop":2,"cost":4,"buyer":"Nikiel-chrom to układ dekoracyjny, a nie pojedyncza warstwa: odporność korozyjna mieszka w niklu pod spodem, a chrom jest cienką błyszczącą warstwą wierzchnią, więc specyfikacja wymieniająca sam chrom określiła niewłaściwą rzecz.","production":"To wykończenie zawodzi w zagłębieniach — prąd galwaniczny podąża za geometrią, więc narożniki wewnętrzne i otwory nieprzelotowe dostają najmniej osadu, i to dokładnie tam pojawia się pierwsza rdza."},"Cięcie laserem":{"pop":2,"cost":4,"buyer":"Laser jest właściwą odpowiedzią na krótkie serie i profile prototypowe, bo całkowicie znosi koszt oprzyrządowania, ale zostawia na krawędzi cięcia strefę wpływu ciepła, którą na każdej części mającej nieść krawędź trzeba zeszlifować przed hartowaniem.","production":"Krawędź po cięciu traktujemy jako niewykończoną — warstwa przetopiona i gradient twardości przy szczelinie cięcia zachowują się w hartowaniu inaczej, więc na profilu ostrza ciętym laserem zostawiamy naddatek do usunięcia."},"Aluminium":{"pop":3,"cost":3,"buyer":"Specyfikacją jest oznaczenie stanu, a nie numer stopu: 6061-T6 i 6061-T4 to ten sam metal o różnych granicach plastyczności, a trzonek dostarczony w miększym stanie odkształca się trwale pod obciążeniem, po którym twardszy wraca do kształtu.","production":"Na przyjęciu pilnujemy tolerancji wyciskania na grubości ścianki — rura o ściance poniżej nominału przechodzi sprawdzian średnicy i mimo to załamuje się przy tulejce, więc mierzymy ściankę, a nie samą średnicę zewnętrzną."},"Anodowanie":{"pop":2,"cost":3,"buyer":"Anodowanie przetwarza samą powierzchnię aluminium, zamiast dodawać warstwę, więc nie może się odpryskiwać; może natomiast różnić się kolorem między partiami i stopami, co ma znaczenie, gdy część musi pasować kolorystycznie do innej.","production":"Kolor wyznaczają stop i stan umocnienia, więc część krytyczną kolorystycznie trzymamy na jednym stopie i u jednego dostawcy — ta sama receptura anodowania na innej partii serii 6000 wychodzi w widocznie innym odcieniu."},"Ciągnienie rur":{"pop":3,"cost":3,"buyer":"Ciągnienie ustala jednocześnie średnicę i ściankę, a to ścianka przenosi obciążenie zginające: dwa trzonki wyceniane na tę samą średnicę zewnętrzną mogą różnić się sztywnością o jedną trzecią, więc grubość ścianki trzeba podać wprost, inaczej kupują Państwo wygląd.","production":"Przy długich trzonkach punktem kontrolnym jest prostoliniowość po ciągnieniu — naprężenia własne od ciągadła ujawniają się jako wygięcie na dwumetrowej długości, więc prostujemy i odprężamy, zamiast wybierać części na oko."},"Gięcie rur":{"pop":3,"cost":2,"buyer":"Liczbą, którą trzeba podać, jest promień gięcia mierzony w osi rury w odniesieniu do jej średnicy: ciasny promień pocienia ściankę zewnętrzną i marszczy wewnętrzną, a to właśnie tam gięty trzonek z czasem pęka.","production":"Przy gięciu cienkościennym stosujemy trzpień gnący, bo rura potrzebuje podparcia od wewnątrz, żeby utrzymać przekrój — bez niego łuk się owalizuje, a owalna rura nie wejdzie w tulejkę zaprojektowaną dla okrągłej."},"Zakuwanie końców":{"pop":2,"cost":2,"buyer":"Zakuwanie to tani sposób na zwężenie albo zamknięcie końca rury i nic nie kosztuje w materiale, ale zmniejszony przekrój jest umocniony i nieco twardszy — na końcu trzonka to uczciwy kompromis, na części przeznaczonej do późniejszego spawania już nie.","production":"Wszystko zależy od współosiowości narzędzia: zakuwka wykonana poza osią daje stożek, który wygląda dobrze i siada krzywo w tulejce, więc współosiowość ustawiamy na przyrządzie, zamiast poprawiać ją dalej w procesie."},"Sortowanie na przedziały twardości":{"pop":2,"cost":1,"buyer":"Sortowanie na przedziały rozdziela produkcję na zakresy twardości zamiast przyjmować jedną średnią i to ono zamienia liczbę twardości w gwarancję — średnia 58 HRC nic nie mówi o tym, ile części zeszło z linii z twardością 52.","production":"Przedział traktujemy jako nadzór nad procesem, a nie jako operację sortowania: jeżeli części trzeba sortować, żeby zmieściły się w przedziale, hartowanie dryfuje, a sensowną reakcją jest naprawa pieca, a nie klasyfikowanie wyrobu."},"Zatrzask":{"pop":4,"cost":1,"buyer":"Zatrzaski całkowicie eliminują elementy złączne i robociznę montażu, dlatego dominują w obudowach rynku masowego; pytaniem konstrukcyjnym jest, czy połączenie ma być kiedykolwiek ponownie otwierane, bo większość zatrzasków projektuje się na jedno zamknięcie.","production":"O przetrwaniu zatrzasku decyduje odkształcenie belki wspornikowej przy montażu — jego przekroczenie nie łamie zaczepu, tylko powoduje jego pełzanie, i obudowa, która przy montażu zatrzasnęła się ciasno, klekocze już na półce."},"Zgrzewanie punktowe":{"pop":2,"cost":2,"buyer":"Zgrzewanie punktowe jest szybkie i tanie na zespołach z blachy, a jego słabością jest to, że jakość pozostaje niewidoczna z zewnątrz: zgrzeina wyglądająca identycznie może mieć ułamek wytrzymałości, jeśli prąd albo elektroda były niewłaściwe.","production":"Weryfikujemy niszczącą próbą odrywania na próbkach, a nie wyglądem, bo jądro zgrzeiny znajduje się wewnątrz połączenia — wgniecenie na powierzchni dowodzi, że elektroda dotarła, a nie że materiał się zespoił."},"Spawanie MIG":{"pop":2,"cost":3,"buyer":"Spawanie MIG pasuje do cięższych zespołów długotrzonkowych, gdzie ciągła spoina przenosi realne obciążenie, i niesie ze sobą odkształcenia cieplne, więc każda część, która ma pozostać prosta, wymaga przyrządu, a często również późniejszego odprężania.","production":"Zmienną, którą prowadzimy, jest energia liniowa, a nie sama prędkość spawania — ta sama spoina położona za gorąco przepala cienką ściankę, a za zimno zostawia brak przetopu, i tylko jedno z tych dwóch spawacz widzi."},"Lutowanie twarde":{"pop":1,"cost":4,"buyer":"Lutowanie twarde łączy metale różnoimienne poniżej ich temperatury topnienia i w ten sposób twarde ostrze spotyka się z ciągliwym trzpieniem bez niszczenia żadnego z nich, a jest to odpowiedź premium, niskoseryjna, wyceniana spoiwem i robocizną.","production":"O powodzeniu lutu twardego decyduje szczelina złącza — zjawisko kapilarne potrzebuje wąskiego i równomiernego luzu, więc pilnujemy dopasowania; szczelina rozwarta „na zapas” daje połączenie w większości ze spoiwa i w większości słabe."},"Wymiarowy AQL":{"pop":4,"cost":1,"buyer":"Poziom AQL i norma kontroli są tu warunkami handlowymi: definiują dokładnie, ile wad może zawierać partia, by nadal została przyjęta, a uzgodnienie ich przed produkcją sprawia, że odrzucenie da się rozstrzygać rzeczowo, a nie osobiście.","production":"Kontrole na wejściu i na wyjściu prowadzimy na tych samych bazach co rysunek, bo wymiar mierzony od innego odniesienia jest innym wymiarem, i większość sporów, jakie widzieliśmy, zaczyna się właśnie tam."},"Tektura opakowaniowa":{"pop":5,"cost":1,"buyer":"Tekturę określa się konstrukcją oraz odpornością na przepuklenie lub na zgniatanie krawędziowe, a nie grubością, i jest to najtańsze miejsce w zestawieniu materiałowym, w którym niedospecyfikowanie niezawodnie zamienia się w potrącenia za uszkodzenia transportowe.","production":"Klasę tektury dobieramy do wysokości piętrzenia i wilgotności trasy — tektura traci znaczną część wytrzymałości na ściskanie, gdy nabierze wilgoci, a długi odcinek morski jest dokładnie tym miejscem, gdzie to następuje."},"Kompozyt papieru i tworzywa":{"pop":3,"cost":2,"buyer":"Te formaty hybrydowe istnieją po to, by ograniczyć zawartość tworzyw przed regulacjami opakowaniowymi, a pytaniem praktycznym jest, czy format daje się rozdzielić do recyklingu w kraju przeznaczenia, bo tego właśnie dotyczą przepisy.","production":"Papier i folia reagują inaczej na ciepło i wilgoć, więc dowodzimy tego połączenia badaniem transportowym, zamiast zakładać, że zachowa się jak blister, który zastępuje."},"Kontrola kodu kreskowego i etykiety":{"pop":5,"cost":1,"buyer":"To zgodność formalna, a nie jakość: nieczytelny kod kreskowy albo brak oznaczenia kraju pochodzenia zatrzymuje towar w centrum dystrybucyjnym równie skutecznie jak zepsute narzędzie, a jest to najtańsza do uniknięcia usterka na tej liście.","production":"Weryfikujemy skanowaniem w tych samych warunkach, w jakich zrobi to sieć handlowa, bo kod odczytywany przez skaner biurkowy potrafi zawieść na czytniku magazynowym, jeśli kontrast druku albo strefa wolna od nadruku są na granicy."},"Próba zrzutu opakowania":{"pop":3,"cost":1,"buyer":"Próba zrzutu chroni marżę, a nie wyrób: uszkodzenia transportowe przychodzą jako potrącenie od sieci handlowej, a badanie definiuje opakowanie, które przetrwa trasę dystrybucji, jaką towar faktycznie pokona.","production":"Badamy jednostkę wysyłkową tak, jak faktycznie zostanie spaletyzowana, bo karton przechodzący próbę pojedynczo nadal może zawieść w stosie — większość uszkodzeń transportowych, jakie widzieliśmy, to ściskanie w czasie, a nie pojedyncze uderzenie."},"Tkanina":{"pop":2,"cost":1,"buyer":"Tkanina wchodzi do zestawienia materiałowego wyrobu metalowego jako pozycja najbardziej narażona na ryzyko zgodności chemicznej — barwniki, powłoki i wszelkie wykończenia skórzane są tym, na co najpierw trafia pytanie o REACH lub Proposition 65, a nie stal.","production":"Naszym punktem kontrolnym jest rozciągliwość przy krojeniu i szyciu: ta sama bela zachowuje się różnie na swojej szerokości, więc panele kroi się według zagnieżdżonych szablonów, a nie pojedynczo, i to właśnie sprawia, że para rękawic pozostaje parą dobraną."},"Zestaw etykiet":{"pop":5,"cost":1,"buyer":"Etykiety niosą treści regulacyjne — pochodzenie, oznaczenia bezpieczeństwa, kod kreskowy — i są elementem najczęściej zmienianym późno, więc warto trzymać je w osobnym obiegu zatwierdzeń graficznych niż samo opakowanie.","production":"Klej dobiera się do powierzchni i do temperatury na trasie: etykieta trzymająca się ciepłego kartonu potrafi odejść od zimnego, natłuszczonego albo szorstkiego, a odkrywa się to dopiero w miejscu przeznaczenia."}},"optionIds":{"Stal na ostrza i sprężyny":"Blade & spring steel","Stal nierdzewna":"Stainless steel","Kucie na gorąco":"Hot forging","Kucie na zimno":"Cold forging","Hartowanie i odpuszczanie":"Quench & temper","Hartowanie indukcyjne (miejscowe)":"Induction (local) hardening","Hartowanie na wskroś":"Through hardening","Malowanie proszkowe":"Powder coating","Kataforeza":"E-coat","Cynkowanie galwaniczne":"Zinc plating","Polerowanie":"Polishing","Piaskowanie":"Sand-blasting","Kontrola ostrza i działania":"Edge & function check","Kontrola twardości na próbkach":"Hardness sampling","Godziny w komorze solnej":"Salt-spray hours","Drewno":"Timber","Tworzywa uchwytów":"Grip compounds","Toczenie drewna":"Wood turning","Lakier lub olej na drewnie":"Lacquer or oil on wood","Wtrysk dwukomponentowy":"Two-shot over-moulding","Powlekanie zanurzeniowe":"Dip moulding","Nitowanie":"Riveting","Połączenia śrubowe":"Bolted joints","Wciskanie":"Press-fit","Próba wyrywania połączenia":"Joint pull test","Trwałość cykli otwarcia i zamknięcia":"Open/close cycle life","Pudełko kolorowe":"Colour box","Zawieszka / karta nagłówkowa":"Hang tag / header card","Karton eksportowy z tektury falistej":"Corrugated export carton","Tworzywa konstrukcyjne":"Rigid plastics","Klejenie":"Adhesive bonding","Blister":"Blister pack","Malowanie mokre":"Wet paint","Taśmowanie":"Strapping","Paleta":"Pallet","Tłoczenie":"Stamping","Znakowanie laserowe":"Laser marking","Formowanie wtryskowe":"Injection moulding","Skin pack":"Skin pack","Chromowanie na podkładzie niklowym":"Nickel-chrome plating","Cięcie laserem":"Laser cutting","Aluminium":"Aluminium","Anodowanie":"Anodising","Ciągnienie rur":"Tube drawing","Gięcie rur":"Tube bending","Zakuwanie końców":"Swaging","Sortowanie na przedziały twardości":"Hardness banding by grade","Zatrzask":"Snap-fit","Zgrzewanie punktowe":"Spot welding","Spawanie MIG":"MIG welding","Lutowanie twarde":"Brazing","Wymiarowy AQL":"Dimensional AQL","Tektura opakowaniowa":"Packaging board","Kompozyt papieru i tworzywa":"Paper-and-plastic composite","Kontrola kodu kreskowego i etykiety":"Barcode & label check","Próba zrzutu opakowania":"Pack drop test","Tkanina":"Fabric","Zestaw etykiet":"Label set"},"optionLabels":{"Blade & spring steel":"Stal na ostrza i sprężyny","Stainless steel":"Stal nierdzewna","Hot forging":"Kucie na gorąco","Cold forging":"Kucie na zimno","Quench & temper":"Hartowanie i odpuszczanie","Induction (local) hardening":"Hartowanie indukcyjne (miejscowe)","Through hardening":"Hartowanie na wskroś","Powder coating":"Malowanie proszkowe","E-coat":"Kataforeza","Zinc plating":"Cynkowanie galwaniczne","Polishing":"Polerowanie","Sand-blasting":"Piaskowanie","Edge & function check":"Kontrola ostrza i działania","Hardness sampling":"Kontrola twardości na próbkach","Salt-spray hours":"Godziny w komorze solnej","Timber":"Drewno","Grip compounds":"Tworzywa uchwytów","Wood turning":"Toczenie drewna","Lacquer or oil on wood":"Lakier lub olej na drewnie","Two-shot over-moulding":"Wtrysk dwukomponentowy","Dip moulding":"Powlekanie zanurzeniowe","Riveting":"Nitowanie","Bolted joints":"Połączenia śrubowe","Press-fit":"Wciskanie","Joint pull test":"Próba wyrywania połączenia","Open/close cycle life":"Trwałość cykli otwarcia i zamknięcia","Colour box":"Pudełko kolorowe","Hang tag / header card":"Zawieszka / karta nagłówkowa","Corrugated export carton":"Karton eksportowy z tektury falistej","Rigid plastics":"Tworzywa konstrukcyjne","Adhesive bonding":"Klejenie","Blister pack":"Blister","Wet paint":"Malowanie mokre","Strapping":"Taśmowanie","Pallet":"Paleta","Stamping":"Tłoczenie","Laser marking":"Znakowanie laserowe","Injection moulding":"Formowanie wtryskowe","Skin pack":"Skin pack","Nickel-chrome plating":"Chromowanie na podkładzie niklowym","Laser cutting":"Cięcie laserem","Aluminium":"Aluminium","Anodising":"Anodowanie","Tube drawing":"Ciągnienie rur","Tube bending":"Gięcie rur","Swaging":"Zakuwanie końców","Hardness banding by grade":"Sortowanie na przedziały twardości","Snap-fit":"Zatrzask","Spot welding":"Zgrzewanie punktowe","MIG welding":"Spawanie MIG","Brazing":"Lutowanie twarde","Dimensional AQL":"Wymiarowy AQL","Packaging board":"Tektura opakowaniowa","Paper-and-plastic composite":"Kompozyt papieru i tworzywa","Barcode & label check":"Kontrola kodu kreskowego i etykiety","Pack drop test":"Próba zrzutu opakowania","Fabric":"Tkanina","Label set":"Zestaw etykiet"},"ui":{"sheetTitle":"Arkusz wymagań","pickOne":"wybierz jedną opcję","marketUse":"częstość","cost":"koszt","fromFloor":"Z hali produkcyjnej","quantity":"ilość","targetDelivery":"oczekiwany termin dostawy","csvProduct":"Produkt","csvPart":"Część","csvDecision":"Decyzja","csvOption":"Opcja","csvQuantity":"Ilość","csvDelivery":"Oczekiwany termin dostawy","mailIntro":"Szanowni Państwo,\n\nprzesyłamy arkusz wymagań z konfiguratora AsiaSource:","mailClose":"Prosimy o informację zwrotną dotyczącą wykonalności i czasu realizacji.","gate_material":"Materiał","gate_forming":"Kształtowanie","gate_heat":"Obróbka cieplna","gate_tooling":"Oprzyrządowanie","gate_joining":"Łączenie","gate_finish":"Obróbka powierzchni","gate_inspection":"Kontrola","gate_pack":"Opakowania","sheetEmpty":"Wybierz produkt po lewej i jego konfigurację — tutaj pojawią się wybrane opcje.","toConfirm":"Do potwierdzenia"},"gateLabels":{"material":"Materiał","forming":"Kształtowanie","heat":"Obróbka cieplna","tooling":"Oprzyrządowanie","joining":"Łączenie","finish":"Obróbka powierzchni","inspection":"Kontrola","pack":"Opakowania"}}</script>
+<script>
+(function () {
+  'use strict';
+  var DATA = JSON.parse(document.getElementById('cfg-data').textContent);
+  // Every user-visible string the script builds lives in DATA.ui so a language
+  // edition swaps them with the rest of the data blob — nothing is hardcoded here.
+  var UI = DATA.ui || {};
+  var T = function (k, fallback) { return UI[k] || fallback; };
+  var GATE_LABEL = DATA.gateLabels || { material: 'Material', forming: 'Forming', heat: 'Heat treatment',
+    tooling: 'Tooling', joining: 'Joining', finish: 'Finish', inspection: 'Inspection', pack: 'Packaging' };
+  var QUICK = [[500, '500'], [1000, '1k'], [5000, '5k'], [10000, '10k']];
+  // Routing belongs to Contact; this page never sends mail directly.
+
+  var byId = {}; DATA.products.forEach(function (p) { byId[p.id] = p; });
+
+  // sheet[pid] = { picks: {partId: {gate: option}}, qty, delv }
+  var sheet = {};
+  try { sheet = JSON.parse(localStorage.getItem('bl_cfg_sheet') || '{}') || {}; } catch (e) { sheet = {}; }
+  function save() { try { const pub=Object.fromEntries(Object.entries(sheet).map(([id,en])=>[id,{picks:en.picks}]));localStorage.setItem('bl_cfg_sheet', JSON.stringify(pub)); } catch (e) {} }
+
+  try{const tab=JSON.parse(sessionStorage.getItem('bl_cfg_tab')||'null');if(tab&&tab.expires>Date.now()){for(const [id,en]of Object.entries(tab.sheet||{}))if(byId[id])sheet[id]=en;}sessionStorage.removeItem('bl_cfg_tab');}catch(e){}
+  document.addEventListener('click',function(e){if(e.target.closest('.bj-language a'))try{sessionStorage.setItem('bl_cfg_tab',JSON.stringify({expires:Date.now()+30*60*1000,sheet}));}catch(err){}});
+  // Remove legacy persisted quantities/dates after reading the existing sheet.
+  save();
+  var cur = null;      // current product
+  var openPart = null; // open part id
+  var hoverPart = null;
+  var animTimer = null;
+
+  function entry(pid) {
+    if (!sheet[pid]) sheet[pid] = { picks: {}, qty: 1000, qtyConfirmed:false, delv: '' };
+    if(sheet[pid].qty===undefined)sheet[pid].qty=1000;
+    return sheet[pid];
+  }
+  function picksOf(pid) { return (sheet[pid] && sheet[pid].picks) || {}; }
+  function partDone(p, part) {
+    var picks = picksOf(p.id)[part.id] || {};
+    return Object.keys(part.options || {}).every(function (g) { return !!picks[g]; });
+  }
+  function anyPick(pid) {
+    var picks = picksOf(pid);
+    return Object.keys(picks).some(function (k) { return Object.keys(picks[k]).length; });
+  }
+  function onSheet() { return DATA.products.filter(function (p) { return anyPick(p.id); }); }
+
+  // ---- theme-linked canvas colours ------------------------------------
+  function inkColours() {
+    var cs = getComputedStyle(document.documentElement);
+    return {
+      ink: cs.getPropertyValue('--cfg-ink').trim() || '#2b3a35',
+      accent: cs.getPropertyValue('--cfg-accent').trim() || '#0E6652',
+      muted: cs.getPropertyValue('--cfg-canvas-mut').trim() || '#8a9490'
+    };
+  }
+
+  // ---- canvas ----------------------------------------------------------
+  var cv = document.getElementById('cv');
+  var ctx = cv.getContext('2d');
+  var hits = [];
+
+  function sizeCanvas() {
+    var r = cv.getBoundingClientRect();
+    var dpr = window.devicePixelRatio || 1;
+    var w = Math.max(1, Math.round(r.width * dpr));
+    var h = Math.max(1, Math.round(r.height * dpr));
+    if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
+  }
+
+  function drawSpec() { return cur && window.BL_DRAWINGS[cur.draw]; }
+
+  function draw(partCount) {
+    var spec = drawSpec();
+    if (!spec) { ctx.clearRect(0, 0, cv.width, cv.height); return; }
+    sizeCanvas();
+    var shown = partCount === undefined ? spec : { parts: spec.parts.slice(0, partCount) };
+    var c = inkColours();
+    var state = { hover: hoverPart, selected: {}, labels: {} };
+    if (openPart) state.selected[openPart] = true;
+    cur.parts.forEach(function (part) {
+      state.labels[part.id] = part.name;
+      if (partDone(cur, part)) {
+        state.labels[part.id] = part.name + ' ✓';
+      }
+    });
+    window.BLSketch.drawProduct(ctx, shown, state, {
+      ink: c.ink, accent: c.accent, muted: c.muted,
+      width: Math.max(1.2, 1.6 * (window.devicePixelRatio || 1) / 2)
+    });
+    hits = window.BLSketch.hitPaths(spec, cv);
+  }
+  function specName(spec, id) {
+    for (var i = 0; i < spec.parts.length; i++) if (spec.parts[i].id === id) return spec.parts[i].name;
+    return '';
+  }
+
+  function animateDraw() {
+    var spec = drawSpec();
+    if (!spec) return;
+    if (animTimer) clearInterval(animTimer);
+    var n = 0;
+    draw(0);
+    animTimer = setInterval(function () {
+      n++;
+      draw(n);
+      if (n >= spec.parts.length) { clearInterval(animTimer); animTimer = null; draw(); }
+    }, 110);
+  }
+
+  function hitAt(e) {
+    var r = cv.getBoundingClientRect();
+    var x = (e.clientX - r.left) * (cv.width / r.width);
+    var y = (e.clientY - r.top) * (cv.height / r.height);
+    for (var i = hits.length - 1; i >= 0; i--) {
+      if (ctx.isPointInPath(hits[i].path, x, y)) {
+        // unnamed helper polygons (blade2 etc.) map onto their named sibling
+        var id = hits[i].id;
+        if (cur.parts.some(function (p) { return p.id === id; })) return id;
+        var base = id.replace(/\d+$/, '');
+        if (cur.parts.some(function (p) { return p.id === base; })) return base;
+        return null;
+      }
+    }
+    return null;
+  }
+  cv.addEventListener('pointermove', function (e) {
+    var id = hitAt(e);
+    cv.style.cursor = id ? 'pointer' : 'default';
+    if (id !== hoverPart) { hoverPart = id; draw(); }
+  });
+  cv.addEventListener('pointerleave', function () { if (hoverPart) { hoverPart = null; draw(); } });
+  cv.addEventListener('click', function (e) {
+    var id = hitAt(e);
+    if (id) togglePart(id, true);
+  });
+
+  // ---- menu ------------------------------------------------------------
+  var menu = document.getElementById('menu');
+  function renderMenu() {
+    menu.innerHTML = DATA.tiers.map(function (t) {
+      var items = DATA.products.filter(function (p) { return p.tier === t.id; });
+      return '<div class="tier"><div class="tier-h">' + t.name + '</div>' +
+        '<div class="tier-b">' + t.body + '</div><div class="plist">' +
+        items.map(function (p) {
+          var done = p.parts.filter(function (part) { return partDone(p, part); }).length;
+          return '<button type="button" class="pbtn" data-pid="' + p.id + '"' +
+            (cur && cur.id === p.id ? ' aria-current="true"' : '') + '>' + p.name +
+            (done ? '<span class="done">' + done + '/' + p.parts.length + ' ✓</span>' : '') +
+            '</button>';
+        }).join('') + '</div></div>';
+    }).join('');
+  }
+  menu.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-pid]');
+    if (b) selectProduct(b.getAttribute('data-pid'));
+  });
+
+  // ---- parts & options -------------------------------------------------
+  var partsEl = document.getElementById('parts');
+  function renderParts() {
+    partsEl.innerHTML = cur.parts.map(function (part) {
+      var gates = Object.keys(part.options || {});
+      var picks = picksOf(cur.id)[part.id] || {};
+      var nPicked = gates.filter(function (g) { return picks[g]; }).length;
+      var done = nPicked === gates.length;
+      return '<div class="part' + (done ? ' is-done' : '') + '" data-part="' + part.id + '"' +
+        ' data-open="' + (openPart === part.id ? 1 : 0) + '">' +
+        '<button type="button" class="part-h"><span class="tick">✓</span>' + part.name +
+        '<span class="st">' + nPicked + '/' + gates.length + '</span></button>' +
+        '<div class="part-b">' +
+        gates.map(function (g) {
+          return '<div class="gate"><div class="gate-h">' + (GATE_LABEL[g] || g) + ' — ' + T('pickOne', 'pick one') + '</div>' +
+            part.options[g].map(function (name) {
+              var o = DATA.options[name];
+              var key = (DATA.optionIds || {})[name] || name;
+              var on = picks[g] === key;
+              return '<div class="opt' + (on ? ' is-on' : '') + '" data-gate="' + g +
+                '" data-opt="' + key.replace(/"/g, '&quot;') + '" role="button" tabindex="0">' +
+                '<div class="o-top"><span class="o-name">' + name + '</span>' +
+                '<span class="o-meta">' + T('marketUse', 'market use') + ' ' + o.pop + '/5 · ' + T('cost', 'cost') + ' ' + o.cost + '/5</span></div>' +
+                '<div class="o-buyer">' + o.buyer + '</div>' +
+                '<details><summary>' + T('fromFloor', 'From the production floor') + '</summary>' +
+                '<div class="o-prod">' + o.production + '</div></details></div>';
+            }).join('') + '</div>';
+        }).join('') +
+        '</div></div>';
+    }).join('');
+    renderOrder();
+  }
+
+  partsEl.addEventListener('click', function (e) {
+    var head = e.target.closest('.part-h');
+    if (head) { togglePart(head.parentNode.getAttribute('data-part'), false); return; }
+    var opt = e.target.closest('.opt');
+    if (opt && !e.target.closest('summary') && !e.target.closest('.o-prod')) pickOption(opt);
+  });
+  partsEl.addEventListener('keydown', function (e) {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('opt')) {
+      e.preventDefault(); pickOption(e.target);
+    }
+  });
+
+  function pickOption(optEl) {
+    var partEl = optEl.closest('.part');
+    var partId = partEl.getAttribute('data-part');
+    var gate = optEl.getAttribute('data-gate');
+    var name = optEl.getAttribute('data-opt');
+    var en = entry(cur.id);
+    if (!en.picks[partId]) en.picks[partId] = {};
+    en.picks[partId][gate] = en.picks[partId][gate] === name ? undefined : name;
+    if (!en.picks[partId][gate]) delete en.picks[partId][gate];
+    save();
+    renderParts(); renderMenu(); renderSheet(); draw();
+    var active=partsEl.querySelector('[data-part="'+partId+'"] [data-gate="'+gate+'"][data-opt="'+CSS.escape(name)+'"]');if(active)active.focus({preventScroll:true});
+  }
+
+  function togglePart(id, fromCanvas) {
+    openPart = (openPart === id && !fromCanvas) ? null : id;
+    renderParts(); draw();
+    if (fromCanvas) {
+      var el = partsEl.querySelector('.part[data-part="' + id + '"]');
+      if (el && el.scrollIntoView) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  // ---- quantity & delivery --------------------------------------------
+  var orderEl = document.getElementById('order');
+  var qtyEl = document.getElementById('qty');
+  var delvEl = document.getElementById('delv');
+  var qqEl = document.getElementById('qq');
+  QUICK.forEach(function (q) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.textContent = q[1];
+    b.addEventListener('click', function () {
+      qtyEl.value = q[0]; entry(cur.id).qty = q[0]; entry(cur.id).qtyConfirmed=true; save(); renderSheet();
+    });
+    qqEl.appendChild(b);
+  });
+  function renderOrder() {
+    if (!cur || !anyPick(cur.id)) { orderEl.hidden = true; return; }
+    orderEl.hidden = false;
+    var en = entry(cur.id);
+    qtyEl.value = en.qty || '';
+    delvEl.value = en.delv || '';
+  }
+  qtyEl.addEventListener('input', function () {
+    var v = parseInt(qtyEl.value, 10);
+    entry(cur.id).qty = (v > 0 ? v : ''); entry(cur.id).qtyConfirmed=v>0;
+    save(); renderSheet();
+  });
+  delvEl.addEventListener('input', function () {
+    entry(cur.id).delv = delvEl.value; save(); renderSheet();
+  });
+
+  // ---- requirement sheet summary --------------------------------------
+  var sbItems = document.getElementById('sbItems');
+  var csvBtn = document.getElementById('csvBtn');
+  var mailBtn = document.getElementById('mailBtn');
+  function renderSheet() {
+    var list = onSheet();
+    sbItems.textContent = '';
+    if (!list.length) {
+      var s = document.createElement('span');
+      s.className = 'sb-empty';
+      s.textContent = T('sheetEmpty', 'Pick a product on the left and choose its build — your selections collect here.');
+      sbItems.appendChild(s);
+    }
+    list.forEach(function (p) {
+      var en = entry(p.id);
+      var chip = document.createElement('button');
+      chip.type = 'button'; chip.className = 'sb-chip';
+      var b = document.createElement('b'); b.textContent = p.name;
+      var q = document.createElement('span'); q.className = 'q';
+      // user input reaches the DOM as textContent only
+      q.textContent = '× ' + (en.qtyConfirmed?en.qty:'?') + (en.delv ? ' · ' + en.delv : '');
+      chip.appendChild(b); chip.appendChild(q);
+      chip.addEventListener('click', function () { selectProduct(p.id); });
+      sbItems.appendChild(chip);
+    });
+    csvBtn.disabled = mailBtn.disabled = !list.length;
+  }
+
+  function sheetRows() {
+    var rows = [];
+    onSheet().forEach(function (p) {
+      var en = entry(p.id);
+      p.parts.forEach(function (part) {
+        var picks = en.picks[part.id] || {};
+        Object.keys(part.options || {}).forEach(function (g) {
+          if (picks[g]) rows.push([p.name, part.name, GATE_LABEL[g] || g, (DATA.optionLabels || {})[picks[g]] || picks[g],
+            String(en.qtyConfirmed?en.qty:''), en.delv || '']);
+        });
+      });
+    });
+    return rows;
+  }
+
+  function snapshot(){return onSheet().map(function(p){var en=entry(p.id),selected=[],unknown=[],examples=[];p.parts.forEach(function(part){var picks=en.picks[part.id]||{};Object.keys(part.options||{}).forEach(function(g){var val=picks[g];(val?selected:unknown).push(part.name+' / '+(GATE_LABEL[g]||g)+(val?': '+((DATA.optionLabels||{})[val]||val):''));});});if(en.qtyConfirmed)selected.push(T('quantity','Quantity')+': '+en.qty);else{unknown.push(T('quantity','Quantity'));examples.push(window.BL_BRIEF.t('brQtyExample'));}if(en.delv)selected.push(window.BL_BRIEF.t('brRequestedMonth')+': '+en.delv);else unknown.push(window.BL_BRIEF.t('brRequestedMonth'));examples.push(window.BL_BRIEF.t('brReference'));return {id:p.id,source:'Configurator',title:p.name,inputs:{quantity:en.qtyConfirmed?en.qty:'',date:en.delv},selected,unknown,examples};});}
+  document.addEventListener('DOMContentLoaded',function(){
+    if(!window.BL_BRIEF)return;
+    for(const item of window.BL_BRIEF.items('Configurator'))if(byId[item.id]){const en=entry(item.id);en.qty=item.inputs.quantity||1000;en.qtyConfirmed=!!item.inputs.quantity;en.delv=item.inputs.date||'';}renderOrder();renderSheet();
+    window.BL_BRIEF.register('Configurator',{snapshot,remove:function(id){delete sheet[id];save();renderMenu();renderParts();renderSheet();draw();},clear:function(){sheet={};save();renderMenu();renderParts();renderSheet();draw();}});
+    mailBtn.textContent=window.BL_BRIEF.t('brReview');
+    var note=document.createElement('p');note.className='br-assumption';note.textContent=window.BL_BRIEF.t('brQtyExample');orderEl.appendChild(note);
+  });
+  mailBtn.addEventListener('click',function(){window.BL_BRIEF.open('Configurator');});
+
+  csvBtn.addEventListener('click', function () {
+    var esc = function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; };
+    var csv = '﻿' + // UTF-8 BOM so Excel opens the CSV as UTF-8
+       [[T('csvProduct','Product'), T('csvPart','Part'), T('csvDecision','Decision'), T('csvOption','Option'), T('csvQuantity','Quantity'), T('csvDelivery','Target delivery')]]
+      .concat(sheetRows()).map(function (r) { return r.map(esc).join(','); }).join('\r\n');
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+    a.download = 'asiasource-requirement-sheet.csv';
+    document.body.appendChild(a); a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  });
+
+  // ---- product switch --------------------------------------------------
+  var pName = document.getElementById('pName');
+  var pTier = document.getElementById('pTier');
+  function selectProduct(pid) {
+    if (cur && cur.id === pid) return;
+    cur = byId[pid];
+    var selectedUrl = new URL(location.href); selectedUrl.searchParams.set('product', pid);
+    history.replaceState(null, '', selectedUrl.href);
+    document.querySelectorAll('.bj-language a').forEach(function (a) { var url = new URL(a.href); url.search = selectedUrl.search; a.href = url.href; });
+    openPart = null; hoverPart = null;
+    pName.textContent = cur.name;
+    var t = DATA.tiers.filter(function (x) { return x.id === cur.tier; })[0];
+    pTier.textContent = t ? t.name + ' — ' + t.body : '';
+    renderMenu(); renderParts(); renderOrder();
+    animateDraw();
+  }
+
+  window.addEventListener('resize', function () { draw(); });
+  if (window.matchMedia) {
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mq.addEventListener) mq.addEventListener('change', function () { draw(); });
+  }
+
+  renderSheet();
+  var requested = new URLSearchParams(location.search).get('product');
+  selectProduct(byId[requested] ? requested : DATA.products[0].id);
+})();
+</script>
+
+</body></html>

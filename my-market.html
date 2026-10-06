@@ -2,13 +2,13 @@
 <html lang="en"><head>
 <link rel="stylesheet" href="tokens.css?v=20260814a"><script src="text-size.js?v=20260804a"></script><link rel="stylesheet" href="app-bar.css?v=20260811a"><script defer src="app-bar.js?v=20260807a"></script><script defer src="i18n.js?v=20260807a"></script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#6D4A86">
-<meta name="description" content="My Market is Birdland's buyer view of Taiwan- and China-origin supply trends in your own import market, compared with the markets around it — direction and share only, never a price.">
-<title>Birdland My Market</title><meta name="robots" content="noindex">
-<link rel="icon" href="images/app-market-tile.png" sizes="96x96"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="images/apple-touch-market.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="My Market">
+<meta name="description" content="Market Compare is Birdland's buyer view of Taiwan- and China-origin supply trends in your own import market, compared with the markets around it — direction and share only, never a price.">
+<title>Birdland Market Compare</title><meta name="robots" content="noindex">
+<link rel="icon" href="images/app-market-tile.png" sizes="96x96"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="images/apple-touch-market.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Market Compare">
 <link rel="manifest" href="market-desk.webmanifest">
 <script src="context.js?v=20260731d"></script><script defer src="mail-routing.js?v=20260807a"></script>
 <style>
-/* My Market keeps its own self-contained type system rather than the site's
+/* Market Compare keeps its own self-contained type system rather than the site's
    Google-Fonts stack: this app is deliberately a plum-accented instrument
    panel (Desk) with a cream news page bolted on (This edition), not another
    jade/copper desk — app-bar.css already reserves that plum for exactly this
@@ -39,7 +39,7 @@
 .mm-head .ed em{font-style:normal;color:var(--tx2)}
 /* Install entry — the other three desks each have one of these; this app
    shipped without one. Matches the toolbar's own instrument-panel language
-   rather than borrowing AsiaSource's paper-theme button. */
+   rather than borrowing Product Studio's paper-theme button. */
 .mm-head .install{appearance:none;border:1px solid var(--edge2);background:none;color:var(--tx2);
   font:640 calc(10.5px * var(--ui-scale))/1 var(--sans);padding:7px 11px;cursor:pointer;white-space:nowrap}
 .mm-head .install:hover{border-color:var(--grn);color:var(--tx)}
@@ -243,6 +243,8 @@
 }
 </style>
 <script>try{if(sessionStorage.getItem("ab-splash-market"))document.documentElement.className+=" ab-seen"}catch(e){}</script>
+<link rel="stylesheet" href="market-reading.css"><script src="site-registry.js"></script>
+<link rel="stylesheet" href="buyer-brief.css"><script src="buyer-brief.js"></script>
 </head><body>
 <!-- Launch screen. Ships in the markup so the first painted frame is this app's
      own colour and icon rather than a bare desk; app-bar.js adopts this node,
@@ -260,7 +262,7 @@
       <button type="button" id="vBrief" role="tab" aria-pressed="false">This edition <em id="edEmLabel">read it</em></button>
     </span>
     <span class="ed" id="edLine"></span>
-    <button type="button" class="install" id="install-app" hidden title="Install My Market on this device. No account is created and it can be removed from your browser.">Install My Market</button>
+    <button type="button" class="install" id="install-app" hidden title="Install Market Compare on this device. No account is created and it can be removed from your browser.">Install Market Compare</button>
     <small class="install-note" id="install-note"></small>
   </div>
 
@@ -293,7 +295,7 @@
 
   <div class="brf" id="briefView" style="display:none">
     <div class="mast">
-      <div class="mast-row"><h1><span translate="no">My <i>Market</i></span> &middot; <span style="font-style:normal;font-size:calc(16px * var(--ui-scale))">This edition</span></h1>
+      <div class="mast-row"><h1><span translate="no">Market <i>Compare</i></span> &middot; <span style="font-style:normal;font-size:calc(16px * var(--ui-scale))">This edition</span></h1>
         <span class="vol" id="briefVol">GARDEN &amp; FIELD TOOLS</span></div>
       <div class="strap">What import statistics say this edition &middot; by Birdland &middot; no prices, by design</div>
     </div>
@@ -308,6 +310,7 @@
   </div>
 </div>
 
+<script src="buyer-focus.js"></script><script src="market-reading.js"></script>
 <script>
 (function(){
 'use strict';
@@ -351,7 +354,7 @@ var DISPLAY_NAME={us:'United States',kr:'South Korea','do':'Dominican Republic',
 // than being silently dropped.
 // These display names are the SECOND copy of this knowledge. The first is the
 // PRODUCTS array in tools/partner_template.html, which names the same HS codes
-// for AsiaSource and CostNow. Nothing checks that the two agree, so renaming a
+// for Product Studio and CostNow. Nothing checks that the two agree, so renaming a
 // family means editing both — and the fallback below means a mismatch shows up
 // as a wrong label rather than as an error.
 var FAM_NAME={'820150':'One-handed pruners','820160':'Two-handed shears','820110':'Spades & shovels','820130':'Hoes, rakes & cultivators','820210':'Hand saws','821300':'Scissors'};
@@ -422,9 +425,9 @@ function classify(c){
  if(cd!==null&&cd<=-3) return "window";
  return "steady";
 }
-var GROUPS=[["tw","TAIWAN-ORIGIN SUPPLY IS ADVANCING IN YOUR MARKET"],
- ["window","CHINA-ORIGIN SHARE IS RECEDING — A WINDOW"],
- ["push","A CHINA PRICE PUSH IS UNDER WAY"],
+var GROUPS=[["tw","TAIWAN-ORIGIN SHARE INCREASED"],
+ ["window","CHINA-ORIGIN SHARE DECREASED"],
+ ["push","CHINA-ORIGIN SHARE INCREASED"],
  ["steady","STEADY THIS EDITION"]];
 
 // Each branch is a lead clause (the facts, plain text) plus a bold takeaway
@@ -432,54 +435,7 @@ var GROUPS=[["tw","TAIWAN-ORIGIN SUPPLY IS ADVANCING IN YOUR MARKET"],
 // is often the same sentence across more than one branch, so this keeps a
 // translator from having to retranslate it every time the facts around it
 // change. Numbers are substituted after both pieces come back translated.
-function why(c){
- // d===null means "no prior Taiwan-share reading in this edition" — it is
- // never folded into 0: a zero claims the share held steady, which is a
- // statement about a prior value the data does not carry.
- var d=delta(c), cd=cnd(c);
- if(c.vol_change_pct>15&&c.uv_change_pct<-5&&d!==null&&d<0){
-  var lead1=tf("Volume rose {vol} while unit value fell {uv} and Taiwan-origin share slipped {pts} pts.",
-   {vol:pct(c.vol_change_pct),uv:pct(c.uv_change_pct),pts:Math.abs(d)});
-  var tail1=(cd!==null&&cd>=3)
-   ?tf("The market grew and someone else took the order — China, up {cnPts} pts to {cnShare}%.",{cnPts:cd,cnShare:c.share_cn})
-   :t("The market grew and someone else took the order.");
-  return lead1+" <b>"+tail1+"</b>";
- }
- if(cd!==null&&cd>=10){
-  var lead2=tf("China-origin share jumped {cnPts} pts to {cnShare}% while unit value moved {uv}.",
-   {cnPts:cd,cnShare:c.share_cn,uv:pct(c.uv_change_pct)});
-  return lead2+" <b>"+t("A price-led push is under way — quote on total cost, not first price.")+"</b>";
- }
- if(cd!==null&&cd<=-3&&d!==null&&d>=0){
-  var lead3=(d>0)
-   ?tf("China-origin share receded {cnPts} pts to {cnShare}% while Taiwan held and gained {pts} pts.",{cnPts:Math.abs(cd),cnShare:c.share_cn,pts:d})
-   :tf("China-origin share receded {cnPts} pts to {cnShare}% while Taiwan held.",{cnPts:Math.abs(cd),cnShare:c.share_cn});
-  return lead3+" <b>"+t("Displacement is under way — this is the window to take share.")+"</b>";
- }
- if(c.vol_change_pct>15&&c.uv_change_pct<-5){
-  // "Holding" is a claim about the prior reading. With no prior reading
-  // (d===null) the sentence says so instead of pretending steadiness.
-  var lead4=(c.share_tw==null)
-   ?tf("Volume rose {vol} on a {uv} fall in unit value, Taiwan share holding at an unpublished level.",{vol:pct(c.vol_change_pct),uv:pct(c.uv_change_pct)})
-   :(d===null
-    ?tf("Volume rose {vol} on a {uv} fall in unit value, Taiwan share at {twShare}% with no prior reading to compare.",{vol:pct(c.vol_change_pct),uv:pct(c.uv_change_pct),twShare:c.share_tw})
-    :tf("Volume rose {vol} on a {uv} fall in unit value, Taiwan share holding at {twShare}%.",{vol:pct(c.vol_change_pct),uv:pct(c.uv_change_pct),twShare:c.share_tw}));
-  return lead4+" <b>"+t("Growth is real but it is being bought on price.")+"</b>";
- }
- if(c.uv_change_pct>5&&c.vol_change_pct<0){
-  var lead5=tf("Unit value rose {uv} while volume eased {vol}.",{uv:pct(c.uv_change_pct),vol:pct(c.vol_change_pct)});
-  return lead5+" <b>"+t("Buyers are trading up, not buying more.")+"</b>";
- }
- if(d>=3){
-  var lead6=tf("Taiwan-origin share gained {pts} pts to {twShare}%.",{pts:d,twShare:c.share_tw});
-  return lead6+" <b>"+t("This market is already moving toward Taiwan supply.")+"</b>";
- }
- if(d<=-5){
-  var lead7=tf("Taiwan-origin share fell {pts} pts to {twShare}%.",{pts:Math.abs(d),twShare:c.share_tw});
-  return lead7+" <b>"+t("Worth a route conversation before the next season.")+"</b>";
- }
- return t("Direction is within the normal range for this market this edition.");
-}
+function why(c){return esc(window.BLMarketReading.interpret(c));}
 function fmtShare(who,v,dv){
  return esc(t(who))+" "+(v==null?"—":v+"%")+(dv?' <span class="'+(dv>0?"up":"dn")+'">'+(dv>0?"+":"")+dv+"</span>":"");
 }
@@ -509,6 +465,8 @@ function sheetCells(){
 }
 function saveSheet(cells){try{localStorage.setItem(SHEET_KEY,JSON.stringify({v:1,cells:cells}));}catch(e){}}
 function toggleSheetCell(f,iso){
+ window.BLMarketReading.openSheet();
+ st.tray=true;
  var key=f+"|"+iso, cells=sheetCells(), i=cells.indexOf(key);
  sheetFullNote=false;
  if(i>=0){cells.splice(i,1);saveSheet(cells);}
@@ -617,12 +575,12 @@ function sendSheetEnquiry(){
   if(!m||!cellValid(c)) return "Category: "+famName(f)+" (HS "+famCode(f)+")\nMarket: "+name+"\nNot published this edition.";
   return "Category: "+famName(f)+" (HS "+famCode(f)+")\n"
    +"Market: "+name+"\n"
-   +"Import unit-value direction: "+(c.uv_change_pct>0?"rising":(c.uv_change_pct<0?"falling":"flat"))+" ("+pct(c.uv_change_pct)+", 12 months, "+(c.basis==="piece"?"per-piece":"per-kg")+" basis)\n"
+   +"Import unit-value direction: "+(c.uv_change_pct>0?"rising":(c.uv_change_pct<0?"falling":"flat"))+" ("+pct(c.uv_change_pct)+", annual comparison, "+(c.basis==="piece"?"per-piece":"per-kg")+" basis)\n"
    +"Taiwan-origin share: "+(c.share_tw!=null?c.share_tw+"%":"not published")+"\n"
    +"China-origin share: "+(c.share_cn!=null?c.share_cn+"%":"not published");
  });
- var body=blocks.join("\n\n")+"\n\nI am looking at these categories on the My Market desk as one programme.";
- var subject="Programme review · "+cells.length+" categories · My Market";
+ var body=blocks.join("\n\n")+"\n\nI am looking at these categories on the Market Compare desk as one programme.";
+ var subject="Programme review · "+cells.length+" categories · Market Compare";
  if(window.blMail){
   var region=(window.blCtx&&window.blCtx.mailRegion)?window.blCtx.mailRegion():"global";
   var line=(window.blCtx&&window.blCtx.get)?window.blCtx.get().line:"";
@@ -729,7 +687,7 @@ function renderSince(){
 
 function saveMine(){try{localStorage.setItem("bl_mm_mine",JSON.stringify(st.mine));}catch(e){}}
 // bd_bc_co is the destination-country key context.js and CostNow already
-// share; My Market reads it once to choose an opening market rather than
+// share; Market Compare reads it once to choose an opening market rather than
 // asking the buyer a fourth time. 'uk' is context.js's own code for the
 // market trade.json (and CostNow) key 'gb' — the two features have never
 // agreed on that one code, so the alias is applied on read.
@@ -767,6 +725,7 @@ function pinCurrent(){
 
 // ---- desk: my market ---------------------------------------------------
 function myMarket(){
+ if(!MKT[st.anchor]){document.getElementById("myMarket").textContent="";return;}
  var m=MKT[st.anchor], grouped={tw:[],window:[],push:[],steady:[]};
  FAM_LIST.forEach(function(f){var c=m.cells[f]; if(cellValid(c)) grouped[classify(c)].push(f);});
  var any=FAM_LIST.some(function(f){return cellValid(m.cells[f]);});
@@ -797,6 +756,7 @@ function myMarket(){
 }
 
 function around(){
+ if(!MKT[st.anchor]){document.getElementById("aroundWrap").textContent="";return;}
  var ns=(NEIGH[st.anchor]||[]).filter(function(k){return MKT[k];});
  document.getElementById("aroundH").textContent=tf("AROUND {market}",{market:MKT[st.anchor].name.toUpperCase()});
  document.getElementById("nbline").textContent=ns.length
@@ -844,39 +804,12 @@ function around(){
  insight(ns);
 }
 
-function insight(ns){
- var a=MKT[st.anchor], ahead=null, behind=null;
- ns.forEach(function(k){
-  var n=MKT[k];
-  FAM_LIST.forEach(function(f){
-   var ca=a.cells[f], cn=n.cells[f];
-   if(!cellValid(ca)||!cellValid(cn)||ca.share_tw==null||cn.share_tw==null) return;
-   var diff=cn.share_tw-ca.share_tw;
-   if(!behind||diff>behind.diff) behind={k:k,f:f,diff:diff,nv:cn.share_tw,av:ca.share_tw};
-   if(!ahead||-diff>ahead.diff) ahead={k:k,f:f,diff:-diff,nv:ca.share_tw,av:cn.share_tw};
-  });
- });
- var el=document.getElementById("insight"); if(!el) return;
- if(behind&&behind.diff>=8){
-  var leadB=tf("Next door in <b>{market}</b>, Taiwan-origin supply is <b>{nv}%</b> of {family} imports — your market buys {av}%.",
-   {market:esc(MKT[behind.k].name),nv:behind.nv,family:esc(t(famName(behind.f))),av:behind.av});
-  el.innerHTML=leadB+" <b>"+t("The route exists; the question is whose shelf uses it.")+"</b>";
- }else if(ahead&&ahead.diff>=8){
-  var leadA=tf("Your market leads its neighbourhood — <b>{av}%</b> of {family} imports are Taiwan-origin, against {nv}% in {market}.",
-   {av:ahead.av,family:esc(t(famName(ahead.f))),nv:ahead.nv,market:esc(MKT[ahead.k].name)});
-  el.innerHTML=leadA+" <b>"+t("Worth defending before the next season.")+"</b>";
- }else{
-  el.innerHTML=t("Your market moves with its neighbourhood this edition — no origin gap above 8 points.");
- }
-}
+function insight(ns){var el=document.getElementById("insight"),m=MKT[st.anchor];if(el)el.textContent=window.BLMarketReading.interpret(m&&m.cells[st.sel]);}
 
 function setAnchor(k,fromSearch){
  if(!MKT[k]) return;
  st.anchor=k;
- if(!cellValid(MKT[k].cells[st.sel])){
-  var firstLive=FAM_LIST.filter(function(f){return cellValid(MKT[k].cells[f]);})[0];
-  st.sel=firstLive||FAM_LIST[0];
- }
+
  if(fromSearch) pinCurrent();
  myMarket();around();rail();
 }
@@ -906,6 +839,8 @@ function ladderHtml(c){
 }
 
 function rail(){
+ renderReading();
+ if(!MKT[st.anchor]){document.getElementById("drail").textContent="";return;}
  var m=MKT[st.anchor], c=m.cells[st.sel];
  var h='<div><h4>'+esc(m.name)+"</h4><div class=\"sub\">"+esc(t(famName(st.sel)).toUpperCase())+" · "+(m.src==="comtrade"?"UN Comtrade":"Eurostat")+"</div></div>";
  if(!cellValid(c)){
@@ -914,7 +849,7 @@ function rail(){
   return;
  }
  var d=delta(c), cd=cnd(c);
- h+='<div class="kpi"><b style="color:'+heat(c.uv_change_pct)+'">'+pct(c.uv_change_pct)+"</b><span>"+t("12-month unit-value change")+" "+(c.basis==="piece"?t("· per-piece basis"):t("· per-kg basis"))+"</span></div>";
+ h+='<div class="kpi"><b style="color:'+heat(c.uv_change_pct)+'">'+pct(c.uv_change_pct)+"</b><span>"+t("Annual import unit-value change")+" "+(c.basis==="piece"?t("· per-piece basis"):t("· per-kg basis"))+"</span></div>";
  h+='<div class="rowline"><span>'+t("Import volume")+'</span><b style="color:'+heat(c.vol_change_pct)+'">'+pct(c.vol_change_pct)+"</b></div>";
  h+='<div class="rowline"><span>'+t("Taiwan-origin share")+'</span><b>'+(c.share_tw==null?"—":c.share_tw+"%")+(d!==null&&d!==0?' <span class="'+(d>0?"up":"dn")+'">'+ptsDelta(d)+"</span>":"")+"</b></div>";
  h+='<div class="rowline"><span>'+t("China-origin share")+'</span><b>'+(c.share_cn==null?"—":c.share_cn+"%")+(cd!==null&&cd!==0?' <span class="'+(cd>0?"up":"dn")+'">'+ptsDelta(cd)+"</span>":"")+"</b></div>";
@@ -924,7 +859,7 @@ function rail(){
  h+='<div class="acts"><button type="button" class="primary" id="actMail">Bring to enquiry →</button>'
   +'<button type="button" id="actSheet" aria-pressed="'+(onSheet?"true":"false")+'">'
   +esc(t(onSheet?"On your sheet ★ — press to remove":"Add to programme sheet ☆"))+"</button>"
-  +'<button type="button" id="actCost">Cost it in CostNow</button><button type="button" id="actBrief">Read it in This edition →</button></div>';
+  +'<button type="button" id="actCost">Open Purchase Planning</button><button type="button" id="actBrief">Read it in This edition →</button></div>';
  document.getElementById("drail").innerHTML=h;
  var mailBtn=document.getElementById("actMail");
  if(mailBtn) mailBtn.addEventListener("click",function(){bringToEnquiry(m,st.sel,c);});
@@ -933,20 +868,28 @@ function rail(){
  var costBtn=document.getElementById("actCost");
  if(costBtn) costBtn.addEventListener("click",function(){
   try{localStorage.setItem("bd_bc_co",m.iso);}catch(e){}
-  location.href="cost-desk.html";
+  location.href="buying-tools.html#landed-cost";
  });
  var briefBtn=document.getElementById("actBrief");
  if(briefBtn) briefBtn.addEventListener("click",function(){setView("brief",true);});
+}
+
+function renderReading(){
+ window.BLMarketReading.render({trade:TRADE,markets:MKT,families:FAM_LIST,anchor:st.anchor,selected:st.sel,neighbors:NEIGH[st.anchor]||[],valid:cellValid,label:function(f){return t(famName(f));},actions:{
+  category:function(f){st.sel=f;myMarket();around();rail();},
+  market:function(k){setAnchor(k,true);},
+  view:function(v){setView(v,true);}
+ }});
 }
 
 function bringToEnquiry(m,fk,c){
  var subject=famName(fk)+" · "+m.name;
  var body="Category: "+famName(fk)+" (HS "+famCode(fk)+")\n"
   +"Market: "+m.name+"\n"
-  +"Import unit-value direction: "+(c.uv_change_pct>0?"rising":(c.uv_change_pct<0?"falling":"flat"))+" ("+pct(c.uv_change_pct)+", 12 months, "+(c.basis==="piece"?"per-piece":"per-kg")+" basis)\n"
+  +"Import unit-value direction: "+(c.uv_change_pct>0?"rising":(c.uv_change_pct<0?"falling":"flat"))+" ("+pct(c.uv_change_pct)+", annual comparison, "+(c.basis==="piece"?"per-piece":"per-kg")+" basis)\n"
   +"Taiwan-origin share: "+(c.share_tw!=null?c.share_tw+"%":"not published")+"\n"
   +"China-origin share: "+(c.share_cn!=null?c.share_cn+"%":"not published")+"\n\n"
-  +"I am looking at this category on the My Market desk for "+m.name+".";
+  +"I am looking at this category on the Market Compare desk for "+m.name+".";
  if(window.blMail){
   var region=(window.blCtx&&window.blCtx.mailRegion)?window.blCtx.mailRegion():"global";
   var line=(window.blCtx&&window.blCtx.get)?window.blCtx.get().line:"";
@@ -991,9 +934,9 @@ function briefLead(){
  else if(c.uv_change_pct<0) h2=tf("{family} unit values fell {absUv}% in {market}",{family:famT,absUv:Math.abs(c.uv_change_pct),market:m.name});
  else h2=tf("{family} unit values held steady {absUv}% in {market}",{family:famT,absUv:Math.abs(c.uv_change_pct),market:m.name});
  var s1;
- if(c.vol_change_pct>0) s1=tf("Import volume rose {vol} over the same twelve months.",{vol:pct(c.vol_change_pct)});
- else if(c.vol_change_pct<0) s1=tf("Import volume fell {vol} over the same twelve months.",{vol:pct(c.vol_change_pct)});
- else s1=tf("Import volume held steady {vol} over the same twelve months.",{vol:pct(c.vol_change_pct)});
+ if(c.vol_change_pct>0) s1=tf("Import volume rose {vol} over the same annual comparison.",{vol:pct(c.vol_change_pct)});
+ else if(c.vol_change_pct<0) s1=tf("Import volume fell {vol} over the same annual comparison.",{vol:pct(c.vol_change_pct)});
+ else s1=tf("Import volume held steady {vol} over the same annual comparison.",{vol:pct(c.vol_change_pct)});
  var cnPub=c.share_cn!=null, twPub=c.share_tw!=null, s2;
  if(cnPub&&twPub) s2=tf("China-origin share stands at <b>{cnShare}%</b> of {market}'s {family} imports; Taiwan-origin share stands at <b>{twShare}%</b>.",{cnShare:c.share_cn,market:m.name,family:famT,twShare:c.share_tw});
  else if(cnPub&&!twPub) s2=tf("China-origin share stands at <b>{cnShare}%</b> of {market}'s {family} imports; Taiwan-origin share stands at not yet published.",{cnShare:c.share_cn,market:m.name,family:famT});
@@ -1075,7 +1018,7 @@ function edLine(){
  var total=Object.keys(MKT).length, live=liveIsos().length;
  document.getElementById("edLine").innerHTML=tf("edition <em>{edition}</em> · <em>{live}/{total}</em> loaded · accumulating daily",
   {edition:esc(TRADE.edition||"—"),live:live,total:total});
- document.getElementById("edEmLabel").textContent=(TRADE.edition||"")+" · "+t("read it");
+ var editionLabel=document.getElementById("edEmLabel");if(editionLabel)editionLabel.textContent=(TRADE.edition||"")+" · "+t("read it");
  var bv=document.getElementById("briefVol");
  if(bv) bv.innerHTML=esc(t("GARDEN & FIELD TOOLS"))+"<br>"+esc(t("EDITION"))+" "+esc(TRADE.edition||"")+(TRADE.generated?" · "+esc(t("PUBLISHED"))+" "+esc(TRADE.generated.slice(0,10)):"");
 }
@@ -1105,7 +1048,7 @@ document.getElementById("vBrief").addEventListener("click",function(){setView("b
 // no reason to press.
 document.getElementById("briefPick").addEventListener("click",function(){
  setView("desk",true);
- st.all=true;renderAllChip();renderAllTray();
+ st.all=true;renderAllChip();renderAllTray();window.BLMarketReading.openMore();
  var el=document.getElementById("allTray");
  if(el&&el.scrollIntoView) el.scrollIntoView({block:"nearest"});
 });
@@ -1123,7 +1066,7 @@ document.getElementById("briefCta").addEventListener("click",function(){
  if(m){
   var f=st.sel&&cellValid(m.cells[st.sel])?st.sel:FAM_LIST.filter(function(x){return cellValid(m.cells[x]);})[0];
   if(f) bringToEnquiry(m,f,m.cells[f]);
-  else if(window.blMail) window.blMail.open((window.blCtx&&window.blCtx.mailRegion)?window.blCtx.mailRegion():"global","","My Market · This edition","I would like to discuss this edition of My Market.","mkt");
+  else if(window.blMail) window.blMail.open((window.blCtx&&window.blCtx.mailRegion)?window.blCtx.mailRegion():"global","","Market Compare · This edition","I would like to discuss this edition of Market Compare.","mkt");
  }
 });
 
@@ -1136,8 +1079,8 @@ dq.addEventListener("input",function(){
  if(hit) setAnchor(hit,true);
 });
 document.addEventListener("keydown",function(e){
- if(e.key==="/"&&document.activeElement!==dq&&st.view==="desk"){
-  e.preventDefault(); dq.focus();
+ if(e.key==="/"&&!/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)&&st.view==="desk"){
+  e.preventDefault(); window.BLMarketReading.openMore(); dq.focus();
  }
 });
 
@@ -1147,8 +1090,8 @@ function boot(trade){
  MKT=buildMarkets(TRADE);
  FAM_LIST=collectFamilies(MKT);
  if(!FAM_LIST.length) FAM_LIST=FAM_CANON.slice();
- st.mine=loadMine();
- saveMine();
+ st.mine=loadMine().filter(function(k){return !!MKT[k];});
+ if(Object.keys(MKT).length)saveMine();
 
  var qs=new URLSearchParams(location.search);
  var cellParam=qs.get("cell"), editionParam=qs.get("edition");
@@ -1185,9 +1128,10 @@ function boot(trade){
  var hashView=(location.hash||"").slice(1);
  var seen=false;
  try{seen=!!localStorage.getItem("bl_mm_seen");}catch(e){}
- var initial=forcedView||(hashView==="desk"||hashView==="brief"?hashView:(seen?"desk":"brief"));
+ var initial=forcedView||(hashView==="desk"||hashView==="brief"?hashView:"desk");
  renderAllChip();renderAllTray();
  setView(initial,false);
+ renderReading();
 }
 
 fetch("trade.json",{cache:"no-store"}).then(function(r){ if(!r.ok) throw new Error("trade.json "+r.status); return r.json(); })
@@ -1224,6 +1168,7 @@ fetch("trade.json",{cache:"no-store"}).then(function(r){ if(!r.ok) throw new Err
   myMarket();around();rail();
   renderSince();renderSheetChip();renderSheetTray(); // formats from the cached diff — never recomputes
   if (st.view === "brief") renderBrief();
+  renderReading();
  });
  mo.observe(document.documentElement, {attributes:true, attributeFilter:["lang"]});
 }());
@@ -1234,7 +1179,7 @@ if("serviceWorker" in navigator){
 })();
 </script>
 <script>(function(){
-// Install entry. ABrief and AsiaSource/CostNow each wire this up their own
+// Install entry. Supply Updates and Product Studio/CostNow each wire this up their own
 // way already; this is the same beforeinstallprompt/appinstalled shape,
 // styled for this app's own toolbar rather than borrowed markup.
 var btn=document.getElementById('install-app'),note=document.getElementById('install-note');
@@ -1244,7 +1189,7 @@ function setNote(text){note.textContent=text;}
 function installed(){return window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches;}
 if(installed()){
  btn.hidden=true;
- setNote('My Market is already installed on this device.');
+ setNote('Market Compare is already installed on this device.');
 }else if(!('serviceWorker' in navigator)){
  setNote('Secure install works best in Chrome or Edge; it stays on this device and can be removed anytime.');
 }
@@ -1257,11 +1202,11 @@ window.addEventListener('beforeinstallprompt',function(e){
 window.addEventListener('appinstalled',function(){
  deferred=null;
  btn.hidden=true;
- setNote('My Market installed. Reopen it from your desktop or app launcher.');
+ setNote('Market Compare installed. Reopen it from your desktop or app launcher.');
 });
 btn.addEventListener('click',function(){
  if(!deferred){
-  setNote(installed()?'My Market is already installed on this device.':'Use your browser menu to install or add this app to your home screen.');
+  setNote(installed()?'Market Compare is already installed on this device.':'Use your browser menu to install or add this app to your home screen.');
   return;
  }
  deferred.prompt();

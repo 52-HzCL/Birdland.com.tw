@@ -198,7 +198,8 @@ def fetch_eurostat_data():
         params+="&reporter="+r
     for prod in PRODUCTS:
         params+="&product="+prod
-    params+="&time=2023&time=2024"
+    for year in COMTRADE_YEARS:
+        params+="&time="+year
     url=EUROSTAT_BASE+"?"+params
     print("[Eurostat] Fetching 2023+2024, all partners, in one request...")
     j=https_get(url)
@@ -828,10 +829,11 @@ def main_shard():
     edition=compute_quarter(now)
     existing=read_existing_trade()
 
-    if not existing or existing.get("schema")!=2 or existing.get("edition")!=edition:
+    if not existing or existing.get("schema")!=2 or existing.get("edition")!=edition or existing.get("periods")!={"previous":int(COMTRADE_YEARS[0]),"current":int(COMTRADE_YEARS[1]),"frequency":"annual"}:
         markets,_=run_discovery()
         trade={
             "schema":2,
+            "periods":{"previous":int(COMTRADE_YEARS[0]),"current":int(COMTRADE_YEARS[1]),"frequency":"annual"},
             "edition":edition,
             "generated":now.replace(microsecond=0).isoformat().replace("+00:00","Z"),
             "shard_state":{"cursor":0,"completed_pct":0,"quarter":edition},
@@ -905,6 +907,7 @@ def main_shard():
         if iso not in existing["markets"]:
             continue  # defensive; should not happen
         existing["markets"][iso]["cells"].update(cells)
+    existing["periods"]={"previous":int(COMTRADE_YEARS[0]),"current":int(COMTRADE_YEARS[1]),"frequency":"annual"}
     existing["generated"]=now.replace(microsecond=0).isoformat().replace("+00:00","Z")
     new_cursor=cursor+1
     existing["shard_state"]={"cursor":new_cursor,"completed_pct":js_round((new_cursor/len(units))*100),"quarter":edition}
@@ -958,6 +961,7 @@ def main_legacy():
     cursor_after_tier1=1+len(roster["tier1"])  # eurostat_all + every tier1 unit, in build_work_units' own order
     trade={
         "schema":2,
+        "periods":{"previous":int(COMTRADE_YEARS[0]),"current":int(COMTRADE_YEARS[1]),"frequency":"annual"},
         "edition":edition,
         "generated":now.replace(microsecond=0).isoformat().replace("+00:00","Z"),
         "shard_state":{"cursor":cursor_after_tier1,"completed_pct":js_round((cursor_after_tier1/len(units))*100),"quarter":edition},

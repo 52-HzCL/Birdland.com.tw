@@ -56,7 +56,7 @@ information. A feed can be empty when no relevant public item is available.
 
 Allowed local keys use the existing namespaces (`bd_e_*`, `bd_p_*`, `bl_*`) and
 may hold only language choice, selected public region, watch categories, saved
-public report ids, last-seen hashes and read state. A visible "Clear this device"
+public report ids, catalogue model IDs/dimensions, last-seen hashes and read state. A visible "Clear this device"
 control must delete them. Names, email addresses, free text, quantities and prices
 are not allowed in local storage.
 
@@ -182,3 +182,12 @@ section id (`c-desk`, `c-watch`, `c-freight`, `c-curve`, `c-cost`, `c-duty`,
 - **`market_news` topic balance**: the fetcher guarantees up to 2 slots per topic
   before filling the rest by date (fixed in `b347659` after date-only sorting let
   fresher topics crowd out shipping entirely some days).
+
+
+## Public buyer intelligence (2026-10-02)
+
+`buyer-intelligence.json` is generated from existing `outlook-data.market_news` by `tools/build/intelligence.js`; no new AI field or call. It contains version, edition, news_status and dated HTTPS stories with stable IDs and grouped source links. Quotes and AI-derived commodity indices are excluded.
+
+`trade.json.periods` contains previous/current statistical years and annual frequency. The fetch script requests those same years. A shard resets discovery when periods change; retained cells must never be relabeled as new years. Current data compares 2024 and 2023, independently of edition timestamps. Missing/stale observations remain unavailable.
+
+`buyer-focus.js` stores public category, market, product and up to two comparison countries in `bl_buyer_focus`; bounded public report IDs and visit dates in `bl_buyer_seen`. No quantities, private requirements, quotation amounts, prices or free text. A clear control removes these two keys. Existing catalogue public selections retain their existing namespace.

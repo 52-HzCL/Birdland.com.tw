@@ -1325,3 +1325,14 @@ html.ui-lg .wk-cell{flex-wrap:wrap}
   color:var(--ink-500);letter-spacing:.1em;font-size:var(--fs-micro);
 }
 .bl-language{padding-left:var(--sp-3);border-left:1px solid var(--line-soft)}
+
+/* Explicit width prevents aspect-ratio plus min-height from widening the home art. */
+.bl-ink-art{width:100%;min-width:0;box-sizing:border-box}
+/* Long facts must wrap inside the Wiki box, including the reader's large text mode. */
+.wk-box dl{grid-template-columns:minmax(0,.8fr) minmax(0,1fr)}
+.wk-box :is(dt,dd){min-width:0;overflow-wrap:anywhere}
+@media(max-width:650px){.wk-box dl{grid-template-columns:minmax(0,1fr)}}
+
+.wk-box dt{white-space:normal}
+
+@media(max-width:650px){.wk-rv b,.wk-rates-tight .wk-rv b{display:block;white-space:normal;margin:0 0 4px}}

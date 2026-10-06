@@ -1,0 +1,40 @@
+
+/* ---- command palette ----
+   The desk has two ways in and neither is a search: the rail menu, which lists
+   panels, and the brief builder, which holds every material behind three
+   clicks. Someone who arrives knowing the word — "420J2", "sailing" — had to
+   go and find where that word lives. This is the missing third way: one key,
+   one field, both indexes.
+   Paper card, hairline border, no chrome — it borrows the desk's own tokens
+   rather than introducing a palette look. */
+.pd-omni{position:fixed;inset:0;z-index:1200;display:flex;align-items:flex-start;justify-content:center;padding:12vh var(--sp-3) var(--sp-3)}
+.pd-omni[hidden]{display:none}
+.pd-omni-back{position:absolute;inset:0;background:rgba(20,28,24,.42)}
+.pd-omni-card{position:relative;display:flex;flex-direction:column;width:100%;max-width:560px;max-height:70vh;border:1px solid var(--pd-line,#D8D1C4);border-radius:var(--r-md,10px);background:var(--pd-paper,#FFFDF8);box-shadow:0 18px 48px rgba(20,28,24,.22);overflow:hidden;animation:pd-omni-in .13s ease-out}
+@keyframes pd-omni-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.pd-omni-top{display:flex;align-items:center;gap:var(--sp-2);padding:var(--sp-2) var(--sp-3);border-bottom:1px solid var(--pd-line,#D8D1C4)}
+.pd-omni-k{flex:0 0 auto;color:var(--pd-jade,#073F35);font:700 var(--fs-micro) var(--ff-mono);letter-spacing:.14em}
+.pd-omni-top input{flex:1 1 auto;min-width:0;border:0;background:transparent;color:var(--ink-900,#1A1D20);font:500 var(--fs-body) var(--ff-sans);padding:6px 0}
+.pd-omni-top input:focus{outline:none}
+.pd-omni-esc{flex:0 0 auto;border:1px solid var(--pd-line,#D8D1C4);border-radius:5px;background:transparent;color:var(--pd-muted,#69716C);padding:3px 8px;font:700 var(--fs-micro) var(--ff-mono);letter-spacing:.08em;cursor:pointer}
+.pd-omni-esc:hover{color:var(--pd-jade,#073F35)}
+.pd-omni-list{flex:1 1 auto;margin:0;padding:0;list-style:none;overflow-y:auto}
+.pd-omni-row{display:grid;grid-template-columns:74px minmax(0,1fr);align-items:baseline;gap:var(--sp-2);padding:8px var(--sp-3);border-bottom:1px solid rgba(0,0,0,.05);cursor:pointer}
+.pd-omni-row:last-child{border-bottom:0}
+.pd-omni-row .t{color:var(--pd-muted,#69716C);font:700 var(--fs-micro) var(--ff-mono);letter-spacing:.1em}
+.pd-omni-row .n{display:block;color:var(--ink-900,#1A1D20);font:600 var(--fs-small) var(--ff-sans);overflow-wrap:anywhere}
+.pd-omni-row .d{display:block;margin-top:2px;color:var(--pd-muted,#69716C);font:500 var(--fs-micro)/1.35 var(--ff-sans);overflow-wrap:anywhere}
+.pd-omni-row.on{background:var(--pd-jade-soft,#EEF3F0)}
+.pd-omni-row.on .t{color:var(--pd-jade,#073F35)}
+.pd-omni-none{padding:var(--sp-3);color:var(--pd-muted,#69716C);font:500 var(--fs-small) var(--ff-sans)}
+.pd-omni-foot{flex:0 0 auto;padding:6px var(--sp-3);border-top:1px solid var(--pd-line,#D8D1C4);color:var(--pd-muted,#69716C);font:600 var(--fs-micro) var(--ff-mono);letter-spacing:.06em}
+.pd-omni-btn{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;margin:0 var(--sp-2) 0 0;border:1px solid var(--pd-line,#D8D1C4);border-radius:var(--r-md,8px);background:var(--pd-paper,#FFFDF8);color:var(--pd-jade,#073F35);padding:5px 10px;font:700 var(--fs-micro) var(--ff-mono);letter-spacing:.08em;cursor:pointer;white-space:nowrap}
+.pd-omni-btn:hover{background:var(--pd-jade-soft,#EEF3F0)}
+.pd-omni-btn kbd{border:1px solid var(--pd-line,#D8D1C4);border-radius:3px;background:rgba(0,0,0,.03);padding:0 4px;font:inherit}
+/* On the overview masthead it sits on the jade bar, so it dresses for it. */
+.bd-mast .pd-omni-btn{margin:0;border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.08);color:#fff}
+.bd-mast .pd-omni-btn:hover{background:rgba(255,255,255,.18)}
+.bd-mast .pd-omni-btn kbd{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.12)}
+@media(max-width:560px){.pd-omni{padding-top:6vh}.pd-omni-row{grid-template-columns:1fr}.pd-omni-btn kbd{display:none}}
+@media(prefers-reduced-motion:reduce){.pd-omni-card{animation:none}}
+@media print{.pd-omni,.pd-omni-btn{display:none!important}}

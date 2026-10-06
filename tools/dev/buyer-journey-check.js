@@ -1,0 +1,62 @@
+'use strict';
+const fs=require('fs'),path=require('path'),assert=require('node:assert/strict'),{chromium}=require('playwright-core'),env=require('./_env');
+const out=path.join(env.REPO,'..','site-audit','three-role-review'),results=[],errors=[];
+(async()=>{const b=await chromium.launch({executablePath:env.CHROME});try{
+for(const width of [1440,375]){
+const c=await b.newContext({viewport:{width,height:1000},serviceWorkers:'block',acceptDownloads:true}),p=await c.newPage();p.setDefaultTimeout(10000);p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(r.status()>=400&&r.url().startsWith(env.BASE))errors.push(r.status()+' '+r.url());});
+const goto=async name=>{await p.goto(env.BASE+'/'+name,{waitUntil:'load'});await p.waitForTimeout(250);};
+const check=async(name,fn)=>{await fn();results.push({width,name,status:'passed'});console.log(width,'PASS',name);};
+const capture=async name=>{await p.screenshot({path:path.join(out,'implemented-'+name+'-'+width+'.png')});};
+await check('Search variations, unknown fallback, exact suffix and keyboard return',async()=>{
+ await goto('index.html');const trigger=p.locator('[data-terminal]').first();await trigger.click();let matches;
+ for(const q of ['BT3171','BT-3171','bt3171','BT 3171']){await p.locator('.tm-srch input').fill(q);const titles=await p.locator('.tm-hit b').allTextContents();if(matches)assert.deepEqual(titles,matches);else matches=titles;}
+ await p.locator('.tm-srch input').fill('BT-3171-1');assert.deepEqual(await p.locator('.tm-hit b').allTextContents(),['BT-3171-1']);
+ await p.locator('.tm-srch input').fill('SK5');assert((await p.locator('.tm-hit b').allTextContents()).every(s=>s.includes('SK5')));
+ await p.locator('.tm-srch input').fill('BT-NOT-A-MODEL');assert.equal(await p.locator('.tm-none a').count(),2);await p.keyboard.press('Escape');assert(await trigger.evaluate(e=>e===document.activeElement));
+});
+await check('New/custom buyer: homepage to Studio, unknown specs, Contact preview and copy/download fallback',async()=>{
+ await p.locator('.bj-start .bj-card').nth(1).click();await p.waitForURL('**/partner.html#studio-needs');await p.locator('#sn-use').selectOption('professional');await p.locator('.sn-brief .br-entry').click();
+ assert((await p.locator('.br-preview').inputValue()).includes('Not decided'));await p.locator('.br-note').fill('SYNTHETIC TEST — corrosion-resistant tool for retail; please advise.');
+ assert.equal(await p.evaluate(()=>sessionStorage.getItem('bl_enquiry_handoff')),null,'No handoff persistence before explicit action');await capture('studio');
+ await p.locator('.br-primary').click();await p.waitForURL('**/contact.html#enquiry');assert((await p.locator('.br-preview').inputValue()).includes('SYNTHETIC TEST'));
+ await p.evaluate(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:()=>Promise.reject(new Error('test denial'))}}));await p.locator('[data-br-label="brCopy"]').click();assert(await p.locator('.br-preview').evaluate(e=>e.selectionEnd>e.selectionStart));assert((await p.locator('.br-status').innerText()).includes('download'));
+ const pending=p.waitForEvent('download');await p.locator('[data-br-label="brDownload"]').click();const dl=await pending;await dl.saveAs(path.join(out,'synthetic-enquiry-'+width+'.txt'));assert(fs.readFileSync(path.join(out,'synthetic-enquiry-'+width+'.txt'),'utf8').includes('Product Studio'));
+ await p.evaluate(()=>{window.__mail=null;window.blMail.open=(...args)=>{window.__mail=args;};});await p.locator('#mr-open').click();assert((await p.evaluate(()=>window.__mail[3])).includes('SYNTHETIC TEST'));assert((await p.locator('.br-status').innerText()).includes('nothing has been sent'));
+ await capture('contact');await p.reload();assert((await p.locator('.br-preview').inputValue()).includes('SYNTHETIC TEST'));
+ await p.locator('.br-edit').click();await p.waitForURL('**/partner.html#studio-needs');assert.equal(await p.locator('#sn-use').inputValue(),'professional');await p.locator('.sn-brief .br-entry').click();await p.locator('.br-primary').click();await p.waitForURL('**/contact.html#enquiry');
+ await p.locator('[data-br-label="brClear"]').click();assert.equal(await p.evaluate(()=>sessionStorage.getItem('bl_enquiry_handoff')),null);
+});
+await check('Old buyer: two sizes and two models retain separate quantities; return/edit/remove',async()=>{
+ await goto('products.html?sku=BT9005#bl-cat');await p.locator('.cat-add').click();await p.locator('#cat-size').selectOption('60 cm');await p.locator('#cat-detail [data-add]').click();await p.locator('#cat-size').selectOption('70 cm');await p.locator('#cat-detail [data-add]').click();await p.keyboard.press('Escape');
+ await p.locator('#cat-q').fill('BT3171');await p.waitForTimeout(200);await p.locator('.cat-add[data-add="bt-3171"]').click();await p.locator('#cat-enq-open').click();
+ const qty=p.locator('[data-qty]');assert.equal(await qty.count(),3);await qty.nth(0).fill('1200');await qty.nth(1).fill('2400');await qty.nth(2).fill('3600');await p.locator('#cat-notes').fill('SYNTHETIC TEST — plain carton');await p.locator('#cat-enq .br-entry').click();
+ const items=await p.evaluate(()=>window.BL_BRIEF.items('Products'));assert.deepEqual(items.map(i=>i.inputs.quantity),[1200,2400,3600]);assert(items[0].id.endsWith('::60 cm'));assert(items[1].id.endsWith('::70 cm'));await capture('products');
+ await p.locator('.br-primary').click();await p.waitForURL('**/contact.html#enquiry');assert.equal(await p.locator('.br-item').count(),3);await p.locator('.br-edit').first().click();await p.waitForURL('**/products.html');await p.locator('#cat-enq-open').click();assert.deepEqual(await p.locator('[data-qty]').evaluateAll(ns=>ns.map(n=>n.value)),['1200','2400','3600']);
+ await p.locator('#cat-enq .br-entry').click();await p.locator('.br-item-head button').first().click();assert.equal(await p.locator('.br-item').count(),2);await p.locator('.br-primary').click();await p.waitForURL('**/contact.html#enquiry');assert.equal(await p.locator('.br-item').count(),2);
+ await p.locator('.bj-language summary').click();await p.locator('.bj-language a[lang="de"]').click();await p.waitForURL('**/de/contact.html#enquiry');assert.equal(await p.locator('.br-item').count(),2);assert((await p.locator('.br-preview').inputValue()).includes('2400'));await p.goBack();assert.equal(await p.locator('.br-item').count(),2);
+ await p.locator('[data-br-label="brClear"]').click();await p.evaluate(()=>localStorage.setItem('bl_lang','en'));
+});
+await check('Configurator: example is not order quantity, deliberate choices, no long-term private fields',async()=>{
+ await goto('configurator.html');await p.locator('.part-h').first().click();await p.locator('.opt').first().click();await p.locator('#mailBtn').click();let items=await p.evaluate(()=>window.BL_BRIEF.items('Configurator'));assert.equal(items[0].inputs.quantity,'');assert(items[0].examples.some(s=>s.includes('not MOQ')));assert(!items[0].selected.some(s=>s.includes('1000')));await p.keyboard.press('Escape');
+ await p.locator('#qty').fill('1750');await p.locator('#delv').fill('2027-02');assert(!/1750|2027-02/.test(await p.evaluate(()=>localStorage.getItem('bl_cfg_sheet'))));await p.locator('#mailBtn').click();items=await p.evaluate(()=>window.BL_BRIEF.items('Configurator'));assert.equal(items[0].inputs.quantity,1750);await capture('configurator');await p.locator('.br-primary').click();await p.waitForURL('**/contact.html#enquiry');assert((await p.locator('.br-preview').inputValue()).includes('1750'));await p.locator('[data-br-label="brClear"]').click();
+});
+await check('Shared-device clearing is scoped; no costs in draft; expired/corrupt handoff safe',async()=>{
+ await goto('buying-tools.html');await p.locator('#bt-estimate-inputs > summary').click();for(const [id,value]of [['fob','12345'],['quantity','2500'],['freight','1500']])await p.locator('#bt-'+id).fill(value);assert((await p.locator('.br-assumption').innerText()).includes('unconfirmed'));
+ assert.equal(await p.evaluate(()=>sessionStorage.getItem('bl_enquiry_handoff')),null);await p.evaluate(()=>{localStorage.setItem('keep-other-work','safe');localStorage.setItem('bl-cat',JSON.stringify({q:'private lookup'}));});await p.locator('.br-settings summary').click();await p.locator('.br-settings button').click();assert.equal(await p.evaluate(()=>localStorage.getItem('keep-other-work')),'safe');assert.equal(await p.evaluate(()=>localStorage.getItem('bl-cat')),null);await p.waitForTimeout(100);assert.equal(await p.locator('#bt-fob').inputValue(),'');
+ await p.evaluate(()=>sessionStorage.setItem('bl_enquiry_handoff',JSON.stringify({expires:1,draft:{version:1,items:[],note:'expired'}})));await goto('contact.html#enquiry');assert(!(await p.locator('.br-preview').inputValue()).includes('expired'));assert.equal(await p.evaluate(()=>sessionStorage.getItem('bl_enquiry_handoff')),null);
+ await p.evaluate(()=>sessionStorage.setItem('bl_enquiry_handoff','broken'));await p.reload();assert.equal(await p.locator('.br-item').count(),0);
+});
+await check('Ten languages: Contact and configuration labels, missing fields, no mobile overflow',async()=>{
+ for(const l of ['en','nl','de','fr','es','pt-br','pl','it','ja','zh-tw']){await goto((l==='en'?'':l+'/')+'contact.html');assert.equal(await p.locator('.br-workspace h2').innerText(),await p.evaluate(()=>window.BL_BRIEF.t('brTitle')));assert(!await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1));await goto((l==='en'?'':l+'/')+'configurator.html');assert.equal(await p.locator('#mailBtn').innerText(),await p.evaluate(()=>window.BL_BRIEF.t('brReview')));assert(!await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1));}
+ await p.evaluate(()=>localStorage.setItem('bl_lang','en'));await goto('products.html?sku=BT-NOT-A-MODEL');assert.equal(await p.locator('.cat-row').count(),0);assert.equal(await p.locator('#cat-detail .cat-sku').count(),0);
+});
+await check('Long email uses full-text fallback without silently truncating the enquiry',async()=>{
+ await p.evaluate(()=>sessionStorage.setItem('bl_enquiry_handoff',JSON.stringify({expires:Date.now()+60000,draft:{version:1,note:'SYNTHETIC TEST',items:Array.from({length:25},(_,i)=>({id:'test-'+i,source:'Synthetic fixture',title:'TEST '+i,selected:['Long synthetic line '.repeat(20)],unknown:[],examples:[]}))}})));await goto('contact.html');await p.evaluate(()=>{window.__mail=null;window.blMail.open=(...args)=>{window.__mail=args;};});const full=await p.locator('.br-preview').inputValue();assert(full.includes('TEST 24'));await p.locator('#mr-open').click();const body=await p.evaluate(()=>window.__mail[3]);assert(body.length<1000);assert(!body.includes('TEST 24'));assert((await p.locator('.br-status').innerText()).includes('Long summary'));const dl=p.waitForEvent('download');await p.locator('[data-br-label="brDownload"]').click();const d=await dl;const dest=path.join(out,'synthetic-long-'+width+'.txt');await d.saveAs(dest);assert.equal(fs.readFileSync(dest,'utf8'),full);await p.locator('[data-br-label="brClear"]').click();
+});
+await check('Storage refusal, keyboard modal containment and text-safe notes',async()=>{
+ await goto('partner.html');await p.locator('#sn-use').selectOption('retail');await p.locator('.sn-brief .br-entry').click();await p.locator('.br-note').fill('<img src=x onerror=alert(1)> SYNTHETIC TEST');assert.equal(await p.locator('.br-dialog img').count(),0);
+ await p.locator('.br-close').focus();for(let i=0;i<14;i++){await p.keyboard.press('Tab');assert(await p.evaluate(()=>document.querySelector('.br-dialog').contains(document.activeElement)));}
+ await p.evaluate(()=>{const original=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(this===sessionStorage)throw new Error('Synthetic storage refusal');return original.call(this,k,v);};});const url=p.url();await p.locator('.br-primary').click();assert.equal(p.url(),url);assert(await p.locator('.br-text-preview').getAttribute('open')!==null);assert((await p.locator('.br-status').innerText()).includes('download'));await p.keyboard.press('Escape');assert(await p.locator('.sn-brief .br-entry').evaluate(e=>e===document.activeElement));
+});await c.close();}
+assert.deepEqual(errors,[]);fs.writeFileSync(path.join(out,'buyer-journey-results.json'),JSON.stringify({results,errors,untested:['Real email delivery','Native copy review','Safari/Firefox','Live deployment','Real buyer research']},null,2));
+}finally{await b.close();}})().catch(e=>{console.error(e);process.exit(1);});

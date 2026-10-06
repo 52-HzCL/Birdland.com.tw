@@ -82,22 +82,6 @@
             "to_next_pct": 5
           }
         },
-        "82130000": {
-          "basis": "kg",
-          "uv_change_pct": -10.8,
-          "vol_change_pct": 11.1,
-          "share_tw": 2,
-          "share_tw_prev": 1,
-          "share_cn": 40,
-          "share_cn_prev": 35,
-          "stale": false,
-          "band": {
-            "market": "mid",
-            "tw": null,
-            "moved": "flat",
-            "to_next_pct": 45
-          }
-        },
         "82021000": {
           "basis": "kg",
           "uv_change_pct": -8.1,
@@ -112,6 +96,22 @@
             "tw": null,
             "moved": "down",
             "to_next_pct": 9
+          }
+        },
+        "82130000": {
+          "basis": "kg",
+          "uv_change_pct": -10.8,
+          "vol_change_pct": 11.1,
+          "share_tw": 2,
+          "share_tw_prev": 1,
+          "share_cn": 40,
+          "share_cn_prev": 35,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 45
           }
         }
       }
@@ -185,22 +185,6 @@
             "to_next_pct": 26
           }
         },
-        "82130000": {
-          "basis": "kg",
-          "uv_change_pct": -6.4,
-          "vol_change_pct": 20.9,
-          "share_tw": 2,
-          "share_tw_prev": 1,
-          "share_cn": 52,
-          "share_cn_prev": 52,
-          "stale": false,
-          "band": {
-            "market": "mid",
-            "tw": null,
-            "moved": "flat",
-            "to_next_pct": 32
-          }
-        },
         "82021000": {
           "basis": "kg",
           "uv_change_pct": -12.3,
@@ -215,6 +199,22 @@
             "tw": null,
             "moved": "up",
             "to_next_pct": 7
+          }
+        },
+        "82130000": {
+          "basis": "kg",
+          "uv_change_pct": -6.4,
+          "vol_change_pct": 20.9,
+          "share_tw": 2,
+          "share_tw_prev": 1,
+          "share_cn": 52,
+          "share_cn_prev": 52,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 32
           }
         }
       }
@@ -288,22 +288,6 @@
             "to_next_pct": 16
           }
         },
-        "82130000": {
-          "basis": "kg",
-          "uv_change_pct": -4.8,
-          "vol_change_pct": 0.9,
-          "share_tw": 4,
-          "share_tw_prev": 4,
-          "share_cn": 43,
-          "share_cn_prev": 40,
-          "stale": false,
-          "band": {
-            "market": "mid",
-            "tw": "upper",
-            "moved": "flat",
-            "to_next_pct": 31
-          }
-        },
         "82021000": {
           "basis": "kg",
           "uv_change_pct": -15,
@@ -318,6 +302,22 @@
             "tw": "mid",
             "moved": "up",
             "to_next_pct": 3
+          }
+        },
+        "82130000": {
+          "basis": "kg",
+          "uv_change_pct": -4.8,
+          "vol_change_pct": 0.9,
+          "share_tw": 4,
+          "share_tw_prev": 4,
+          "share_cn": 43,
+          "share_cn_prev": 40,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "upper",
+            "moved": "flat",
+            "to_next_pct": 31
           }
         }
       }
@@ -391,22 +391,6 @@
             "to_next_pct": 32
           }
         },
-        "82130000": {
-          "basis": "kg",
-          "uv_change_pct": 14.5,
-          "vol_change_pct": 5.3,
-          "share_tw": 4,
-          "share_tw_prev": 6,
-          "share_cn": 45,
-          "share_cn_prev": 41,
-          "stale": false,
-          "band": {
-            "market": "mid",
-            "tw": "upper",
-            "moved": "flat",
-            "to_next_pct": 33
-          }
-        },
         "82021000": {
           "basis": "kg",
           "uv_change_pct": -8.1,
@@ -419,6 +403,22 @@
           "band": {
             "market": "mid",
             "tw": "mid",
+            "moved": "flat",
+            "to_next_pct": 33
+          }
+        },
+        "82130000": {
+          "basis": "kg",
+          "uv_change_pct": 14.5,
+          "vol_change_pct": 5.3,
+          "share_tw": 4,
+          "share_tw_prev": 6,
+          "share_cn": 45,
+          "share_cn_prev": 41,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "upper",
             "moved": "flat",
             "to_next_pct": 33
           }
@@ -494,22 +494,6 @@
             "to_next_pct": 30
           }
         },
-        "82130000": {
-          "basis": "kg",
-          "uv_change_pct": -5.8,
-          "vol_change_pct": 13.2,
-          "share_tw": 1,
-          "share_tw_prev": 0,
-          "share_cn": 33,
-          "share_cn_prev": 28,
-          "stale": false,
-          "band": {
-            "market": "mid",
-            "tw": null,
-            "moved": "flat",
-            "to_next_pct": 32
-          }
-        },
         "82021000": {
           "basis": "kg",
           "uv_change_pct": -3.4,
@@ -524,6 +508,22 @@
             "tw": null,
             "moved": "flat",
             "to_next_pct": 34
+          }
+        },
+        "82130000": {
+          "basis": "kg",
+          "uv_change_pct": -5.8,
+          "vol_change_pct": 13.2,
+          "share_tw": 1,
+          "share_tw_prev": 0,
+          "share_cn": 33,
+          "share_cn_prev": 28,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": null,
+            "moved": "flat",
+            "to_next_pct": 32
           }
         }
       }
@@ -597,22 +597,6 @@
             "to_next_pct": 21
           }
         },
-        "82130000": {
-          "basis": "kg",
-          "uv_change_pct": -7.9,
-          "vol_change_pct": 16.9,
-          "share_tw": 13,
-          "share_tw_prev": 16,
-          "share_cn": 32,
-          "share_cn_prev": 27,
-          "stale": false,
-          "band": {
-            "market": "mid",
-            "tw": "upper",
-            "moved": "up",
-            "to_next_pct": 27
-          }
-        },
         "82021000": {
           "basis": "kg",
           "uv_change_pct": 27.3,
@@ -627,6 +611,22 @@
             "tw": "mid",
             "moved": "down",
             "to_next_pct": 3
+          }
+        },
+        "82130000": {
+          "basis": "kg",
+          "uv_change_pct": -7.9,
+          "vol_change_pct": 16.9,
+          "share_tw": 13,
+          "share_tw_prev": 16,
+          "share_cn": 32,
+          "share_cn_prev": 27,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": "upper",
+            "moved": "up",
+            "to_next_pct": 27
           }
         }
       }
@@ -648,10 +648,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -673,10 +673,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -698,10 +698,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -723,10 +723,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -748,10 +748,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -773,10 +773,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -798,10 +798,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -823,10 +823,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -848,10 +848,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -873,10 +873,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -898,10 +898,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -975,22 +975,6 @@
             "to_next_pct": 21
           }
         },
-        "821300": {
-          "basis": "kg",
-          "uv_change_pct": 6,
-          "vol_change_pct": 8.9,
-          "share_tw": 1,
-          "share_tw_prev": 1,
-          "share_cn": 35,
-          "share_cn_prev": 31,
-          "stale": false,
-          "band": {
-            "market": "mid",
-            "tw": null,
-            "moved": "up",
-            "to_next_pct": 43
-          }
-        },
         "820210": {
           "basis": "kg",
           "uv_change_pct": 6.7,
@@ -1005,6 +989,22 @@
             "tw": null,
             "moved": "up",
             "to_next_pct": 1
+          }
+        },
+        "821300": {
+          "basis": "kg",
+          "uv_change_pct": 6,
+          "vol_change_pct": 8.9,
+          "share_tw": 1,
+          "share_tw_prev": 1,
+          "share_cn": 35,
+          "share_cn_prev": 31,
+          "stale": false,
+          "band": {
+            "market": "mid",
+            "tw": null,
+            "moved": "up",
+            "to_next_pct": 43
           }
         }
       }
@@ -1026,10 +1026,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1051,10 +1051,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1076,10 +1076,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1101,10 +1101,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1126,10 +1126,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1151,10 +1151,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1176,10 +1176,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1201,10 +1201,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1226,10 +1226,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1251,10 +1251,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1276,10 +1276,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1301,10 +1301,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1378,22 +1378,6 @@
             "to_next_pct": 18
           }
         },
-        "821300": {
-          "basis": "kg",
-          "uv_change_pct": -2.4,
-          "vol_change_pct": 11.7,
-          "share_tw": 5,
-          "share_tw_prev": 5,
-          "share_cn": 66,
-          "share_cn_prev": 64,
-          "stale": false,
-          "band": {
-            "market": "upper",
-            "tw": "upper",
-            "moved": "up",
-            "to_next_pct": 27
-          }
-        },
         "820210": {
           "basis": "kg",
           "uv_change_pct": -4.6,
@@ -1408,6 +1392,22 @@
             "tw": "mid",
             "moved": "flat",
             "to_next_pct": 10
+          }
+        },
+        "821300": {
+          "basis": "kg",
+          "uv_change_pct": -2.4,
+          "vol_change_pct": 11.7,
+          "share_tw": 5,
+          "share_tw_prev": 5,
+          "share_cn": 66,
+          "share_cn_prev": 64,
+          "stale": false,
+          "band": {
+            "market": "upper",
+            "tw": "upper",
+            "moved": "up",
+            "to_next_pct": 27
           }
         }
       }
@@ -1429,10 +1429,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1454,10 +1454,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1479,10 +1479,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1504,10 +1504,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1529,10 +1529,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1554,10 +1554,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1579,10 +1579,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1604,10 +1604,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1629,10 +1629,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1654,10 +1654,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1679,10 +1679,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1704,10 +1704,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1729,10 +1729,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1786,22 +1786,6 @@
           "stale": false,
           "band": null
         },
-        "821300": {
-          "basis": "kg",
-          "uv_change_pct": 1.3,
-          "vol_change_pct": 3.5,
-          "share_tw": 5,
-          "share_tw_prev": 5,
-          "share_cn": 82,
-          "share_cn_prev": 81,
-          "stale": false,
-          "band": {
-            "market": "upper",
-            "tw": "upper",
-            "moved": "flat",
-            "to_next_pct": 12
-          }
-        },
         "820210": {
           "basis": "kg",
           "uv_change_pct": -2.1,
@@ -1816,6 +1800,22 @@
             "tw": "mid",
             "moved": null,
             "to_next_pct": 17
+          }
+        },
+        "821300": {
+          "basis": "kg",
+          "uv_change_pct": 1.3,
+          "vol_change_pct": 3.5,
+          "share_tw": 5,
+          "share_tw_prev": 5,
+          "share_cn": 82,
+          "share_cn_prev": 81,
+          "stale": false,
+          "band": {
+            "market": "upper",
+            "tw": "upper",
+            "moved": "flat",
+            "to_next_pct": 12
           }
         }
       }
@@ -1837,10 +1837,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1862,10 +1862,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1887,10 +1887,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1912,10 +1912,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1937,10 +1937,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1962,10 +1962,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -1987,10 +1987,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2012,10 +2012,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2037,10 +2037,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2062,10 +2062,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2087,10 +2087,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2112,10 +2112,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2137,10 +2137,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2162,10 +2162,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2187,10 +2187,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2212,10 +2212,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2237,10 +2237,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2262,10 +2262,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2287,10 +2287,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2312,10 +2312,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2337,10 +2337,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2362,10 +2362,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2387,10 +2387,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2412,10 +2412,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2437,10 +2437,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2462,10 +2462,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2487,10 +2487,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2512,10 +2512,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2537,10 +2537,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2562,10 +2562,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2587,10 +2587,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2612,10 +2612,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2637,10 +2637,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2662,10 +2662,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2687,10 +2687,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2764,22 +2764,6 @@
             "to_next_pct": 11
           }
         },
-        "821300": {
-          "basis": "piece",
-          "uv_change_pct": -0.2,
-          "vol_change_pct": 12.1,
-          "share_tw": 7,
-          "share_tw_prev": 6,
-          "share_cn": 79,
-          "share_cn_prev": 77,
-          "stale": false,
-          "band": {
-            "market": "upper",
-            "tw": "upper",
-            "moved": "flat",
-            "to_next_pct": 13
-          }
-        },
         "820210": {
           "basis": "piece",
           "uv_change_pct": -5.3,
@@ -2794,6 +2778,22 @@
             "tw": "mid",
             "moved": "flat",
             "to_next_pct": 11
+          }
+        },
+        "821300": {
+          "basis": "piece",
+          "uv_change_pct": -0.2,
+          "vol_change_pct": 12.1,
+          "share_tw": 7,
+          "share_tw_prev": 6,
+          "share_cn": 79,
+          "share_cn_prev": 77,
+          "stale": false,
+          "band": {
+            "market": "upper",
+            "tw": "upper",
+            "moved": "flat",
+            "to_next_pct": 13
           }
         }
       }
@@ -2815,10 +2815,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2840,10 +2840,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2865,10 +2865,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2890,10 +2890,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2915,10 +2915,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2940,10 +2940,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2965,10 +2965,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -2990,10 +2990,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3015,10 +3015,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3040,10 +3040,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3065,10 +3065,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3090,10 +3090,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3115,10 +3115,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3140,10 +3140,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3165,10 +3165,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3190,10 +3190,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3215,10 +3215,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3240,10 +3240,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3265,10 +3265,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3290,10 +3290,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3315,10 +3315,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3340,10 +3340,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3365,10 +3365,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3390,10 +3390,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3415,10 +3415,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3440,10 +3440,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3465,10 +3465,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3490,10 +3490,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3515,10 +3515,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3540,10 +3540,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3565,10 +3565,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3590,10 +3590,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3615,10 +3615,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3640,10 +3640,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3665,10 +3665,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3690,10 +3690,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3715,10 +3715,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3740,10 +3740,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3765,10 +3765,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3790,10 +3790,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3815,10 +3815,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3840,10 +3840,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3865,10 +3865,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3890,10 +3890,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3915,10 +3915,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3940,10 +3940,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3965,10 +3965,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -3990,10 +3990,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -4015,10 +4015,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -4040,10 +4040,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -4065,10 +4065,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -4090,10 +4090,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -4115,10 +4115,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -4140,10 +4140,10 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
@@ -4165,13 +4165,18 @@
         "820160": {
           "stale": true
         },
-        "821300": {
+        "820210": {
           "stale": true
         },
-        "820210": {
+        "821300": {
           "stale": true
         }
       }
     }
+  },
+  "periods": {
+    "previous": 2023,
+    "current": 2024,
+    "frequency": "annual"
   }
 }

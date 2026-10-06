@@ -11,7 +11,7 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 const { REPO } = require('./_env');
 
 const ref = process.argv[2] || 'HEAD';
@@ -45,14 +45,18 @@ function extractMaterialNames(src) {
 const current = fs.readFileSync(path.join(REPO, 'tools', 'partner_template.html'), 'utf8');
 let before;
 try {
-  before = execSync('git show ' + ref + ':tools/partner_template.html', { cwd: REPO, maxBuffer: 1024 * 1024 * 20 }).toString('utf8');
+  before = execFileSync('git',['show',ref + ':tools/partner_template.html'], { cwd: REPO, maxBuffer: 1024 * 1024 * 20 }).toString('utf8');
 } catch (e) {
   console.error('could not read tools/partner_template.html at ' + ref + ' — is this a git repo with that ref?');
   process.exit(2);
 }
 
-const currentNames = extractMaterialNames(current);
-const beforeNames = extractMaterialNames(before);
+const currentNames = new Set(JSON.parse(fs.readFileSync(path.join(REPO,'data/manufacturing-options.json'),'utf8')).flatMap(f=>f.models.flatMap(m=>m.parts.flatMap(p=>p.materials.map(v=>v[0])))));
+let beforeNames = extractMaterialNames(before);
+if (before.includes('__FAMILIES__')) {
+  const oldOptions = JSON.parse(execFileSync('git',['show',ref + ':data/manufacturing-options.json'],{cwd:REPO}).toString('utf8'));
+  beforeNames = new Set(oldOptions.flatMap(f=>f.models.flatMap(m=>m.parts.flatMap(p=>p.materials.map(v=>v[0])))));
+}
 const newNames = [...currentNames].filter(n => !beforeNames.has(n));
 
 console.log('material names at ' + ref + ': ' + beforeNames.size);

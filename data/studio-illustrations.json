@@ -1,0 +1,93 @@
+{
+  "scope": "Original generated functional and assembly concepts; not Birdland SKU drawings, full BOMs, dimensions or specifications.",
+  "reviewed": "2026-10-03",
+  "references": [
+    {
+      "model": "Bypass pruner",
+      "asset": "images/generated/studio-pruner.webp",
+      "caption": "srPruner",
+      "type": "assembled-functional-map",
+      "sources": [
+        {
+          "title": "FELCO 2 · replacement parts",
+          "url": "https://eu.felco.com/en-be/collections/spare-parts-felco-2"
+        },
+        {
+          "title": "FELCO · maintenance videos",
+          "url": "https://eu.felco.com/en-be/pages/maintenance-videos"
+        }
+      ],
+      "review": "Cutting blade and counterblade, separate frames and grips, pivot, adjustment segment, distinct closure catch, flat-strip volute return spring and closing cushion. Hidden hardware stays within assembled groups. Earlier exploded drafts rejected for inconsistent frames/spring and missing stop/lock. Generic external functional map, not a tracing or quantity-complete FELCO drawing.",
+      "pngSHA256": "eadb7acd6b8bf89aecf718373b861761c89852650fea232f254ff0198d214ae1",
+      "webpSHA256": "ae0fdaac320dd9746738322a208505abda9c5341de0e0c3b29b3207e364e5055"
+    },
+    {
+      "model": "One-hand garden trowel",
+      "asset": "images/generated/studio-trowel.webp",
+      "caption": "srTrowel",
+      "type": "assembly-groups",
+      "sources": [
+        {
+          "title": "GARDENA 8929-20 · handle / locking screw",
+          "url": "https://www.gardena.com/za/products/soil-ground/combisystem/combisystem-hand-trowel/967094901.html"
+        }
+      ],
+      "review": "Complete scoop/tang group enters whole opaque receiving grip; separate transverse hand-tightened screw. No invented axial pin or disassembled grip internals. Manufacturer drawing endpoint returns no-drawing placeholder; product description and published replacement grip/screw are the evidence.",
+      "pngSHA256": "9a4c510849ade7f445bb00643c047ce5feed9874d52bc298f5272e9fe1f712c4",
+      "webpSHA256": "387fff9392465f0c746706b04cb20cf67fc1bf8e7f2e9f9692e0a66937544be4"
+    },
+    {
+      "model": "Direct-mount Dutch garden rake",
+      "asset": "images/generated/studio-rake.webp",
+      "caption": "srRake",
+      "type": "connection-concept",
+      "sources": [
+        {
+          "title": "Sneeboer · handle replacement / adhesive and rivet",
+          "url": "https://sneeboer.com/en-gb/hand-forged-garden-tools/handle-for-rake"
+        },
+        {
+          "title": "Sneeboer · rake and wood handle",
+          "url": "https://sneeboer.com/en/hand-forged-garden-tools/gravel-rake-14-tines"
+        }
+      ],
+      "review": "Head/socket remains one group; wood shaft joins directly, transverse rivet and adhesive contact. No separate adapter. Tine count, head geometry and wood appearance are generic; reference dimensions are not transferred.",
+      "pngSHA256": "8e5eef21e18a01f179b8fa66eed3bb72233b3797187de4d6ddcc0e39fef26ab5",
+      "webpSHA256": "2d6689933f331bfa67dfe09d46fc9778152e7d5779511ebe422e1d7c09ac2619"
+    },
+    {
+      "model": "Oscillating garden sprinkler",
+      "asset": "images/generated/studio-sprinkler.webp",
+      "caption": "srSprinkler",
+      "type": "external-assembly-and-service-groups",
+      "sources": [
+        {
+          "title": "GARDENA Aqua S 18700-20 · service parts",
+          "url": "https://www.gardena.com/int/products/watering/sprinklers/oscillating-sprinkler-aqua-s/967976201.html"
+        }
+      ],
+      "review": "Oscillating tube, two-rail base and opaque drive housing retained. Separate service examples match listed filter 00964-00.640.00, connector 00991-00.720.00, O-ring 01550-00.000.11, needle 02082-00.620.07 and O-ring 18300-00.600.16. Housing is closed; no invented gears or turbine. Manufacturer diagram endpoint returns no-drawing placeholder. Service groups are not a full BOM.",
+      "pngSHA256": "170b437f32269777f4cd3598bbf8d8db61ec337e453e62e167abdba3cd5ddeba",
+      "webpSHA256": "341e5f1334a4691389b0573855fdf9767453988240a9847099125d4d0bb45f9e"
+    },
+    {
+      "model": "Garden-tool retail pack system",
+      "asset": "images/generated/studio-packaging.webp",
+      "caption": "srPackaging",
+      "type": "face-seal-layer-concept",
+      "sources": [
+        {
+          "title": "Omni Packaging · face-seal structure",
+          "url": "https://www.omnipackagingsolutions.com/custom-packaging-products/face-seal-blister-packaging/"
+        },
+        {
+          "title": "Smurfit Westrock · blister paperboard applications",
+          "url": "https://www.smurfitwestrock.com/products/paper-and-board/paperboard/solid-bleached-sulfate-sbs/natralock"
+        }
+      ],
+      "review": "One backing card, one complete tool and one formed shell with flange sealed to the card. Seal is an interface, not a loose gasket. Hang slot outside cavity. Optional ties, trays and cartons in planning list are alternatives and transport layers, not mandatory parts of this retail example. No recycled-content or certification claim.",
+      "pngSHA256": "f8879d59a61bdf14b1b95e17ac18dd7ba7476eac325bc6a37219ce41dc1b3f16",
+      "webpSHA256": "8886d35678cdb379a40ed698f8910eab2b535c0ae7202ae35988a7fd5754157a"
+    }
+  ]
+}

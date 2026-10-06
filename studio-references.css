@@ -1,0 +1,23 @@
+/* Original images are preserved; only the reviewed reference models use new assets. */
+#bd-anatomy #bd-anatomy-image{width:100%;height:auto;max-height:none;object-fit:contain;background:#faf8f1}
+#bd-reference-caption{padding:14px 16px;border-top:1px solid #d8d0bf;background:#fcfaf4;color:#324a40;font-size:13px;line-height:1.6;text-align:left}
+#bd-reference-caption[hidden]{display:none}
+#bd-reference-caption strong{font:700 16px/1.4 Georgia,serif;color:#143e31}
+#bd-reference-caption p{margin:8px 0}
+#bd-reference-caption .sr-scope{font-size:12px;color:#65695f}
+.sr-sources{display:flex;flex-wrap:wrap;gap:6px 14px;border-top:1px solid #ddd5c6;padding-top:10px}
+.sr-sources span{font-weight:600}
+.sr-sources a{color:#315c4b;overflow-wrap:anywhere;text-underline-offset:3px}
+#bd-reference-caption .sr-options{padding-top:8px;border-top:1px solid #ddd5c6;color:#6e593e}
+/* Material visuals illustrate families only; colour/texture does not certify grades. */
+#pd-builder .bd-material-choice .bd-swatch{background-image:url('images/generated/manufacturing-materials.webp');background-size:300% 300%;box-shadow:none}
+#pd-builder .bd-material-choice :is(.bd-swatch-steel,.bd-swatch-sk5,.bd-swatch-65mn,.bd-swatch-s50c,.bd-swatch-forged,.bd-swatch-cast,.bd-swatch-metal){background-position:0 0}
+#pd-builder .bd-material-choice :is(.bd-swatch-stainless,.bd-swatch-420j2){background-position:50% 0}
+#pd-builder .bd-material-choice .bd-swatch-zinc{background-position:100% 0}
+#pd-builder .bd-material-choice .bd-swatch-aluminium{background-position:0 50%}
+#pd-builder .bd-material-choice :is(.bd-swatch-resin,.bd-swatch-fibreglass){background-position:50% 50%}
+#pd-builder .bd-material-choice .bd-swatch-rubber{background-position:100% 50%}
+#pd-builder .bd-material-choice .bd-swatch-wood{background-position:0 100%}
+#pd-builder .bd-material-choice .bd-swatch-fibre{background-position:50% 100%}
+#pd-builder .bd-material-choice .bd-swatch-paper{background-position:100% 100%}
+@media(max-width:600px){#bd-reference-caption{padding:12px;font-size:12px}.sr-sources{display:grid;gap:7px}}

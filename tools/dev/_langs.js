@@ -19,8 +19,9 @@ const { REPO } = require('./_env');
 
 // Display order for pickers and hreflang clusters. Missing files are skipped,
 // so this works with two languages or with twenty.
-const ORDER = ['nl', 'de', 'fr', 'es', 'pt-br', 'pl', 'it', 'ja', 'zh-tw'];
-const HREFLANG = { nl: 'nl', de: 'de', fr: 'fr', es: 'es', 'pt-br': 'pt-BR', pl: 'pl', it: 'it', ja: 'ja', 'zh-tw': 'zh-Hant' };
+const editions = JSON.parse(fs.readFileSync(path.join(REPO,'config/languages.json'),'utf8')).languages;
+const ORDER = editions.filter(l => l.id !== 'en').map(l => l.id);
+const HREFLANG = Object.fromEntries(editions.map(l => [l.id,l.tag]));
 const BASE = 'https://birdland.com.tw/';
 
 const LANGS = ORDER

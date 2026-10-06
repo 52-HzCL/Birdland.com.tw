@@ -13,6 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -28,9 +31,12 @@ jobs:
           echo "::endgroup::"
           echo "::group::fetch_market"
           python3 tools/fetch_market.py 2>&1 | tee -a /tmp/gen.log
+          python3 tools/fetch_buyer_materials.py 2>&1 | tee -a /tmp/gen.log
           echo "::endgroup::"
           python3 tools/build_news.py 2>&1 | tee -a /tmp/gen.log
-          echo "build exit: ${PIPESTATUS[0]}"
+          build_rc=${PIPESTATUS[0]}
+          if [ "$build_rc" -ne 0 ]; then exit "$build_rc"; fi
+          node tools/build/validate.js || exit 1
           echo "::group::validate outlook-data.json"
           python3 -c "import json; d=json.load(open('outlook-data.json',encoding='utf-8')); r=d.get('regions',{}); assert len(r)==14, 'expected 14 regions, got %d'%len(r); assert {o[0] for o in d['order']}==set(r), 'order/regions key mismatch'; assert d.get('updated'), 'missing updated'; print('outlook-data.json OK:', len(r), 'regions,', d['updated'])"
           rc=$?
@@ -45,7 +51,7 @@ jobs:
         run: |
           git config user.name "Birdland News Bot"
           git config user.email "actions@users.noreply.github.com"
-          git add -A
+          git add outlook-data.json guide.html partner.html cost-desk.html team.html executive.html my-market.html buying-tools.html buyer-intelligence.json site-registry.js terminal.json feeds trade.json data/buyer-materials.json catalog.json
           echo "--- git status ---"; git status --short
           if git diff --cached --quiet; then
             echo "No changes to commit."

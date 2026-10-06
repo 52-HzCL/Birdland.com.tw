@@ -5,16 +5,16 @@
 // across with it, because nothing replaced the jobs that header was doing.
 // This is that replacement: not a site header, an app's own chrome.
 //
-//   [icon] CostNow    <the desk's own status>    Language · A a · ⊞ · ⌂
+//   [icon] Purchase Planning    <the desk's own status>    Language · A a · ⊞ · ⌂
 //
 // The status chips are ADOPTED, not rebuilt: each desk already renders its own
-// (Source API and AI Narrative on AsiaSource, the source state on Daily
+// (Source API and AI Narrative on Product Studio, the source state on Daily
 // Supply News, the Taipei clock everywhere), and they are already wired to
 // their own scripts. Moving the nodes keeps that wiring intact; rebuilding
 // them would have meant re-implementing four different feeds.
 //
-// Not pinned, deliberately. ABrief sticks its edition index to the
-// top of the viewport and AsiaSource sticks its rail; a second sticky bar
+// Not pinned, deliberately. Supply Updates sticks its edition index to the
+// top of the viewport and Product Studio sticks its rail; a second sticky bar
 // would be a z-index argument with no winner.
 (function () {
   'use strict';
@@ -30,10 +30,10 @@
   // the same thing in its own words — it is answering a question there, not
   // labelling a tile — and terminal.js owns that copy.
   var APPS = [
-    { key: 'news',   file: 'executive.html', name: 'ABrief',     desc: 'supply news, every morning' },
-    { key: 'buyer',  file: 'partner.html',   name: 'AsiaSource', desc: "the buyer's handbook" },
-    { key: 'cost',   file: 'cost-desk.html', name: 'CostNow',    desc: 'landed cost & margin' },
-    { key: 'market', file: 'my-market.html', name: 'My Market',  desc: 'which way your market is moving' }
+    { key: 'news',   file: 'executive.html', name: 'Supply Updates',     desc: 'supply news, every morning' },
+    { key: 'buyer',  file: 'partner.html',   name: 'Product Studio', desc: "the buyer's handbook" },
+    { key: 'cost',   file: 'cost-desk.html', name: 'Purchase Planning',    desc: 'landed cost & margin' },
+    { key: 'market', file: 'my-market.html', name: 'Market Compare',  desc: 'which way your market is moving' }
   ];
   var TEAM = { key: 'team', file: 'team.html', name: 'Team Desk', desc: 'Internal' };
 
@@ -124,7 +124,7 @@
     var veil = document.createElement('div');
     veil.className = 'ab-lang-veil';
     // A child of #app-bar, not of <body>: --paper is only redefined for My
-    // Market inside #app-bar's own subtree (see "My Market is a dark app" in
+    // Market inside #app-bar's own subtree (see "Market Compare is a dark app" in
     // app-bar.css), and position:fixed covers the full viewport regardless
     // of which element in the tree actually holds the node. Appending to
     // <body> would have inherited the light paper token even here, and the
@@ -245,9 +245,9 @@
       el.className += ' is-out';
       setTimeout(function () { el.parentNode && el.parentNode.removeChild(el); }, 420);
     }
-    setTimeout(drop, 1500);                      // the ceiling, always armed
-    if (document.readyState === 'complete') setTimeout(drop, 600);
-    else window.addEventListener('load', function () { setTimeout(drop, 600); });
+    setTimeout(drop, 700);                      // the ceiling, always armed
+    if (document.readyState === 'complete') setTimeout(drop, 120);
+    else window.addEventListener('load', function () { setTimeout(drop, 120); });
   }
 
   // The icon does not fade out with the sheet — it goes and sits down in the
@@ -361,7 +361,7 @@
   // Short enough to read standing up. Three lines is a release note; ten is a
   // changelog, and a changelog belongs on a page, not in a popover.
   var NOTES = [
-    'CostNow and My Market can now be installed like the other two desks',
+    'Purchase Planning and Market Compare can now be installed like the other two desks',
     'Opening a desk now feels like opening an app, not a page',
     'Switching between desks slides instead of reloading blank'
   ];
@@ -509,7 +509,7 @@
     var slot = bar.querySelector('.ab-status');
     var found = [].filter.call(document.querySelectorAll(ADOPT), function (n) { return !bar.contains(n); });
     found
-      // AsiaSource's clock sits inside its office chip, which is itself a
+      // Product Studio's clock sits inside its office chip, which is itself a
       // match. Move the outermost node only, or the inner one is torn out of
       // the chip it belongs to.
       .filter(function (n) { return !found.some(function (o) { return o !== n && o.contains(n); }); })
@@ -543,7 +543,7 @@
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
   else build();
-  // AsiaSource rewrites its own top strip after load; build again so the
+  // Product Studio rewrites its own top strip after load; build again so the
   // bar cannot be left behind by a later script.
   window.addEventListener('load', build);
 }());

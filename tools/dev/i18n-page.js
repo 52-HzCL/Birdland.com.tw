@@ -27,6 +27,14 @@ const { picker, cluster, handoff } = require('./_langs');
 const [, , MODE, PAGE, DIR] = process.argv;
 if (!MODE || !PAGE) { console.error('usage: i18n-page.js extract|build <page.html> [langdir]'); process.exit(1); }
 const NAME = PAGE.replace(/\.html$/, '');
+// Configurator uses shared navigation and localized data as well as static copy.
+// Its dedicated builder owns both, using the same page dictionaries as below.
+if (MODE === 'build' && NAME === 'configurator') {
+  const run = lang => require('child_process').execFileSync(process.execPath,
+    [path.join(__dirname,'build-configurator.js'),lang], {stdio:'inherit'});
+  if (DIR) { run('en'); run(DIR); } else run('--all');
+  process.exit(0);
+}
 
 // Language metadata mirrors i18n-build.js.
 const META = {

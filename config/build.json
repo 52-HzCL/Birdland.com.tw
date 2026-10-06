@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "source": "tools/news_template.html",
+      "output": "guide.html",
+      "data": true
+    },
+    {
+      "source": "tools/products_template.html",
+      "output": "products.html",
+      "mode": "buyer",
+      "catalog": true
+    },
+    {
+      "source": "tools/partner_template.html",
+      "output": "cost-desk.html",
+      "data": true,
+      "mode": "cost",
+      "catalog": false,
+      "families": true
+    },
+    {
+      "source": "tools/team_template.html",
+      "output": "team.html",
+      "data": true
+    },
+    {
+      "source": "tools/restored-executive_template.html",
+      "output": "executive.html",
+      "intel": "news",
+      "data": true,
+      "originalApp": true
+    },
+    {
+      "source": "tools/restored-market_template.html",
+      "output": "my-market.html",
+      "intel": "market",
+      "originalApp": true
+    },
+    {
+      "source": "tools/buying_tools_template.html",
+      "output": "buying-tools.html",
+      "toolCards": true
+    },
+    {
+      "source": "tools/restored-partner_template.html",
+      "output": "partner.html",
+      "mode": "buyer",
+      "data": true,
+      "originalCatalog": true,
+      "originalApp": true
+    }
+  ]
+}

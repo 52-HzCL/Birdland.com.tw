@@ -1,20 +1,59 @@
 {
-  "name": "Birdland AsiaSource",
-  "short_name": "AsiaSource",
+  "name": "Birdland Product Studio",
+  "short_name": "Product Studio",
   "description": "AsiaSource — the buyer's handbook. Product routes, materials and OEM enquiry preparation.",
   "start_url": "./partner.html",
   "scope": "./",
-  "launch_handler": {"client_mode": "navigate-existing"},
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
   "shortcuts": [
-    {"name": "Build a Buying Plan", "short_name": "Buying Plan", "url": "./partner.html", "icons": [{"src": "./images/app-buyer-tile.png", "sizes": "96x96", "type": "image/png"}]},
-    {"name": "Cost & Origin Signals", "short_name": "Cost & Origin", "url": "./partner.html#p-mkt", "icons": [{"src": "./images/app-buyer-tile.png", "sizes": "96x96", "type": "image/png"}]}
+    {
+      "name": "Build a Buying Plan",
+      "short_name": "Buying Plan",
+      "url": "./partner.html",
+      "icons": [
+        {
+          "src": "./images/app-buyer-tile.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Cost & Origin Signals",
+      "short_name": "Cost & Origin",
+      "url": "./partner.html#p-mkt",
+      "icons": [
+        {
+          "src": "./images/app-buyer-tile.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
   ],
   "display": "standalone",
   "background_color": "#F7F5EF",
   "theme_color": "#073F35",
   "icons": [
-    {"src": "./images/app-buyer-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
-    {"src": "./images/app-buyer-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
-    {"src": "./images/app-buyer-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+    {
+      "src": "./images/app-buyer-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./images/app-buyer-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./images/app-buyer-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }

@@ -13,7 +13,8 @@ const path = require('path');
 const R = process.argv[2] || require('./_env').REPO;
 
 const data = JSON.parse(fs.readFileSync(path.join(R, 'outlook-data.json'), 'utf8'));
-const partner = fs.readFileSync(path.join(R, 'tools', 'partner_template.html'), 'utf8');
+const families = JSON.parse(fs.readFileSync(path.join(R, 'data/manufacturing-options.json'), 'utf8'));
+const routes = JSON.parse(fs.readFileSync(path.join(R, 'config/routes.json'), 'utf8'));
 const factory = fs.readFileSync(path.join(R, 'product-101.html'), 'utf8');
 
 // ── live values ──────────────────────────────────────────────────────────
@@ -67,16 +68,9 @@ function add(t, n, d, u) {
 
 // The surfaces and the tools, by hand: they are the destinations, not data,
 // and a wrong one here is worse than a missing one.
-[['ABrief', "Today's steel, resin, freight and policy signals", 'executive.html'],
- ['My Market', 'Which way your import market is moving, and the markets next to it', 'my-market.html'],
- ['AsiaSource', 'Product families, materials, processes, buyer brief', 'partner.html'],
- ['CostNow', 'Landed cost, margin, sailing, duty comparison', 'cost-desk.html'],
- ['Team Desk', 'Internal dashboard', 'team.html'],
- ['Guide', 'How this site works, step by step', 'guide.html'],
- ['Factory', 'The floor, the routes, the materials, the cost structure', 'product-101.html'],
- ['About us', 'The pure-play OEM model and the commercial boundary', 'about.html'],
- ['Contact', 'Routed to your regional desk', 'contact.html'],
-].forEach(r => add('PAGE', r[0], r[1], r[2]));
+routes.routes.filter(r => r.public && r.purpose).forEach(r => add('PAGE', r.name, r.purpose, r.file + (r.hash ? '#' + r.hash : '')));
+const catalogue=JSON.parse(fs.readFileSync(path.join(R,'catalog.json'),'utf8'));
+catalogue.products.forEach(p=>add('PRODUCT',p.sku,p.name+' · '+p.specs.length+' · '+(p.origin==='TW'?'Taiwan':'China'),'products.html?sku='+encodeURIComponent(p.sku)+'#bl-cat'));
 
 [['Cost workspace', 'FOB to your warehouse, per unit', 'cost-desk.html#p-landed2'],
  ['Retail margin', 'Cost to shelf price and gross profit', 'cost-desk.html#p-margin'],
@@ -88,63 +82,15 @@ function add(t, n, d, u) {
 // Materials and processes come out of AsiaSource's own tables by bracket
 // matching, never by a regex across the whole file — this repo has been bitten
 // twice by that. Zero results is a build warning, not a silent pass.
-function matchBracket(src, open) {
-  let d = 0;
-  for (let i = open; i < src.length; i++) {
-    const c = src[i];
-    if (c === "'") { i++; while (i < src.length && src[i] !== "'") { if (src[i] === '\\') i++; i++; } continue; }
-    if (c === '[') d++;
-    else if (c === ']') { d--; if (!d) return i; }
+let nMat = 0, nProc = 0;
+for (const family of families) for (const model of family.models) {
+  for (const part of model.parts) for (const material of part.materials) {
+    add('MATERIAL', material[0], family.label + ' · ' + part.name, 'partner.html?q=' + encodeURIComponent(material[0]) + '#pd-builder'); nMat++;
   }
-  return -1;
-}
-function pairs(block) {
-  const out = [];
-  const re = /\['((?:[^'\\]|\\.)*)','((?:[^'\\]|\\.)*)'\]/g;
-  let m;
-  while ((m = re.exec(block))) out.push([m[1], m[2]]);
-  return out;
-}
-function harvest(kind, key, url) {
-  let n = 0, family = '', part = '';
-  const famRe = /label:'((?:[^'\\]|\\.)*)'/g;
-  // Track the nearest preceding family label and part name for context.
-  const marks = [];
-  let m;
-  while ((m = famRe.exec(partner))) marks.push({ at: m.index, family: m[1] });
-  const partRe = /\{name:'((?:[^'\\]|\\.)*)'/g;
-  const partMarks = [];
-  while ((m = partRe.exec(partner))) partMarks.push({ at: m.index, part: m[1] });
-
-  // AsiaSource now offers several models per family (see partner_template.html's
-  // families table), and a part like "Upper blade" repeats near-identically
-  // across every model that carries it — same material, same route, same
-  // family. Indexing each model's copy separately would print the same
-  // material five or six times over for one family. The description is
-  // therefore family + part, never the model: two entries collapse into one
-  // whenever they share a family and a part, which is exactly the case a
-  // model repeats. A process has no meaningful part context at all (it sits
-  // at the model level, after the last part in the source text, which is an
-  // accident of array order, not a fact about the process) so its
-  // description is the family alone.
-  const kre = new RegExp(key + ':\\[', 'g');
-  while ((m = kre.exec(partner))) {
-    const end = matchBracket(partner, m.index + key.length + 1);
-    if (end < 0) continue;
-    const block = partner.slice(m.index + key.length + 1, end + 1);
-    const before = m.index;
-    family = (marks.filter(x => x.at < before).pop() || {}).family || '';
-    part = (partMarks.filter(x => x.at < before).pop() || {}).part || '';
-    const desc = kind === 'MATERIAL' ? [family, part].filter(Boolean).join(' · ') : family;
-    pairs(block).forEach(p => {
-      add(kind, p[0], desc, url.replace('#', '?q=' + encodeURIComponent(p[0]) + '#'));
-      n++;
-    });
+  for (const process of model.processes) {
+    add('PROCESS', process[0], family.label, 'partner.html?q=' + encodeURIComponent(process[0]) + '#pd-builder'); nProc++;
   }
-  return n;
 }
-const nMat = harvest('MATERIAL', 'materials', 'partner.html#pd-builder');
-const nProc = harvest('PROCESS', 'processes', 'partner.html#pd-builder');
 
 // Factory sections, taken from the page's own table of contents rather than
 // from its headings: the TOC is what the page itself considers navigable, and

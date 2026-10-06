@@ -24,6 +24,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
       - name: Check patch whitespace
         shell: bash
         env:
@@ -97,37 +101,14 @@ jobs:
             }
           }
 
-          // These pairs must match tools/build_news.py exactly — it is the thing
-          // this gate exists to police. Two changes had been made to the build
-          // without this list following them, so the gate failed on every PR:
-          // news_template.html builds guide.html (news.html is now a
-          // hand-written redirect stub and is deliberately NOT generated), and
-          // partner_template.html renders TWICE with a __DESKMODE__ token that
-          // has to be substituted before the outputs can be compared.
-          const pairs = [
-            ['tools/news_template.html', 'guide.html', {}],
-            ['tools/partner_template.html', 'partner.html', { __DESKMODE__: 'buyer' }],
-            ['tools/partner_template.html', 'cost-desk.html', { __DESKMODE__: 'cost' }],
-            ['tools/team_template.html', 'team.html', {}],
-            ['tools/executive_template.html', 'executive.html', {}]
-          ];
+          const { renderSite } = require('./tools/build/site');
+          const pairs = [...renderSite()];
           const buildDir = fs.mkdtempSync(path.join(os.tmpdir(), 'birdland-build-'));
-          for (const [template, output, extra] of pairs) {
-            const templateText = read(template);
-            const tokenCount = templateText.split('__DATA__').length - 1;
-            if (tokenCount !== 1) failures.push(`${template} must contain exactly one __DATA__ token`);
-            let expected = templateText.split('__DATA__').join(dataText);
-            for (const [token, value] of Object.entries(extra)) {
-              expected = expected.split(token).join(value);
-            }
+          for (const [output, expected] of pairs) {
             fs.writeFileSync(path.join(buildDir, output), expected, 'utf8');
-            if (expected !== read(output)) failures.push(`${output} is not rebuilt from ${template}`);
-            // A token that survives into the output ships to the reader as
-            // literal text, and __DESKMODE__ surviving also breaks the split.
-            for (const token of ['__DATA__', '__DESKMODE__']) {
-              if (read(output).includes(token)) failures.push(`${output} contains unresolved ${token}`);
-            }
+            if (expected !== read(output)) failures.push(output + ' is not rebuilt from its canonical source');
           }
+          require('./tools/build/validate');
 
           const textFiles = [
             'AGENTS.md', 'index.html', 'outlook-data.json',
@@ -158,6 +139,13 @@ jobs:
           console.log(`Temporary build output: ${buildDir}`);
           NODE
 
+      - name: Browser and local-state regression tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --no-audit --no-fund
+          npm test
+
       # The apps are named in five places that cannot import from one another.
       # Nothing checked they agreed, and the last rename left the site
       # navigation offering "Buyer Desk" and "Cost Desk" for months.
@@ -174,6 +162,7 @@ jobs:
           python3 -m compileall -q tools
           python3 tools/gen_news_gemini.py --selftest
           python3 tools/gen_promo_gemini.py --selftest
+          python3 tools/test_buyer_materials.py
 
       # outlook-data.json is inlined verbatim into five generated pages, so a
       # kilobyte added to the data is a kilobyte added to every one of them,
@@ -244,13 +233,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          preview="$RUNNER_TEMP/birdland-preview"
-          mkdir -p "$preview"
-          cp index.html news.html partner.html team.html executive.html privacy.html CNAME robots.txt partner-desk.webmanifest executive-desk.webmanifest partner-desk-icon.svg service-worker.js calendar-events.json "$preview/"
-          cp -R images "$preview/images"
-          cp -R calendars "$preview/calendars"
-          cp -R feeds "$preview/feeds"
-          printf 'This is a PR validation snapshot. It is not deployed.\n' > "$preview/README.txt"
+          node tools/build/preview.js "$RUNNER_TEMP/birdland-preview"
 
       - name: Upload static preview snapshot
         uses: actions/upload-artifact@v4

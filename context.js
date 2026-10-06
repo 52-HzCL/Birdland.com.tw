@@ -35,12 +35,20 @@
 
   function clone(o) { return { room: o.room, market: o.market, line: o.line }; }
 
+  function normalize(v) {
+    var out = clone(DEF);
+    ['room','market','line'].forEach(function(k){
+      if (typeof v[k] === 'string' && v[k].length <= 120) out[k] = v[k] || DEF[k];
+    });
+    return out;
+  }
+
   function readStored() {
     try {
       var raw = localStorage.getItem(KEY);
       if (raw) {
         var v = JSON.parse(raw);
-        if (v && typeof v === 'object') return { room: v.room || DEF.room, market: v.market || DEF.market, line: v.line || '' };
+        if (v && typeof v === 'object') return normalize(v);
       }
     } catch (e) { }
     return null;
@@ -79,7 +87,7 @@
     subs.slice().forEach(function (fn) { try { fn(clone(state)); } catch (e) { } });
   }
 
-  state = readStored() || seedFromLegacy();
+  state = readStored() || normalize(seedFromLegacy());
   // Write the mirror out at load, not only on change. A buyer who opens the
   // desk and changes nothing has still answered the question — the contact page
   // and the calculator should see that answer without waiting for an edit.
@@ -95,7 +103,7 @@
       if (!patch) return clone(state);
       var next = clone(state), changed = false;
       ['room', 'market', 'line'].forEach(function (k) {
-        if (patch[k] != null && patch[k] !== next[k]) { next[k] = patch[k]; changed = true; }
+        if (typeof patch[k] === 'string' && patch[k].length <= 120 && patch[k] !== next[k]) { next[k] = patch[k]; changed = true; }
       });
       if (!changed) return clone(state);
       state = next;

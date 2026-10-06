@@ -254,7 +254,7 @@ if (require.main === module && process.argv.indexOf('--selftest') !== -1) {
   // Drift guard: this file is a verbatim copy of the template's math. If the
   // template's MPF clamp line changes without this harness following, the
   // selftest is testing dead code — fail loudly instead.
-  var tpl = require('fs').readFileSync(require('path').join(__dirname, '..', 'partner_template.html'), 'utf8');
+  var tpl = require('fs').readFileSync(require('path').join(__dirname, '..', '..', 'desk', 'landed-calculator.js'), 'utf8');
   ok(tpl.indexOf('Math.min(651.50,Math.max(33.58,fob*0.003464))') !== -1,
     'template MPF clamp line drifted from harness copy — update both together');
 

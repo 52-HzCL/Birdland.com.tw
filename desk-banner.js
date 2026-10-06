@@ -54,18 +54,7 @@
   // Guide is a built artifact like the desks, so it switches language by
   // storing a preference for i18n.js rather than by changing folder.
   var LANG_KEY = 'bl_lang';
-  var LANGS = [
-    ['en', 'en', 'English'],
-    ['nl', 'nl', 'Nederlands'],
-    ['de', 'de', 'Deutsch'],
-    ['fr', 'fr', 'Français'],
-    ['es', 'es', 'Español'],
-    ['pt-br', 'pt-BR', 'Português (Brasil)'],
-    ['pl', 'pl', 'Polski'],
-    ['it', 'it', 'Italiano'],
-    ['ja', 'ja', '日本語'],
-    ['zh-tw', 'zh-Hant', '繁體中文']
-  ];
+  var LANGS = window.BL_SITE.languages.map(function(l){return [l.id,l.tag,l.name];});
   // desk-banner.css dresses a <select> in this popover, because a <select> is
   // what used to be in it. Ten links need the facade's link rule instead, and
   // it ships beside the markup it dresses.

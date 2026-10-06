@@ -1,0 +1,1 @@
+(function(){var r=document.querySelector('.pd-room-panel .pd-panel-head h2'),m=document.querySelector('.pd-market-panel .pd-panel-head h2'),s=document.querySelector('.pd-market-panel .pd-panel-head span');if(r)r.textContent='Origin & Route Decision';if(m)m.textContent='Cost & Timing Signals';if(s)s.textContent='buyer action view';})();

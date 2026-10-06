@@ -6,6 +6,7 @@
 const fs = require('fs');
 const path = require('path');
 const SCRATCH = __dirname;
+const generatedIllustrations = require('./manufacturing-illustrations');
 const RATE = require(path.join(SCRATCH, 'ratings.js'));
 // The Factory ships in ten editions, so it carries the facade's own picker and
 // hreflang cluster rather than a control of its own. Both come from the shared
@@ -215,7 +216,7 @@ const fig = (sym, cap) => `<figure class="wk-fig"><svg class="wk-bp" viewBox="0 
 // at heat treatment, the die section at tooling, the coating stack at finish.
 const gateHtml = sn => (g, i) => `      <section class="wk-entry" id="gate-${g.id}">
         <h3><span class="wk-n">${sn}.${i + 1}</span> ${esc(g.name)}</h3>
-        <div class="wk-entry-grid${g.sym ? '' : ' wk-nodiagram'}">
+        <div class="wk-entry-grid wk-with-generated">
           <figure class="wk-shot"><img src="images/thumbs/${g.photo}.webp" alt="${esc(g.name)} on the Birdland production floor" loading="lazy" decoding="async"><figcaption>On our floor · Taiwan</figcaption></figure>
           <div class="wk-entry-copy">
             <p>${esc(g.body)}</p>
@@ -225,7 +226,7 @@ const gateHtml = sn => (g, i) => `      <section class="wk-entry" id="gate-${g.i
               <dt>A buyer should ask</dt><dd>${esc(g.ask)}</dd>
             </dl>
           </div>
-          ${g.sym ? fig(g.sym, 'Schematic: ' + g.name.toLowerCase()) : ''}
+          <div class="wk-generated-group">${generatedIllustrations.renderProcess(g.id,g.name,esc)}${g.sym ? '<details class="wk-generated-detail"><summary>Existing technical diagram</summary>'+fig(g.sym, 'Schematic: ' + g.name.toLowerCase())+'</details>' : ''}</div>
         </div>
         ${rateList(g.routes, 'Routes at this gate')}
       </section>`;
@@ -233,7 +234,7 @@ const gateHtml = sn => (g, i) => `      <section class="wk-entry" id="gate-${g.i
 const matHtml = sn => (m, i) => `      <section class="wk-entry" id="mat-${m.code.toLowerCase()}">
         <h3><span class="wk-n">${sn}.${i + 1}</span> ${esc(m.name)}</h3>
         <div class="wk-entry-grid wk-nophoto">
-          ${stockFig(m.photo, m.name) || fig(m.sym, 'Schematic: ' + m.name.toLowerCase())}
+          ${generatedIllustrations.renderMaterial(m.photo,m.name,esc) || stockFig(m.photo, m.name) || fig(m.sym, 'Schematic: ' + m.name.toLowerCase())}
           <div class="wk-entry-copy">
             <p>${esc(m.body)}</p>
             <dl class="wk-dl">
@@ -373,6 +374,7 @@ ${GATES.map(gateHtml(sn)).join('\n')}` },
     take: "Nine families. The grade is a trade-off, never an upgrade — every point of hardness is bought with toughness.",
     render: sn => `        <p>A garden tool is rarely one material. These nine families cover a hand-tool programme, and the same nine are tracked as live inputs on the <a href="partner.html">AsiaSource</a>, so a grade discussed here can be checked against this week's price movement.</p>
         ${LEGEND}
+<p class="wk-partner-note">${generatedIllustrations.PARTNER_NOTE}</p>
 ${MATERIALS.map(matHtml(sn)).join('\n')}` },
 
   { id: 's-fail', title: 'How a tool fails',
@@ -666,7 +668,7 @@ const html = `<!doctype html>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Factory | Garden Hand-Tool Manufacturing Reference</title>
   <meta name="description" content="A reference article on garden hand-tool manufacturing: the Taiwan works since 1974, seven production gates, nine material families, eleven packaging formats and the four blocks of landed cost — each rated for how common and how costly it is in European and North American DIY retail.">
-  <link rel="stylesheet" href="birdland-visual.css?v=20260813a"><script defer src="terminal-status.js?v=20260730d"></script>
+  <link rel="stylesheet" href="manufacturing-illustrations.css"><link rel="stylesheet" href="birdland-visual.css?v=20260813a"><script defer src="terminal-status.js?v=20260730d"></script>
   ${cluster('product-101.html')}
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
@@ -777,7 +779,7 @@ ${sectionsHtml}
 </html>
 `;
 
-fs.writeFileSync(path.join(require('./_env').REPO, 'product-101.html'), html, 'utf8');
+fs.writeFileSync(path.join(require('./_env').REPO, 'product-101.html'), require('../build/site').enhancePage(html), 'utf8');
 console.log('bytes', html.length, '| sections', SECTIONS.length,
   '| symbols', (html.match(/<symbol/g) || []).length,
   '| uses', (html.match(/<use /g) || []).length,

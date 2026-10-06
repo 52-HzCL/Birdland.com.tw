@@ -21,5 +21,7 @@
   "gate_joining": "Unión",
   "gate_finish": "Tratamiento de superficie",
   "gate_inspection": "Inspección",
-  "gate_pack": "Embalaje"
+  "gate_pack": "Embalaje",
+  "sheetEmpty": "Elija un producto a la izquierda y configure sus componentes — sus selecciones aparecerán aquí.",
+  "toConfirm": "Por confirmar"
 }

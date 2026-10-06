@@ -31,26 +31,22 @@
     } catch (e) { return ''; }
   })();
   var ICON = {
-    news: '<img src="' + BASE + 'images/app-news-tile.png?v=20260810a" width="96" height="96" alt="" decoding="async">',
-    buyer: '<img src="' + BASE + 'images/app-buyer-tile.png?v=20260810a" width="96" height="96" alt="" decoding="async">',
-    cost: '<img src="' + BASE + 'images/app-cost-tile.png?v=20260810a" width="96" height="96" alt="" decoding="async">',
-    market: '<img src="' + BASE + 'images/app-market-tile.png?v=20260810a" width="96" height="96" alt="" decoding="async">',
+    news: '<img src="' + BASE + 'images/app-news-tile.png" width="96" height="96" alt="" decoding="async">',
+    buyer: '<img src="' + BASE + 'images/app-buyer-tile.png" width="96" height="96" alt="" decoding="async">',
+    cost: '<img src="' + BASE + 'images/app-cost-tile.png" width="96" height="96" alt="" decoding="async">',
+    market: '<img src="' + BASE + 'images/app-market-tile.png" width="96" height="96" alt="" decoding="async">',
     team: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="14" width="18" height="13" rx="2"/><path d="M11 14v-4a5 5 0 0 1 10 0v4"/><path d="M16 19v4"/></svg>',
   };
   // Four questions in the order a buyer actually asks them. The key is the
   // question, the name is the app that answers it, and the line under it is one
   // short sentence — no clause lists. A menu that has to be read twice is a
   // menu that has already lost to the back button.
-  var STEPS = [
-    ['WHAT CHANGED', 'ABrief', 'executive.html', 'news',
-      'What moved since your last order.'],
-    ["WHERE IT'S GOING", 'My Market', 'my-market.html', 'market',
-      'Your market, and the ones next door.'],
-    ['WHAT YOU NEED', 'AsiaSource', 'partner.html', 'buyer',
-      'The part, the material, the process.'],
-    ['WHAT IT COSTS', 'CostNow', 'cost-desk.html', 'cost',
-      'Landed cost, margin, reorder timing.'],
-  ];
+  function steps(){return window.BL_SITE.tools.map(function(t){
+    var r=window.BL_SITE.routes.find(function(r){return r.id===t.route;});
+    var lang='en';try{lang=localStorage.getItem('bl_lang')||'en';}catch(e){}
+    var l=window.BL_SITE.languages.find(function(l){return l.id===lang;})||window.BL_SITE.languages[0];
+    return [({news:"WHAT CHANGED",market:"WHERE IT'S GOING",studio:"WHAT YOU NEED"}[t.route]||l.text[t.question]),l.text[t.label],r.file+(t.hash?'#'+t.hash:''),r.key,l.text[t.detail]];
+  });}
 
   function esc(s) {
     return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
@@ -90,6 +86,7 @@
   }
 
   function stepHTML() {
+    var STEPS=steps();
     return STEPS.map(function (st, i) {
       var cell =
         '<a class="tm-step" href="' + BASE + st[2] + '">' +
@@ -111,7 +108,7 @@
     var note = st.stale ? esc(ed) + ' · ' + st.days + ' DAYS OLD' : esc(ed);
     return '<div class="tm-tb">' +
       '<div><small>DRAWING</small><b>BIRDLAND TERMINAL</b></div>' +
-      '<div><small>ACCESS</small><b>NO ACCOUNT · NOTHING STORED</b></div>' +
+      '<div><small>ACCESS</small><b>NO ACCOUNT · PUBLIC SEARCH</b></div>' +
       '<div><small>EDITION</small><b class="' + (st.stale ? 'stale' : '') + '">' + note + '</b></div>' +
       '</div>';
   }
@@ -132,11 +129,6 @@
           '<em>ESC</em>' +
         '</div>' +
         '<div class="tm-path">' + stepHTML() + '</div>' +
-        '<a class="tm-aside" href="' + BASE + 'team.html">' +
-          '<span class="tm-ico tm-ico-sm">' + ICON.team + '</span>' +
-          '<span><span class="tm-name">Team Desk</span><span class="tm-desc">Internal dashboard — not on the buyer\'s path.</span></span>' +
-          '<span class="fn">INTERNAL</span>' +
-        '</a>' +
         '<div class="tm-results"></div>' +
         titleBlock() +
       '</div>';
@@ -197,6 +189,7 @@
   // typing a steel grade wants that grade, not something that looks like it.
   function score(entry, q) {
     var n = entry.n.toLowerCase(), d = (entry.d || '').toLowerCase();
+    if(entry.t==='PRODUCT' && /^(bt|bc)[\s-]*[a-z0-9]/i.test(q)){var sku=n.split(' · ')[0].replace(/[\s-]/g,''),wanted=q.replace(/[\s-]/g,'');if(sku===wanted)return 0;if(sku.indexOf(wanted)===0)return 1;}
     if (n === q) return 0;
     if (n.indexOf(q) === 0) return 1;
     if (n.indexOf(q) > 0) return 2;
@@ -221,7 +214,7 @@
 
     if (!hits.length) {
       results.innerHTML = '<div class="tm-none">No match for “' + esc(q) + '”. ' +
-        'Try a material grade, a process name, or a Factory section.</div>';
+        'Try a product number, material grade or process. <a href="'+BASE+'products.html">Products</a> · <a href="'+BASE+'contact.html#enquiry">Ask about your number</a></div>';
       return;
     }
     var out = '', group = '';
@@ -242,8 +235,8 @@
   function dest(u) {
     var f = String(u).split('?')[0].split('#')[0];
     return ({
-      'executive.html': 'ABRIEF', 'partner.html': 'ASIASOURCE', 'cost-desk.html': 'COSTNOW',
-      'my-market.html': 'MY MARKET',
+      'executive.html': 'SUPPLY UPDATES', 'partner.html': 'PRODUCT STUDIO', 'cost-desk.html': 'PURCHASE PLANNING',
+      'my-market.html': 'MARKET COMPARE',
       'team.html': 'TEAM DESK', 'guide.html': 'GUIDE', 'product-101.html': 'FACTORY',
       'about.html': 'ABOUT', 'contact.html': 'CONTACT',
     })[f] || f.replace('.html', '').toUpperCase();

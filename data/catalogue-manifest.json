@@ -1,0 +1,1656 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "china",
+      "title": "Birdland tools catalogue — BC references",
+      "sha256": "807bf4fa8b8f2372481f9c409f04a79c5bf1b17de7c03435bcd2c866ea24e629"
+    },
+    {
+      "id": "taiwan",
+      "title": "Birdland Garden Tools — BT references",
+      "sha256": "cc377fd8d099ada18d61eb06d6cf71abb2fece278502579b0fc869979d5369ec"
+    }
+  ],
+  "products": [
+    {
+      "id": "bt-3171",
+      "sku": "BT-3171",
+      "name": "Pruning shears",
+      "axis": "pruners",
+      "origin": "TW",
+      "specs": {
+        "length": "165 mm"
+      },
+      "sizes": [
+        "165 mm"
+      ],
+      "source": "taiwan",
+      "page": 6,
+      "crop": [
+        0.08,
+        0.135,
+        0.235,
+        0.3
+      ]
+    },
+    {
+      "id": "bt-3171-1",
+      "sku": "BT-3171-1",
+      "name": "Pruning snips",
+      "axis": "pruners",
+      "origin": "TW",
+      "specs": {
+        "length": "165 mm"
+      },
+      "sizes": [
+        "165 mm"
+      ],
+      "source": "taiwan",
+      "page": 6,
+      "crop": [
+        0.24,
+        0.135,
+        0.39,
+        0.3
+      ]
+    },
+    {
+      "id": "bt-3171b",
+      "sku": "BT-3171B",
+      "name": "Pruning shears",
+      "axis": "pruners",
+      "origin": "TW",
+      "specs": {
+        "length": "205 mm"
+      },
+      "sizes": [
+        "205 mm"
+      ],
+      "source": "taiwan",
+      "page": 6,
+      "crop": [
+        0.6,
+        0.11,
+        0.75,
+        0.3
+      ]
+    },
+    {
+      "id": "bt-3171a",
+      "sku": "BT-3171A",
+      "name": "Pruning snips",
+      "axis": "pruners",
+      "origin": "TW",
+      "specs": {
+        "length": "205 mm"
+      },
+      "sizes": [
+        "205 mm"
+      ],
+      "source": "taiwan",
+      "page": 6,
+      "crop": [
+        0.77,
+        0.11,
+        0.93,
+        0.3
+      ]
+    },
+    {
+      "id": "bt-315ps",
+      "sku": "BT-315PS",
+      "name": "Pruning shears",
+      "axis": "pruners",
+      "origin": "TW",
+      "specs": {
+        "length": "153 mm"
+      },
+      "sizes": [
+        "153 mm"
+      ],
+      "source": "taiwan",
+      "page": 6,
+      "crop": [
+        0.075,
+        0.335,
+        0.21,
+        0.51
+      ]
+    },
+    {
+      "id": "bt-315pas",
+      "sku": "BT-315PAS",
+      "name": "Pruning snips",
+      "axis": "pruners",
+      "origin": "TW",
+      "specs": {
+        "length": "153 mm"
+      },
+      "sizes": [
+        "153 mm"
+      ],
+      "source": "taiwan",
+      "page": 6,
+      "crop": [
+        0.225,
+        0.335,
+        0.355,
+        0.51
+      ]
+    },
+    {
+      "id": "bt-315pasl",
+      "sku": "BT-315PASL",
+      "name": "Pruning snips",
+      "axis": "pruners",
+      "origin": "TW",
+      "specs": {
+        "length": "165 mm"
+      },
+      "sizes": [
+        "165 mm"
+      ],
+      "source": "taiwan",
+      "page": 6,
+      "crop": [
+        0.365,
+        0.335,
+        0.505,
+        0.51
+      ]
+    },
+    {
+      "id": "bt-206",
+      "sku": "BT-206",
+      "name": "Pruning shears",
+      "axis": "pruners",
+      "origin": "TW",
+      "specs": {
+        "length": "6-3/4 in"
+      },
+      "sizes": [
+        "6-3/4 in"
+      ],
+      "source": "taiwan",
+      "page": 6,
+      "crop": [
+        0.52,
+        0.335,
+        0.655,
+        0.51
+      ]
+    },
+    {
+      "id": "bt-207as",
+      "sku": "BT-207AS",
+      "name": "Pruning snips",
+      "axis": "pruners",
+      "origin": "TW",
+      "specs": {
+        "length": "6 in"
+      },
+      "sizes": [
+        "6 in"
+      ],
+      "source": "taiwan",
+      "page": 6,
+      "crop": [
+        0.665,
+        0.335,
+        0.8,
+        0.51
+      ]
+    },
+    {
+      "id": "bt-206as",
+      "sku": "BT-206AS",
+      "name": "Pruning shears",
+      "axis": "pruners",
+      "origin": "TW",
+      "specs": {
+        "length": "7 in"
+      },
+      "sizes": [
+        "7 in"
+      ],
+      "source": "taiwan",
+      "page": 6,
+      "crop": [
+        0.805,
+        0.335,
+        0.94,
+        0.51
+      ]
+    },
+    {
+      "id": "bt-660r-1",
+      "sku": "BT-660R-1",
+      "name": "Pruning snips",
+      "axis": "pruners",
+      "origin": "TW",
+      "specs": {
+        "length": "7-1/2 in (190 mm)",
+        "handle": "Aluminum handles with PVC grips"
+      },
+      "sizes": [
+        "7-1/2 in (190 mm)"
+      ],
+      "source": "taiwan",
+      "page": 17,
+      "crop": [
+        0.07,
+        0.138,
+        0.27,
+        0.31
+      ]
+    },
+    {
+      "id": "bt-660-1",
+      "sku": "BT-660-1",
+      "name": "Pruning snips",
+      "axis": "pruners",
+      "origin": "TW",
+      "specs": {
+        "length": "9 in (230 mm)",
+        "handle": "Aluminum handles with PVC grips"
+      },
+      "sizes": [
+        "9 in (230 mm)"
+      ],
+      "source": "taiwan",
+      "page": 17,
+      "crop": [
+        0.29,
+        0.138,
+        0.48,
+        0.31
+      ]
+    },
+    {
+      "id": "bt-3149a-1",
+      "sku": "BT-3149A-1",
+      "name": "Pruning snips",
+      "axis": "pruners",
+      "origin": "TW",
+      "specs": {
+        "length": "8-1/2 in (215 mm)",
+        "handle": "Aluminum handles with PVC grips"
+      },
+      "sizes": [
+        "8-1/2 in (215 mm)"
+      ],
+      "source": "taiwan",
+      "page": 17,
+      "crop": [
+        0.53,
+        0.138,
+        0.7,
+        0.31
+      ]
+    },
+    {
+      "id": "bt-3149a",
+      "sku": "BT-3149A",
+      "name": "Pruning snips",
+      "axis": "pruners",
+      "origin": "TW",
+      "specs": {
+        "length": "9-1/4 in (235 mm)",
+        "handle": "Aluminum handles with PVC grips"
+      },
+      "sizes": [
+        "9-1/4 in (235 mm)"
+      ],
+      "source": "taiwan",
+      "page": 17,
+      "crop": [
+        0.75,
+        0.138,
+        0.94,
+        0.31
+      ]
+    },
+    {
+      "id": "bt-k6110bh",
+      "sku": "BT-K6110BH",
+      "name": "Pruning shears",
+      "axis": "pruners",
+      "origin": "TW",
+      "specs": {
+        "length": "7 in (175 mm)",
+        "handle": "Aluminum handles"
+      },
+      "sizes": [
+        "7 in (175 mm)"
+      ],
+      "source": "taiwan",
+      "page": 17,
+      "crop": [
+        0.075,
+        0.385,
+        0.28,
+        0.53
+      ]
+    },
+    {
+      "id": "bt-k6111bh",
+      "sku": "BT-K6111BH",
+      "name": "Pruning shears",
+      "axis": "pruners",
+      "origin": "TW",
+      "specs": {
+        "length": "7-1/2 in (190 mm)",
+        "handle": "Aluminum handles"
+      },
+      "sizes": [
+        "7-1/2 in (190 mm)"
+      ],
+      "source": "taiwan",
+      "page": 17,
+      "crop": [
+        0.3,
+        0.385,
+        0.49,
+        0.53
+      ]
+    },
+    {
+      "id": "bt-701c",
+      "sku": "BT-701C",
+      "name": "Pruning snips",
+      "axis": "pruners",
+      "origin": "TW",
+      "specs": {
+        "length": "8-1/4 in (210 mm)",
+        "handle": "Aluminum handles"
+      },
+      "sizes": [
+        "8-1/4 in (210 mm)"
+      ],
+      "source": "taiwan",
+      "page": 17,
+      "crop": [
+        0.54,
+        0.385,
+        0.72,
+        0.53
+      ]
+    },
+    {
+      "id": "bt-701",
+      "sku": "BT-701",
+      "name": "Pruning snips",
+      "axis": "pruners",
+      "origin": "TW",
+      "specs": {
+        "length": "9 in (230 mm)",
+        "handle": "Aluminum handles"
+      },
+      "sizes": [
+        "9 in (230 mm)"
+      ],
+      "source": "taiwan",
+      "page": 17,
+      "crop": [
+        0.75,
+        0.385,
+        0.94,
+        0.53
+      ]
+    },
+    {
+      "id": "bt-9005",
+      "sku": "BT-9005",
+      "name": "Loppers",
+      "axis": "loppers",
+      "origin": "TW",
+      "specs": {
+        "length": "50 cm, 60 cm, 70 cm"
+      },
+      "sizes": [
+        "50 cm",
+        "60 cm",
+        "70 cm"
+      ],
+      "source": "taiwan",
+      "page": 26,
+      "crop": [
+        0.05,
+        0.135,
+        0.265,
+        0.318
+      ]
+    },
+    {
+      "id": "bt-1163f",
+      "sku": "BT-1163F",
+      "name": "Loppers",
+      "axis": "loppers",
+      "origin": "TW",
+      "specs": {
+        "length": "50 cm, 60 cm, 70 cm"
+      },
+      "sizes": [
+        "50 cm",
+        "60 cm",
+        "70 cm"
+      ],
+      "source": "taiwan",
+      "page": 26,
+      "crop": [
+        0.265,
+        0.135,
+        0.455,
+        0.318
+      ]
+    },
+    {
+      "id": "bt-1163p",
+      "sku": "BT-1163P",
+      "name": "Loppers",
+      "axis": "loppers",
+      "origin": "TW",
+      "specs": {
+        "length": "50 cm, 60 cm, 70 cm"
+      },
+      "sizes": [
+        "50 cm",
+        "60 cm",
+        "70 cm"
+      ],
+      "source": "taiwan",
+      "page": 26,
+      "crop": [
+        0.455,
+        0.135,
+        0.665,
+        0.318
+      ]
+    },
+    {
+      "id": "bt-1163bp",
+      "sku": "BT-1163BP",
+      "name": "Loppers",
+      "axis": "loppers",
+      "origin": "TW",
+      "specs": {
+        "length": "50 cm, 60 cm, 70 cm"
+      },
+      "sizes": [
+        "50 cm",
+        "60 cm",
+        "70 cm"
+      ],
+      "source": "taiwan",
+      "page": 26,
+      "crop": [
+        0.665,
+        0.135,
+        0.95,
+        0.318
+      ]
+    },
+    {
+      "id": "bt-1162",
+      "sku": "BT-1162",
+      "name": "Loppers",
+      "axis": "loppers",
+      "origin": "TW",
+      "specs": {
+        "length": "50 cm, 60 cm, 70 cm"
+      },
+      "sizes": [
+        "50 cm",
+        "60 cm",
+        "70 cm"
+      ],
+      "source": "taiwan",
+      "page": 26,
+      "crop": [
+        0.06,
+        0.35,
+        0.29,
+        0.535
+      ]
+    },
+    {
+      "id": "bt-1162f",
+      "sku": "BT-1162F",
+      "name": "Loppers",
+      "axis": "loppers",
+      "origin": "TW",
+      "specs": {
+        "length": "50 cm, 60 cm, 70 cm"
+      },
+      "sizes": [
+        "50 cm",
+        "60 cm",
+        "70 cm"
+      ],
+      "source": "taiwan",
+      "page": 26,
+      "crop": [
+        0.35,
+        0.35,
+        0.62,
+        0.535
+      ]
+    },
+    {
+      "id": "bt-1164",
+      "sku": "BT-1164",
+      "name": "Loppers",
+      "axis": "loppers",
+      "origin": "TW",
+      "specs": {
+        "length": "50 cm, 60 cm, 70 cm"
+      },
+      "sizes": [
+        "50 cm",
+        "60 cm",
+        "70 cm"
+      ],
+      "source": "taiwan",
+      "page": 26,
+      "crop": [
+        0.72,
+        0.35,
+        0.94,
+        0.535
+      ]
+    },
+    {
+      "id": "bc-hh4812",
+      "sku": "BC-HH4812",
+      "name": "Hedge shears",
+      "axis": "hedge",
+      "origin": "CN",
+      "specs": {
+        "length": "18-3/4 in"
+      },
+      "sizes": [
+        "18-3/4 in"
+      ],
+      "source": "china",
+      "page": 9,
+      "crop": [
+        0.06,
+        0.145,
+        0.245,
+        0.301
+      ],
+      "image_xref": 276,
+      "image_mode": "embedded-crop",
+      "image_crop": [
+        0,
+        0,
+        1,
+        0.8
+      ]
+    },
+    {
+      "id": "bc-hx1406",
+      "sku": "BC-HX1406",
+      "name": "Hedge shears",
+      "axis": "hedge",
+      "origin": "CN",
+      "specs": {
+        "length": "23-3/4 in"
+      },
+      "sizes": [
+        "23-3/4 in"
+      ],
+      "source": "china",
+      "page": 9,
+      "crop": [
+        0.26,
+        0.145,
+        0.47,
+        0.301
+      ],
+      "image_xref": 278,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-hh9801",
+      "sku": "BC-HH9801",
+      "name": "Hedge shears",
+      "axis": "hedge",
+      "origin": "CN",
+      "specs": {
+        "length": "22 in"
+      },
+      "sizes": [
+        "22 in"
+      ],
+      "source": "china",
+      "page": 9,
+      "crop": [
+        0.5,
+        0.145,
+        0.7,
+        0.301
+      ],
+      "image_xref": 280,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-hh4808r",
+      "sku": "BC-HH4808R",
+      "name": "Hedge shears",
+      "axis": "hedge",
+      "origin": "CN",
+      "specs": {
+        "length": "37 in, 90°"
+      },
+      "sizes": [
+        "37 in, 90°"
+      ],
+      "source": "china",
+      "page": 9,
+      "crop": [
+        0.71,
+        0.145,
+        0.96,
+        0.301
+      ],
+      "image_xref": 273,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-4447",
+      "sku": "BC-4447",
+      "name": "Folding saw",
+      "axis": "saws",
+      "origin": "CN",
+      "specs": {
+        "length": "150 mm"
+      },
+      "sizes": [
+        "150 mm"
+      ],
+      "source": "china",
+      "page": 17,
+      "crop": [
+        0.03,
+        0.137,
+        0.205,
+        0.286
+      ],
+      "image_xref": 556,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-4427",
+      "sku": "BC-4427",
+      "name": "Folding saw",
+      "axis": "saws",
+      "origin": "CN",
+      "specs": {
+        "length": "160 mm"
+      },
+      "sizes": [
+        "160 mm"
+      ],
+      "source": "china",
+      "page": 17,
+      "crop": [
+        0.215,
+        0.137,
+        0.39,
+        0.286
+      ],
+      "image_xref": 528,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-4446",
+      "sku": "BC-4446",
+      "name": "Folding saw",
+      "axis": "saws",
+      "origin": "CN",
+      "specs": {
+        "length": "190 mm"
+      },
+      "sizes": [
+        "190 mm"
+      ],
+      "source": "china",
+      "page": 17,
+      "crop": [
+        0.4,
+        0.137,
+        0.565,
+        0.286
+      ],
+      "image_xref": 530,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-4425",
+      "sku": "BC-4425",
+      "name": "Folding saw",
+      "axis": "saws",
+      "origin": "CN",
+      "specs": {
+        "length": "180 mm"
+      },
+      "sizes": [
+        "180 mm"
+      ],
+      "source": "china",
+      "page": 17,
+      "crop": [
+        0.57,
+        0.137,
+        0.76,
+        0.286
+      ],
+      "image_xref": 554,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-4429",
+      "sku": "BC-4429",
+      "name": "Folding saw",
+      "axis": "saws",
+      "origin": "CN",
+      "specs": {
+        "length": "190 mm"
+      },
+      "sizes": [
+        "190 mm"
+      ],
+      "source": "china",
+      "page": 17,
+      "crop": [
+        0.77,
+        0.137,
+        0.95,
+        0.286
+      ],
+      "image_xref": 532,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-2003",
+      "sku": "BC-2003",
+      "name": "Pruning saw",
+      "axis": "saws",
+      "origin": "CN",
+      "specs": {
+        "length": "295 mm"
+      },
+      "sizes": [
+        "295 mm"
+      ],
+      "source": "china",
+      "page": 17,
+      "crop": [
+        0.065,
+        0.35,
+        0.23,
+        0.52
+      ]
+    },
+    {
+      "id": "bc-4419",
+      "sku": "BC-4419",
+      "name": "Pruning saw",
+      "axis": "saws",
+      "origin": "CN",
+      "specs": {
+        "length": "500 mm"
+      },
+      "sizes": [
+        "500 mm"
+      ],
+      "source": "china",
+      "page": 17,
+      "crop": [
+        0.225,
+        0.35,
+        0.4,
+        0.512
+      ],
+      "image_xref": 552,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-2001w",
+      "sku": "BC-2001W",
+      "name": "Pruning saw",
+      "axis": "saws",
+      "origin": "CN",
+      "specs": {
+        "length": "490 mm"
+      },
+      "sizes": [
+        "490 mm"
+      ],
+      "source": "china",
+      "page": 17,
+      "crop": [
+        0.41,
+        0.35,
+        0.57,
+        0.512
+      ],
+      "image_xref": 534,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-2001",
+      "sku": "BC-2001",
+      "name": "Pruning saw",
+      "axis": "saws",
+      "origin": "CN",
+      "specs": {
+        "length": "305 mm"
+      },
+      "sizes": [
+        "305 mm"
+      ],
+      "source": "china",
+      "page": 17,
+      "crop": [
+        0.585,
+        0.35,
+        0.765,
+        0.512
+      ],
+      "image_xref": 536,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-3007",
+      "sku": "BC-3007",
+      "name": "Pruning saw",
+      "axis": "saws",
+      "origin": "CN",
+      "specs": {
+        "length": "500 mm"
+      },
+      "sizes": [
+        "500 mm"
+      ],
+      "source": "china",
+      "page": 17,
+      "crop": [
+        0.775,
+        0.35,
+        0.95,
+        0.512
+      ],
+      "image_xref": 538,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-y1131",
+      "sku": "BC-Y1131",
+      "name": "Steel hoe",
+      "axis": "hoes",
+      "origin": "CN",
+      "specs": {
+        "length": "1050 mm",
+        "material": "Steel head",
+        "handle": "Wooden handle"
+      },
+      "sizes": [
+        "1050 mm"
+      ],
+      "source": "china",
+      "page": 21,
+      "crop": [
+        0.045,
+        0.195,
+        0.235,
+        0.443
+      ],
+      "image_xref": 2077,
+      "image_mode": "embedded-crop",
+      "image_crop": [
+        0.04493889001629592,
+        0,
+        0.23496316666251335,
+        1
+      ]
+    },
+    {
+      "id": "bc-y1142",
+      "sku": "BC-Y1142",
+      "name": "Steel hoe",
+      "axis": "hoes",
+      "origin": "CN",
+      "specs": {
+        "length": "1200 mm",
+        "material": "Steel head",
+        "handle": "Wooden handle"
+      },
+      "sizes": [
+        "1200 mm"
+      ],
+      "source": "china",
+      "page": 21,
+      "crop": [
+        0.235,
+        0.195,
+        0.4,
+        0.443
+      ],
+      "image_xref": 2077,
+      "image_mode": "embedded-crop",
+      "image_crop": [
+        0.23496316666251335,
+        0,
+        0.3999842490131759,
+        1
+      ]
+    },
+    {
+      "id": "bc-y1193",
+      "sku": "BC-Y1193",
+      "name": "Steel hoe",
+      "axis": "hoes",
+      "origin": "CN",
+      "specs": {
+        "length": "1200 mm",
+        "material": "Steel head",
+        "handle": "Wooden handle"
+      },
+      "sizes": [
+        "1200 mm"
+      ],
+      "source": "china",
+      "page": 21,
+      "crop": [
+        0.41,
+        0.195,
+        0.57,
+        0.443
+      ],
+      "image_xref": 2077,
+      "image_mode": "embedded-crop",
+      "image_crop": [
+        0.4099855267313979,
+        0,
+        0.5700059702229494,
+        1
+      ]
+    },
+    {
+      "id": "bc-y1161",
+      "sku": "BC-Y1161",
+      "name": "Steel hoe",
+      "axis": "hoes",
+      "origin": "CN",
+      "specs": {
+        "length": "1050 mm",
+        "material": "Steel head",
+        "handle": "Wooden handle"
+      },
+      "sizes": [
+        "1050 mm"
+      ],
+      "source": "china",
+      "page": 21,
+      "crop": [
+        0.585,
+        0.195,
+        0.765,
+        0.443
+      ],
+      "image_xref": 2077,
+      "image_mode": "embedded-crop",
+      "image_crop": [
+        0.5850078868002824,
+        0,
+        0.7650308857282779,
+        1
+      ]
+    },
+    {
+      "id": "bc-y1164",
+      "sku": "BC-Y1164",
+      "name": "Steel hoe",
+      "axis": "hoes",
+      "origin": "CN",
+      "specs": {
+        "length": "1200 mm",
+        "material": "Steel head",
+        "handle": "Wooden handle"
+      },
+      "sizes": [
+        "1200 mm"
+      ],
+      "source": "china",
+      "page": 21,
+      "crop": [
+        0.77,
+        0.195,
+        0.955,
+        0.443
+      ],
+      "image_xref": 2077,
+      "image_mode": "embedded-crop",
+      "image_crop": [
+        0.7700315245873889,
+        0,
+        0.9550551623744954,
+        1
+      ]
+    },
+    {
+      "id": "bc-y1166",
+      "sku": "BC-Y1166",
+      "name": "Steel hoe",
+      "axis": "hoes",
+      "origin": "CN",
+      "specs": {
+        "length": "1050 mm",
+        "material": "Steel head",
+        "handle": "Aluminum handle"
+      },
+      "sizes": [
+        "1050 mm"
+      ],
+      "source": "china",
+      "page": 21,
+      "crop": [
+        0.055,
+        0.59,
+        0.235,
+        0.895
+      ],
+      "image_xref": 609,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-y1167",
+      "sku": "BC-Y1167",
+      "name": "Steel hoe",
+      "axis": "hoes",
+      "origin": "CN",
+      "specs": {
+        "length": "1050 mm",
+        "material": "Steel head",
+        "handle": "Aluminum handle"
+      },
+      "sizes": [
+        "1050 mm"
+      ],
+      "source": "china",
+      "page": 21,
+      "crop": [
+        0.24,
+        0.59,
+        0.4,
+        0.895
+      ],
+      "image_xref": 611,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-y1169",
+      "sku": "BC-Y1169",
+      "name": "Steel hoe",
+      "axis": "hoes",
+      "origin": "CN",
+      "specs": {
+        "length": "1050 mm",
+        "material": "Steel head",
+        "handle": "Aluminum handle"
+      },
+      "sizes": [
+        "1050 mm"
+      ],
+      "source": "china",
+      "page": 21,
+      "crop": [
+        0.415,
+        0.59,
+        0.58,
+        0.895
+      ],
+      "image_xref": 613,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-y1168",
+      "sku": "BC-Y1168",
+      "name": "Steel hoe",
+      "axis": "hoes",
+      "origin": "CN",
+      "specs": {
+        "length": "1050 mm",
+        "material": "Steel head",
+        "handle": "Aluminum handle"
+      },
+      "sizes": [
+        "1050 mm"
+      ],
+      "source": "china",
+      "page": 21,
+      "crop": [
+        0.59,
+        0.59,
+        0.775,
+        0.895
+      ],
+      "image_xref": 615,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-y1192",
+      "sku": "BC-Y1192",
+      "name": "Steel hoe",
+      "axis": "hoes",
+      "origin": "CN",
+      "specs": {
+        "length": "1200 mm",
+        "material": "Steel head",
+        "handle": "Aluminum handle"
+      },
+      "sizes": [
+        "1200 mm"
+      ],
+      "source": "china",
+      "page": 21,
+      "crop": [
+        0.78,
+        0.59,
+        0.96,
+        0.895
+      ],
+      "image_xref": 617,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-ht2003",
+      "sku": "BC-HT2003",
+      "name": "Hand trowel",
+      "axis": "hand-tools",
+      "origin": "CN",
+      "specs": {
+        "length": "32 cm",
+        "material": "Carbon steel head",
+        "handle": "PP handle"
+      },
+      "sizes": [
+        "32 cm"
+      ],
+      "source": "china",
+      "page": 22,
+      "crop": [
+        0.045,
+        0.17,
+        0.17,
+        0.277
+      ],
+      "image_xref": 623,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-ht2004",
+      "sku": "BC-HT2004",
+      "name": "Hand trowel",
+      "axis": "hand-tools",
+      "origin": "CN",
+      "specs": {
+        "length": "32 cm",
+        "material": "Carbon steel head",
+        "handle": "PP handle"
+      },
+      "sizes": [
+        "32 cm"
+      ],
+      "source": "china",
+      "page": 22,
+      "crop": [
+        0.175,
+        0.17,
+        0.305,
+        0.277
+      ],
+      "image_xref": 631,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-ht2005",
+      "sku": "BC-HT2005",
+      "name": "Hand cultivator",
+      "axis": "hand-tools",
+      "origin": "CN",
+      "specs": {
+        "length": "30.5 cm",
+        "material": "Carbon steel head",
+        "handle": "PP handle"
+      },
+      "sizes": [
+        "30.5 cm"
+      ],
+      "source": "china",
+      "page": 22,
+      "crop": [
+        0.31,
+        0.17,
+        0.44,
+        0.277
+      ],
+      "image_xref": 633,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-ht2006",
+      "sku": "BC-HT2006",
+      "name": "Hand cultivator",
+      "axis": "hand-tools",
+      "origin": "CN",
+      "specs": {
+        "length": "38 cm",
+        "material": "Carbon steel head",
+        "handle": "PP handle"
+      },
+      "sizes": [
+        "38 cm"
+      ],
+      "source": "china",
+      "page": 22,
+      "crop": [
+        0.445,
+        0.17,
+        0.575,
+        0.277
+      ],
+      "image_xref": 653,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-ht2007",
+      "sku": "BC-HT2007",
+      "name": "Hand rake",
+      "axis": "hand-tools",
+      "origin": "CN",
+      "specs": {
+        "length": "42 cm",
+        "material": "Carbon steel head",
+        "handle": "PP handle"
+      },
+      "sizes": [
+        "42 cm"
+      ],
+      "source": "china",
+      "page": 22,
+      "crop": [
+        0.58,
+        0.17,
+        0.705,
+        0.277
+      ],
+      "image_xref": 665,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-ht2008",
+      "sku": "BC-HT2008",
+      "name": "Hand rake",
+      "axis": "hand-tools",
+      "origin": "CN",
+      "specs": {
+        "length": "37 cm",
+        "material": "Carbon steel head",
+        "handle": "PP handle"
+      },
+      "sizes": [
+        "37 cm"
+      ],
+      "source": "china",
+      "page": 22,
+      "crop": [
+        0.71,
+        0.17,
+        0.835,
+        0.277
+      ],
+      "image_xref": 667,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-rk1040",
+      "sku": "BC-RK1040",
+      "name": "Steel rake",
+      "axis": "rakes",
+      "origin": "CN",
+      "specs": {
+        "length": "42 × 46 cm",
+        "material": "Steel"
+      },
+      "sizes": [
+        "42 × 46 cm"
+      ],
+      "source": "china",
+      "page": 39,
+      "crop": [
+        0.025,
+        0.137,
+        0.24,
+        0.249
+      ],
+      "image_xref": 1215,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-rk1041",
+      "sku": "BC-RK1041",
+      "name": "Steel rake",
+      "axis": "rakes",
+      "origin": "CN",
+      "specs": {
+        "length": "44 × 45 cm",
+        "material": "Steel"
+      },
+      "sizes": [
+        "44 × 45 cm"
+      ],
+      "source": "china",
+      "page": 39,
+      "crop": [
+        0.25,
+        0.137,
+        0.465,
+        0.249
+      ],
+      "image_xref": 1217,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-rk1042",
+      "sku": "BC-RK1042",
+      "name": "Steel rake",
+      "axis": "rakes",
+      "origin": "CN",
+      "specs": {
+        "length": "38 × 46 cm",
+        "material": "Steel"
+      },
+      "sizes": [
+        "38 × 46 cm"
+      ],
+      "source": "china",
+      "page": 39,
+      "crop": [
+        0.49,
+        0.137,
+        0.69,
+        0.249
+      ],
+      "image_xref": 1219,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-rk1043",
+      "sku": "BC-RK1043",
+      "name": "Steel rake",
+      "axis": "rakes",
+      "origin": "CN",
+      "specs": {
+        "length": "48 × 43 cm",
+        "material": "Steel"
+      },
+      "sizes": [
+        "48 × 43 cm"
+      ],
+      "source": "china",
+      "page": 39,
+      "crop": [
+        0.72,
+        0.137,
+        0.955,
+        0.249
+      ],
+      "image_xref": 1213,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-rk1902",
+      "sku": "BC-RK1902",
+      "name": "Steel rake",
+      "axis": "rakes",
+      "origin": "CN",
+      "specs": {
+        "length": "42 × 14 cm",
+        "material": "Steel"
+      },
+      "sizes": [
+        "42 × 14 cm"
+      ],
+      "source": "china",
+      "page": 39,
+      "crop": [
+        0.025,
+        0.55,
+        0.25,
+        0.678
+      ],
+      "image_xref": 2216,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-rk1903",
+      "sku": "BC-RK1903",
+      "name": "Steel rake",
+      "axis": "rakes",
+      "origin": "CN",
+      "specs": {
+        "length": "42 × 26 cm",
+        "material": "Steel"
+      },
+      "sizes": [
+        "42 × 26 cm"
+      ],
+      "source": "china",
+      "page": 39,
+      "crop": [
+        0.26,
+        0.55,
+        0.49,
+        0.678
+      ],
+      "image_xref": 2215,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-rk1904",
+      "sku": "BC-RK1904",
+      "name": "Steel rake",
+      "axis": "rakes",
+      "origin": "CN",
+      "specs": {
+        "length": "42 × 36 cm",
+        "material": "Steel"
+      },
+      "sizes": [
+        "42 × 36 cm"
+      ],
+      "source": "china",
+      "page": 39,
+      "crop": [
+        0.5,
+        0.55,
+        0.725,
+        0.678
+      ],
+      "image_xref": 2214,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-rk1905",
+      "sku": "BC-RK1905",
+      "name": "Steel rake",
+      "axis": "rakes",
+      "origin": "CN",
+      "specs": {
+        "length": "31 × 25 cm",
+        "material": "Steel"
+      },
+      "sizes": [
+        "31 × 25 cm"
+      ],
+      "source": "china",
+      "page": 39,
+      "crop": [
+        0.73,
+        0.55,
+        0.96,
+        0.678
+      ],
+      "image_xref": 1207,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-6408",
+      "sku": "BC-6408",
+      "name": "Female coupling",
+      "axis": "watering",
+      "origin": "CN",
+      "specs": {
+        "length": "1/2 in",
+        "material": "Brass"
+      },
+      "sizes": [
+        "1/2 in"
+      ],
+      "source": "china",
+      "page": 55,
+      "crop": [
+        0.09,
+        0.14,
+        0.18,
+        0.225
+      ],
+      "image_xref": 2389,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-6410",
+      "sku": "BC-6410",
+      "name": "Male coupling",
+      "axis": "watering",
+      "origin": "CN",
+      "specs": {
+        "length": "1/2 in",
+        "material": "Brass"
+      },
+      "sizes": [
+        "1/2 in"
+      ],
+      "source": "china",
+      "page": 55,
+      "crop": [
+        0.23,
+        0.14,
+        0.32,
+        0.225
+      ],
+      "image_xref": 2388,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-5923b",
+      "sku": "BC-5923B",
+      "name": "Hose connector",
+      "axis": "watering",
+      "origin": "CN",
+      "specs": {
+        "length": "1/2 in",
+        "material": "Brass"
+      },
+      "sizes": [
+        "1/2 in"
+      ],
+      "source": "china",
+      "page": 55,
+      "crop": [
+        0.37,
+        0.14,
+        0.46,
+        0.225
+      ],
+      "image_xref": 1781,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-6409",
+      "sku": "BC-6409",
+      "name": "Hose connector",
+      "axis": "watering",
+      "origin": "CN",
+      "specs": {
+        "length": "3/4 in",
+        "material": "Brass"
+      },
+      "sizes": [
+        "3/4 in"
+      ],
+      "source": "china",
+      "page": 55,
+      "crop": [
+        0.52,
+        0.14,
+        0.61,
+        0.225
+      ],
+      "image_xref": 2387,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-6413",
+      "sku": "BC-6413",
+      "name": "Hose connector",
+      "axis": "watering",
+      "origin": "CN",
+      "specs": {
+        "length": "3/4 in",
+        "material": "Brass"
+      },
+      "sizes": [
+        "3/4 in"
+      ],
+      "source": "china",
+      "page": 55,
+      "crop": [
+        0.66,
+        0.14,
+        0.76,
+        0.225
+      ],
+      "image_xref": 2386,
+      "image_mode": "embedded"
+    },
+    {
+      "id": "bc-6301",
+      "sku": "BC-6301",
+      "name": "Male adaptor",
+      "axis": "watering",
+      "origin": "CN",
+      "specs": {
+        "length": "3/4 in",
+        "material": "Brass"
+      },
+      "sizes": [
+        "3/4 in"
+      ],
+      "source": "china",
+      "page": 55,
+      "crop": [
+        0.79,
+        0.14,
+        0.93,
+        0.225
+      ],
+      "image_xref": 2385,
+      "image_mode": "embedded"
+    }
+  ]
+}

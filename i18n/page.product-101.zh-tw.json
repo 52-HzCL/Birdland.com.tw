@@ -1017,5 +1017,21 @@
   "We plan the load pattern before the first carton is printed, because pallet fit is set by carton size — changing a carton by a few millimetres afterwards is what turns a full pallet into a part-filled one.": "我們在第一個紙箱印出來之前就先規劃堆疊方式,因為上棧板的契合度是由紙箱尺寸決定的 — 事後把紙箱改個幾公釐,就會把一板滿載變成一板半空。",
   "Stainless arriving at intake is two different materials: austenitic 304 cannot be hardened by heat treatment and belongs on bodies and fasteners, while martensitic 410 and 420 can — and since those two are both magnetic and visually identical, dropping the lower-carbon 410 into an edge application is the substitution no goods-in check short of a material test will catch.": "進料端的不鏽鋼其實是兩種不同材料:沃斯田鐵系 304 無法以熱處理硬化,適合用在本體與扣件;麻田散鐵系 410 與 420 才可以 — 而由於這兩者都具磁性、外觀也完全相同,把含碳量較低的 410 放進刃口用途,正是沒有材質試驗的進料檢驗絕對抓不到的替換。",
   "Fabric enters a metal-goods bill of materials as the item most likely to carry the chemical compliance risk — dyes, coatings and any leather trim are what a REACH or Proposition 65 question lands on first, not the steel.": "在金屬製品的物料清單裡,布料是最可能帶進化學法遵風險的一項 — 染料、塗層與任何皮革配件才是 REACH 或 Proposition 65 問題最先落點的地方,不是鋼材。",
-  "CostNow desk": "CostNow desk"
+  "CostNow desk": "CostNow desk",
+  "Generated material illustration · appearance only; grades and properties cannot be identified from the image.": "生成材料示意圖：僅供外觀參考，無法從圖片判定牌號或性能。",
+  "Generated process illustration · general principle; not a photograph of Birdland equipment.": "生成製程示意圖：說明一般原理，並非 Birdland 設備照片。",
+  "Not to scale.": "非按實際比例繪製。",
+  "Metal manufacturing is our core. Plastic and timber components are supplied through specialist partners.": "金屬製造是我們的核心能力；塑膠與木製零件由專業合作夥伴供應。",
+  "Heat → quench → temper": "加熱 → 淬火 → 回火",
+  "Existing technical diagram": "原技術圖解",
+  "Sheet-forming example.": "板材成形示例。",
+  "Matched-die concept; not a tool design.": "配對模具概念，並非模具設計圖。",
+  "Arc-welded T-joint example.": "電弧焊接 T 型接頭示例。",
+  "Application stage only; surface preparation and curing are not shown.": "僅示範噴塗步驟；未呈現表面前處理與固化流程。",
+  "Dimensional check example; not the complete release plan.": "尺寸檢查示例，並非完整放行檢驗計畫。",
+  "TRUMPF": "TRUMPF",
+  "Bodycote": "Bodycote",
+  "TWI": "TWI",
+  "Nordson": "Nordson",
+  "NIST": "NIST"
 }

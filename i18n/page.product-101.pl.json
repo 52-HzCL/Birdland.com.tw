@@ -1017,5 +1017,21 @@
   "We plan the load pattern before the first carton is printed, because pallet fit is set by carton size — changing a carton by a few millimetres afterwards is what turns a full pallet into a part-filled one.": "Układ ładunku planujemy, zanim zostanie zadrukowany pierwszy karton, bo dopasowanie do palety wyznacza rozmiar kartonu — zmiana kartonu o kilka milimetrów później jest tym, co zamienia pełną paletę w częściowo wypełnioną.",
   "Stainless arriving at intake is two different materials: austenitic 304 cannot be hardened by heat treatment and belongs on bodies and fasteners, while martensitic 410 and 420 can — and since those two are both magnetic and visually identical, dropping the lower-carbon 410 into an edge application is the substitution no goods-in check short of a material test will catch.": "Stal nierdzewna trafiająca do magazynu przyjęć to dwa różne materiały: austenityczna 304 nie daje się utwardzić obróbką cieplną i jest właściwa na korpusy i elementy złączne, natomiast martenzytyczne 410 i 420 owszem — a ponieważ obie te gatunki są magnetyczne i wizualnie nie do odróżnienia, podstawienie niżej węglowej 410 w zastosowaniu na ostrze to zamiana, której nie wychwyci żadna kontrola przyjęcia bez badania materiału.",
   "Fabric enters a metal-goods bill of materials as the item most likely to carry the chemical compliance risk — dyes, coatings and any leather trim are what a REACH or Proposition 65 question lands on first, not the steel.": "Tkanina wchodzi do zestawienia materiałowego wyrobu metalowego jako pozycja najbardziej narażona na ryzyko zgodności chemicznej — barwniki, powłoki i wszelkie wykończenia skórzane są tym, na co najpierw trafia pytanie o REACH lub Proposition 65, a nie stal.",
-  "CostNow desk": "CostNow desk"
+  "CostNow desk": "CostNow desk",
+  "Generated material illustration · appearance only; grades and properties cannot be identified from the image.": "Wygenerowana ilustracja materiału · tylko wygląd; zdjęcie nie pozwala określić gatunku ani właściwości.",
+  "Generated process illustration · general principle; not a photograph of Birdland equipment.": "Wygenerowana ilustracja procesu · zasada ogólna; nie jest zdjęciem urządzeń Birdland.",
+  "Not to scale.": "Nie w skali.",
+  "Metal manufacturing is our core. Plastic and timber components are supplied through specialist partners.": "Produkcja metalowa to nasza specjalność. Elementy z tworzyw i drewna dostarczają wyspecjalizowani partnerzy.",
+  "Heat → quench → temper": "Nagrzewanie → hartowanie → odpuszczanie",
+  "Existing technical diagram": "Istniejący schemat techniczny",
+  "Sheet-forming example.": "Przykład formowania blachy.",
+  "Matched-die concept; not a tool design.": "Koncepcja dopasowanych matryc; nie jest projektem narzędzia.",
+  "Arc-welded T-joint example.": "Przykład złącza teowego spawanego łukowo.",
+  "Application stage only; surface preparation and curing are not shown.": "Tylko nanoszenie; przygotowanie powierzchni i utwardzanie nie są pokazane.",
+  "Dimensional check example; not the complete release plan.": "Przykład kontroli wymiarów; nie jest pełnym planem odbioru.",
+  "TRUMPF": "TRUMPF",
+  "Bodycote": "Bodycote",
+  "TWI": "TWI",
+  "Nordson": "Nordson",
+  "NIST": "NIST"
 }

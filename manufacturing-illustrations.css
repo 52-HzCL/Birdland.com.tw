@@ -1,0 +1,18 @@
+/* Generated educational plates; their labels stay real, translatable HTML. */
+.wk-head h1{overflow-wrap:anywhere;hyphens:auto}
+.wk .wk-dl dt{white-space:normal;overflow-wrap:anywhere}
+.wk-generated{margin:0;min-width:0}
+.wk-entry-grid.wk-with-generated{grid-template-columns:318px minmax(0,1fr)}
+.wk-generated-group{grid-column:1/-1;min-width:0}
+.wk-generated-group .wk-generated{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:20px;align-items:start}
+.wk-generated-art{display:block;width:100%;aspect-ratio:1;background-repeat:no-repeat;background-color:#f8f5eb;border:1px solid #d1d2c4;border-radius:4px}
+.wk-material-sample{background-image:url(images/generated/manufacturing-materials.webp);background-size:300% 300%;background-position:var(--sample-x) var(--sample-y)}
+.wk-process-example{background-image:url(images/generated/manufacturing-processes.webp);background-size:200% 300%;background-position:var(--sample-x) var(--sample-y)}
+.wk-generated-intake{width:100%;height:auto;display:block;border:1px solid #d1d2c4;border-radius:4px}
+.wk-generated figcaption{font-size:12px;line-height:1.6;padding-top:8px;color:#45574d}
+.wk-generated figcaption small{display:block;font-size:11px;line-height:1.7;color:#667166;margin-top:5px}
+.wk-generated-detail{margin-top:12px;border-top:1px solid #d1d2c4;padding-top:10px;min-width:0}
+.wk-generated-detail summary{font-size:12px;line-height:1.7;cursor:pointer;color:#174b3f}
+.wk-generated-detail .wk-diagram{margin-top:12px}
+.wk-partner-note{font-size:13px;line-height:1.8;border-left:3px solid #9d6e49;padding:10px 14px;background:#f5f2e9}
+@media(max-width:700px){.wk-entry-grid.wk-with-generated{grid-template-columns:minmax(0,1fr)}.wk-generated-group .wk-generated{display:block}.wk-generated figcaption,.wk-generated figcaption small{font-size:12px}.wk-generated-art{max-width:440px;margin:0 auto}.wk-generated-intake{max-width:440px;margin:0 auto}}

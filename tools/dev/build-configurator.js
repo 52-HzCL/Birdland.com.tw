@@ -14,6 +14,9 @@ const { REPO } = require('./_env');
 const ratings = require('./ratings.js');
 const notes = require('./rating-notes.js');
 const { TIERS, PRODUCTS } = require('./configurator-data.js');
+const { JSDOM } = require('jsdom');
+const { ORDER, HREFLANG, handoff, cluster } = require('./_langs');
+const crypto = require('crypto');
 
 // Same pool mapping as verify-config-data.js: material may come from either
 // list (e.g. "Packaging board" lives only in materials), pack from packs.
@@ -49,25 +52,33 @@ if (errs.length) {
 // ships (the same sentences, already translated and reviewed), and the UI
 // strings come from i18n/configurator.<lang>.json. Any miss is a build
 // failure — a half-translated edition must not ship.
-const LANG = process.argv[2] || 'en';
+function buildEdition(LANG) {
 const ui = JSON.parse(fs.readFileSync(path.join(REPO, 'i18n', 'configurator.' + LANG + '.json'), 'utf8'));
 const gateLabels = {};
 Object.keys(ui).forEach(k => { if (k.indexOf('gate_') === 0) gateLabels[k.slice(5)] = ui[k]; });
 
-let tiers = TIERS, products = PRODUCTS, opts = options;
+let tiers = TIERS, products = PRODUCTS, opts = options, pageDict = {};
+const optionIds = {}, optionLabels = {};
 if (LANG !== 'en') {
   const dictPath = path.join(REPO, 'i18n', 'page.product-101.' + LANG + '.json');
   const dict = JSON.parse(fs.readFileSync(dictPath, 'utf8'));
+  pageDict = JSON.parse(fs.readFileSync(path.join(REPO, 'i18n', 'page.configurator.' + LANG + '.json'), 'utf8'));
   const miss = [];
   const tr = (s, where) => { const v = dict[s]; if (!v) { miss.push(where + ': ' + s.slice(0, 60)); return s; } return v; };
   opts = {};
   Object.keys(options).forEach(n => {
     const o = options[n];
-    opts[tr(n, 'option name')] = { pop: o.pop, cost: o.cost,
+    const name = tr(n, 'option name');
+    optionIds[name] = n; optionLabels[n] = name;
+    opts[name] = { pop: o.pop, cost: o.cost,
       buyer: tr(o.buyer, 'buyer'), production: tr(o.production, 'production') };
   });
+  const copy = s => { if (!pageDict[s]) miss.push('page/structure: ' + s); return pageDict[s]; };
+  tiers = TIERS.map(t => Object.assign({}, t, { name: copy(t.name), body: copy(t.body) }));
   products = PRODUCTS.map(p => Object.assign({}, p, {
+    name: copy(p.name),
     parts: p.parts.map(part => Object.assign({}, part, {
+      name: copy(p.id === 'forged-trowel' && part.id === 'blade' ? 'Trowel blade' : part.name),
       options: Object.fromEntries(Object.entries(part.options || {}).map(([g, names]) =>
         [g, names.map(n => (dict[n] || n))]))
     }))
@@ -78,7 +89,7 @@ if (LANG !== 'en') {
     process.exit(1);
   }
 }
-const payload = { tiers, products, options: opts, ui, gateLabels };
+const payload = { tiers, products, options: opts, optionIds, optionLabels, ui, gateLabels };
 // < so the inlined JSON can never terminate the <script> that holds it.
 const json = JSON.stringify(payload).split('<').join('\\u003c');
 
@@ -93,21 +104,37 @@ if (out.includes('__CFGDATA__')) {
   console.error('build-configurator REFUSED: unsubstituted __CFGDATA__ left in output');
   process.exit(1);
 }
-// English writes the root page; a language edition rewrites only the data
-// blob of the page i18n-page.js already translated into <lang>/.
+// The shared page dictionaries and Wiki option dictionaries are authoritative.
+// Generate each shell directly: the legacy i18n-page builder requires an old
+// language picker that this page no longer uses. Shared navigation owns it now.
 if (LANG === 'en') {
-  fs.writeFileSync(path.join(REPO, 'configurator.html'), out, 'utf8');
+  fs.writeFileSync(path.join(REPO, 'configurator.html'), require('../build/site').enhancePage(out.replace('<head>', '<head>\n' + handoff('en') + cluster('configurator.html'))), 'utf8');
   console.log('built configurator.html', out.length, 'bytes —',
     PRODUCTS.length, 'products,', Object.keys(options).length, 'options inlined');
 } else {
   const langPath = path.join(REPO, LANG, 'configurator.html');
-  if (!fs.existsSync(langPath)) {
-    console.error('build-configurator REFUSED: run "node tools/dev/i18n-page.js build configurator.html ' + LANG + '" first');
-    process.exit(1);
-  }
-  const page = fs.readFileSync(langPath, 'utf8');
-  const re = new RegExp('(<script id="cfg-data" type="application/json">)([\\s\\S]*?)(</script>)');
-  if (!re.test(page)) { console.error('build-configurator REFUSED: no cfg-data block in ' + LANG + '/configurator.html'); process.exit(1); }
-  fs.writeFileSync(langPath, page.replace(re, (m, a, _b, c) => a + json + c), 'utf8');
+  const dom = new JSDOM(out), doc = dom.window.document, missing = new Set();
+  const translate = raw => { const key = raw.trim().replace(/\s+/g, ' '); if (!key || /^[\W\d]+$/u.test(key)) return raw;
+    if (pageDict[key] == null) { missing.add(key); return raw; }
+    return raw.replace(raw.trim(), pageDict[key]); };
+  const walker = doc.createTreeWalker(doc.body, dom.window.NodeFilter.SHOW_TEXT);let node;
+  while ((node = walker.nextNode())) if (!node.parentElement.closest('script,style,noscript,svg')) node.nodeValue = translate(node.nodeValue);
+  for (const el of doc.querySelectorAll('[alt],[title],[aria-label]')) for (const attr of ['alt','title','aria-label']) if (el.hasAttribute(attr)) el.setAttribute(attr, translate(el.getAttribute(attr)));
+  doc.querySelector('title').textContent = translate(doc.querySelector('title').textContent);
+  const desc = doc.querySelector('meta[name="description"]');desc.content = translate(desc.content);
+  if (missing.size) throw Error('configurator ' + LANG + ': missing shell translations: ' + [...missing].join(' / '));
+  doc.documentElement.lang = HREFLANG[LANG];
+  doc.head.insertAdjacentHTML('afterbegin', handoff(LANG) + cluster('configurator.html'));
+  for (const el of doc.querySelectorAll('[href],[src]')) for (const attr of ['href','src']) { const value = el.getAttribute(attr);if (value && /^(?:[a-z0-9_-]+\.(?:css|js|html|svg|webmanifest)|images\/)/i.test(value)) el.setAttribute(attr,'../'+value); }
+  let page = require('../build/site').enhancePage(dom.serialize(), '../');
+  const hash = crypto.createHash('sha1').update(fs.readFileSync(path.join(REPO,'configurator.html'))).digest('hex');
+  page = page.replace(/<!doctype html>/i, '<!doctype html>\n<!-- i18n-src:' + hash + ' -->');
+  fs.mkdirSync(path.dirname(langPath), {recursive:true});
+  fs.writeFileSync(langPath, page, 'utf8');
   console.log('localised ' + LANG + '/configurator.html —', Object.keys(opts).length, 'options,', Object.keys(ui).length, 'UI strings');
 }
+}
+const requested = process.argv[2] || 'all';
+if (requested === 'all' || requested === '--all') ['en', ...ORDER].forEach(buildEdition);
+else if (['en', ...ORDER].includes(requested)) buildEdition(requested);
+else throw Error('Unknown configurator edition: ' + requested);

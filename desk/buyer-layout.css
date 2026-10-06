@@ -1,0 +1,599 @@
+
+/* AsiaSource 2026 — procurement decisions + public product references + local email brief */
+:root{
+  --kb-bg:#F5F1E8;--kb-panel:#FFFDF8;--kb-line:#D8D1C4;--kb-line2:#BFC8C1;
+  --kb-ink:#172D27;--kb-mut:#55615C;--kb-faint:#7B817D;
+  --kb-accent:#0E6652;--kb-accent-dk:#073F35;--kb-accent-soft:rgba(14,102,82,.10);
+  --kb-green:#0E6652;--kb-green-bg:#E6F0EB;--kb-red:#A83C2E;--kb-red-bg:#F7E8E3;
+  --kb-amber:#B96720;--kb-amber-bg:#F7ECDD;--kb-radius:10px;
+  --kb-shadow:0 2px 10px rgba(30,45,38,.045);
+  --pd-ivory:#F5F1E8;--pd-paper:#FFFDF8;--pd-jade:#073F35;--pd-jade-2:#0E6652;
+  --pd-jade-soft:#E6F0EB;--pd-copper:#B65C2B;--pd-copper-soft:#F7ECDD;
+  --pd-line:#D8D1C4;--pd-muted:#69716C;--pd-manual:#858B88;
+}
+body.theme-light{background:linear-gradient(rgba(7,63,53,.018) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(7,63,53,.018) 1px,transparent 1px),
+  var(--pd-ivory)!important;background-size:32px 32px!important;color:var(--pd-jade)!important}
+body.theme-light .topbar{top:0!important;background:rgba(255,253,248,.98)!important;border:0!important;border-bottom:1px solid var(--pd-line)!important;box-shadow:none!important}
+body.theme-light .tb{min-height:58px!important}
+body.theme-light .topbar a,body.theme-light .topbar .sysgrp,body.theme-light .topbar .tpk{color:var(--pd-jade)!important}
+body.theme-light .topbar .brand{font-family:var(--ff-serif)!important;letter-spacing:.04em!important}
+body.theme-light .topbar .back{color:var(--pd-jade)!important}
+body.theme-light .topbar .sysgrp,body.theme-light .topbar .tpk{background:transparent!important;border-color:var(--pd-line)!important;box-shadow:none!important}
+body.theme-light .topbar .sys-hq,body.theme-light .topbar .sys-hq b{color:var(--pd-jade)!important}
+body.theme-light .topbar .sys-time{color:var(--pd-muted)!important}
+
+body.theme-light main.wrap{max-width:1920px!important;padding:0 var(--sp-5) var(--sp-5)!important;gap:24px!important}
+body.theme-light #p-col{min-width:0!important}
+
+body.theme-light #p-rail{width:236px!important;flex-basis:236px!important;top:76px!important;max-height:calc(100vh - 90px)!important;margin-top:var(--sp-4)!important;padding:0 0 16px!important;border:1px solid var(--pd-line)!important;border-radius:0!important;background:rgba(255,253,248,.96)!important;box-shadow:none!important}
+
+
+
+
+#p-rail .toc{padding:var(--sp-2) 0 0!important}
+
+#p-rail .toc a{margin:0!important;padding:var(--sp-2) var(--sp-4)!important;border:0!important;border-radius:0!important;color:#2F3934!important;font-size:var(--fs-h3)!important;letter-spacing:.01em!important}
+#p-rail .toc a::before{width:20px!important;color:#4B5550!important}
+#p-rail .toc a:hover{background:var(--paper-2)!important}
+#p-rail .toc a.on{background:var(--pd-jade)!important;color:#fff!important;border-left:4px solid var(--pd-copper)!important;box-shadow:none!important;padding-left:16px!important}
+.pr-install-card{margin:8px var(--sp-3) var(--sp-3)!important;padding:var(--sp-2)!important;border-color:var(--pd-line)!important;border-radius:6px!important;background:var(--paper-2)!important}
+.pr-install-card .tool-btn{font-size:var(--fs-body)!important}
+
+
+body.theme-light .hero.pd-buy-hero{margin:0!important;padding:var(--sp-5) 4px var(--sp-4)!important;border:0!important;border-bottom:1px solid var(--pd-line)!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+
+
+body.theme-light .hero .lede{max-width:820px!important;margin:var(--sp-2) 0 0!important;color:#4D5651!important;font:400 var(--fs-h2)/1.55 var(--kb-sans)!important}
+
+
+
+body.theme-light .hero .hero-actions{display:none!important}
+
+
+
+body.theme-light #dash{padding:var(--sp-4) 0 0!important}
+
+.pd-panel-head>div{min-width:0}
+
+
+
+.pd-kpis{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:var(--sp-3)!important;margin-bottom:var(--sp-3)!important}
+.pd-kpi{padding:var(--sp-3) 16px var(--sp-3)!important;border-radius:var(--r-sm)!important;box-shadow:none!important;background:var(--pd-paper)!important;transition:transform var(--dur-slow) ease,border-color var(--dur-slow) ease}
+.pd-kpi:hover{transform:translateY(-2px);border-color:#AABAB2!important}
+.pd-kpi::before{display:none!important}
+.pd-kpi-title{font-size:var(--fs-h3)!important}
+.pd-kpi-call{font-size:var(--fs-body)!important}
+.pd-kpi-viz{margin:var(--sp-2) 0 var(--sp-2)!important}
+.pd-kpi-icon{width:34px!important;height:34px!important;flex-basis:34px!important;border-radius:50%!important;font-size:var(--fs-h2)!important}
+.pd-kpi-meta{font-size:var(--fs-small)!important}
+.pd-kpi-action{font-size:var(--fs-body)!important;line-height:1.45!important}
+.pd-spark{height:29px!important}
+
+
+
+.pd-panel-head{min-height:60px;padding:var(--sp-3) var(--sp-3)!important;background:transparent!important}
+.pd-panel-head h2{font:700 var(--fs-h2)/1.1 var(--ff-serif)!important}
+.pd-panel-head>span{align-self:flex-end;padding-bottom:var(--sp-1)}
+
+
+
+
+.pd-offer-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:0!important;padding:0!important}
+.pd-offer{display:flex!important;flex-direction:column!important;gap:0!important;min-height:286px!important;padding:0!important;border:0!important;border-right:1px solid var(--pd-line)!important;border-radius:0!important;background:var(--pd-paper)!important}
+.pd-offer img{width:100%!important;height:146px!important;border-radius:0!important;object-fit:cover!important;filter:saturate(.72) contrast(.98) sepia(.08)!important}
+.pd-offer-copy{display:flex!important;flex:1!important;flex-direction:column!important;padding:var(--sp-3)!important}
+.pd-offer-copy h3{font:700 var(--fs-h2)/1.18 var(--ff-serif)!important}
+.pd-product-type{font-size:var(--fs-micro)!important;letter-spacing:.15em!important}
+.pd-product-note{font-size:var(--fs-body)!important}
+.pd-offer-meta{grid-template-columns:1fr!important;margin:var(--sp-3) 0!important}
+.pd-offer-meta span:not(:first-child){display:none}
+.pd-offer .pd-link{margin-top:auto!important;padding:8px var(--sp-2)!important;border-radius:var(--r-sm)!important;text-transform:uppercase;letter-spacing:.06em;font-size:var(--fs-small)!important}
+.pd-platform-card{display:flex;flex-direction:column;min-height:286px;border-right:1px solid var(--pd-line);background:var(--paper)}
+.pd-platform-card:last-child{border-right:0}
+.pd-platform-card img{width:100%;height:146px;object-fit:cover;filter:saturate(.65) contrast(.98) sepia(.08)}
+.pd-platform-copy{display:flex;flex:1;flex-direction:column;padding:var(--sp-3)}
+.pd-platform-copy span{color:var(--pd-copper);font:700 var(--fs-micro) var(--kb-sans);letter-spacing:.15em;text-transform:uppercase}
+.pd-platform-copy h3{margin:var(--sp-2) 0;color:var(--pd-jade);font:700 var(--fs-h2)/1.2 var(--ff-serif)}
+.pd-platform-copy p{margin:0;color:var(--pd-muted);font:500 var(--fs-small)/1.45 var(--kb-sans)}
+.pd-platform-copy a,.pd-platform-copy button{margin-top:auto;padding:var(--sp-2) 0 0;border:0;background:transparent;color:var(--pd-jade);font:700 var(--fs-small) var(--kb-sans);letter-spacing:.04em;text-align:left;text-decoration:none;text-transform:uppercase;cursor:pointer}
+.pd-platform-copy a:hover,.pd-platform-copy button:hover{text-decoration:underline}
+
+
+
+
+
+.pd-market-list{border-bottom:1px solid var(--pd-line)}
+.pd-market-row{grid-template-columns:68px 1fr 92px!important;min-height:61px!important;padding:8px var(--sp-3)!important}
+.pd-market-name b{font-size:var(--fs-body)!important}
+.pd-market-name span{font-size:var(--fs-micro)!important}
+.pd-market-detail{font-size:var(--fs-micro)!important}
+.pd-market-impact{font-size:var(--fs-micro)!important;border-radius:var(--r-sm)!important}
+
+
+
+
+.pd-room-chips{position:static!important;justify-content:flex-start!important;margin:var(--sp-2) 0!important}
+.pd-room-chip{min-width:27px!important;border-radius:var(--r-sm)!important;background:var(--paper-2)!important}
+.pd-room-chip.on{background:var(--pd-jade)!important}
+.pd-room-fact{padding:8px 0!important}
+.pd-room-fact b{font-size:var(--fs-small)!important}
+.pd-room-fact span{-webkit-line-clamp:2!important;font-size:var(--fs-small)!important}
+
+
+
+.pd-builder{margin:0 0 16px;border:1px solid var(--pd-line);background:var(--pd-paper)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.pd-platform-copy a:focus-visible,.pd-platform-copy button:focus-visible{
+  outline:2px solid var(--pd-copper)!important;outline-offset:2px!important
+}
+
+/* Remove legacy blue accents from detailed tools. Buyer-cost red/green semantics remain. */
+.theme-light .dh.c,.theme-light .fr-src a,.theme-light footer a,.theme-light .bcrow.tot b,.theme-light .sailcard .big,.theme-light .calc-row.tot .val{color:var(--pd-jade-2)!important}
+.theme-light .supplyb{border-left-color:var(--pd-jade-2)!important}
+.pi.lead{border-color:#B8CEC4!important;background:var(--pd-jade-soft)!important}
+.toc-toggle{border-color:#B8CEC4!important;background:var(--pd-jade-soft)!important;box-shadow:none!important}
+.toc-toggle:hover{background:#DCEAE3!important;box-shadow:none!important}
+
+@media(max-width:1250px){
+
+
+
+  .pd-market-list{border-right:1px solid var(--pd-line);border-bottom:0}
+
+
+}
+@media(max-width:899px){
+  body.theme-light main.wrap{padding:0 var(--sp-3) 24px!important}
+  body.theme-light #p-rail{width:auto!important;flex-basis:auto!important;top:auto!important;margin-top:var(--sp-3)!important}
+  #p-rail .toc{padding:8px!important}
+  #p-rail .toc a{border-radius:var(--r-sm)!important}
+  .pd-kpis{grid-template-columns:1fr!important}
+  .pd-offer-grid{grid-template-columns:1fr!important}
+  .pd-offer,.pd-platform-card{border-right:0!important;border-bottom:1px solid var(--pd-line)!important}
+
+
+
+
+
+}
+@media(max-width:680px){
+
+
+
+
+
+  .pd-market-list{border-right:0;border-bottom:1px solid var(--pd-line)}
+  .pd-offer{grid-template-columns:1fr!important}
+  .pd-offer img{height:190px!important}
+
+
+
+
+
+
+
+
+
+
+}
+@media(prefers-reduced-motion:reduce){
+  .pd-kpi{transition:none!important}.pd-kpi:hover{transform:none!important}
+}
+
+/* AsiaSource type system and reciprocal Product 101 / Buying tools navigation. */
+:root{
+  --kb-sans:"Manrope",var(--ff-sans);
+  --kb-mono:"DM Mono",var(--ff-mono);
+  --bd-serif:"Playfair Display",var(--ff-serif);
+}
+body,body.theme-light{font-family:var(--kb-sans)!important}
+.bd-shell{
+  font-family:var(--kb-sans);
+  font-size:var(--fs-body);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.bd-shell button,.bd-shell select,.bd-shell input{font-family:inherit}
+.bd-mast-brand{font:600 var(--fs-h2)/1 var(--bd-serif);letter-spacing:.12em}
+.bd-mast-brand small{font:600 var(--fs-micro)/1.2 var(--kb-sans);letter-spacing:.14em}
+
+
+
+
+
+
+
+
+
+
+.bd-install-card .tool-btn{font:600 var(--fs-micro)/1.35 var(--kb-sans)!important}
+.bd-install-card small{font-size:var(--fs-micro);line-height:1.5}
+.bd-shell .bd-work-head h1{
+  font:600 calc(clamp(32px,2.6vw,32px) * var(--ui-scale-display))/1.08 var(--bd-serif)!important;
+  letter-spacing:-.025em!important;
+}
+.bd-work-head p{max-width:720px;font-size:var(--fs-small);line-height:1.55}
+.bd-updated{font:500 var(--fs-micro)/1.4 var(--kb-mono);letter-spacing:.04em}
+.bd-cost-floor-head h2{font:600 var(--fs-body)/1.25 var(--bd-serif);letter-spacing:0;text-transform:none}
+.bd-cost-floor-head p{font-size:var(--fs-micro);line-height:1.45}
+.bd-cost-floor-head>span{font:500 var(--fs-micro)/1.35 var(--kb-mono)}
+.bd-signal-deck .pd-kpi-title,.bd-signal-deck .pd-kpi-call{font-size:var(--fs-micro)!important}
+.bd-signal-deck .pd-kpi-meta{font:500 var(--fs-micro)/1.35 var(--kb-mono)!important}
+.bd-signal-deck .pd-kpi-action{font-size:var(--fs-micro)!important;line-height:1.45!important}
+.bd-floor-divider b{font:600 var(--fs-micro)/1.3 var(--kb-sans)}
+.bd-floor-divider span{font-size:var(--fs-micro);line-height:1.4}
+.bd-floor-card h3{font:600 var(--fs-small)/1.35 var(--kb-sans)}
+.bd-floor-value{font:600 var(--fs-h3)/1 var(--bd-serif)}
+.bd-floor-card p,.bd-floor-read{font-size:var(--fs-micro);line-height:1.5}
+.bd-floor-card footer{font:500 var(--fs-micro)/1.4 var(--kb-mono)}
+.bd-family-tab,.bd-model-tab{font:600 var(--fs-micro)/1.3 var(--kb-sans);letter-spacing:.035em}
+.bd-family-tab small{font:500 var(--fs-micro)/1.35 var(--kb-sans)}
+.bd-option-group h3,.bd-priority h3{
+  font:600 var(--fs-micro)/1.35 var(--kb-sans);
+  letter-spacing:.055em;
+}
+
+.bd-part{font-size:var(--fs-micro);line-height:1.35}
+.bd-part b{font:600 var(--fs-micro)/1 var(--kb-mono)}
+.bd-choice{padding:var(--sp-2)}
+.bd-choice b{font:600 var(--fs-micro)/1.3 var(--kb-sans);text-transform:none}
+.bd-choice>small{font:500 var(--fs-micro)/1.35 var(--kb-mono);letter-spacing:.01em;text-transform:none}
+.bd-choice>span:not(.bd-choice-visual){font-size:var(--fs-micro);line-height:1.4}
+.bd-option-group h3:after{font:500 var(--fs-micro)/1 var(--kb-mono)}
+.bd-options .bd-choice-head b{font:600 var(--fs-micro)/1.3 var(--kb-sans)}
+.bd-options .bd-choice-head small{font:500 var(--fs-micro)/1.35 var(--kb-mono)}
+.bd-options .bd-choice-purpose{font-size:var(--fs-micro)!important;line-height:1.4!important}
+.bd-priority .bd-choice b{font-size:var(--fs-small)}
+.bd-priority .bd-choice>span:not(.bd-choice-visual){font-size:var(--fs-micro);line-height:1.45}
+.bd-cost-method{font-size:var(--fs-micro);line-height:1.5}
+.bd-brief-title{font:600 var(--fs-h2)/1.1 var(--bd-serif);letter-spacing:.025em}
+.bd-brief-kicker{font-size:var(--fs-micro);line-height:1.5}
+.bd-brief dl div{font-size:var(--fs-micro);line-height:1.4}
+
+/* The brief is a 2,000px reading block and it was set almost entirely at the
+   11px floor. That floor is for labels and captions, not for the longest
+   continuous text on the desk. */
+.bd-brief dl div,
+.bd-brief-kicker{font-size:var(--fs-small);line-height:1.55}
+.bd-brief dl div{grid-template-columns:118px 1fr}
+
+/* Title and actions on one line. They were 1,700px apart — the buttons sat at
+   the very bottom, so taking a copy of the brief meant scrolling past all of
+   it first. Sticky, because the brief is longer than the viewport. */
+/* Not sticky. It was, until the measurement showed it never pinned: the
+   root carries overflow-x:hidden — the guard that stops the Buyer topbar,
+   860px wide at 390, from showing a horizontal scrollbar — and a scroll
+   container at the root disables position:sticky underneath it. Removing a
+   load-bearing guard to win a sticky header is the wrong trade. */
+.bd-brief-head{
+  display:flex;align-items:center;justify-content:space-between;gap:var(--sp-3);
+  margin:var(--sp-3) 0 var(--sp-2);padding:var(--sp-2) 0 var(--sp-3);
+  border-bottom:1px dotted rgba(5,55,45,.35);
+  background:var(--paper);
+}
+.bd-brief-head .bd-brief-title{margin:0;padding:0;border:0;text-align:left;white-space:nowrap}
+.bd-brief-head .bd-actbar{margin:0;flex:0 0 auto;gap:6px}
+.bd-brief-head .bd-share-status{display:none}
+/* The tooltip is centred under its button; against the right edge of the
+   column the last two would leave the page, so they open leftwards. */
+.bd-brief-head .bd-act:nth-last-child(2) .bd-act-tip,
+.bd-brief-head .bd-act:nth-last-child(3) .bd-act-tip{left:auto;right:0;transform:none}
+
+/* Wide screens only: at 460px the list finally has room for two columns. */
+@media(min-width:1660px){
+  .bd-brief dl{display:grid;grid-template-columns:1fr 1fr;gap:0 var(--sp-3)}
+  .bd-brief dl div{grid-template-columns:1fr;gap:2px}
+  .bd-brief dt{font-size:var(--fs-micro)}
+}
+.bd-brief-section-title{font:600 var(--fs-micro)/1.35 var(--kb-mono)}
+.bd-impact-head span,.bd-impact-head strong,.bd-next-action span{font-family:var(--kb-mono)}
+.bd-impact-card h4,.bd-next-action b{font-family:var(--kb-sans);font-weight:600;font-size:var(--fs-small)}
+.bd-impact-card p,.bd-next-action p{font-size:var(--fs-small);line-height:1.55}
+.bd-impact-data span{font-size:var(--fs-micro);line-height:1.4}.bd-impact-data b{font-family:var(--kb-mono);font-size:var(--fs-micro)}
+.bd-check,.bd-confirm{font-size:var(--fs-small);line-height:1.55}
+
+.bd-brief>small{font-size:var(--fs-micro);line-height:1.5}
+.bd-route h3{font:600 var(--fs-micro)/1.35 var(--kb-sans)}
+.bd-route-node{font-size:var(--fs-micro);line-height:1.4}
+.bd-references h2,.bd-tools h2{font:600 var(--fs-h2)/1.15 var(--bd-serif)}
+.bd-references p,.bd-tools p{font-size:var(--fs-micro);line-height:1.45}
+.bd-tool-links button,.bd-tool-links a{font:600 var(--fs-micro)/1.35 var(--kb-sans)}
+.bd-privacy{font-size:var(--fs-micro);line-height:1.45}
+.bd-privacy button{font:600 var(--fs-micro)/1.3 var(--kb-sans)}
+
+/* Landed-cost workspace — a focused buyer tool, not a generic calculator */
+.landed-tool .blk-b{padding:0!important;background:var(--kb-panel)!important}
+.landed-tool-nav{display:flex;gap:var(--sp-2);overflow-x:auto;padding:var(--sp-3) var(--sp-4);border-bottom:1px solid var(--kb-line);scrollbar-width:thin}
+.landed-tool-nav button{flex:0 0 auto;min-height:32px;padding:0 var(--sp-2);border:1px solid var(--kb-line);border-radius:999px;background:var(--kb-bg);color:var(--kb-mut);font:600 var(--fs-micro)/1.2 var(--kb-sans);cursor:pointer;transition:background var(--dur-slow) ease,border-color var(--dur-slow) ease,color var(--dur-slow) ease}
+.landed-tool-nav button:hover,.landed-tool-nav button:focus-visible{border-color:var(--kb-accent);color:var(--kb-accent-dk);outline:none}
+.landed-tool-nav button.on{border-color:var(--kb-accent);background:var(--kb-accent);color:#fff}
+.landed-workspace{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(330px,.82fr);gap:var(--sp-3);padding:var(--sp-4)}
+.landed-input-panel,.landed-summary{min-width:0;border:1px solid var(--kb-line);border-radius:var(--r-md);background:var(--kb-bg)}
+.landed-input-panel{padding:var(--sp-4)}
+.landed-panel-head>span,.landed-summary-head>span{display:block;color:var(--kb-accent);font:600 var(--fs-micro)/1.2 var(--kb-mono);letter-spacing:.07em;text-transform:uppercase}
+.landed-panel-head h3,.landed-summary h3{margin:var(--sp-2) 0 var(--sp-1);color:var(--kb-ink);font:600 var(--fs-h2)/1.15 var(--bd-serif)}
+.landed-panel-head p{max-width:660px;margin:0 0 var(--sp-3);color:var(--kb-mut);font-size:var(--fs-micro);line-height:1.55}
+.landed-form{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:var(--sp-2)!important;margin:0!important}
+.landed-form>div{padding:var(--sp-2);border:1px solid rgba(5,55,45,.13);border-radius:var(--r-md);background:var(--kb-panel)}
+.landed-form>div:first-child{grid-column:1/-1;background:var(--kb-accent-soft);border-color:rgba(14,102,82,.24)}
+.landed-form label{display:block!important;margin:0 0 var(--sp-2)!important;font-size:var(--fs-micro)!important}
+.landed-form input,.landed-form select{width:100%;height:36px;padding:0 var(--sp-2)!important;border-radius:6px!important;font-size:var(--fs-small)!important}
+.landed-note{margin:var(--sp-3) 0 0;padding:var(--sp-2) var(--sp-2);border-left:3px solid var(--kb-amber);background:var(--kb-amber-bg);color:var(--kb-ink-700,#353b37);font-size:var(--fs-micro);line-height:1.5}
+.landed-summary{padding:var(--sp-4);border-top:3px solid var(--kb-accent);background:linear-gradient(180deg,#fffdf8 0%,var(--paper-2) 100%)}
+.landed-summary-head{display:flex;justify-content:space-between;gap:var(--sp-2);align-items:center}
+.landed-summary-head b{color:var(--kb-faint);font:500 var(--fs-micro)/1.2 var(--kb-mono)}
+.landed-summary h3{margin-bottom:16px}
+.landed-hero-result{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--sp-1);overflow:hidden;border:1px solid rgba(5,55,45,.18);border-radius:var(--r-md);background:rgba(5,55,45,.18)}
+.landed-hero-result>div{padding:var(--sp-3);background:var(--kb-panel)}
+.landed-hero-result span{display:block;color:var(--kb-faint);font:600 var(--fs-micro)/1.3 var(--kb-sans);letter-spacing:.06em;text-transform:uppercase}
+.landed-hero-result strong{display:block;margin-top:var(--sp-1);color:var(--kb-accent-dk);font:600 calc(clamp(22px,2.2vw,32px) * var(--ui-scale-display))/1 var(--bd-serif);letter-spacing:-.03em}
+.landed-hero-result small{display:block;margin-top:var(--sp-2);color:var(--kb-amber);font:600 var(--fs-micro)/1.3 var(--kb-mono)}
+.landed-tool .bcbar{height:15px;margin:16px 0 var(--sp-2);border:0;border-radius:999px;background:#e7e4dc}
+.landed-tool .bcbar i{font-size:0}.landed-tool .bclegend{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-2) var(--sp-2);font:500 var(--fs-micro)/1.35 var(--kb-mono)}
+.landed-tool .bclegend>span{min-width:0}.landed-tool .bclegend i{width:8px;height:8px;border-radius:50%}
+.landed-breakdown{margin-top:var(--sp-3);padding-top:4px;border-top:1px solid var(--kb-line)}
+.landed-tool .bcrow{padding:8px 0;font-size:var(--fs-micro);line-height:1.35}.landed-tool .bcrow span{color:var(--kb-mut);font-family:var(--kb-sans)}.landed-tool .bcrow b{color:var(--kb-ink);font:600 var(--fs-micro)/1.3 var(--kb-mono)}
+.landed-tool .bcrow.tot{margin-top:var(--sp-1);padding:var(--sp-2) 0;border-top:1px solid var(--kb-line)}.landed-tool .bcrow.tot span{color:var(--kb-accent-dk);font-weight:700}.landed-tool .bcrow.tot b{font-size:var(--fs-h3)}
+@media(max-width:900px){.landed-workspace{grid-template-columns:1fr}.landed-summary{order:-1}.landed-form{grid-template-columns:repeat(3,minmax(0,1fr))!important}.landed-form>div:first-child{grid-column:auto}}
+
+/* Persistent AsiaSource status bar */
+:root{--buyer-status-height:64px}
+body.theme-light{padding-top:var(--buyer-status-height)}
+body.theme-light .topbar{position:fixed!important;top:0!important;right:0;left:0;z-index:200!important;height:var(--buyer-status-height);background:rgba(255,253,248,.97)!important;border-bottom:1px solid rgba(5,55,45,.18)!important;box-shadow:0 8px 22px rgba(5,55,45,.07)!important;backdrop-filter:blur(18px) saturate(155%)!important;-webkit-backdrop-filter:blur(18px) saturate(155%)!important}
+body.theme-light .topbar .tb{min-height:var(--buyer-status-height)!important;padding:0 var(--sp-4)!important;gap:var(--sp-3);align-items:center!important}
+body.theme-light .tb-left{flex:0 0 auto;gap:var(--sp-2)}
+body.theme-light .tb-left .brand{padding-right:var(--sp-3);border-right:1px solid rgba(5,55,45,.18);color:var(--pd-jade)!important;font:600 var(--fs-body)/1 var(--bd-serif)!important;letter-spacing:.08em!important}
+body.theme-light .tb-left .brand .vip{font:600 var(--fs-micro)/1 var(--kb-mono);letter-spacing:.1em}
+body.theme-light .tb-left .back{color:var(--pd-muted)!important;font:600 var(--fs-micro)/1.2 var(--kb-mono)!important;letter-spacing:.07em!important}
+body.theme-light .tb-right{display:flex!important;min-width:0;margin-left:auto;gap:var(--sp-2)!important;align-items:center!important;justify-content:flex-end}
+body.theme-light .topbar .sysgrp,body.theme-light .topbar .tpk,body.theme-light .topbar .tpk-hol,body.theme-light .topbar a.back{display:inline-flex!important;align-items:center;min-height:34px;margin:0!important;padding:0 var(--sp-2)!important;border:1px solid var(--pd-line)!important;border-radius:var(--r-md)!important;background:rgba(255,255,255,.58)!important;color:var(--pd-jade)!important;box-shadow:0 1px 0 rgba(255,255,255,.8) inset!important;font:600 var(--fs-micro)/1.2 var(--kb-sans)!important;letter-spacing:.02em!important;white-space:nowrap}
+body.theme-light .topbar .sysgrp::before{width:6px;height:6px;margin-right:var(--sp-1);background:#6b9e5c;box-shadow:0 0 0 3px rgba(107,158,92,.12)}
+body.theme-light .topbar .sysgrp b{color:inherit!important;font:600 var(--fs-micro)/1.2 var(--kb-sans)!important}
+body.theme-light .topbar .sys-hq{gap:var(--sp-2)!important;padding-right:0!important}
+
+body.theme-light .topbar .sys-hq #tpkSt{color:#9AA1A9!important;font:600 var(--fs-micro)/1 var(--kb-mono)!important;letter-spacing:.06em!important}
+
+body.theme-light .topbar .sys-hq.is-online #tpkSt{color:#5d8d58!important}
+body.theme-light .topbar .sys-time{min-height:32px;padding:0 var(--sp-2);border-left:1px solid var(--pd-line);color:var(--pd-muted)!important;font:500 var(--fs-micro)/1.2 var(--kb-mono)!important}
+body.theme-light .topbar .sys-time #tpkTime{color:var(--pd-jade)!important;font:600 var(--fs-body)/1 var(--kb-mono)!important;letter-spacing:-.05em}
+body.theme-light .topbar .tpk-hol{max-width:245px;overflow:hidden;text-overflow:ellipsis;color:var(--pd-muted)!important;font:500 var(--fs-micro)/1.2 var(--kb-sans)!important}
+
+
+
+
+
+
+
+
+
+
+
+
+
+body.theme-light .topbar a.back:last-child{gap:var(--sp-1);border-color:rgba(5,55,45,.28)!important;color:var(--pd-jade)!important;font:600 var(--fs-micro)/1.2 var(--kb-mono)!important}
+body.theme-light .topbar a.back:last-child:hover,body.theme-light .topbar a.back:last-child:focus-visible{background:var(--pd-jade)!important;color:#fff!important;outline:none}
+
+@media(max-width:720px){
+  .bd-mast{align-items:flex-start;flex-direction:column}
+
+
+
+  .bd-shell .bd-work-head h1{font-size:var(--fs-h1)!important}
+  .landed-tool-nav{padding:var(--sp-3)}.landed-workspace{gap:var(--sp-3);padding:var(--sp-3)}.landed-input-panel,.landed-summary{padding:var(--sp-3)}.landed-panel-head h3,.landed-summary h3{font-size:var(--fs-h3)}.landed-form{grid-template-columns:1fr 1fr!important}.landed-form>div:first-child{grid-column:1/-1}.landed-hero-result{grid-template-columns:1fr}.landed-tool .bclegend{grid-template-columns:1fr}.landed-tool .bcrow.tot b{font-size:var(--fs-body)}
+  :root{--buyer-status-height:54px}body.theme-light .topbar .tb{min-height:var(--buyer-status-height)!important;padding:0 var(--sp-3)!important;gap:var(--sp-2);overflow-x:auto;scrollbar-width:none}body.theme-light .topbar .tb::-webkit-scrollbar{display:none}body.theme-light .tb-left{display:none!important}body.theme-light .tb-right{margin:0!important;justify-content:flex-start;gap:var(--sp-2)!important}body.theme-light .topbar .sysgrp,body.theme-light .topbar .tpk,body.theme-light .topbar .tpk-hol,body.theme-light .topbar a.back{min-height:32px!important;flex:0 0 auto}body.theme-light .topbar .tpk-hol{display:none!important}body.theme-light .topbar .sys-time{padding:0 var(--sp-2)}.topbar .tb-right>.back:last-child{display:none!important}
+}
+/* ===== Buying Tools · stage A: quiet inputs, loud answer ===== */
+.calc{display:flex;flex-wrap:wrap;gap:0 var(--sp-5);margin:0 0 var(--sp-3);padding:var(--sp-3) var(--sp-3);background:var(--kb-panel);border:1px solid var(--kb-line);border-radius:10px}
+.calc>div{flex:0 1 auto;min-width:104px;padding:var(--sp-1) 0 var(--sp-1);border-bottom:1.5px solid var(--kb-line2)}
+.calc label{margin-bottom:var(--sp-1);font-size:var(--fs-micro);letter-spacing:.1em;color:var(--kb-faint)}
+.calc input,.calc select{width:100%;padding:var(--sp-1) 0;border:0;border-radius:0;background:transparent;box-shadow:none;color:var(--kb-ink);font-family:var(--mono);font-size:var(--fs-h3);font-weight:600;font-variant-numeric:tabular-nums}
+.calc input:focus,.calc select:focus{outline:0}
+.calc>div:focus-within{border-bottom-color:var(--kb-accent)}
+.calc select{cursor:pointer}
+/* The declared headline figures, promoted to the top of the tool. */
+.tool-hero{grid-column:1/-1;display:grid;grid-template-columns:1.5fr 1fr;gap:var(--sp-3);margin-bottom:var(--sp-1)}
+.tool-hero .b-tile{padding:var(--sp-4) var(--sp-4)}
+.tool-hero .b-tile.hero{background:var(--kb-accent-dk,var(--jade-900));border-color:var(--kb-accent-dk,var(--jade-900))}
+.tool-hero .b-tile.hero .b-k{color:rgba(255,255,255,.62)}
+.tool-hero .b-tile.hero .b-v{color:#fff}
+.tool-hero .b-v{font-family:var(--mono);font-size:var(--fs-h1);font-weight:600;line-height:1.05;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.tool-hero .b-tile:not(.hero) .b-v{font-size:var(--fs-h1)}
+.tool-hero .b-k{font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.1em}
+@media(max-width:900px){.calc{gap:0 var(--sp-4)}.tool-hero{grid-template-columns:1fr}}
+@media print{.tool-hero .b-tile.hero{background:#fff;border-color:#1A1D20}.tool-hero .b-tile.hero .b-k{color:#5A626A}.tool-hero .b-tile.hero .b-v{color:#1A1D20}}
+
+/* The install prompt renders empty when the browser offers no prompt; an
+   empty bordered card reads as a broken row in the rail. */
+.pr-install-card:empty{display:none}
+/* body.theme-light .calc input carries two classes, so the filter-bar rule
+   has to match that weight to strip the box back to an underline. */
+.blk-b .calc input,.blk-b .calc select,body.theme-light .calc input,body.theme-light .calc select,.calc #s_o,.calc #s_d,.calc #bc_co,.calc select.mkt{
+  padding:var(--sp-1) 0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;
+  color:var(--kb-ink)!important;font-family:var(--mono)!important;font-size:var(--fs-h3);font-weight:600;font-variant-numeric:tabular-nums}
+
+/* This was outline:0!important;box-shadow:none!important. It beat the ring set
+   further up (.calc input:focus, which gives a 3px accent shadow) on both
+   specificity and source order, so it removed the ring and put nothing back:
+   a focused field on the landed-cost calculator rendered pixel-identical to an
+   unfocused one. Measured — outline-width went 3px -> 0px on focus, with
+   outline-style:none and no shadow or border either way. Someone working the
+   calculator by keyboard had no way to see which of the eleven fields they
+   were in. One ring, kept to a single indicator so the doubled outline this
+   rule was presumably written to suppress does not come back. */
+.blk-b .calc input:focus,.blk-b .calc select:focus{outline:2px solid var(--kb-accent,#0a6b52)!important;outline-offset:1px;box-shadow:none!important}
+.calc>div:focus-within{border-bottom-color:var(--kb-accent)}
+
+.tool-explain{display:block;margin-top:16px;padding:var(--sp-2) var(--sp-3);border:1px solid var(--kb-line);border-left:2px solid var(--kb-accent,#0E6652);border-radius:var(--r-md);background:var(--kb-panel);color:var(--kb-ink);font-size:var(--fs-body);text-decoration:none}
+.tool-explain span{display:block;margin-bottom:var(--sp-1);color:var(--kb-accent,#0E6652);font:700 var(--fs-micro) var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.tool-explain:hover,.tool-explain:focus-visible{border-color:var(--kb-accent,#0E6652)}
+@media print{.tool-explain{display:none}}
+
+/* ---- Stage C: one buying context, and a way out of every tool ---- */
+/* The context card sits in the rail above the mode switch, so it is present in
+   Information and in Tools alike. Its fields stack because the rail is narrow —
+   which reads better here anyway: three short answers, one per line.
+
+   It borrows the rail's own frame rather than inventing a second one: the same
+   14px radius, border and lift as .toc, and the rail's sans throughout. An
+   earlier pass gave it a 10px radius and a mono heading, which put two
+   different card languages one above the other in a 260px column. */
+.pr-ctx{margin:var(--sp-3) var(--sp-2) var(--sp-1);padding:var(--sp-3) var(--sp-3) var(--sp-3);background:var(--kb-panel);border:1px solid var(--kb-line);
+  border-radius:var(--r-md);box-shadow:0 5px 16px rgba(49,56,48,.05)}
+.pr-ctx-h{margin-bottom:var(--sp-2);color:#4E5651;font:700 var(--fs-small) var(--kb-sans,var(--sans));letter-spacing:.18em;text-transform:uppercase}
+.pr-ctx-f{display:block;margin-bottom:var(--sp-2)}
+.pr-ctx-f span{display:block;margin-bottom:var(--sp-1);color:var(--ink-500);font:500 var(--fs-small) var(--kb-sans,var(--sans));letter-spacing:.01em}
+/* padding-right keeps a long option clear of the native chevron — "Garden &
+   field tools" ran straight under it before. */
+.pr-ctx-f select{width:100%;padding:var(--sp-1) var(--sp-3) var(--sp-1) 0;border:0;border-bottom:1.5px solid var(--kb-line2);border-radius:0;
+  background:transparent;color:#2F3934;font:600 var(--fs-h3) var(--kb-sans,var(--sans));letter-spacing:.01em;cursor:pointer;
+  text-overflow:ellipsis}
+.pr-ctx-f select:focus{outline:0;border-bottom-color:var(--pd-jade,var(--jade-900))}
+/* A one-option dropdown is a control pretending there is a choice. When the
+   region carries a single market, the value is printed as text instead —
+   same type, same rule, no chevron. */
+.pr-ctx-f .pr-ctx-one{display:block;width:100%;margin:0;padding:var(--sp-1) 0;border-bottom:1.5px solid var(--kb-line2);color:#2F3934;font:600 var(--fs-h3) var(--kb-sans,var(--sans));letter-spacing:.01em}
+.pr-ctx-f .pr-ctx-one[hidden],.pr-ctx-f select[hidden]{display:none}
+.pr-ctx-n{margin:var(--sp-2) 0 0;color:var(--ink-500);font:500 var(--fs-small)/1.5 var(--kb-sans,var(--sans))}
+
+/* "Next" chips close every tool with somewhere to go. Sits directly under the
+   Product 101 card so the two read as one hand-off block. */
+.tool-links{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-2);margin-top:var(--sp-2)}
+.tool-links-h{color:var(--kb-muted);font:700 var(--fs-micro) var(--mono);letter-spacing:.11em;text-transform:uppercase}
+.tool-links-a{display:inline-block;padding:var(--sp-1) var(--sp-2);border:1px solid var(--kb-line);border-radius:999px;background:transparent;
+  color:var(--kb-ink);font-family:var(--sans);font-size:var(--fs-body);font-weight:600;text-decoration:none;cursor:pointer}
+.tool-links-a:hover,.tool-links-a:focus-visible{border-color:var(--kb-accent,#0E6652);color:var(--kb-accent,#0E6652)}
+@media print{.tool-links{display:none}}
+
+/* ---- Buyer brief: work and brief, and no step rail ----
+   A numbered 01-04 rail sat here, first as a 124px column and then as a bar
+   across the top. Either way it was a menu of four anchors on a page the
+   reader is already scrolling, so it is gone and the builder keeps the width. */
+.bd-grid{grid-template-columns:minmax(0,1fr) clamp(360px,28vw,460px)}
+
+/* The install prompt is a footnote about this browser, not part of the brief:
+   full width, under the work, in the quiet type the desk uses for device
+   notes. */
+.bd-grid .bd-install-card{grid-column:1/-1;display:flex;align-items:center;gap:var(--sp-3);flex-wrap:wrap;
+  margin:0;padding:var(--sp-3) var(--sp-3);border-top:1px solid rgba(5,55,45,.14);background:transparent}
+.bd-grid .bd-install-card small{color:var(--kb-muted);font-size:var(--fs-micro);line-height:1.45}
+@media(max-width:1100px){.bd-grid{grid-template-columns:minmax(0,1fr)}}
+@media print{.bd-grid .bd-install-card{display:none}}
+
+/* ---- Actions as icons ----
+   Under the finished brief sat a labelled share bar, a two-line action block
+   and a routing sentence: five lines of chrome under the thing they act on.
+   Four actions, four icons, and the words move into a tooltip — which is where
+   a toolbar keeps them, and is reachable by keyboard because :focus-visible
+   opens it too.
+
+   The mail action stays visually primary. It is the only conversion on the
+   page, and an icon row that treats it like the other three would bury it. */
+.bd-actbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:var(--sp-3) 0 4px}
+.bd-act{position:relative;display:grid;place-items:center;width:38px;height:38px;padding:0;
+  border:1px solid rgba(5,55,45,.22);border-radius:10px;background:#fffdf8;cursor:pointer;
+  color:var(--kb-jade-950,var(--jade-900));text-decoration:none;transition:border-color .15s,background .15s,color .15s}
+.bd-act svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.bd-act:hover,.bd-act:focus-visible{border-color:var(--kb-copper-700,#a64b16);color:var(--kb-copper-700,#a64b16);outline:0;box-shadow:0 0 0 2px rgba(185,93,28,.14)}
+.bd-act-go{margin-left:auto;border-color:var(--kb-copper-700,#a64b16);background:var(--kb-copper-700,#a64b16);color:#fff}
+.bd-act-go:hover,.bd-act-go:focus-visible{background:var(--kb-jade-950,var(--jade-900));border-color:var(--kb-jade-950,var(--jade-900));color:#fff}
+.bd-act-tip{position:absolute;left:50%;bottom:calc(100% + 8px);z-index:6;
+  transform:translateX(-50%) translateY(3px);padding:var(--sp-1) var(--sp-2);border-radius:6px;
+  background:var(--kb-jade-950,var(--jade-900));color:#fff;white-space:nowrap;
+  font:600 var(--fs-micro)/1.35 var(--kb-sans,var(--ff-sans));letter-spacing:.03em;
+  opacity:0;pointer-events:none;transition:opacity .15s,transform .15s}
+/* The last icon sits at the right edge, so a centred tooltip would run off it. */
+.bd-act-tip-end{left:auto;right:0;transform:translateY(3px)}
+.bd-act-tip b{font-weight:700;color:var(--kb-copper-200,#f0c9ab)}
+.bd-act:hover .bd-act-tip,.bd-act:focus-visible .bd-act-tip{opacity:1;transform:translateX(-50%) translateY(0)}
+.bd-act:hover .bd-act-tip-end,.bd-act:focus-visible .bd-act-tip-end{transform:translateY(0)}
+.bd-tool-share .bd-act{width:32px;height:32px;border-radius:var(--r-md)}
+.bd-tool-share .bd-act svg{width:16px;height:16px}
+@media(prefers-reduced-motion:reduce){.bd-act,.bd-act-tip{transition:none}}
+@media print{.bd-actbar,.bd-tool-share{display:none!important}}
+
+/* The two workspace panels were stretched to a common height, so whichever had
+   fewer rows ended in a block of empty card — 111px of it under the margin
+   planner’s four inputs, which reads as something that failed to load rather
+   than as a panel that is simply shorter. They size to their content now. */
+.landed-workspace{align-items:start}
+
+/* The rail's context card and the Origin panel's own selects are the same two
+   questions, visible at the same time on the same screen. The rail's is the one
+   that says "set once, the desk and your enquiry follow it", so the panel's
+   pair is hidden — not removed, because #room and #region are the elements the
+   context system actually reads. */
+#p-mkt .bento .b-md .ctl{display:none}
+
+
+/* ---- The builder reserves its own height ----
+
+   Everything in the brief builder is rendered from script: the family tabs,
+   the part chips, the material and process cards, the signal deck. All of
+   them start at zero height, so whether the page shifts at all depends on
+   whether the product feed resolves before or after the first paint — CLS
+   measured 0.013, 0.193 and 0.013 on three consecutive runs of the same page.
+
+   Measured empty -> full at 1440: tabs 0 -> 55, part list 0 -> 84, materials
+   and processes 0 -> 293 each, signal deck 15 -> 124. */
+#bd-family-tabs{min-height:55px}
+#bd-part-list{min-height:84px}
+#bd-materials,#bd-processes{min-height:293px}
+.bd-signal-deck{min-height:124px}
+@media(max-width:900px){
+  /* One column instead of two doubles the card stacks. */
+  #bd-materials,#bd-processes{min-height:586px}
+  #bd-part-list{min-height:112px}
+}

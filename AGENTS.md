@@ -5,17 +5,17 @@ GitHub Pages, custom domain birdland.com.tw, serving `main` directly — **push 
 
 ## Pages & build system (the #1 rule)
 
-- `index.html` — hand-authored public landing page. Edit directly.
-- `news.html`, `partner.html`, `team.html`, `executive.html` — **BUILT ARTIFACTS. NEVER hand-edit.**
-  They are generated from `tools/news_template.html`, `tools/partner_template.html`,
-  `tools/team_template.html`, `tools/executive_template.html` by substituting the
-  literal token `__DATA__` with the full contents of `outlook-data.json` (see
-  `tools/build_news.py`).
-- Rebuild after any template change (Node version, works everywhere):
-  ```
-  node -e "const fs=require('fs');const d=fs.readFileSync('outlook-data.json','utf8');for(const [t,o] of [['tools/news_template.html','news.html'],['tools/partner_template.html','partner.html'],['tools/team_template.html','team.html'],['tools/executive_template.html','executive.html']])fs.writeFileSync(o,fs.readFileSync(t,'utf8').split('__DATA__').join(d));"
-  ```
-- A template you did NOT edit must produce zero `git diff` in its built page.
+- See docs/BUYER-ARCHITECTURE.md for source ownership and migration details.
+- Generated pages: guide.html, partner.html, cost-desk.html, team.html, executive.html, my-market.html, buying-tools.html. Edit their tools templates; run npm run build, then npm run check. news.html is a redirect and must never be rebuilt as the guide.
+- Latest approved app sources: tools/restored-market_template.html with market-reading.js/css; tools/restored-executive_template.html with supply-reading.js/css. See docs/MARKET-READING.md and docs/SUPPLY-READING.md. Product Studio uses tools/restored-partner_template.html with studio-needs.js/css; tools/build/studio-labels.js provides its ten-language reading labels. Source-linked assembly concepts: data/studio-illustrations.json, studio-references.js/css and docs/IMAGE-VERIFICATION.md. Do not map these general concepts to BT/BC SKU internals or claim a complete BOM. See docs/STUDIO-NEEDS.md for the approved needs-first entry and retained original engineering/reference workspaces. The planning page uses buyer-intelligence.js/css. tools/build/intelligence.js derives buyer-intelligence.json from existing dated RSS headlines; do not add another AI request. See docs/BUYER-INTELLIGENCE-REDESIGN.md for the current buyer flow.
+- trade.json periods must match the actual requested statistical years. Edition timestamps are not statistical periods. Shared buyer-focus.js stores public selections only; quotation amounts and private costs must not be persisted. The 2026-10-03 buyer-flow authorization permits only explicit, 30-minute tab-scoped enquiry handoff (sessionStorage bl_enquiry_handoff) and a one-use language transfer (bl_cfg_tab); never localStorage or contact details. Outside those explicit actions, quantities and free text stay in page memory.
+- config/build.json, config/routes.json and config/languages.json define generation, routes and languages. site-registry.js is generated.
+- data/manufacturing-options.json owns the engineering option table. data/catalogue-manifest.json owns reviewed capability references and image provenance; tools/build/catalogue.js generates catalog.json. Never edit catalog.json directly or invent SKU mappings or commercial terms.
+- Products uses tools/products_template.html independently of the cost desk. product-links.js preserves old engineering/calculator links. World Bank observations live in data/buyer-materials.json, independently of AI outlook data; never substitute AI summaries for observed trends.
+- desk/*.css and desk/*.js own shared tool styles and behaviors. Keep their synchronous ordering in partner_template.html.
+- Corporate pages index/about/contact/privacy are hand-authored. product-101 and configurator use their existing specialized builders.
+- Python build_news.py and build_terminal.py delegate to the canonical Node builders. Never restore a second implementation.
+- Validate npm test and existing language/data checks. Preserve old URLs, hashes and localStorage keys.
 
 ## Daily CI pipeline (do not break it)
 
@@ -35,6 +35,18 @@ freight, open.er-api FX, Google News RSS → `market_news`) → rebuild → comm
 - `fetch_market.py` steps are best-effort try/except; they must never fail the job.
 
 ## Data model (outlook-data.json)
+
+### Shared enquiry authorization (2026-10-04)
+
+The approved A flow is implemented in buyer-enquiry.js/css and buyer-enquiry-labels.js,
+mounted in Products and Product Studio. See docs/SHARED-ENQUIRY.md. This newer explicit
+request permits a sanitized 30-minute tab-scoped sessionStorage draft in
+bl_enquiry_cart_2 for chosen product requirements, quantities and optional notes,
+including reload and back navigation. It does not permit localStorage, contact data,
+private quotations, server persistence or sending. Preserve the original engineering
+reference workspace. No SKU BOM or verified hardness may be inferred from catalogue
+photos; do not add CBM or container-fill estimation. Test the integrated pages with
+tools/dev/enquiry-acceptance.cjs, not the independent prototype's tests.
 
 **Full field-by-field reference: [`docs/DATA-SCHEMA.md`](docs/DATA-SCHEMA.md).**
 Read it before touching any data-driven feature — it maps every top-level key,

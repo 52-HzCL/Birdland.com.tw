@@ -1,0 +1,546 @@
+<!doctype html>
+<!-- i18n-src:3271f6336eba882a0ccf457dad8775c5f5551d93 --><html lang="ja"><head><script>try{localStorage.setItem("bl_lang","ja")}catch(e){}</script><link rel="alternate" hreflang="en" href="https://birdland.com.tw/configurator.html">
+  <link rel="alternate" hreflang="nl" href="https://birdland.com.tw/nl/configurator.html">
+  <link rel="alternate" hreflang="de" href="https://birdland.com.tw/de/configurator.html">
+  <link rel="alternate" hreflang="fr" href="https://birdland.com.tw/fr/configurator.html">
+  <link rel="alternate" hreflang="es" href="https://birdland.com.tw/es/configurator.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://birdland.com.tw/pt-br/configurator.html">
+  <link rel="alternate" hreflang="pl" href="https://birdland.com.tw/pl/configurator.html">
+  <link rel="alternate" hreflang="it" href="https://birdland.com.tw/it/configurator.html">
+  <link rel="alternate" hreflang="ja" href="https://birdland.com.tw/ja/configurator.html">
+  <link rel="alternate" hreflang="zh-Hant" href="https://birdland.com.tw/zh-tw/configurator.html">
+  <link rel="alternate" hreflang="x-default" href="https://birdland.com.tw/configurator.html">
+  <link rel="stylesheet" href="../tokens.css?v=20260814a"><script src="../text-size.js?v=20260804a"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AsiaSource 製品構成ツール · Birdland</title>
+  <meta name="description" content="Birdland OEM製品の材料、成形、熱処理、仕上げ、包装を部品ごとに選び、要件シートを営業担当に送れます。価格や契約上の確約はありません。">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <script src="../bl-sketch.js?v=20260818a"></script>
+  <script src="../configurator-drawings.js?v=20260818a"></script>
+  <style>
+  :root{
+    --cfg-bg:var(--paper);--cfg-panel:var(--card);--cfg-band:var(--paper-2);
+    --cfg-line:var(--line);--cfg-line-soft:var(--line-soft);
+    --cfg-txt:var(--ink-900);--cfg-mut:var(--ink-500);
+    --cfg-accent:var(--jade-700);--cfg-deep:var(--jade-900);--cfg-copper:var(--copper-600);
+    --cfg-ink:#2b3a35;--cfg-canvas-mut:#8a9490;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --cfg-bg:#101614;--cfg-panel:#161d1a;--cfg-band:#131a17;
+    --cfg-line:rgba(231,237,234,.18);--cfg-line-soft:rgba(231,237,234,.08);
+    --cfg-txt:#E7EDEA;--cfg-mut:#9fb0a9;
+    --cfg-accent:#5CC8A8;--cfg-deep:#E7EDEA;--cfg-copper:#E4A47A;
+    --cfg-ink:#d8e2dd;--cfg-canvas-mut:#6b7a74;
+  }}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:100%}
+  body{font-family:var(--ff-sans);background:var(--cfg-bg);color:var(--cfg-txt);font-size:var(--fs-h3);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  .wrap{max-width:1500px;margin:0 auto;padding:0 clamp(.8rem,2.5vw,2rem)}
+
+  /* -- top chrome: the way back, styled like the desks' own bar ---------- */
+  .topbar{background:var(--cfg-deep);color:#F6F4EC;border-bottom:1px solid var(--cfg-line)}
+  @media (prefers-color-scheme:dark){.topbar{background:#0b100e;color:var(--cfg-txt)}}
+  .topbar .tb{display:flex;align-items:center;gap:14px;padding:10px 0}
+  .tb-brand{font-weight:800;letter-spacing:.02em;font-size:var(--fs-h3)}
+  .tb-brand small{display:block;font-family:var(--ff-mono);font-weight:400;font-size:var(--fs-micro);opacity:.75;letter-spacing:.12em;text-transform:uppercase}
+  .tb-back{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-family:var(--ff-mono);font-size:var(--fs-small);border:1px solid rgba(246,244,236,.35);border-radius:var(--r-sm,4px);padding:6px 12px}
+  .tb-back:hover{border-color:currentColor}
+  .tb-home{font-family:var(--ff-mono);font-size:var(--fs-small);opacity:.8}
+  .tb-home:hover{opacity:1}
+
+  /* -- requirement sheet summary bar (always in view) -------------------- */
+  .sheetbar{position:sticky;top:0;z-index:20;background:var(--cfg-band);border-bottom:1px solid var(--cfg-line);box-shadow:0 1px 6px rgba(0,0,0,.06)}
+  .sheetbar .sb{display:flex;align-items:center;gap:10px;padding:8px 0;flex-wrap:wrap}
+  .sb-title{font-family:var(--ff-mono);font-size:var(--fs-small);letter-spacing:.1em;text-transform:uppercase;color:var(--cfg-mut);flex:0 0 auto}
+  .sb-items{display:flex;gap:8px;flex-wrap:wrap;flex:1 1 auto;min-width:0}
+  .sb-chip{display:inline-flex;align-items:center;gap:6px;background:var(--cfg-panel);border:1px solid var(--cfg-line);border-radius:999px;padding:3px 10px;font-size:var(--fs-small)}
+  .sb-chip b{font-weight:700}
+  .sb-chip .q{font-family:var(--ff-mono);color:var(--cfg-accent)}
+  .sb-empty{color:var(--cfg-mut);font-size:var(--fs-small)}
+  .sb-act{display:flex;gap:8px;flex:0 0 auto}
+  .sb-btn{border:1px solid var(--cfg-accent);color:var(--cfg-accent);border-radius:var(--r-sm,4px);padding:5px 12px;font-weight:700;font-size:var(--fs-small)}
+  .sb-btn.primary{background:var(--cfg-accent);color:var(--cfg-bg)}
+  .sb-btn:not(:disabled):hover,.sb-btn:not(:disabled):focus-visible{filter:brightness(1.15)}
+  .sb-btn:disabled{opacity:.4;cursor:not-allowed}
+  @media(max-width:640px){.topbar .tb{flex-wrap:wrap;row-gap:2px}.sb-act{flex:1 1 auto;flex-wrap:wrap}.sb-btn{flex:1 1 auto}}
+
+  /* -- layout ------------------------------------------------------------ */
+  .lay{display:grid;grid-template-columns:300px minmax(0,1fr);gap:18px;padding:18px 0 40px}
+  @media(max-width:900px){.lay{grid-template-columns:1fr}}
+
+  /* -- product menu ------------------------------------------------------ */
+  .tier{margin-bottom:16px}
+  .tier-h{font-weight:800;font-size:var(--fs-h3);color:var(--cfg-deep)}
+  @media (prefers-color-scheme:dark){.tier-h{color:var(--cfg-txt)}}
+  .tier-b{color:var(--cfg-mut);font-size:var(--fs-small);margin:2px 0 8px;line-height:1.45}
+  .pbtn{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:8px 10px;border:1px solid transparent;border-radius:var(--r-sm,4px);font-size:var(--fs-h3)}
+  .pbtn:hover{background:var(--cfg-band)}
+  .pbtn[aria-current="true"]{background:var(--cfg-panel);border-color:var(--cfg-accent);font-weight:700}
+  .pbtn .done{margin-left:auto;font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--cfg-accent)}
+  @media(max-width:900px){
+    .menu{display:block}
+    .tier .plist{display:flex;flex-wrap:wrap;gap:6px}
+    .pbtn{width:auto;border:1px solid var(--cfg-line)}
+  }
+
+  /* -- stage: canvas + parts --------------------------------------------- */
+  .stage{min-width:0}
+  .stage-h{margin-bottom:8px}
+  .stage-h h1{font-size:var(--fs-h1);font-weight:800;line-height:1.15;color:var(--cfg-deep)}
+  @media (prefers-color-scheme:dark){.stage-h h1{color:var(--cfg-txt)}}
+  .stage-h p{color:var(--cfg-mut);font-size:var(--fs-small)}
+  .board{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:18px}
+  @media(max-width:1100px){.board{grid-template-columns:1fr}}
+  .canvas-card{background:var(--cfg-panel);border:1px solid var(--cfg-line);border-radius:var(--r-md,8px);padding:10px;position:relative}
+  .canvas-card .hint{font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--cfg-mut);text-align:center;padding:4px 0 2px}
+  #cv{display:block;width:100%;aspect-ratio:1/1;max-height:560px;margin:0 auto;touch-action:manipulation;cursor:pointer}
+
+  .parts{display:flex;flex-direction:column;gap:10px}
+  .part{background:var(--cfg-panel);border:1px solid var(--cfg-line);border-radius:var(--r-md,8px)}
+  .part-h{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:10px 12px;font-weight:700;font-size:var(--fs-h3)}
+  .part-h .tick{width:20px;height:20px;flex:0 0 auto;border:1.5px solid var(--cfg-mut);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;color:transparent}
+  .part.is-done .part-h .tick{border-color:var(--cfg-accent);background:var(--cfg-accent);color:var(--cfg-bg)}
+  .part-h .st{margin-left:auto;font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--cfg-mut);font-weight:400}
+  .part[data-open="1"]{border-color:var(--cfg-accent)}
+  .part-b{display:none;border-top:1px solid var(--cfg-line-soft);padding:10px 12px 14px}
+  .part[data-open="1"] .part-b{display:block}
+  .gate{margin-top:10px}
+  .gate:first-child{margin-top:0}
+  .gate-h{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--cfg-copper);margin-bottom:6px}
+  .opt{border:1px solid var(--cfg-line);border-radius:var(--r-sm,4px);padding:8px 10px;margin-bottom:6px;cursor:pointer}
+  .opt:hover{border-color:var(--cfg-accent)}
+  .opt.is-on{border-color:var(--cfg-accent);background:var(--cfg-band);box-shadow:inset 3px 0 0 var(--cfg-accent)}
+  .opt .o-top{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .opt .o-name{font-weight:700;font-size:var(--fs-h3)}
+  .opt .o-meta{font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--cfg-mut);margin-left:auto;white-space:nowrap}
+  .opt .o-buyer{font-size:var(--fs-small);color:var(--cfg-txt);margin-top:3px;line-height:1.5}
+  .opt details{margin-top:5px}
+  .opt summary{font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--cfg-accent);cursor:pointer;list-style:none}
+  .opt summary::before{content:"+ "}
+  .opt details[open] summary::before{content:"\2212 "}
+  .opt .o-prod{font-size:var(--fs-small);color:var(--cfg-mut);margin-top:4px;line-height:1.5;border-left:2px solid var(--cfg-line);padding-left:8px}
+
+  /* -- per-product quantity & delivery ----------------------------------- */
+  .order{background:var(--cfg-band);border:1px solid var(--cfg-line);border-radius:var(--r-md,8px);padding:12px;margin-top:10px}
+  .order .oh{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--cfg-mut);margin-bottom:8px}
+  .order .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .order label{font-size:var(--fs-small);font-weight:700}
+  .order input{font-family:var(--ff-mono);font-size:var(--fs-h3);color:var(--cfg-txt);background:var(--cfg-panel);border:1px solid var(--cfg-line);border-radius:var(--r-sm,4px);padding:5px 8px;max-width:130px}
+  .order input:focus{outline:2px solid var(--cfg-accent)}
+  .qq{display:inline-flex;gap:4px}
+  .qq button{font-family:var(--ff-mono);font-size:var(--fs-micro);border:1px solid var(--cfg-line);border-radius:999px;padding:3px 9px;color:var(--cfg-mut)}
+  .qq button:hover{border-color:var(--cfg-accent);color:var(--cfg-accent)}
+
+  footer{border-top:1px solid var(--cfg-line);padding:18px 0 30px;color:var(--cfg-mut);font-size:var(--fs-small)}
+  footer a{color:var(--cfg-accent);font-weight:700}
+  </style>
+<link rel="stylesheet" href="../buyer-journey.css" data-buyer-shell>
+<script src="../site-registry.js"></script>
+<link rel="stylesheet" href="../terminal.css">
+<script defer src="../terminal.js"></script>
+<script defer src="../buyer-navigation.js"></script>
+<link rel="stylesheet" href="../buyer-brief.css"><script src="../buyer-brief.js"></script>
+</head>
+<body>
+  <header class="topbar"><div class="wrap tb">
+    <a class="tb-brand" href="../index.html">BIRDLAND<small>OEM・台湾・機密情報</small></a>
+    <span style="font-family:var(--ff-mono);font-size:var(--fs-small);opacity:.85">製品構成ツール</span>
+    <a class="tb-back" href="../products.html#bl-cat">← 製品</a>
+    <a class="tb-home" href="../index.html">Birdland</a>
+  </div></header>
+
+  <div class="sheetbar"><div class="wrap sb">
+    <span class="sb-title">要件シート</span>
+    <div class="sb-items" id="sbItems"><span class="sb-empty">左側で製品と仕様を選ぶと、選択内容がここに表示されます。</span></div>
+    <div class="sb-act">
+      <button class="sb-btn" id="csvBtn" disabled="">CSVをダウンロード</button>
+      <button class="sb-btn primary" id="mailBtn" disabled="">営業担当に送る</button>
+    </div>
+  </div></div>
+
+  <main class="wrap lay" id="main">
+    <aside class="menu" id="menu" aria-label="製品メニュー"></aside>
+    <section class="stage">
+      <div class="stage-h">
+        <h1 id="pName"></h1>
+        <p id="pTier"></p>
+      </div>
+      <div class="board">
+        <div class="canvas-card">
+          <canvas id="cv" aria-label="製品構成図"></canvas>
+          <div class="hint">図の部品をタップするか一覧で開き、材料や加工方法を選んでください。</div>
+        </div>
+        <div>
+          <div class="parts" id="parts"></div>
+          <div class="order" id="order" hidden="">
+            <div class="oh">この製品の要件シート</div>
+            <div class="row">
+              <label for="qty">数量</label>
+              <input id="qty" type="number" min="1" step="1" inputmode="numeric">
+              <span class="qq" id="qq"></span>
+              <label for="delv">希望納期</label>
+              <input id="delv" type="month">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap">
+    価格は表示していません。要件シートは営業担当者が確認します。戻る： <a href="../products.html#bl-cat">製品</a> または <a href="../index.html">Birdland</a> · <a href="../partner.html">Product Studio</a>.
+  </div></footer>
+
+<script id="cfg-data" type="application/json">{"tiers":[{"id":"forge","name":"自社での鍛造・熱処理","body":"熱間鍛造、自社炉、硬さ管理。工場の中核となる工程です。"},{"id":"form","name":"自社での成形・溶接・組付け","body":"鋼材のプレス・引抜き、溶接接合、木製柄やグリップの自社ラインでの組付け。"},{"id":"source","name":"組立・調達プログラム","body":"非金属製品を組立または調達し、同一出荷で品揃えをまとめます。"}],"products":[{"id":"forged-trowel","name":"鍛造移植ごて","tier":"forge","metal":5,"draw":"trowel","parts":[{"id":"blade","name":"移植ごての刃部","options":{"material":["刃物鋼・ばね鋼","ステンレス鋼"],"forming":["熱間鍛造","冷間鍛造"],"heat":["焼入れ焼戻し","高周波(局部)焼入れ","全体焼入れ"],"finish":["粉体塗装","電着塗装","亜鉛めっき","研磨","ブラスト処理"],"inspection":["刃先・機能確認","硬度抜取検査","塩水噴霧時間"]}},{"id":"handle","name":"柄","options":{"material":["木材","グリップ材"],"forming":["木工旋削","木部のラッカー・オイル塗装","二色オーバーモールド","ディップ成形"]}},{"id":"joint","name":"中子・接合部","options":{"joining":["リベット締結","ボルト締結","圧入"],"inspection":["結合部引張試験","開閉耐久試験"]}},{"id":"pack","name":"包装","options":{"pack":["化粧箱","下げ札・吊り下げ台紙","輸出用段ボールカートン"]}}]},{"id":"hatchet","name":"手斧","tier":"forge","metal":5,"draw":"hatchet","parts":[{"id":"head","name":"頭部・刃先","options":{"material":["刃物鋼・ばね鋼","ステンレス鋼"],"forming":["熱間鍛造","冷間鍛造"],"heat":["焼入れ焼戻し","高周波(局部)焼入れ","全体焼入れ"],"finish":["粉体塗装","研磨","ブラスト処理"],"inspection":["刃先・機能確認","硬度抜取検査","塩水噴霧時間"]}},{"id":"handle","name":"柄","options":{"material":["木材","硬質プラスチック"],"forming":["木工旋削","木部のラッカー・オイル塗装"]}},{"id":"joint","name":"柄穴・くさび","options":{"joining":["圧入","接着接合"],"inspection":["結合部引張試験","開閉耐久試験"]}},{"id":"pack","name":"包装","options":{"pack":["ブリスターパック","化粧箱","下げ札・吊り下げ台紙","輸出用段ボールカートン"]}}]},{"id":"mattock","name":"つるはし・掘削具","tier":"forge","metal":5,"draw":"mattock","parts":[{"id":"head","name":"鍛造頭部","options":{"material":["刃物鋼・ばね鋼"],"forming":["熱間鍛造","冷間鍛造"],"heat":["焼入れ焼戻し","全体焼入れ"],"finish":["粉体塗装","液体塗装"],"inspection":["刃先・機能確認","硬度抜取検査","塩水噴霧時間"]}},{"id":"handle","name":"柄","options":{"material":["木材"],"forming":["木工旋削","木部のラッカー・オイル塗装"]}},{"id":"joint","name":"柄穴への取付け","options":{"joining":["圧入"],"inspection":["結合部引張試験","開閉耐久試験"]}},{"id":"pack","name":"包装","options":{"pack":["輸出用段ボールカートン","バンド掛け","パレット"]}}]},{"id":"machete","name":"なた","tier":"forge","metal":5,"draw":"machete","parts":[{"id":"blade","name":"刃","options":{"material":["刃物鋼・ばね鋼","ステンレス鋼"],"forming":["プレス抜き","熱間鍛造"],"heat":["焼入れ焼戻し","高周波(局部)焼入れ","全体焼入れ"],"finish":["粉体塗装","研磨","レーザー刻印"],"inspection":["刃先・機能確認","硬度抜取検査","塩水噴霧時間"]}},{"id":"handle","name":"柄の側板","options":{"material":["硬質プラスチック","木材","グリップ材"],"forming":["射出成形"]}},{"id":"joint","name":"フルタング","options":{"joining":["リベット締結"],"inspection":["結合部引張試験","開閉耐久試験"]}},{"id":"pack","name":"包装","options":{"pack":["スキンパック","化粧箱","下げ札・吊り下げ台紙","輸出用段ボールカートン"]}}]},{"id":"pruning-shears","name":"バイパス剪定ばさみ","tier":"forge","metal":4,"draw":"shears","parts":[{"id":"blade","name":"切刃","options":{"material":["刃物鋼・ばね鋼","ステンレス鋼"],"forming":["熱間鍛造","冷間鍛造"],"heat":["焼入れ焼戻し","高周波(局部)焼入れ","全体焼入れ"],"finish":["ニッケルクロムめっき","研磨"],"inspection":["刃先・機能確認","硬度抜取検査","塩水噴霧時間"]}},{"id":"counter","name":"受け刃","options":{"material":["刃物鋼・ばね鋼","ステンレス鋼"],"forming":["プレス抜き","レーザー切断"],"heat":["焼入れ焼戻し"]}},{"id":"handle","name":"柄・グリップ","options":{"material":["アルミニウム","グリップ材"],"forming":["二色オーバーモールド","ディップ成形"],"finish":["陽極酸化処理"]}},{"id":"pivot","name":"支点・ばね","options":{"joining":["ボルト締結","リベット締結"],"inspection":["結合部引張試験","開閉耐久試験"]}},{"id":"pack","name":"包装","options":{"pack":["ブリスターパック","化粧箱","下げ札・吊り下げ台紙"]}}]},{"id":"loppers","name":"太枝切りばさみ","tier":"forge","metal":4,"draw":"loppers","parts":[{"id":"blade","name":"刃セット","options":{"material":["刃物鋼・ばね鋼","ステンレス鋼"],"forming":["熱間鍛造","冷間鍛造"],"heat":["焼入れ焼戻し","高周波(局部)焼入れ","全体焼入れ"],"finish":["ニッケルクロムめっき","粉体塗装"],"inspection":["刃先・機能確認","硬度抜取検査","塩水噴霧時間"]}},{"id":"handle","name":"長柄","options":{"material":["アルミニウム"],"forming":["パイプ引抜き","パイプ曲げ","スエージング"],"finish":["陽極酸化処理","粉体塗装"]}},{"id":"grip","name":"グリップ","options":{"material":["グリップ材"],"forming":["ディップ成形","二色オーバーモールド"]}},{"id":"pivot","name":"支点","options":{"joining":["ボルト締結"],"inspection":["結合部引張試験","開閉耐久試験"]}},{"id":"pack","name":"包装","options":{"pack":["化粧箱","下げ札・吊り下げ台紙","輸出用段ボールカートン"]}}]},{"id":"hedge-shears","name":"刈込ばさみ","tier":"forge","metal":4,"draw":"hedge","parts":[{"id":"blade","name":"刃","options":{"material":["刃物鋼・ばね鋼","ステンレス鋼"],"forming":["プレス抜き","熱間鍛造"],"heat":["焼入れ焼戻し","高周波(局部)焼入れ","全体焼入れ"],"finish":["研磨","ニッケルクロムめっき"],"inspection":["刃先・機能確認","硬度抜取検査","塩水噴霧時間"]}},{"id":"handle","name":"柄","options":{"material":["木材","アルミニウム"],"forming":["木工旋削","パイプ引抜き"]}},{"id":"pivot","name":"支点・緩衝材","options":{"joining":["ボルト締結"],"inspection":["結合部引張試験","開閉耐久試験"]}},{"id":"pack","name":"包装","options":{"pack":["化粧箱","下げ札・吊り下げ台紙","輸出用段ボールカートン"]}}]},{"id":"pruning-saw","name":"剪定のこぎり","tier":"forge","metal":4,"draw":"saw","parts":[{"id":"blade","name":"のこ刃","options":{"material":["刃物鋼・ばね鋼"],"forming":["プレス抜き","レーザー切断"],"heat":["高周波(局部)焼入れ","硬度帯による選別"],"finish":["レーザー刻印"],"inspection":["刃先・機能確認","硬度抜取検査","塩水噴霧時間"]}},{"id":"handle","name":"柄","options":{"material":["硬質プラスチック","グリップ材","木材"],"forming":["射出成形","二色オーバーモールド"]}},{"id":"joint","name":"刃のロック","options":{"joining":["ボルト締結","スナップフィット"],"inspection":["結合部引張試験","開閉耐久試験"]}},{"id":"pack","name":"包装","options":{"pack":["スキンパック","化粧箱","下げ札・吊り下げ台紙"]}}]},{"id":"garden-hoe","name":"園芸用くわ","tier":"form","metal":4,"draw":"hoe","parts":[{"id":"head","name":"くわの刃部","options":{"material":["刃物鋼・ばね鋼"],"forming":["プレス抜き","熱間鍛造"],"heat":["焼入れ焼戻し"],"finish":["粉体塗装","液体塗装"],"inspection":["刃先・機能確認","硬度抜取検査","塩水噴霧時間"]}},{"id":"neck","name":"首部・柄受け","options":{"forming":["パイプ引抜き","スエージング"],"joining":["スポット溶接","MIG溶接","ろう付け"],"inspection":["結合部引張試験","開閉耐久試験"]}},{"id":"handle","name":"柄","options":{"material":["木材","アルミニウム"],"forming":["木工旋削","パイプ引抜き"]}},{"id":"pack","name":"包装","options":{"pack":["輸出用段ボールカートン","バンド掛け"]}}]},{"id":"cultivator","name":"3本爪カルチベーター","tier":"form","metal":4,"draw":"cultivator","parts":[{"id":"head","name":"爪部","options":{"material":["刃物鋼・ばね鋼"],"forming":["プレス抜き","レーザー切断"],"heat":["焼入れ焼戻し"],"finish":["粉体塗装","亜鉛めっき"],"inspection":["刃先・機能確認","硬度抜取検査","塩水噴霧時間"]}},{"id":"handle","name":"柄","options":{"material":["木材","グリップ材"],"forming":["木工旋削","ディップ成形"]}},{"id":"joint","name":"中子・口金","options":{"joining":["リベット締結","ボルト締結","圧入"],"inspection":["結合部引張試験","開閉耐久試験"]}},{"id":"pack","name":"包装","options":{"pack":["化粧箱","下げ札・吊り下げ台紙","輸出用段ボールカートン"]}}]},{"id":"garden-fork","name":"掘り起こし用フォーク","tier":"form","metal":4,"draw":"fork","parts":[{"id":"head","name":"爪","options":{"material":["刃物鋼・ばね鋼"],"forming":["熱間鍛造","プレス抜き"],"heat":["焼入れ焼戻し"],"finish":["粉体塗装","電着塗装"],"inspection":["刃先・機能確認","硬度抜取検査","塩水噴霧時間"]}},{"id":"socket","name":"柄受け","options":{"forming":["パイプ引抜き","スエージング"],"joining":["スポット溶接","MIG溶接","ろう付け"],"inspection":["結合部引張試験","開閉耐久試験"]}},{"id":"handle","name":"柄・グリップ","options":{"material":["木材","硬質プラスチック"],"forming":["木工旋削","射出成形"]}},{"id":"pack","name":"包装","options":{"pack":["輸出用段ボールカートン","バンド掛け","パレット"]}}]},{"id":"shovel","name":"シャベル・スコップ","tier":"form","metal":4,"draw":"shovel","parts":[{"id":"head","name":"刃","options":{"material":["刃物鋼・ばね鋼","ステンレス鋼"],"forming":["プレス抜き"],"heat":["焼入れ焼戻し"],"finish":["粉体塗装","研磨"],"inspection":["刃先・機能確認","硬度抜取検査","塩水噴霧時間"]}},{"id":"socket","name":"柄受け・踏み面","options":{"forming":["スエージング"],"joining":["スポット溶接","MIG溶接","ろう付け"],"inspection":["結合部引張試験","開閉耐久試験"]}},{"id":"handle","name":"柄・D形グリップ","options":{"material":["木材","硬質プラスチック"],"forming":["木工旋削","射出成形"]}},{"id":"pack","name":"包装","options":{"pack":["輸出用段ボールカートン","バンド掛け","パレット"]}}]},{"id":"bow-rake","name":"弓型レーキ","tier":"form","metal":3,"draw":"rake","parts":[{"id":"head","name":"レーキの頭部","options":{"material":["刃物鋼・ばね鋼"],"forming":["プレス抜き","レーザー切断"],"finish":["粉体塗装","亜鉛めっき"],"inspection":["寸法のAQL検査"]}},{"id":"handle","name":"柄","options":{"material":["木材","アルミニウム"],"forming":["木工旋削","パイプ引抜き"]}},{"id":"joint","name":"弓部の接合","options":{"joining":["スポット溶接","MIG溶接","ろう付け"],"inspection":["結合部引張試験","開閉耐久試験"]}},{"id":"pack","name":"包装","options":{"pack":["輸出用段ボールカートン","バンド掛け"]}}]},{"id":"hand-weeder","name":"手持ち除草具","tier":"form","metal":3,"draw":"weeder","parts":[{"id":"blade","name":"二股の先端","options":{"material":["刃物鋼・ばね鋼","ステンレス鋼"],"forming":["プレス抜き","レーザー切断"],"heat":["焼入れ焼戻し"],"finish":["亜鉛めっき","粉体塗装"],"inspection":["刃先・機能確認","硬度抜取検査","塩水噴霧時間"]}},{"id":"handle","name":"柄","options":{"material":["木材","グリップ材","硬質プラスチック"],"forming":["木工旋削","射出成形"]}},{"id":"joint","name":"中子","options":{"joining":["リベット締結","圧入"]}},{"id":"pack","name":"包装","options":{"pack":["下げ札・吊り下げ台紙","ブリスターパック","輸出用段ボールカートン"]}}]},{"id":"garden-snips","name":"園芸ばさみ（調達刃・自社組立）","tier":"source","metal":3,"draw":"snips","parts":[{"id":"blade","name":"刃","options":{"material":["ステンレス鋼"],"forming":["プレス抜き"],"finish":["研磨"],"inspection":["刃先・機能確認","硬度抜取検査","塩水噴霧時間"]}},{"id":"handle","name":"柄","options":{"material":["硬質プラスチック","グリップ材"],"forming":["射出成形","二色オーバーモールド"]}},{"id":"joint","name":"支点","options":{"joining":["リベット締結"],"inspection":["結合部引張試験","開閉耐久試験"]}},{"id":"pack","name":"包装","options":{"pack":["ブリスターパック","化粧箱"]}}]},{"id":"tool-set","name":"箱入り工具セット（複合品揃え）","tier":"source","metal":2,"draw":"set","parts":[{"id":"tools","name":"工具の選択","options":{"material":["刃物鋼・ばね鋼","ステンレス鋼"],"inspection":["刃先・機能確認","寸法のAQL検査"]}},{"id":"tray","name":"トレー・ケース","options":{"material":["硬質プラスチック","包装用板紙"],"forming":["射出成形"]}},{"id":"pack","name":"店頭用包装","options":{"pack":["化粧箱","紙・樹脂複合"],"inspection":["バーコード・ラベル確認","包装落下試験"]}}]},{"id":"garden-gloves","name":"園芸用手袋（調達品）","tier":"source","metal":1,"draw":"gloves","parts":[{"id":"body","name":"基材・コーティング","options":{"material":["布材","グリップ材"],"forming":["ディップ成形"],"inspection":["寸法のAQL検査"]}},{"id":"cuff","name":"袖口・ラベル","options":{"pack":["ラベル一式","下げ札・吊り下げ台紙"]}},{"id":"pack","name":"包装","options":{"pack":["下げ札・吊り下げ台紙","輸出用段ボールカートン"]}}]}],"options":{"刃物鋼・ばね鋼":{"pop":5,"cost":3,"buyer":"この系統を採用するとは焼入れ可能な鋼種を採用するということであり、価格の行よりミルシートのほうが重要です:後から保持できる硬度帯を決めるのは、指定した熱処理ではなく、受入時点の炭素量・脱炭深さ・鋼帯の平坦度です。","production":"受入コイルの脱炭層は、金型に載る前に確認しています — 数百分の1ミリの軟らかい表層は焼入れを経てもそのまま残り、最初の一季で切れなくなる刃先になりますが、めっき後には見えなくなります。"},"ステンレス鋼":{"pop":3,"cost":4,"buyer":"受入時のステンレスは二種類の別材料です。オーステナイト系の304は熱処理では硬化せず本体や締結部品向きであるのに対し、マルテンサイト系の410と420は硬化します——そしてこの二つはいずれも磁性を持ち外観も同一であるため、炭素量の低い410を刃部用途に紛れ込ませる置き換えは、材質試験を伴わない受入検査では捕捉できません。","production":"切削油の膜の下では両者は見分けがつかず、混入は焼入れ後に半数が軟らかく出てきて初めて分かるため、マルテンサイト系とオーステナイト系の在庫は棚の上で物理的に分けています。"},"熱間鍛造":{"pop":2,"cost":4,"buyer":"支払っている対価は重量ではなく鍛流線です:鍛造は材料を形状に沿って流すため荷重経路が連続し、だからこそ鍛造の中子は、同じ厚さのプレス抜き品が折れるこじり荷重にも耐えます。","production":"当社が見ているのは仕上げ温度とバリ線のトリムです — 仕上げ温度が低すぎた鍛造品は加工硬化がばらつき、残留応力を抱えたまま焼入れに入って、そこで採算の取れる矯正ができない変形になります。"},"冷間鍛造":{"pop":2,"cost":3,"buyer":"冷間鍛造は成形しながら部品を加工硬化させますので、冷間鍛造のピンやリベットは元の棒材より強く仕上がり、量産では同じ価格の切削よりも厳しい径公差を保てます。","production":"限界となるのは荷重ではなく成形性です:材料が割れるまでのひずみには限りがありますので、一発で追い込まずに形状を順送の各工程へ分け、形状が要求する場合は工程間で焼鈍を入れます。"},"焼入れ焼戻し":{"pop":4,"cost":2,"buyer":"硬さは、その裏にある焼戻し工程なしには意味を持ちません:焼入れままの鋼は硬く脆く、靭性を買い戻すのが焼戻しですので、焼戻し後の硬度帯と、その公差を求めてください。","production":"焼入れ後は部品を置いたままにせず、速やかに焼戻します — 焼戻し前のマルテンサイトは巨大な残留応力を抱えており、一晩置いたロットは誰も触らないうちにバスケットの中で割れることがあります。"},"高周波(局部)焼入れ":{"pop":3,"cost":3,"buyer":"局部焼入れは工具が切る場所だけを硬くし本体は延性を残しますので、剪定刃には正しい答えです — 指定すべきは硬化層深さと、硬化域がどこで始まりどこで終わるかです。","production":"硬化パターンを決めるのはコイル形状と加熱時間ですので、硬化層が実際どこまで入っているかを見ることのできない表面硬さの測定に頼らず、サンプルを切断・腐食させてパターンを確認します。"},"全体焼入れ":{"pop":3,"cost":2,"buyer":"全体焼入れは断面全体を硬くしますので、移植ごての刃には正しく、衝撃を吸収すべき部品には誤りです — 芯まで硬い部品には、割れる前に降伏できる延性の余地がどこにも残っていないからです。","production":"焼入れの厳しさを決めるのは断面の厚さです — 同じ鋼でも薄い刃なら芯まで硬化し、厚い部品では表層しか硬化しませんので、鋼種ではなく断面に合わせて焼入れを設定します。"},"粉体塗装":{"pop":4,"cost":2,"buyer":"粉体塗装は溶剤を使わず一度で厚く耐久性のある調色済みの膜が得られますが、真の限界は縁部です:粉体は流動する際に鋭い縁から引いていきますので、設計で防ぐべき不具合は縁部の腐食です。","production":"密着性を決めるのは、粉体の品質よりもはるかに前処理です — 塗膜が食いつく相手はりん酸塩処理などの化成皮膜であり、洗浄の不十分な部品に塗った塗膜は検査を通り、市場で剥がれます。"},"電着塗装":{"pop":1,"cost":3,"buyer":"電着下塗りは、吹付けの届かない凹部の内側まで含めて複雑な形状を均一に被覆できるため自動車では標準工法ですが、手工具では通常、上塗りの下地としてのみ意味を持ちます。","production":"買っている特性はつきまわり性です — 析出した膜は厚くなるにつれ絶縁し、それが塗料を影の部分へ押し込みますので、部品は液が溜まらず抜けるように吊り具へ掛けなければなりません。"},"亜鉛めっき":{"pop":5,"cost":1,"buyer":"亜鉛は犠牲防食ですので、買っているのは外観ではなく膜厚と化成処理です:被膜が鋼の代わりに腐食するため、塩水噴霧の時間はその量に比例します。","production":"焼入れ部品では水素脆性に注意しています — めっきは高硬度の鋼に水素を侵入させ、それを追い出すベーキングはめっきから数時間以内に行わなければならず、それを過ぎた部品はすでに損なわれています。"},"研磨":{"pop":3,"cost":2,"buyer":"研磨は売場のために買うものであり、その中身は工数ですので、数量が増えても下がらず比例して積み上がります — 光沢刃では仕上げ工程の中で最大の単一費目になることが多く、もっとも過剰指定しやすい箇所でもあります。","production":"管理するのは最終のバフではなく研磨材の番手の順序です — 番手を飛ばすと残った傷はバフで消えるどころか光って目立つようになり、しかもそれが見えるのは売場の照明の下だけだからです。"},"ブラスト処理":{"pop":2,"cost":1,"buyer":"ブラスト処理は装飾ではなく表面調整です:塗膜が食いつく相手を作り、スケールを落とすもので、これを省くことが、良好な塗膜が良好な部品から剥がれるもっとも一般的な原因です。","production":"研削材と圧力が表面粗さを決め、密着性が依存するのはその粗さです — 薄板に強く当てすぎると応力が入って部品が反りますので、ブラストは断面に合わせます。"},"刃先・機能確認":{"pop":5,"cost":1,"buyer":"これは、使い手が包装を開けて最初の5秒に感じるものを映す最後の確認であり、抜取ではなく全数で実施できるだけの安さです。","production":"交替勤務をまたいで結果が意味を持つよう、切断する被削材は一定にしています — 主観的な切れ味確認は作業者ごとにばらつき、そのばらつきがそのまま客先へ届く唯一の試験だからです。"},"硬度抜取検査":{"pop":3,"cost":1,"buyer":"硬度の数値は、それを生んだ計画の質までしか意味を持ちません:出荷全体に対して一つの数値を挙げた証明書はばらつきについて何も語りませんので、抜取の頻度と硬度帯を求めてください。","production":"測定はめっきやスケールの上からではなく、下地を整えた面で行います — 被膜越しの測定値は軟らかく出て、存在しない熱処理の問題を誰かに追わせることになるからです。"},"塩水噴霧時間":{"pop":2,"cost":2,"buyer":"塩水噴霧は比較のためのふるいであって、庭で何年もつかの予測ではありません — 被膜の供給者を基準に縛るには有用ですが、耐用年数の主張として引用すれば誤解を招きます。","production":"試験にかけるのはめっき単品ではなく組立品です — 腐食はほぼ常に、縁部、締結部品、あるいは異種金属が接する結合部から始まるからで、平らで条件のよい面が問題になることはありません。"},"木材":{"pop":2,"cost":3,"buyer":"仕様のすべては含水率です:含水率18%で組んだ柄を暖房の効いた欧州の屋内へ送れば、口金の中で収縮して緩みますので、合意すべき数値は樹種だけではなく、包装時点の人工乾燥後の含水率です。","production":"当社が見るのは表面の見た目ではなく木目の抜け(グレインランアウト)です — シャフトの長さの内側で木目が側面から抜けている柄は、仕上げがどれほどきれいでも、こじる荷重で繊維を横切って折れます。"},"グリップ材":{"pop":5,"cost":2,"buyer":"エラストマーは、ショアA硬度と、何に接着させるかの両方で指定してください — ポリプロピレンでは正しいTPRもナイロンでは剥離し、剥がれたグリップは工具そのものが使えても保証返品になります。","production":"オーバーモールドの接着は機械的ではなく化学的ですので、エラストマーの系統を基材に合わせ、界面温度を保っています — 基材が冷えていると、組立には耐えても使い手の手の中で外れる接合になります。"},"木工旋削":{"pop":2,"cost":3,"buyer":"旋削の値段は木材ではなく削りの回数で決まり、柄の形状に玉縁や段が一つ増えるたびに工程が一つ増えます — よく乾いた素材で単純な形状にするほうが、その逆より安く、しかも丈夫な柄になります。","production":"木材は材料を削られた後に動きますので、大きめに削って素材を寝かせてから仕上げ削りに入ります — この養生を省くことが、冬に倉庫から出た丸柄がわずかに楕円になっている理由です。"},"木部のラッカー・オイル塗装":{"pop":2,"cost":1,"buyer":"この選択は、使い手に代わって行う手入れ方法の決定です:ラッカーは木部を封じますがいずれ欠け、オイルは浸透しますが塗り直しが要り、それぞれ包装に載せる手入れ表示が変わります。","production":"管理点は塗装時点の含水率です — 安定していない木材に塗った塗膜は水分を閉じ込め、後になって柄に干割れが生じ、内側から塗膜を持ち上げます。"},"二色オーバーモールド":{"pop":4,"cost":4,"buyer":"二色成形は一つの金型で二材質の完成部品を作りますので、別々に成形して組み立てる場合にくらべ初期費用は高く単価は安くなり、接着したグリップが持つ剥離という故障様式もなくなります。","production":"2次側は化学的にまだ受け入れ状態にある基材に接する必要があり、だからこそ2つのショットは在庫を挟まずに1台の機械で連続させます — 冷えて時間の経った1次側が、一体化したはずのグリップをただのスリーブに変えるからです。"},"ディップ成形":{"pop":3,"cost":2,"buyer":"浸漬成形はグリップ工法の中でもっとも低い金型費で柄端に緩衝性を与えますが、被膜厚は金型ではなく工程で決まりますので、単一の数値ではなく厚みの範囲と硬化の基準を合意してください。","production":"膜厚を決めるのは引上げ速度と予熱ですので、浸漬時間だけでなくその両方を管理します — 引上げを急ぐと肩部の膜が薄くなり、そこがまさに握られる場所です。"},"リベット締結":{"pop":5,"cost":1,"buyer":"支点のリベットは、剪定ばさみが一季を越えてなお切れ味を保つかどうかを決める唯一の結合部であり、リベット径だけではなく、締付け荷重と締め直せるかどうかで指定します。","production":"管理点はかしめ高さではなく、かしめ荷重です — 正しい寸法まで、しかし誤った荷重で締められたリベットは、作業台では正常に感じられ、数千回の開閉で緩みます。"},"ボルト締結":{"pop":3,"cost":2,"buyer":"ボルト式の支点は整備できる答えです:使い手が締め直せ、研ぎ直しや手入れを語って工具を売ることができる一方、なくしうる締結部品を抱えることが引き換えになります。","production":"緩み止めの方式は締結部品とセットで指定します — 振動の後も締付けトルクの数値を意味あるものに保つのはナイロンインサートやねじロック剤のパッチであり、これは繰り返しの分解には耐えない消耗要素です。"},"圧入":{"pop":3,"cost":1,"buyer":"圧入した口金や中子はしめしろだけで保持されますので、結合部の強度は一対の公差にすべて宿ります — 呼び径ではなくはめあいを指定しなければ、独立した2つの公差の積み上がりが出会うことに賭けているだけです。","production":"しめしろは片側だけでなく両側を管理します — 双方の公差の緩い側どうしで組んだはめあいでも圧入自体はでき、ただ設計どおりの荷重を保持しないだけだからです。"},"結合部引張試験":{"pop":2,"cost":2,"buyer":"これは破壊試験ですので、出荷判定ではなく工程の検証です:ラインが作っている結合部が健全であることは分かりますが、それは特定のカートンが良品かどうかとは別の問いです。","production":"記録するのは荷重だけではなく破壊様式です — 母材が破れて壊れた結合部は限界に達した正しい結合であり、界面で剥がれた結合部は、数値がいくつであろうと工程の問題です。"},"開閉耐久試験":{"pop":2,"cost":2,"buyer":"開閉耐久試験は、支点の緩みとばねの疲労を市場より先に見つけられる唯一の試験であり、合意すべき数値は合否基準を定めた負荷下での回数です — 単に「まだ開く」ではありません。","production":"この試験で見るのは刃の切れ味ではなく支点の摩耗です — 耐久寿命の不具合はほぼ例外なく、まず幾何形状が広がることから始まり、切れ味の低下はその症状であって別個の不具合ではありません。"},"化粧箱":{"pop":4,"cost":4,"buyer":"印刷された小売用の箱は、長い交期と独自の最低発注数量を持つ販促資産であり、案件の中で版下をどれだけ早く確定しなければならないかを決めるのは、通常この部材です。","production":"繰り返し問題になるのは印刷ロット間の色の一致ですので、画面上の参照ではなく承認済みの実物校正刷りを基準に作業します — 同じデータでも、板紙が違い印刷機が違えば刷り上がりは変わります。"},"下げ札・吊り下げ台紙":{"pop":5,"cost":1,"buyer":"吊り下げ台紙は製品をフックに掛けられるようにする部材であり、その打抜き形状と穴位置は小売ごとに異なります — 包装が落ちるのは品質検査ではなく、棚割りの段階です。","production":"台紙がフックで裂けるのを防いでいるのは、吊り下げ穴に対する板紙の目の方向であり、これは版下を土壇場で拡大縮小し、打抜き型を確認し直さなかったときに簡単に失われます。"},"輸出用段ボールカートン":{"pop":5,"cost":2,"buyer":"輸出用カートンは、運賃も損傷クレームもそれを単位として計算されますので、カートン寸法には製品と同じだけの注意を払う価値があります — パレット効率の悪いカートンは、出荷のたびに運賃を余計に払わせます。","production":"カートンは製品から前向きに決めるのではなく、パレットの外寸から逆算します — 数ミリのはみ出しでパレット1列分を失い、その損は毎回の生産で無駄な容積として現れるからです。"},"硬質プラスチック":{"pop":5,"cost":1,"buyer":"受入時の樹脂を定義するのは「ナイロン」という語ではなく、グレードと充填材です:無充填のPA6とPA6-GF30では剛性がおよそ3倍違い、ガラス繊維含有率は部品表からもっとも静かに落とされやすい一行です。","production":"ポリアミドは吸湿性のため水分管理を重視しています — 開封したまま置かれた樹脂はシリンダー内で加水分解し、見た目は正常でもボス部で折れる部品になりますので、毎ロット、規定どおりに乾燥させてから成形します。"},"接着接合":{"pop":3,"cost":2,"buyer":"接着は口金やラベルに対する融通の利く答えですが、その性能は表面処理と硬化条件だけで決まりますので、交替勤務や季節の変わり目にもっとも敏感な接合部でもあります。","production":"前処理で狙っているのは表面エネルギーです — データシートにどの接着剤が書かれていようと、脱脂して粗した表面は接着し、成形したままのポリオレフィン表面は接着しません。"},"ブリスターパック":{"pop":4,"cost":3,"buyer":"ブリスターは工具をよく見せますが、いくつかの市場では樹脂使用量をめぐる規制圧力を現に受けていますので、版下と金型に踏み切る前に、その形態が仕向地でなお適合するかを確認する価値があります。","production":"管理項目はシール温度と加圧時間です:シールが弱ければブリスターは輸送中に開き、強すぎれば客が道具なしに開けられなくなり、その間の許容幅は狭いものです。"},"液体塗装":{"pop":3,"cost":1,"buyer":"液体塗装は金属に色を載せるもっとも安価な方法であり、使用中の耐久性はもっとも低いため、見せるための面には正しく、鋤の刃のように擦れる面には誤った答えになります。","production":"管理項目は膜厚と硬化で、どちらもすぐに外しやすい項目です — 悪い下地を隠そうと厚く塗れば垂れ、硬化時間が足りなければ、カートンの中で傷がつく程度に軟らかいままです。"},"バンド掛け":{"pop":2,"cost":1,"buyer":"バンド掛けは束やパレットを固定するもので、製品ではなく荷役についての判断です — 必要かどうかを決めるのは商品ではなく、輸送経路と積み替えの回数です。","production":"張力と角当ては一組です — 保護のないカートンの角の上でバンドを強く締めれば板紙に食い込み、パレットは何も保持していないバンドで固定された状態で到着します。"},"パレット":{"pop":5,"cost":5,"buyer":"パレットの仕様は通関の項目であると同時にコストの項目です:熱処理木材には、大半の国際輸送で木製包装材に求められるISPM 15の刻印があり、パレット寸法が、実際に支払うコンテナ容積を決めます。","production":"パレットへの収まりはカートン寸法で決まりますので、最初のカートンを印刷する前に積み付けパターンを計画します — 後からカートンを数ミリ変えることが、満載のパレットを積み残しのあるパレットに変えるからです。"},"プレス抜き":{"pop":5,"cost":1,"buyer":"プレス抜きは1個あたりが安く、変更が高くつく工法です:形状を保持しているのは金型ですので、金型承認後の形状変更は金型費用と交期の仕切り直しを意味し、図面を動かすのをやめるべきゲートがここです。","production":"クリアランスは板厚に対する百分率で設定し、バリの高さと切断面のせん断面の深さを決めるのがこの値です — 狭すぎれば金型が欠け、広すぎれば端部がだれますので、慣習ではなく材料に合わせて詰めます。"},"レーザー刻印":{"pop":3,"cost":2,"buyer":"レーザー刻印は恒久的で、部品から剥がして偽装することができませんので、印刷表示では擦れて消えてしまう高級ラインでは、ブランド・鋼種・追跡情報をこれで表示します。","production":"焼入れ鋼への刻印は、表面を焼戻してしまわない条件で行います — 出力の高すぎる刻印は刃先に局部的な熱影響部を作り、それは刃が働くまさにその場所にできた軟点です。"},"射出成形":{"pop":5,"cost":2,"buyer":"単価は数量とともに下がり、肉厚とサイクルタイムとともに上がりますので、成形柄の価格をもっとも大きく動かすのは交渉ではなく設計です — 厚いリブは冷却が遅く、二重に高くつきます。","production":"ヒケとウェルドラインは磨きの段階ではなくゲート位置で管理します — 二つの流動先端が合流するウェルドラインは実際の強度の不連続ですので、荷重経路から外した位置に置きます。"},"スキンパック":{"pop":2,"cost":3,"buyer":"スキンパックは、ブリスター金型では採算よく合わせられない不定形の製品に向き、金型費の安さと引き換えに、ライン速度の低さと売場での高級感の乏しさを受け入れる方式です。","production":"フィルムは製品の高い部分の上でも均一に伸びる必要がありますので、加熱と真空を合わせて管理します — 角の上にできた薄い箇所が、後に取り扱いの途中で包装が裂ける場所になります。"},"ニッケルクロムめっき":{"pop":2,"cost":4,"buyer":"ニッケルクロムは単層ではなく装飾用の層構成です:耐食性は下地のニッケルにあり、クロムは薄い光沢の上層にすぎませんので、クロムだけを書いた仕様は、間違ったものを指定しています。","production":"この仕上げが破綻するのは凹部の付き回りです — めっき電流は形状に沿って流れるため、入隅や袋状の部位は析出量がもっとも少なくなり、最初に錆が出るのはまさにその場所です。"},"レーザー切断":{"pop":2,"cost":4,"buyer":"レーザーは金型費が丸ごと不要になるため少量生産や試作形状には正しい答えですが、切断端に熱影響部を残しますので、刃先を持つ部品では焼入れ前にこれを研削で取り除く必要があります。","production":"切断端は未仕上げとして扱っています — 再凝固層とカーフ脇の硬さ勾配は焼入れで異なる挙動を示しますので、レーザー切断した刃形状には除去用の削り代を刃先に残します。"},"アルミニウム":{"pop":3,"cost":3,"buyer":"仕様となるのは合金番号ではなく調質記号です:6061-T6と6061-T4は同じ金属で耐力が違うだけであり、軟らかい調質で納入されたシャフトは、硬い調質なら弾性で戻る荷重で永久変形します。","production":"受入で見ているのは押出しの肉厚公差です — 公称肉厚に満たないパイプでも外径ゲージは通ってしまい、それでも口金部で座屈しますので、外径だけでなく肉厚を測ります。"},"陽極酸化処理":{"pop":2,"cost":3,"buyer":"陽極酸化処理は層を足すのではなくアルミ表面そのものを変化させますので欠けることはありませんが、ロットや合金によって色が振れることはあり、他の部品と色を合わせる必要がある場合には問題になります。","production":"色を左右するのは合金と調質ですので、色が重要な部品は一つの合金・一つの供給元に固定します — 同じ処理条件でも、6000系の別ロットでは目に見えて違う色調に上がります。"},"パイプ引抜き":{"pop":3,"cost":3,"buyer":"引抜きは外径と肉厚の双方を決め、曲げ荷重を受け持つのは肉厚です:同じ外径で見積られた2本のシャフトでも剛性は3分の1ほど違い得ますので、肉厚を明示して指定しなければ、買っているのは見た目だけです。","production":"長尺シャフトの管理点は引抜き後の真直度です — ダイスによる残留応力は2メートルの長さで反りとなって現れますので、目視で選別するのではなく、矯正と応力除去を行います。"},"パイプ曲げ":{"pop":3,"cost":2,"buyer":"指定すべき数値は、パイプ径に対する曲げ中心半径です:半径が小さいほど外側の肉厚は薄くなり内側にはしわが出て、曲げた柄が使用中にいずれ割れるのはその箇所です。","production":"薄肉の曲げでは断面を保つために内部からの支持が要りますのでマンドレルを使います — 支持がなければ曲げ部は扁平になり、扁平になったパイプは真円を前提に設計された口金には入りません。"},"スエージング":{"pop":2,"cost":2,"buyer":"スエージングはパイプ端を絞る・閉じるための安価な方法で材料の無駄も出ませんが、縮径した部分は加工硬化してわずかに硬くなります — 柄の端であれば妥当な取引ですが、後で溶接する部品では割に合いません。","production":"すべては型の芯出し次第です:軸のずれたスエージングは、見た目には問題のないテーパーでありながら口金に斜めに座りますので、後工程で直すのではなく治具の側で同軸度を出します。"},"硬度帯による選別":{"pop":2,"cost":1,"buyer":"硬度帯による選別は、単一の平均値で受け入れる代わりに産出品を硬さの範囲ごとに分けるもので、硬度の数値を保証に変えるのがこの工程です — 平均HRC 58という値は、52でラインを出た部品が何個あったかを何も語りません。","production":"硬度帯は選別作業ではなく工程管理として扱っています:帯に収めるために選別が要るのなら焼入れが狂ってきているということであり、有効な対応は産出品を等級分けすることではなく、炉を直すことです。"},"スナップフィット":{"pop":4,"cost":1,"buyer":"スナップフィットは締結部品と組立工数を丸ごと不要にするため量販品のハウジングで主流ですが、設計上の問いはその結合部を再び開ける必要があるかどうかです — 大半のスナップフィットは、一度閉じることを前提に設計されています。","production":"スナップが持つかどうかを決めるのは、組立時に片持ち梁部に生じるひずみです — ひずみが過大でも爪は折れずにクリープし、組立時にはしっかり嵌っていたハウジングが、売場に並ぶころにはがたつきます。"},"スポット溶接":{"pop":2,"cost":2,"buyer":"スポット溶接は板金組立には速く安価ですが、弱点は品質が外から見えないことです:電流や電極が適切でなければ、見た目の同じ溶接部でも強度は数分の一になり得ます。","production":"ナゲットは結合部の内側にありますので、外観ではなくサンプルの破壊ピール試験で確認します — 表面の圧痕が証明するのは電極が当たったことであって、材料が溶け合ったことではありません。"},"MIG溶接":{"pop":2,"cost":3,"buyer":"MIG溶接は、連続ビードが実荷重を受け持つ重量級の長柄組立品に適する一方で熱変形を伴いますので、真直度を保つべき部品には治具が、そして多くの場合は溶接後の応力除去工程が必要になります。","production":"管理する変数は運棒速度だけではなく入熱です — 同じ溶接でも入熱が高すぎれば薄肉を溶け落とし、低すぎれば融合不良を残しますが、溶接者に見えるのはそのうち一方だけです。"},"ろう付け":{"pop":1,"cost":4,"buyer":"ろう付けは母材の融点以下で異種金属を接合する方法で、硬い刃と粘り強い中子をどちらも損なわずに結ぶ手段であり、ろう材と工数で値段が決まる高級・少量向けの答えです。","production":"ろう付けを成立させるのは接合すきまです — 毛細管現象には狭く均一なすきまが必要ですので組付け精度を管理しており、余裕を見て広げたすきまは、大部分がろう材の、そして大部分が弱い接合になります。"},"寸法のAQL検査":{"pop":4,"cost":1,"buyer":"ここでの商談条件はAQLの水準と検査規格です:ロットにいくつの不良が含まれていても合格とするかを正確に定めるものであり、生産前に合意しておくことが、不合格を感情論ではなく議論可能な事柄にします。","production":"入出荷の検査は図面と同じデータムで行います — 基準が違えば測った寸法は別の寸法であり、当社が見てきた紛争の多くはそこから始まるからです。"},"包装用板紙":{"pop":5,"cost":1,"buyer":"板紙は厚さではなく、構成と破裂強度またはエッジクラッシュ強度で指定するものであり、部品表の中でもっとも安価でありながら、仕様を落とせば確実に輸送損傷の控除に変わる箇所です。","production":"板紙の等級は積み付け高さと輸送経路の湿度に対して決めます — 板紙は吸湿すると圧縮強度をかなりの割合で失い、それが起きるのはまさに長い海上区間です。"},"紙・樹脂複合":{"pop":3,"cost":2,"buyer":"これらの複合形態は包装規制を先取りして樹脂使用量を減らすために存在しますが、実務上の問いは、その形態が仕向地の市場で分別して再生に回せるかどうかです — 規則が実際に問うているのはその点だからです。","production":"紙とフィルムは熱と湿度に対する挙動が異なりますので、置き換える前のブリスターと同じように振る舞うと決めつけず、輸送試験でその組み合わせを確認します。"},"バーコード・ラベル確認":{"pop":5,"cost":1,"buyer":"これは品質ではなく適合の問題です:読めないバーコードや原産地表示の欠落は、壊れた工具と同じ確実さで物流センターで荷を止めますが、この一覧の中ではもっとも安く防げる不具合でもあります。","production":"確認は、小売が読み取るのと同じ条件でスキャンして行います — 印刷のコントラストやクワイエットゾーンが際どければ、卓上スキャナーで読めるコードも倉庫のハンディスキャナーでは読めないことがあるからです。"},"包装落下試験":{"pop":3,"cost":1,"buyer":"落下試験が守るのは製品ではなく利益です:輸送中の損傷は小売からの控除という形で届き、この試験は、商品が実際に通る流通経路に耐える包装を定めるものです。","production":"単体では合格するカートンも積み重ねれば不合格になり得ますので、試験は実際にパレット積みされる形の輸送単位で行います — 当社が見てきた輸送損傷の多くは、単発の衝撃ではなく時間をかけた圧縮によるものです。"},"布材":{"pop":2,"cost":1,"buyer":"金属製品の部品表において、繊維は化学物質規制リスクを最も抱えやすい項目として入ってきます——染料、コーティング、革のトリムこそがREACHやProposition 65の照会が最初に向かう先であり、鋼材ではありません。","production":"管理点は裁断・縫製での伸びです:同じロールでも幅方向で挙動が異なりますので、パーツは一枚ずつではなく型入れしたマーカーに沿って裁断しており、これが手袋を左右そろった一組に保っています。"},"ラベル一式":{"pop":5,"cost":1,"buyer":"ラベルは法令上の表示 — 原産地、安全表示、バーコード — を担い、土壇場でもっとも多く改訂される部材ですので、包装本体とは別の版下承認として分けて管理する価値があります。","production":"粘着剤の選定は、貼る面と輸送経路の温度に合わせます:温かいカートンには留まるラベルも、冷えた面・ワックス面・凹凸のある面からは剥がれることがあり、それが分かるのは仕向地です。"}},"optionIds":{"刃物鋼・ばね鋼":"Blade & spring steel","ステンレス鋼":"Stainless steel","熱間鍛造":"Hot forging","冷間鍛造":"Cold forging","焼入れ焼戻し":"Quench & temper","高周波(局部)焼入れ":"Induction (local) hardening","全体焼入れ":"Through hardening","粉体塗装":"Powder coating","電着塗装":"E-coat","亜鉛めっき":"Zinc plating","研磨":"Polishing","ブラスト処理":"Sand-blasting","刃先・機能確認":"Edge & function check","硬度抜取検査":"Hardness sampling","塩水噴霧時間":"Salt-spray hours","木材":"Timber","グリップ材":"Grip compounds","木工旋削":"Wood turning","木部のラッカー・オイル塗装":"Lacquer or oil on wood","二色オーバーモールド":"Two-shot over-moulding","ディップ成形":"Dip moulding","リベット締結":"Riveting","ボルト締結":"Bolted joints","圧入":"Press-fit","結合部引張試験":"Joint pull test","開閉耐久試験":"Open/close cycle life","化粧箱":"Colour box","下げ札・吊り下げ台紙":"Hang tag / header card","輸出用段ボールカートン":"Corrugated export carton","硬質プラスチック":"Rigid plastics","接着接合":"Adhesive bonding","ブリスターパック":"Blister pack","液体塗装":"Wet paint","バンド掛け":"Strapping","パレット":"Pallet","プレス抜き":"Stamping","レーザー刻印":"Laser marking","射出成形":"Injection moulding","スキンパック":"Skin pack","ニッケルクロムめっき":"Nickel-chrome plating","レーザー切断":"Laser cutting","アルミニウム":"Aluminium","陽極酸化処理":"Anodising","パイプ引抜き":"Tube drawing","パイプ曲げ":"Tube bending","スエージング":"Swaging","硬度帯による選別":"Hardness banding by grade","スナップフィット":"Snap-fit","スポット溶接":"Spot welding","MIG溶接":"MIG welding","ろう付け":"Brazing","寸法のAQL検査":"Dimensional AQL","包装用板紙":"Packaging board","紙・樹脂複合":"Paper-and-plastic composite","バーコード・ラベル確認":"Barcode & label check","包装落下試験":"Pack drop test","布材":"Fabric","ラベル一式":"Label set"},"optionLabels":{"Blade & spring steel":"刃物鋼・ばね鋼","Stainless steel":"ステンレス鋼","Hot forging":"熱間鍛造","Cold forging":"冷間鍛造","Quench & temper":"焼入れ焼戻し","Induction (local) hardening":"高周波(局部)焼入れ","Through hardening":"全体焼入れ","Powder coating":"粉体塗装","E-coat":"電着塗装","Zinc plating":"亜鉛めっき","Polishing":"研磨","Sand-blasting":"ブラスト処理","Edge & function check":"刃先・機能確認","Hardness sampling":"硬度抜取検査","Salt-spray hours":"塩水噴霧時間","Timber":"木材","Grip compounds":"グリップ材","Wood turning":"木工旋削","Lacquer or oil on wood":"木部のラッカー・オイル塗装","Two-shot over-moulding":"二色オーバーモールド","Dip moulding":"ディップ成形","Riveting":"リベット締結","Bolted joints":"ボルト締結","Press-fit":"圧入","Joint pull test":"結合部引張試験","Open/close cycle life":"開閉耐久試験","Colour box":"化粧箱","Hang tag / header card":"下げ札・吊り下げ台紙","Corrugated export carton":"輸出用段ボールカートン","Rigid plastics":"硬質プラスチック","Adhesive bonding":"接着接合","Blister pack":"ブリスターパック","Wet paint":"液体塗装","Strapping":"バンド掛け","Pallet":"パレット","Stamping":"プレス抜き","Laser marking":"レーザー刻印","Injection moulding":"射出成形","Skin pack":"スキンパック","Nickel-chrome plating":"ニッケルクロムめっき","Laser cutting":"レーザー切断","Aluminium":"アルミニウム","Anodising":"陽極酸化処理","Tube drawing":"パイプ引抜き","Tube bending":"パイプ曲げ","Swaging":"スエージング","Hardness banding by grade":"硬度帯による選別","Snap-fit":"スナップフィット","Spot welding":"スポット溶接","MIG welding":"MIG溶接","Brazing":"ろう付け","Dimensional AQL":"寸法のAQL検査","Packaging board":"包装用板紙","Paper-and-plastic composite":"紙・樹脂複合","Barcode & label check":"バーコード・ラベル確認","Pack drop test":"包装落下試験","Fabric":"布材","Label set":"ラベル一式"},"ui":{"sheetTitle":"要件シート","pickOne":"いずれか1つを選択","marketUse":"普及度","cost":"コスト","fromFloor":"製造現場から","quantity":"数量","targetDelivery":"希望納期","csvProduct":"製品","csvPart":"部品","csvDecision":"決定項目","csvOption":"選択肢","csvQuantity":"数量","csvDelivery":"希望納期","mailIntro":"Birdland 営業ご担当者様\n\nAsiaSource コンフィギュレータで作成した要件シートをお送りします。","mailClose":"対応可否と納期のご回答をお願いいたします。","gate_material":"材料","gate_forming":"成形","gate_heat":"熱処理","gate_tooling":"金型・治具","gate_joining":"接合","gate_finish":"表面処理","gate_inspection":"検査","gate_pack":"包装","sheetEmpty":"左側で製品と仕様を選ぶと、選択内容がここに表示されます。","toConfirm":"要確認"},"gateLabels":{"material":"材料","forming":"成形","heat":"熱処理","tooling":"金型・治具","joining":"接合","finish":"表面処理","inspection":"検査","pack":"包装"}}</script>
+<script>
+(function () {
+  'use strict';
+  var DATA = JSON.parse(document.getElementById('cfg-data').textContent);
+  // Every user-visible string the script builds lives in DATA.ui so a language
+  // edition swaps them with the rest of the data blob — nothing is hardcoded here.
+  var UI = DATA.ui || {};
+  var T = function (k, fallback) { return UI[k] || fallback; };
+  var GATE_LABEL = DATA.gateLabels || { material: 'Material', forming: 'Forming', heat: 'Heat treatment',
+    tooling: 'Tooling', joining: 'Joining', finish: 'Finish', inspection: 'Inspection', pack: 'Packaging' };
+  var QUICK = [[500, '500'], [1000, '1k'], [5000, '5k'], [10000, '10k']];
+  // Routing belongs to Contact; this page never sends mail directly.
+
+  var byId = {}; DATA.products.forEach(function (p) { byId[p.id] = p; });
+
+  // sheet[pid] = { picks: {partId: {gate: option}}, qty, delv }
+  var sheet = {};
+  try { sheet = JSON.parse(localStorage.getItem('bl_cfg_sheet') || '{}') || {}; } catch (e) { sheet = {}; }
+  function save() { try { const pub=Object.fromEntries(Object.entries(sheet).map(([id,en])=>[id,{picks:en.picks}]));localStorage.setItem('bl_cfg_sheet', JSON.stringify(pub)); } catch (e) {} }
+
+  try{const tab=JSON.parse(sessionStorage.getItem('bl_cfg_tab')||'null');if(tab&&tab.expires>Date.now()){for(const [id,en]of Object.entries(tab.sheet||{}))if(byId[id])sheet[id]=en;}sessionStorage.removeItem('bl_cfg_tab');}catch(e){}
+  document.addEventListener('click',function(e){if(e.target.closest('.bj-language a'))try{sessionStorage.setItem('bl_cfg_tab',JSON.stringify({expires:Date.now()+30*60*1000,sheet}));}catch(err){}});
+  // Remove legacy persisted quantities/dates after reading the existing sheet.
+  save();
+  var cur = null;      // current product
+  var openPart = null; // open part id
+  var hoverPart = null;
+  var animTimer = null;
+
+  function entry(pid) {
+    if (!sheet[pid]) sheet[pid] = { picks: {}, qty: 1000, qtyConfirmed:false, delv: '' };
+    if(sheet[pid].qty===undefined)sheet[pid].qty=1000;
+    return sheet[pid];
+  }
+  function picksOf(pid) { return (sheet[pid] && sheet[pid].picks) || {}; }
+  function partDone(p, part) {
+    var picks = picksOf(p.id)[part.id] || {};
+    return Object.keys(part.options || {}).every(function (g) { return !!picks[g]; });
+  }
+  function anyPick(pid) {
+    var picks = picksOf(pid);
+    return Object.keys(picks).some(function (k) { return Object.keys(picks[k]).length; });
+  }
+  function onSheet() { return DATA.products.filter(function (p) { return anyPick(p.id); }); }
+
+  // ---- theme-linked canvas colours ------------------------------------
+  function inkColours() {
+    var cs = getComputedStyle(document.documentElement);
+    return {
+      ink: cs.getPropertyValue('--cfg-ink').trim() || '#2b3a35',
+      accent: cs.getPropertyValue('--cfg-accent').trim() || '#0E6652',
+      muted: cs.getPropertyValue('--cfg-canvas-mut').trim() || '#8a9490'
+    };
+  }
+
+  // ---- canvas ----------------------------------------------------------
+  var cv = document.getElementById('cv');
+  var ctx = cv.getContext('2d');
+  var hits = [];
+
+  function sizeCanvas() {
+    var r = cv.getBoundingClientRect();
+    var dpr = window.devicePixelRatio || 1;
+    var w = Math.max(1, Math.round(r.width * dpr));
+    var h = Math.max(1, Math.round(r.height * dpr));
+    if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
+  }
+
+  function drawSpec() { return cur && window.BL_DRAWINGS[cur.draw]; }
+
+  function draw(partCount) {
+    var spec = drawSpec();
+    if (!spec) { ctx.clearRect(0, 0, cv.width, cv.height); return; }
+    sizeCanvas();
+    var shown = partCount === undefined ? spec : { parts: spec.parts.slice(0, partCount) };
+    var c = inkColours();
+    var state = { hover: hoverPart, selected: {}, labels: {} };
+    if (openPart) state.selected[openPart] = true;
+    cur.parts.forEach(function (part) {
+      state.labels[part.id] = part.name;
+      if (partDone(cur, part)) {
+        state.labels[part.id] = part.name + ' ✓';
+      }
+    });
+    window.BLSketch.drawProduct(ctx, shown, state, {
+      ink: c.ink, accent: c.accent, muted: c.muted,
+      width: Math.max(1.2, 1.6 * (window.devicePixelRatio || 1) / 2)
+    });
+    hits = window.BLSketch.hitPaths(spec, cv);
+  }
+  function specName(spec, id) {
+    for (var i = 0; i < spec.parts.length; i++) if (spec.parts[i].id === id) return spec.parts[i].name;
+    return '';
+  }
+
+  function animateDraw() {
+    var spec = drawSpec();
+    if (!spec) return;
+    if (animTimer) clearInterval(animTimer);
+    var n = 0;
+    draw(0);
+    animTimer = setInterval(function () {
+      n++;
+      draw(n);
+      if (n >= spec.parts.length) { clearInterval(animTimer); animTimer = null; draw(); }
+    }, 110);
+  }
+
+  function hitAt(e) {
+    var r = cv.getBoundingClientRect();
+    var x = (e.clientX - r.left) * (cv.width / r.width);
+    var y = (e.clientY - r.top) * (cv.height / r.height);
+    for (var i = hits.length - 1; i >= 0; i--) {
+      if (ctx.isPointInPath(hits[i].path, x, y)) {
+        // unnamed helper polygons (blade2 etc.) map onto their named sibling
+        var id = hits[i].id;
+        if (cur.parts.some(function (p) { return p.id === id; })) return id;
+        var base = id.replace(/\d+$/, '');
+        if (cur.parts.some(function (p) { return p.id === base; })) return base;
+        return null;
+      }
+    }
+    return null;
+  }
+  cv.addEventListener('pointermove', function (e) {
+    var id = hitAt(e);
+    cv.style.cursor = id ? 'pointer' : 'default';
+    if (id !== hoverPart) { hoverPart = id; draw(); }
+  });
+  cv.addEventListener('pointerleave', function () { if (hoverPart) { hoverPart = null; draw(); } });
+  cv.addEventListener('click', function (e) {
+    var id = hitAt(e);
+    if (id) togglePart(id, true);
+  });
+
+  // ---- menu ------------------------------------------------------------
+  var menu = document.getElementById('menu');
+  function renderMenu() {
+    menu.innerHTML = DATA.tiers.map(function (t) {
+      var items = DATA.products.filter(function (p) { return p.tier === t.id; });
+      return '<div class="tier"><div class="tier-h">' + t.name + '</div>' +
+        '<div class="tier-b">' + t.body + '</div><div class="plist">' +
+        items.map(function (p) {
+          var done = p.parts.filter(function (part) { return partDone(p, part); }).length;
+          return '<button type="button" class="pbtn" data-pid="' + p.id + '"' +
+            (cur && cur.id === p.id ? ' aria-current="true"' : '') + '>' + p.name +
+            (done ? '<span class="done">' + done + '/' + p.parts.length + ' ✓</span>' : '') +
+            '</button>';
+        }).join('') + '</div></div>';
+    }).join('');
+  }
+  menu.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-pid]');
+    if (b) selectProduct(b.getAttribute('data-pid'));
+  });
+
+  // ---- parts & options -------------------------------------------------
+  var partsEl = document.getElementById('parts');
+  function renderParts() {
+    partsEl.innerHTML = cur.parts.map(function (part) {
+      var gates = Object.keys(part.options || {});
+      var picks = picksOf(cur.id)[part.id] || {};
+      var nPicked = gates.filter(function (g) { return picks[g]; }).length;
+      var done = nPicked === gates.length;
+      return '<div class="part' + (done ? ' is-done' : '') + '" data-part="' + part.id + '"' +
+        ' data-open="' + (openPart === part.id ? 1 : 0) + '">' +
+        '<button type="button" class="part-h"><span class="tick">✓</span>' + part.name +
+        '<span class="st">' + nPicked + '/' + gates.length + '</span></button>' +
+        '<div class="part-b">' +
+        gates.map(function (g) {
+          return '<div class="gate"><div class="gate-h">' + (GATE_LABEL[g] || g) + ' — ' + T('pickOne', 'pick one') + '</div>' +
+            part.options[g].map(function (name) {
+              var o = DATA.options[name];
+              var key = (DATA.optionIds || {})[name] || name;
+              var on = picks[g] === key;
+              return '<div class="opt' + (on ? ' is-on' : '') + '" data-gate="' + g +
+                '" data-opt="' + key.replace(/"/g, '&quot;') + '" role="button" tabindex="0">' +
+                '<div class="o-top"><span class="o-name">' + name + '</span>' +
+                '<span class="o-meta">' + T('marketUse', 'market use') + ' ' + o.pop + '/5 · ' + T('cost', 'cost') + ' ' + o.cost + '/5</span></div>' +
+                '<div class="o-buyer">' + o.buyer + '</div>' +
+                '<details><summary>' + T('fromFloor', 'From the production floor') + '</summary>' +
+                '<div class="o-prod">' + o.production + '</div></details></div>';
+            }).join('') + '</div>';
+        }).join('') +
+        '</div></div>';
+    }).join('');
+    renderOrder();
+  }
+
+  partsEl.addEventListener('click', function (e) {
+    var head = e.target.closest('.part-h');
+    if (head) { togglePart(head.parentNode.getAttribute('data-part'), false); return; }
+    var opt = e.target.closest('.opt');
+    if (opt && !e.target.closest('summary') && !e.target.closest('.o-prod')) pickOption(opt);
+  });
+  partsEl.addEventListener('keydown', function (e) {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('opt')) {
+      e.preventDefault(); pickOption(e.target);
+    }
+  });
+
+  function pickOption(optEl) {
+    var partEl = optEl.closest('.part');
+    var partId = partEl.getAttribute('data-part');
+    var gate = optEl.getAttribute('data-gate');
+    var name = optEl.getAttribute('data-opt');
+    var en = entry(cur.id);
+    if (!en.picks[partId]) en.picks[partId] = {};
+    en.picks[partId][gate] = en.picks[partId][gate] === name ? undefined : name;
+    if (!en.picks[partId][gate]) delete en.picks[partId][gate];
+    save();
+    renderParts(); renderMenu(); renderSheet(); draw();
+    var active=partsEl.querySelector('[data-part="'+partId+'"] [data-gate="'+gate+'"][data-opt="'+CSS.escape(name)+'"]');if(active)active.focus({preventScroll:true});
+  }
+
+  function togglePart(id, fromCanvas) {
+    openPart = (openPart === id && !fromCanvas) ? null : id;
+    renderParts(); draw();
+    if (fromCanvas) {
+      var el = partsEl.querySelector('.part[data-part="' + id + '"]');
+      if (el && el.scrollIntoView) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  // ---- quantity & delivery --------------------------------------------
+  var orderEl = document.getElementById('order');
+  var qtyEl = document.getElementById('qty');
+  var delvEl = document.getElementById('delv');
+  var qqEl = document.getElementById('qq');
+  QUICK.forEach(function (q) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.textContent = q[1];
+    b.addEventListener('click', function () {
+      qtyEl.value = q[0]; entry(cur.id).qty = q[0]; entry(cur.id).qtyConfirmed=true; save(); renderSheet();
+    });
+    qqEl.appendChild(b);
+  });
+  function renderOrder() {
+    if (!cur || !anyPick(cur.id)) { orderEl.hidden = true; return; }
+    orderEl.hidden = false;
+    var en = entry(cur.id);
+    qtyEl.value = en.qty || '';
+    delvEl.value = en.delv || '';
+  }
+  qtyEl.addEventListener('input', function () {
+    var v = parseInt(qtyEl.value, 10);
+    entry(cur.id).qty = (v > 0 ? v : ''); entry(cur.id).qtyConfirmed=v>0;
+    save(); renderSheet();
+  });
+  delvEl.addEventListener('input', function () {
+    entry(cur.id).delv = delvEl.value; save(); renderSheet();
+  });
+
+  // ---- requirement sheet summary --------------------------------------
+  var sbItems = document.getElementById('sbItems');
+  var csvBtn = document.getElementById('csvBtn');
+  var mailBtn = document.getElementById('mailBtn');
+  function renderSheet() {
+    var list = onSheet();
+    sbItems.textContent = '';
+    if (!list.length) {
+      var s = document.createElement('span');
+      s.className = 'sb-empty';
+      s.textContent = T('sheetEmpty', 'Pick a product on the left and choose its build — your selections collect here.');
+      sbItems.appendChild(s);
+    }
+    list.forEach(function (p) {
+      var en = entry(p.id);
+      var chip = document.createElement('button');
+      chip.type = 'button'; chip.className = 'sb-chip';
+      var b = document.createElement('b'); b.textContent = p.name;
+      var q = document.createElement('span'); q.className = 'q';
+      // user input reaches the DOM as textContent only
+      q.textContent = '× ' + (en.qtyConfirmed?en.qty:'?') + (en.delv ? ' · ' + en.delv : '');
+      chip.appendChild(b); chip.appendChild(q);
+      chip.addEventListener('click', function () { selectProduct(p.id); });
+      sbItems.appendChild(chip);
+    });
+    csvBtn.disabled = mailBtn.disabled = !list.length;
+  }
+
+  function sheetRows() {
+    var rows = [];
+    onSheet().forEach(function (p) {
+      var en = entry(p.id);
+      p.parts.forEach(function (part) {
+        var picks = en.picks[part.id] || {};
+        Object.keys(part.options || {}).forEach(function (g) {
+          if (picks[g]) rows.push([p.name, part.name, GATE_LABEL[g] || g, (DATA.optionLabels || {})[picks[g]] || picks[g],
+            String(en.qtyConfirmed?en.qty:''), en.delv || '']);
+        });
+      });
+    });
+    return rows;
+  }
+
+  function snapshot(){return onSheet().map(function(p){var en=entry(p.id),selected=[],unknown=[],examples=[];p.parts.forEach(function(part){var picks=en.picks[part.id]||{};Object.keys(part.options||{}).forEach(function(g){var val=picks[g];(val?selected:unknown).push(part.name+' / '+(GATE_LABEL[g]||g)+(val?': '+((DATA.optionLabels||{})[val]||val):''));});});if(en.qtyConfirmed)selected.push(T('quantity','Quantity')+': '+en.qty);else{unknown.push(T('quantity','Quantity'));examples.push(window.BL_BRIEF.t('brQtyExample'));}if(en.delv)selected.push(window.BL_BRIEF.t('brRequestedMonth')+': '+en.delv);else unknown.push(window.BL_BRIEF.t('brRequestedMonth'));examples.push(window.BL_BRIEF.t('brReference'));return {id:p.id,source:'Configurator',title:p.name,inputs:{quantity:en.qtyConfirmed?en.qty:'',date:en.delv},selected,unknown,examples};});}
+  document.addEventListener('DOMContentLoaded',function(){
+    if(!window.BL_BRIEF)return;
+    for(const item of window.BL_BRIEF.items('Configurator'))if(byId[item.id]){const en=entry(item.id);en.qty=item.inputs.quantity||1000;en.qtyConfirmed=!!item.inputs.quantity;en.delv=item.inputs.date||'';}renderOrder();renderSheet();
+    window.BL_BRIEF.register('Configurator',{snapshot,remove:function(id){delete sheet[id];save();renderMenu();renderParts();renderSheet();draw();},clear:function(){sheet={};save();renderMenu();renderParts();renderSheet();draw();}});
+    mailBtn.textContent=window.BL_BRIEF.t('brReview');
+    var note=document.createElement('p');note.className='br-assumption';note.textContent=window.BL_BRIEF.t('brQtyExample');orderEl.appendChild(note);
+  });
+  mailBtn.addEventListener('click',function(){window.BL_BRIEF.open('Configurator');});
+
+  csvBtn.addEventListener('click', function () {
+    var esc = function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; };
+    var csv = '﻿' + // UTF-8 BOM so Excel opens the CSV as UTF-8
+       [[T('csvProduct','Product'), T('csvPart','Part'), T('csvDecision','Decision'), T('csvOption','Option'), T('csvQuantity','Quantity'), T('csvDelivery','Target delivery')]]
+      .concat(sheetRows()).map(function (r) { return r.map(esc).join(','); }).join('\r\n');
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+    a.download = 'asiasource-requirement-sheet.csv';
+    document.body.appendChild(a); a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  });
+
+  // ---- product switch --------------------------------------------------
+  var pName = document.getElementById('pName');
+  var pTier = document.getElementById('pTier');
+  function selectProduct(pid) {
+    if (cur && cur.id === pid) return;
+    cur = byId[pid];
+    var selectedUrl = new URL(location.href); selectedUrl.searchParams.set('product', pid);
+    history.replaceState(null, '', selectedUrl.href);
+    document.querySelectorAll('.bj-language a').forEach(function (a) { var url = new URL(a.href); url.search = selectedUrl.search; a.href = url.href; });
+    openPart = null; hoverPart = null;
+    pName.textContent = cur.name;
+    var t = DATA.tiers.filter(function (x) { return x.id === cur.tier; })[0];
+    pTier.textContent = t ? t.name + ' — ' + t.body : '';
+    renderMenu(); renderParts(); renderOrder();
+    animateDraw();
+  }
+
+  window.addEventListener('resize', function () { draw(); });
+  if (window.matchMedia) {
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mq.addEventListener) mq.addEventListener('change', function () { draw(); });
+  }
+
+  renderSheet();
+  var requested = new URLSearchParams(location.search).get('product');
+  selectProduct(byId[requested] ? requested : DATA.products[0].id);
+})();
+</script>
+
+</body></html>

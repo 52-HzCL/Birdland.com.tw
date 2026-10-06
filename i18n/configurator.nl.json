@@ -21,5 +21,7 @@
   "gate_joining": "Verbinden",
   "gate_finish": "Oppervlaktebehandeling",
   "gate_inspection": "Inspectie",
-  "gate_pack": "Verpakking"
+  "gate_pack": "Verpakking",
+  "sheetEmpty": "Kies links een product en stel de uitvoering samen — uw keuzes verschijnen hier.",
+  "toConfirm": "Te bevestigen"
 }

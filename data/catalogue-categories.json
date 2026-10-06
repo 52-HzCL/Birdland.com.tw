@@ -1,0 +1,34 @@
+[
+  {
+    "id": "pruners",
+    "label": "catPruners"
+  },
+  {
+    "id": "hedge",
+    "label": "catHedge"
+  },
+  {
+    "id": "loppers",
+    "label": "catLoppers"
+  },
+  {
+    "id": "saws",
+    "label": "catSaws"
+  },
+  {
+    "id": "hoes",
+    "label": "catHoes"
+  },
+  {
+    "id": "hand-tools",
+    "label": "catHandTools"
+  },
+  {
+    "id": "rakes",
+    "label": "catRakes"
+  },
+  {
+    "id": "watering",
+    "label": "catWatering"
+  }
+]

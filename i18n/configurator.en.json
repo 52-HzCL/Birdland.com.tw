@@ -21,5 +21,7 @@
   "gate_joining": "Joining",
   "gate_finish": "Finish",
   "gate_inspection": "Inspection",
-  "gate_pack": "Packaging"
+  "gate_pack": "Packaging",
+  "sheetEmpty": "Pick a product on the left and choose its build — your selections collect here.",
+  "toConfirm": "To confirm"
 }

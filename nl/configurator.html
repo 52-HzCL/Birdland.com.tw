@@ -1,0 +1,546 @@
+<!doctype html>
+<!-- i18n-src:3271f6336eba882a0ccf457dad8775c5f5551d93 --><html lang="nl"><head><script>try{localStorage.setItem("bl_lang","nl")}catch(e){}</script><link rel="alternate" hreflang="en" href="https://birdland.com.tw/configurator.html">
+  <link rel="alternate" hreflang="nl" href="https://birdland.com.tw/nl/configurator.html">
+  <link rel="alternate" hreflang="de" href="https://birdland.com.tw/de/configurator.html">
+  <link rel="alternate" hreflang="fr" href="https://birdland.com.tw/fr/configurator.html">
+  <link rel="alternate" hreflang="es" href="https://birdland.com.tw/es/configurator.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://birdland.com.tw/pt-br/configurator.html">
+  <link rel="alternate" hreflang="pl" href="https://birdland.com.tw/pl/configurator.html">
+  <link rel="alternate" hreflang="it" href="https://birdland.com.tw/it/configurator.html">
+  <link rel="alternate" hreflang="ja" href="https://birdland.com.tw/ja/configurator.html">
+  <link rel="alternate" hreflang="zh-Hant" href="https://birdland.com.tw/zh-tw/configurator.html">
+  <link rel="alternate" hreflang="x-default" href="https://birdland.com.tw/configurator.html">
+  <link rel="stylesheet" href="../tokens.css?v=20260814a"><script src="../text-size.js?v=20260804a"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AsiaSource-configurator · Birdland</title>
+  <meta name="description" content="Stel een Birdland OEM-programma per onderdeel samen: materialen, vormgeving, warmtebehandeling, afwerking en verpakking. Stuur het specificatieblad naar ons verkoopteam. Geen prijzen of toezeggingen.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <script src="../bl-sketch.js?v=20260818a"></script>
+  <script src="../configurator-drawings.js?v=20260818a"></script>
+  <style>
+  :root{
+    --cfg-bg:var(--paper);--cfg-panel:var(--card);--cfg-band:var(--paper-2);
+    --cfg-line:var(--line);--cfg-line-soft:var(--line-soft);
+    --cfg-txt:var(--ink-900);--cfg-mut:var(--ink-500);
+    --cfg-accent:var(--jade-700);--cfg-deep:var(--jade-900);--cfg-copper:var(--copper-600);
+    --cfg-ink:#2b3a35;--cfg-canvas-mut:#8a9490;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --cfg-bg:#101614;--cfg-panel:#161d1a;--cfg-band:#131a17;
+    --cfg-line:rgba(231,237,234,.18);--cfg-line-soft:rgba(231,237,234,.08);
+    --cfg-txt:#E7EDEA;--cfg-mut:#9fb0a9;
+    --cfg-accent:#5CC8A8;--cfg-deep:#E7EDEA;--cfg-copper:#E4A47A;
+    --cfg-ink:#d8e2dd;--cfg-canvas-mut:#6b7a74;
+  }}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:100%}
+  body{font-family:var(--ff-sans);background:var(--cfg-bg);color:var(--cfg-txt);font-size:var(--fs-h3);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  .wrap{max-width:1500px;margin:0 auto;padding:0 clamp(.8rem,2.5vw,2rem)}
+
+  /* -- top chrome: the way back, styled like the desks' own bar ---------- */
+  .topbar{background:var(--cfg-deep);color:#F6F4EC;border-bottom:1px solid var(--cfg-line)}
+  @media (prefers-color-scheme:dark){.topbar{background:#0b100e;color:var(--cfg-txt)}}
+  .topbar .tb{display:flex;align-items:center;gap:14px;padding:10px 0}
+  .tb-brand{font-weight:800;letter-spacing:.02em;font-size:var(--fs-h3)}
+  .tb-brand small{display:block;font-family:var(--ff-mono);font-weight:400;font-size:var(--fs-micro);opacity:.75;letter-spacing:.12em;text-transform:uppercase}
+  .tb-back{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-family:var(--ff-mono);font-size:var(--fs-small);border:1px solid rgba(246,244,236,.35);border-radius:var(--r-sm,4px);padding:6px 12px}
+  .tb-back:hover{border-color:currentColor}
+  .tb-home{font-family:var(--ff-mono);font-size:var(--fs-small);opacity:.8}
+  .tb-home:hover{opacity:1}
+
+  /* -- requirement sheet summary bar (always in view) -------------------- */
+  .sheetbar{position:sticky;top:0;z-index:20;background:var(--cfg-band);border-bottom:1px solid var(--cfg-line);box-shadow:0 1px 6px rgba(0,0,0,.06)}
+  .sheetbar .sb{display:flex;align-items:center;gap:10px;padding:8px 0;flex-wrap:wrap}
+  .sb-title{font-family:var(--ff-mono);font-size:var(--fs-small);letter-spacing:.1em;text-transform:uppercase;color:var(--cfg-mut);flex:0 0 auto}
+  .sb-items{display:flex;gap:8px;flex-wrap:wrap;flex:1 1 auto;min-width:0}
+  .sb-chip{display:inline-flex;align-items:center;gap:6px;background:var(--cfg-panel);border:1px solid var(--cfg-line);border-radius:999px;padding:3px 10px;font-size:var(--fs-small)}
+  .sb-chip b{font-weight:700}
+  .sb-chip .q{font-family:var(--ff-mono);color:var(--cfg-accent)}
+  .sb-empty{color:var(--cfg-mut);font-size:var(--fs-small)}
+  .sb-act{display:flex;gap:8px;flex:0 0 auto}
+  .sb-btn{border:1px solid var(--cfg-accent);color:var(--cfg-accent);border-radius:var(--r-sm,4px);padding:5px 12px;font-weight:700;font-size:var(--fs-small)}
+  .sb-btn.primary{background:var(--cfg-accent);color:var(--cfg-bg)}
+  .sb-btn:not(:disabled):hover,.sb-btn:not(:disabled):focus-visible{filter:brightness(1.15)}
+  .sb-btn:disabled{opacity:.4;cursor:not-allowed}
+  @media(max-width:640px){.topbar .tb{flex-wrap:wrap;row-gap:2px}.sb-act{flex:1 1 auto;flex-wrap:wrap}.sb-btn{flex:1 1 auto}}
+
+  /* -- layout ------------------------------------------------------------ */
+  .lay{display:grid;grid-template-columns:300px minmax(0,1fr);gap:18px;padding:18px 0 40px}
+  @media(max-width:900px){.lay{grid-template-columns:1fr}}
+
+  /* -- product menu ------------------------------------------------------ */
+  .tier{margin-bottom:16px}
+  .tier-h{font-weight:800;font-size:var(--fs-h3);color:var(--cfg-deep)}
+  @media (prefers-color-scheme:dark){.tier-h{color:var(--cfg-txt)}}
+  .tier-b{color:var(--cfg-mut);font-size:var(--fs-small);margin:2px 0 8px;line-height:1.45}
+  .pbtn{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:8px 10px;border:1px solid transparent;border-radius:var(--r-sm,4px);font-size:var(--fs-h3)}
+  .pbtn:hover{background:var(--cfg-band)}
+  .pbtn[aria-current="true"]{background:var(--cfg-panel);border-color:var(--cfg-accent);font-weight:700}
+  .pbtn .done{margin-left:auto;font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--cfg-accent)}
+  @media(max-width:900px){
+    .menu{display:block}
+    .tier .plist{display:flex;flex-wrap:wrap;gap:6px}
+    .pbtn{width:auto;border:1px solid var(--cfg-line)}
+  }
+
+  /* -- stage: canvas + parts --------------------------------------------- */
+  .stage{min-width:0}
+  .stage-h{margin-bottom:8px}
+  .stage-h h1{font-size:var(--fs-h1);font-weight:800;line-height:1.15;color:var(--cfg-deep)}
+  @media (prefers-color-scheme:dark){.stage-h h1{color:var(--cfg-txt)}}
+  .stage-h p{color:var(--cfg-mut);font-size:var(--fs-small)}
+  .board{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:18px}
+  @media(max-width:1100px){.board{grid-template-columns:1fr}}
+  .canvas-card{background:var(--cfg-panel);border:1px solid var(--cfg-line);border-radius:var(--r-md,8px);padding:10px;position:relative}
+  .canvas-card .hint{font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--cfg-mut);text-align:center;padding:4px 0 2px}
+  #cv{display:block;width:100%;aspect-ratio:1/1;max-height:560px;margin:0 auto;touch-action:manipulation;cursor:pointer}
+
+  .parts{display:flex;flex-direction:column;gap:10px}
+  .part{background:var(--cfg-panel);border:1px solid var(--cfg-line);border-radius:var(--r-md,8px)}
+  .part-h{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:10px 12px;font-weight:700;font-size:var(--fs-h3)}
+  .part-h .tick{width:20px;height:20px;flex:0 0 auto;border:1.5px solid var(--cfg-mut);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;color:transparent}
+  .part.is-done .part-h .tick{border-color:var(--cfg-accent);background:var(--cfg-accent);color:var(--cfg-bg)}
+  .part-h .st{margin-left:auto;font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--cfg-mut);font-weight:400}
+  .part[data-open="1"]{border-color:var(--cfg-accent)}
+  .part-b{display:none;border-top:1px solid var(--cfg-line-soft);padding:10px 12px 14px}
+  .part[data-open="1"] .part-b{display:block}
+  .gate{margin-top:10px}
+  .gate:first-child{margin-top:0}
+  .gate-h{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--cfg-copper);margin-bottom:6px}
+  .opt{border:1px solid var(--cfg-line);border-radius:var(--r-sm,4px);padding:8px 10px;margin-bottom:6px;cursor:pointer}
+  .opt:hover{border-color:var(--cfg-accent)}
+  .opt.is-on{border-color:var(--cfg-accent);background:var(--cfg-band);box-shadow:inset 3px 0 0 var(--cfg-accent)}
+  .opt .o-top{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .opt .o-name{font-weight:700;font-size:var(--fs-h3)}
+  .opt .o-meta{font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--cfg-mut);margin-left:auto;white-space:nowrap}
+  .opt .o-buyer{font-size:var(--fs-small);color:var(--cfg-txt);margin-top:3px;line-height:1.5}
+  .opt details{margin-top:5px}
+  .opt summary{font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--cfg-accent);cursor:pointer;list-style:none}
+  .opt summary::before{content:"+ "}
+  .opt details[open] summary::before{content:"\2212 "}
+  .opt .o-prod{font-size:var(--fs-small);color:var(--cfg-mut);margin-top:4px;line-height:1.5;border-left:2px solid var(--cfg-line);padding-left:8px}
+
+  /* -- per-product quantity & delivery ----------------------------------- */
+  .order{background:var(--cfg-band);border:1px solid var(--cfg-line);border-radius:var(--r-md,8px);padding:12px;margin-top:10px}
+  .order .oh{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--cfg-mut);margin-bottom:8px}
+  .order .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .order label{font-size:var(--fs-small);font-weight:700}
+  .order input{font-family:var(--ff-mono);font-size:var(--fs-h3);color:var(--cfg-txt);background:var(--cfg-panel);border:1px solid var(--cfg-line);border-radius:var(--r-sm,4px);padding:5px 8px;max-width:130px}
+  .order input:focus{outline:2px solid var(--cfg-accent)}
+  .qq{display:inline-flex;gap:4px}
+  .qq button{font-family:var(--ff-mono);font-size:var(--fs-micro);border:1px solid var(--cfg-line);border-radius:999px;padding:3px 9px;color:var(--cfg-mut)}
+  .qq button:hover{border-color:var(--cfg-accent);color:var(--cfg-accent)}
+
+  footer{border-top:1px solid var(--cfg-line);padding:18px 0 30px;color:var(--cfg-mut);font-size:var(--fs-small)}
+  footer a{color:var(--cfg-accent);font-weight:700}
+  </style>
+<link rel="stylesheet" href="../buyer-journey.css" data-buyer-shell>
+<script src="../site-registry.js"></script>
+<link rel="stylesheet" href="../terminal.css">
+<script defer src="../terminal.js"></script>
+<script defer src="../buyer-navigation.js"></script>
+<link rel="stylesheet" href="../buyer-brief.css"><script src="../buyer-brief.js"></script>
+</head>
+<body>
+  <header class="topbar"><div class="wrap tb">
+    <a class="tb-brand" href="../index.html">BIRDLAND<small>Vertrouwelijke OEM · Taiwan</small></a>
+    <span style="font-family:var(--ff-mono);font-size:var(--fs-small);opacity:.85">Productconfigurator</span>
+    <a class="tb-back" href="../products.html#bl-cat">← Producten</a>
+    <a class="tb-home" href="../index.html">Birdland</a>
+  </div></header>
+
+  <div class="sheetbar"><div class="wrap sb">
+    <span class="sb-title">Eisenlijst</span>
+    <div class="sb-items" id="sbItems"><span class="sb-empty">Kies links een product en stel de uitvoering samen — uw keuzes verschijnen hier.</span></div>
+    <div class="sb-act">
+      <button class="sb-btn" id="csvBtn" disabled="">CSV downloaden</button>
+      <button class="sb-btn primary" id="mailBtn" disabled="">Naar verkoop sturen</button>
+    </div>
+  </div></div>
+
+  <main class="wrap lay" id="main">
+    <aside class="menu" id="menu" aria-label="Productmenu"></aside>
+    <section class="stage">
+      <div class="stage-h">
+        <h1 id="pName"></h1>
+        <p id="pTier"></p>
+      </div>
+      <div class="board">
+        <div class="canvas-card">
+          <canvas id="cv" aria-label="Tekening van productonderdelen"></canvas>
+          <div class="hint">Tik op een onderdeel in de tekening of open het in de lijst om materialen en processen te kiezen.</div>
+        </div>
+        <div>
+          <div class="parts" id="parts"></div>
+          <div class="order" id="order" hidden="">
+            <div class="oh">Dit product op het specificatieblad</div>
+            <div class="row">
+              <label for="qty">aantal</label>
+              <input id="qty" type="number" min="1" step="1" inputmode="numeric">
+              <span class="qq" id="qq"></span>
+              <label for="delv">gewenste levering</label>
+              <input id="delv" type="month">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap">
+    Deze pagina toont geen prijzen — het specificatieblad wordt door ons verkoopteam behandeld. Terug naar <a href="../products.html#bl-cat">Producten</a> of <a href="../index.html">Birdland</a> · <a href="../partner.html">Product Studio</a>.
+  </div></footer>
+
+<script id="cfg-data" type="application/json">{"tiers":[{"id":"forge","name":"Intern gesmeed en warmtebehandeld","body":"Warmgesmede delen, eigen ovens en hardheidscontrole. Dit vormt de kern van onze fabriek."},{"id":"form","name":"Intern gevormd, gelast en gemonteerd","body":"Gestanst en getrokken staal, gelaste verbindingen en montage van houten stelen en handgrepen op onze eigen lijnen."},{"id":"source","name":"Assemblage- en inkoopprogramma","body":"Niet-metalen artikelen die we assembleren of inkopen om het assortiment in één zending compleet te maken."}],"products":[{"id":"forged-trowel","name":"Gesmede tuinschep","tier":"forge","metal":5,"draw":"trowel","parts":[{"id":"blade","name":"Schepblad","options":{"material":["Snij- en veerstaal","Roestvast staal"],"forming":["Warmsmeden","Koudsmeden"],"heat":["Harden & ontlaten","Inductief (lokaal) harden","Doorharden"],"finish":["Poedercoaten","E-coating","Verzinken","Polijsten","Stralen"],"inspection":["Snede- en functiecontrole","Hardheidsbemonstering","Zoutsproeiuren"]}},{"id":"handle","name":"Handgreep","options":{"material":["Hout","Greepcompounds"],"forming":["Houtdraaien","Lak of olie op hout","Tweecomponenten-overspuiten","Dompelen"]}},{"id":"joint","name":"Angel en verbinding","options":{"joining":["Klinken","Boutverbindingen","Persverbinding"],"inspection":["Trektest op de verbinding","Open/dicht-cyclustest"]}},{"id":"pack","name":"Verpakking","options":{"pack":["Kleurdoos","Hangkaart / kopkaart","Golfkartonnen exportdoos"]}}]},{"id":"hatchet","name":"Handbijl","tier":"forge","metal":5,"draw":"hatchet","parts":[{"id":"head","name":"Kop en snede","options":{"material":["Snij- en veerstaal","Roestvast staal"],"forming":["Warmsmeden","Koudsmeden"],"heat":["Harden & ontlaten","Inductief (lokaal) harden","Doorharden"],"finish":["Poedercoaten","Polijsten","Stralen"],"inspection":["Snede- en functiecontrole","Hardheidsbemonstering","Zoutsproeiuren"]}},{"id":"handle","name":"Handgreep","options":{"material":["Hout","Harde kunststoffen"],"forming":["Houtdraaien","Lak of olie op hout"]}},{"id":"joint","name":"Steelgat en wig","options":{"joining":["Persverbinding","Lijmverbinding"],"inspection":["Trektest op de verbinding","Open/dicht-cyclustest"]}},{"id":"pack","name":"Verpakking","options":{"pack":["Blisterverpakking","Kleurdoos","Hangkaart / kopkaart","Golfkartonnen exportdoos"]}}]},{"id":"mattock","name":"Houweel / pikhouweel","tier":"forge","metal":5,"draw":"mattock","parts":[{"id":"head","name":"Gesmede kop","options":{"material":["Snij- en veerstaal"],"forming":["Warmsmeden","Koudsmeden"],"heat":["Harden & ontlaten","Doorharden"],"finish":["Poedercoaten","Natlak"],"inspection":["Snede- en functiecontrole","Hardheidsbemonstering","Zoutsproeiuren"]}},{"id":"handle","name":"Handgreep","options":{"material":["Hout"],"forming":["Houtdraaien","Lak of olie op hout"]}},{"id":"joint","name":"Passing van de steel","options":{"joining":["Persverbinding"],"inspection":["Trektest op de verbinding","Open/dicht-cyclustest"]}},{"id":"pack","name":"Verpakking","options":{"pack":["Golfkartonnen exportdoos","Omsnoering","Pallet"]}}]},{"id":"machete","name":"Kapmes","tier":"forge","metal":5,"draw":"machete","parts":[{"id":"blade","name":"Blad","options":{"material":["Snij- en veerstaal","Roestvast staal"],"forming":["Stansen","Warmsmeden"],"heat":["Harden & ontlaten","Inductief (lokaal) harden","Doorharden"],"finish":["Poedercoaten","Polijsten","Lasermarkering"],"inspection":["Snede- en functiecontrole","Hardheidsbemonstering","Zoutsproeiuren"]}},{"id":"handle","name":"Greepplaten","options":{"material":["Harde kunststoffen","Hout","Greepcompounds"],"forming":["Spuitgieten"]}},{"id":"joint","name":"Doorlopende angel","options":{"joining":["Klinken"],"inspection":["Trektest op de verbinding","Open/dicht-cyclustest"]}},{"id":"pack","name":"Verpakking","options":{"pack":["Skinverpakking","Kleurdoos","Hangkaart / kopkaart","Golfkartonnen exportdoos"]}}]},{"id":"pruning-shears","name":"Bypass-snoeischaar","tier":"forge","metal":4,"draw":"shears","parts":[{"id":"blade","name":"Snijblad","options":{"material":["Snij- en veerstaal","Roestvast staal"],"forming":["Warmsmeden","Koudsmeden"],"heat":["Harden & ontlaten","Inductief (lokaal) harden","Doorharden"],"finish":["Nikkel-chroomlaag","Polijsten"],"inspection":["Snede- en functiecontrole","Hardheidsbemonstering","Zoutsproeiuren"]}},{"id":"counter","name":"Tegenblad","options":{"material":["Snij- en veerstaal","Roestvast staal"],"forming":["Stansen","Lasersnijden"],"heat":["Harden & ontlaten"]}},{"id":"handle","name":"Handgrepen en grip","options":{"material":["Aluminium","Greepcompounds"],"forming":["Tweecomponenten-overspuiten","Dompelen"],"finish":["Anodiseren"]}},{"id":"pivot","name":"Draaipunt en veer","options":{"joining":["Boutverbindingen","Klinken"],"inspection":["Trektest op de verbinding","Open/dicht-cyclustest"]}},{"id":"pack","name":"Verpakking","options":{"pack":["Blisterverpakking","Kleurdoos","Hangkaart / kopkaart"]}}]},{"id":"loppers","name":"Takkenschaar","tier":"forge","metal":4,"draw":"loppers","parts":[{"id":"blade","name":"Bladenset","options":{"material":["Snij- en veerstaal","Roestvast staal"],"forming":["Warmsmeden","Koudsmeden"],"heat":["Harden & ontlaten","Inductief (lokaal) harden","Doorharden"],"finish":["Nikkel-chroomlaag","Poedercoaten"],"inspection":["Snede- en functiecontrole","Hardheidsbemonstering","Zoutsproeiuren"]}},{"id":"handle","name":"Lange handgrepen","options":{"material":["Aluminium"],"forming":["Buistrekken","Buisbuigen","Sluitwalsen"],"finish":["Anodiseren","Poedercoaten"]}},{"id":"grip","name":"Grepen","options":{"material":["Greepcompounds"],"forming":["Dompelen","Tweecomponenten-overspuiten"]}},{"id":"pivot","name":"Draaipunt","options":{"joining":["Boutverbindingen"],"inspection":["Trektest op de verbinding","Open/dicht-cyclustest"]}},{"id":"pack","name":"Verpakking","options":{"pack":["Kleurdoos","Hangkaart / kopkaart","Golfkartonnen exportdoos"]}}]},{"id":"hedge-shears","name":"Heggenschaar","tier":"forge","metal":4,"draw":"hedge","parts":[{"id":"blade","name":"Bladen","options":{"material":["Snij- en veerstaal","Roestvast staal"],"forming":["Stansen","Warmsmeden"],"heat":["Harden & ontlaten","Inductief (lokaal) harden","Doorharden"],"finish":["Polijsten","Nikkel-chroomlaag"],"inspection":["Snede- en functiecontrole","Hardheidsbemonstering","Zoutsproeiuren"]}},{"id":"handle","name":"Handgrepen","options":{"material":["Hout","Aluminium"],"forming":["Houtdraaien","Buistrekken"]}},{"id":"pivot","name":"Draaipunt en stootbuffer","options":{"joining":["Boutverbindingen"],"inspection":["Trektest op de verbinding","Open/dicht-cyclustest"]}},{"id":"pack","name":"Verpakking","options":{"pack":["Kleurdoos","Hangkaart / kopkaart","Golfkartonnen exportdoos"]}}]},{"id":"pruning-saw","name":"Snoeizaag","tier":"forge","metal":4,"draw":"saw","parts":[{"id":"blade","name":"Zaagblad","options":{"material":["Snij- en veerstaal"],"forming":["Stansen","Lasersnijden"],"heat":["Inductief (lokaal) harden","Hardheidsindeling per kwaliteit"],"finish":["Lasermarkering"],"inspection":["Snede- en functiecontrole","Hardheidsbemonstering","Zoutsproeiuren"]}},{"id":"handle","name":"Handgreep","options":{"material":["Harde kunststoffen","Greepcompounds","Hout"],"forming":["Spuitgieten","Tweecomponenten-overspuiten"]}},{"id":"joint","name":"Bladvergrendeling","options":{"joining":["Boutverbindingen","Klikverbinding"],"inspection":["Trektest op de verbinding","Open/dicht-cyclustest"]}},{"id":"pack","name":"Verpakking","options":{"pack":["Skinverpakking","Kleurdoos","Hangkaart / kopkaart"]}}]},{"id":"garden-hoe","name":"Tuinschoffel","tier":"form","metal":4,"draw":"hoe","parts":[{"id":"head","name":"Schoffelblad","options":{"material":["Snij- en veerstaal"],"forming":["Stansen","Warmsmeden"],"heat":["Harden & ontlaten"],"finish":["Poedercoaten","Natlak"],"inspection":["Snede- en functiecontrole","Hardheidsbemonstering","Zoutsproeiuren"]}},{"id":"neck","name":"Hals / steelbus","options":{"forming":["Buistrekken","Sluitwalsen"],"joining":["Puntlassen","MIG-lassen","Hardsolderen"],"inspection":["Trektest op de verbinding","Open/dicht-cyclustest"]}},{"id":"handle","name":"Handgreep","options":{"material":["Hout","Aluminium"],"forming":["Houtdraaien","Buistrekken"]}},{"id":"pack","name":"Verpakking","options":{"pack":["Golfkartonnen exportdoos","Omsnoering"]}}]},{"id":"cultivator","name":"Drietands cultivator","tier":"form","metal":4,"draw":"cultivator","parts":[{"id":"head","name":"Tandenkop","options":{"material":["Snij- en veerstaal"],"forming":["Stansen","Lasersnijden"],"heat":["Harden & ontlaten"],"finish":["Poedercoaten","Verzinken"],"inspection":["Snede- en functiecontrole","Hardheidsbemonstering","Zoutsproeiuren"]}},{"id":"handle","name":"Handgreep","options":{"material":["Hout","Greepcompounds"],"forming":["Houtdraaien","Dompelen"]}},{"id":"joint","name":"Angel en bus","options":{"joining":["Klinken","Boutverbindingen","Persverbinding"],"inspection":["Trektest op de verbinding","Open/dicht-cyclustest"]}},{"id":"pack","name":"Verpakking","options":{"pack":["Kleurdoos","Hangkaart / kopkaart","Golfkartonnen exportdoos"]}}]},{"id":"garden-fork","name":"Spitvork","tier":"form","metal":4,"draw":"fork","parts":[{"id":"head","name":"Tanden","options":{"material":["Snij- en veerstaal"],"forming":["Warmsmeden","Stansen"],"heat":["Harden & ontlaten"],"finish":["Poedercoaten","E-coating"],"inspection":["Snede- en functiecontrole","Hardheidsbemonstering","Zoutsproeiuren"]}},{"id":"socket","name":"Steelbus","options":{"forming":["Buistrekken","Sluitwalsen"],"joining":["Puntlassen","MIG-lassen","Hardsolderen"],"inspection":["Trektest op de verbinding","Open/dicht-cyclustest"]}},{"id":"handle","name":"Steel en handgreep","options":{"material":["Hout","Harde kunststoffen"],"forming":["Houtdraaien","Spuitgieten"]}},{"id":"pack","name":"Verpakking","options":{"pack":["Golfkartonnen exportdoos","Omsnoering","Pallet"]}}]},{"id":"shovel","name":"Schep / spade","tier":"form","metal":4,"draw":"shovel","parts":[{"id":"head","name":"Blad","options":{"material":["Snij- en veerstaal","Roestvast staal"],"forming":["Stansen"],"heat":["Harden & ontlaten"],"finish":["Poedercoaten","Polijsten"],"inspection":["Snede- en functiecontrole","Hardheidsbemonstering","Zoutsproeiuren"]}},{"id":"socket","name":"Steelbus en voetsteun","options":{"forming":["Sluitwalsen"],"joining":["Puntlassen","MIG-lassen","Hardsolderen"],"inspection":["Trektest op de verbinding","Open/dicht-cyclustest"]}},{"id":"handle","name":"Steel en D-greep","options":{"material":["Hout","Harde kunststoffen"],"forming":["Houtdraaien","Spuitgieten"]}},{"id":"pack","name":"Verpakking","options":{"pack":["Golfkartonnen exportdoos","Omsnoering","Pallet"]}}]},{"id":"bow-rake","name":"Beugelhark","tier":"form","metal":3,"draw":"rake","parts":[{"id":"head","name":"Harkkop","options":{"material":["Snij- en veerstaal"],"forming":["Stansen","Lasersnijden"],"finish":["Poedercoaten","Verzinken"],"inspection":["Maat-AQL"]}},{"id":"handle","name":"Handgreep","options":{"material":["Hout","Aluminium"],"forming":["Houtdraaien","Buistrekken"]}},{"id":"joint","name":"Beugelverbinding","options":{"joining":["Puntlassen","MIG-lassen","Hardsolderen"],"inspection":["Trektest op de verbinding","Open/dicht-cyclustest"]}},{"id":"pack","name":"Verpakking","options":{"pack":["Golfkartonnen exportdoos","Omsnoering"]}}]},{"id":"hand-weeder","name":"Handonkruidsteker","tier":"form","metal":3,"draw":"weeder","parts":[{"id":"blade","name":"Gevorkte punt","options":{"material":["Snij- en veerstaal","Roestvast staal"],"forming":["Stansen","Lasersnijden"],"heat":["Harden & ontlaten"],"finish":["Verzinken","Poedercoaten"],"inspection":["Snede- en functiecontrole","Hardheidsbemonstering","Zoutsproeiuren"]}},{"id":"handle","name":"Handgreep","options":{"material":["Hout","Greepcompounds","Harde kunststoffen"],"forming":["Houtdraaien","Spuitgieten"]}},{"id":"joint","name":"Angel","options":{"joining":["Klinken","Persverbinding"]}},{"id":"pack","name":"Verpakking","options":{"pack":["Hangkaart / kopkaart","Blisterverpakking","Golfkartonnen exportdoos"]}}]},{"id":"garden-snips","name":"Tuinschaar (ingekochte bladen, eigen assemblage)","tier":"source","metal":3,"draw":"snips","parts":[{"id":"blade","name":"Bladen","options":{"material":["Roestvast staal"],"forming":["Stansen"],"finish":["Polijsten"],"inspection":["Snede- en functiecontrole","Hardheidsbemonstering","Zoutsproeiuren"]}},{"id":"handle","name":"Handgrepen","options":{"material":["Harde kunststoffen","Greepcompounds"],"forming":["Spuitgieten","Tweecomponenten-overspuiten"]}},{"id":"joint","name":"Draaipunt","options":{"joining":["Klinken"],"inspection":["Trektest op de verbinding","Open/dicht-cyclustest"]}},{"id":"pack","name":"Verpakking","options":{"pack":["Blisterverpakking","Kleurdoos"]}}]},{"id":"tool-set","name":"Gereedschapsset in doos (gemengd assortiment)","tier":"source","metal":2,"draw":"set","parts":[{"id":"tools","name":"Gereedschapskeuze","options":{"material":["Snij- en veerstaal","Roestvast staal"],"inspection":["Snede- en functiecontrole","Maat-AQL"]}},{"id":"tray","name":"Inleg / koffer","options":{"material":["Harde kunststoffen","Verpakkingskarton"],"forming":["Spuitgieten"]}},{"id":"pack","name":"Winkelverpakking","options":{"pack":["Kleurdoos","Papier-kunststofcombinatie"],"inspection":["Barcode- en labelcontrole","Valtest verpakking"]}}]},{"id":"garden-gloves","name":"Tuinhandschoenen (inkoop)","tier":"source","metal":1,"draw":"gloves","parts":[{"id":"body","name":"Basisstof en coating","options":{"material":["Doek","Greepcompounds"],"forming":["Dompelen"],"inspection":["Maat-AQL"]}},{"id":"cuff","name":"Manchet en label","options":{"pack":["Labelset","Hangkaart / kopkaart"]}},{"id":"pack","name":"Verpakking","options":{"pack":["Hangkaart / kopkaart","Golfkartonnen exportdoos"]}}]}],"options":{"Snij- en veerstaal":{"pop":5,"cost":3,"buyer":"Wie deze familie toelaat, laat een hardbare kwaliteit toe, zodat het materiaalcertificaat zwaarder weegt dan de prijsregel: koolstofgehalte, ontkolingsdiepte en vlakheid van de band bij ontvangst bepalen de hardheidsband die u later kunt aanhouden, niet de warmtebehandeling die u voorschrijft.","production":"Wij controleren de inkomende coil op een ontkoolde huid voordat hij ooit een matrijs bereikt — een zachte randlaag van enkele honderdsten millimeter overleeft het harden als een snede die in het eerste seizoen bot wordt, en zij is onzichtbaar zodra er een galvanische laag op zit."},"Roestvast staal":{"pop":3,"cost":4,"buyer":"Het roestvast staal dat bij goederenontvangst binnenkomt zijn twee verschillende materialen: austenitisch 304 is niet door warmtebehandeling te harden en hoort op lichamen en bevestigingsmiddelen, terwijl martensitisch 410 en 420 dat wel zijn — en omdat die twee allebei magnetisch en visueel identiek zijn, is het inbrengen van het koolstofarmere 410 in een snijtoepassing de substitutie die geen enkele ingangscontrole zonder materiaalonderzoek opmerkt.","production":"Wij houden martensitische en austenitische voorraad fysiek gescheiden op het rek, omdat de twee onder een koelvloeistoffilm identiek ogen en een gemengde partij pas na het afschrikken wordt ontdekt, wanneer de helft van de onderdelen zacht uit het bad komt."},"Warmsmeden":{"pop":2,"cost":4,"buyer":"U betaalt voor vezelverloop, niet voor gewicht: smeden richt het materiaal langs de vorm zodat het krachtenpad doorloopt, en daarom overleeft een gesmede angel wrikbelastingen waarbij een even dikke gestanste breekt.","production":"De eindtemperatuur en het afgratten van de vloeinaad zijn waar wij op letten — een smeedstuk dat te koud wordt afgesmeed, verstevigt ongelijkmatig en draagt restspanning het afschrikbad in, waar zij vervorming wordt die niemand nog economisch kan richten."},"Koudsmeden":{"pop":2,"cost":3,"buyer":"Koudsmeden verstevigt het onderdeel terwijl het het vormt, dus een koudgesmede pen of klinknagel komt sterker binnen dan de staf waaruit hij kwam en houdt bij volume een nauwere diametertolerantie dan verspanen tegen dezelfde prijs.","production":"De grens is vervormbaarheid, niet kracht: materiaal heeft een eindige rek voordat het scheurt, dus wij verdelen de vorm over opeenvolgende stations in plaats van hem in één slag te forceren, en gloeien tussen stations wanneer de geometrie daarom vraagt."},"Harden & ontlaten":{"pop":4,"cost":2,"buyer":"Hardheid zegt niets zonder de ontlaatstap erachter: staal is direct na afschrikken hard en bros, en het ontlaten is wat de taaiheid terugkoopt, dus vraag om de hardheidsband ná het ontlaten en om de tolerantie daarop.","production":"Wij ontlaten direct na het afschrikken in plaats van onderdelen te laten staan — niet-ontlaten martensiet staat onder enorme restspanning, en een partij die een nacht blijft liggen kan in de korf scheuren voordat iemand haar heeft aangeraakt."},"Inductief (lokaal) harden":{"pop":3,"cost":3,"buyer":"Lokaal harden legt hardheid alleen daar waar het gereedschap snijdt en laat het lichaam taai, wat het juiste antwoord is voor een snoeimes; wat u moet specificeren is de inhardingsdiepte en waar de geharde zone begint en eindigt.","production":"De spoelgeometrie en de verblijftijd bepalen het hardingspatroon, dus wij tonen het patroon aan door een monster te doorsnijden en te etsen in plaats van te vertrouwen op een oppervlaktehardheidsmeting, die niet kan zien hoe diep de rand werkelijk loopt."},"Doorharden":{"pop":3,"cost":2,"buyer":"Doorharden maakt de hele doorsnede hard, wat klopt voor een schepblad en fout is voor alles wat schokken moet opnemen, want een volledig hard onderdeel heeft geen taai gebied meer over om te vloeien voordat het scheurt.","production":"De sectiedikte bepaalt de afschrikstrengheid — hetzelfde staal hardt door in een dun blad en hardt in een dik alleen aan de rand, dus wij stemmen het afschrikken af op de doorsnede in plaats van op de kwaliteit."},"Poedercoaten":{"pop":4,"cost":2,"buyer":"Poeder geeft in één gang een dikke, duurzame, kleurvaste film zonder oplosmiddel, en de echte beperking zijn de kanten: poeder trekt tijdens het uitvloeien weg van een scherpe kant, dus randcorrosie is de faalwijze waar tegenaan ontworpen moet worden.","production":"De voorbehandeling bepaalt de hechting veel sterker dan de poederkwaliteit dat doet — een fosfaat- of gelijkwaardige conversielaag is waarin de film zich verankert, en een coating op een slecht gereinigd onderdeel doorstaat de inspectie en laat in het veld los."},"E-coating":{"pop":1,"cost":3,"buyer":"Elektroforetisch aangebrachte primer bedekt complexe geometrie gelijkmatig, inclusief uitsparingen waar spuiten niet komt, en daarom is het een automotive standaard; op handgereedschap is het meestal alleen zinvol als primer onder een toplaag.","production":"De dekkracht is de eigenschap die wordt gekocht — de afgezette film isoleert naarmate zij opbouwt, en dat is wat de coating de beschaduwde zones in drijft, dus het onderdeel moet zo worden opgehangen dat het bad uitloopt en niet blijft staan."},"Verzinken":{"pop":5,"cost":1,"buyer":"Zink is opofferende bescherming, dus wat u koopt is laagdikte en passivering, niet uiterlijk: de laag corrodeert in plaats van het staal, en de zoutsproeiuren schalen mee met hoeveel er zit.","production":"Wij letten op waterstofbrosheid bij geharde onderdelen — verzinken laadt waterstof in hooghard staal, en het uitbakken dat de waterstof er weer uitdrijft, moet binnen enkele uren na het verzinken gebeuren of het onderdeel is al aangetast."},"Polijsten":{"pop":3,"cost":2,"buyer":"Polijsten wordt voor het schap gekocht, en het is arbeid, dus het schaalt lineair met volume in plaats van te dalen — op een blank blad is het vaak de grootste enkele afwerkingskostenpost en de makkelijkste plek om te overspecificeren.","production":"Wij beheersen de korrelvolgorde in plaats van de laatste polijstgang, want een overgeslagen korrel laat krassen achter die de polijstschijf glanzender maakt in plaats van verwijdert, en die pas onder winkelverlichting zichtbaar worden."},"Stralen":{"pop":2,"cost":1,"buyer":"Stralen is oppervlaktevoorbehandeling, geen decoratie: het geeft een coating iets om zich in te verankeren en verwijdert walshuid, en het overslaan ervan is de meest voorkomende reden dat een prima coating van een prima onderdeel loslaat.","production":"Straalmiddel en druk bepalen het profiel, en van het profiel hangt de hechting af — te agressief op dunne plaat brengt bovendien spanning in en trekt het onderdeel krom, dus de straalgang wordt op de doorsnede afgestemd."},"Snede- en functiecontrole":{"pop":5,"cost":1,"buyer":"Dit is de laatste controle die weergeeft wat de eindgebruiker in de eerste vijf seconden na het uitpakken ervaart, en zij is goedkoop genoeg om op volledige dekking te draaien in plaats van op steekproef.","production":"Wij gebruiken een consistent snijmedium zodat het resultaat over ploegen heen iets betekent — een subjectieve scherptecontrole varieert met de operator, en het is de ene test waarbij die variatie de klant rechtstreeks bereikt."},"Hardheidsbemonstering":{"pop":3,"cost":1,"buyer":"Een hardheidsgetal is niet beter dan het plan dat het opleverde: vraag naar de bemonsteringsfrequentie en naar de band, want een certificaat dat één getal voor een hele zending noemt, zegt u niets over consistentie.","production":"Wij meten op een geprepareerd oppervlak in plaats van door laag of walshuid heen, want een meting door een coating leest zacht en zet iemand aan het jagen op een warmtebehandelingsprobleem dat niet bestaat."},"Zoutsproeiuren":{"pop":2,"cost":2,"buyer":"De zoutsproeitest is een vergelijkende screening, geen voorspelling van jaren in een tuin; hij is nuttig om een coatingleverancier aan een norm te houden en misleidend wanneer hij als levensduurclaim wordt aangehaald.","production":"Wij testen het gemonteerde product in plaats van het galvanisch behandelde onderdeel, want het falen begint vrijwel altijd bij een kant, een bevestiger of een verbinding waar twee metalen elkaar raken — de vlakke, makkelijke oppervlakken zijn nooit het probleem."},"Hout":{"pop":2,"cost":3,"buyer":"Het vochtgehalte ís de hele specificatie: een steel die bij 18% wordt gemonteerd en naar een verwarmd Europees interieur wordt verscheept, krimpt in zijn huls en gaat rammelen, dus het af te spreken getal is het kamergedroogde vochtgehalte bij het inpakken, niet alleen de houtsoort.","production":"Wij kijken naar vezeluitloop in plaats van naar het oppervlak — een steel waarvan de vezel binnen de lengte van de schacht de zijkant verlaat, breekt dwars op de vezels onder een wrikbelasting, hoe strak de afwerking er ook uitziet."},"Greepcompounds":{"pop":5,"cost":2,"buyer":"Specificeer het elastomeer op Shore A-hardheid én op datgene waaraan het moet hechten; een TPR die op polypropeen klopt, delamineert op nylon, en een greep die loslaat is een garantieretour ook al werkt het gereedschap nog.","production":"Hechting bij overspuiten is chemisch, niet mechanisch, dus wij stemmen de elastomeerfamilie af op het substraat en bewaken de temperatuur van het grensvlak — een koud substraat geeft een verbinding die de montage overleeft en in de hand bezwijkt."},"Houtdraaien":{"pop":2,"cost":3,"buyer":"Draaien wordt geprijsd per snede, niet per houtsoort, en elke extra kraal of schouder in een steelprofiel is weer een bewerking — een eenvoudiger profiel in een beter gedroogd blok is een sterkere steel tegen een lagere prijs dan andersom.","production":"Wij draaien op overmaat en laten het blok rusten vóór de eindsnede, omdat hout beweegt zodra er materiaal af is; het overslaan van die rust is waarom sommige gedraaide stelen in de winter licht ovaal uit het magazijn komen."},"Lak of olie op hout":{"pop":2,"cost":1,"buyer":"De keuze is een onderhoudsbeslissing die u voor de eindgebruiker neemt: lak sluit af en splintert uiteindelijk, olie dringt in en moet opnieuw worden aangebracht, en elk impliceert een andere onderhoudsinstructie op de verpakking.","production":"Het vochtgehalte bij de afwerking is het controlepunt — afwerking die over hout wordt gelegd dat nog niet is gestabiliseerd, sluit vocht op, en de steel scheurt later na en licht de film van onderaf op."},"Tweecomponenten-overspuiten":{"pop":4,"cost":4,"buyer":"Tweecomponenten-spuitgieten is één matrijs die een afgewerkt bimateriaalonderdeel maakt, dus hij kost vooraf meer en per stuk minder dan apart spuitgieten en monteren, en hij neemt de loslaatfaalwijze weg die een gelijmde greep heeft.","production":"Het tweede schot moet een substraat treffen dat chemisch nog ontvankelijk is, en daarom worden de twee schoten in één machine na elkaar gezet in plaats van tussentijds opgeslagen — een koud, verouderd eerste schot is wat van een gehechte greep een hoes maakt."},"Dompelen":{"pop":3,"cost":2,"buyer":"Dompelen geeft een gedempt steeleinde tegen de laagste gereedschapskosten van alle greepmethoden, maar de laagdikte wordt door het proces bepaald en niet door het gereedschap, dus spreek een diktebereik en een uithardingsnorm af in plaats van één getal.","production":"De uittreksnelheid en de voorverwarming bepalen de laagdikte, dus wij beheersen beide en niet alleen de dompeltijd — een gehaaste uittrek laat de laag dun bij de schouder, en dat is precies waar de greep wordt vastgepakt."},"Klinken":{"pop":5,"cost":1,"buyer":"De draaipuntklinknagel is de ene verbinding die bepaalt of een snoeischaar na een seizoen nog schoon snijdt, en zij wordt gespecificeerd op klemkracht en op de vraag of zij naspanbaar is, niet op klinknageldiameter alleen.","production":"De zetkracht is ons controlepunt en niet de zethoogte — een klinknagel die op de juiste maat maar met de verkeerde kracht is gesloten, geeft een draaipunt dat op de bank goed aanvoelt en na enkele duizenden cycli los raakt."},"Boutverbindingen":{"pop":3,"cost":2,"buyer":"Een gebout draaipunt is het onderhoudbare antwoord: het kan door de gebruiker worden nagespannen en het is wat toelaat een gereedschap met een slijp- of onderhoudsverhaal te verkopen, ten koste van een bevestiger die ook kwijt kan raken.","production":"Wij specificeren de borgmethode samen met de bevestiger — een nylon inzet of een borgpatch is wat een aanhaalmoment na trillingen betekenis geeft, en het is een verbruiksartikel dat herhaald demonteren niet overleeft."},"Persverbinding":{"pop":3,"cost":1,"buyer":"Een geperste huls of angel houdt uitsluitend door overmaat, dus de sterkte van de verbinding zit volledig in een tolerantiepaar — specificeer de passing en niet de nominale diameter, of u vertrouwt erop dat twee onafhankelijke tolerantieketens elkaar vinden.","production":"Wij beheersen beide helften van de overmaat en niet één, want een passing die aan de ruime kant van beide toleranties wordt gemonteerd, laat zich nog steeds inpersen en draagt eenvoudigweg de last niet waarvoor zij is ontworpen."},"Trektest op de verbinding":{"pop":2,"cost":2,"buyer":"Dit is destructief, dus het is een procesverificatie en geen vrijgavepoort voor een zending: het vertelt u dat de verbinding die de lijn produceert deugt, en dat is een andere vraag dan of een bepaalde doos goed is.","production":"Wij leggen de faalwijze vast en niet alleen de belasting — een verbinding die bezwijkt doordat het basismateriaal scheurt, is een goede verbinding aan haar grens, en een die bij het grensvlak bezwijkt, is een procesprobleem ongeacht het getal."},"Open/dicht-cyclustest":{"pop":2,"cost":2,"buyer":"De cyclustest is de enige test die het losraken van draaipunten en veervermoeiing vindt vóórdat de markt dat doet, en het af te spreken getal is het aantal cycli onder belasting met een gedefinieerd slaagcriterium — niet simpelweg 'hij opent nog'.","production":"Wij volgen in deze test het draaipunt op slijtage in plaats van het blad op scherpte — bij vrijwel elk cyclusfalen loopt de geometrie eerst open, en het verlies aan snijkwaliteit is daar een symptoom van, geen aparte fout."},"Kleurdoos":{"pop":4,"cost":4,"buyer":"Een bedrukte retaildoos is een marketingmiddel met een lange levertijd en een eigen minimale ordergrootte, en het is meestal het onderdeel dat bepaalt hoe vroeg het artwork in een programma moet worden bevroren.","production":"Kleurconsistentie tussen drukgangen is het terugkerende punt, dus wij werken naar een goedgekeurde fysieke drukproef in plaats van naar een schermreferentie — hetzelfde bestand drukt anders op ander karton en op andere persen."},"Hangkaart / kopkaart":{"pop":5,"cost":1,"buyer":"De kopkaart is wat een product aan een haak laat hangen, en haar stansvorm en gatpositie zijn retailerspecifiek — dit is de plek waar een verpakking zakt op een planogram in plaats van op een kwaliteitscontrole.","production":"De vezelrichting van het karton ten opzichte van het ophanggat is wat voorkomt dat een kaart aan de haak inscheurt, en zij gaat makkelijk verloren wanneer artwork laat wordt geschaald zonder de stansvorm opnieuw te controleren."},"Golfkartonnen exportdoos":{"pop":5,"cost":2,"buyer":"De exportdoos is de eenheid waarop zowel uw vracht als uw schadeclaims worden berekend, dus doosafmetingen verdienen evenveel aandacht als het product — een doos die slecht palletiseert, kost vracht bij elke zending.","production":"Wij rekenen de doos terug vanaf de palletmaat in plaats van vooruit vanaf het product, want een paar millimeter overhang kost een volledige kolom op de pallet en verdient zichzelf elke serie terug in verspild volume."},"Harde kunststoffen":{"pop":5,"cost":1,"buyer":"Hars bij ontvangst wordt bepaald door kwaliteit en vulstof, niet door het woord 'nylon': onverstevigd PA6 en PA6-GF30 verschillen ruwweg een factor drie in stijfheid, en het glasgehalte is de regel die het vaakst stilzwijgend uit een stuklijst verdwijnt.","production":"Wij nemen vocht serieus bij polyamide omdat het hygroscopisch is — hars die onafgesloten heeft gestaan hydrolyseert in de cilinder en levert onderdelen die er goed uitzien en bij de bus afbreken, dus hij wordt vóór elke serie op specificatie gedroogd."},"Lijmverbinding":{"pop":3,"cost":2,"buyer":"Lijmen is het flexibele antwoord voor hulzen en etiketten, en de prestatie hangt volledig af van de oppervlaktevoorbehandeling en de uithardingscondities, wat het de verbinding maakt die het gevoeligst is voor een wisseling van ploeg of seizoen.","production":"De oppervlakte-energie is waar wij op voorbereiden — een ontvet en opgeruwd oppervlak hecht en een onbehandeld polyolefinoppervlak uit de matrijs niet, ongeacht welke lijm er op het datablad staat."},"Blisterverpakking":{"pop":4,"cost":3,"buyer":"Een blister presenteert het gereedschap goed en staat in verscheidene markten onder actieve regeldruk vanwege het kunststofaandeel, dus het loont te bevestigen dat een formaat op de bestemming nog voldoet voordat u zich aan artwork en gereedschap vastlegt.","production":"Zegeltemperatuur en verblijftijd zijn de knoppen: een te zwak gezegelde blister gaat in transport open en een te sterk gezegelde krijgt de klant niet zonder gereedschap open, en het aanvaardbare venster daartussen is smal."},"Natlak":{"pop":3,"cost":1,"buyer":"Natlak is de goedkoopste manier om kleur op metaal te brengen en de minst duurzame in gebruik, wat haar het juiste antwoord maakt voor een siervlak en het verkeerde voor een slijtvlak zoals een spadeblad.","production":"Laagdikte en uitharding zijn de knoppen, en beide zijn snel verkeerd te zetten — lak die dik wordt opgebracht om een slecht oppervlak te maskeren, zakt uit, en lak die te kort uithardt, blijft zacht genoeg om in de doos af te tekenen."},"Omsnoering":{"pop":2,"cost":1,"buyer":"Omsnoering zet bundels en pallets vast en is een handlingbeslissing en geen productbeslissing; of zij nodig is, hangt af van de route en het aantal overslagen, niet van de goederen.","production":"Spanning en kantbescherming horen bij elkaar — een band die strak over een onbeschermde doosrand wordt getrokken, snijdt in het karton, en de pallet arriveert gezekerd met banden die niets meer vasthouden."},"Pallet":{"pop":5,"cost":5,"buyer":"De palletspecificatie is tegelijk een douane- en een kostenpost: warmtebehandeld hout draagt een ISPM 15-merk dat houten verpakking voor de meeste internationale verplaatsingen nodig heeft, en de palletmaten bepalen hoeveel containervolume u werkelijk betaalt.","production":"Wij bepalen het stapelpatroon voordat de eerste doos wordt gedrukt, want de palletpassing wordt door de doosmaat vastgelegd — een doos achteraf een paar millimeter wijzigen is wat van een volle pallet een half gevulde maakt."},"Stansen":{"pop":5,"cost":1,"buyer":"Stansen is goedkoop per stuk en duur om te wijzigen: de matrijs draagt de geometrie, dus een profielwijziging na de vrijgave van het gereedschap is een gereedschapspost en een nieuwe levertijd, en dit is de poort waar een tekening zou moeten stoppen met bewegen.","production":"De matrijsspeling wordt ingesteld als percentage van de plaatdikte, en zij bepaalt de braamhoogte en de diepte van de schuifzone op het snijvlak — te krap en de matrijs brokkelt uit, te ruim en de kant rolt om, dus wij stemmen haar af op het materiaal in plaats van op gewoonte."},"Lasermarkering":{"pop":3,"cost":2,"buyer":"Lasermarkering is permanent en kan niet van het onderdeel worden nagemaakt, en daarom draagt zij merk-, kwaliteits- en traceerbaarheidsgegevens op premiumlijnen waar een gedrukt teken zou wegslijten.","production":"Op gehard staal markeren wij met parameters die het oppervlak niet opnieuw ontlaten — een te krachtig teken brengt een plaatselijke warmte-beïnvloede zone in een snijkant, en dat is een zachte plek precies daar waar de snede werkt."},"Spuitgieten":{"pop":5,"cost":2,"buyer":"De stukkosten dalen met volume en stijgen met wanddikte en cyclustijd, dus de grootste hefboom op de prijs van een gespoten steel is het ontwerp, niet de onderhandeling — dikke ribben koelen traag af en zijn tweemaal duur.","production":"Wij beheersen invalplekken en vloeinaden bij de aanspuitpositie, niet bij het polijsten — een vloeinaad waar twee stromingsfronten samenkomen is een echte sterktediscontinuïteit, dus zij wordt buiten het krachtenpad gelegd."},"Skinverpakking":{"pop":2,"cost":3,"buyer":"Skinverpakken past bij onregelmatige vormen die een blistermatrijs niet economisch kan volgen, en het ruilt lagere gereedschapskosten in voor een tragere lijnsnelheid en een minder premium schappresentatie.","production":"De folie moet gelijkmatig over de hoge punten van het product trekken, dus wij sturen verwarming en vacuüm samen — een dunne plek boven een hoek is waar de verpakking later bij het handlen openscheurt."},"Nikkel-chroomlaag":{"pop":2,"cost":4,"buyer":"Nikkel-chroom is een decoratieve opbouw, niet één laag: de corrosievastheid zit in het nikkel eronder en het chroom is een dunne heldere toplaag, dus een specificatie die alleen chroom noemt, heeft het verkeerde gespecificeerd.","production":"De dekking in uitsparingen is waar deze afwerking het begeeft — de galvanische stroom volgt de geometrie, dus binnenhoeken en blinde kenmerken krijgen de minste laag, en precies daar verschijnt de eerste roest."},"Lasersnijden":{"pop":2,"cost":4,"buyer":"Laser is het juiste antwoord voor korte series en prototypeprofielen omdat het de gereedschapskosten volledig wegneemt, maar het laat een warmte-beïnvloede zone achter aan de snijkant die vóór het harden weggeslepen moet worden op elk onderdeel dat een snede gaat dragen.","production":"Wij behandelen de snijkant als onafgewerkt — de hergestolde laag en de hardheidsgradiënt naast de snede gedragen zich anders bij het afschrikken, dus een lasergesneden bladprofiel krijgt overmaat op de kant om weg te nemen."},"Aluminium":{"pop":3,"cost":3,"buyer":"De toestandsaanduiding is de specificatie, niet het legeringsnummer: 6061-T6 en 6061-T4 zijn hetzelfde metaal bij verschillende rekgrenzen, en een schacht die in de zachtere toestand wordt geleverd, buigt blijvend door onder een last waar de hardere van terugveert.","production":"De extrusietolerantie op de wanddikte is waar wij bij ontvangst op letten — een buis onder de nominale wand doorstaat een diametermeter en knikt toch bij de huls, dus wij meten de wand, niet alleen de buitendiameter."},"Anodiseren":{"pop":2,"cost":3,"buyer":"Anodiseren zet het aluminiumoppervlak zelf om in plaats van er een laag op te leggen, dus het kan niet afsplinteren; wat het wel kan, is per partij en per legering in kleur verschillen, en dat telt wanneer een onderdeel bij een ander onderdeel moet passen.","production":"Legering en toestand bepalen de kleur, dus wij houden een kleurkritisch onderdeel op één legering en één leverancier — hetzelfde anodiseerrecept op een andere charge uit de 6000-serie komt er zichtbaar anders van tint uit."},"Buistrekken":{"pop":3,"cost":3,"buyer":"Trekken legt zowel de diameter als de wand vast, en de wand is wat de buigbelasting draagt: twee schachten die op dezelfde buitendiameter zijn geoffreerd, kunnen een derde in stijfheid schelen, dus specificeer de wanddikte expliciet of u koopt uiterlijk.","production":"Rechtheid na het trekken is het controlepunt op lange schachten — restspanning uit de trekmatrijs komt terug als doorbuiging over twee meter, dus wij richten en gloeien spanningsarm in plaats van onderdelen op het oog te selecteren."},"Buisbuigen":{"pop":3,"cost":2,"buyer":"Het te specificeren getal is de buigradius op hartlijn ten opzichte van de buisdiameter: een krappe radius maakt de buitenwand dunner en plooit de binnenwand, en dat is waar een gebogen steel uiteindelijk in gebruik scheurt.","production":"Wij gebruiken een doorn bij dunwandige bochten omdat de buis inwendige steun nodig heeft om zijn doorsnede te behouden — zonder doorn ovaliseert de bocht, en een ovale buis neemt de huls niet aan die voor een ronde is ontworpen."},"Sluitwalsen":{"pop":2,"cost":2,"buyer":"Sluitwalsen is de goedkope manier om een buiseinde te tapsen of te sluiten en het kost niets aan materiaal, maar de gereduceerde doorsnede is verstevigd en iets harder — een eerlijke ruil op een steeleinde, een slechte op een onderdeel dat daarna gelast moet worden.","production":"Matrijsuitlijning is alles: een sluitwals die buiten de as wordt gezet, geeft een taps einde dat er goed uitziet en scheef in zijn huls zit, dus wij stellen de concentriciteit in op de opspanning in plaats van haar verderop te corrigeren."},"Hardheidsindeling per kwaliteit":{"pop":2,"cost":1,"buyer":"Indelen sorteert de uitvoer in hardheidsklassen in plaats van één gemiddelde te accepteren, en dat is wat een hardheidsgetal in een garantie verandert — een gemiddelde van HRC 58 zegt niets over hoeveel onderdelen de lijn bij 52 verlieten.","production":"Wij zien de band als procesbeheersing, niet als sorteerbewerking: moeten onderdelen worden gesorteerd om de band te halen, dan drijft het afschrikken weg, en het zinvolle antwoord is de oven repareren in plaats van de uitvoer klasseren."},"Klikverbinding":{"pop":4,"cost":1,"buyer":"Klikverbindingen nemen bevestigers en montage-arbeid volledig weg, en daarom domineren ze behuizingen in het massakanaal; de ontwerpvraag is of de verbinding ooit weer open moet, want de meeste klikverbindingen zijn ontworpen om één keer te sluiten.","production":"De rek in de klikvinger bij montage bepaalt of een klik het overleeft — overrekking breekt de haak niet, zij laat hem kruipen, en de behuizing die bij montage strak klikte, rammelt tegen de tijd dat zij in het schap ligt."},"Puntlassen":{"pop":2,"cost":2,"buyer":"Puntlassen is snel en goedkoop op plaatsamenstellingen, en de zwakte is dat de kwaliteit van buiten onzichtbaar is: een las die er identiek uitziet, kan een fractie van de sterkte hebben als de stroom of de elektrode verkeerd stond.","production":"Wij verifiëren met een destructieve afpeltest op monsters in plaats van op uiterlijk, want de laslens zit binnenin de verbinding — een indruk aan het oppervlak bewijst dat de elektrode er was, niet dat het materiaal is versmolten."},"MIG-lassen":{"pop":2,"cost":3,"buyer":"MIG past bij de zwaardere langsteelsamenstellingen waar een doorlopende las echte belasting draagt, en het brengt warmtevervorming mee, dus elk onderdeel dat recht moet blijven, vraagt om een mal en vaak om een spanningsarme gloeistap achteraf.","production":"De warmte-inbreng is de variabele die wij sturen, niet de voortloopsnelheid alleen — dezelfde las te heet gelegd brandt door dunne wand heen en te koud laat een bindingsfout achter, en slechts één van die twee is voor de lasser zichtbaar."},"Hardsolderen":{"pop":1,"cost":4,"buyer":"Hardsolderen verbindt ongelijksoortige metalen onder hun smeltpunt, en zo ontmoet een hard blad een taaie angel zonder dat een van beide wordt vernietigd, en het is een premium antwoord voor kleine series, geprijsd op soldeer en arbeid.","production":"De voegspleet is wat een hardsoldeerverbinding laat werken — capillaire werking vraagt een nauwe, gelijkmatige spleet, dus wij beheersen de pasvorm; een spleet die ruim is gemaakt om vergevingsgezind te zijn, levert een verbinding die grotendeels soldeer en grotendeels zwak is."},"Maat-AQL":{"pop":4,"cost":1,"buyer":"Het AQL-niveau en de inspectienorm zijn hier de commerciële voorwaarden: ze leggen precies vast hoeveel afwijkingen een lot mag bevatten en toch worden geaccepteerd, en ze vóór de productie afspreken is wat een afkeuring beargumenteerbaar maakt in plaats van persoonlijk.","production":"Wij houden de ingaande en uitgaande controles op dezelfde referentievlakken als de tekening, want een maat die vanaf een andere referentie wordt gemeten, is een andere maat, en de meeste geschillen die wij hebben gezien beginnen daar."},"Verpakkingskarton":{"pop":5,"cost":1,"buyer":"Karton wordt gespecificeerd op constructie en op berstdruk of randstuikweerstand, niet op dikte, en het is de goedkoopste plek op een stuklijst waar onderspecificeren betrouwbaar uitmondt in inhoudingen wegens transportschade.","production":"Wij zetten de kartonkwaliteit af tegen de stapelhoogte en de vochtigheid van de route — karton verliest een aanzienlijk deel van zijn druksterkte zodra het vocht opneemt, en een lange zeeleg is precies waar dat gebeurt."},"Papier-kunststofcombinatie":{"pop":3,"cost":2,"buyer":"Deze hybride formaten bestaan om het kunststofaandeel terug te brengen vooruitlopend op verpakkingsregelgeving, en de praktische vraag is of het formaat in de bestemmingsmarkt scheidbaar is voor recycling, want dat is wat de regels feitelijk adresseren.","production":"Het papier en de folie reageren verschillend op warmte en vochtigheid, dus wij tonen de combinatie aan met een transporttest in plaats van aan te nemen dat zij zich gedraagt als de blister die zij vervangt."},"Barcode- en labelcontrole":{"pop":5,"cost":1,"buyer":"Dit is naleving, geen kwaliteit: een onleesbare barcode of een ontbrekende oorsprongsaanduiding houdt goederen even effectief tegen in een distributiecentrum als kapot gereedschap, en het is het goedkoopste falen op deze lijst om te voorkomen.","production":"Wij verifiëren door te scannen onder dezelfde omstandigheden als een retailer, want een code die op een bankscanner leest, kan het bij een magazijnhandscanner begeven als het drukcontrast of de rustzone marginaal is."},"Valtest verpakking":{"pop":3,"cost":1,"buyer":"De valtest beschermt de marge en niet het product: transportschade komt terug als een inhouding van de retailer, en de test definieert de verpakking die de distributieroute overleeft die de goederen werkelijk afleggen.","production":"Wij testen de verzendeenheid zoals zij ook echt gepalletiseerd wordt, aangezien een doos die alleen slaagt, in een stapel alsnog kan bezwijken — de meeste transportschade die wij hebben gezien is compressie over tijd, geen enkele klap."},"Doek":{"pop":2,"cost":1,"buyer":"Textiel komt in een stuklijst van metaalwaren binnen als de post die het chemische compliancerisico het waarschijnlijkst draagt — kleurstoffen, coatings en elk leren beslag zijn waar een REACH- of Proposition 65-vraag het eerst op landt, niet het staal.","production":"De rek bij het snijden en stikken is ons controlepunt: dezelfde rol gedraagt zich over de breedte anders, dus panelen worden op geneste snijplannen gesneden in plaats van los, en dat is wat een paar handschoenen een gelijk paar houdt."},"Labelset":{"pop":5,"cost":1,"buyer":"Labels dragen de regelgevende inhoud — oorsprong, veiligheidsaanduiding, barcode — en het zijn de onderdelen die het vaakst laat worden herzien, dus het loont ze op een aparte artworkgoedkeuring te houden, los van de verpakking zelf.","production":"De lijmkeuze wordt afgestemd op het oppervlak en op de temperatuur van de route: een label dat op een warme doos blijft zitten, kan van een koude, wasachtige of gestructureerde doos loskomen, en dat wordt op de bestemming ontdekt."}},"optionIds":{"Snij- en veerstaal":"Blade & spring steel","Roestvast staal":"Stainless steel","Warmsmeden":"Hot forging","Koudsmeden":"Cold forging","Harden & ontlaten":"Quench & temper","Inductief (lokaal) harden":"Induction (local) hardening","Doorharden":"Through hardening","Poedercoaten":"Powder coating","E-coating":"E-coat","Verzinken":"Zinc plating","Polijsten":"Polishing","Stralen":"Sand-blasting","Snede- en functiecontrole":"Edge & function check","Hardheidsbemonstering":"Hardness sampling","Zoutsproeiuren":"Salt-spray hours","Hout":"Timber","Greepcompounds":"Grip compounds","Houtdraaien":"Wood turning","Lak of olie op hout":"Lacquer or oil on wood","Tweecomponenten-overspuiten":"Two-shot over-moulding","Dompelen":"Dip moulding","Klinken":"Riveting","Boutverbindingen":"Bolted joints","Persverbinding":"Press-fit","Trektest op de verbinding":"Joint pull test","Open/dicht-cyclustest":"Open/close cycle life","Kleurdoos":"Colour box","Hangkaart / kopkaart":"Hang tag / header card","Golfkartonnen exportdoos":"Corrugated export carton","Harde kunststoffen":"Rigid plastics","Lijmverbinding":"Adhesive bonding","Blisterverpakking":"Blister pack","Natlak":"Wet paint","Omsnoering":"Strapping","Pallet":"Pallet","Stansen":"Stamping","Lasermarkering":"Laser marking","Spuitgieten":"Injection moulding","Skinverpakking":"Skin pack","Nikkel-chroomlaag":"Nickel-chrome plating","Lasersnijden":"Laser cutting","Aluminium":"Aluminium","Anodiseren":"Anodising","Buistrekken":"Tube drawing","Buisbuigen":"Tube bending","Sluitwalsen":"Swaging","Hardheidsindeling per kwaliteit":"Hardness banding by grade","Klikverbinding":"Snap-fit","Puntlassen":"Spot welding","MIG-lassen":"MIG welding","Hardsolderen":"Brazing","Maat-AQL":"Dimensional AQL","Verpakkingskarton":"Packaging board","Papier-kunststofcombinatie":"Paper-and-plastic composite","Barcode- en labelcontrole":"Barcode & label check","Valtest verpakking":"Pack drop test","Doek":"Fabric","Labelset":"Label set"},"optionLabels":{"Blade & spring steel":"Snij- en veerstaal","Stainless steel":"Roestvast staal","Hot forging":"Warmsmeden","Cold forging":"Koudsmeden","Quench & temper":"Harden & ontlaten","Induction (local) hardening":"Inductief (lokaal) harden","Through hardening":"Doorharden","Powder coating":"Poedercoaten","E-coat":"E-coating","Zinc plating":"Verzinken","Polishing":"Polijsten","Sand-blasting":"Stralen","Edge & function check":"Snede- en functiecontrole","Hardness sampling":"Hardheidsbemonstering","Salt-spray hours":"Zoutsproeiuren","Timber":"Hout","Grip compounds":"Greepcompounds","Wood turning":"Houtdraaien","Lacquer or oil on wood":"Lak of olie op hout","Two-shot over-moulding":"Tweecomponenten-overspuiten","Dip moulding":"Dompelen","Riveting":"Klinken","Bolted joints":"Boutverbindingen","Press-fit":"Persverbinding","Joint pull test":"Trektest op de verbinding","Open/close cycle life":"Open/dicht-cyclustest","Colour box":"Kleurdoos","Hang tag / header card":"Hangkaart / kopkaart","Corrugated export carton":"Golfkartonnen exportdoos","Rigid plastics":"Harde kunststoffen","Adhesive bonding":"Lijmverbinding","Blister pack":"Blisterverpakking","Wet paint":"Natlak","Strapping":"Omsnoering","Pallet":"Pallet","Stamping":"Stansen","Laser marking":"Lasermarkering","Injection moulding":"Spuitgieten","Skin pack":"Skinverpakking","Nickel-chrome plating":"Nikkel-chroomlaag","Laser cutting":"Lasersnijden","Aluminium":"Aluminium","Anodising":"Anodiseren","Tube drawing":"Buistrekken","Tube bending":"Buisbuigen","Swaging":"Sluitwalsen","Hardness banding by grade":"Hardheidsindeling per kwaliteit","Snap-fit":"Klikverbinding","Spot welding":"Puntlassen","MIG welding":"MIG-lassen","Brazing":"Hardsolderen","Dimensional AQL":"Maat-AQL","Packaging board":"Verpakkingskarton","Paper-and-plastic composite":"Papier-kunststofcombinatie","Barcode & label check":"Barcode- en labelcontrole","Pack drop test":"Valtest verpakking","Fabric":"Doek","Label set":"Labelset"},"ui":{"sheetTitle":"Eisenlijst","pickOne":"kies één optie","marketUse":"gangbaarheid","cost":"kosten","fromFloor":"Van de werkvloer","quantity":"aantal","targetDelivery":"gewenste levering","csvProduct":"Product","csvPart":"Onderdeel","csvDecision":"Beslissing","csvOption":"Optie","csvQuantity":"Aantal","csvDelivery":"Gewenste levering","mailIntro":"Geacht Birdland-verkoopteam,\n\nEisenlijst uit de AsiaSource-configurator:","mailClose":"Graag ontvangen wij uw terugkoppeling over haalbaarheid en levertijd.","gate_material":"Materiaal","gate_forming":"Vormen","gate_heat":"Warmtebehandeling","gate_tooling":"Gereedschapbouw","gate_joining":"Verbinden","gate_finish":"Oppervlaktebehandeling","gate_inspection":"Inspectie","gate_pack":"Verpakking","sheetEmpty":"Kies links een product en stel de uitvoering samen — uw keuzes verschijnen hier.","toConfirm":"Te bevestigen"},"gateLabels":{"material":"Materiaal","forming":"Vormen","heat":"Warmtebehandeling","tooling":"Gereedschapbouw","joining":"Verbinden","finish":"Oppervlaktebehandeling","inspection":"Inspectie","pack":"Verpakking"}}</script>
+<script>
+(function () {
+  'use strict';
+  var DATA = JSON.parse(document.getElementById('cfg-data').textContent);
+  // Every user-visible string the script builds lives in DATA.ui so a language
+  // edition swaps them with the rest of the data blob — nothing is hardcoded here.
+  var UI = DATA.ui || {};
+  var T = function (k, fallback) { return UI[k] || fallback; };
+  var GATE_LABEL = DATA.gateLabels || { material: 'Material', forming: 'Forming', heat: 'Heat treatment',
+    tooling: 'Tooling', joining: 'Joining', finish: 'Finish', inspection: 'Inspection', pack: 'Packaging' };
+  var QUICK = [[500, '500'], [1000, '1k'], [5000, '5k'], [10000, '10k']];
+  // Routing belongs to Contact; this page never sends mail directly.
+
+  var byId = {}; DATA.products.forEach(function (p) { byId[p.id] = p; });
+
+  // sheet[pid] = { picks: {partId: {gate: option}}, qty, delv }
+  var sheet = {};
+  try { sheet = JSON.parse(localStorage.getItem('bl_cfg_sheet') || '{}') || {}; } catch (e) { sheet = {}; }
+  function save() { try { const pub=Object.fromEntries(Object.entries(sheet).map(([id,en])=>[id,{picks:en.picks}]));localStorage.setItem('bl_cfg_sheet', JSON.stringify(pub)); } catch (e) {} }
+
+  try{const tab=JSON.parse(sessionStorage.getItem('bl_cfg_tab')||'null');if(tab&&tab.expires>Date.now()){for(const [id,en]of Object.entries(tab.sheet||{}))if(byId[id])sheet[id]=en;}sessionStorage.removeItem('bl_cfg_tab');}catch(e){}
+  document.addEventListener('click',function(e){if(e.target.closest('.bj-language a'))try{sessionStorage.setItem('bl_cfg_tab',JSON.stringify({expires:Date.now()+30*60*1000,sheet}));}catch(err){}});
+  // Remove legacy persisted quantities/dates after reading the existing sheet.
+  save();
+  var cur = null;      // current product
+  var openPart = null; // open part id
+  var hoverPart = null;
+  var animTimer = null;
+
+  function entry(pid) {
+    if (!sheet[pid]) sheet[pid] = { picks: {}, qty: 1000, qtyConfirmed:false, delv: '' };
+    if(sheet[pid].qty===undefined)sheet[pid].qty=1000;
+    return sheet[pid];
+  }
+  function picksOf(pid) { return (sheet[pid] && sheet[pid].picks) || {}; }
+  function partDone(p, part) {
+    var picks = picksOf(p.id)[part.id] || {};
+    return Object.keys(part.options || {}).every(function (g) { return !!picks[g]; });
+  }
+  function anyPick(pid) {
+    var picks = picksOf(pid);
+    return Object.keys(picks).some(function (k) { return Object.keys(picks[k]).length; });
+  }
+  function onSheet() { return DATA.products.filter(function (p) { return anyPick(p.id); }); }
+
+  // ---- theme-linked canvas colours ------------------------------------
+  function inkColours() {
+    var cs = getComputedStyle(document.documentElement);
+    return {
+      ink: cs.getPropertyValue('--cfg-ink').trim() || '#2b3a35',
+      accent: cs.getPropertyValue('--cfg-accent').trim() || '#0E6652',
+      muted: cs.getPropertyValue('--cfg-canvas-mut').trim() || '#8a9490'
+    };
+  }
+
+  // ---- canvas ----------------------------------------------------------
+  var cv = document.getElementById('cv');
+  var ctx = cv.getContext('2d');
+  var hits = [];
+
+  function sizeCanvas() {
+    var r = cv.getBoundingClientRect();
+    var dpr = window.devicePixelRatio || 1;
+    var w = Math.max(1, Math.round(r.width * dpr));
+    var h = Math.max(1, Math.round(r.height * dpr));
+    if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
+  }
+
+  function drawSpec() { return cur && window.BL_DRAWINGS[cur.draw]; }
+
+  function draw(partCount) {
+    var spec = drawSpec();
+    if (!spec) { ctx.clearRect(0, 0, cv.width, cv.height); return; }
+    sizeCanvas();
+    var shown = partCount === undefined ? spec : { parts: spec.parts.slice(0, partCount) };
+    var c = inkColours();
+    var state = { hover: hoverPart, selected: {}, labels: {} };
+    if (openPart) state.selected[openPart] = true;
+    cur.parts.forEach(function (part) {
+      state.labels[part.id] = part.name;
+      if (partDone(cur, part)) {
+        state.labels[part.id] = part.name + ' ✓';
+      }
+    });
+    window.BLSketch.drawProduct(ctx, shown, state, {
+      ink: c.ink, accent: c.accent, muted: c.muted,
+      width: Math.max(1.2, 1.6 * (window.devicePixelRatio || 1) / 2)
+    });
+    hits = window.BLSketch.hitPaths(spec, cv);
+  }
+  function specName(spec, id) {
+    for (var i = 0; i < spec.parts.length; i++) if (spec.parts[i].id === id) return spec.parts[i].name;
+    return '';
+  }
+
+  function animateDraw() {
+    var spec = drawSpec();
+    if (!spec) return;
+    if (animTimer) clearInterval(animTimer);
+    var n = 0;
+    draw(0);
+    animTimer = setInterval(function () {
+      n++;
+      draw(n);
+      if (n >= spec.parts.length) { clearInterval(animTimer); animTimer = null; draw(); }
+    }, 110);
+  }
+
+  function hitAt(e) {
+    var r = cv.getBoundingClientRect();
+    var x = (e.clientX - r.left) * (cv.width / r.width);
+    var y = (e.clientY - r.top) * (cv.height / r.height);
+    for (var i = hits.length - 1; i >= 0; i--) {
+      if (ctx.isPointInPath(hits[i].path, x, y)) {
+        // unnamed helper polygons (blade2 etc.) map onto their named sibling
+        var id = hits[i].id;
+        if (cur.parts.some(function (p) { return p.id === id; })) return id;
+        var base = id.replace(/\d+$/, '');
+        if (cur.parts.some(function (p) { return p.id === base; })) return base;
+        return null;
+      }
+    }
+    return null;
+  }
+  cv.addEventListener('pointermove', function (e) {
+    var id = hitAt(e);
+    cv.style.cursor = id ? 'pointer' : 'default';
+    if (id !== hoverPart) { hoverPart = id; draw(); }
+  });
+  cv.addEventListener('pointerleave', function () { if (hoverPart) { hoverPart = null; draw(); } });
+  cv.addEventListener('click', function (e) {
+    var id = hitAt(e);
+    if (id) togglePart(id, true);
+  });
+
+  // ---- menu ------------------------------------------------------------
+  var menu = document.getElementById('menu');
+  function renderMenu() {
+    menu.innerHTML = DATA.tiers.map(function (t) {
+      var items = DATA.products.filter(function (p) { return p.tier === t.id; });
+      return '<div class="tier"><div class="tier-h">' + t.name + '</div>' +
+        '<div class="tier-b">' + t.body + '</div><div class="plist">' +
+        items.map(function (p) {
+          var done = p.parts.filter(function (part) { return partDone(p, part); }).length;
+          return '<button type="button" class="pbtn" data-pid="' + p.id + '"' +
+            (cur && cur.id === p.id ? ' aria-current="true"' : '') + '>' + p.name +
+            (done ? '<span class="done">' + done + '/' + p.parts.length + ' ✓</span>' : '') +
+            '</button>';
+        }).join('') + '</div></div>';
+    }).join('');
+  }
+  menu.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-pid]');
+    if (b) selectProduct(b.getAttribute('data-pid'));
+  });
+
+  // ---- parts & options -------------------------------------------------
+  var partsEl = document.getElementById('parts');
+  function renderParts() {
+    partsEl.innerHTML = cur.parts.map(function (part) {
+      var gates = Object.keys(part.options || {});
+      var picks = picksOf(cur.id)[part.id] || {};
+      var nPicked = gates.filter(function (g) { return picks[g]; }).length;
+      var done = nPicked === gates.length;
+      return '<div class="part' + (done ? ' is-done' : '') + '" data-part="' + part.id + '"' +
+        ' data-open="' + (openPart === part.id ? 1 : 0) + '">' +
+        '<button type="button" class="part-h"><span class="tick">✓</span>' + part.name +
+        '<span class="st">' + nPicked + '/' + gates.length + '</span></button>' +
+        '<div class="part-b">' +
+        gates.map(function (g) {
+          return '<div class="gate"><div class="gate-h">' + (GATE_LABEL[g] || g) + ' — ' + T('pickOne', 'pick one') + '</div>' +
+            part.options[g].map(function (name) {
+              var o = DATA.options[name];
+              var key = (DATA.optionIds || {})[name] || name;
+              var on = picks[g] === key;
+              return '<div class="opt' + (on ? ' is-on' : '') + '" data-gate="' + g +
+                '" data-opt="' + key.replace(/"/g, '&quot;') + '" role="button" tabindex="0">' +
+                '<div class="o-top"><span class="o-name">' + name + '</span>' +
+                '<span class="o-meta">' + T('marketUse', 'market use') + ' ' + o.pop + '/5 · ' + T('cost', 'cost') + ' ' + o.cost + '/5</span></div>' +
+                '<div class="o-buyer">' + o.buyer + '</div>' +
+                '<details><summary>' + T('fromFloor', 'From the production floor') + '</summary>' +
+                '<div class="o-prod">' + o.production + '</div></details></div>';
+            }).join('') + '</div>';
+        }).join('') +
+        '</div></div>';
+    }).join('');
+    renderOrder();
+  }
+
+  partsEl.addEventListener('click', function (e) {
+    var head = e.target.closest('.part-h');
+    if (head) { togglePart(head.parentNode.getAttribute('data-part'), false); return; }
+    var opt = e.target.closest('.opt');
+    if (opt && !e.target.closest('summary') && !e.target.closest('.o-prod')) pickOption(opt);
+  });
+  partsEl.addEventListener('keydown', function (e) {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('opt')) {
+      e.preventDefault(); pickOption(e.target);
+    }
+  });
+
+  function pickOption(optEl) {
+    var partEl = optEl.closest('.part');
+    var partId = partEl.getAttribute('data-part');
+    var gate = optEl.getAttribute('data-gate');
+    var name = optEl.getAttribute('data-opt');
+    var en = entry(cur.id);
+    if (!en.picks[partId]) en.picks[partId] = {};
+    en.picks[partId][gate] = en.picks[partId][gate] === name ? undefined : name;
+    if (!en.picks[partId][gate]) delete en.picks[partId][gate];
+    save();
+    renderParts(); renderMenu(); renderSheet(); draw();
+    var active=partsEl.querySelector('[data-part="'+partId+'"] [data-gate="'+gate+'"][data-opt="'+CSS.escape(name)+'"]');if(active)active.focus({preventScroll:true});
+  }
+
+  function togglePart(id, fromCanvas) {
+    openPart = (openPart === id && !fromCanvas) ? null : id;
+    renderParts(); draw();
+    if (fromCanvas) {
+      var el = partsEl.querySelector('.part[data-part="' + id + '"]');
+      if (el && el.scrollIntoView) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  // ---- quantity & delivery --------------------------------------------
+  var orderEl = document.getElementById('order');
+  var qtyEl = document.getElementById('qty');
+  var delvEl = document.getElementById('delv');
+  var qqEl = document.getElementById('qq');
+  QUICK.forEach(function (q) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.textContent = q[1];
+    b.addEventListener('click', function () {
+      qtyEl.value = q[0]; entry(cur.id).qty = q[0]; entry(cur.id).qtyConfirmed=true; save(); renderSheet();
+    });
+    qqEl.appendChild(b);
+  });
+  function renderOrder() {
+    if (!cur || !anyPick(cur.id)) { orderEl.hidden = true; return; }
+    orderEl.hidden = false;
+    var en = entry(cur.id);
+    qtyEl.value = en.qty || '';
+    delvEl.value = en.delv || '';
+  }
+  qtyEl.addEventListener('input', function () {
+    var v = parseInt(qtyEl.value, 10);
+    entry(cur.id).qty = (v > 0 ? v : ''); entry(cur.id).qtyConfirmed=v>0;
+    save(); renderSheet();
+  });
+  delvEl.addEventListener('input', function () {
+    entry(cur.id).delv = delvEl.value; save(); renderSheet();
+  });
+
+  // ---- requirement sheet summary --------------------------------------
+  var sbItems = document.getElementById('sbItems');
+  var csvBtn = document.getElementById('csvBtn');
+  var mailBtn = document.getElementById('mailBtn');
+  function renderSheet() {
+    var list = onSheet();
+    sbItems.textContent = '';
+    if (!list.length) {
+      var s = document.createElement('span');
+      s.className = 'sb-empty';
+      s.textContent = T('sheetEmpty', 'Pick a product on the left and choose its build — your selections collect here.');
+      sbItems.appendChild(s);
+    }
+    list.forEach(function (p) {
+      var en = entry(p.id);
+      var chip = document.createElement('button');
+      chip.type = 'button'; chip.className = 'sb-chip';
+      var b = document.createElement('b'); b.textContent = p.name;
+      var q = document.createElement('span'); q.className = 'q';
+      // user input reaches the DOM as textContent only
+      q.textContent = '× ' + (en.qtyConfirmed?en.qty:'?') + (en.delv ? ' · ' + en.delv : '');
+      chip.appendChild(b); chip.appendChild(q);
+      chip.addEventListener('click', function () { selectProduct(p.id); });
+      sbItems.appendChild(chip);
+    });
+    csvBtn.disabled = mailBtn.disabled = !list.length;
+  }
+
+  function sheetRows() {
+    var rows = [];
+    onSheet().forEach(function (p) {
+      var en = entry(p.id);
+      p.parts.forEach(function (part) {
+        var picks = en.picks[part.id] || {};
+        Object.keys(part.options || {}).forEach(function (g) {
+          if (picks[g]) rows.push([p.name, part.name, GATE_LABEL[g] || g, (DATA.optionLabels || {})[picks[g]] || picks[g],
+            String(en.qtyConfirmed?en.qty:''), en.delv || '']);
+        });
+      });
+    });
+    return rows;
+  }
+
+  function snapshot(){return onSheet().map(function(p){var en=entry(p.id),selected=[],unknown=[],examples=[];p.parts.forEach(function(part){var picks=en.picks[part.id]||{};Object.keys(part.options||{}).forEach(function(g){var val=picks[g];(val?selected:unknown).push(part.name+' / '+(GATE_LABEL[g]||g)+(val?': '+((DATA.optionLabels||{})[val]||val):''));});});if(en.qtyConfirmed)selected.push(T('quantity','Quantity')+': '+en.qty);else{unknown.push(T('quantity','Quantity'));examples.push(window.BL_BRIEF.t('brQtyExample'));}if(en.delv)selected.push(window.BL_BRIEF.t('brRequestedMonth')+': '+en.delv);else unknown.push(window.BL_BRIEF.t('brRequestedMonth'));examples.push(window.BL_BRIEF.t('brReference'));return {id:p.id,source:'Configurator',title:p.name,inputs:{quantity:en.qtyConfirmed?en.qty:'',date:en.delv},selected,unknown,examples};});}
+  document.addEventListener('DOMContentLoaded',function(){
+    if(!window.BL_BRIEF)return;
+    for(const item of window.BL_BRIEF.items('Configurator'))if(byId[item.id]){const en=entry(item.id);en.qty=item.inputs.quantity||1000;en.qtyConfirmed=!!item.inputs.quantity;en.delv=item.inputs.date||'';}renderOrder();renderSheet();
+    window.BL_BRIEF.register('Configurator',{snapshot,remove:function(id){delete sheet[id];save();renderMenu();renderParts();renderSheet();draw();},clear:function(){sheet={};save();renderMenu();renderParts();renderSheet();draw();}});
+    mailBtn.textContent=window.BL_BRIEF.t('brReview');
+    var note=document.createElement('p');note.className='br-assumption';note.textContent=window.BL_BRIEF.t('brQtyExample');orderEl.appendChild(note);
+  });
+  mailBtn.addEventListener('click',function(){window.BL_BRIEF.open('Configurator');});
+
+  csvBtn.addEventListener('click', function () {
+    var esc = function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; };
+    var csv = '﻿' + // UTF-8 BOM so Excel opens the CSV as UTF-8
+       [[T('csvProduct','Product'), T('csvPart','Part'), T('csvDecision','Decision'), T('csvOption','Option'), T('csvQuantity','Quantity'), T('csvDelivery','Target delivery')]]
+      .concat(sheetRows()).map(function (r) { return r.map(esc).join(','); }).join('\r\n');
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+    a.download = 'asiasource-requirement-sheet.csv';
+    document.body.appendChild(a); a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  });
+
+  // ---- product switch --------------------------------------------------
+  var pName = document.getElementById('pName');
+  var pTier = document.getElementById('pTier');
+  function selectProduct(pid) {
+    if (cur && cur.id === pid) return;
+    cur = byId[pid];
+    var selectedUrl = new URL(location.href); selectedUrl.searchParams.set('product', pid);
+    history.replaceState(null, '', selectedUrl.href);
+    document.querySelectorAll('.bj-language a').forEach(function (a) { var url = new URL(a.href); url.search = selectedUrl.search; a.href = url.href; });
+    openPart = null; hoverPart = null;
+    pName.textContent = cur.name;
+    var t = DATA.tiers.filter(function (x) { return x.id === cur.tier; })[0];
+    pTier.textContent = t ? t.name + ' — ' + t.body : '';
+    renderMenu(); renderParts(); renderOrder();
+    animateDraw();
+  }
+
+  window.addEventListener('resize', function () { draw(); });
+  if (window.matchMedia) {
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mq.addEventListener) mq.addEventListener('change', function () { draw(); });
+  }
+
+  renderSheet();
+  var requested = new URLSearchParams(location.search).get('product');
+  selectProduct(byId[requested] ? requested : DATA.products[0].id);
+})();
+</script>
+
+</body></html>

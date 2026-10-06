@@ -21,5 +21,7 @@
   "gate_joining": "接合",
   "gate_finish": "表面処理",
   "gate_inspection": "検査",
-  "gate_pack": "包装"
+  "gate_pack": "包装",
+  "sheetEmpty": "左側で製品と仕様を選ぶと、選択内容がここに表示されます。",
+  "toConfirm": "要確認"
 }

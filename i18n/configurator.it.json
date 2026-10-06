@@ -21,5 +21,7 @@
   "gate_joining": "Giunzione",
   "gate_finish": "Trattamento superficiale",
   "gate_inspection": "Controllo",
-  "gate_pack": "Imballaggio"
+  "gate_pack": "Imballaggio",
+  "sheetEmpty": "Scegli un prodotto a sinistra e configurane i componenti — le tue scelte appariranno qui.",
+  "toConfirm": "Da confermare"
 }

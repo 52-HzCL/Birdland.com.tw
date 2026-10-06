@@ -1,0 +1,2542 @@
+[
+  {
+    "key": "cutting",
+    "label": "Cutting tools",
+    "sub": "Pruners · shears · loppers",
+    "models": [
+      {
+        "name": "Bypass pruner",
+        "cn": "82015000",
+        "image": "images/buyer-anatomy-pruner.webp",
+        "alt": "Horizontal exploded reference anatomy of a bypass pruner",
+        "note": "Cutting platform · representative construction",
+        "parts": [
+          {
+            "name": "Upper blade",
+            "materials": [
+              [
+                "SK5 high-carbon steel",
+                "HRC 56–60 · high edge retention"
+              ],
+              [
+                "65Mn carbon steel",
+                "HRC 52–56 · resilient value route"
+              ],
+              [
+                "420J2 stainless steel",
+                "HRC 50–54 · corrosion-first route"
+              ],
+              [
+                "S50C carbon steel",
+                "HRC 50–55 · balanced route"
+              ]
+            ]
+          },
+          {
+            "name": "Lower blade",
+            "materials": [
+              [
+                "S50C medium-carbon steel",
+                "HRC 45–50 · strength and value"
+              ],
+              [
+                "420J2 stainless steel",
+                "HRC 46–52 · wet-use route"
+              ],
+              [
+                "SK5 carbon steel",
+                "HRC 50–56 · higher wear control"
+              ]
+            ]
+          },
+          {
+            "name": "Pivot set",
+            "materials": [
+              [
+                "40Cr alloy steel",
+                "Induction-hardened wear surface"
+              ],
+              [
+                "304 stainless steel",
+                "Corrosion-control route"
+              ],
+              [
+                "Zinc-plated carbon steel",
+                "Commercial value route"
+              ],
+              [
+                "Black-oxide alloy steel",
+                "Low-glare wear route"
+              ]
+            ]
+          },
+          {
+            "name": "Spring",
+            "materials": [
+              [
+                "65Mn spring steel",
+                "Heat-treated cycle-life route"
+              ],
+              [
+                "SUS304 spring wire",
+                "Wet-use corrosion route"
+              ],
+              [
+                "Music wire",
+                "High-cycle compact route"
+              ]
+            ]
+          },
+          {
+            "name": "Handle frame",
+            "materials": [
+              [
+                "6061 forged aluminium",
+                "Lower weight · anodised option"
+              ],
+              [
+                "Stamped SPCC steel",
+                "Rigid cost-controlled route"
+              ],
+              [
+                "Zinc die casting",
+                "Dense premium-feel route"
+              ],
+              [
+                "PA6-GF30 nylon",
+                "Glass-filled moulded route"
+              ],
+              [
+                "Hot-forged steel",
+                "Single-piece high-load route"
+              ]
+            ]
+          },
+          {
+            "name": "Grip",
+            "materials": [
+              [
+                "PP + TPR overmould",
+                "Rigid core with soft control"
+              ],
+              [
+                "TPR sleeve",
+                "Soft-touch replaceable grip"
+              ],
+              [
+                "PVC dip coating",
+                "Simple durable finish"
+              ],
+              [
+                "EVA foam",
+                "Low-density comfort option"
+              ],
+              [
+                "PA6 nylon",
+                "Hard engineering grip"
+              ]
+            ]
+          },
+          {
+            "name": "Lock",
+            "materials": [
+              [
+                "304 stainless steel",
+                "Corrosion-resistant retention"
+              ],
+              [
+                "Zinc-plated stamped steel",
+                "Value retention route"
+              ],
+              [
+                "PA66-GF polymer",
+                "Low-mass moulded route"
+              ]
+            ]
+          },
+          {
+            "name": "Fasteners",
+            "materials": [
+              [
+                "304 stainless steel",
+                "Wet-use corrosion route"
+              ],
+              [
+                "Zinc-plated carbon steel",
+                "Standard protection"
+              ],
+              [
+                "Black-oxide alloy steel",
+                "Wear-focused route"
+              ],
+              [
+                "Trivalent-chrome plated steel",
+                "Chrome-VI-free finish route"
+              ],
+              [
+                "Dacromet coating",
+                "Chrome-VI-free · high salt-spray route"
+              ]
+            ]
+          }
+        ],
+        "processes": [
+          [
+            "Forming route",
+            "Forging or stamping by load case"
+          ],
+          [
+            "Heat treatment",
+            "Grade-specific hardness validation"
+          ],
+          [
+            "Blade grinding",
+            "Edge geometry and consistency"
+          ],
+          [
+            "Surface finish",
+            "Plating, passivation or powder coat"
+          ]
+        ]
+      },
+      {
+        "name": "Anvil pruner",
+        "cn": "82015000",
+        "note": "Anvil cutting platform · representative construction, confirmed per programme",
+        "parts": [
+          {
+            "name": "Upper blade",
+            "materials": [
+              [
+                "SK5 high-carbon steel",
+                "HRC 56–60 · high edge retention"
+              ],
+              [
+                "65Mn carbon steel",
+                "HRC 52–56 · resilient value route"
+              ],
+              [
+                "420J2 stainless steel",
+                "HRC 50–54 · corrosion-first route"
+              ],
+              [
+                "S50C carbon steel",
+                "HRC 50–55 · balanced route"
+              ]
+            ]
+          },
+          {
+            "name": "Lower blade",
+            "materials": [
+              [
+                "S50C medium-carbon steel",
+                "HRC 45–50 · anvil-block strength and value"
+              ],
+              [
+                "420J2 stainless steel",
+                "HRC 46–52 · anvil-block wet-use route"
+              ],
+              [
+                "SK5 carbon steel",
+                "HRC 50–56 · anvil-block wear control"
+              ]
+            ]
+          },
+          {
+            "name": "Pivot set",
+            "materials": [
+              [
+                "40Cr alloy steel",
+                "Induction-hardened wear surface"
+              ],
+              [
+                "304 stainless steel",
+                "Corrosion-control route"
+              ],
+              [
+                "Zinc-plated carbon steel",
+                "Commercial value route"
+              ],
+              [
+                "Black-oxide alloy steel",
+                "Low-glare wear route"
+              ]
+            ]
+          },
+          {
+            "name": "Spring",
+            "materials": [
+              [
+                "65Mn spring steel",
+                "Heat-treated cycle-life route"
+              ],
+              [
+                "SUS304 spring wire",
+                "Wet-use corrosion route"
+              ],
+              [
+                "Music wire",
+                "High-cycle compact route"
+              ]
+            ]
+          },
+          {
+            "name": "Handle frame",
+            "materials": [
+              [
+                "6061 forged aluminium",
+                "Lower weight · anodised option"
+              ],
+              [
+                "Stamped SPCC steel",
+                "Rigid cost-controlled route"
+              ],
+              [
+                "Zinc die casting",
+                "Dense premium-feel route"
+              ],
+              [
+                "PA6-GF30 nylon",
+                "Glass-filled moulded route"
+              ],
+              [
+                "Hot-forged steel",
+                "Single-piece high-load route"
+              ]
+            ]
+          },
+          {
+            "name": "Grip",
+            "materials": [
+              [
+                "PP + TPR overmould",
+                "Rigid core with soft control"
+              ],
+              [
+                "TPR sleeve",
+                "Soft-touch replaceable grip"
+              ],
+              [
+                "PVC dip coating",
+                "Simple durable finish"
+              ],
+              [
+                "EVA foam",
+                "Low-density comfort option"
+              ],
+              [
+                "PA6 nylon",
+                "Hard engineering grip"
+              ]
+            ]
+          },
+          {
+            "name": "Lock",
+            "materials": [
+              [
+                "304 stainless steel",
+                "Corrosion-resistant retention"
+              ],
+              [
+                "Zinc-plated stamped steel",
+                "Value retention route"
+              ],
+              [
+                "PA66-GF polymer",
+                "Low-mass moulded route"
+              ]
+            ]
+          },
+          {
+            "name": "Fasteners",
+            "materials": [
+              [
+                "304 stainless steel",
+                "Wet-use corrosion route"
+              ],
+              [
+                "Zinc-plated carbon steel",
+                "Standard protection"
+              ],
+              [
+                "Black-oxide alloy steel",
+                "Wear-focused route"
+              ],
+              [
+                "Trivalent-chrome plated steel",
+                "Chrome-VI-free finish route"
+              ],
+              [
+                "Dacromet coating",
+                "Chrome-VI-free · high salt-spray route"
+              ]
+            ]
+          }
+        ],
+        "processes": [
+          [
+            "Forming route",
+            "Forging or stamping by load case"
+          ],
+          [
+            "Heat treatment",
+            "Grade-specific hardness validation"
+          ],
+          [
+            "Blade grinding",
+            "Edge geometry and consistency"
+          ],
+          [
+            "Surface finish",
+            "Plating, passivation or powder coat"
+          ]
+        ]
+      },
+      {
+        "name": "Bypass lopper",
+        "cn": "82016000",
+        "note": "Two-hand bypass cutting platform · representative construction, confirmed per programme",
+        "parts": [
+          {
+            "name": "Upper blade",
+            "materials": [
+              [
+                "SK5 high-carbon steel",
+                "HRC 56–60 · high edge retention"
+              ],
+              [
+                "65Mn carbon steel",
+                "HRC 52–56 · resilient value route"
+              ],
+              [
+                "420J2 stainless steel",
+                "HRC 50–54 · corrosion-first route"
+              ],
+              [
+                "S50C carbon steel",
+                "HRC 50–55 · balanced route"
+              ]
+            ]
+          },
+          {
+            "name": "Lower blade",
+            "materials": [
+              [
+                "S50C medium-carbon steel",
+                "HRC 45–50 · strength and value"
+              ],
+              [
+                "420J2 stainless steel",
+                "HRC 46–52 · wet-use route"
+              ],
+              [
+                "SK5 carbon steel",
+                "HRC 50–56 · higher wear control"
+              ]
+            ]
+          },
+          {
+            "name": "Pivot set",
+            "materials": [
+              [
+                "40Cr alloy steel",
+                "Induction-hardened wear surface"
+              ],
+              [
+                "304 stainless steel",
+                "Corrosion-control route"
+              ],
+              [
+                "Zinc-plated carbon steel",
+                "Commercial value route"
+              ],
+              [
+                "Black-oxide alloy steel",
+                "Low-glare wear route"
+              ]
+            ]
+          },
+          {
+            "name": "Handle frame",
+            "materials": [
+              [
+                "6061 aluminium tube",
+                "Lightweight route"
+              ],
+              [
+                "Powder-coated steel tube",
+                "Rigid value route"
+              ],
+              [
+                "Fibreglass composite",
+                "Moisture-stable route"
+              ],
+              [
+                "Bamboo pole",
+                "Light natural handle route"
+              ]
+            ]
+          },
+          {
+            "name": "Grip",
+            "materials": [
+              [
+                "PP + TPR overmould",
+                "Rigid core with soft control"
+              ],
+              [
+                "TPR sleeve",
+                "Soft-touch replaceable grip"
+              ],
+              [
+                "PVC dip coating",
+                "Simple durable finish"
+              ],
+              [
+                "EVA foam",
+                "Low-density comfort option"
+              ],
+              [
+                "PA6 nylon",
+                "Hard engineering grip"
+              ]
+            ]
+          },
+          {
+            "name": "Fasteners",
+            "materials": [
+              [
+                "304 stainless steel",
+                "Wet-use corrosion route"
+              ],
+              [
+                "Zinc-plated carbon steel",
+                "Standard protection"
+              ],
+              [
+                "Black-oxide alloy steel",
+                "Wear-focused route"
+              ],
+              [
+                "Trivalent-chrome plated steel",
+                "Chrome-VI-free finish route"
+              ],
+              [
+                "Dacromet coating",
+                "Chrome-VI-free · high salt-spray route"
+              ]
+            ]
+          }
+        ],
+        "processes": [
+          [
+            "Forming route",
+            "Forging or stamping by load case"
+          ],
+          [
+            "Heat treatment",
+            "Grade-specific hardness validation"
+          ],
+          [
+            "Blade grinding",
+            "Edge geometry and consistency"
+          ],
+          [
+            "Surface finish",
+            "Plating, passivation or powder coat"
+          ]
+        ]
+      },
+      {
+        "name": "Anvil lopper",
+        "cn": "82016000",
+        "note": "Two-hand anvil cutting platform · representative construction, confirmed per programme",
+        "parts": [
+          {
+            "name": "Upper blade",
+            "materials": [
+              [
+                "SK5 high-carbon steel",
+                "HRC 56–60 · high edge retention"
+              ],
+              [
+                "65Mn carbon steel",
+                "HRC 52–56 · resilient value route"
+              ],
+              [
+                "420J2 stainless steel",
+                "HRC 50–54 · corrosion-first route"
+              ],
+              [
+                "S50C carbon steel",
+                "HRC 50–55 · balanced route"
+              ]
+            ]
+          },
+          {
+            "name": "Lower blade",
+            "materials": [
+              [
+                "S50C medium-carbon steel",
+                "HRC 45–50 · strength and value"
+              ],
+              [
+                "420J2 stainless steel",
+                "HRC 46–52 · wet-use route"
+              ],
+              [
+                "SK5 carbon steel",
+                "HRC 50–56 · higher wear control"
+              ]
+            ]
+          },
+          {
+            "name": "Pivot set",
+            "materials": [
+              [
+                "40Cr alloy steel",
+                "Induction-hardened wear surface"
+              ],
+              [
+                "304 stainless steel",
+                "Corrosion-control route"
+              ],
+              [
+                "Zinc-plated carbon steel",
+                "Commercial value route"
+              ],
+              [
+                "Black-oxide alloy steel",
+                "Low-glare wear route"
+              ]
+            ]
+          },
+          {
+            "name": "Handle frame",
+            "materials": [
+              [
+                "6061 aluminium tube",
+                "Lightweight route"
+              ],
+              [
+                "Powder-coated steel tube",
+                "Rigid value route"
+              ],
+              [
+                "Fibreglass composite",
+                "Moisture-stable route"
+              ],
+              [
+                "Bamboo pole",
+                "Light natural handle route"
+              ]
+            ]
+          },
+          {
+            "name": "Grip",
+            "materials": [
+              [
+                "PP + TPR overmould",
+                "Rigid core with soft control"
+              ],
+              [
+                "TPR sleeve",
+                "Soft-touch replaceable grip"
+              ],
+              [
+                "PVC dip coating",
+                "Simple durable finish"
+              ],
+              [
+                "EVA foam",
+                "Low-density comfort option"
+              ],
+              [
+                "PA6 nylon",
+                "Hard engineering grip"
+              ]
+            ]
+          },
+          {
+            "name": "Fasteners",
+            "materials": [
+              [
+                "304 stainless steel",
+                "Wet-use corrosion route"
+              ],
+              [
+                "Zinc-plated carbon steel",
+                "Standard protection"
+              ],
+              [
+                "Black-oxide alloy steel",
+                "Wear-focused route"
+              ],
+              [
+                "Trivalent-chrome plated steel",
+                "Chrome-VI-free finish route"
+              ],
+              [
+                "Dacromet coating",
+                "Chrome-VI-free · high salt-spray route"
+              ]
+            ]
+          }
+        ],
+        "processes": [
+          [
+            "Forming route",
+            "Forging or stamping by load case"
+          ],
+          [
+            "Heat treatment",
+            "Grade-specific hardness validation"
+          ],
+          [
+            "Blade grinding",
+            "Edge geometry and consistency"
+          ],
+          [
+            "Surface finish",
+            "Plating, passivation or powder coat"
+          ]
+        ]
+      },
+      {
+        "name": "Hedge shear",
+        "cn": "82016000",
+        "note": "Two-hand hedge cutting platform · representative construction, confirmed per programme",
+        "parts": [
+          {
+            "name": "Upper blade",
+            "materials": [
+              [
+                "SK5 high-carbon steel",
+                "HRC 56–60 · high edge retention"
+              ],
+              [
+                "65Mn carbon steel",
+                "HRC 52–56 · resilient value route"
+              ],
+              [
+                "420J2 stainless steel",
+                "HRC 50–54 · corrosion-first route"
+              ],
+              [
+                "S50C carbon steel",
+                "HRC 50–55 · balanced route"
+              ]
+            ]
+          },
+          {
+            "name": "Lower blade",
+            "materials": [
+              [
+                "S50C medium-carbon steel",
+                "HRC 45–50 · strength and value"
+              ],
+              [
+                "420J2 stainless steel",
+                "HRC 46–52 · wet-use route"
+              ],
+              [
+                "SK5 carbon steel",
+                "HRC 50–56 · higher wear control"
+              ]
+            ]
+          },
+          {
+            "name": "Pivot set",
+            "materials": [
+              [
+                "40Cr alloy steel",
+                "Induction-hardened wear surface"
+              ],
+              [
+                "304 stainless steel",
+                "Corrosion-control route"
+              ],
+              [
+                "Zinc-plated carbon steel",
+                "Commercial value route"
+              ],
+              [
+                "Black-oxide alloy steel",
+                "Low-glare wear route"
+              ]
+            ]
+          },
+          {
+            "name": "Handle frame",
+            "materials": [
+              [
+                "6061 aluminium tube",
+                "Lightweight route"
+              ],
+              [
+                "Powder-coated steel tube",
+                "Rigid value route"
+              ],
+              [
+                "Fibreglass composite",
+                "Moisture-stable route"
+              ],
+              [
+                "Bamboo pole",
+                "Light natural handle route"
+              ]
+            ]
+          },
+          {
+            "name": "Grip",
+            "materials": [
+              [
+                "PP + TPR overmould",
+                "Rigid core with soft control"
+              ],
+              [
+                "TPR sleeve",
+                "Soft-touch replaceable grip"
+              ],
+              [
+                "PVC dip coating",
+                "Simple durable finish"
+              ],
+              [
+                "EVA foam",
+                "Low-density comfort option"
+              ],
+              [
+                "PA6 nylon",
+                "Hard engineering grip"
+              ]
+            ]
+          },
+          {
+            "name": "Fasteners",
+            "materials": [
+              [
+                "304 stainless steel",
+                "Wet-use corrosion route"
+              ],
+              [
+                "Zinc-plated carbon steel",
+                "Standard protection"
+              ],
+              [
+                "Black-oxide alloy steel",
+                "Wear-focused route"
+              ],
+              [
+                "Trivalent-chrome plated steel",
+                "Chrome-VI-free finish route"
+              ],
+              [
+                "Dacromet coating",
+                "Chrome-VI-free · high salt-spray route"
+              ]
+            ]
+          }
+        ],
+        "processes": [
+          [
+            "Forming route",
+            "Forging or stamping by load case"
+          ],
+          [
+            "Heat treatment",
+            "Grade-specific hardness validation"
+          ],
+          [
+            "Blade grinding",
+            "Edge geometry and consistency"
+          ],
+          [
+            "Surface finish",
+            "Plating, passivation or powder coat"
+          ]
+        ]
+      },
+      {
+        "name": "Telescopic lopper",
+        "cn": "82016000",
+        "note": "Extendable two-hand cutting platform · representative construction, confirmed per programme",
+        "parts": [
+          {
+            "name": "Upper blade",
+            "materials": [
+              [
+                "SK5 high-carbon steel",
+                "HRC 56–60 · high edge retention"
+              ],
+              [
+                "65Mn carbon steel",
+                "HRC 52–56 · resilient value route"
+              ],
+              [
+                "420J2 stainless steel",
+                "HRC 50–54 · corrosion-first route"
+              ],
+              [
+                "S50C carbon steel",
+                "HRC 50–55 · balanced route"
+              ]
+            ]
+          },
+          {
+            "name": "Lower blade",
+            "materials": [
+              [
+                "S50C medium-carbon steel",
+                "HRC 45–50 · strength and value"
+              ],
+              [
+                "420J2 stainless steel",
+                "HRC 46–52 · wet-use route"
+              ],
+              [
+                "SK5 carbon steel",
+                "HRC 50–56 · higher wear control"
+              ]
+            ]
+          },
+          {
+            "name": "Pivot set",
+            "materials": [
+              [
+                "40Cr alloy steel",
+                "Induction-hardened wear surface"
+              ],
+              [
+                "304 stainless steel",
+                "Corrosion-control route"
+              ],
+              [
+                "Zinc-plated carbon steel",
+                "Commercial value route"
+              ],
+              [
+                "Black-oxide alloy steel",
+                "Low-glare wear route"
+              ]
+            ]
+          },
+          {
+            "name": "Handle frame",
+            "materials": [
+              [
+                "6061 aluminium tube",
+                "Lightweight route"
+              ],
+              [
+                "Powder-coated steel tube",
+                "Rigid value route"
+              ],
+              [
+                "Fibreglass composite",
+                "Moisture-stable route"
+              ],
+              [
+                "Bamboo pole",
+                "Light natural handle route"
+              ]
+            ]
+          },
+          {
+            "name": "Grip",
+            "materials": [
+              [
+                "PP + TPR overmould",
+                "Rigid core with soft control"
+              ],
+              [
+                "TPR sleeve",
+                "Soft-touch replaceable grip"
+              ],
+              [
+                "PVC dip coating",
+                "Simple durable finish"
+              ],
+              [
+                "EVA foam",
+                "Low-density comfort option"
+              ],
+              [
+                "PA6 nylon",
+                "Hard engineering grip"
+              ]
+            ]
+          },
+          {
+            "name": "Lock",
+            "materials": [
+              [
+                "304 stainless steel",
+                "Corrosion-resistant extension-lock retention"
+              ],
+              [
+                "Zinc-plated stamped steel",
+                "Value extension-lock route"
+              ],
+              [
+                "PA66-GF polymer",
+                "Low-mass moulded extension-lock route"
+              ]
+            ]
+          },
+          {
+            "name": "Fasteners",
+            "materials": [
+              [
+                "304 stainless steel",
+                "Wet-use corrosion route"
+              ],
+              [
+                "Zinc-plated carbon steel",
+                "Standard protection"
+              ],
+              [
+                "Black-oxide alloy steel",
+                "Wear-focused route"
+              ],
+              [
+                "Trivalent-chrome plated steel",
+                "Chrome-VI-free finish route"
+              ],
+              [
+                "Dacromet coating",
+                "Chrome-VI-free · high salt-spray route"
+              ]
+            ]
+          }
+        ],
+        "processes": [
+          [
+            "Forming route",
+            "Forging or stamping by load case"
+          ],
+          [
+            "Heat treatment",
+            "Grade-specific hardness validation"
+          ],
+          [
+            "Blade grinding",
+            "Edge geometry and consistency"
+          ],
+          [
+            "Surface finish",
+            "Plating, passivation or powder coat"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "key": "digging",
+    "label": "Digging tools",
+    "sub": "Trowels · spades · shovels",
+    "models": [
+      {
+        "name": "One-hand garden trowel",
+        "cn": "82011000",
+        "image": "images/buyer-anatomy-hand-trowel-v5.webp",
+        "alt": "Horizontal assembled and exploded anatomy of a one-hand ergonomic garden trowel",
+        "note": "US / Netherlands retail archetype · 30–35 cm one-hand trowel",
+        "parts": [
+          {
+            "name": "Blade & full tang",
+            "materials": [
+              [
+                "420 stainless steel",
+                "HRC 38–44 · corrosion-first route"
+              ],
+              [
+                "S50C carbon steel",
+                "HRC 35–42 · proven value route"
+              ],
+              [
+                "Boron steel",
+                "HRC 38–45 · lower-mass strength route"
+              ],
+              [
+                "Forged aluminium",
+                "Lightweight display route"
+              ]
+            ]
+          },
+          {
+            "name": "Reinforced neck",
+            "materials": [
+              [
+                "420 stainless steel",
+                "One-piece blade-and-tang route"
+              ],
+              [
+                "Forged carbon steel",
+                "Higher-load route"
+              ],
+              [
+                "Cast aluminium",
+                "Lower-weight route"
+              ],
+              [
+                "Zinc-plated steel",
+                "Commercial protection route"
+              ]
+            ]
+          },
+          {
+            "name": "Handle core",
+            "materials": [
+              [
+                "Impact polypropylene",
+                "Rigid moulded structure"
+              ],
+              [
+                "PA6-GF30 nylon",
+                "Higher-load moulded route"
+              ],
+              [
+                "FSC ash hardwood",
+                "Traditional timber route"
+              ],
+              [
+                "Recycled-content PP",
+                "Verified-content option"
+              ]
+            ]
+          },
+          {
+            "name": "Soft grip sleeve",
+            "materials": [
+              [
+                "TPR overmould",
+                "Soft hand-contact surface"
+              ],
+              [
+                "TPE overmould",
+                "Recyclability-oriented route"
+              ],
+              [
+                "PVC sleeve",
+                "Replaceable value route"
+              ],
+              [
+                "EVA foam",
+                "Low-density comfort route"
+              ]
+            ]
+          },
+          {
+            "name": "Hanging-hole cap",
+            "materials": [
+              [
+                "Impact polypropylene",
+                "Integrated retail hanging route"
+              ],
+              [
+                "PA6 nylon",
+                "Higher-wear route"
+              ],
+              [
+                "TPR elastomer",
+                "Soft end protection"
+              ],
+              [
+                "Recycled-content PP",
+                "Verified-content option"
+              ]
+            ]
+          },
+          {
+            "name": "Retaining pin",
+            "materials": [
+              [
+                "Zinc-plated carbon steel",
+                "Standard protection"
+              ],
+              [
+                "304 stainless steel",
+                "Wet-soil route"
+              ],
+              [
+                "Trivalent-plated steel",
+                "Chrome-VI-free route"
+              ]
+            ]
+          },
+          {
+            "name": "Blade finish",
+            "materials": [
+              [
+                "Satin polish",
+                "Easy-clean stainless route"
+              ],
+              [
+                "Powder coating",
+                "Colour and corrosion layer"
+              ],
+              [
+                "E-coat + powder coat",
+                "Two-stage carbon-steel route"
+              ],
+              [
+                "Clear lacquer",
+                "Metal-visible finish"
+              ],
+              [
+                "Dacromet coating",
+                "Chrome-VI-free · high salt-spray route"
+              ]
+            ]
+          },
+          {
+            "name": "Ground edge",
+            "materials": [
+              [
+                "Machine-ground stainless",
+                "Repeatable retail edge"
+              ],
+              [
+                "Induction-hardened carbon steel",
+                "Higher-wear route"
+              ],
+              [
+                "Rolled edge",
+                "Lower-cost route"
+              ],
+              [
+                "Hand-finished forged edge",
+                "Premium route"
+              ]
+            ]
+          }
+        ],
+        "processes": [
+          [
+            "Blade forming",
+            "Deep-draw or forge by material route"
+          ],
+          [
+            "Tang & handle assembly",
+            "Core retention and alignment"
+          ],
+          [
+            "Heat treatment",
+            "Strength and toughness window"
+          ],
+          [
+            "Bend & pull testing",
+            "Blade, tang and grip verification"
+          ]
+        ]
+      },
+      {
+        "name": "Border spade",
+        "cn": "82011000",
+        "note": "Digging platform · representative construction, confirmed per programme",
+        "parts": [
+          {
+            "name": "Blade & full tang",
+            "materials": [
+              [
+                "420 stainless steel",
+                "HRC 38–44 · corrosion-first route"
+              ],
+              [
+                "S50C carbon steel",
+                "HRC 35–42 · proven value route"
+              ],
+              [
+                "Boron steel",
+                "HRC 38–45 · lower-mass strength route"
+              ],
+              [
+                "Forged aluminium",
+                "Lightweight display route"
+              ]
+            ]
+          },
+          {
+            "name": "Reinforced neck",
+            "materials": [
+              [
+                "420 stainless steel",
+                "One-piece blade-and-tang route"
+              ],
+              [
+                "Forged carbon steel",
+                "Higher-load route"
+              ],
+              [
+                "Cast aluminium",
+                "Lower-weight route"
+              ],
+              [
+                "Zinc-plated steel",
+                "Commercial protection route"
+              ]
+            ]
+          },
+          {
+            "name": "Ash handle",
+            "materials": [
+              [
+                "FSC ash hardwood",
+                "Dutch trade benchmark route"
+              ],
+              [
+                "FSC eucalyptus hardwood",
+                "Dense value route"
+              ],
+              [
+                "Fibreglass composite",
+                "Moisture-stable route"
+              ],
+              [
+                "6061 aluminium tube",
+                "Lightweight route"
+              ]
+            ]
+          },
+          {
+            "name": "Grip",
+            "materials": [
+              [
+                "PP + TPR overmould",
+                "Rigid core with soft control"
+              ],
+              [
+                "TPR sleeve",
+                "Soft-touch replaceable grip"
+              ],
+              [
+                "PVC dip coating",
+                "Simple durable finish"
+              ],
+              [
+                "EVA foam",
+                "Low-density comfort option"
+              ],
+              [
+                "PA6 nylon",
+                "Hard engineering grip"
+              ]
+            ]
+          },
+          {
+            "name": "Head finish",
+            "materials": [
+              [
+                "Powder coating",
+                "Corrosion and colour"
+              ],
+              [
+                "E-coating",
+                "Base corrosion layer"
+              ],
+              [
+                "Trivalent zinc plating",
+                "Chrome-VI-free finish"
+              ],
+              [
+                "Black oxide + oil",
+                "Low-glare steel finish"
+              ],
+              [
+                "Dacromet coating",
+                "Chrome-VI-free · high salt-spray route"
+              ]
+            ]
+          },
+          {
+            "name": "Fasteners",
+            "materials": [
+              [
+                "304 stainless steel",
+                "Wet-use corrosion route"
+              ],
+              [
+                "Zinc-plated carbon steel",
+                "Standard protection"
+              ],
+              [
+                "Black-oxide alloy steel",
+                "Wear-focused route"
+              ],
+              [
+                "Trivalent-chrome plated steel",
+                "Chrome-VI-free finish route"
+              ],
+              [
+                "Dacromet coating",
+                "Chrome-VI-free · high salt-spray route"
+              ]
+            ]
+          }
+        ],
+        "processes": [
+          [
+            "Blade forming",
+            "Deep-draw or forge by material route"
+          ],
+          [
+            "Tang & handle assembly",
+            "Core retention and alignment"
+          ],
+          [
+            "Heat treatment",
+            "Strength and toughness window"
+          ],
+          [
+            "Bend & pull testing",
+            "Blade, tang and grip verification"
+          ]
+        ]
+      },
+      {
+        "name": "Digging fork",
+        "cn": "82011000",
+        "note": "Digging platform · representative construction, confirmed per programme",
+        "parts": [
+          {
+            "name": "Head bar",
+            "materials": [
+              [
+                "Forged carbon steel",
+                "Dutch professional route"
+              ],
+              [
+                "Stamped carbon steel",
+                "Commercial strength route"
+              ],
+              [
+                "420 stainless steel",
+                "Corrosion-first route"
+              ],
+              [
+                "Ductile cast iron",
+                "Rigid cast-head route"
+              ]
+            ]
+          },
+          {
+            "name": "Integral head socket",
+            "materials": [
+              [
+                "Forged carbon steel",
+                "Head mounts directly to handle"
+              ],
+              [
+                "Zinc-plated steel",
+                "Protected commercial joint"
+              ],
+              [
+                "Powder-coated steel",
+                "Colour-matched route"
+              ],
+              [
+                "Ductile cast iron",
+                "Rigid socket route"
+              ]
+            ]
+          },
+          {
+            "name": "Ash handle",
+            "materials": [
+              [
+                "FSC ash hardwood",
+                "Dutch trade benchmark route"
+              ],
+              [
+                "FSC eucalyptus hardwood",
+                "Dense value route"
+              ],
+              [
+                "Fibreglass composite",
+                "Moisture-stable route"
+              ],
+              [
+                "6061 aluminium tube",
+                "Lightweight route"
+              ]
+            ]
+          },
+          {
+            "name": "Grip",
+            "materials": [
+              [
+                "PP + TPR overmould",
+                "Rigid core with soft control"
+              ],
+              [
+                "TPR sleeve",
+                "Soft-touch replaceable grip"
+              ],
+              [
+                "PVC dip coating",
+                "Simple durable finish"
+              ],
+              [
+                "EVA foam",
+                "Low-density comfort option"
+              ],
+              [
+                "PA6 nylon",
+                "Hard engineering grip"
+              ]
+            ]
+          },
+          {
+            "name": "Head finish",
+            "materials": [
+              [
+                "Powder coating",
+                "Corrosion and colour"
+              ],
+              [
+                "E-coating",
+                "Base corrosion layer"
+              ],
+              [
+                "Trivalent zinc plating",
+                "Chrome-VI-free finish"
+              ],
+              [
+                "Black oxide + oil",
+                "Low-glare steel finish"
+              ],
+              [
+                "Dacromet coating",
+                "Chrome-VI-free · high salt-spray route"
+              ]
+            ]
+          }
+        ],
+        "processes": [
+          [
+            "Blade forming",
+            "Deep-draw or forge by material route"
+          ],
+          [
+            "Tang & handle assembly",
+            "Core retention and alignment"
+          ],
+          [
+            "Heat treatment",
+            "Strength and toughness window"
+          ],
+          [
+            "Bend & pull testing",
+            "Blade, tang and grip verification"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "key": "soil",
+    "label": "Soil care",
+    "sub": "Rakes · hoes · cultivators",
+    "models": [
+      {
+        "name": "Direct-mount Dutch garden rake",
+        "cn": "82013000",
+        "image": "images/buyer-anatomy-rake-direct-v4.webp",
+        "alt": "Horizontal assembled and exploded anatomy of a direct-mount Dutch ash-handle garden rake",
+        "note": "Direct-mount reference · head socket installs on the handle without an adapter",
+        "parts": [
+          {
+            "name": "Head bar",
+            "materials": [
+              [
+                "Forged carbon steel",
+                "Dutch professional route"
+              ],
+              [
+                "Stamped carbon steel",
+                "Commercial strength route"
+              ],
+              [
+                "420 stainless steel",
+                "Corrosion-first route"
+              ],
+              [
+                "Ductile cast iron",
+                "Rigid cast-head route"
+              ],
+              [
+                "Impact polypropylene",
+                "Moulded leaf-rake head route"
+              ]
+            ]
+          },
+          {
+            "name": "14-tine set",
+            "materials": [
+              [
+                "S50C hardened steel",
+                "HRC 38–45 · bend resistance"
+              ],
+              [
+                "65Mn spring steel",
+                "HRC 42–48 · resilient route"
+              ],
+              [
+                "420 stainless steel",
+                "HRC 36–42 · wet-soil route"
+              ],
+              [
+                "Zinc-plated spring steel",
+                "Springy fan tines · adjustable-width route"
+              ],
+              [
+                "Split bamboo",
+                "Traditional natural leaf-rake route"
+              ],
+              [
+                "Impact polypropylene",
+                "Moulded fan tines · lightweight route"
+              ]
+            ]
+          },
+          {
+            "name": "Integral head socket",
+            "materials": [
+              [
+                "Forged carbon steel",
+                "Head mounts directly to handle"
+              ],
+              [
+                "Zinc-plated steel",
+                "Protected commercial joint"
+              ],
+              [
+                "Powder-coated steel",
+                "Colour-matched route"
+              ],
+              [
+                "Ductile cast iron",
+                "Rigid socket route"
+              ]
+            ]
+          },
+          {
+            "name": "Ash handle",
+            "materials": [
+              [
+                "FSC ash hardwood",
+                "Dutch trade benchmark route"
+              ],
+              [
+                "FSC eucalyptus hardwood",
+                "Dense value route"
+              ],
+              [
+                "Fibreglass composite",
+                "Moisture-stable route"
+              ],
+              [
+                "6061 aluminium tube",
+                "Lightweight route"
+              ],
+              [
+                "Powder-coated steel tube",
+                "Rigid value route"
+              ],
+              [
+                "Bamboo pole",
+                "Light natural leaf-rake route"
+              ]
+            ]
+          },
+          {
+            "name": "Retaining pin",
+            "materials": [
+              [
+                "Zinc-plated steel",
+                "Standard protection"
+              ],
+              [
+                "304 stainless steel",
+                "Wet-use route"
+              ],
+              [
+                "Trivalent-plated steel",
+                "Chrome-VI-free route"
+              ]
+            ]
+          },
+          {
+            "name": "Head finish",
+            "materials": [
+              [
+                "Powder coating",
+                "Corrosion and colour"
+              ],
+              [
+                "E-coating",
+                "Base corrosion layer"
+              ],
+              [
+                "Trivalent zinc plating",
+                "Chrome-VI-free finish"
+              ],
+              [
+                "Black oxide + oil",
+                "Low-glare steel finish"
+              ],
+              [
+                "Dacromet coating",
+                "Chrome-VI-free · high salt-spray route"
+              ]
+            ]
+          },
+          {
+            "name": "Handle finish",
+            "materials": [
+              [
+                "Water-based clear coat",
+                "Lower-solvent timber route"
+              ],
+              [
+                "Natural oil finish",
+                "Repairable timber route"
+              ],
+              [
+                "PU clear coat",
+                "Higher moisture barrier"
+              ],
+              [
+                "Uncoated sanded ash",
+                "Traditional dry-use route"
+              ]
+            ]
+          }
+        ],
+        "processes": [
+          [
+            "Head forming",
+            "One-piece 14-tine geometry control"
+          ],
+          [
+            "Socket assembly",
+            "Ferrule alignment and retention"
+          ],
+          [
+            "Hardness control",
+            "Tine bend and recovery window"
+          ],
+          [
+            "Coating & pull test",
+            "Coverage and handle retention"
+          ]
+        ]
+      },
+      {
+        "name": "Bow rake",
+        "cn": "82013000",
+        "note": "Soil-care platform · representative construction, confirmed per programme",
+        "parts": [
+          {
+            "name": "Head bar",
+            "materials": [
+              [
+                "Forged carbon steel",
+                "Dutch professional route"
+              ],
+              [
+                "Stamped carbon steel",
+                "Commercial strength route"
+              ],
+              [
+                "420 stainless steel",
+                "Corrosion-first route"
+              ],
+              [
+                "Ductile cast iron",
+                "Rigid cast-head route"
+              ]
+            ]
+          },
+          {
+            "name": "Integral head socket",
+            "materials": [
+              [
+                "Forged carbon steel",
+                "Head mounts directly to handle"
+              ],
+              [
+                "Zinc-plated steel",
+                "Protected commercial joint"
+              ],
+              [
+                "Powder-coated steel",
+                "Colour-matched route"
+              ],
+              [
+                "Ductile cast iron",
+                "Rigid socket route"
+              ]
+            ]
+          },
+          {
+            "name": "Ash handle",
+            "materials": [
+              [
+                "FSC ash hardwood",
+                "Dutch trade benchmark route"
+              ],
+              [
+                "FSC eucalyptus hardwood",
+                "Dense value route"
+              ],
+              [
+                "Fibreglass composite",
+                "Moisture-stable route"
+              ],
+              [
+                "Bamboo pole",
+                "Light natural leaf-rake route"
+              ]
+            ]
+          },
+          {
+            "name": "Head finish",
+            "materials": [
+              [
+                "Powder coating",
+                "Corrosion and colour"
+              ],
+              [
+                "E-coating",
+                "Base corrosion layer"
+              ],
+              [
+                "Trivalent zinc plating",
+                "Chrome-VI-free finish"
+              ],
+              [
+                "Black oxide + oil",
+                "Low-glare steel finish"
+              ],
+              [
+                "Dacromet coating",
+                "Chrome-VI-free · high salt-spray route"
+              ]
+            ]
+          },
+          {
+            "name": "Handle finish",
+            "materials": [
+              [
+                "Water-based clear coat",
+                "Lower-solvent timber route"
+              ],
+              [
+                "Natural oil finish",
+                "Repairable timber route"
+              ],
+              [
+                "PU clear coat",
+                "Higher moisture barrier"
+              ],
+              [
+                "Uncoated sanded ash",
+                "Traditional dry-use route"
+              ]
+            ]
+          }
+        ],
+        "processes": [
+          [
+            "Head forming",
+            "One-piece 14-tine geometry control"
+          ],
+          [
+            "Socket assembly",
+            "Ferrule alignment and retention"
+          ],
+          [
+            "Hardness control",
+            "Tine bend and recovery window"
+          ],
+          [
+            "Coating & pull test",
+            "Coverage and handle retention"
+          ]
+        ]
+      },
+      {
+        "name": "Dutch hoe",
+        "cn": "82013000",
+        "note": "Soil-care platform · representative construction, confirmed per programme",
+        "parts": [
+          {
+            "name": "Ground edge",
+            "materials": [
+              [
+                "Machine-ground stainless",
+                "Repeatable retail edge"
+              ],
+              [
+                "Induction-hardened carbon steel",
+                "Higher-wear route"
+              ],
+              [
+                "Rolled edge",
+                "Lower-cost route"
+              ],
+              [
+                "Hand-finished forged edge",
+                "Premium route"
+              ]
+            ]
+          },
+          {
+            "name": "Integral head socket",
+            "materials": [
+              [
+                "Forged carbon steel",
+                "Head mounts directly to handle"
+              ],
+              [
+                "Zinc-plated steel",
+                "Protected commercial joint"
+              ],
+              [
+                "Powder-coated steel",
+                "Colour-matched route"
+              ],
+              [
+                "Ductile cast iron",
+                "Rigid socket route"
+              ]
+            ]
+          },
+          {
+            "name": "Ash handle",
+            "materials": [
+              [
+                "FSC ash hardwood",
+                "Dutch trade benchmark route"
+              ],
+              [
+                "FSC eucalyptus hardwood",
+                "Dense value route"
+              ],
+              [
+                "Fibreglass composite",
+                "Moisture-stable route"
+              ],
+              [
+                "6061 aluminium tube",
+                "Lightweight route"
+              ]
+            ]
+          },
+          {
+            "name": "Head finish",
+            "materials": [
+              [
+                "Powder coating",
+                "Corrosion and colour"
+              ],
+              [
+                "E-coating",
+                "Base corrosion layer"
+              ],
+              [
+                "Trivalent zinc plating",
+                "Chrome-VI-free finish"
+              ],
+              [
+                "Black oxide + oil",
+                "Low-glare steel finish"
+              ],
+              [
+                "Dacromet coating",
+                "Chrome-VI-free · high salt-spray route"
+              ]
+            ]
+          },
+          {
+            "name": "Handle finish",
+            "materials": [
+              [
+                "Water-based clear coat",
+                "Lower-solvent timber route"
+              ],
+              [
+                "Natural oil finish",
+                "Repairable timber route"
+              ],
+              [
+                "PU clear coat",
+                "Higher moisture barrier"
+              ],
+              [
+                "Uncoated sanded ash",
+                "Traditional dry-use route"
+              ]
+            ]
+          }
+        ],
+        "processes": [
+          [
+            "Head forming",
+            "One-piece 14-tine geometry control"
+          ],
+          [
+            "Socket assembly",
+            "Ferrule alignment and retention"
+          ],
+          [
+            "Hardness control",
+            "Tine bend and recovery window"
+          ],
+          [
+            "Coating & pull test",
+            "Coverage and handle retention"
+          ]
+        ]
+      },
+      {
+        "name": "Hand cultivator",
+        "cn": "82013000",
+        "note": "Soil-care platform · representative construction, confirmed per programme",
+        "parts": [
+          {
+            "name": "Head bar",
+            "materials": [
+              [
+                "Forged carbon steel",
+                "Dutch professional route"
+              ],
+              [
+                "Stamped carbon steel",
+                "Commercial strength route"
+              ],
+              [
+                "420 stainless steel",
+                "Corrosion-first route"
+              ],
+              [
+                "Ductile cast iron",
+                "Rigid cast-head route"
+              ],
+              [
+                "Impact polypropylene",
+                "Moulded lightweight head route"
+              ]
+            ]
+          },
+          {
+            "name": "Reinforced neck",
+            "materials": [
+              [
+                "420 stainless steel",
+                "One-piece neck-to-handle route"
+              ],
+              [
+                "Forged carbon steel",
+                "Higher-load route"
+              ],
+              [
+                "Cast aluminium",
+                "Lower-weight route"
+              ],
+              [
+                "Zinc-plated steel",
+                "Commercial protection route"
+              ]
+            ]
+          },
+          {
+            "name": "Handle core",
+            "materials": [
+              [
+                "Impact polypropylene",
+                "Rigid moulded structure"
+              ],
+              [
+                "PA6-GF30 nylon",
+                "Higher-load moulded route"
+              ],
+              [
+                "FSC ash hardwood",
+                "Traditional timber route"
+              ],
+              [
+                "Recycled-content PP",
+                "Verified-content option"
+              ]
+            ]
+          },
+          {
+            "name": "Soft grip sleeve",
+            "materials": [
+              [
+                "TPR overmould",
+                "Soft hand-contact surface"
+              ],
+              [
+                "TPE overmould",
+                "Recyclability-oriented route"
+              ],
+              [
+                "PVC sleeve",
+                "Replaceable value route"
+              ],
+              [
+                "EVA foam",
+                "Low-density comfort route"
+              ]
+            ]
+          },
+          {
+            "name": "Head finish",
+            "materials": [
+              [
+                "Powder coating",
+                "Corrosion and colour"
+              ],
+              [
+                "E-coating",
+                "Base corrosion layer"
+              ],
+              [
+                "Trivalent zinc plating",
+                "Chrome-VI-free finish"
+              ],
+              [
+                "Black oxide + oil",
+                "Low-glare steel finish"
+              ],
+              [
+                "Dacromet coating",
+                "Chrome-VI-free · high salt-spray route"
+              ]
+            ]
+          }
+        ],
+        "processes": [
+          [
+            "Head forming",
+            "One-piece 14-tine geometry control"
+          ],
+          [
+            "Socket assembly",
+            "Ferrule alignment and retention"
+          ],
+          [
+            "Hardness control",
+            "Tine bend and recovery window"
+          ],
+          [
+            "Coating & pull test",
+            "Coverage and handle retention"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "key": "watering",
+    "label": "Garden irrigation",
+    "sub": "Automatic lawn sprinklers",
+    "models": [
+      {
+        "name": "Oscillating garden sprinkler",
+        "image": "images/buyer-anatomy-sprinkler.webp",
+        "alt": "Horizontal exploded reference anatomy of an automatic oscillating garden sprinkler",
+        "note": "Garden irrigation platform · representative construction",
+        "parts": [
+          {
+            "name": "Spray tube",
+            "materials": [
+              [
+                "304 stainless steel",
+                "Corrosion and straightness"
+              ],
+              [
+                "6061 aluminium",
+                "Anodised lower-weight route"
+              ],
+              [
+                "PA12 engineering polymer",
+                "Moulded corrosion-free route"
+              ],
+              [
+                "Hard-anodised aluminium",
+                "Wear and corrosion layer"
+              ]
+            ]
+          },
+          {
+            "name": "Jet nozzles",
+            "materials": [
+              [
+                "Brass",
+                "Wear and spray control"
+              ],
+              [
+                "POM acetal",
+                "Low-friction value route"
+              ],
+              [
+                "TPR elastomer",
+                "Anti-scale flexible jets"
+              ],
+              [
+                "PA66 nylon",
+                "Rigid moulded route"
+              ]
+            ]
+          },
+          {
+            "name": "Gearbox housing",
+            "materials": [
+              [
+                "PA6-GF30 nylon",
+                "Strength and dimensional control"
+              ],
+              [
+                "ABS polymer",
+                "Surface and impact balance"
+              ],
+              [
+                "Impact polypropylene",
+                "General-use route"
+              ],
+              [
+                "Zinc die casting",
+                "Rigid premium housing"
+              ]
+            ]
+          },
+          {
+            "name": "Water turbine",
+            "materials": [
+              [
+                "POM acetal",
+                "Low-friction drive"
+              ],
+              [
+                "PA66-GF nylon",
+                "Higher-load route"
+              ],
+              [
+                "Impact PP",
+                "Commercial value route"
+              ]
+            ]
+          },
+          {
+            "name": "Inlet filter",
+            "materials": [
+              [
+                "304 stainless mesh",
+                "Reusable filtration"
+              ],
+              [
+                "PA nylon mesh",
+                "Corrosion-free route"
+              ],
+              [
+                "PP moulded screen",
+                "Value route"
+              ]
+            ]
+          },
+          {
+            "name": "Hose connector",
+            "materials": [
+              [
+                "Brass",
+                "Wear-resistant premium route"
+              ],
+              [
+                "ABS polymer",
+                "Lightweight route"
+              ],
+              [
+                "PA6-GF nylon",
+                "Thread-strength route"
+              ],
+              [
+                "Aluminium alloy",
+                "Machined lightweight route"
+              ]
+            ]
+          },
+          {
+            "name": "Seal set",
+            "materials": [
+              [
+                "EPDM",
+                "Outdoor water compatibility"
+              ],
+              [
+                "NBR",
+                "General sealing route"
+              ],
+              [
+                "Silicone rubber",
+                "Wide-temperature route"
+              ],
+              [
+                "TPE",
+                "Moulded recyclable-potential route"
+              ]
+            ]
+          },
+          {
+            "name": "Base frame",
+            "materials": [
+              [
+                "Powder-coated steel",
+                "Stable metal platform"
+              ],
+              [
+                "Impact polypropylene",
+                "Corrosion-free lightweight route"
+              ],
+              [
+                "Die-cast aluminium",
+                "Rigid premium route"
+              ],
+              [
+                "Recycled-content PP",
+                "Verified-content option"
+              ]
+            ]
+          }
+        ],
+        "processes": [
+          [
+            "Polymer moulding",
+            "Resin and thread consistency"
+          ],
+          [
+            "Drive-cycle testing",
+            "Oscillation range and repeatability"
+          ],
+          [
+            "Pressure & leak test",
+            "Connector and seal integrity"
+          ],
+          [
+            "Coverage test",
+            "Spray width and distribution uniformity"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "key": "packaging",
+    "label": "Packaging & retail",
+    "sub": "Cards · shells · fibre ties",
+    "models": [
+      {
+        "name": "Garden-tool retail pack system",
+        "image": "images/buyer-anatomy-packaging.webp",
+        "alt": "Horizontal exploded reference anatomy of a garden hand-tool retail packaging system",
+        "note": "Packaging platform · certification and recycled-content claims confirmed per programme",
+        "parts": [
+          {
+            "name": "Display card",
+            "materials": [
+              [
+                "FSC recycled paperboard",
+                "Verified fibre and print route"
+              ],
+              [
+                "Unbleached kraft board",
+                "Lower-ink natural route"
+              ],
+              [
+                "Bagasse fibre board",
+                "Agricultural-fibre option"
+              ],
+              [
+                "Solid bleached board",
+                "High-print-quality route"
+              ]
+            ]
+          },
+          {
+            "name": "Clear shell",
+            "materials": [
+              [
+                "rPET blister",
+                "Verified recycled-content route"
+              ],
+              [
+                "PET blister",
+                "High-clarity standard route"
+              ],
+              [
+                "PP clamshell",
+                "Mono-polymer option"
+              ],
+              [
+                "Cellulose film window",
+                "Market-specific fibre route"
+              ]
+            ]
+          },
+          {
+            "name": "Tie & restraint",
+            "materials": [
+              [
+                "Jute or hemp cord",
+                "Natural-fibre route"
+              ],
+              [
+                "Cotton twine",
+                "Soft natural restraint"
+              ],
+              [
+                "Paper twist tie",
+                "Fibre-forward route"
+              ],
+              [
+                "rPET restraint strap",
+                "Verified recycled-content route"
+              ],
+              [
+                "Recycled-content PP tie",
+                "Lightweight polymer route"
+              ]
+            ]
+          },
+          {
+            "name": "Protective tray",
+            "materials": [
+              [
+                "Moulded pulp",
+                "Fibre cushioning route"
+              ],
+              [
+                "Die-cut corrugated insert",
+                "Flat-pack fibre route"
+              ],
+              [
+                "rPET formed tray",
+                "Clear recycled-content route"
+              ],
+              [
+                "Honeycomb paperboard",
+                "Higher-load paper route"
+              ]
+            ]
+          },
+          {
+            "name": "Inner carton",
+            "materials": [
+              [
+                "Recycled corrugated board",
+                "Standard protective route"
+              ],
+              [
+                "Solid fibreboard",
+                "Compact retail route"
+              ],
+              [
+                "Honeycomb board",
+                "Higher compression route"
+              ],
+              [
+                "Grass-fibre paperboard",
+                "Regional low-tree-fibre option"
+              ]
+            ]
+          },
+          {
+            "name": "Master carton",
+            "materials": [
+              [
+                "Recycled corrugated kraft",
+                "ECT/BCT set by load case"
+              ],
+              [
+                "Virgin-kraft liner board",
+                "Humidity-strength route"
+              ],
+              [
+                "Water-resistant coated board",
+                "Wet-chain option"
+              ],
+              [
+                "Reduced-basis-weight board",
+                "Material-efficiency route"
+              ]
+            ]
+          },
+          {
+            "name": "Label & print",
+            "materials": [
+              [
+                "Recycled paper label",
+                "Fibre-forward route"
+              ],
+              [
+                "Direct water-based ink",
+                "No separate label route"
+              ],
+              [
+                "Soy/vegetable ink system",
+                "Printer-qualified option"
+              ],
+              [
+                "Wash-off adhesive label",
+                "Recycling-compatible option"
+              ]
+            ]
+          },
+          {
+            "name": "Protective wrap",
+            "materials": [
+              [
+                "Recycled tissue paper",
+                "Abrasion-control route"
+              ],
+              [
+                "Glassine paper",
+                "Smooth fibre barrier"
+              ],
+              [
+                "Cellulose-based film",
+                "Market-specific clear option"
+              ],
+              [
+                "Recycled-content LDPE",
+                "Verified-content moisture route"
+              ]
+            ]
+          }
+        ],
+        "processes": [
+          [
+            "Structural conversion",
+            "Die-cut, score and fold control"
+          ],
+          [
+            "Shell forming",
+            "Thermoform gauge and seal fit"
+          ],
+          [
+            "Print & adhesive",
+            "Ink, coating and bond compatibility"
+          ],
+          [
+            "Transit validation",
+            "Hang, drop and carton compression tests"
+          ]
+        ]
+      }
+    ]
+  }
+]

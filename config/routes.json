@@ -1,0 +1,268 @@
+{
+  "version": 1,
+  "origin": "https://birdland.com.tw",
+  "navigation": [
+    "products",
+    "manufacturing",
+    "tools",
+    "about",
+    "contact"
+  ],
+  "routes": [
+    {
+      "id": "home",
+      "file": "index.html",
+      "name": "Home",
+      "shell": "corporate",
+      "language": "facade",
+      "public": true
+    },
+    {
+      "id": "products",
+      "file": "products.html",
+      "hash": "bl-cat",
+      "name": "Products",
+      "key": "buyer",
+      "label": "products",
+      "purpose": "Select products, materials and manufacturing options",
+      "shell": "planning",
+      "language": "runtime",
+      "app": false,
+      "public": true,
+      "icon": "images/apps/buyer.svg"
+    },
+    {
+      "id": "studio",
+      "file": "partner.html",
+      "name": "Product Studio",
+      "key": "buyer",
+      "label": "appProducts",
+      "purpose": "The part, the material, the process.",
+      "shell": "original-app",
+      "language": "runtime",
+      "app": true,
+      "public": true,
+      "icon": "images/app-buyer-tile.png",
+      "preserveOriginal": true
+    },
+    {
+      "id": "manufacturing",
+      "file": "product-101.html",
+      "name": "Factory",
+      "label": "manufacturing",
+      "purpose": "Explore manufacturing capabilities and the detailed handbook",
+      "shell": "corporate",
+      "language": "static",
+      "public": true
+    },
+    {
+      "id": "tools",
+      "file": "buying-tools.html",
+      "name": "Purchase Planning",
+      "label": "tools",
+      "shell": "corporate",
+      "language": "runtime",
+      "public": true,
+      "key": "cost",
+      "icon": "images/apps/cost.svg"
+    },
+    {
+      "id": "about",
+      "file": "about.html",
+      "name": "About",
+      "label": "about",
+      "purpose": "Understand the OEM model and commercial boundary",
+      "shell": "corporate",
+      "language": "facade",
+      "public": true
+    },
+    {
+      "id": "contact",
+      "file": "contact.html",
+      "name": "Contact",
+      "label": "contact",
+      "purpose": "Discuss your product with the regional desk",
+      "shell": "corporate",
+      "language": "facade",
+      "public": true
+    },
+    {
+      "id": "cost",
+      "file": "cost-desk.html",
+      "name": "Purchase Planning",
+      "key": "cost",
+      "label": "cost",
+      "purpose": "Compare landed cost, freight and margin scenarios",
+      "shell": "planning",
+      "language": "runtime",
+      "app": true,
+      "public": true,
+      "icon": "images/apps/cost.svg"
+    },
+    {
+      "id": "news",
+      "file": "executive.html",
+      "name": "Supply Updates",
+      "key": "news",
+      "label": "news",
+      "purpose": "Review public supply and market updates",
+      "shell": "planning",
+      "language": "runtime",
+      "app": true,
+      "public": true,
+      "icon": "images/app-news-tile.png",
+      "preserveOriginal": true
+    },
+    {
+      "id": "market",
+      "file": "my-market.html",
+      "name": "Market Compare",
+      "key": "market",
+      "label": "market",
+      "purpose": "Compare the direction of public import markets",
+      "shell": "planning",
+      "language": "runtime",
+      "app": true,
+      "public": true,
+      "icon": "images/app-market-tile.png",
+      "preserveOriginal": true
+    },
+    {
+      "id": "guide",
+      "file": "guide.html",
+      "name": "Guide",
+      "label": "guide",
+      "purpose": "Find a starting point for your buying task",
+      "shell": "corporate",
+      "language": "runtime",
+      "public": true
+    },
+    {
+      "id": "privacy",
+      "file": "privacy.html",
+      "name": "Privacy",
+      "shell": "corporate",
+      "language": "facade",
+      "public": true
+    },
+    {
+      "id": "configurator",
+      "file": "configurator.html",
+      "name": "Custom product options",
+      "purpose": "Explore product and manufacturing options",
+      "shell": "planning",
+      "language": "static",
+      "public": true
+    },
+    {
+      "id": "team",
+      "file": "team.html",
+      "name": "Team Desk",
+      "key": "team",
+      "purpose": "Team workspace",
+      "shell": "internal",
+      "language": "runtime",
+      "app": true,
+      "public": false
+    },
+    {
+      "id": "legacy-news",
+      "file": "news.html",
+      "redirect": "guide",
+      "shell": "redirect",
+      "language": "none",
+      "public": false
+    },
+    {
+      "id": "legacy-manufacturing",
+      "file": "manufacturing.html",
+      "redirect": "manufacturing",
+      "shell": "redirect",
+      "language": "none",
+      "public": false
+    },
+    {
+      "id": "legacy-why",
+      "file": "why-birdland.html",
+      "redirect": "about",
+      "shell": "redirect",
+      "language": "none",
+      "public": false
+    }
+  ],
+  "tools": [
+    {
+      "route": "news",
+      "label": "news",
+      "detail": "newsDetail",
+      "group": "reference",
+      "question": "appNewsQuestion"
+    },
+    {
+      "route": "market",
+      "label": "market",
+      "detail": "marketDetail",
+      "group": "reference",
+      "question": "appMarketQuestion"
+    },
+    {
+      "route": "studio",
+      "label": "appProducts",
+      "detail": "appProductsDetail",
+      "group": "reference",
+      "question": "appProductsQuestion"
+    }
+  ],
+  "featureOwnership": [
+    {
+      "feature": "supply-news",
+      "owner": "news",
+      "implementation": "news"
+    },
+    {
+      "feature": "import-market-statistics",
+      "owner": "market",
+      "implementation": "market"
+    },
+    {
+      "feature": "catalogue-and-shortlist",
+      "owner": "products",
+      "implementation": "products"
+    },
+    {
+      "feature": "custom-manufacturing-options",
+      "owner": "products",
+      "implementation": "configurator"
+    },
+    {
+      "feature": "landed-cost",
+      "owner": "tools",
+      "implementation": "tools"
+    },
+    {
+      "feature": "reorder-timing",
+      "owner": "tools",
+      "implementation": "tools"
+    },
+    {
+      "feature": "material-trends-and-cost-scenarios",
+      "owner": "tools",
+      "implementation": "tools"
+    },
+    {
+      "feature": "manufacturing-reference",
+      "owner": "manufacturing",
+      "implementation": "manufacturing"
+    },
+    {
+      "feature": "enquiry-contact",
+      "owner": "contact",
+      "implementation": "contact"
+    },
+    {
+      "feature": "shared-configuration-enquiry",
+      "owner": "products",
+      "implementation": "studio"
+    }
+  ]
+}

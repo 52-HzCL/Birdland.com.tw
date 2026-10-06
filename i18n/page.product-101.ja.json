@@ -1017,5 +1017,21 @@
   "We plan the load pattern before the first carton is printed, because pallet fit is set by carton size — changing a carton by a few millimetres afterwards is what turns a full pallet into a part-filled one.": "パレットへの収まりはカートン寸法で決まりますので、最初のカートンを印刷する前に積み付けパターンを計画します — 後からカートンを数ミリ変えることが、満載のパレットを積み残しのあるパレットに変えるからです。",
   "Stainless arriving at intake is two different materials: austenitic 304 cannot be hardened by heat treatment and belongs on bodies and fasteners, while martensitic 410 and 420 can — and since those two are both magnetic and visually identical, dropping the lower-carbon 410 into an edge application is the substitution no goods-in check short of a material test will catch.": "受入時のステンレスは二種類の別材料です。オーステナイト系の304は熱処理では硬化せず本体や締結部品向きであるのに対し、マルテンサイト系の410と420は硬化します——そしてこの二つはいずれも磁性を持ち外観も同一であるため、炭素量の低い410を刃部用途に紛れ込ませる置き換えは、材質試験を伴わない受入検査では捕捉できません。",
   "Fabric enters a metal-goods bill of materials as the item most likely to carry the chemical compliance risk — dyes, coatings and any leather trim are what a REACH or Proposition 65 question lands on first, not the steel.": "金属製品の部品表において、繊維は化学物質規制リスクを最も抱えやすい項目として入ってきます——染料、コーティング、革のトリムこそがREACHやProposition 65の照会が最初に向かう先であり、鋼材ではありません。",
-  "CostNow desk": "CostNow desk"
+  "CostNow desk": "CostNow desk",
+  "Generated material illustration · appearance only; grades and properties cannot be identified from the image.": "生成された材料イラスト・外観の参考のみ。画像から材質の等級や特性は判定できません。",
+  "Generated process illustration · general principle; not a photograph of Birdland equipment.": "生成された製程イラスト・一般原理の参考。Birdlandの設備写真ではありません。",
+  "Not to scale.": "縮尺は実物と異なります。",
+  "Metal manufacturing is our core. Plastic and timber components are supplied through specialist partners.": "金属製造が当社の中核です。樹脂・木製部品は専門パートナーが供給します。",
+  "Heat → quench → temper": "加熱 → 焼入れ → 焼戻し",
+  "Existing technical diagram": "従来の技術図",
+  "Sheet-forming example.": "板材成形の例。",
+  "Matched-die concept; not a tool design.": "対応する金型の概念図。金型設計図ではありません。",
+  "Arc-welded T-joint example.": "アーク溶接によるT継手の例。",
+  "Application stage only; surface preparation and curing are not shown.": "塗布工程のみ。前処理と硬化工程は省略しています。",
+  "Dimensional check example; not the complete release plan.": "寸法確認の例。出荷承認の全検査計画ではありません。",
+  "TRUMPF": "TRUMPF",
+  "Bodycote": "Bodycote",
+  "TWI": "TWI",
+  "Nordson": "Nordson",
+  "NIST": "NIST"
 }
