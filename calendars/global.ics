@@ -5,7 +5,7 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:Birdland global
 BEGIN:VEVENT
-UID:eudr-large-medium-2026@birdland.com.tw
+UID:eudr-large-medium-2026.birdland-public-calendar
 DTSTAMP:20260727T000000Z
 DTSTART:20261230T090000Z
 DTEND:20261230T100000Z
@@ -16,7 +16,7 @@ STATUS:CONFIRMED
 CATEGORIES:regulation\,wood\,compliance
 END:VEVENT
 BEGIN:VEVENT
-UID:cbam-first-declaration-2027@birdland.com.tw
+UID:cbam-first-declaration-2027.birdland-public-calendar
 DTSTAMP:20260727T000000Z
 DTSTART:20270930T170000Z
 DTEND:20270930T180000Z
@@ -27,7 +27,7 @@ STATUS:CONFIRMED
 CATEGORIES:regulation\,metal\,carbon
 END:VEVENT
 BEGIN:VEVENT
-UID:eudr-small-micro-2027@birdland.com.tw
+UID:eudr-small-micro-2027.birdland-public-calendar
 DTSTAMP:20260727T000000Z
 DTSTART:20270630T090000Z
 DTEND:20270630T100000Z
