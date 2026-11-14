@@ -3,22 +3,14 @@
   "source_url": "https://www.worldbank.org/en/research/commodity-markets",
   "download_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
   "cadence": "monthly",
-  "checked_at": "2026-10-02T18:38:58+00:00",
-  "observed_month": "2026-08",
+  "checked_at": "2026-11-14T05:17:53+00:00",
+  "observed_month": "2026-10",
   "series": [
     {
       "id": "aluminum",
       "label": "Aluminum",
       "unit": "US$/metric tonne",
       "points": [
-        {
-          "month": "2025-09",
-          "value": 2653.0
-        },
-        {
-          "month": "2025-10",
-          "value": 2793.0
-        },
         {
           "month": "2025-11",
           "value": 2819.0
@@ -58,6 +50,14 @@
         {
           "month": "2026-08",
           "value": 3251.0
+        },
+        {
+          "month": "2026-09",
+          "value": 3283.0
+        },
+        {
+          "month": "2026-10",
+          "value": 3061.0
         }
       ]
     },
@@ -66,14 +66,6 @@
       "label": "Nickel",
       "unit": "US$/metric tonne",
       "points": [
-        {
-          "month": "2025-09",
-          "value": 15106.0
-        },
-        {
-          "month": "2025-10",
-          "value": 15092.0
-        },
         {
           "month": "2025-11",
           "value": 14671.0
@@ -113,6 +105,14 @@
         {
           "month": "2026-08",
           "value": 16751.0
+        },
+        {
+          "month": "2026-09",
+          "value": 16324.0
+        },
+        {
+          "month": "2026-10",
+          "value": 15436.0
         }
       ]
     }
