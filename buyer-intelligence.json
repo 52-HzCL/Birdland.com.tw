@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "edition": "14 Nov 2026, 05:12 UTC",
+  "edition": "15 Nov 2026, 01:11 UTC",
   "news_status": "current",
   "stories": [
     {
@@ -15,96 +15,6 @@
         {
           "source": "CGTN",
           "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9GZE5NZWtnSEpyLXhsTGxuNElHVkFOcFA1YWFEcVB0OFdrZEI0T2o5RnNBOVFyZ0JFZVVKWE1mZjYxemVLWnI2alFlYXdHbFo1Mjc1ajBLRlltQU5QY2FEX1lqZWx4VWZvRVg0TlUtR2hUU2otd3hWQQ?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "5cc9c1b6013ecc8f",
-      "event": "hapag lloyd profit surges as freight rates rise red sea services return",
-      "title": "Hapag-Lloyd Profit Surges as Freight Rates Rise, Red Sea Services Return",
-      "topic": "shipping",
-      "date": "2026-11-13",
-      "source": "gCaptain",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "gCaptain",
-          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQUml2X0p5WGZidXhoZ2JmUGtZNnNYcDZIcURGOVRJWTB6Q09uYkttckJTS3N3RVNBOWZQUGlwQWJQMWFqYUd2X09mdVZ6QWhhelpxLXFTQmhxSDdnU2FOVUdfbUdjU0RVWnB2ZVpvdGYtclhJd0k0aElKQ19UX0RxTmlsTGR2T3MwdnpER1hBZ21BaUVWZlg2Xw?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "57c921afb42cb629",
-      "event": "cma cgm triples profit as q3 freight rates and cargo volumes rise",
-      "title": "CMA CGM triples profit as Q3 freight rates and cargo volumes rise",
-      "topic": "shipping",
-      "date": "2026-11-13",
-      "source": "FreightWaves",
-      "source_tier": "trade",
-      "links": [
-        {
-          "source": "FreightWaves",
-          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQV0dzTWh6TDBoZzZ5ckRLeW4yb1ZkLU9LTmxUbGxCby1PQ3pqQU92bFZDQ1NkTldWSXZja21STVlpZEJlaEExYjlkU1A1N2E4TU1oQlFWNlBSU0J1ZmJlMTk0amw3dVFwLWN4SDF2X1M0VUNKcjUxanhHOTJCcFIzLWR0M0I0bXFtNzZfdEhTMkpRVmtoeW5sSUV1Vm90VVE5?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "ae8215a2d30829fd",
-      "event": "carriers defend ocean floors as holiday ocean demand subsides and air cargo soars",
-      "title": "Carriers defend ocean floors as holiday ocean demand subsides and air cargo soars",
-      "topic": "shipping",
-      "date": "2026-11-13",
-      "source": "KNSI",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "KNSI",
-          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPSXlBSzl0a1NQS2J5ZVMtbFlwMEwzQXFwQkFITFQ1WTZTX0lFOHZXbUk4SDBaZkJhVmlBY2tXYjhnSXNXWlJSdnpOYmR0bG9MSHBvNXM1ZGF5YkNYaERKZGdKX0V3dW82TUZiWURKMVJ5RENDOU50WjJOX3BDUE5EaXBIQXlGUzl3cUI1cHhrSEJ1a2txczNzQmo1UTdOZUNwTEstWUNkeWo5QWJHN0lPUGVGeDE0QQ?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "eec4958e69ecdcf6",
-      "event": "cma cgm and hapag lloyd cash in on high freight rates",
-      "title": "CMA CGM and Hapag-Lloyd Cash In on High Freight Rates",
-      "topic": "shipping",
-      "date": "2026-11-13",
-      "source": "WWD",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "WWD",
-          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNM2R1X3JSZzZURWVTUXZfSTNZMXQzWjhqMUpYX1hheTBPMERtRjFaN3p3V1E3aTUzd2gxdndVdVhjNFN5WUxZak9EU0hfTklscmVOb3I0akhNQy1pYUxUS000a1lGZ1k2ckctQk5XZkYxck54elAzTndfaVZQT2k3dFItQUI0OHdQeUVuM3R5M3RLZ3k4VVlnTVJjNlk1VVAydUNyeHdpUWVpTnBBeTB4SXFUS2RFXy1GUGlCRWxRbDBJbWc?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "166222fc33bce440",
-      "event": "container freight rates fall amid weak demand",
-      "title": "Container freight rates fall amid weak demand",
-      "topic": "shipping",
-      "date": "2026-11-13",
-      "source": "DCA Market Intelligence",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "DCA Market Intelligence",
-          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOX2ZiOVRiZjN3RmI4NzJVdDY2bmliZE1pd3NtdHQ5dmd3NVlaQVY3dkhmVHY4UlpBZkt6VUZMTEFDcmdlYVlqLVZ3YUZrXzNsUkt2N1JzcmZjcGt0RHU4X3dlVFB4Qld3SUp5ZlZTcFgzSGFPcjZ6ZkZndG1vYXBZandvM21QdTBWRDlYNENJaHFzeEtyQ24wUDc5RQ?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "6c3738fef93ad0b6",
-      "event": "hapag lloyd chief calls for new model to deal with freight market volatility",
-      "title": "Hapag-Lloyd chief calls for new model to deal with freight market volatility",
-      "topic": "shipping",
-      "date": "2026-11-13",
-      "source": "TradeWinds News",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "TradeWinds News",
-          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPakMxa3pucENhQzlRdU8tazBLZWlQRXBlRnhKMjJaa0UxVm9HLXY4Rk11MzJOdnliS0RMeVZRVWo3cHNzc0dadE1OSzU4eGE1VG1UN2U4QU1scHpuSHd0ZVBrenF3N05uWTM4TF96N290UVBGUGJvR1B2WXlYeU81b0FRSHdVZkZMdGYxb3hwYVJ5ZS1odVFnS0F3V0VxeDljbHYzSXNENENHTzg2M2h6eGRlOTlnWVhxRllIR1pESklGVkxVN0dwS0V3?oc=5"
         }
       ]
     },
@@ -139,51 +49,6 @@
       ]
     },
     {
-      "id": "9750c9de5361e202",
-      "event": "news strong freight rates help hapag lloyd profits soar despite loss of market share",
-      "title": "News Strong freight rates help Hapag-Lloyd profits soar, despite loss of market share",
-      "topic": "shipping",
-      "date": "2026-11-12",
-      "source": "The Loadstar",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "The Loadstar",
-          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNeENDYTUxYms5U2ZCNzZGTmZSYThOdUdiTkg0X0VXWXdMTVZPX3c1RC03ZGxadks1c2VHc0xIdVBESElVNy0zU3pZYjRyc2g1eTZ6UjRPeXkwb2JFbGFoNG9xa2M2RGxCZ1pwTmtRV3FPOGhHeVNZaW9pbk5EMDZySml1MURLTjdrbDZwSlJEbWtqOVFEemo4UlRvMFlmTjdsbmhlNXd0OA?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "d5b97b93d9a68696",
-      "event": "us midterm shift adds trade uncertainty as trans pacific ocean freight rates stay elevated",
-      "title": "US midterm shift adds trade uncertainty as trans-Pacific ocean freight rates stay elevated",
-      "topic": "shipping",
-      "date": "2026-11-12",
-      "source": "FreightWaves",
-      "source_tier": "trade",
-      "links": [
-        {
-          "source": "FreightWaves",
-          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNb2k2ektKUFN0bDFNSmZJV0JQWlE2RGJYOWQ2ZHlKUGRGeVVscGs1eHVvZy13RDV2cTlOd011SV91MUhWcTNMTmI3QmJodEZxb3FTNkFvdWxWdE92R0QtSWZROXRIby1OakRESGJVSjZpSmlsRWtzMDBhMGlabXhwT2kxM2pGNTFqLUVDNXNlVURFR1RsZ1I1WndIeG1pSVJFY005TE5XTWJnUFBoVkVSb0lEdFNfYjU2cTJEMkd0ZVVlQQ?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "d97113825970b749",
-      "event": "china europe freight trains maintain 100 loaded container rate for 50 months through october ndrc",
-      "title": "China-Europe freight trains maintain 100% loaded-container rate for 50 months through October: NDRC",
-      "topic": "shipping",
-      "date": "2026-11-11",
-      "source": "Global Times",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "Global Times",
-          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE43LVV2TnFLaDlHa1ExVlhBOFVtaFpaZkFBV21uenkyck4zQUc2RjNnOENYSUREa3VwZTFNMVB1VnJ4dy1yem9fNEJBQVJtbXF5dmFkaUZucUg4bmtmb0RqSTVB?oc=5"
-        }
-      ]
-    },
-    {
       "id": "c91eb811b5565ead",
       "event": "machinery exports surpass nt 1tn in first 10 months",
       "title": "Machinery exports surpass NT$1tn in first 10 months",
@@ -195,36 +60,6 @@
         {
           "source": "Taipei Times",
           "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFB4Q3VjcnJ6anhEcDNQV3hrRGNvem5YelB6VVlEamppTnlEbm5yb0tEaTBCMVVpR1hWUmRneVRnMDZ0UVZzY0toSU83WjNNbzR4MkQzSW1LcjFuOTBVQjlJQUNqTnN5VU82TUVmSjA4OWJPRExyY3c?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "bfc0c9a8273a59c6",
-      "event": "commentary fund sellers china buyers squeeze copper s tariff trade",
-      "title": "COMMENTARY: Fund sellers, China buyers squeeze copper's tariff trade",
-      "topic": "tariff",
-      "date": "2026-11-09",
-      "source": "Reuters",
-      "source_tier": "trade",
-      "links": [
-        {
-          "source": "Reuters",
-          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNWlpXV0JiLWp6alEyWjJXejVxdE95VFBrMzVVcDJiOGtWc2NFcUtNN0R1cXl2cmlQdmhlMjI1ZDA3U2pzcko1UjYtc013SDNfNlZ2TUJlbUlIQnhDMXNxZmtDVHE5VUdwQWxER19oSjNLN052bnVrYlQ0QVNzallzOVU1bXdxNFlHSy1idC0zTGlNTnBscUNDdTNjdDBpb3BtUjJqMnpIRE1MQzVIVVRPeUMxUnE0LU1mb2h4T3hJVno?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "5b1039f35a34c979",
-      "event": "eu deforestation regulation eudr",
-      "title": "EU Deforestation Regulation (EUDR)",
-      "topic": "tariff",
-      "date": "2026-11-04",
-      "source": "environment.ec.europa.eu",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "environment.ec.europa.eu",
-          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOcjhCdzBvVTdDbGRvd1lVUTlLai1xT0FfVEJ0MUx0TUtsc09LMFJQX0M1SnpDU0ZnR3IyUmFDc2RkR1RWOFFoNHR4STdYWjQyQl9saGN1bTk0Smg3TGo2bFlzWEx1Yml3THFJM0dHX1FORU1VdEtzWkRrLTFrdTF4M0NsR1VKWXF0NzFBeVRkZEg4YkZEenhOWnZZOUVJdw?oc=5"
         }
       ]
     },
@@ -255,21 +90,6 @@
         {
           "source": "Taipei Times",
           "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5ZeURMR2pRWG5PWkxITnJSLU5PY2lmVk5lSTdpSGM5ckMwR1NBbzVfalVZYzJVT3ZGeGVwdDVHblZkQi1qSlhpN3hwQmdBdFNWbDhBa2NnbVhIU1FwWjRmQXRIZTFPQWxjU09KczVfNVBELTluNmc?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "45ba4ead2f2b17c6",
-      "event": "vietnam signs free trade deal with four european nations",
-      "title": "Vietnam signs free trade deal with four European nations",
-      "topic": "tariff",
-      "date": "2026-10-18",
-      "source": "France 24",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "France 24",
-          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPTG40X2l0SHdSaUVEczFoLU1SZWtzUHBvOE5yaW43UkRIWlRDOHE4ZnowbzZjV0s0a0R5WmxrdC1hWnRGcER2b3A1NUJZVUJPcGRhZkQzd2w2M0p1dlpsSElyUDREdVVlZlVib1drWlZpMWJzN0hydW16cHl1VWxwNm5aMXZCeU1nVG1hOVFNYmk3bmtnZmJoTlZnSUZ2Y2YwOC1sY0hR?oc=5"
         }
       ]
     }
