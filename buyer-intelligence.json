@@ -1,8 +1,113 @@
 {
   "version": 1,
-  "edition": "16 Nov 2026, 01:14 UTC",
+  "edition": "17 Nov 2026, 01:12 UTC",
   "news_status": "current",
   "stories": [
+    {
+      "id": "5282a02ea374d107",
+      "event": "china s industrial output growth slows",
+      "title": "China’s Industrial Output Growth Slows",
+      "topic": "china",
+      "date": "2026-11-16",
+      "source": "Caixin Global",
+      "source_tier": "local English media",
+      "links": [
+        {
+          "source": "Caixin Global",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQdlRNYWhoMlZjLU13R3F6TG1oVGlWOWVKdzlfam9nSTYtYWpwVkNubFMtcFhldlBCbWl4N1N2Vnl2dmlzc2JWLVlycGQ3ZGZRaGFXdHY4dm53R2xWc3lWenpqcE1jbHQtemM5VVZtcTRCQ0VRcWdWUm5SdHhDSzQ0SkFYM0N3U3JTanNrOTQzdmdDSFRRWVQ4?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "12174a5ff443f06a",
+      "event": "china s high tech manufacturing powers october industrial growth",
+      "title": "China's high-tech manufacturing powers October industrial growth",
+      "topic": "china",
+      "date": "2026-11-16",
+      "source": "Xinhua",
+      "source_tier": "local English media",
+      "links": [
+        {
+          "source": "Xinhua",
+          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE9DUS14YzU0aHc1eGY2MlBJRkFzZUVNTV9rR3pVM2lkbnJ3Qjd2TTFKdG9FdDNKU3FZM2dGTlJ3ZDlhWm5JTnlUWDhiY1F0Rlc5eV9FbEQxRlV2UnRyUXdyb0Zsem5PVHp0U0NzdkhxcmxNVDlRd2VFXzU3YlA?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "0068fe3e902c9054",
+      "event": "cma cgm earnings surge as freight rates and cargo volumes rise",
+      "title": "CMA CGM earnings surge as freight rates and cargo volumes rise",
+      "topic": "shipping",
+      "date": "2026-11-16",
+      "source": "DatamarNews",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "DatamarNews",
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNRnpjdUtvYUIzM0tyQjNQX05TVF9ReThGMU5mZkwyQ24tQm0tQ3N6R2hHRXdIZENwdjhZTHdsYlVKZFZxRFRsUFMwRzBDanRNV182Z3c3Unp0b1FlS0xlV21kY3hzTzhfNUdFTFVablZoSDd6ZTdpZzZsY2l1ZWxWSVdUaFFNY3dZalQybmtZTE12UF9CRVVvUi1lWF8?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "18859b6ace8545ec",
+      "event": "intelligent factory based production promoted to boost edible mushroom industry in chongqing",
+      "title": "Intelligent factory-based production promoted to boost edible mushroom industry in Chongqing",
+      "topic": "china",
+      "date": "2026-11-14",
+      "source": "Xinhua",
+      "source_tier": "local English media",
+      "links": [
+        {
+          "source": "Xinhua",
+          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBMb0JxSU1QUUNGdU4tdjNxc0RCRDFwdVlTTWZWdkVZc2tKZlhxU2ZNZUpsWF9hUnJydnhaSHQtVldzNlVaYnJramZLVi1Hd01FRG1tVFJnQmJjSjZweDRPdFNaODBFUk8yZzNsQUh3dEZZcjQ3dmRzN0xuN3A?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "5cc9c1b6013ecc8f",
+      "event": "hapag lloyd profit surges as freight rates rise red sea services return",
+      "title": "Hapag-Lloyd Profit Surges as Freight Rates Rise, Red Sea Services Return",
+      "topic": "shipping",
+      "date": "2026-11-13",
+      "source": "gCaptain",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "gCaptain",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQUml2X0p5WGZidXhoZ2JmUGtZNnNYcDZIcURGOVRJWTB6Q09uYkttckJTS3N3RVNBOWZQUGlwQWJQMWFqYUd2X09mdVZ6QWhhelpxLXFTQmhxSDdnU2FOVUdfbUdjU0RVWnB2ZVpvdGYtclhJd0k0aElKQ19UX0RxTmlsTGR2T3MwdnpER1hBZ21BaUVWZlg2Xw?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "eec4958e69ecdcf6",
+      "event": "cma cgm and hapag lloyd cash in on high freight rates",
+      "title": "CMA CGM and Hapag-Lloyd Cash In on High Freight Rates",
+      "topic": "shipping",
+      "date": "2026-11-13",
+      "source": "WWD",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "WWD",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNM2R1X3JSZzZURWVTUXZfSTNZMXQzWjhqMUpYX1hheTBPMERtRjFaN3p3V1E3aTUzd2gxdndVdVhjNFN5WUxZak9EU0hfTklscmVOb3I0akhNQy1pYUxUS000a1lGZ1k2ckctQk5XZkYxck54elAzTndfaVZQT2k3dFItQUI0OHdQeUVuM3R5M3RLZ3k4VVlnTVJjNlk1VVAydUNyeHdpUWVpTnBBeTB4SXFUS2RFXy1GUGlCRWxRbDBJbWc?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "57c921afb42cb629",
+      "event": "cma cgm triples profit as q3 freight rates and cargo volumes rise",
+      "title": "CMA CGM triples profit as Q3 freight rates and cargo volumes rise",
+      "topic": "shipping",
+      "date": "2026-11-13",
+      "source": "FreightWaves",
+      "source_tier": "trade",
+      "links": [
+        {
+          "source": "FreightWaves",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQV0dzTWh6TDBoZzZ5ckRLeW4yb1ZkLU9LTmxUbGxCby1PQ3pqQU92bFZDQ1NkTldWSXZja21STVlpZEJlaEExYjlkU1A1N2E4TU1oQlFWNlBSU0J1ZmJlMTk0amw3dVFwLWN4SDF2X1M0VUNKcjUxanhHOTJCcFIzLWR0M0I0bXFtNzZfdEhTMkpRVmtoeW5sSUV1Vm90VVE5?oc=5"
+        }
+      ]
+    },
     {
       "id": "59b758df4a0e72b9",
       "event": "shared future for asia pacific full supply chain in shunde drives exports of small home appliances to apec",
@@ -19,14 +124,33 @@
       ]
     },
     {
+      "id": "d5b97b93d9a68696",
+      "event": "us midterm shift adds trade uncertainty as trans pacific ocean freight rates stay elevated",
+      "title": "US midterm shift adds trade uncertainty as trans-Pacific ocean freight rates stay elevated",
+      "topic": "shipping",
+      "date": "2026-11-12",
+      "source": "FreightWaves",
+      "source_tier": "trade",
+      "links": [
+        {
+          "source": "FreightWaves",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNb2k2ektKUFN0bDFNSmZJV0JQWlE2RGJYOWQ2ZHlKUGRGeVVscGs1eHVvZy13RDV2cTlOd011SV91MUhWcTNMTmI3QmJodEZxb3FTNkFvdWxWdE92R0QtSWZROXRIby1OakRESGJVSjZpSmlsRWtzMDBhMGlabXhwT2kxM2pGNTFqLUVDNXNlVURFR1RsZ1I1WndIeG1pSVJFY005TE5XTWJnUFBoVkVSb0lEdFNfYjU2cTJEMkd0ZVVlQQ?oc=5"
+        }
+      ]
+    },
+    {
       "id": "81c56ea156582f80",
       "event": "steel sector sees green milestone",
       "title": "Steel sector sees green milestone",
       "topic": "china",
       "date": "2026-11-12",
-      "source": "China Daily Global Edition",
+      "source": "China Daily",
       "source_tier": "local English media",
       "links": [
+        {
+          "source": "China Daily",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9mb2ZRREhhYTFuZ0JySVA2cUhpY3BMajctMDZKMlBtV0g5WnRhZUlOc18zeUZSLUpDTXdNTkpTUGN0V19DYmdxZFBJVlo0TXR3WlNLWXo0QlAzUk9uM1ZBVExBTUx2WXFqYXBCR3AtVHFHV1pjVF9abXhqdnVvQQ?oc=5"
+        },
         {
           "source": "China Daily Global Edition",
           "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPc0hGNEl0OVV4WmQ0V09zcUYxeGVWcW4tM3JNTkVZWTJ5WXhUS3luRzN1cVhaTVNhREhjUlhDV0pnX01PTlpnSHNzOEJidTcyNmtmb0pqQVJyMjdvQTR1R0lUT0xqaG15M1FjMHhUTkhWZnZ6UExXWnQxVEc4MFkxbmpR?oc=5"
@@ -60,6 +184,51 @@
         {
           "source": "Taipei Times",
           "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFB4Q3VjcnJ6anhEcDNQV3hrRGNvem5YelB6VVlEamppTnlEbm5yb0tEaTBCMVVpR1hWUmRneVRnMDZ0UVZzY0toSU83WjNNbzR4MkQzSW1LcjFuOTBVQjlJQUNqTnN5VU82TUVmSjA4OWJPRExyY3c?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "2f4119e68bb585a7",
+      "event": "china extends us trade truce by two months",
+      "title": "China extends US trade truce by two months",
+      "topic": "tariff",
+      "date": "2026-11-09",
+      "source": "Reuters",
+      "source_tier": "trade",
+      "links": [
+        {
+          "source": "Reuters",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOSTA2TElMOUVJb2VPUWp2RnhuNWtoOHhncWpKUW9Ob1lEQ19BVUluTWRvRkZTYWJTYlU5RlZNR2F6UmZOcW5GLXlrQVJuMzMxakd2V2M4d1dXRDBCU3FBN182RlFQTjVBbVpTbzQ2cXZzdkk4YUJxZkF4NUVoZXlXR1haVlZIY2lpMnJQeTdFWTFMQkR5QWxiaWtqZUJSSUI5bFpzdGNmUENfU2h4dWIxcg?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "bfc0c9a8273a59c6",
+      "event": "commentary fund sellers china buyers squeeze copper s tariff trade",
+      "title": "COMMENTARY: Fund sellers, China buyers squeeze copper's tariff trade",
+      "topic": "tariff",
+      "date": "2026-11-09",
+      "source": "Reuters",
+      "source_tier": "trade",
+      "links": [
+        {
+          "source": "Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNWlpXV0JiLWp6alEyWjJXejVxdE95VFBrMzVVcDJiOGtWc2NFcUtNN0R1cXl2cmlQdmhlMjI1ZDA3U2pzcko1UjYtc013SDNfNlZ2TUJlbUlIQnhDMXNxZmtDVHE5VUdwQWxER19oSjNLN052bnVrYlQ0QVNzallzOVU1bXdxNFlHSy1idC0zTGlNTnBscUNDdTNjdDBpb3BtUjJqMnpIRE1MQzVIVVRPeUMxUnE0LU1mb2h4T3hJVno?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "5b1039f35a34c979",
+      "event": "eu deforestation regulation eudr",
+      "title": "EU Deforestation Regulation (EUDR)",
+      "topic": "tariff",
+      "date": "2026-11-04",
+      "source": "environment.ec.europa.eu",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "environment.ec.europa.eu",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOcjhCdzBvVTdDbGRvd1lVUTlLai1xT0FfVEJ0MUx0TUtsc09LMFJQX0M1SnpDU0ZnR3IyUmFDc2RkR1RWOFFoNHR4STdYWjQyQl9saGN1bTk0Smg3TGo2bFlzWEx1Yml3THFJM0dHX1FORU1VdEtzWkRrLTFrdTF4M0NsR1VKWXF0NzFBeVRkZEg4YkZEenhOWnZZOUVJdw?oc=5"
         }
       ]
     },
