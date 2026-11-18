@@ -1,8 +1,53 @@
 {
   "version": 1,
-  "edition": "17 Nov 2026, 01:12 UTC",
+  "edition": "18 Nov 2026, 01:11 UTC",
   "news_status": "current",
   "stories": [
+    {
+      "id": "d791ae7b6e61d35a",
+      "event": "red sea overcapacity looms as ocean container spot rates still 50 above year ago",
+      "title": "Red Sea overcapacity looms as ocean container spot rates still 50% above year-ago",
+      "topic": "shipping",
+      "date": "2026-11-17",
+      "source": "FreightWaves",
+      "source_tier": "trade",
+      "links": [
+        {
+          "source": "FreightWaves",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNWjdmako4QzByallQUWF2QnVoQzdNTHhzUndVa1d2MXdRbWU3OTQwaXVvSEFvaVlheTJQazduOWFRbHFrZmpfanZNX2RVR20zSDhERFpkVU1qekxxbEl1aWZqZTNyS0psWlZVd3lCWVZtX2xmVGkxM2wzZzRITnRjSzY4VDNkV2hWWVBacm5LSFl3Z0p0Y2hOLTFuN1JHcDVWRXppYTlBRGtCY2tsQjd1ZXNieVg?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "a8daccdeee8121c3",
+      "event": "cma cgm to raise asia latin america rates by 1 000 per container",
+      "title": "CMA CGM to raise Asia–Latin America rates by $1,000 per container",
+      "topic": "shipping",
+      "date": "2026-11-17",
+      "source": "DatamarNews",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "DatamarNews",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPX2ROWHZTd1JfX19DVzdQQklqUHhySHZHR28xQ2pnRzlvcUJORU9XU0gxSWZYT2lwekN0YWlsRlpOUFR2X0tBbTRfYkRMQUVxZWNMbTFLSnMxbmwySjhvTnNPQmNhc1dyNjd5cjFxRThQdnJ1RUk3RlNaMThWZC05VVpDLV9RdzVRMnYtdDhVUFF6ZGROd3otRDNPb2ZyQQ?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "3c330830b6544f96",
+      "event": "zim faces earnings test as freight rate rally fuels rebound",
+      "title": "ZIM faces earnings test as freight rate rally fuels rebound",
+      "topic": "shipping",
+      "date": "2026-11-17",
+      "source": "Investing.com",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "Investing.com",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOMWREYWdLUzFKZDJxZUlDakwwNXFpQmc4UjdnT1JIci10UU9xYkRScndHblZPbG03bklIVFZVVnhpQzhwZzBDckFaMDJFUXBmQ2ZnVXZfTElaU0s2M092Q0FJcl81ZXZoWlFUc1Z0U3FMcS1KSjlKZGFkOHR2X1VRajVpV2Z5Uk9zNkNrdk9iUmxmZmluSEdSUGtLbW5pYmNyQ08tSDJsaVJSaGRSQXpzWF9R?oc=5"
+        }
+      ]
+    },
     {
       "id": "5282a02ea374d107",
       "event": "china s industrial output growth slows",
@@ -15,6 +60,21 @@
         {
           "source": "Caixin Global",
           "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQdlRNYWhoMlZjLU13R3F6TG1oVGlWOWVKdzlfam9nSTYtYWpwVkNubFMtcFhldlBCbWl4N1N2Vnl2dmlzc2JWLVlycGQ3ZGZRaGFXdHY4dm53R2xWc3lWenpqcE1jbHQtemM5VVZtcTRCQ0VRcWdWUm5SdHhDSzQ0SkFYM0N3U3JTanNrOTQzdmdDSFRRWVQ4?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "c7cb6d222e53f832",
+      "event": "gt voice india s trade deficit points to deeper manufacturing problems not china",
+      "title": "GT Voice: India’s trade deficit points to deeper manufacturing problems, not China",
+      "topic": "china",
+      "date": "2026-11-16",
+      "source": "Global Times",
+      "source_tier": "local English media",
+      "links": [
+        {
+          "source": "Global Times",
+          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE05SzlZaDVqWElzY1dnVjBsY2l6aDdfY3BvVFhla1lUaUNzN0ltbHJkVGFDRE1qTFA3Z21QaEVnUUhwMWdnV3h3M1NUdGt4SEVVWXYxU2dXQ09VZFdYb19vTnV3?oc=5"
         }
       ]
     },
@@ -59,22 +119,22 @@
       "links": [
         {
           "source": "Xinhua",
-          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBMb0JxSU1QUUNGdU4tdjNxc0RCRDFwdVlTTWZWdkVZc2tKZlhxU2ZNZUpsWF9hUnJydnhaSHQtVldzNlVaYnJramZLVi1Hd01FRG1tVFJnQmJjSjZweDRPdFNaODBFUk8yZzNsQUh3dEZZcjQ3dmRzN0xuN3A?oc=5"
+          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1JQlk2Q2RmTXV4SmVaVkRtdzlodGlHRjMwSnZfYUdDb2RnakxNX0hnY3ZERWV4dnNYSWY1aU9ZUjlMS0tfZ1REZi1CN0VwV3NKTHZfR0VOa0hQQVNzaWRGZEFFTXhmN2hPVmtiU0lYdEJjTUtzRUREc05wRQ?oc=5"
         }
       ]
     },
     {
-      "id": "5cc9c1b6013ecc8f",
-      "event": "hapag lloyd profit surges as freight rates rise red sea services return",
-      "title": "Hapag-Lloyd Profit Surges as Freight Rates Rise, Red Sea Services Return",
+      "id": "57c921afb42cb629",
+      "event": "cma cgm triples profit as q3 freight rates and cargo volumes rise",
+      "title": "CMA CGM triples profit as Q3 freight rates and cargo volumes rise",
       "topic": "shipping",
       "date": "2026-11-13",
-      "source": "gCaptain",
+      "source": "Yahoo Finance",
       "source_tier": "context",
       "links": [
         {
-          "source": "gCaptain",
-          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQUml2X0p5WGZidXhoZ2JmUGtZNnNYcDZIcURGOVRJWTB6Q09uYkttckJTS3N3RVNBOWZQUGlwQWJQMWFqYUd2X09mdVZ6QWhhelpxLXFTQmhxSDdnU2FOVUdfbUdjU0RVWnB2ZVpvdGYtclhJd0k0aElKQ19UX0RxTmlsTGR2T3MwdnpER1hBZ21BaUVWZlg2Xw?oc=5"
+          "source": "Yahoo Finance",
+          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNQ1ExUEYtOENtMkJfSkcwUVVzYTdkS3Y4NG5HQ0NIM2FJVUd5NlR4UXJkcVFhejRHTjVMTk54SDBMMVhCaHNrTGxHSzFqelZhYzYtZmI1ckszWXNtR2V5c1JCZkpkTjFCUG1CdENLWjNoTVBtOGNha2ZXbmNiT2pfRDhTRmJpTnhkbHBZRm54ekc4cUR0a1RKakFLMA?oc=5"
         }
       ]
     },
@@ -94,21 +154,6 @@
       ]
     },
     {
-      "id": "57c921afb42cb629",
-      "event": "cma cgm triples profit as q3 freight rates and cargo volumes rise",
-      "title": "CMA CGM triples profit as Q3 freight rates and cargo volumes rise",
-      "topic": "shipping",
-      "date": "2026-11-13",
-      "source": "FreightWaves",
-      "source_tier": "trade",
-      "links": [
-        {
-          "source": "FreightWaves",
-          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQV0dzTWh6TDBoZzZ5ckRLeW4yb1ZkLU9LTmxUbGxCby1PQ3pqQU92bFZDQ1NkTldWSXZja21STVlpZEJlaEExYjlkU1A1N2E4TU1oQlFWNlBSU0J1ZmJlMTk0amw3dVFwLWN4SDF2X1M0VUNKcjUxanhHOTJCcFIzLWR0M0I0bXFtNzZfdEhTMkpRVmtoeW5sSUV1Vm90VVE5?oc=5"
-        }
-      ]
-    },
-    {
       "id": "59b758df4a0e72b9",
       "event": "shared future for asia pacific full supply chain in shunde drives exports of small home appliances to apec",
       "title": "Shared Future for Asia Pacific: Full supply chain in Shunde drives exports of small home appliances to APEC",
@@ -124,21 +169,6 @@
       ]
     },
     {
-      "id": "d5b97b93d9a68696",
-      "event": "us midterm shift adds trade uncertainty as trans pacific ocean freight rates stay elevated",
-      "title": "US midterm shift adds trade uncertainty as trans-Pacific ocean freight rates stay elevated",
-      "topic": "shipping",
-      "date": "2026-11-12",
-      "source": "FreightWaves",
-      "source_tier": "trade",
-      "links": [
-        {
-          "source": "FreightWaves",
-          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNb2k2ektKUFN0bDFNSmZJV0JQWlE2RGJYOWQ2ZHlKUGRGeVVscGs1eHVvZy13RDV2cTlOd011SV91MUhWcTNMTmI3QmJodEZxb3FTNkFvdWxWdE92R0QtSWZROXRIby1OakRESGJVSjZpSmlsRWtzMDBhMGlabXhwT2kxM2pGNTFqLUVDNXNlVURFR1RsZ1I1WndIeG1pSVJFY005TE5XTWJnUFBoVkVSb0lEdFNfYjU2cTJEMkd0ZVVlQQ?oc=5"
-        }
-      ]
-    },
-    {
       "id": "81c56ea156582f80",
       "event": "steel sector sees green milestone",
       "title": "Steel sector sees green milestone",
@@ -150,25 +180,6 @@
         {
           "source": "China Daily",
           "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9mb2ZRREhhYTFuZ0JySVA2cUhpY3BMajctMDZKMlBtV0g5WnRhZUlOc18zeUZSLUpDTXdNTkpTUGN0V19DYmdxZFBJVlo0TXR3WlNLWXo0QlAzUk9uM1ZBVExBTUx2WXFqYXBCR3AtVHFHV1pjVF9abXhqdnVvQQ?oc=5"
-        },
-        {
-          "source": "China Daily Global Edition",
-          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPc0hGNEl0OVV4WmQ0V09zcUYxeGVWcW4tM3JNTkVZWTJ5WXhUS3luRzN1cVhaTVNhREhjUlhDV0pnX01PTlpnSHNzOEJidTcyNmtmb0pqQVJyMjdvQTR1R0lUT0xqaG15M1FjMHhUTkhWZnZ6UExXWnQxVEc4MFkxbmpR?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "23f4c29ace1dc6d1",
-      "event": "mexico s crackdown on alleged chinese steel transshipment to us lacks evidence and reflects washington s pressure expert",
-      "title": "Mexico's crackdown on alleged Chinese steel transshipment to US lacks evidence and reflects Washington's pressure: expert",
-      "topic": "china",
-      "date": "2026-11-12",
-      "source": "Global Times",
-      "source_tier": "local English media",
-      "links": [
-        {
-          "source": "Global Times",
-          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE94cHJzN01ZZnZrT0hiU0plbDNvN1FaQk44NXVZWHpyWmV3M3JGa284N0pKVG44MlBqbmdBR2ZVZHFfX2NpMnVpM0U5SWpwSzA4elFaMF9vLXE3WDUxNDRxMnZn?oc=5"
         }
       ]
     },
@@ -184,36 +195,6 @@
         {
           "source": "Taipei Times",
           "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFB4Q3VjcnJ6anhEcDNQV3hrRGNvem5YelB6VVlEamppTnlEbm5yb0tEaTBCMVVpR1hWUmRneVRnMDZ0UVZzY0toSU83WjNNbzR4MkQzSW1LcjFuOTBVQjlJQUNqTnN5VU82TUVmSjA4OWJPRExyY3c?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "2f4119e68bb585a7",
-      "event": "china extends us trade truce by two months",
-      "title": "China extends US trade truce by two months",
-      "topic": "tariff",
-      "date": "2026-11-09",
-      "source": "Reuters",
-      "source_tier": "trade",
-      "links": [
-        {
-          "source": "Reuters",
-          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOSTA2TElMOUVJb2VPUWp2RnhuNWtoOHhncWpKUW9Ob1lEQ19BVUluTWRvRkZTYWJTYlU5RlZNR2F6UmZOcW5GLXlrQVJuMzMxakd2V2M4d1dXRDBCU3FBN182RlFQTjVBbVpTbzQ2cXZzdkk4YUJxZkF4NUVoZXlXR1haVlZIY2lpMnJQeTdFWTFMQkR5QWxiaWtqZUJSSUI5bFpzdGNmUENfU2h4dWIxcg?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "bfc0c9a8273a59c6",
-      "event": "commentary fund sellers china buyers squeeze copper s tariff trade",
-      "title": "COMMENTARY: Fund sellers, China buyers squeeze copper's tariff trade",
-      "topic": "tariff",
-      "date": "2026-11-09",
-      "source": "Reuters",
-      "source_tier": "trade",
-      "links": [
-        {
-          "source": "Reuters",
-          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNWlpXV0JiLWp6alEyWjJXejVxdE95VFBrMzVVcDJiOGtWc2NFcUtNN0R1cXl2cmlQdmhlMjI1ZDA3U2pzcko1UjYtc013SDNfNlZ2TUJlbUlIQnhDMXNxZmtDVHE5VUdwQWxER19oSjNLN052bnVrYlQ0QVNzallzOVU1bXdxNFlHSy1idC0zTGlNTnBscUNDdTNjdDBpb3BtUjJqMnpIRE1MQzVIVVRPeUMxUnE0LU1mb2h4T3hJVno?oc=5"
         }
       ]
     },
@@ -259,6 +240,36 @@
         {
           "source": "Taipei Times",
           "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5ZeURMR2pRWG5PWkxITnJSLU5PY2lmVk5lSTdpSGM5ckMwR1NBbzVfalVZYzJVT3ZGeGVwdDVHblZkQi1qSlhpN3hwQmdBdFNWbDhBa2NnbVhIU1FwWjRmQXRIZTFPQWxjU09KczVfNVBELTluNmc?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "45ba4ead2f2b17c6",
+      "event": "vietnam signs free trade deal with four european nations",
+      "title": "Vietnam signs free trade deal with four European nations",
+      "topic": "tariff",
+      "date": "2026-10-18",
+      "source": "France 24",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "France 24",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPTG40X2l0SHdSaUVEczFoLU1SZWtzUHBvOE5yaW43UkRIWlRDOHE4ZnowbzZjV0s0a0R5WmxrdC1hWnRGcER2b3A1NUJZVUJPcGRhZkQzd2w2M0p1dlpsSElyUDREdVVlZlVib1drWlZpMWJzN0hydW16cHl1VWxwNm5aMXZCeU1nVG1hOVFNYmk3bmtnZmJoTlZnSUZ2Y2YwOC1sY0hR?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "622a06182eab2189",
+      "event": "eu customs tariff taric",
+      "title": "EU Customs Tariff (TARIC)",
+      "topic": "tariff",
+      "date": "2026-08-04",
+      "source": "Taxation and Customs Union",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "Taxation and Customs Union",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPak11UFdGUzFad0xCMWRucXE2Nl9MUW8xTkRRb3QwVGdUQ1l0OGItQ2VSY0pQWWJqYTZkWmp0MGpId0pvR0xfNjM1Q1hLTVkyVDlyZmFPV0FvWk1pb1ROSWVWZW8zVWY1UjlHa0JhdlVFcjh1UW9HVE1MNGpyblliVzVEV2ljc19IQk5yRlUtQjV4QWN2cEdMOEQ0U1JXeDhUd0YxbW5oQnVrRUdwd2lkLVNubmpwLXgwTHc?oc=5"
         }
       ]
     }
