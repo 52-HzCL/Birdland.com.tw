@@ -1,8 +1,68 @@
 {
   "version": 1,
-  "edition": "18 Nov 2026, 01:11 UTC",
+  "edition": "19 Nov 2026, 01:11 UTC",
   "news_status": "current",
   "stories": [
+    {
+      "id": "031345709688267b",
+      "event": "container freight rates decline on key routes to americas europe",
+      "title": "Container Freight Rates Decline on Key Routes to Americas, Europe",
+      "topic": "shipping",
+      "date": "2026-11-18",
+      "source": "조선일보",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "조선일보",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPbmNtRkRmN2FuQ0dNNk1lY2NKOFpOem1sSkh3VTJudXJOT0lNNzVzNC1CbHNPNGVXNzFXWWY0T0R4dENZN2JpVUZmdVIwbDN6cUl0U0ptb0RhUmFfMXFudWxEbWx2R1loTkgwNVpqWTkxMElfTi1KZzA2R2JhbXotb0o3TDBaMUls?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "2c248e7719ae2eee",
+      "event": "omni shoring is changing the economics of ocean freight resilience",
+      "title": "Omni-shoring is changing the economics of ocean freight resilience",
+      "topic": "shipping",
+      "date": "2026-11-18",
+      "source": "Container News",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "Container News",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOWUZuVkl1WkM1aEtXV3c3R0ZsSzR4QlF1VGNQbkxyUk0wazFhVHB5MFF4YjdlX1JJb3N1Z3BBTm11bEFlVlNNdTA2VTVVQzQ5RDB5Z2lhWjBRUDRhVm4zUUlGenotQUFfd3o4RXc3VXd2Y251cDQ3bS02T2o5cUUtUFNFX3VYbmpDWUhvVGFuQmtrbkgxNWs4Sl9n?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "d9dc1711b5c7342b",
+      "event": "zim posts 830m q3 2026 net income as freight rates rise 55",
+      "title": "ZIM posts $830m Q3 2026 net income as freight rates rise 55%",
+      "topic": "shipping",
+      "date": "2026-11-18",
+      "source": "Data Portuaria",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "Data Portuaria",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOSVhJZEVNQzloTXcwM0pZSG9mTWs2RExpem9DckFRREJpcmRhU0szZ2dZamU4M0R0alhUX1dmOVlYS0taZTU5U1JjWHdQLTRQVkhVWGpPQTdOQ0VUeEc1QTN3dHVyVlBlU1BkUWFRQTZ2eC1tWEpuSVNTQ3hMRnVRVVVCNm9nODY4MGdpNTNxRlp1d2V1R3VxNzk4WTJnaGppUnFyOVZtcUktRzJZWXYySTBaTGcwMGZi?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "ecdde057201d6b37",
+      "event": "how zhuzhou s rail transit industry illustrates the rise of china s smart manufacturing",
+      "title": "How Zhuzhou's rail transit industry illustrates the rise of China's smart manufacturing",
+      "topic": "china",
+      "date": "2026-11-17",
+      "source": "Global Times",
+      "source_tier": "local English media",
+      "links": [
+        {
+          "source": "Global Times",
+          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE8xbmNKMHF3UWRqanRjME9KRW5tQVN0bzhWQ3huX2FxN3h4eTdXdHdQaVRzcEVEQS1TNk9RdVBnZmcwMlNIUjZNNnNUS0thMVM4OVVLX1E1MTRzNVByMldyQk9B?oc=5"
+        }
+      ]
+    },
     {
       "id": "d791ae7b6e61d35a",
       "event": "red sea overcapacity looms as ocean container spot rates still 50 above year ago",
@@ -15,6 +75,21 @@
         {
           "source": "FreightWaves",
           "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNWjdmako4QzByallQUWF2QnVoQzdNTHhzUndVa1d2MXdRbWU3OTQwaXVvSEFvaVlheTJQazduOWFRbHFrZmpfanZNX2RVR20zSDhERFpkVU1qekxxbEl1aWZqZTNyS0psWlZVd3lCWVZtX2xmVGkxM2wzZzRITnRjSzY4VDNkV2hWWVBacm5LSFl3Z0p0Y2hOLTFuN1JHcDVWRXppYTlBRGtCY2tsQjd1ZXNieVg?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "d5a2321596ed698e",
+      "event": "xeneta shipping index xsi c global container price index xeneta shipping index xsi c",
+      "title": "Xeneta Shipping Index (XSI-C) | Global Container Price Index - Xeneta Shipping Index (XSI-C)",
+      "topic": "shipping",
+      "date": "2026-11-17",
+      "source": "Xeneta Shipping Index (XSI-C)",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "Xeneta Shipping Index (XSI-C)",
+          "url": "https://news.google.com/rss/articles/CBMiP0FVX3lxTE9sRTVBLXdyckhNX3ZyVGJYLXJSa3V0YzVEUTJ0XzRGdnN6aTZwOFZ6NlhvandaMkFkWDdiQ2p5aw?oc=5"
         }
       ]
     },
@@ -34,6 +109,21 @@
       ]
     },
     {
+      "id": "f93a13e0d2eafe67",
+      "event": "port fee suspension eases agricultural shipping cost uncertainty rfd tv",
+      "title": "Port Fee Suspension Eases Agricultural Shipping Cost Uncertainty - RFD-TV",
+      "topic": "shipping",
+      "date": "2026-11-17",
+      "source": "RFD-TV",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "RFD-TV",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNQVN1YXZOYzJVN0RPdG9qUm53cGg3UV9fbXRNQVpNeXBYRFFKMXUtV3ZlS3B3SDl6Mm1YRlh3TmlMNXBJWm9aTEtzSUpTUU9pZTVsUUx3RUQtTlhfYXN6S0NTQWItNjRmdkVqYWdFcHdfTHhSRWlCRnZILVNxZ1E4ZTcyY01CcHFTMDlSYXdjVQ?oc=5"
+        }
+      ]
+    },
+    {
       "id": "3c330830b6544f96",
       "event": "zim faces earnings test as freight rate rally fuels rebound",
       "title": "ZIM faces earnings test as freight rate rally fuels rebound",
@@ -45,6 +135,21 @@
         {
           "source": "Investing.com",
           "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOMWREYWdLUzFKZDJxZUlDakwwNXFpQmc4UjdnT1JIci10UU9xYkRScndHblZPbG03bklIVFZVVnhpQzhwZzBDckFaMDJFUXBmQ2ZnVXZfTElaU0s2M092Q0FJcl81ZXZoWlFUc1Z0U3FMcS1KSjlKZGFkOHR2X1VRajVpV2Z5Uk9zNkNrdk9iUmxmZmluSEdSUGtLbW5pYmNyQ08tSDJsaVJSaGRSQXpzWF9R?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "a622f5b4fff8d203",
+      "event": "choose the best freight rate management system rms",
+      "title": "Choose the Best Freight Rate Management System [RMS]",
+      "topic": "shipping",
+      "date": "2026-11-17",
+      "source": "Container News",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "Container News",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOdWxtT1lTSWl5cjI0WEc1elFtVUFrOXdINUFfdjlIN3ctR05NMzVoaF96MmZITlhpTXd4RC1kTHh3ZlpOeDJwMmJqRnVHUmN4cnVYdTV1dndyVkRhWnpaZkhoNzYwMWc5WnllOEE1MW9JeWh1REloa0NFMU8tQlpLbFJHM2Q?oc=5"
         }
       ]
     },
@@ -79,107 +184,17 @@
       ]
     },
     {
-      "id": "12174a5ff443f06a",
-      "event": "china s high tech manufacturing powers october industrial growth",
-      "title": "China's high-tech manufacturing powers October industrial growth",
-      "topic": "china",
-      "date": "2026-11-16",
-      "source": "Xinhua",
-      "source_tier": "local English media",
-      "links": [
-        {
-          "source": "Xinhua",
-          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE9DUS14YzU0aHc1eGY2MlBJRkFzZUVNTV9rR3pVM2lkbnJ3Qjd2TTFKdG9FdDNKU3FZM2dGTlJ3ZDlhWm5JTnlUWDhiY1F0Rlc5eV9FbEQxRlV2UnRyUXdyb0Zsem5PVHp0U0NzdkhxcmxNVDlRd2VFXzU3YlA?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "0068fe3e902c9054",
-      "event": "cma cgm earnings surge as freight rates and cargo volumes rise",
-      "title": "CMA CGM earnings surge as freight rates and cargo volumes rise",
-      "topic": "shipping",
-      "date": "2026-11-16",
-      "source": "DatamarNews",
+      "id": "99d70ced6b42dd09",
+      "event": "economic operators registration and identification number eori",
+      "title": "Economic Operators Registration and Identification number (EORI)",
+      "topic": "tariff",
+      "date": "2026-11-13",
+      "source": "Taxation and Customs Union",
       "source_tier": "context",
       "links": [
         {
-          "source": "DatamarNews",
-          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNRnpjdUtvYUIzM0tyQjNQX05TVF9ReThGMU5mZkwyQ24tQm0tQ3N6R2hHRXdIZENwdjhZTHdsYlVKZFZxRFRsUFMwRzBDanRNV182Z3c3Unp0b1FlS0xlV21kY3hzTzhfNUdFTFVablZoSDd6ZTdpZzZsY2l1ZWxWSVdUaFFNY3dZalQybmtZTE12UF9CRVVvUi1lWF8?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "18859b6ace8545ec",
-      "event": "intelligent factory based production promoted to boost edible mushroom industry in chongqing",
-      "title": "Intelligent factory-based production promoted to boost edible mushroom industry in Chongqing",
-      "topic": "china",
-      "date": "2026-11-14",
-      "source": "Xinhua",
-      "source_tier": "local English media",
-      "links": [
-        {
-          "source": "Xinhua",
-          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1JQlk2Q2RmTXV4SmVaVkRtdzlodGlHRjMwSnZfYUdDb2RnakxNX0hnY3ZERWV4dnNYSWY1aU9ZUjlMS0tfZ1REZi1CN0VwV3NKTHZfR0VOa0hQQVNzaWRGZEFFTXhmN2hPVmtiU0lYdEJjTUtzRUREc05wRQ?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "57c921afb42cb629",
-      "event": "cma cgm triples profit as q3 freight rates and cargo volumes rise",
-      "title": "CMA CGM triples profit as Q3 freight rates and cargo volumes rise",
-      "topic": "shipping",
-      "date": "2026-11-13",
-      "source": "Yahoo Finance",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "Yahoo Finance",
-          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNQ1ExUEYtOENtMkJfSkcwUVVzYTdkS3Y4NG5HQ0NIM2FJVUd5NlR4UXJkcVFhejRHTjVMTk54SDBMMVhCaHNrTGxHSzFqelZhYzYtZmI1ckszWXNtR2V5c1JCZkpkTjFCUG1CdENLWjNoTVBtOGNha2ZXbmNiT2pfRDhTRmJpTnhkbHBZRm54ekc4cUR0a1RKakFLMA?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "eec4958e69ecdcf6",
-      "event": "cma cgm and hapag lloyd cash in on high freight rates",
-      "title": "CMA CGM and Hapag-Lloyd Cash In on High Freight Rates",
-      "topic": "shipping",
-      "date": "2026-11-13",
-      "source": "WWD",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "WWD",
-          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNM2R1X3JSZzZURWVTUXZfSTNZMXQzWjhqMUpYX1hheTBPMERtRjFaN3p3V1E3aTUzd2gxdndVdVhjNFN5WUxZak9EU0hfTklscmVOb3I0akhNQy1pYUxUS000a1lGZ1k2ckctQk5XZkYxck54elAzTndfaVZQT2k3dFItQUI0OHdQeUVuM3R5M3RLZ3k4VVlnTVJjNlk1VVAydUNyeHdpUWVpTnBBeTB4SXFUS2RFXy1GUGlCRWxRbDBJbWc?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "59b758df4a0e72b9",
-      "event": "shared future for asia pacific full supply chain in shunde drives exports of small home appliances to apec",
-      "title": "Shared Future for Asia Pacific: Full supply chain in Shunde drives exports of small home appliances to APEC",
-      "topic": "china",
-      "date": "2026-11-13",
-      "source": "CGTN",
-      "source_tier": "local English media",
-      "links": [
-        {
-          "source": "CGTN",
-          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9GZE5NZWtnSEpyLXhsTGxuNElHVkFOcFA1YWFEcVB0OFdrZEI0T2o5RnNBOVFyZ0JFZVVKWE1mZjYxemVLWnI2alFlYXdHbFo1Mjc1ajBLRlltQU5QY2FEX1lqZWx4VWZvRVg0TlUtR2hUU2otd3hWQQ?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "81c56ea156582f80",
-      "event": "steel sector sees green milestone",
-      "title": "Steel sector sees green milestone",
-      "topic": "china",
-      "date": "2026-11-12",
-      "source": "China Daily",
-      "source_tier": "local English media",
-      "links": [
-        {
-          "source": "China Daily",
-          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9mb2ZRREhhYTFuZ0JySVA2cUhpY3BMajctMDZKMlBtV0g5WnRhZUlOc18zeUZSLUpDTXdNTkpTUGN0V19DYmdxZFBJVlo0TXR3WlNLWXo0QlAzUk9uM1ZBVExBTUx2WXFqYXBCR3AtVHFHV1pjVF9abXhqdnVvQQ?oc=5"
+          "source": "Taxation and Customs Union",
+          "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxNN2xlZnV1eFNzZ3VjXzRremh1cFU1OGZlQXBfcFdXZ2s1QndNdXlhYUpvdjcxNFdnM3FfZl9FcGNTaDZXY0MzOWpiUm1fZTRReUlDQnJHeThWS0tURjB4RHVMLUNsbmVvWnJMeVVFWTlrVE1fRGVqVDA3Y3czbHE5UlVwa0kzQWNMUGRESmF1bTFMOGdoVklTeXR3UkFKWW9lX0RTS0JfUkxsaEFhbkdxR1lRLWU5TkRDSURtT1dNME5DbWdzUm9QcXptZzItU3pJdWJwaEEtUG5XNE5MX2syWGlSZG9HNjVhV2V4X0FsZTBFY0xEZjJnUkFB?oc=5"
         }
       ]
     },
@@ -255,21 +270,6 @@
         {
           "source": "France 24",
           "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPTG40X2l0SHdSaUVEczFoLU1SZWtzUHBvOE5yaW43UkRIWlRDOHE4ZnowbzZjV0s0a0R5WmxrdC1hWnRGcER2b3A1NUJZVUJPcGRhZkQzd2w2M0p1dlpsSElyUDREdVVlZlVib1drWlZpMWJzN0hydW16cHl1VWxwNm5aMXZCeU1nVG1hOVFNYmk3bmtnZmJoTlZnSUZ2Y2YwOC1sY0hR?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "622a06182eab2189",
-      "event": "eu customs tariff taric",
-      "title": "EU Customs Tariff (TARIC)",
-      "topic": "tariff",
-      "date": "2026-08-04",
-      "source": "Taxation and Customs Union",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "Taxation and Customs Union",
-          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPak11UFdGUzFad0xCMWRucXE2Nl9MUW8xTkRRb3QwVGdUQ1l0OGItQ2VSY0pQWWJqYTZkWmp0MGpId0pvR0xfNjM1Q1hLTVkyVDlyZmFPV0FvWk1pb1ROSWVWZW8zVWY1UjlHa0JhdlVFcjh1UW9HVE1MNGpyblliVzVEV2ljc19IQk5yRlUtQjV4QWN2cEdMOEQ0U1JXeDhUd0YxbW5oQnVrRUdwd2lkLVNubmpwLXgwTHc?oc=5"
         }
       ]
     }
