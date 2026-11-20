@@ -1,8 +1,53 @@
 {
   "version": 1,
-  "edition": "19 Nov 2026, 01:11 UTC",
+  "edition": "20 Nov 2026, 01:11 UTC",
   "news_status": "current",
   "stories": [
+    {
+      "id": "7b67b157cac2946c",
+      "event": "shenzhen driving forward manufacturing",
+      "title": "Shenzhen driving forward manufacturing",
+      "topic": "china",
+      "date": "2026-11-19",
+      "source": "China Daily Global Edition",
+      "source_tier": "local English media",
+      "links": [
+        {
+          "source": "China Daily Global Edition",
+          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQNFIyZjhZalp1WGctSmxJdVI4M3gxM3pOXzZOWkpSWEZmMmZOVXRKTlZyb2cwd0tPUjQzVUVESHgtSW1sSkpKX2dWazEtNE1zXzBmNDk2UHFxLUFscmlnMHhqaXV1Yi1keXN5alRQby1BRHMzeGVyLTVnLW56bWktMG5n?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "00d2f7bf4875b9be",
+      "event": "nev upgrades boon for steel industry",
+      "title": "NEV upgrades boon for steel industry",
+      "topic": "china",
+      "date": "2026-11-19",
+      "source": "China Daily Global Edition",
+      "source_tier": "local English media",
+      "links": [
+        {
+          "source": "China Daily Global Edition",
+          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNZWRFYlFCdTdQVWdxVXJsUzI1X2dVaGFfRUpGeGpyeloycmVuMVJxRmJFM0lrUDVCNTV1STV6eG5rdGRMWjhUMktnalJuMUg1cUZMdWRmd3ZWQUJCUDl4ZlVGeEowZHpXVzBWeUZVby02TG1vbWRIZWRhZWJ2S2ZXZUFR?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "b462d68f52fafd48",
+      "event": "elon musk vows to raise output at tesla s shanghai factory despite sales plunge",
+      "title": "Elon Musk vows to raise output at Tesla’s Shanghai factory despite sales plunge",
+      "topic": "china",
+      "date": "2026-11-19",
+      "source": "South China Morning Post",
+      "source_tier": "local English media",
+      "links": [
+        {
+          "source": "South China Morning Post",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPdzRQU0t3SGg1anptMnkxOUN1ZE5UekZsR0tvTDhOcU1qT3JjMVJiQjFUb1RLb1hLRzVKVGhkQllwdlVMU3kwVHBncUh4S0QycFVqUC0tcWp3RktRQ1BvTUpPbnVCaV9tUFNqVDVpYll3d0VQWm41ZUhPNV9KMUVWaU5hNmJzZXUteVNvWmc2b3NISGNtSVZGcF92aUZNODRPVjlnMTJvcDR5OFJpc0ZUTHU1bXk2VGtMVHMwUGZtWnk1VXM0Mlc0S1BoamRzYnJ1Vll3?oc=5"
+        }
+      ]
+    },
     {
       "id": "031345709688267b",
       "event": "container freight rates decline on key routes to americas europe",
@@ -19,17 +64,17 @@
       ]
     },
     {
-      "id": "2c248e7719ae2eee",
-      "event": "omni shoring is changing the economics of ocean freight resilience",
-      "title": "Omni-shoring is changing the economics of ocean freight resilience",
+      "id": "2a8be17673d6d43f",
+      "event": "what zim integrated shipping services zim said on its q3 earnings call",
+      "title": "What ZIM Integrated Shipping Services (ZIM) Said on Its Q3 Earnings Call",
       "topic": "shipping",
       "date": "2026-11-18",
-      "source": "Container News",
+      "source": "TradingView",
       "source_tier": "context",
       "links": [
         {
-          "source": "Container News",
-          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOWUZuVkl1WkM1aEtXV3c3R0ZsSzR4QlF1VGNQbkxyUk0wazFhVHB5MFF4YjdlX1JJb3N1Z3BBTm11bEFlVlNNdTA2VTVVQzQ5RDB5Z2lhWjBRUDRhVm4zUUlGenotQUFfd3o4RXc3VXd2Y251cDQ3bS02T2o5cUUtUFNFX3VYbmpDWUhvVGFuQmtrbkgxNWs4Sl9n?oc=5"
+          "source": "TradingView",
+          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQcWJxUXlJOE92bExDbVR5MXN0ZWpfVFJhUEg2WDROajJqbTVUTkVMYVZaSmdsazByVlFod2twMEF1UnR4RDRkNmRualBaLTFENld6X2t1bDc5ZFdsdlM3aUdjT0xtX2FUbzVQYlZZZUVtRGFmcnNrTHJPTkYxa1JnZF9VZE5ZYk9qd3pxREtaYjVjY3dySktBNFlSa0kxYmxRMld1M3VKLUxKV1pvVEZtTERyS0o5LUZKUkI5UVhENm9MVFV1NUk3Q3ZZWQ?oc=5"
         }
       ]
     },
@@ -49,17 +94,17 @@
       ]
     },
     {
-      "id": "ecdde057201d6b37",
-      "event": "how zhuzhou s rail transit industry illustrates the rise of china s smart manufacturing",
-      "title": "How Zhuzhou's rail transit industry illustrates the rise of China's smart manufacturing",
-      "topic": "china",
-      "date": "2026-11-17",
-      "source": "Global Times",
-      "source_tier": "local English media",
+      "id": "88fb63438deb7ccd",
+      "event": "zim raises its 2026 outlook again as third quarter net income jumps to 830 million on a 55 rise in freight rates",
+      "title": "ZIM raises its 2026 outlook again as third-quarter net income jumps to $830 million on a 55% rise in freight rates",
+      "topic": "shipping",
+      "date": "2026-11-18",
+      "source": "MLQ.ai",
+      "source_tier": "context",
       "links": [
         {
-          "source": "Global Times",
-          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE8xbmNKMHF3UWRqanRjME9KRW5tQVN0bzhWQ3huX2FxN3h4eTdXdHdQaVRzcEVEQS1TNk9RdVBnZmcwMlNIUjZNNnNUS0thMVM4OVVLX1E1MTRzNVByMldyQk9B?oc=5"
+          "source": "MLQ.ai",
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPNXpCY0REWkJQcHdLNHJnQ3UtTVZKblVXRzFsTWtwZEQwalp4TDlCVmZsZnRneEJaVHpMbHphZndGS2E3ZWRZTmNrQ3ZZWjVvdzA5bHY3Qy0tQ244dFhtOEttcmpSMUkyR05ac2xhTjdTYWxBRlNoMktTOFRHVjdRbU0tVWNXUUhWR3l3Y19aV1RSMEdCemtZM0dlRUJOZ0dGeTh2RDBBSkdyVHFhbVFvMG90bjVZNVRfYUZrcFpfUnZ4a0Rnc2hjNmVRTGt0dw?oc=5"
         }
       ]
     },
@@ -109,21 +154,6 @@
       ]
     },
     {
-      "id": "f93a13e0d2eafe67",
-      "event": "port fee suspension eases agricultural shipping cost uncertainty rfd tv",
-      "title": "Port Fee Suspension Eases Agricultural Shipping Cost Uncertainty - RFD-TV",
-      "topic": "shipping",
-      "date": "2026-11-17",
-      "source": "RFD-TV",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "RFD-TV",
-          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNQVN1YXZOYzJVN0RPdG9qUm53cGg3UV9fbXRNQVpNeXBYRFFKMXUtV3ZlS3B3SDl6Mm1YRlh3TmlMNXBJWm9aTEtzSUpTUU9pZTVsUUx3RUQtTlhfYXN6S0NTQWItNjRmdkVqYWdFcHdfTHhSRWlCRnZILVNxZ1E4ZTcyY01CcHFTMDlSYXdjVQ?oc=5"
-        }
-      ]
-    },
-    {
       "id": "3c330830b6544f96",
       "event": "zim faces earnings test as freight rate rally fuels rebound",
       "title": "ZIM faces earnings test as freight rate rally fuels rebound",
@@ -139,62 +169,17 @@
       ]
     },
     {
-      "id": "a622f5b4fff8d203",
-      "event": "choose the best freight rate management system rms",
-      "title": "Choose the Best Freight Rate Management System [RMS]",
-      "topic": "shipping",
+      "id": "ecdde057201d6b37",
+      "event": "how zhuzhou s rail transit industry illustrates the rise of china s smart manufacturing",
+      "title": "How Zhuzhou's rail transit industry illustrates the rise of China's smart manufacturing",
+      "topic": "china",
       "date": "2026-11-17",
-      "source": "Container News",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "Container News",
-          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOdWxtT1lTSWl5cjI0WEc1elFtVUFrOXdINUFfdjlIN3ctR05NMzVoaF96MmZITlhpTXd4RC1kTHh3ZlpOeDJwMmJqRnVHUmN4cnVYdTV1dndyVkRhWnpaZkhoNzYwMWc5WnllOEE1MW9JeWh1REloa0NFMU8tQlpLbFJHM2Q?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "5282a02ea374d107",
-      "event": "china s industrial output growth slows",
-      "title": "China’s Industrial Output Growth Slows",
-      "topic": "china",
-      "date": "2026-11-16",
-      "source": "Caixin Global",
-      "source_tier": "local English media",
-      "links": [
-        {
-          "source": "Caixin Global",
-          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQdlRNYWhoMlZjLU13R3F6TG1oVGlWOWVKdzlfam9nSTYtYWpwVkNubFMtcFhldlBCbWl4N1N2Vnl2dmlzc2JWLVlycGQ3ZGZRaGFXdHY4dm53R2xWc3lWenpqcE1jbHQtemM5VVZtcTRCQ0VRcWdWUm5SdHhDSzQ0SkFYM0N3U3JTanNrOTQzdmdDSFRRWVQ4?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "c7cb6d222e53f832",
-      "event": "gt voice india s trade deficit points to deeper manufacturing problems not china",
-      "title": "GT Voice: India’s trade deficit points to deeper manufacturing problems, not China",
-      "topic": "china",
-      "date": "2026-11-16",
       "source": "Global Times",
       "source_tier": "local English media",
       "links": [
         {
           "source": "Global Times",
-          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE05SzlZaDVqWElzY1dnVjBsY2l6aDdfY3BvVFhla1lUaUNzN0ltbHJkVGFDRE1qTFA3Z21QaEVnUUhwMWdnV3h3M1NUdGt4SEVVWXYxU2dXQ09VZFdYb19vTnV3?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "99d70ced6b42dd09",
-      "event": "economic operators registration and identification number eori",
-      "title": "Economic Operators Registration and Identification number (EORI)",
-      "topic": "tariff",
-      "date": "2026-11-13",
-      "source": "Taxation and Customs Union",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "Taxation and Customs Union",
-          "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxNN2xlZnV1eFNzZ3VjXzRremh1cFU1OGZlQXBfcFdXZ2s1QndNdXlhYUpvdjcxNFdnM3FfZl9FcGNTaDZXY0MzOWpiUm1fZTRReUlDQnJHeThWS0tURjB4RHVMLUNsbmVvWnJMeVVFWTlrVE1fRGVqVDA3Y3czbHE5UlVwa0kzQWNMUGRESmF1bTFMOGdoVklTeXR3UkFKWW9lX0RTS0JfUkxsaEFhbkdxR1lRLWU5TkRDSURtT1dNME5DbWdzUm9QcXptZzItU3pJdWJwaEEtUG5XNE5MX2syWGlSZG9HNjVhV2V4X0FsZTBFY0xEZjJnUkFB?oc=5"
+          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE8xbmNKMHF3UWRqanRjME9KRW5tQVN0bzhWQ3huX2FxN3h4eTdXdHdQaVRzcEVEQS1TNk9RdVBnZmcwMlNIUjZNNnNUS0thMVM4OVVLX1E1MTRzNVByMldyQk9B?oc=5"
         }
       ]
     },
@@ -259,17 +244,32 @@
       ]
     },
     {
-      "id": "45ba4ead2f2b17c6",
-      "event": "vietnam signs free trade deal with four european nations",
-      "title": "Vietnam signs free trade deal with four European nations",
+      "id": "622a06182eab2189",
+      "event": "eu customs tariff taric",
+      "title": "EU Customs Tariff (TARIC)",
       "topic": "tariff",
-      "date": "2026-10-18",
-      "source": "France 24",
+      "date": "2026-08-04",
+      "source": "Taxation and Customs Union",
       "source_tier": "context",
       "links": [
         {
-          "source": "France 24",
-          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPTG40X2l0SHdSaUVEczFoLU1SZWtzUHBvOE5yaW43UkRIWlRDOHE4ZnowbzZjV0s0a0R5WmxrdC1hWnRGcER2b3A1NUJZVUJPcGRhZkQzd2w2M0p1dlpsSElyUDREdVVlZlVib1drWlZpMWJzN0hydW16cHl1VWxwNm5aMXZCeU1nVG1hOVFNYmk3bmtnZmJoTlZnSUZ2Y2YwOC1sY0hR?oc=5"
+          "source": "Taxation and Customs Union",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPak11UFdGUzFad0xCMWRucXE2Nl9MUW8xTkRRb3QwVGdUQ1l0OGItQ2VSY0pQWWJqYTZkWmp0MGpId0pvR0xfNjM1Q1hLTVkyVDlyZmFPV0FvWk1pb1ROSWVWZW8zVWY1UjlHa0JhdlVFcjh1UW9HVE1MNGpyblliVzVEV2ljc19IQk5yRlUtQjV4QWN2cEdMOEQ0U1JXeDhUd0YxbW5oQnVrRUdwd2lkLVNubmpwLXgwTHc?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "492f5b2eeda442ff",
+      "event": "actions by the united states in the investigations under section 301 of the trade act of 1974 of the acts policies and practices of 60 economies related to the failure of each economy to impose and effectively enforce a prohibition on the importation of good",
+      "title": "Actions by the United States in the Investigations under Section 301 of the Trade Act of 1974 of the Acts, Policies, and Practices of 60 Economies Related to the Failure of Each Economy to Impose and Effectively Enforce a Prohibition on the Importation of Good",
+      "topic": "tariff",
+      "date": "2026-07-23",
+      "source": "The White House (.gov)",
+      "source_tier": "official",
+      "links": [
+        {
+          "source": "The White House (.gov)",
+          "url": "https://news.google.com/rss/articles/CBMi7wJBVV95cUxOTTdveWw3elBtaHVnRC0ySmVrb2NreHFVdksxNWgyaXFtSzdjbXd5Y3VJSTRpd1VraWhsZ0lZLUFOS1ZHQU9vQ3Z0dmc0Z0xRT2pCVmFGRHlHM2ZIbDVjQ1JkajU2bzB6Wk1TR2hQOWhYMHVod1ZCdnJCRlVRWTkzR21rSVBQQXpTamUtOXJzLVlFVmRYUTM2MVNJQWs4Wk5XWnMxT0dwWFJqMVY3RWwzSE0yeGxKSUJNQ3ZXU1F6REdjOVZZTjdPTllKNjVOcjU0Y0x0TTFrSWttQVo4RmhQSjBUQTRqdThVVUJwbGlpX1ZmV1UyUmFLWGZwdmI2V1ZFRnhUME5jdWNyUzBqRWM2cTJuZ1Y4VzlGOGs0Q0V3Qk54MUtwNGlRVGFqcUR6blNDVUV2cVdaTTN2TDA1V3lrdm0tS0JlVXcwdWNZMlFocEhlN0o3S0N0N3pRLXJGWjFMOW5mM3VHclJZLUh5TTFz?oc=5"
         }
       ]
     }
