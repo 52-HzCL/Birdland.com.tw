@@ -1,8 +1,53 @@
 {
   "version": 1,
-  "edition": "20 Nov 2026, 01:11 UTC",
+  "edition": "21 Nov 2026, 01:11 UTC",
   "news_status": "current",
   "stories": [
+    {
+      "id": "e9d7bce282963434",
+      "event": "export orders increase to record high",
+      "title": "Export orders increase to record high",
+      "topic": "taiwan",
+      "date": "2026-11-20",
+      "source": "Taipei Times",
+      "source_tier": "local English media",
+      "links": [
+        {
+          "source": "Taipei Times",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBxV0lZNXEzbmtBNFEtbWctaXhtZ2R6dElQUm9ldi1iMnVFMjZHSUQtQlZqaTVlZEVxcUhnVjVVWlhad2xqOTZiMHpxUS1Sdk1OLWxqa05rOW9MNmNEbmwxd3FHSGZlVVFXRjBScGV1d2ZsNTJGNnc?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "3e4529f41fa550c5",
+      "event": "a tour of li auto s beijing manufacturing base a glimpse of smart production lines",
+      "title": "A tour of Li Auto's Beijing Manufacturing Base: A glimpse of smart production lines",
+      "topic": "china",
+      "date": "2026-11-20",
+      "source": "China Daily Global Edition",
+      "source_tier": "local English media",
+      "links": [
+        {
+          "source": "China Daily Global Edition",
+          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNSUhWRko2Ymt1RlZWQlMwM3BMbGNPYjRpc09hWnlhZ1huY0pyZllXQVF5czNHaDRSSV9kLUZnc0xyekkzbUE5MllfTThZNXNoWVNKRVppa01YNk5VMGZjSTNzMEI5cWVXNmVJZHZXWnJuejBzQUpkclVsVUptRGZ2UWlB?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "8e89f61ede76ec5d",
+      "event": "the industry brain behind the factory how data reshapes car manufacturing in chongqing",
+      "title": "The industry brain behind the factory: How data reshapes car manufacturing in Chongqing",
+      "topic": "china",
+      "date": "2026-11-20",
+      "source": "Xinhua",
+      "source_tier": "local English media",
+      "links": [
+        {
+          "source": "Xinhua",
+          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE8tbldQQnlocWFpRENlWmNiYmR6T0t6NVZFTUF4Zjc0RnRCM003SFNnZFQzQ1lhc1NZWkJCQ0duQVgtUGVyMVFvWUJuLUZrX3pnMXhQSjJLLU5TTE56X3dCUS1HUzl3V3kwdVVoOTdhaFNmZ09XNDllanVzcGI?oc=5"
+        }
+      ]
+    },
     {
       "id": "7b67b157cac2946c",
       "event": "shenzhen driving forward manufacturing",
@@ -34,6 +79,21 @@
       ]
     },
     {
+      "id": "17eebc209a11ada3",
+      "event": "yarn dyed fabric factory reborn as tourism and leisure block in tianjin",
+      "title": "Yarn-dyed fabric factory reborn as tourism and leisure block in Tianjin",
+      "topic": "china",
+      "date": "2026-11-19",
+      "source": "Xinhua",
+      "source_tier": "local English media",
+      "links": [
+        {
+          "source": "Xinhua",
+          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5mc2xHQi1ibEN3NV9BUDhXTm85ZDVXcE5CLUdBRGdKOWZKQmU1N2lGMTl2ZTJTbmNTQ1gzTWJKUWNfUW54TXZzbmhraWx1Q2ZyNG5wTFBKdTdITWRPZldNTmpYbUFxSzQyMDE1aUZfSHBFcV9KRi1EVVM2Zw?oc=5"
+        }
+      ]
+    },
+    {
       "id": "b462d68f52fafd48",
       "event": "elon musk vows to raise output at tesla s shanghai factory despite sales plunge",
       "title": "Elon Musk vows to raise output at Tesla’s Shanghai factory despite sales plunge",
@@ -45,6 +105,21 @@
         {
           "source": "South China Morning Post",
           "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPdzRQU0t3SGg1anptMnkxOUN1ZE5UekZsR0tvTDhOcU1qT3JjMVJiQjFUb1RLb1hLRzVKVGhkQllwdlVMU3kwVHBncUh4S0QycFVqUC0tcWp3RktRQ1BvTUpPbnVCaV9tUFNqVDVpYll3d0VQWm41ZUhPNV9KMUVWaU5hNmJzZXUteVNvWmc2b3NISGNtSVZGcF92aUZNODRPVjlnMTJvcDR5OFJpc0ZUTHU1bXk2VGtMVHMwUGZtWnk1VXM0Mlc0S1BoamRzYnJ1Vll3?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "14de7e58d54e3871",
+      "event": "thailand to seek us tariff cut after reaching key terms of trade deal minister says",
+      "title": "Thailand to seek US tariff cut after reaching key terms of trade deal, minister says",
+      "topic": "tariff",
+      "date": "2026-11-18",
+      "source": "Reuters",
+      "source_tier": "trade",
+      "links": [
+        {
+          "source": "Reuters",
+          "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQQmJGQjFQOHViUFB3Y3FpbDVVNzNISFBpcnB4ZlBIb1l1ajNadl9XbFJzNzhibHBZZFhCS1dOTEo2QkZ1TnRHUXYtM0UzMmVhT1VjSHFVTktWdjV2YXRSQ1c0dE10YkVOSU5iTWdoNmt4b09HYkN5WkFsSk9RSVJBbF92c3RRelF5YU80UFIteDZjNzB1ak40NlFWc1hCbVZPZ3lSazNzc05WTlN1Tjd4b1dRRXg5OGNPT1pKX1dLLUdITGpNOUdHWlZqNnc?oc=5"
         }
       ]
     },
@@ -64,47 +139,17 @@
       ]
     },
     {
-      "id": "2a8be17673d6d43f",
-      "event": "what zim integrated shipping services zim said on its q3 earnings call",
-      "title": "What ZIM Integrated Shipping Services (ZIM) Said on Its Q3 Earnings Call",
+      "id": "d5a2321596ed698e",
+      "event": "xeneta shipping index xsi c global container price index xeneta shipping index xsi c",
+      "title": "Xeneta Shipping Index (XSI-C) | Global Container Price Index - Xeneta Shipping Index (XSI-C)",
       "topic": "shipping",
-      "date": "2026-11-18",
-      "source": "TradingView",
+      "date": "2026-11-17",
+      "source": "Xeneta Shipping Index (XSI-C)",
       "source_tier": "context",
       "links": [
         {
-          "source": "TradingView",
-          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQcWJxUXlJOE92bExDbVR5MXN0ZWpfVFJhUEg2WDROajJqbTVUTkVMYVZaSmdsazByVlFod2twMEF1UnR4RDRkNmRualBaLTFENld6X2t1bDc5ZFdsdlM3aUdjT0xtX2FUbzVQYlZZZUVtRGFmcnNrTHJPTkYxa1JnZF9VZE5ZYk9qd3pxREtaYjVjY3dySktBNFlSa0kxYmxRMld1M3VKLUxKV1pvVEZtTERyS0o5LUZKUkI5UVhENm9MVFV1NUk3Q3ZZWQ?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "d9dc1711b5c7342b",
-      "event": "zim posts 830m q3 2026 net income as freight rates rise 55",
-      "title": "ZIM posts $830m Q3 2026 net income as freight rates rise 55%",
-      "topic": "shipping",
-      "date": "2026-11-18",
-      "source": "Data Portuaria",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "Data Portuaria",
-          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOSVhJZEVNQzloTXcwM0pZSG9mTWs2RExpem9DckFRREJpcmRhU0szZ2dZamU4M0R0alhUX1dmOVlYS0taZTU5U1JjWHdQLTRQVkhVWGpPQTdOQ0VUeEc1QTN3dHVyVlBlU1BkUWFRQTZ2eC1tWEpuSVNTQ3hMRnVRVVVCNm9nODY4MGdpNTNxRlp1d2V1R3VxNzk4WTJnaGppUnFyOVZtcUktRzJZWXYySTBaTGcwMGZi?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "88fb63438deb7ccd",
-      "event": "zim raises its 2026 outlook again as third quarter net income jumps to 830 million on a 55 rise in freight rates",
-      "title": "ZIM raises its 2026 outlook again as third-quarter net income jumps to $830 million on a 55% rise in freight rates",
-      "topic": "shipping",
-      "date": "2026-11-18",
-      "source": "MLQ.ai",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "MLQ.ai",
-          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPNXpCY0REWkJQcHdLNHJnQ3UtTVZKblVXRzFsTWtwZEQwalp4TDlCVmZsZnRneEJaVHpMbHphZndGS2E3ZWRZTmNrQ3ZZWjVvdzA5bHY3Qy0tQ244dFhtOEttcmpSMUkyR05ac2xhTjdTYWxBRlNoMktTOFRHVjdRbU0tVWNXUUhWR3l3Y19aV1RSMEdCemtZM0dlRUJOZ0dGeTh2RDBBSkdyVHFhbVFvMG90bjVZNVRfYUZrcFpfUnZ4a0Rnc2hjNmVRTGt0dw?oc=5"
+          "source": "Xeneta Shipping Index (XSI-C)",
+          "url": "https://news.google.com/rss/articles/CBMiP0FVX3lxTE9sRTVBLXdyckhNX3ZyVGJYLXJSa3V0YzVEUTJ0XzRGdnN6aTZwOFZ6NlhvandaMkFkWDdiQ2p5aw?oc=5"
         }
       ]
     },
@@ -120,21 +165,6 @@
         {
           "source": "FreightWaves",
           "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNWjdmako4QzByallQUWF2QnVoQzdNTHhzUndVa1d2MXdRbWU3OTQwaXVvSEFvaVlheTJQazduOWFRbHFrZmpfanZNX2RVR20zSDhERFpkVU1qekxxbEl1aWZqZTNyS0psWlZVd3lCWVZtX2xmVGkxM2wzZzRITnRjSzY4VDNkV2hWWVBacm5LSFl3Z0p0Y2hOLTFuN1JHcDVWRXppYTlBRGtCY2tsQjd1ZXNieVg?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "d5a2321596ed698e",
-      "event": "xeneta shipping index xsi c global container price index xeneta shipping index xsi c",
-      "title": "Xeneta Shipping Index (XSI-C) | Global Container Price Index - Xeneta Shipping Index (XSI-C)",
-      "topic": "shipping",
-      "date": "2026-11-17",
-      "source": "Xeneta Shipping Index (XSI-C)",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "Xeneta Shipping Index (XSI-C)",
-          "url": "https://news.google.com/rss/articles/CBMiP0FVX3lxTE9sRTVBLXdyckhNX3ZyVGJYLXJSa3V0YzVEUTJ0XzRGdnN6aTZwOFZ6NlhvandaMkFkWDdiQ2p5aw?oc=5"
         }
       ]
     },
@@ -199,21 +229,6 @@
       ]
     },
     {
-      "id": "5b1039f35a34c979",
-      "event": "eu deforestation regulation eudr",
-      "title": "EU Deforestation Regulation (EUDR)",
-      "topic": "tariff",
-      "date": "2026-11-04",
-      "source": "environment.ec.europa.eu",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "environment.ec.europa.eu",
-          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOcjhCdzBvVTdDbGRvd1lVUTlLai1xT0FfVEJ0MUx0TUtsc09LMFJQX0M1SnpDU0ZnR3IyUmFDc2RkR1RWOFFoNHR4STdYWjQyQl9saGN1bTk0Smg3TGo2bFlzWEx1Yml3THFJM0dHX1FORU1VdEtzWkRrLTFrdTF4M0NsR1VKWXF0NzFBeVRkZEg4YkZEenhOWnZZOUVJdw?oc=5"
-        }
-      ]
-    },
-    {
       "id": "29409c92c0350bfe",
       "event": "taiwan s manufacturing sector stays in fast growth mode in september",
       "title": "Taiwan's manufacturing sector stays in fast-growth mode in September",
@@ -229,17 +244,17 @@
       ]
     },
     {
-      "id": "f2125c1aec257e47",
-      "event": "september industrial production rises 19 percent",
-      "title": "September industrial production rises 19 percent",
-      "topic": "taiwan",
-      "date": "2026-10-24",
-      "source": "Taipei Times",
-      "source_tier": "local English media",
+      "id": "45ba4ead2f2b17c6",
+      "event": "vietnam signs free trade deal with four european nations",
+      "title": "Vietnam signs free trade deal with four European nations",
+      "topic": "tariff",
+      "date": "2026-10-18",
+      "source": "France 24",
+      "source_tier": "context",
       "links": [
         {
-          "source": "Taipei Times",
-          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5ZeURMR2pRWG5PWkxITnJSLU5PY2lmVk5lSTdpSGM5ckMwR1NBbzVfalVZYzJVT3ZGeGVwdDVHblZkQi1qSlhpN3hwQmdBdFNWbDhBa2NnbVhIU1FwWjRmQXRIZTFPQWxjU09KczVfNVBELTluNmc?oc=5"
+          "source": "France 24",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPTG40X2l0SHdSaUVEczFoLU1SZWtzUHBvOE5yaW43UkRIWlRDOHE4ZnowbzZjV0s0a0R5WmxrdC1hWnRGcER2b3A1NUJZVUJPcGRhZkQzd2w2M0p1dlpsSElyUDREdVVlZlVib1drWlZpMWJzN0hydW16cHl1VWxwNm5aMXZCeU1nVG1hOVFNYmk3bmtnZmJoTlZnSUZ2Y2YwOC1sY0hR?oc=5"
         }
       ]
     },
@@ -255,21 +270,6 @@
         {
           "source": "Taxation and Customs Union",
           "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPak11UFdGUzFad0xCMWRucXE2Nl9MUW8xTkRRb3QwVGdUQ1l0OGItQ2VSY0pQWWJqYTZkWmp0MGpId0pvR0xfNjM1Q1hLTVkyVDlyZmFPV0FvWk1pb1ROSWVWZW8zVWY1UjlHa0JhdlVFcjh1UW9HVE1MNGpyblliVzVEV2ljc19IQk5yRlUtQjV4QWN2cEdMOEQ0U1JXeDhUd0YxbW5oQnVrRUdwd2lkLVNubmpwLXgwTHc?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "492f5b2eeda442ff",
-      "event": "actions by the united states in the investigations under section 301 of the trade act of 1974 of the acts policies and practices of 60 economies related to the failure of each economy to impose and effectively enforce a prohibition on the importation of good",
-      "title": "Actions by the United States in the Investigations under Section 301 of the Trade Act of 1974 of the Acts, Policies, and Practices of 60 Economies Related to the Failure of Each Economy to Impose and Effectively Enforce a Prohibition on the Importation of Good",
-      "topic": "tariff",
-      "date": "2026-07-23",
-      "source": "The White House (.gov)",
-      "source_tier": "official",
-      "links": [
-        {
-          "source": "The White House (.gov)",
-          "url": "https://news.google.com/rss/articles/CBMi7wJBVV95cUxOTTdveWw3elBtaHVnRC0ySmVrb2NreHFVdksxNWgyaXFtSzdjbXd5Y3VJSTRpd1VraWhsZ0lZLUFOS1ZHQU9vQ3Z0dmc0Z0xRT2pCVmFGRHlHM2ZIbDVjQ1JkajU2bzB6Wk1TR2hQOWhYMHVod1ZCdnJCRlVRWTkzR21rSVBQQXpTamUtOXJzLVlFVmRYUTM2MVNJQWs4Wk5XWnMxT0dwWFJqMVY3RWwzSE0yeGxKSUJNQ3ZXU1F6REdjOVZZTjdPTllKNjVOcjU0Y0x0TTFrSWttQVo4RmhQSjBUQTRqdThVVUJwbGlpX1ZmV1UyUmFLWGZwdmI2V1ZFRnhUME5jdWNyUzBqRWM2cTJuZ1Y4VzlGOGs0Q0V3Qk54MUtwNGlRVGFqcUR6blNDVUV2cVdaTTN2TDA1V3lrdm0tS0JlVXcwdWNZMlFocEhlN0o3S0N0N3pRLXJGWjFMOW5mM3VHclJZLUh5TTFz?oc=5"
         }
       ]
     }
