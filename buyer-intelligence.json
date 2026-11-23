@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "edition": "22 Nov 2026, 01:11 UTC",
+  "edition": "23 Nov 2026, 01:13 UTC",
   "news_status": "current",
   "stories": [
     {
@@ -64,6 +64,21 @@
       ]
     },
     {
+      "id": "67c505627d5ad206",
+      "event": "xeneta shipping index xsi c global container price index xeneta shipping index xsi c",
+      "title": "Xeneta Shipping Index (XSI-C) | Global Container Price Index - Xeneta Shipping Index (XSI-C)",
+      "topic": "shipping",
+      "date": "2026-11-20",
+      "source": "Xeneta Shipping Index (XSI-C)",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "Xeneta Shipping Index (XSI-C)",
+          "url": "https://news.google.com/rss/articles/CBMiP0FVX3lxTE9sRTVBLXdyckhNX3ZyVGJYLXJSa3V0YzVEUTJ0XzRGdnN6aTZwOFZ6NlhvandaMkFkWDdiQ2p5aw?oc=5"
+        }
+      ]
+    },
+    {
       "id": "7b67b157cac2946c",
       "event": "shenzhen driving forward manufacturing",
       "title": "Shenzhen driving forward manufacturing",
@@ -79,17 +94,21 @@
       ]
     },
     {
-      "id": "17eebc209a11ada3",
-      "event": "yarn dyed fabric factory reborn as tourism and leisure block in tianjin",
-      "title": "Yarn-dyed fabric factory reborn as tourism and leisure block in Tianjin",
+      "id": "00d2f7bf4875b9be",
+      "event": "nev upgrades boon for steel industry",
+      "title": "NEV upgrades boon for steel industry",
       "topic": "china",
       "date": "2026-11-19",
-      "source": "Xinhua",
+      "source": "China Daily",
       "source_tier": "local English media",
       "links": [
         {
-          "source": "Xinhua",
-          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5mc2xHQi1ibEN3NV9BUDhXTm85ZDVXcE5CLUdBRGdKOWZKQmU1N2lGMTl2ZTJTbmNTQ1gzTWJKUWNfUW54TXZzbmhraWx1Q2ZyNG5wTFBKdTdITWRPZldNTmpYbUFxSzQyMDE1aUZfSHBFcV9KRi1EVVM2Zw?oc=5"
+          "source": "China Daily",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9DajN6VzlIOWdZMlNtV2VMMGhRaHNGRnFlWE16RXZQMHUyVDJ5S25zeVdOVUNUekktN1Bmb2lOaW5GNmk2VVdMYS1mNHRicEVVazRvYkw5VXFPQkV5NEVFakFaMkUzNFpBQi1ZMUh0WVp3bHJ6MU1tamVyajhuQQ?oc=5"
+        },
+        {
+          "source": "China Daily Global Edition",
+          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNZWRFYlFCdTdQVWdxVXJsUzI1X2dVaGFfRUpGeGpyeloycmVuMVJxRmJFM0lrUDVCNTV1STV6eG5rdGRMWjhUMktnalJuMUg1cUZMdWRmd3ZWQUJCUDl4ZlVGeEowZHpXVzBWeUZVby02TG1vbWRIZWRhZWJ2S2ZXZUFR?oc=5"
         }
       ]
     },
@@ -109,17 +128,17 @@
       ]
     },
     {
-      "id": "00d2f7bf4875b9be",
-      "event": "nev upgrades boon for steel industry",
-      "title": "NEV upgrades boon for steel industry",
+      "id": "17eebc209a11ada3",
+      "event": "yarn dyed fabric factory reborn as tourism and leisure block in tianjin",
+      "title": "Yarn-dyed fabric factory reborn as tourism and leisure block in Tianjin",
       "topic": "china",
       "date": "2026-11-19",
-      "source": "China Daily Global Edition",
+      "source": "Xinhua",
       "source_tier": "local English media",
       "links": [
         {
-          "source": "China Daily Global Edition",
-          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNZWRFYlFCdTdQVWdxVXJsUzI1X2dVaGFfRUpGeGpyeloycmVuMVJxRmJFM0lrUDVCNTV1STV6eG5rdGRMWjhUMktnalJuMUg1cUZMdWRmd3ZWQUJCUDl4ZlVGeEowZHpXVzBWeUZVby02TG1vbWRIZWRhZWJ2S2ZXZUFR?oc=5"
+          "source": "Xinhua",
+          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5mc2xHQi1ibEN3NV9BUDhXTm85ZDVXcE5CLUdBRGdKOWZKQmU1N2lGMTl2ZTJTbmNTQ1gzTWJKUWNfUW54TXZzbmhraWx1Q2ZyNG5wTFBKdTdITWRPZldNTmpYbUFxSzQyMDE1aUZfSHBFcV9KRi1EVVM2Zw?oc=5"
         }
       ]
     },
@@ -184,36 +203,6 @@
       ]
     },
     {
-      "id": "d9dc1711b5c7342b",
-      "event": "zim posts 830m q3 2026 net income as freight rates rise 55",
-      "title": "ZIM posts $830m Q3 2026 net income as freight rates rise 55%",
-      "topic": "shipping",
-      "date": "2026-11-18",
-      "source": "Data Portuaria",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "Data Portuaria",
-          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOSVhJZEVNQzloTXcwM0pZSG9mTWs2RExpem9DckFRREJpcmRhU0szZ2dZamU4M0R0alhUX1dmOVlYS0taZTU5U1JjWHdQLTRQVkhVWGpPQTdOQ0VUeEc1QTN3dHVyVlBlU1BkUWFRQTZ2eC1tWEpuSVNTQ3hMRnVRVVVCNm9nODY4MGdpNTNxRlp1d2V1R3VxNzk4WTJnaGppUnFyOVZtcUktRzJZWXYySTBaTGcwMGZi?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "88fb63438deb7ccd",
-      "event": "zim raises its 2026 outlook again as third quarter net income jumps to 830 million on a 55 rise in freight rates",
-      "title": "ZIM raises its 2026 outlook again as third-quarter net income jumps to $830 million on a 55% rise in freight rates",
-      "topic": "shipping",
-      "date": "2026-11-18",
-      "source": "MLQ.ai",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "MLQ.ai",
-          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPNXpCY0REWkJQcHdLNHJnQ3UtTVZKblVXRzFsTWtwZEQwalp4TDlCVmZsZnRneEJaVHpMbHphZndGS2E3ZWRZTmNrQ3ZZWjVvdzA5bHY3Qy0tQ244dFhtOEttcmpSMUkyR05ac2xhTjdTYWxBRlNoMktTOFRHVjdRbU0tVWNXUUhWR3l3Y19aV1RSMEdCemtZM0dlRUJOZ0dGeTh2RDBBSkdyVHFhbVFvMG90bjVZNVRfYUZrcFpfUnZ4a0Rnc2hjNmVRTGt0dw?oc=5"
-        }
-      ]
-    },
-    {
       "id": "c91eb811b5565ead",
       "event": "machinery exports surpass nt 1tn in first 10 months",
       "title": "Machinery exports surpass NT$1tn in first 10 months",
@@ -259,17 +248,17 @@
       ]
     },
     {
-      "id": "622a06182eab2189",
-      "event": "eu customs tariff taric",
-      "title": "EU Customs Tariff (TARIC)",
+      "id": "45ba4ead2f2b17c6",
+      "event": "vietnam signs free trade deal with four european nations",
+      "title": "Vietnam signs free trade deal with four European nations",
       "topic": "tariff",
-      "date": "2026-08-04",
-      "source": "Taxation and Customs Union",
+      "date": "2026-10-18",
+      "source": "France 24",
       "source_tier": "context",
       "links": [
         {
-          "source": "Taxation and Customs Union",
-          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPak11UFdGUzFad0xCMWRucXE2Nl9MUW8xTkRRb3QwVGdUQ1l0OGItQ2VSY0pQWWJqYTZkWmp0MGpId0pvR0xfNjM1Q1hLTVkyVDlyZmFPV0FvWk1pb1ROSWVWZW8zVWY1UjlHa0JhdlVFcjh1UW9HVE1MNGpyblliVzVEV2ljc19IQk5yRlUtQjV4QWN2cEdMOEQ0U1JXeDhUd0YxbW5oQnVrRUdwd2lkLVNubmpwLXgwTHc?oc=5"
+          "source": "France 24",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPTG40X2l0SHdSaUVEczFoLU1SZWtzUHBvOE5yaW43UkRIWlRDOHE4ZnowbzZjV0s0a0R5WmxrdC1hWnRGcER2b3A1NUJZVUJPcGRhZkQzd2w2M0p1dlpsSElyUDREdVVlZlVib1drWlZpMWJzN0hydW16cHl1VWxwNm5aMXZCeU1nVG1hOVFNYmk3bmtnZmJoTlZnSUZ2Y2YwOC1sY0hR?oc=5"
         }
       ]
     }
