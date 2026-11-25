@@ -1,8 +1,53 @@
 {
   "version": 1,
-  "edition": "24 Nov 2026, 01:11 UTC",
+  "edition": "25 Nov 2026, 01:11 UTC",
   "news_status": "current",
   "stories": [
+    {
+      "id": "3412a6a7028c7e3e",
+      "event": "byd factory protests in indonesia spotlight foreign investment hurdles",
+      "title": "BYD factory protests in Indonesia spotlight foreign investment hurdles",
+      "topic": "china",
+      "date": "2026-11-24",
+      "source": "South China Morning Post",
+      "source_tier": "local English media",
+      "links": [
+        {
+          "source": "South China Morning Post",
+          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOaTZYTFNPOFlmNWpDcmRxdHZpRE1JdUVNV1FvUGlYNXlOMFM5Q0FVRFJGQzY0MTFWeEtGVWRCeW1YZW1sVDJ2YXhvUWxob1RVSHRWcGs2YUVMZjg3dWk1ei1CUVk3WVhPSHhfY2t2SGlYRWJVOTdWbU1pZ3EyeDV1Rjc5NFJRRTRHQ1c0TjRrZVZNV2J1UTZKa3lqcVNSVmVzV2E1RVAyTFgzT2ltalI3bENjMlhSZUxrRDIxejVfT2cxblFqV1EycndSNHZQRThuekxTSkNQTXp0UdIB2gFBVV95cUxNQUJJRmFTUEJqYmVsSkxNUXYzbnpjLXdBUV9XSHh4X2xZM0VVSlY5YUhGNy0zLXR3Q29rYkNvcXVyZTRFTW1rOV9MMmkwX1ZpNVFYZ0xSRTAxUzVIVWhwTkdxdF91dUhQdzlseWo2RDM3OHpEY2dFTjBJVHZfWV9TOWJyOXk3R1lBU3ZSZjVjQl9FTVBCaWlMQkNjbUcyX2JxUW9GaXJZa3YxYzFLcEpJMjZNNkdzVTB6OEcwMHFac1BCNndlNllZbVVTXzhDSkdfX1l3TGJ2eDN4Zw?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "30fd42740a8c6653",
+      "event": "indonesia factory fire 6 dead 4 injured and nearly 50 missing after blaze at candy factory in banten province",
+      "title": "Indonesia Factory Fire: 6 dead, 4 injured and nearly 50 missing after blaze at candy factory in Banten province",
+      "topic": "china",
+      "date": "2026-11-23",
+      "source": "CGTN",
+      "source_tier": "local English media",
+      "links": [
+        {
+          "source": "CGTN",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFAtMW43OHI3TDdwUHQzOWprYTBzU2R2emd1R1Z4eFRlZGFYaWVjbkhIeWRFX2pSamZfQnVEVllDVlVqaDNSVmwxMGZDWDN3YWMxdFdvbnZqbVRfeHk4dEVTaGw3cWtyRXhQZWNaZTBsR3YwbTBZOWtKZQ?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "98c56950c3b19ec7",
+      "event": "iran war anxiety sends global container shipping rates soaring",
+      "title": "Iran War Anxiety Sends Global Container Shipping Rates Soaring",
+      "topic": "shipping",
+      "date": "2026-11-23",
+      "source": "EnergyNow.com",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "EnergyNow.com",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPdmtCcm5uQXIxNTktbnI1QW55LWtqTjJvODRGWVJUUS04aW1TNWVhS1FpNVNicW5vWHhxWm1pU0FVYmZQRnNNNXRULUlRTHdQQ2gtaThhS19TVUZwdmZ0WG52SUlDUmRBellYVG96ckZ3WjVNSHp4WGNKV1ZidVA0U0JiS1ZON3VZaFA3UWJpMVJxNFllMElwSQ?oc=5"
+        }
+      ]
+    },
     {
       "id": "240ca5b418f70416",
       "event": "asia us east coast ocean freight rates top 10 000 up 300 from a year ago",
@@ -49,6 +94,21 @@
       ]
     },
     {
+      "id": "42ec5017778053a2",
+      "event": "weekly ocean freight market update 20 november 2026",
+      "title": "Weekly ocean freight market update: 20 November 2026",
+      "topic": "shipping",
+      "date": "2026-11-20",
+      "source": "Xeneta",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "Xeneta",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE55cUlEWFhyQXNKRXdERkI5UXozaXFyX0dFSkZacEhhSU9NRGRNMDVuQ25Fb3ZEVUx0Smotd2NRRUM2SFh4NVFXVGNiRnFPb3hUS0xNd3FoTFNIalFXRDgzbWJPeTNnT2cxTGlaMXUwTXFwVHBl?oc=5"
+        }
+      ]
+    },
+    {
       "id": "8e89f61ede76ec5d",
       "event": "the industry brain behind the factory how data reshapes car manufacturing in chongqing",
       "title": "The industry brain behind the factory: How data reshapes car manufacturing in Chongqing",
@@ -64,32 +124,17 @@
       ]
     },
     {
-      "id": "67c505627d5ad206",
-      "event": "xeneta shipping index xsi c global container price index xeneta shipping index xsi c",
-      "title": "Xeneta Shipping Index (XSI-C) | Global Container Price Index - Xeneta Shipping Index (XSI-C)",
-      "topic": "shipping",
+      "id": "64f8436277c7a333",
+      "event": "china s rare earth magnet exports to us and eu fall after september rebound",
+      "title": "China’s rare earth magnet exports to US and EU fall after September rebound",
+      "topic": "china",
       "date": "2026-11-20",
-      "source": "Xeneta Shipping Index (XSI-C)",
-      "source_tier": "context",
+      "source": "South China Morning Post",
+      "source_tier": "local English media",
       "links": [
         {
-          "source": "Xeneta Shipping Index (XSI-C)",
-          "url": "https://news.google.com/rss/articles/CBMiP0FVX3lxTE9sRTVBLXdyckhNX3ZyVGJYLXJSa3V0YzVEUTJ0XzRGdnN6aTZwOFZ6NlhvandaMkFkWDdiQ2p5aw?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "42ec5017778053a2",
-      "event": "weekly ocean freight market update 20 november 2026",
-      "title": "Weekly ocean freight market update: 20 November 2026",
-      "topic": "shipping",
-      "date": "2026-11-20",
-      "source": "Xeneta",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "Xeneta",
-          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE55cUlEWFhyQXNKRXdERkI5UXozaXFyX0dFSkZacEhhSU9NRGRNMDVuQ25Fb3ZEVUx0Smotd2NRRUM2SFh4NVFXVGNiRnFPb3hUS0xNd3FoTFNIalFXRDgzbWJPeTNnT2cxTGlaMXUwTXFwVHBl?oc=5"
+          "source": "South China Morning Post",
+          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQMXczLXVGUE9PV3RkVmZfMjlWUk5hcHo4MUtCREtrOUIyREhxMkRuSldsQm5zNFcycVdMUlRoR3l3REdLaXNPQ0ZVZmRGMzNNaGpvZHNYNGp0U1lrd2hmTGhycW5GOU9JNEFEUUxzUE5fWm4ta2VkVDNXdXlTcW1WclM0Smd6VkY1N3hydWhCb3VZeW11LWRTUVVlTEp5TVAxeHczai1xN2NheGVLdTEzRUJSWnlPclRIdGY4TnNEOWVZcUZ2a0JrajZ30gHKAUFVX3lxTE5DY0dTeXlnb2l0OUp1YlV5cmdYWlVGbGxXQ2w0Y0gzN0NIcjYxdjlxVW9uMzJUaVlqMGpHU0ZIbTBXMTI3UkNsWVcwU1JfSFJ6VEtESUJaT2tyTzhEVXZyVlZqNVpoWTA1TXRsNko2WmhuWnVKLVg0MHI0R3JsS2d1STcyemJrZzVqSXVZclB3NVV3b0xYcTFtZFJXcjhRTFl4SzVqUGl5QmtwZEdfLUhUd1VLcXpQdDl6clJxdVBZdjl5Y2o1OEtLZkE?oc=5"
         }
       ]
     },
@@ -135,10 +180,6 @@
         {
           "source": "China Daily",
           "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9DajN6VzlIOWdZMlNtV2VMMGhRaHNGRnFlWE16RXZQMHUyVDJ5S25zeVdOVUNUekktN1Bmb2lOaW5GNmk2VVdMYS1mNHRicEVVazRvYkw5VXFPQkV5NEVFakFaMkUzNFpBQi1ZMUh0WVp3bHJ6MU1tamVyajhuQQ?oc=5"
-        },
-        {
-          "source": "China Daily Global Edition",
-          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNZWRFYlFCdTdQVWdxVXJsUzI1X2dVaGFfRUpGeGpyeloycmVuMVJxRmJFM0lrUDVCNTV1STV6eG5rdGRMWjhUMktnalJuMUg1cUZMdWRmd3ZWQUJCUDl4ZlVGeEowZHpXVzBWeUZVby02TG1vbWRIZWRhZWJ2S2ZXZUFR?oc=5"
         }
       ]
     },
@@ -158,21 +199,6 @@
       ]
     },
     {
-      "id": "031345709688267b",
-      "event": "container freight rates decline on key routes to americas europe",
-      "title": "Container Freight Rates Decline on Key Routes to Americas, Europe",
-      "topic": "shipping",
-      "date": "2026-11-18",
-      "source": "조선일보",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "조선일보",
-          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPbmNtRkRmN2FuQ0dNNk1lY2NKOFpOem1sSkh3VTJudXJOT0lNNzVzNC1CbHNPNGVXNzFXWWY0T0R4dENZN2JpVUZmdVIwbDN6cUl0U0ptb0RhUmFfMXFudWxEbWx2R1loTkgwNVpqWTkxMElfTi1KZzA2R2JhbXotb0o3TDBaMUls?oc=5"
-        }
-      ]
-    },
-    {
       "id": "199e164803533285",
       "event": "trade",
       "title": "Trade",
@@ -184,21 +210,6 @@
         {
           "source": "U.S. Customs and Border Protection (.gov)",
           "url": "https://news.google.com/rss/articles/CBMiPkFVX3lxTE1TclVIXzRXbllSQ1BySEQwS2t6Tl9XemdRRjdDczFCQVlTX2s5Ni1TUU1EN3VvWUtMR1RTVjhn?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "96504d50edda6bd8",
-      "event": "us air cargo recovering from outage new us cn tensions ahead of talks november 17 2026 update",
-      "title": "US air cargo recovering from outage; new US-CN tensions ahead of talks - November 17, 2026 Update",
-      "topic": "shipping",
-      "date": "2026-11-17",
-      "source": "Freightos",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "Freightos",
-          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOQ2lKRllqM1AtRVRIY3dzS2w2Q3lWZkVtSVBrWHBvRnBZRVhiTTA0UjdYSzNEaHRFbXB5SzBUUTAxMkJuTnJoWWlEYkVQVWVLM2NONE10V3QzSlZFV3BvZDdDN0FxV1FOenIxcHNKTmFsbUx6VE5TMWtVY1EwaUg4VEMweVoyN0hieG1DX0p6UGpyZE4xLXVRakFzdkdRa1doMVFHdjkxRnJrVktpUld2SUp3THpSdWc2ZFdpZ3c3VGVqX2ZJc0lfaEN4dkUycjBtUWlqZw?oc=5"
         }
       ]
     },
@@ -233,17 +244,17 @@
       ]
     },
     {
-      "id": "29409c92c0350bfe",
-      "event": "taiwan s manufacturing sector stays in fast growth mode in september",
-      "title": "Taiwan's manufacturing sector stays in fast-growth mode in September",
+      "id": "e6a65b4cb72e3280",
+      "event": "taiwan s october manufacturing activity in expansion but momentum eases",
+      "title": "Taiwan's October manufacturing activity in expansion but momentum eases",
       "topic": "taiwan",
-      "date": "2026-10-30",
+      "date": "2026-11-02",
       "source": "Focus Taiwan",
       "source_tier": "local English media",
       "links": [
         {
           "source": "Focus Taiwan",
-          "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1UTVUxOFdkWFVMZnFNYUttQW84TlFUQjBLZGg3ZWEyM0hJLXVPTGdoM3FfTFZodTJCM05qUFJacmFQY1RJNEZJR0doVzgtWVJrQ1QzM0RYWQ?oc=5"
+          "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5FMWZLblhOSEx6MjUzR3FhYnBBYmN0b0plakswME0tS2pDRUEwZlB5cHphNk5fVlpXNktjckdJLXd2OGZRZkpDRHlrcVNPNDgyNWFQNVN5QQ?oc=5"
         }
       ]
     },
