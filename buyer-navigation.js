@@ -75,14 +75,6 @@
       references.appendChild(cards(site.tools.filter(function(t){return t.group==='reference';})));
       el.replaceChildren(cards(site.tools.filter(function(t){return t.group==='primary';})), references);
     });
-    if (route.id === 'home') {
-      var start = document.createElement('section'); start.className = 'bj-start'; start.setAttribute('translate', 'no');
-      var h = document.createElement('h2'); h.textContent = text('choice'); start.appendChild(h);
-      var focus = document.createElement('p'); focus.textContent = text('catMetalIntro'); start.appendChild(focus);
-      start.appendChild(cards([{route:'products',label:'browse',detail:'productDetail',hash:'bl-cat'},{route:'studio',label:'custom',detail:'capabilities',hash:'studio-needs'}]));
-      var hero = document.querySelector('main section, main .hero, .hero');
-      if (hero) {hero.insertAdjacentElement('afterend', start);var actions=document.createElement('div');actions.className='bj-hero-actions';actions.appendChild(link(site.routes.find(r=>r.id==='products'),'products','bl-cat'));actions.appendChild(link(site.routes.find(r=>r.id==='manufacturing'),'manufacturing'));hero.insertAdjacentElement('beforebegin',actions);} else (document.querySelector('main') || document.body).appendChild(start);
-    }
     if (route.id === 'products') {
       var disclosure = document.querySelector('.cat-legacy');
       if (disclosure) {

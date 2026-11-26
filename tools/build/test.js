@@ -33,7 +33,7 @@ c.ctx.set({market:'us'});assert.equal(c.store.get('bd_bc_co'),'us');
 c=context({bl_ctx:'bad json'});assert.equal(c.ctx.get().market,'global');
 c=context({bl_ctx:JSON.stringify({room:{bad:1},market:['de'],line:42})});assert.equal(c.ctx.get().market,'global');
 console.log('Context migration and corrupt-state recovery passed.');
-const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.webp':'image/webp','.png':'image/png'};
+const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.mp4':'video/mp4','.webm':'video/webm','.webp':'image/webp','.png':'image/png'};
 const server=http.createServer((req,res)=>{
  const relative=decodeURIComponent(req.url.split('?')[0]).replace(/^\//,'')||'index.html';
  const file=path.resolve(ROOT,relative);
@@ -45,6 +45,7 @@ const server=http.createServer((req,res)=>{
  const base='http://127.0.0.1:'+server.address().port+'/';
  const browser=await chromium.launch({executablePath:require('../dev/_env').CHROME,headless:true});
  try {
+  await require("./test-home-story")(browser,base);
   const context=await browser.newContext({serviceWorkers:'block',reducedMotion:'reduce'});
   const page=await context.newPage(); const failures=[];
   page.on('pageerror',e=>failures.push(e.message));

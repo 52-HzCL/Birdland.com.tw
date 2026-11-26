@@ -1,0 +1,36 @@
+{
+  "product": "Illustrative bypass garden pruner, not a production drawing",
+  "method": "Orthographic images of one Blender scene",
+  "groups": [
+    "cutting",
+    "counter",
+    "upper-grip",
+    "lower-grip",
+    "upper-grip-screws",
+    "lower-grip-screws",
+    "bolt",
+    "nut",
+    "washer",
+    "spring",
+    "retainer"
+  ],
+  "assembly_states": 13,
+  "pack_states": 13,
+  "packing_poster": "pack-06.webp",
+  "hanging_poster": "pack-12.webp",
+  "pack_entry_matches": "assembly-12.webp",
+  "first_frame": "assembly-00.webp",
+  "fully_seated_closed": "assembly-12.webp",
+  "grip_fastener_count_per_handle": 2,
+  "palette_srgb": [
+    "#596346",
+    "#353A34"
+  ],
+  "assembly_reference": "https://arscorporation.jp/wp-content/uploads/2026/10/ARS_PARTS_VS-7XZ_VS-8XZ_VS-9XZ-EX.pdf",
+  "member_offset": "Cutter front and counterblade rear with different Z planes; both pivot around world Z",
+  "tooling": "Lower half of concept forming die with single-member negative impression and a separate rough preform; pivot bore and bevel are later operations",
+  "spring": "One compression spring between the two inner handle seats",
+  "finished_half_angle_degrees": 6.5,
+  "finished_spring_fraction": 0.74344,
+  "visual_asset_units": "Illustration only; no fabrication scale or tolerances"
+}

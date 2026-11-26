@@ -85,7 +85,7 @@ for (const L of LANGS) {
         '<script defer src="i18n.js?v=20260806a"></script>$1', 1, L.dir + '/' + page + ' i18n.js injection');
     }
     // one folder deep: assets and EN-only pages step up
-    s = s.replace(/(href="|src=")(site-registry\.js|buyer-navigation\.js|buyer-brief\.js|buyer-brief\.css|buyer-journey\.css|tokens\.css|text-size\.js|terminal\.css|terminal\.js|birdland-visual\.css|terminal-status\.js|context\.js|mail-routing\.js|i18n\.js|favicon\.svg|images\/|product-101\.html|guide\.html|executive\.html)/g, '$1../$2');
+    s = s.replace(/(href="|src=")(site-registry\.js|buyer-navigation\.js|buyer-brief\.js|buyer-brief\.css|buyer-journey\.css|tokens\.css|text-size\.js|terminal\.css|terminal\.js|birdland-visual\.css|home\.css|home-story\.(?:css|js)|buying-tools\.html|products\.html|partner\.html|birdland-intro-pack\.pdf|manufacturing\.html|terminal-status\.js|context\.js|mail-routing\.js|i18n\.js|favicon\.svg|images\/|product-101\.html|guide\.html|executive\.html)/g, '$1../$2');
     s = s.replace("navigator.serviceWorker.register('service-worker.js')", "navigator.serviceWorker.register('../service-worker.js')");
     // hreflang cluster: EN pages already carry the full set; keep it as-is.
     // translated-from note
