@@ -1,8 +1,203 @@
 {
   "version": 1,
-  "edition": "25 Nov 2026, 01:11 UTC",
+  "edition": "26 Nov 2026, 01:11 UTC",
   "news_status": "current",
   "stories": [
+    {
+      "id": "b238675c12454e36",
+      "event": "equipment makers see surge in exports",
+      "title": "Equipment makers see surge in exports",
+      "topic": "china",
+      "date": "2026-11-26",
+      "source": "China Daily",
+      "source_tier": "local English media",
+      "links": [
+        {
+          "source": "China Daily",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE4wQ3AtSWxvZW9YQ0ZadktSd1FMS0JfVWxZcTNHdWFTRmlCUG56RUluSzhRSHhMc1FjR2xKUWwxNGVSUTJEZWU0ZncybFRienpyNVVmNFJnOXBJQ2ZBRHpPRTJqWjN1VzYtcjMwRVhhbTBfNmZBVURJZlVMekJPUQ?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "f3ea50aabac0bdcf",
+      "event": "byd in exclusive talks to buy ineos factory in france",
+      "title": "BYD in Exclusive Talks to Buy INEOS Factory in France",
+      "topic": "china",
+      "date": "2026-11-25",
+      "source": "Caixin Global",
+      "source_tier": "local English media",
+      "links": [
+        {
+          "source": "Caixin Global",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPdHJnZlpoU2JYRktycUJzSU9sSXF5ZTVuUDhSQ0hYU1ZxbDc3MEQ4WmtoOEFFVzFBOFhJUy1nejN5UTU2bjZLdGt2N0hnRnduT1J3VTZOblFTbWNxODNtRml4UkRqdlZPMkxYeGR6U20xRGhMN2Y1SjNyeVliNDFQbUxXLWduWVFuSy1jSzJxRUF2OHJGbk40enVSbVdoVHE1Vm1vRjh3Y1dkQkNJ?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "2fa9e9b8867ee7a0",
+      "event": "tesla shanghai plant nears 5m vehicle milestone highlighting china s manufacturing strength",
+      "title": "Tesla Shanghai plant nears 5m vehicle milestone, highlighting China's manufacturing strength",
+      "topic": "china",
+      "date": "2026-11-25",
+      "source": "Global Times",
+      "source_tier": "local English media",
+      "links": [
+        {
+          "source": "Global Times",
+          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9FRnphQnVfR3NITzlKZFZKRk03RjlKRFl2ZU1wUHdISWNYNzZaenNtam1EQ0lWa2NlZWZJTFNicXdzdl83eEhUV1VndF9TeU80dGhkTFJ4VG9zcFk1aXMzM0hB?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "127698a2274b1dcb",
+      "event": "ustr makes determinations and proposes actions in 14 section 301 investigations relating to structural excess capacity and production in manufacturing sectors",
+      "title": "USTR Makes Determinations and Proposes Actions in 14 Section 301 Investigations Relating to Structural Excess Capacity and Production in Manufacturing Sectors",
+      "topic": "tariff",
+      "date": "2026-11-25",
+      "source": "United States Trade Representative (.gov)",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "United States Trade Representative (.gov)",
+          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxOTkEyNURkNHpLUUVMYUd2cTc3bm5oTXByZWxhaVhBZXVoSTRkRlBMbk53Vk85MHNRVlJxNWNSM1dPYWd4YmlSWVRlWG9oS3JCUHVCWkVieXNJalZHMlNaWTIxZkZZX2Y1RGpGOEpGLXJnekxMRzQ0aGFaNGdaN091M3dodUllUlczbzZPNFdjdnF3UV91UlowS0l2WFZfQlNqMDEySl9wUm9PYUVVcHowdjFBQURfVE5rQlFoX2l4RXgzNDk5NjUtQmdWV01ldzdSc19GUHVMZHZqeU1hTWMwNFdIVXQzNXBEYnowd0V4X2puaFBhVDBld18yc2FiZkZSaU1OQnMwdw?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "15a05044e6ebc308",
+      "event": "1 billing code 3390 f4 office of the united states trade representative docket nos ustr 2026 0741",
+      "title": "1 Billing Code 3390-F4 OFFICE OF THE UNITED STATES TRADE REPRESENTATIVE Docket Nos. USTR–2026–0741",
+      "topic": "tariff",
+      "date": "2026-11-25",
+      "source": "United States Trade Representative (.gov)",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "United States Trade Representative (.gov)",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPVkhUTzhUMGx4OW5RMFZWdXFTbG04Uno5V0NSdWNld0UzVGxWRzZoN1huQzE1OUlXTXR0T2dPQjJleHpzajVkVUxnY0VlR3VuT3kxNFhEUUpaWXVvZmg5ZWpkUWFkOTcxTkJNQkVvdi1tOEhxdFNLOUZJdllla2JDbk5vWHM?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "289c85a1da7b82c0",
+      "event": "untitled",
+      "title": "Untitled",
+      "topic": "tariff",
+      "date": "2026-11-25",
+      "source": "United States Trade Representative (.gov)",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "United States Trade Representative (.gov)",
+          "url": "https://news.google.com/rss/articles/CBMimgJBVV95cUxNbGpHRmhWUXdJSmM3aDhzX2Fnbm5vQmJOX1FPTl9wUFRKWlU1QTJfTV9CeFZ1czBnamZoWDhLcnRqeGxyclFocHRpMmcySy1weVlFQk93Y2d2NFQwMjVWVWRkazVDQUE0d2VwN2VxWldFNmVEeUIyQWRJTVNNd0xfQTVQUlBSb2VXRTlSR0xnaXlnNm5lRUVmM1FqMURlSTNja053NjRhNlRadzhHSVYyYUthOW9YWTBGQ3ZNb1pfZXpvcjhvYWtxRzA2RVo0aklVMGQ3enRidjgxYU1DMUNieEwzSnNuNlBsNVdBclo1MFJQMlZGaGVYZ3pxZ253TkV6WVhWdXJ0S3pJeUtkSnFvQjVfNEtTdUQ5SFE?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "d3494a1e6a63f6e1",
+      "event": "xeneta container rate futures now trading in europe",
+      "title": "Xeneta container rate futures now trading in Europe",
+      "topic": "shipping",
+      "date": "2026-11-25",
+      "source": "Journal of Commerce",
+      "source_tier": "trade",
+      "links": [
+        {
+          "source": "Journal of Commerce",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPcEE1bTMzLW9NaU9fUmNVenlCdVgxaUVGcmg0TjFPNTljRi11bk9oMDQxbGJfSUI4NmJHMGJ1eThxMFpvQjlKV2E0b1hLRUQxZFJkYUpzbnBOOF9Lei1Wcm9YUVVZWlFNN2Q0V1lBbjVDV1hhNWxRMS1ORngzQk9xYXJXNWlqbDVjR3lCWkNsNFo?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "d7795247a1622f12",
+      "event": "container rates drop third week led by north american route",
+      "title": "Container Rates Drop Third Week Led by North American Route",
+      "topic": "shipping",
+      "date": "2026-11-25",
+      "source": "조선일보",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "조선일보",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPZE5OS3ZiZWVpRE81aGNJaklSY3J6R0k0M0FzZ1hzbl9fckxvRndzZzRvVkgyOW9MdFBKVVdWUEJUcFJEeTJYTzROUDhVczYzTloxb19Db0Y2djVfMU92X0g3MlZxdVZ3NDhJdk10bUNRV2NEdTg1eWtsejRaYXBlVE5mN1ZRNWNL?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "ee0da228a3db324d",
+      "event": "matson strong earnings but freight rates will be the test in 2027 nyse matx",
+      "title": "Matson: Strong Earnings, But Freight Rates Will Be The Test In 2027 (NYSE:MATX)",
+      "topic": "shipping",
+      "date": "2026-11-25",
+      "source": "Seeking Alpha",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "Seeking Alpha",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPTkJZbDlaejJQcmVIZVpLNnRsb2Q1QnM0N3VtSWJESElmMXFHckhsVEhxWDlxbWt6SThnU2tBRGlVeGk5SjkxOFR3Qk5lZzRTM0lHZnlvVlp1S29Cb3pMTVNEZHlZeDkzMzhQYTFYUlMwcnZkY2FUakVmUmcwWjBveUhYUE9IbGZCV2NKcDVFTE1Ucl9sWkZIYW5ZZlBFSUlGMGV0V3B3RFJTUQ?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "276761d8ef4d580c",
+      "event": "ningbo middle east freight rates surge 453 5 yoy as container shipping enters a two speed market",
+      "title": "Ningbo–Middle East freight rates surge 453.5% YoY as container shipping enters a two-speed market",
+      "topic": "shipping",
+      "date": "2026-11-25",
+      "source": "Container News",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "Container News",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNTVpHaW13cnZXaFRqMjJoRVFqbURLclgzbjdxSk9sVjNDY3MyVTVRM1k1SmtTX1RCRTZNQU16bmxUVlIzM3hOazY3MTZvWVlub1ZVcEgzWkt4TzBlc0tiOFhLZ2lxWjUyVWJNbGdLZV93RmE0SWN0R2ctTDBpd0VDSWE4V1VWREJYSXh1UlZrcnk4c2JZLUVwMVl3c1dQQWdvcXJRcWp4b0xLNmtzY3QteW9EeVdMYU1la1U0VjhVTXNDUQ?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "bb3dc98aa19d6f91",
+      "event": "csav q3 2026 slides profit surges 482 as freight rates rally by investing com",
+      "title": "CSAV Q3 2026 slides: profit surges 482% as freight rates rally By Investing.com",
+      "topic": "shipping",
+      "date": "2026-11-25",
+      "source": "Investing.com India",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "Investing.com India",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOeTlfSGZfRnM0eThrSDdkV1FCTUV4QnNZWTIxenMxbkRHdTUxTGtZaHFUZThueU84OUJrYk9ZQnpMZXU5YUZYYWFraG10QktOOTM4UXdBZl9oSFktT1Z4Ri1wNzY4NlFDNFdEOXBSUzBCV3I0R0ZlV2I3OWE2N3pfMWhUdTdsN2gxNm9HMmJXTUhqY3dZRkFJU0xDWmlSdDlGMnBKSkNFR2tWNVpoTmdtT0NQQ1hldUZKRnpqU0VR?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "ca2b8e794acabbae",
+      "event": "china focus china s manufacturing powerhouse deepens regional integration",
+      "title": "China Focus: China's manufacturing powerhouse deepens regional integration",
+      "topic": "china",
+      "date": "2026-11-25",
+      "source": "Xinhua",
+      "source_tier": "local English media",
+      "links": [
+        {
+          "source": "Xinhua",
+          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBsQTRQNGJheENmZmxEMDFmc3lHdk5KUXMxbjJYSXF5WTF1bzlqWnZxdm1KVEcxUUxFdGFoZUtVR09nRXJPd0I0YTBJM2tUYnBJTHFxTGNDdWF1WlYyS1NEMFJ2NTJOLTk3X1lQTGx2N1hjRFhEXzFBTEhNYlo?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "830b3f79ff63197b",
+      "event": "trump set to add new sweeping tariffs undeterred by midterms defeat",
+      "title": "Trump set to add new sweeping tariffs, undeterred by midterms defeat",
+      "topic": "tariff",
+      "date": "2026-11-24",
+      "source": "Reuters",
+      "source_tier": "trade",
+      "links": [
+        {
+          "source": "Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNNklFaE54bEV6OGdKT29ScUxHUlZwRDNyREJ0MzBSZzZGdnptTkVxaXNHeWx2WjFWYVMzMzdMeU92dC1PVmYyZ1BTT3lCTWVRVnJ5ODFEb0NXYWpDd1ZQUlg4bkZ5QVAyck9KQUhMbldjY2FqMmtsZGs3MTFUY0xLZm9wMWRRTFAyS3VvZUZ6Wnk0VzlxTjR3VS1GSkJ1S3VCU2xmZ09FX1E5dUVjTUhfR21wMG1pcktxdGc?oc=5"
+        }
+      ]
+    },
     {
       "id": "3412a6a7028c7e3e",
       "event": "byd factory protests in indonesia spotlight foreign investment hurdles",
@@ -15,36 +210,6 @@
         {
           "source": "South China Morning Post",
           "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOaTZYTFNPOFlmNWpDcmRxdHZpRE1JdUVNV1FvUGlYNXlOMFM5Q0FVRFJGQzY0MTFWeEtGVWRCeW1YZW1sVDJ2YXhvUWxob1RVSHRWcGs2YUVMZjg3dWk1ei1CUVk3WVhPSHhfY2t2SGlYRWJVOTdWbU1pZ3EyeDV1Rjc5NFJRRTRHQ1c0TjRrZVZNV2J1UTZKa3lqcVNSVmVzV2E1RVAyTFgzT2ltalI3bENjMlhSZUxrRDIxejVfT2cxblFqV1EycndSNHZQRThuekxTSkNQTXp0UdIB2gFBVV95cUxNQUJJRmFTUEJqYmVsSkxNUXYzbnpjLXdBUV9XSHh4X2xZM0VVSlY5YUhGNy0zLXR3Q29rYkNvcXVyZTRFTW1rOV9MMmkwX1ZpNVFYZ0xSRTAxUzVIVWhwTkdxdF91dUhQdzlseWo2RDM3OHpEY2dFTjBJVHZfWV9TOWJyOXk3R1lBU3ZSZjVjQl9FTVBCaWlMQkNjbUcyX2JxUW9GaXJZa3YxYzFLcEpJMjZNNkdzVTB6OEcwMHFac1BCNndlNllZbVVTXzhDSkdfX1l3TGJ2eDN4Zw?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "30fd42740a8c6653",
-      "event": "indonesia factory fire 6 dead 4 injured and nearly 50 missing after blaze at candy factory in banten province",
-      "title": "Indonesia Factory Fire: 6 dead, 4 injured and nearly 50 missing after blaze at candy factory in Banten province",
-      "topic": "china",
-      "date": "2026-11-23",
-      "source": "CGTN",
-      "source_tier": "local English media",
-      "links": [
-        {
-          "source": "CGTN",
-          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFAtMW43OHI3TDdwUHQzOWprYTBzU2R2emd1R1Z4eFRlZGFYaWVjbkhIeWRFX2pSamZfQnVEVllDVlVqaDNSVmwxMGZDWDN3YWMxdFdvbnZqbVRfeHk4dEVTaGw3cWtyRXhQZWNaZTBsR3YwbTBZOWtKZQ?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "98c56950c3b19ec7",
-      "event": "iran war anxiety sends global container shipping rates soaring",
-      "title": "Iran War Anxiety Sends Global Container Shipping Rates Soaring",
-      "topic": "shipping",
-      "date": "2026-11-23",
-      "source": "EnergyNow.com",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "EnergyNow.com",
-          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPdmtCcm5uQXIxNTktbnI1QW55LWtqTjJvODRGWVJUUS04aW1TNWVhS1FpNVNicW5vWHhxWm1pU0FVYmZQRnNNNXRULUlRTHdQQ2gtaThhS19TVUZwdmZ0WG52SUlDUmRBellYVG96ckZ3WjVNSHp4WGNKV1ZidVA0U0JiS1ZON3VZaFA3UWJpMVJxNFllMElwSQ?oc=5"
         }
       ]
     },
@@ -79,141 +244,6 @@
       ]
     },
     {
-      "id": "3e4529f41fa550c5",
-      "event": "a tour of li auto s beijing manufacturing base a glimpse of smart production lines",
-      "title": "A tour of Li Auto's Beijing Manufacturing Base: A glimpse of smart production lines",
-      "topic": "china",
-      "date": "2026-11-20",
-      "source": "China Daily Global Edition",
-      "source_tier": "local English media",
-      "links": [
-        {
-          "source": "China Daily Global Edition",
-          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNSUhWRko2Ymt1RlZWQlMwM3BMbGNPYjRpc09hWnlhZ1huY0pyZllXQVF5czNHaDRSSV9kLUZnc0xyekkzbUE5MllfTThZNXNoWVNKRVppa01YNk5VMGZjSTNzMEI5cWVXNmVJZHZXWnJuejBzQUpkclVsVUptRGZ2UWlB?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "42ec5017778053a2",
-      "event": "weekly ocean freight market update 20 november 2026",
-      "title": "Weekly ocean freight market update: 20 November 2026",
-      "topic": "shipping",
-      "date": "2026-11-20",
-      "source": "Xeneta",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "Xeneta",
-          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE55cUlEWFhyQXNKRXdERkI5UXozaXFyX0dFSkZacEhhSU9NRGRNMDVuQ25Fb3ZEVUx0Smotd2NRRUM2SFh4NVFXVGNiRnFPb3hUS0xNd3FoTFNIalFXRDgzbWJPeTNnT2cxTGlaMXUwTXFwVHBl?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "8e89f61ede76ec5d",
-      "event": "the industry brain behind the factory how data reshapes car manufacturing in chongqing",
-      "title": "The industry brain behind the factory: How data reshapes car manufacturing in Chongqing",
-      "topic": "china",
-      "date": "2026-11-20",
-      "source": "Xinhua",
-      "source_tier": "local English media",
-      "links": [
-        {
-          "source": "Xinhua",
-          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE8tbldQQnlocWFpRENlWmNiYmR6T0t6NVZFTUF4Zjc0RnRCM003SFNnZFQzQ1lhc1NZWkJCQ0duQVgtUGVyMVFvWUJuLUZrX3pnMXhQSjJLLU5TTE56X3dCUS1HUzl3V3kwdVVoOTdhaFNmZ09XNDllanVzcGI?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "64f8436277c7a333",
-      "event": "china s rare earth magnet exports to us and eu fall after september rebound",
-      "title": "China’s rare earth magnet exports to US and EU fall after September rebound",
-      "topic": "china",
-      "date": "2026-11-20",
-      "source": "South China Morning Post",
-      "source_tier": "local English media",
-      "links": [
-        {
-          "source": "South China Morning Post",
-          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQMXczLXVGUE9PV3RkVmZfMjlWUk5hcHo4MUtCREtrOUIyREhxMkRuSldsQm5zNFcycVdMUlRoR3l3REdLaXNPQ0ZVZmRGMzNNaGpvZHNYNGp0U1lrd2hmTGhycW5GOU9JNEFEUUxzUE5fWm4ta2VkVDNXdXlTcW1WclM0Smd6VkY1N3hydWhCb3VZeW11LWRTUVVlTEp5TVAxeHczai1xN2NheGVLdTEzRUJSWnlPclRIdGY4TnNEOWVZcUZ2a0JrajZ30gHKAUFVX3lxTE5DY0dTeXlnb2l0OUp1YlV5cmdYWlVGbGxXQ2w0Y0gzN0NIcjYxdjlxVW9uMzJUaVlqMGpHU0ZIbTBXMTI3UkNsWVcwU1JfSFJ6VEtESUJaT2tyTzhEVXZyVlZqNVpoWTA1TXRsNko2WmhuWnVKLVg0MHI0R3JsS2d1STcyemJrZzVqSXVZclB3NVV3b0xYcTFtZFJXcjhRTFl4SzVqUGl5QmtwZEdfLUhUd1VLcXpQdDl6clJxdVBZdjl5Y2o1OEtLZkE?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "7b67b157cac2946c",
-      "event": "shenzhen driving forward manufacturing",
-      "title": "Shenzhen driving forward manufacturing",
-      "topic": "china",
-      "date": "2026-11-19",
-      "source": "China Daily Global Edition",
-      "source_tier": "local English media",
-      "links": [
-        {
-          "source": "China Daily Global Edition",
-          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQNFIyZjhZalp1WGctSmxJdVI4M3gxM3pOXzZOWkpSWEZmMmZOVXRKTlZyb2cwd0tPUjQzVUVESHgtSW1sSkpKX2dWazEtNE1zXzBmNDk2UHFxLUFscmlnMHhqaXV1Yi1keXN5alRQby1BRHMzeGVyLTVnLW56bWktMG5n?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "b462d68f52fafd48",
-      "event": "elon musk vows to raise output at tesla s shanghai factory despite sales plunge",
-      "title": "Elon Musk vows to raise output at Tesla’s Shanghai factory despite sales plunge",
-      "topic": "china",
-      "date": "2026-11-19",
-      "source": "South China Morning Post",
-      "source_tier": "local English media",
-      "links": [
-        {
-          "source": "South China Morning Post",
-          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPdzRQU0t3SGg1anptMnkxOUN1ZE5UekZsR0tvTDhOcU1qT3JjMVJiQjFUb1RLb1hLRzVKVGhkQllwdlVMU3kwVHBncUh4S0QycFVqUC0tcWp3RktRQ1BvTUpPbnVCaV9tUFNqVDVpYll3d0VQWm41ZUhPNV9KMUVWaU5hNmJzZXUteVNvWmc2b3NISGNtSVZGcF92aUZNODRPVjlnMTJvcDR5OFJpc0ZUTHU1bXk2VGtMVHMwUGZtWnk1VXM0Mlc0S1BoamRzYnJ1Vll3?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "00d2f7bf4875b9be",
-      "event": "nev upgrades boon for steel industry",
-      "title": "NEV upgrades boon for steel industry",
-      "topic": "china",
-      "date": "2026-11-19",
-      "source": "China Daily",
-      "source_tier": "local English media",
-      "links": [
-        {
-          "source": "China Daily",
-          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9DajN6VzlIOWdZMlNtV2VMMGhRaHNGRnFlWE16RXZQMHUyVDJ5S25zeVdOVUNUekktN1Bmb2lOaW5GNmk2VVdMYS1mNHRicEVVazRvYkw5VXFPQkV5NEVFakFaMkUzNFpBQi1ZMUh0WVp3bHJ6MU1tamVyajhuQQ?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "17eebc209a11ada3",
-      "event": "yarn dyed fabric factory reborn as tourism and leisure block in tianjin",
-      "title": "Yarn-dyed fabric factory reborn as tourism and leisure block in Tianjin",
-      "topic": "china",
-      "date": "2026-11-19",
-      "source": "Xinhua",
-      "source_tier": "local English media",
-      "links": [
-        {
-          "source": "Xinhua",
-          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5mc2xHQi1ibEN3NV9BUDhXTm85ZDVXcE5CLUdBRGdKOWZKQmU1N2lGMTl2ZTJTbmNTQ1gzTWJKUWNfUW54TXZzbmhraWx1Q2ZyNG5wTFBKdTdITWRPZldNTmpYbUFxSzQyMDE1aUZfSHBFcV9KRi1EVVM2Zw?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "199e164803533285",
-      "event": "trade",
-      "title": "Trade",
-      "topic": "tariff",
-      "date": "2026-11-17",
-      "source": "U.S. Customs and Border Protection (.gov)",
-      "source_tier": "official",
-      "links": [
-        {
-          "source": "U.S. Customs and Border Protection (.gov)",
-          "url": "https://news.google.com/rss/articles/CBMiPkFVX3lxTE1TclVIXzRXbllSQ1BySEQwS2t6Tl9XemdRRjdDczFCQVlTX2s5Ni1TUU1EN3VvWUtMR1RTVjhn?oc=5"
-        }
-      ]
-    },
-    {
       "id": "c91eb811b5565ead",
       "event": "machinery exports surpass nt 1tn in first 10 months",
       "title": "Machinery exports surpass NT$1tn in first 10 months",
@@ -229,21 +259,6 @@
       ]
     },
     {
-      "id": "5b1039f35a34c979",
-      "event": "eu deforestation regulation eudr",
-      "title": "EU Deforestation Regulation (EUDR)",
-      "topic": "tariff",
-      "date": "2026-11-04",
-      "source": "environment.ec.europa.eu",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "environment.ec.europa.eu",
-          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOcjhCdzBvVTdDbGRvd1lVUTlLai1xT0FfVEJ0MUx0TUtsc09LMFJQX0M1SnpDU0ZnR3IyUmFDc2RkR1RWOFFoNHR4STdYWjQyQl9saGN1bTk0Smg3TGo2bFlzWEx1Yml3THFJM0dHX1FORU1VdEtzWkRrLTFrdTF4M0NsR1VKWXF0NzFBeVRkZEg4YkZEenhOWnZZOUVJdw?oc=5"
-        }
-      ]
-    },
-    {
       "id": "e6a65b4cb72e3280",
       "event": "taiwan s october manufacturing activity in expansion but momentum eases",
       "title": "Taiwan's October manufacturing activity in expansion but momentum eases",
@@ -255,21 +270,6 @@
         {
           "source": "Focus Taiwan",
           "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5FMWZLblhOSEx6MjUzR3FhYnBBYmN0b0plakswME0tS2pDRUEwZlB5cHphNk5fVlpXNktjckdJLXd2OGZRZkpDRHlrcVNPNDgyNWFQNVN5QQ?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "45ba4ead2f2b17c6",
-      "event": "vietnam signs free trade deal with four european nations",
-      "title": "Vietnam signs free trade deal with four European nations",
-      "topic": "tariff",
-      "date": "2026-10-18",
-      "source": "France 24",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "France 24",
-          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPTG40X2l0SHdSaUVEczFoLU1SZWtzUHBvOE5yaW43UkRIWlRDOHE4ZnowbzZjV0s0a0R5WmxrdC1hWnRGcER2b3A1NUJZVUJPcGRhZkQzd2w2M0p1dlpsSElyUDREdVVlZlVib1drWlZpMWJzN0hydW16cHl1VWxwNm5aMXZCeU1nVG1hOVFNYmk3bmtnZmJoTlZnSUZ2Y2YwOC1sY0hR?oc=5"
         }
       ]
     }
