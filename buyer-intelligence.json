@@ -1,8 +1,23 @@
 {
   "version": 1,
-  "edition": "26 Nov 2026, 01:11 UTC",
+  "edition": "27 Nov 2026, 01:11 UTC",
   "news_status": "current",
   "stories": [
+    {
+      "id": "c6d4b7997deb2012",
+      "event": "china keen to up exports in services",
+      "title": "China keen to up exports in services",
+      "topic": "china",
+      "date": "2026-11-27",
+      "source": "China Daily",
+      "source_tier": "local English media",
+      "links": [
+        {
+          "source": "China Daily",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBBYUUyWXppZ0l2akJxTVFnUERMUjBjWmFRQVdLQWJ5OWVhd3FvNW84UFBlc3pRMm15WUU3R0VvcUdoZWdWbUtpMm9hODNPRDc1eXRlR0xTWDRORDlydUU4cXh1STllb1dfUnM2VGpaQnZBdTFpSmU4S1Q4U20ydw?oc=5"
+        }
+      ]
+    },
     {
       "id": "b238675c12454e36",
       "event": "equipment makers see surge in exports",
@@ -14,37 +29,82 @@
       "links": [
         {
           "source": "China Daily",
-          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE4wQ3AtSWxvZW9YQ0ZadktSd1FMS0JfVWxZcTNHdWFTRmlCUG56RUluSzhRSHhMc1FjR2xKUWwxNGVSUTJEZWU0ZncybFRienpyNVVmNFJnOXBJQ2ZBRHpPRTJqWjN1VzYtcjMwRVhhbTBfNmZBVURJZlVMekJPUQ?oc=5"
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPbkhrSTdueTM5elFIYVJ6LWJKd0Rvbl9lclRZQVh5ZFFfX0NhVExqWThacEtCa0l3emtqeGhuZGVHOXozYktKcHdRbzdzRmpzc3BuSW9fS0JCVVJ5enJuTlFtc0taZ2hfNlExd2xGV0Z1UWdoUHhGMWowY2VsZG5kOGR6VWNNcmhGZlVpTGpTRUl5bUhzNGFjMQ?oc=5"
         }
       ]
     },
     {
-      "id": "f3ea50aabac0bdcf",
-      "event": "byd in exclusive talks to buy ineos factory in france",
-      "title": "BYD in Exclusive Talks to Buy INEOS Factory in France",
+      "id": "0a8ffe17b92a0c66",
+      "event": "why russia s farm exports to china are booming despite us trade thaw",
+      "title": "Why Russia’s farm exports to China are booming despite US trade thaw",
       "topic": "china",
-      "date": "2026-11-25",
-      "source": "Caixin Global",
+      "date": "2026-11-26",
+      "source": "South China Morning Post",
       "source_tier": "local English media",
       "links": [
         {
-          "source": "Caixin Global",
-          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPdHJnZlpoU2JYRktycUJzSU9sSXF5ZTVuUDhSQ0hYU1ZxbDc3MEQ4WmtoOEFFVzFBOFhJUy1nejN5UTU2bjZLdGt2N0hnRnduT1J3VTZOblFTbWNxODNtRml4UkRqdlZPMkxYeGR6U20xRGhMN2Y1SjNyeVliNDFQbUxXLWduWVFuSy1jSzJxRUF2OHJGbk40enVSbVdoVHE1Vm1vRjh3Y1dkQkNJ?oc=5"
+          "source": "South China Morning Post",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxORHZFbHUzSGFSZEtPbmNiQkp6cHRsQ1ZQRDJPTzFXUnBNSXl1aFB4SzdNTnFfTG12VzJfV3RlWXZiN3Q0R2J6S2FWcEY3Y0lGX2E1SEcyLW9RMTZWbFhHY2RtbWJkeGdERVBBdTZLOEFoZmdEOTJtcEc0MlUyaVhaZXdxcWxTZEhpLUV1TnlkNWg4dzZ3LVVtMm5HeExPeWlWUlRMY2lBNkZiemEtNm0td2ktZUs1Znplekxn0gG7AUFVX3lxTE4yVlJjUENVc0pQQ1dfdDdlNzZvUDE2Nl9PeEJ0NDdHaUlNaW1ObGJnMTZCNUtmeTFxWlpicXgta1RxT0VPVHF5Z3NyMFZTbTlsNnc2LXlXT3lPbHNOSURhaGZFVXNsdmp1Rlo2azhCdEZNWmVSRkhVNE9MTjhJaXQtSHFQQ0NUdk5kOGVUbXRQU0l4azd4S1pyb0EzNDg2d1Z2bHRROUgzNnVjdUYtcTVtZTZGTGtVY0xIckE?oc=5"
         }
       ]
     },
     {
-      "id": "2fa9e9b8867ee7a0",
-      "event": "tesla shanghai plant nears 5m vehicle milestone highlighting china s manufacturing strength",
-      "title": "Tesla Shanghai plant nears 5m vehicle milestone, highlighting China's manufacturing strength",
-      "topic": "china",
-      "date": "2026-11-25",
-      "source": "Global Times",
-      "source_tier": "local English media",
+      "id": "73816f345efcd95e",
+      "event": "weekly ocean freight market update 27 november 2026",
+      "title": "Weekly ocean freight market update: 27 November 2026",
+      "topic": "shipping",
+      "date": "2026-11-26",
+      "source": "Xeneta",
+      "source_tier": "context",
       "links": [
         {
-          "source": "Global Times",
-          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9FRnphQnVfR3NITzlKZFZKRk03RjlKRFl2ZU1wUHdISWNYNzZaenNtam1EQ0lWa2NlZWZJTFNicXdzdl83eEhUV1VndF9TeU80dGhkTFJ4VG9zcFk1aXMzM0hB?oc=5"
+          "source": "Xeneta",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5WYURuSGkwYmhqSUZJd1l1dHRaOENNR2d3bUJIQTBXMEpfcDdDSzZ1UlRjS0F3NDh1UG9FdHV2RHpTWEllU1F2eGFkQ19pTFhidWNBSmcyS21xMF9MX0t3MmhWY1ZUM2lWMjlVZHozMHdrdW1q?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "c57f67edccb8c33a",
+      "event": "transpac ocean rates finally ease us tariff announcement coming but new duties could be months away november 25 2026 update",
+      "title": "Transpac ocean rates finally ease; US tariff announcement coming, but new duties could be months away - November 25, 2026 Update",
+      "topic": "shipping",
+      "date": "2026-11-26",
+      "source": "Freightos",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "Freightos",
+          "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxNbjZfanRQeWNvdXlFeWZGUzNZelMyeUpMSXlsVU5VUnFXM2JPenB0Wk1nM0NnUVpEUnRlVnRiRlk3c3hoWTUtQzkyOVVuU2JYREJIMDBXcWRqeEROV1N2eU5Vb1FvYzZfMks2QWtqbXJRQUtUN1JzMTRqRUFWSUtZRHZBeUNFYUV6NHBURUlTYTdib2lfV3hfamFQdlZHV3QyNGRQbHVUaWZ6NnN1Y01sMjJuU1R5QnZOaXZXbjV4dTVXbDZkdHJMSnUzcnRtSEpRZlpTaFE2LThIdVZLYUxfTW5YTXZzNGM5bWZ1VjFiMGhzLVVVZkxGTkxVbnY?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "d05d85847e40b993",
+      "event": "trump set to add new sweeping tariffs undeterred by midterms defeat",
+      "title": "Trump set to add new sweeping tariffs, undeterred by midterms defeat",
+      "topic": "tariff",
+      "date": "2026-11-25",
+      "source": "Reuters",
+      "source_tier": "trade",
+      "links": [
+        {
+          "source": "Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNNklFaE54bEV6OGdKT29ScUxHUlZwRDNyREJ0MzBSZzZGdnptTkVxaXNHeWx2WjFWYVMzMzdMeU92dC1PVmYyZ1BTT3lCTWVRVnJ5ODFEb0NXYWpDd1ZQUlg4bkZ5QVAyck9KQUhMbldjY2FqMmtsZGs3MTFUY0xLZm9wMWRRTFAyS3VvZUZ6Wnk0VzlxTjR3VS1GSkJ1S3VCU2xmZ09FX1E5dUVjTUhfR21wMG1pcktxdGc?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "bea8b7de56439ff6",
+      "event": "ustr invites public comment on proposed modifications of the section 301 action regarding brazil s unreasonable acts policies and practices",
+      "title": "USTR Invites Public Comment on Proposed Modifications of the Section 301 Action Regarding Brazil’s Unreasonable Acts, Policies, and Practices",
+      "topic": "tariff",
+      "date": "2026-11-25",
+      "source": "United States Trade Representative (.gov)",
+      "source_tier": "context",
+      "links": [
+        {
+          "source": "United States Trade Representative (.gov)",
+          "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxOOUlVSEZJVHJMdmszeEl1ZWk1aVBwR2s4UmdCMmlaUzRLWTRqUWNMZ2ttOHAyOGszUi14MUQ5bzh0RlFYN2VOekdBLVBoVGFjNHk0Q2VYdU9tRmtWYzN1bGszVEZXREZTWXZPNWx6NkJOQ0FrNDdFM19vN25vSFNNdUE2T2xMemVjaTVUUTY4cmJiNDNwZ2o4REJXbm1GQ3dUZWlSazJHMUVWTHdxdTVnYlBVdUhkNFJSNnpRcVJha3Z2SkNuRk1JQjhuSGVZQ0xpV2xqZ1ota2RVRjY1eVBBdDdzdElQQTVwd0VsUi13cDdiT1JYVFdVa2ZhZ1hfUElpX3lOcDlqSzIxVjBG?oc=5"
         }
       ]
     },
@@ -64,6 +124,21 @@
       ]
     },
     {
+      "id": "d3494a1e6a63f6e1",
+      "event": "xeneta container rate futures now trading in europe",
+      "title": "Xeneta container rate futures now trading in Europe",
+      "topic": "shipping",
+      "date": "2026-11-25",
+      "source": "Journal of Commerce",
+      "source_tier": "trade",
+      "links": [
+        {
+          "source": "Journal of Commerce",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPcEE1bTMzLW9NaU9fUmNVenlCdVgxaUVGcmg0TjFPNTljRi11bk9oMDQxbGJfSUI4NmJHMGJ1eThxMFpvQjlKV2E0b1hLRUQxZFJkYUpzbnBOOF9Lei1Wcm9YUVVZWlFNN2Q0V1lBbjVDV1hhNWxRMS1ORngzQk9xYXJXNWlqbDVjR3lCWkNsNFo?oc=5"
+        }
+      ]
+    },
+    {
       "id": "15a05044e6ebc308",
       "event": "1 billing code 3390 f4 office of the united states trade representative docket nos ustr 2026 0741",
       "title": "1 Billing Code 3390-F4 OFFICE OF THE UNITED STATES TRADE REPRESENTATIVE Docket Nos. USTR–2026–0741",
@@ -79,32 +154,17 @@
       ]
     },
     {
-      "id": "289c85a1da7b82c0",
-      "event": "untitled",
-      "title": "Untitled",
-      "topic": "tariff",
+      "id": "276761d8ef4d580c",
+      "event": "ningbo middle east freight rates surge 453 5 yoy as container shipping enters a two speed market",
+      "title": "Ningbo–Middle East freight rates surge 453.5% YoY as container shipping enters a two-speed market",
+      "topic": "shipping",
       "date": "2026-11-25",
-      "source": "United States Trade Representative (.gov)",
+      "source": "Container News",
       "source_tier": "context",
       "links": [
         {
-          "source": "United States Trade Representative (.gov)",
-          "url": "https://news.google.com/rss/articles/CBMimgJBVV95cUxNbGpHRmhWUXdJSmM3aDhzX2Fnbm5vQmJOX1FPTl9wUFRKWlU1QTJfTV9CeFZ1czBnamZoWDhLcnRqeGxyclFocHRpMmcySy1weVlFQk93Y2d2NFQwMjVWVWRkazVDQUE0d2VwN2VxWldFNmVEeUIyQWRJTVNNd0xfQTVQUlBSb2VXRTlSR0xnaXlnNm5lRUVmM1FqMURlSTNja053NjRhNlRadzhHSVYyYUthOW9YWTBGQ3ZNb1pfZXpvcjhvYWtxRzA2RVo0aklVMGQ3enRidjgxYU1DMUNieEwzSnNuNlBsNVdBclo1MFJQMlZGaGVYZ3pxZ253TkV6WVhWdXJ0S3pJeUtkSnFvQjVfNEtTdUQ5SFE?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "d3494a1e6a63f6e1",
-      "event": "xeneta container rate futures now trading in europe",
-      "title": "Xeneta container rate futures now trading in Europe",
-      "topic": "shipping",
-      "date": "2026-11-25",
-      "source": "Journal of Commerce",
-      "source_tier": "trade",
-      "links": [
-        {
-          "source": "Journal of Commerce",
-          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPcEE1bTMzLW9NaU9fUmNVenlCdVgxaUVGcmg0TjFPNTljRi11bk9oMDQxbGJfSUI4NmJHMGJ1eThxMFpvQjlKV2E0b1hLRUQxZFJkYUpzbnBOOF9Lei1Wcm9YUVVZWlFNN2Q0V1lBbjVDV1hhNWxRMS1ORngzQk9xYXJXNWlqbDVjR3lCWkNsNFo?oc=5"
+          "source": "Container News",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNTVpHaW13cnZXaFRqMjJoRVFqbURLclgzbjdxSk9sVjNDY3MyVTVRM1k1SmtTX1RCRTZNQU16bmxUVlIzM3hOazY3MTZvWVlub1ZVcEgzWkt4TzBlc0tiOFhLZ2lxWjUyVWJNbGdLZV93RmE0SWN0R2ctTDBpd0VDSWE4V1VWREJYSXh1UlZrcnk4c2JZLUVwMVl3c1dQQWdvcXJRcWp4b0xLNmtzY3QteW9EeVdMYU1la1U0VjhVTXNDUQ?oc=5"
         }
       ]
     },
@@ -139,92 +199,32 @@
       ]
     },
     {
-      "id": "276761d8ef4d580c",
-      "event": "ningbo middle east freight rates surge 453 5 yoy as container shipping enters a two speed market",
-      "title": "Ningbo–Middle East freight rates surge 453.5% YoY as container shipping enters a two-speed market",
-      "topic": "shipping",
-      "date": "2026-11-25",
-      "source": "Container News",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "Container News",
-          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNTVpHaW13cnZXaFRqMjJoRVFqbURLclgzbjdxSk9sVjNDY3MyVTVRM1k1SmtTX1RCRTZNQU16bmxUVlIzM3hOazY3MTZvWVlub1ZVcEgzWkt4TzBlc0tiOFhLZ2lxWjUyVWJNbGdLZV93RmE0SWN0R2ctTDBpd0VDSWE4V1VWREJYSXh1UlZrcnk4c2JZLUVwMVl3c1dQQWdvcXJRcWp4b0xLNmtzY3QteW9EeVdMYU1la1U0VjhVTXNDUQ?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "bb3dc98aa19d6f91",
-      "event": "csav q3 2026 slides profit surges 482 as freight rates rally by investing com",
-      "title": "CSAV Q3 2026 slides: profit surges 482% as freight rates rally By Investing.com",
-      "topic": "shipping",
-      "date": "2026-11-25",
-      "source": "Investing.com India",
-      "source_tier": "context",
-      "links": [
-        {
-          "source": "Investing.com India",
-          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOeTlfSGZfRnM0eThrSDdkV1FCTUV4QnNZWTIxenMxbkRHdTUxTGtZaHFUZThueU84OUJrYk9ZQnpMZXU5YUZYYWFraG10QktOOTM4UXdBZl9oSFktT1Z4Ri1wNzY4NlFDNFdEOXBSUzBCV3I0R0ZlV2I3OWE2N3pfMWhUdTdsN2gxNm9HMmJXTUhqY3dZRkFJU0xDWmlSdDlGMnBKSkNFR2tWNVpoTmdtT0NQQ1hldUZKRnpqU0VR?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "ca2b8e794acabbae",
-      "event": "china focus china s manufacturing powerhouse deepens regional integration",
-      "title": "China Focus: China's manufacturing powerhouse deepens regional integration",
+      "id": "f3ea50aabac0bdcf",
+      "event": "byd in exclusive talks to buy ineos factory in france",
+      "title": "BYD in Exclusive Talks to Buy INEOS Factory in France",
       "topic": "china",
       "date": "2026-11-25",
-      "source": "Xinhua",
+      "source": "Caixin Global",
       "source_tier": "local English media",
       "links": [
         {
-          "source": "Xinhua",
-          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBsQTRQNGJheENmZmxEMDFmc3lHdk5KUXMxbjJYSXF5WTF1bzlqWnZxdm1KVEcxUUxFdGFoZUtVR09nRXJPd0I0YTBJM2tUYnBJTHFxTGNDdWF1WlYyS1NEMFJ2NTJOLTk3X1lQTGx2N1hjRFhEXzFBTEhNYlo?oc=5"
+          "source": "Caixin Global",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPdHJnZlpoU2JYRktycUJzSU9sSXF5ZTVuUDhSQ0hYU1ZxbDc3MEQ4WmtoOEFFVzFBOFhJUy1nejN5UTU2bjZLdGt2N0hnRnduT1J3VTZOblFTbWNxODNtRml4UkRqdlZPMkxYeGR6U20xRGhMN2Y1SjNyeVliNDFQbUxXLWduWVFuSy1jSzJxRUF2OHJGbk40enVSbVdoVHE1Vm1vRjh3Y1dkQkNJ?oc=5"
         }
       ]
     },
     {
-      "id": "830b3f79ff63197b",
-      "event": "trump set to add new sweeping tariffs undeterred by midterms defeat",
-      "title": "Trump set to add new sweeping tariffs, undeterred by midterms defeat",
-      "topic": "tariff",
-      "date": "2026-11-24",
-      "source": "Reuters",
-      "source_tier": "trade",
-      "links": [
-        {
-          "source": "Reuters",
-          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNNklFaE54bEV6OGdKT29ScUxHUlZwRDNyREJ0MzBSZzZGdnptTkVxaXNHeWx2WjFWYVMzMzdMeU92dC1PVmYyZ1BTT3lCTWVRVnJ5ODFEb0NXYWpDd1ZQUlg4bkZ5QVAyck9KQUhMbldjY2FqMmtsZGs3MTFUY0xLZm9wMWRRTFAyS3VvZUZ6Wnk0VzlxTjR3VS1GSkJ1S3VCU2xmZ09FX1E5dUVjTUhfR21wMG1pcktxdGc?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "3412a6a7028c7e3e",
-      "event": "byd factory protests in indonesia spotlight foreign investment hurdles",
-      "title": "BYD factory protests in Indonesia spotlight foreign investment hurdles",
+      "id": "2fa9e9b8867ee7a0",
+      "event": "tesla shanghai plant nears 5m vehicle milestone highlighting china s manufacturing strength",
+      "title": "Tesla Shanghai plant nears 5m vehicle milestone, highlighting China's manufacturing strength",
       "topic": "china",
-      "date": "2026-11-24",
-      "source": "South China Morning Post",
+      "date": "2026-11-25",
+      "source": "Global Times",
       "source_tier": "local English media",
       "links": [
         {
-          "source": "South China Morning Post",
-          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOaTZYTFNPOFlmNWpDcmRxdHZpRE1JdUVNV1FvUGlYNXlOMFM5Q0FVRFJGQzY0MTFWeEtGVWRCeW1YZW1sVDJ2YXhvUWxob1RVSHRWcGs2YUVMZjg3dWk1ei1CUVk3WVhPSHhfY2t2SGlYRWJVOTdWbU1pZ3EyeDV1Rjc5NFJRRTRHQ1c0TjRrZVZNV2J1UTZKa3lqcVNSVmVzV2E1RVAyTFgzT2ltalI3bENjMlhSZUxrRDIxejVfT2cxblFqV1EycndSNHZQRThuekxTSkNQTXp0UdIB2gFBVV95cUxNQUJJRmFTUEJqYmVsSkxNUXYzbnpjLXdBUV9XSHh4X2xZM0VVSlY5YUhGNy0zLXR3Q29rYkNvcXVyZTRFTW1rOV9MMmkwX1ZpNVFYZ0xSRTAxUzVIVWhwTkdxdF91dUhQdzlseWo2RDM3OHpEY2dFTjBJVHZfWV9TOWJyOXk3R1lBU3ZSZjVjQl9FTVBCaWlMQkNjbUcyX2JxUW9GaXJZa3YxYzFLcEpJMjZNNkdzVTB6OEcwMHFac1BCNndlNllZbVVTXzhDSkdfX1l3TGJ2eDN4Zw?oc=5"
-        }
-      ]
-    },
-    {
-      "id": "240ca5b418f70416",
-      "event": "asia us east coast ocean freight rates top 10 000 up 300 from a year ago",
-      "title": "Asia–US East Coast ocean freight rates top $10,000, up 300% from a year ago",
-      "topic": "shipping",
-      "date": "2026-11-23",
-      "source": "FreightWaves",
-      "source_tier": "trade",
-      "links": [
-        {
-          "source": "FreightWaves",
-          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOb2p4MFduR0pmX25iWjI2bFFnYXRBZHZOYXNOaGxZYWs5RXFveWFFd1pCUlhtY0hINkRBS0pQQ0VsMWxlNFBULUZ5MXdhN3p6NWNqUl8taWVqMFlGeWVHclNIN1o2Sno4Z0I4RkdHZnRkckFXNGF3bVF5czQ5WUdqa19TQURzUkpTRG1sem1CRkpMLWxyekxXU082VFF0T180a1p5YUZ0QnU?oc=5"
+          "source": "Global Times",
+          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9FRnphQnVfR3NITzlKZFZKRk03RjlKRFl2ZU1wUHdISWNYNzZaenNtam1EQ0lWa2NlZWZJTFNicXdzdl83eEhUV1VndF9TeU80dGhkTFJ4VG9zcFk1aXMzM0hB?oc=5"
         }
       ]
     },
