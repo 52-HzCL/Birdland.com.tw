@@ -5,7 +5,7 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:Birdland carbon
 BEGIN:VEVENT
-UID:cbam-first-declaration-2027@birdland.com.tw
+UID:cbam-first-declaration-2027.birdland-public-calendar
 DTSTAMP:20260727T000000Z
 DTSTART:20270930T170000Z
 DTEND:20270930T180000Z
